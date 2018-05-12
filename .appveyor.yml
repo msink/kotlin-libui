@@ -1,0 +1,25 @@
+version: 'build #{build}'
+
+before_build:
+  - git submodule update --init
+  - set "PATH=C:\msys64\mingw64\bin;%PATH:C:\Program Files\Git\usr\bin;=%"
+
+build_script:
+  - mkdir build
+  - pushd build && cmake -G "MinGW Makefiles" -DBUILD_SHARED_LIBS=OFF ../libui && mingw32-make tester examples && popd
+  - gradlew build
+  - copy build\konan\libs\mingw_x64\libui.klib libui-windows.klib
+
+artifacts:
+  - path: libui-windows.klib
+    name: klib
+
+deploy:
+  provider: GitHub
+  tag: $(APPVEYOR_REPO_TAG_NAME)
+  description: '$(APPVEYOR_REPO_TAG_NAME)'
+  artifact: klib
+  auth_token:
+    secure: "2l/602m6FkqAB9TTIAkPX3Erfwg9jVTlf/Inmf2dWcbOrJJzK/WrCUIgY3B4ngly"
+  on:
+    appveyor_repo_tag: true
