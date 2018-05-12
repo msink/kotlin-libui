@@ -13,12 +13,9 @@ matrix:
           packages:
             - libgtk-3-dev
 
-install:
-  - git submodule update --init
-
 script:
   - mkdir build
-  - cd build && cmake -DBUILD_SHARED_LIBS=OFF ../libui && make tester examples && popd
+  - pushd build && cmake -DBUILD_SHARED_LIBS=OFF ../libui && make tester examples && popd
   - ./gradlew build
   - cp build/konan/libs/*/libui.klib libui-${TRAVIS_OS_NAME}.klib
 
