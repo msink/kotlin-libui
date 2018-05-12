@@ -9,16 +9,19 @@ build_script:
   - pushd build && cmake -G "MinGW Makefiles" -DBUILD_SHARED_LIBS=OFF ../libui && mingw32-make tester examples && popd
   - gradlew build
   - copy build\konan\libs\mingw_x64\libui.klib libui-windows.klib
+  - copy build\konan\bin\mingw_x64\libui-hello.exe libui-hello-windows.exe
 
 artifacts:
   - path: libui-windows.klib
     name: klib
+  - path: libui-hello-windows.exe
+    name: hello
 
 deploy:
   provider: GitHub
   tag: $(APPVEYOR_REPO_TAG_NAME)
   description: '$(APPVEYOR_REPO_TAG_NAME)'
-  artifact: klib
+  artifact: klib, hello
   auth_token:
     secure: "2l/602m6FkqAB9TTIAkPX3Erfwg9jVTlf/Inmf2dWcbOrJJzK/WrCUIgY3B4ngly"
   on:
