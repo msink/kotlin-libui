@@ -1,0 +1,4 @@
+package = libui
+headers = ui.h
+staticLibraries = libui.a
+libraryPaths = build/out
