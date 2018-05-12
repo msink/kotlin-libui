@@ -18,6 +18,7 @@ script:
   - pushd build && cmake -DBUILD_SHARED_LIBS=OFF ../libui && make tester examples && popd
   - ./gradlew build
   - cp build/konan/libs/*/libui.klib libui-${TRAVIS_OS_NAME}.klib
+  - cat build/examples/CMakeFiles/drawtext.dir/linklibs.rsp
 
 deploy:
   provider: releases
