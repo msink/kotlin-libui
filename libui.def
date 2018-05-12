@@ -4,7 +4,8 @@ staticLibraries = libui.a
 libraryPaths = build/out
 
 linkerOpts.osx = -lobjc -framework Foundation -framework AppKit
-linkerOpts.linux = -lgtk-3 -lgdk-3 -latk-1.0 -lgio-2.0 -lpangocairo-1.0 \
-    -lgdk_pixbuf-2.0 -lcairo-gobject -lpango-1.0 -lcairo -lgobject-2.0 -lglib-2.0 -lm -ldl
+linkerOpts.linux = -L/usr/lib/x86_64-linux-gnu \
+    -lgtk-3 -lgdk-3 -latk-1.0 -lgio-2.0 -lpangocairo-1.0 -lgdk_pixbuf-2.0 \
+    -lcairo-gobject -lpango-1.0 -lcairo -lgobject-2.0 -lglib-2.0 -lm -ldl
 linkerOpts.mingw = -luser32 -lkernel32 -lgdi32 -lcomctl32 -luxtheme \
     -lmsimg32 -lcomdlg32 -ld2d1 -ldwrite -lole32 -loleaut32 -loleacc -luuid -mwindows
