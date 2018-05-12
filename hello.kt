@@ -5,7 +5,7 @@ fun main(args: Array<String>) = memScoped {
     val options = alloc<uiInitOptions>()
     uiInit(options.ptr)
 
-    val window = uiNewWindow("Hello World", 200, 50, 1)
+    val window = uiNewWindow("Konan говорит: click me!", 320, 60, 1)
     uiWindowSetMargined(window, 1)
     fun onClosing(window: CPointer<uiWindow>?, ptr: COpaquePointer?): Int {
         uiControlDestroy(window?.reinterpret())
