@@ -1,0 +1,34 @@
+language: java
+
+matrix:
+  include:
+    - os: osx
+      osx_image: xcode8
+
+    - os: linux
+      dist: trusty
+      jdk: oraclejdk8
+      addons:
+        apt:
+          packages:
+            - libgtk-3-dev
+
+install:
+  - git submodule update --init
+
+script:
+  - mkdir build
+  - cd build && cmake -DBUILD_SHARED_LIBS=OFF ../libui && make tester examples && popd
+  - ./gradlew build
+  - cp build/konan/libs/*/libui.klib libui-${TRAVIS_OS_NAME}.klib
+
+deploy:
+  provider: releases
+  api_key:
+    secure: UBBD+8M/L5Aqyzti5JbbelugfXeKBY8UdwWEaGmy9Akf5ktw4mEfL3VjdoyPT2gD4bmSSwk/vIEXzNnjIMR479ps63fpVBylQY+bSLeBqJeV6D7nt+0Q2RZf70dClEHaNeewoZsFv7wdsHphIi8i3McnYmPRjzWyJ5lLSAo25VPcg6PWJGQBT6S6CWKJKngHwaLEy4e7QmKypoAKnBTar5An2hsIXaksm5wGGstAJN6PMxvR9dXA18MvTO6UB0zJ8hLV/WzSaVcZgFEFpbk+jcW4MCw0/a+Z3HULZ16vH9KCh14P6JEmPHjGa+pQ0LTBjyFYJIh32d9VCNSlbedT3LL9++hROPyZl7B2jqRAbtZBKY0pMhiDXiWKi42n4U8gFSS8T1KkyaTzW7rQGPLurSsnU4snrQF2z7X5E4mJI0UY68PatGXujjFmtCW/mS2iLnrxc/17KxZhqUkv/OSJkqTw+KWP5BB2QI6humhb6CaGQL99Y96jzNpXvgF+KU9cBGKdqODiAR5ytBFXmCdGz/Am1KSfR5ujuVw7GOESkz5TFJAT/+exV4brZL9/YmE8rYokluv5Y3M3f6y7Kf09DqcbQY5J4WFyUugDq8kIYDdNRbwFFJE5XUvboaeBQhQq4z4OA5QAWWZRYwmwlV6mfQsxwfSnFYls0ObYvia5pSw=
+  file: libui-*.klib
+  file_glob: true
+  skip_cleanup: true
+  on:
+    tags: true
+    repo: msink/klib-ui
