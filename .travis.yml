@@ -19,7 +19,9 @@ script:
   - ./gradlew build
   - cp build/konan/libs/*/libui.klib libui-${TRAVIS_OS_NAME}.klib
   - ls -lR build
-  - cat build/examples/CMakeFiles/drawtext.dir/linklibs.rsp
+  - cat build/examples/CMakeFiles/drawtext.dir/build.make
+  - cat build/examples/CMakeFiles/drawtext.dir/flags.make
+  - cat build/examples/CMakeFiles/drawtext.dir/link.txt
 
 deploy:
   provider: releases
