@@ -1,11 +1,11 @@
 kotlin-libui
 ============
 
-[![Build status](https://ci.appveyor.com/api/projects/status/github/msink/kotlin-libui?svg=true)](https://ci.appveyor.com/project/msink/kotlin-libui)
-[![Build Status](https://travis-ci.org/msink/kotlin-libui.svg?branch=master)](https://travis-ci.org/msink/kotlin-libui)
-
 [Kotlin/Native](https://github.com/JetBrains/kotlin-native) bindings to the
-[libui](https://github.com/andlabs/libui.git) C library
+[libui](https://github.com/andlabs/libui.git) C library.
+
+[![Build Status](https://travis-ci.org/msink/kotlin-libui.svg?branch=master)](https://travis-ci.org/msink/kotlin-libui)
+[![Build status](https://ci.appveyor.com/api/projects/status/github/msink/kotlin-libui?svg=true)](https://ci.appveyor.com/project/msink/kotlin-libui)
 
 libui is a C lightweight multi-platform UI library using native widgets on Linux (Gtk3), macOS, and Windows.
 Using this bindings you can develop cross-platform but native-looking GUI programs, written in Kotlin,
