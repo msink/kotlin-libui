@@ -2,21 +2,22 @@ language: java
 
 matrix:
   include:
-    - os: osx
-      osx_image: xcode8
-
     - os: linux
       dist: trusty
       jdk: oraclejdk8
       addons:
         apt:
           packages:
-            - libgtk-3-0
             - libgtk-3-dev
+    - os: osx
+      osx_image: xcode8
 
 script:
   - mkdir build
-  - pushd build && cmake -DBUILD_SHARED_LIBS=OFF ../libui && make tester examples && popd
+  - pushd build
+  - cmake -DBUILD_SHARED_LIBS=OFF ../libui
+  - make tester examples
+  - popd
   - ./gradlew build
   - cp build/konan/libs/*/libui.klib libui-${TRAVIS_OS_NAME}.klib
   - cp build/konan/bin/*/libui-hello.kexe libui-hello-${TRAVIS_OS_NAME}
