@@ -4,14 +4,7 @@ import libui.*
 fun main(args: Array<String>) = memScoped {
     val options = alloc<uiInitOptions>()
     val error = uiInit(options.ptr)
-//  if (error != null) throw Error("Error: '${error.toKString()}'")
-//TODO: if uncomment previous line - program just silently exits.
-/*TODO: should work like this:
-    uiInitOptions options;
-    memset(&options, 0, sizeof(options));
-    if (uiInit(&options) != NULL)
-        abort();
-*/
+    if (error != null) throw Error("Error: '${error.toKString()}'")
 
     val window = uiNewWindow("Hello", 320, 240, 0)
     uiWindowSetMargined(window, 1)
