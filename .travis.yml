@@ -32,4 +32,4 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
-    repo: msink/klib-ui
+    repo: msink/kotlin-libui
