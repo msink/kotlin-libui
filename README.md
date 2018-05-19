@@ -6,8 +6,7 @@
 [Kotlin/Native](https://github.com/JetBrains/kotlin-native) bindings to the
 [libui](https://github.com/andlabs/libui.git) C library
 
-`libui` is a C lightweight multi-platform UI library using native widgets on Linux (Gtk3), macOS, and Windows.
-
+libui is a C lightweight multi-platform UI library using native widgets on Linux (Gtk3), macOS, and Windows.
 Using this bindings you can develop cross-platform but native-looking GUI programs, written in Kotlin,
 and compiled to small native executable file.
 
