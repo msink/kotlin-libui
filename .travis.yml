@@ -15,7 +15,7 @@ matrix:
 script:
   - mkdir build
   - pushd build
-  - cmake -DBUILD_SHARED_LIBS=OFF ../libui
+  - cmake -G "Unix Makefiles" -DBUILD_SHARED_LIBS=OFF ../libui
   - make tester examples
   - popd
   - ./gradlew build

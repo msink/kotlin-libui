@@ -2,11 +2,15 @@ version: 'build #{build}'
 
 before_build:
   - git submodule update --init
-  - set "PATH=C:\msys64\mingw64\bin;%PATH:C:\Program Files\Git\usr\bin;=%"
+  - set "PATH=C:\msys64\mingw64\bin;%PATH%"
+  - ren "C:\Program Files\Git\usr\bin\sh.exe" _sh.exe
 
 build_script:
-  - mkdir build
-  - pushd build && cmake -G "MinGW Makefiles" -DBUILD_SHARED_LIBS=OFF ../libui && mingw32-make tester examples && popd
+  - md build
+  - cd build
+  - cmake -G "MinGW Makefiles" -DBUILD_SHARED_LIBS=OFF ../libui
+  - mingw32-make tester examples
+  - cd %APPVEYOR_BUILD_FOLDER%
   - gradlew build
   - copy build\konan\libs\mingw_x64\libui.klib libui-windows.klib
   - copy build\konan\bin\mingw_x64\libui-hello.exe libui-hello-windows.exe
@@ -19,8 +23,6 @@ artifacts:
 
 deploy:
   provider: GitHub
-  tag: $(APPVEYOR_REPO_TAG_NAME)
-  description: '$(APPVEYOR_REPO_TAG_NAME)'
   artifact: klib, hello
   auth_token:
     secure: "2l/602m6FkqAB9TTIAkPX3Erfwg9jVTlf/Inmf2dWcbOrJJzK/WrCUIgY3B4ngly"
