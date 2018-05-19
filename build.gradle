@@ -6,7 +6,7 @@ konanArtifacts {
         includeDirs "${project.rootDir}/libui"
     }
     program('libui-hello') {
-        srcFiles 'hello.kt'
+        srcFiles 'samples/hello/hello.kt'
         libraries {
             artifact 'libui'
         }
