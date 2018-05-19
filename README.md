@@ -13,8 +13,9 @@ and compiled to small native executable file.
 
 **Work in progress!**
 
-Cross-platform build is automated using Travis for Linux and macOS targets, and AppVeyor for Windows targets.
-Just create release on GitHub, and executable files for all 3 major desktop platforms will be compiled and attached to release.
+Cross-platform build is automated using [Travis](https://travis-ci.org) for Linux and macOS targets, and
+[AppVeyor](https://ci.appveyor.com) for Windows targets. Just create release on GitHub, and executable files
+for all 3 major desktop platforms will be compiled and attached to release.
 
 For local build use `.\build.sh` on Linux or macOS, or `build.bat` on Windows.
 In this case only one - native for your platform - file will be built.
