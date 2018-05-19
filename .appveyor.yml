@@ -6,9 +6,9 @@ before_build:
   - ren "C:\Program Files\Git\usr\bin\sh.exe" _sh.exe
 
 build_script:
-  - md build
-  - cd build
-  - cmake -G "MinGW Makefiles" -DBUILD_SHARED_LIBS=OFF ../libui
+  - md build\libui
+  - cd build\libui
+  - cmake -G "MinGW Makefiles" -DBUILD_SHARED_LIBS=OFF ..\..\libui
   - mingw32-make tester examples
   - cd %APPVEYOR_BUILD_FOLDER%
   - gradlew build
