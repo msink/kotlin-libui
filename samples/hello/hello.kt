@@ -32,4 +32,5 @@ fun main(args: Array<String>) = memScoped {
     uiWindowOnClosing(window, staticCFunction(::onClosing), null)
     uiControlShow(window?.reinterpret())
     uiMain()
+    uiUninit()
 }
