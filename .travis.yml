@@ -16,7 +16,13 @@ script:
   - ./build.sh
 
 after_success:
-  - cp build/konan/libs/*/libui.klib libui-${TRAVIS_OS_NAME}.klib
+  - |
+    case "${TRAVIS_OS_NAME}" in
+      osx)   export TARGET=macos ;;
+      linux) export TARGET=linux ;;
+      *)     exit 1 ;;
+    esac
+  - cp build/konan/libs/${TARGET}_x64/libui.klib libui-${TARGET}.klib
   - ls -lR build/konan/bin
 
 deploy:
