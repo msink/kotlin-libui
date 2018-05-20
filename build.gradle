@@ -2,7 +2,7 @@ apply plugin: 'konan'
 
 konanArtifacts {
     interop('libui') {
-        defFile 'libui.def'
+        defFile 'src/main/libui.def'
         includeDirs "${project.rootDir}/libui"
     }
     program('libui-hello') {
