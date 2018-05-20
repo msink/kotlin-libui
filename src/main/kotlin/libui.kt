@@ -2,12 +2,6 @@ package libui
 
 import kotlinx.cinterop.*
 
-//typedef struct uiInitOptions uiInitOptions
-
-//struct uiInitOptions {
-//	size_t Size
-//}
-
 //const char *uiInit(uiInitOptions *options)
 //void uiUninit(void)
 //void uiFreeInitError(const char *err)
@@ -56,81 +50,115 @@ typealias Control = CPointer<uiControl>
 
 typealias Window = CPointer<uiWindow>
 
-//char *uiWindowTitle(uiWindow *w)
-//void uiWindowSetTitle(uiWindow *w, const char *title)
+fun Window(title: String, width: Int, height: Int, hasMenubar: Boolean = true) : Window
+    = uiNewWindow(title, width, height, if (hasMenubar) 1 else 0) ?: throw Error()
+
+var Window.title: String
+    get() = uiWindowTitle(this)?.toKString() ?: ""
+    set(title) = uiWindowSetTitle(this, title)
+
+var Window.borderless: Boolean
+    get() = uiWindowBorderless(this) != 0
+    set(borderless) = uiWindowSetBorderless(this, if (borderless) 1 else 0)
+
+var Window.margined: Boolean
+    get() = uiWindowMargined(this) != 0
+    set(margined) = uiWindowSetMargined(this, if (margined) 1 else 0)
+
+var Window.fullscreen: Boolean
+    get() = uiWindowFullscreen(this) != 0
+    set(fullscreen) = uiWindowSetFullscreen(this, if (fullscreen) 1 else 0)
+
+//void uiWindowSetChild(uiWindow *w, uiControl *child)
 //void uiWindowContentSize(uiWindow *w, int *width, int *height)
 //void uiWindowSetContentSize(uiWindow *w, int width, int height)
-//int uiWindowFullscreen(uiWindow *w)
-//void uiWindowSetFullscreen(uiWindow *w, int fullscreen)
 //void uiWindowOnContentSizeChanged(uiWindow *w, void (*f)(uiWindow *, void *), void *data)
 //void uiWindowOnClosing(uiWindow *w, int (*f)(uiWindow *w, void *data), void *data)
-//int uiWindowBorderless(uiWindow *w)
-//void uiWindowSetBorderless(uiWindow *w, int borderless)
-//void uiWindowSetChild(uiWindow *w, uiControl *child)
-//int uiWindowMargined(uiWindow *w)
-//void uiWindowSetMargined(uiWindow *w, int margined)
-//uiWindow *uiNewWindow(const char *title, int width, int height, int hasMenubar)
 
 typealias Button = CPointer<uiButton>
 
-//char *uiButtonText(uiButton *b)
-//void uiButtonSetText(uiButton *b, const char *text)
+fun Button(text: String) : Button = uiNewButton(text) ?: throw Error()
+
+var Button.text: String
+    get() = uiButtonText(this)?.toKString() ?: ""
+    set(text) = uiButtonSetText(this, text)
+
 //void uiButtonOnClicked(uiButton *b, void (*f)(uiButton *b, void *data), void *data)
-//uiButton *uiNewButton(const char *text)
 
 typealias Box = CPointer<uiBox>
 
+fun HorizontalBox() : Box = uiNewHorizontalBox() ?: throw Error()
+fun VerticalBox() : Box = uiNewVerticalBox() ?: throw Error()
+
+var Box.padded: Boolean
+    get() = uiBoxPadded(this) != 0
+    set(padded) = uiBoxSetPadded(this, if (padded) 1 else 0)
+
 //void uiBoxAppend(uiBox *b, uiControl *child, int stretchy)
 //void uiBoxDelete(uiBox *b, int index)
-//int uiBoxPadded(uiBox *b)
-//void uiBoxSetPadded(uiBox *b, int padded)
-//uiBox *uiNewHorizontalBox(void)
-//uiBox *uiNewVerticalBox(void)
 
 typealias Checkbox = CPointer<uiCheckbox>
 
-//char *uiCheckboxText(uiCheckbox *c)
-//void uiCheckboxSetText(uiCheckbox *c, const char *text)
+fun Checkbox(text: String) : Checkbox = uiNewCheckbox(text) ?: throw Error()
+
+var Checkbox.text: String
+    get() = uiCheckboxText(this)?.toKString() ?: ""
+    set(text) = uiCheckboxSetText(this, text)
+
+var Checkbox.checked: Boolean
+    get() = uiCheckboxChecked(this) != 0
+    set(checked) = uiCheckboxSetChecked(this, if (checked) 1 else 0)
+
 //void uiCheckboxOnToggled(uiCheckbox *c, void (*f)(uiCheckbox *c, void *data), void *data)
-//int uiCheckboxChecked(uiCheckbox *c)
-//void uiCheckboxSetChecked(uiCheckbox *c, int checked)
-//uiCheckbox *uiNewCheckbox(const char *text)
 
 typealias Entry = CPointer<uiEntry>
 
-//char *uiEntryText(uiEntry *e)
-//void uiEntrySetText(uiEntry *e, const char *text)
+fun Entry() : Entry = uiNewEntry() ?: throw Error()
+fun PasswordEntry() : Entry = uiNewPasswordEntry() ?: throw Error()
+fun SearchEntry() : Entry = uiNewSearchEntry() ?: throw Error()
+
+var Entry.text: String
+    get() = uiEntryText(this)?.toKString() ?: ""
+    set(text) = uiEntrySetText(this, text)
+
+var Entry.readonly: Boolean
+    get() = uiEntryReadOnly(this) != 0
+    set(readonly) = uiEntrySetReadOnly(this, if (readonly) 1 else 0)
+
 //void uiEntryOnChanged(uiEntry *e, void (*f)(uiEntry *e, void *data), void *data)
-//int uiEntryReadOnly(uiEntry *e)
-//void uiEntrySetReadOnly(uiEntry *e, int readonly)
-//uiEntry *uiNewEntry(void)
-//uiEntry *uiNewPasswordEntry(void)
-//uiEntry *uiNewSearchEntry(void)
 
 typealias Label = CPointer<uiLabel>
 
-//char *uiLabelText(uiLabel *l)
-//void uiLabelSetText(uiLabel *l, const char *text)
-//uiLabel *uiNewLabel(const char *text)
+fun Label(text: String) : Label = uiNewLabel(text) ?: throw Error()
+
+var Label.text: String
+    get() = uiLabelText(this)?.toKString() ?: ""
+    set(text) = uiLabelSetText(this, text)
 
 typealias Tab = CPointer<uiTab>
 
+fun Tab() : Tab = uiNewTab() ?: throw Error()
+
+//int uiTabMargined(uiTab *t, int page)
+//void uiTabSetMargined(uiTab *t, int page, int margined)
 //void uiTabAppend(uiTab *t, const char *name, uiControl *c)
 //void uiTabInsertAt(uiTab *t, const char *name, int before, uiControl *c)
 //void uiTabDelete(uiTab *t, int index)
 //int uiTabNumPages(uiTab *t)
-//int uiTabMargined(uiTab *t, int page)
-//void uiTabSetMargined(uiTab *t, int page, int margined)
-//uiTab *uiNewTab(void)
 
 typealias Group = CPointer<uiGroup>
 
-//char *uiGroupTitle(uiGroup *g)
-//void uiGroupSetTitle(uiGroup *g, const char *title)
+fun Group(text: String) : Group = uiNewGroup(text) ?: throw Error()
+
+var Group.title: String
+    get() = uiGroupTitle(this)?.toKString() ?: ""
+    set(title) = uiGroupSetTitle(this, title)
+
+var Group.margined: Boolean
+    get() = uiGroupMargined(this) != 0
+    set(margined) = uiGroupSetMargined(this, if (margined) 1 else 0)
+
 //void uiGroupSetChild(uiGroup *g, uiControl *c)
-//int uiGroupMargined(uiGroup *g)
-//void uiGroupSetMargined(uiGroup *g, int margined)
-//uiGroup *uiNewGroup(const char *title)
 
 //// spinbox/slider rules:
 //// setting value outside of range will automatically clamp
@@ -139,76 +167,96 @@ typealias Group = CPointer<uiGroup>
 
 typealias Spinbox = CPointer<uiSpinbox>
 
-//int uiSpinboxValue(uiSpinbox *s)
-//void uiSpinboxSetValue(uiSpinbox *s, int value)
+fun Spinbox(min: Int, max: Int) : Spinbox = uiNewSpinbox(min, max) ?: throw Error()
+
+var Spinbox.value: Int
+    get() = uiSpinboxValue(this)
+    set(value) = uiSpinboxSetValue(this, value)
+
 //void uiSpinboxOnChanged(uiSpinbox *s, void (*f)(uiSpinbox *s, void *data), void *data)
-//uiSpinbox *uiNewSpinbox(int min, int max)
 
 typealias Slider = CPointer<uiSlider>
 
-//int uiSliderValue(uiSlider *s)
-//void uiSliderSetValue(uiSlider *s, int value)
+fun Slider(min: Int, max: Int) : Slider = uiNewSlider(min, max) ?: throw Error()
+
+var Slider.value: Int
+    get() = uiSliderValue(this)
+    set(value) = uiSliderSetValue(this, value)
+
 //void uiSliderOnChanged(uiSlider *s, void (*f)(uiSlider *s, void *data), void *data)
-//uiSlider *uiNewSlider(int min, int max)
 
 typealias ProgressBar = CPointer<uiProgressBar>
 
-//int uiProgressBarValue(uiProgressBar *p)
-//void uiProgressBarSetValue(uiProgressBar *p, int n)
-//uiProgressBar *uiNewProgressBar(void)
+fun ProgressBar() : ProgressBar = uiNewProgressBar() ?: throw Error()
+
+var ProgressBar.value: Int
+    get() = uiProgressBarValue(this)
+    set(value) = uiProgressBarSetValue(this, value)
 
 typealias Separator = CPointer<uiSeparator>
 
-//uiSeparator *uiNewHorizontalSeparator(void)
-//uiSeparator *uiNewVerticalSeparator(void)
+fun HorizontalSeparator() : Separator = uiNewHorizontalSeparator() ?: throw Error()
+fun VerticalSeparator() : Separator = uiNewVerticalSeparator() ?: throw Error()
 
 typealias Combobox = CPointer<uiCombobox>
 
-//void uiComboboxAppend(uiCombobox *c, const char *text)
+fun Combobox() : Combobox = uiNewCombobox() ?: throw Error()
+
 //int uiComboboxSelected(uiCombobox *c)
 //void uiComboboxSetSelected(uiCombobox *c, int n)
+
+//void uiComboboxAppend(uiCombobox *c, const char *text)
 //void uiComboboxOnSelected(uiCombobox *c, void (*f)(uiCombobox *c, void *data), void *data)
-//uiCombobox *uiNewCombobox(void)
 
 typealias EditableCombobox = CPointer<uiEditableCombobox>
 
-//void uiEditableComboboxAppend(uiEditableCombobox *c, const char *text)
+fun EditableCombobox() : EditableCombobox = uiNewEditableCombobox() ?: throw Error()
+
 //char *uiEditableComboboxText(uiEditableCombobox *c)
 //void uiEditableComboboxSetText(uiEditableCombobox *c, const char *text)
+
+//void uiEditableComboboxAppend(uiEditableCombobox *c, const char *text)
 //// TODO what do we call a function that sets the currently selected item and fills the text field with it? editable comboboxes have no consistent concept of selected item
 //void uiEditableComboboxOnChanged(uiEditableCombobox *c, void (*f)(uiEditableCombobox *c, void *data), void *data)
-//uiEditableCombobox *uiNewEditableCombobox(void)
 
 typealias RadioButtons = CPointer<uiRadioButtons>
 
-//void uiRadioButtonsAppend(uiRadioButtons *r, const char *text)
+fun RadioButtons() : RadioButtons = uiNewRadioButtons() ?: throw Error()
+
 //int uiRadioButtonsSelected(uiRadioButtons *r)
 //void uiRadioButtonsSetSelected(uiRadioButtons *r, int n)
-//void uiRadioButtonsOnSelected(uiRadioButtons *r, void (*f)(uiRadioButtons *, void *), void *data)
-//uiRadioButtons *uiNewRadioButtons(void)
 
-//struct tm
+//void uiRadioButtonsAppend(uiRadioButtons *r, const char *text)
+//void uiRadioButtonsOnSelected(uiRadioButtons *r, void (*f)(uiRadioButtons *, void *), void *data)
+
 typealias DateTimePicker = CPointer<uiDateTimePicker>
 
+fun DateTimePicker() : DateTimePicker = uiNewDateTimePicker() ?: throw Error()
+fun DatePicker() : DateTimePicker = uiNewDatePicker() ?: throw Error()
+fun TimePicker() : DateTimePicker = uiNewTimePicker() ?: throw Error()
+
+//struct tm
 //// TODO document that tm_wday and tm_yday are undefined, and tm_isdst should be -1
 //void uiDateTimePickerTime(uiDateTimePicker *d, struct tm *time)
 //void uiDateTimePickerSetTime(uiDateTimePicker *d, const struct tm *time)
 //void uiDateTimePickerOnChanged(uiDateTimePicker *d, void (*f)(uiDateTimePicker *, void *), void *data)
-//uiDateTimePicker *uiNewDateTimePicker(void)
-//uiDateTimePicker *uiNewDatePicker(void)
-//uiDateTimePicker *uiNewTimePicker(void)
 
 //// TODO provide a facility for entering tab stops?
 typealias MultilineEntry = CPointer<uiMultilineEntry>
 
-//char *uiMultilineEntryText(uiMultilineEntry *e)
-//void uiMultilineEntrySetText(uiMultilineEntry *e, const char *text)
+fun MultilineEntry() : MultilineEntry = uiNewMultilineEntry() ?: throw Error()
+fun NonWrappingMultilineEntry() : MultilineEntry = uiNewNonWrappingMultilineEntry() ?: throw Error()
+
+var MultilineEntry.text: String
+    get() = uiMultilineEntryText(this)?.toKString() ?: ""
+    set(text) = uiMultilineEntrySetText(this, text)
+
+var MultilineEntry.readOnly: Boolean
+    get() = uiMultilineEntryReadOnly(this) != 0
+    set(readOnly) = uiMultilineEntrySetReadOnly(this, if (readOnly) 1 else 0)
+
 //void uiMultilineEntryAppend(uiMultilineEntry *e, const char *text)
 //void uiMultilineEntryOnChanged(uiMultilineEntry *e, void (*f)(uiMultilineEntry *e, void *data), void *data)
-//int uiMultilineEntryReadOnly(uiMultilineEntry *e)
-//void uiMultilineEntrySetReadOnly(uiMultilineEntry *e, int readonly)
-//uiMultilineEntry *uiNewMultilineEntry(void)
-//uiMultilineEntry *uiNewNonWrappingMultilineEntry(void)
 
 typealias MenuItem = CPointer<uiMenuItem>
 
@@ -241,17 +289,6 @@ typealias AreaKeyEvent = CPointer<uiAreaKeyEvent>
 
 typealias DrawContext = CPointer<uiDrawContext>
 
-//struct uiAreaHandler {
-//	void (*Draw)(uiAreaHandler *, uiArea *, uiAreaDrawParams *)
-//	// TODO document that resizes cause a full redraw for non-scrolling areas implementation-defined for scrolling areas
-//	void (*MouseEvent)(uiAreaHandler *, uiArea *, uiAreaMouseEvent *)
-//	// TODO document that on first show if the mouse is already in the uiArea then one gets sent with left=0
-//	// TODO what about when the area is hidden and then shown again?
-//	void (*MouseCrossed)(uiAreaHandler *, uiArea *, int left)
-//	void (*DragBroken)(uiAreaHandler *, uiArea *)
-//	int (*KeyEvent)(uiAreaHandler *, uiArea *, uiAreaKeyEvent *)
-//}
-
 //// TODO RTL layouts?
 //// TODO reconcile edge and corner naming
 
@@ -271,19 +308,6 @@ typealias DrawContext = CPointer<uiDrawContext>
 //uiArea *uiNewArea(uiAreaHandler *ah)
 //uiArea *uiNewScrollingArea(uiAreaHandler *ah, int width, int height)
 
-//struct uiAreaDrawParams {
-//	uiDrawContext *Context
-
-//	// TODO document that this is only defined for nonscrolling areas
-//	double AreaWidth
-//	double AreaHeight
-
-//	double ClipX
-//	double ClipY
-//	double ClipWidth
-//	double ClipHeight
-//}
-
 typealias DrawPath = CPointer<uiDrawPath>
 typealias DrawBrush = CPointer<uiDrawBrush>
 typealias DrawStrokeParams = CPointer<uiDrawStrokeParams>
@@ -295,64 +319,6 @@ typealias DrawBrushGradientStop = CPointer<uiDrawBrushGradientStop>
 //// Core Graphics doesn't explicitly specify a default, but NSBezierPath allows you to choose one, and this is the initial value
 //// so we're good to use it too!
 //#define uiDrawDefaultMiterLimit 10.0
-
-//struct uiDrawMatrix {
-//	double M11
-//	double M12
-//	double M21
-//	double M22
-//	double M31
-//	double M32
-//}
-
-//struct uiDrawBrush {
-//	uiDrawBrushType Type
-
-//	// solid brushes
-//	double R
-//	double G
-//	double B
-//	double A
-
-//	// gradient brushes
-//	double X0		// linear: start X, radial: start X
-//	double Y0		// linear: start Y, radial: start Y
-//	double X1		// linear: end X, radial: outer circle center X
-//	double Y1		// linear: end Y, radial: outer circle center Y
-//	double OuterRadius		// radial gradients only
-//	uiDrawBrushGradientStop *Stops
-//	size_t NumStops
-//	// TODO extend mode
-//	// cairo: none, repeat, reflect, pad no individual control
-//	// Direct2D: repeat, reflect, pad no individual control
-//	// Core Graphics: none, pad before and after individually
-//	// TODO cairo documentation is inconsistent about pad
-
-//	// TODO images
-
-//	// TODO transforms
-//}
-
-//struct uiDrawBrushGradientStop {
-//	double Pos
-//	double R
-//	double G
-//	double B
-//	double A
-//}
-
-//struct uiDrawStrokeParams {
-//	uiDrawLineCap Cap
-//	uiDrawLineJoin Join
-//	// TODO what if this is 0? on windows there will be a crash with dashing
-//	double Thickness
-//	double MiterLimit
-//	double *Dashes
-//	// TOOD what if this is 1 on Direct2D?
-//	// TODO what if a dash is 0 on Cairo or Quartz?
-//	size_t NumDashes
-//	double DashPhase
-//}
 
 //uiDrawPath *uiDrawNewPath(uiDrawFillMode fillMode)
 //void uiDrawFreePath(uiDrawPath *p)
@@ -706,15 +672,6 @@ typealias AttributedString = CPointer<uiAttributedString>
 //// All the members operate like the respective uiAttributes.
 typealias FontDescriptor = CPointer<uiFontDescriptor>
 
-//struct uiFontDescriptor {
-//	// TODO const-correct this or figure out how to deal with this when getting a value
-//	char *Family
-//	double Size
-//	uiTextWeight Weight
-//	uiTextItalic Italic
-//	uiTextStretch Stretch
-//}
-
 //// uiDrawTextLayout is a concrete representation of a
 //// uiAttributedString that can be displayed in a uiDrawContext.
 //// It includes information important for the drawing of a block of
@@ -733,14 +690,6 @@ typealias DrawTextLayout = CPointer<uiDrawTextLayout>
 //// sufficiently in String. Width determines the width of the bounding
 //// box of the text the height is determined automatically.
 typealias DrawTextLayoutParams = CPointer<uiDrawTextLayoutParams>
-
-//// TODO const-correct this somehow
-//struct uiDrawTextLayoutParams {
-//	uiAttributedString *String
-//	uiFontDescriptor *DefaultFont
-//	double Width
-//	uiDrawTextAlign Align
-//}
 
 //// @role uiDrawTextLayout constructor
 //// uiDrawNewTextLayout() creates a new uiDrawTextLayout from
@@ -779,70 +728,50 @@ typealias DrawTextLayoutParams = CPointer<uiDrawTextLayoutParams>
 //// uiFontButton is a button that allows users to choose a font when they click on it.
 typealias FontButton = CPointer<uiFontButton>
 
+//// uiNewFontButton() creates a new uiFontButton. The default font selected into the uiFontButton is OS-defined.
+fun FontButton() : FontButton = uiNewFontButton() ?: throw Error()
+
 //// uiFontButtonFont() returns the font currently selected in the uiFontButton in desc.
 //// uiFontButtonFont() allocates resources in desc when you are done with the font, call uiFreeFontButtonFont() to release them.
 //// uiFontButtonFont() does not allocate desc itself you must do so.
 //// TODO have a function that sets an entire font descriptor to a range in a uiAttributedString at once, for SetFont?
 //void uiFontButtonFont(uiFontButton *b, uiFontDescriptor *desc)
+
 //// TOOD SetFont, mechanics
 //// uiFontButtonOnChanged() sets the function that is called when the font in the uiFontButton is changed.
 //void uiFontButtonOnChanged(uiFontButton *b, void (*f)(uiFontButton *, void *), void *data)
-//// uiNewFontButton() creates a new uiFontButton. The default font selected into the uiFontButton is OS-defined.
-//uiFontButton *uiNewFontButton(void)
+
 //// uiFreeFontButtonFont() frees resources allocated in desc by uiFontButtonFont().
 //// After calling uiFreeFontButtonFont(), the contents of desc should be assumed to be undefined (though since you allocate desc itself, you can safely reuse desc for other font descriptors).
 //// Calling uiFreeFontButtonFont() on a uiFontDescriptor not returned by uiFontButtonFont() results in undefined behavior.
 //void uiFreeFontButtonFont(uiFontDescriptor *desc)
 
-//// TODO document drag captures
-//struct uiAreaMouseEvent {
-//	// TODO document what these mean for scrolling areas
-//	double X
-//	double Y
-
-//	// TODO see draw above
-//	double AreaWidth
-//	double AreaHeight
-
-//	int Down
-//	int Up
-
-//	int Count
-
-//	uiModifiers Modifiers
-
-//	uint64_t Held1To64
-//}
-
-//struct uiAreaKeyEvent {
-//	char Key
-//	uiExtKey ExtKey
-//	uiModifiers Modifier
-
-//	uiModifiers Modifiers
-
-//	int Up
-//}
-
 typealias ColorButton = CPointer<uiColorButton>
+
+fun ColorButton() : ColorButton = uiNewColorButton() ?: throw Error()
 
 //void uiColorButtonColor(uiColorButton *b, double *r, double *g, double *bl, double *a)
 //void uiColorButtonSetColor(uiColorButton *b, double r, double g, double bl, double a)
 //void uiColorButtonOnChanged(uiColorButton *b, void (*f)(uiColorButton *, void *), void *data)
-//uiColorButton *uiNewColorButton(void)
 
 typealias Form = CPointer<uiForm>
 
+fun Form() : Form = uiNewForm() ?: throw Error()
+
+var Form.padded: Boolean
+    get() = uiFormPadded(this) != 0
+    set(padded) = uiFormSetPadded(this, if (padded) 1 else 0)
+
 //void uiFormAppend(uiForm *f, const char *label, uiControl *c, int stretchy)
 //void uiFormDelete(uiForm *f, int index)
-//int uiFormPadded(uiForm *f)
-//void uiFormSetPadded(uiForm *f, int padded)
-//uiForm *uiNewForm(void)
 
 typealias Grid = CPointer<uiGrid>
 
+fun Grid() : Grid = uiNewGrid() ?: throw Error()
+
+var Grid.padded: Boolean
+    get() = uiGridPadded(this) != 0
+    set(padded) = uiGridSetPadded(this, if (padded) 1 else 0)
+
 //void uiGridAppend(uiGrid *g, uiControl *c, int left, int top, int xspan, int yspan, int hexpand, uiAlign halign, int vexpand, uiAlign valign)
 //void uiGridInsertAt(uiGrid *g, uiControl *c, uiControl *existing, uiAt at, int xspan, int yspan, int hexpand, uiAlign halign, int vexpand, uiAlign valign)
-//int uiGridPadded(uiGrid *g)
-//void uiGridSetPadded(uiGrid *g, int padded)
-//uiGrid *uiNewGrid(void)
