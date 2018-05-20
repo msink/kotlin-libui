@@ -24,7 +24,10 @@ after_success:
     esac
   - cp build/konan/libs/${TARGET}_x64/libui.klib libui-${TARGET}.klib
   - pushd build/konan/bin/${TARGET}_x64
-  - tar -czvf libui-${TARGET}-samples.tgz `find . -type f ! -name "*.*"`
+  - tar -czvf libui-${TARGET}-samples-kotlin.tgz *.kexe
+  - popd
+  - pushd build/libui/out
+  - tar -czvf libui-${TARGET}-samples-c.tgz `find . -type f ! -name "*.*"`
   - popd
 
 deploy:
@@ -34,6 +37,7 @@ deploy:
   file:
     - libui-*.klib
     - build/konan/bin/**/*.tgz
+    - build/libui/out/*.tgz
   file_glob: true
   skip_cleanup: true
   on:
