@@ -6,12 +6,7 @@ before_build:
   - ren "C:\Program Files\Git\usr\bin\sh.exe" _sh.exe
 
 build_script:
-  - md build\libui
-  - cd build\libui
-  - cmake -G "MinGW Makefiles" -DBUILD_SHARED_LIBS=OFF ..\..\libui
-  - mingw32-make -j 2 tester examples
-  - cd %APPVEYOR_BUILD_FOLDER%
-  - gradlew build
+  - build.bat
   - copy build\konan\libs\mingw_x64\libui.klib libui-windows.klib
   - copy build\konan\bin\mingw_x64\libui-hello.exe libui-hello-windows.exe
 
