@@ -6,7 +6,7 @@ konanArtifacts {
         includeDirs "${project.rootDir}/libui"
     }
 
-    program('libui-test') {
+    program('test') {
         srcFiles fileTree('src/test/kotlin')
         libraries {
             artifact 'libui'
@@ -17,8 +17,20 @@ konanArtifacts {
         }
     }
 
-    program('libui-hello') {
+    program('hello1') {
         srcFiles 'samples/hello/hello.kt'
+        libraries {
+            artifact 'libui'
+        }
+        target 'mingw', {
+            dependsOn 'windres'
+            linkerOpts "build/samples.res"
+        }
+    }
+
+    program('hello2') {
+        srcFiles 'samples/hello/hello2.kt'
+        srcFiles fileTree('src/main/kotlin')
         libraries {
             artifact 'libui'
         }
