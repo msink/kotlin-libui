@@ -14,6 +14,8 @@ matrix:
 
 script:
   - ./build.sh
+
+after_success:
   - cp build/konan/libs/*/libui.klib libui-${TRAVIS_OS_NAME}.klib
   - cp build/konan/bin/*/libui-hello.kexe libui-hello-${TRAVIS_OS_NAME}
 
