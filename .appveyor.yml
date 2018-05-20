@@ -11,17 +11,18 @@ build_script:
 
 after_build:
   - copy build\konan\libs\mingw_x64\libui.klib libui-windows.klib
-  - copy build\konan\bin\mingw_x64\libui-hello.exe libui-hello-windows.exe
+  - 7z a libui-samples-windows.zip .\build\konan\bin\mingw_x64\*.exe
+  - 7z l libui-samples-windows.zip
 
 artifacts:
   - path: libui-windows.klib
     name: klib
-  - path: libui-hello-windows.exe
-    name: hello
+  - path: libui-samples-windows.zip
+    name: samples
 
 deploy:
   provider: GitHub
-  artifact: klib, hello
+  artifact: klib, samples
   auth_token:
     secure: "2l/602m6FkqAB9TTIAkPX3Erfwg9jVTlf/Inmf2dWcbOrJJzK/WrCUIgY3B4ngly"
   on:
