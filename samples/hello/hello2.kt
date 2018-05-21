@@ -6,14 +6,25 @@ fun main(args: Array<String>) = memScoped {
     val error = uiInit(options.ptr)
     if (error != null) throw Error("Error: '${error.toKString()}'")
 
-    val window = Window("Hello",
-            width = 320, height = 240, hasMenubar = false).apply { margined = true }
+    val window = Window(
+        title = "Hello",
+        width = 320,
+        height = 240,
+        hasMenubar = false).apply {
+        margined = true
+    }
 
-    val box = VerticalBox().apply { padded = true }
+    val box = VerticalBox().apply {
+        padded = true
+    }
     uiWindowSetChild(window, box.reinterpret())
 
-    val scroll = MultilineEntry().apply { readOnly = true }
-    val button = Button("libui говорит: click me!")
+    val scroll = MultilineEntry().apply {
+        readOnly = true
+    }
+    val button = Button(
+        text = "libui говорит: click me!"
+    )
     fun saySomething(box: Button?, scroll: COpaquePointer?) {
         uiMultilineEntryAppend(scroll?.reinterpret(),
             "Hello, World!  Ciao, mondo!\n" +

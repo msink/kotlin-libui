@@ -1,51 +1,50 @@
 #include <string.h>
 #include <stdlib.h>
-#include <time.h>
-#include "../../ui.h"
+#include "ui.h"
 
-int onClosing(uiWindow *w, void *data)
+static int onClosing(uiWindow *window, void *data)
 {
-	uiQuit();
-	return 1;
+    uiQuit();
+    return 1;
 }
 
-void saySomething(uiButton *b, void *e)
+static void saySomething(uiButton *button, void *data)
 {
-	uiMultilineEntryAppend(uiMultilineEntry(e),
+    uiMultilineEntryAppend(uiMultilineEntry(data),
         "Hello, World!  Ciao, mondo!\n"
         "Привет, мир!  你好，世界！\n\n");
 }
 
 int main(void)
 {
-	uiInitOptions o;
-	uiWindow *w;
-	uiBox *b;
-	uiButton *btn;
-    uiMultilineEntry *e;
+    uiInitOptions options;
+    uiWindow *window;
+    uiBox *box;
+    uiButton *button;
+    uiMultilineEntry *scroll;
 
-	memset(&o, 0, sizeof (uiInitOptions));
-	if (uiInit(&o) != NULL)
-		abort();
+    memset(&options, 0, sizeof(options));
+    if (uiInit(&options) != NULL)
+        abort();
 
-	w = uiNewWindow("Hello", 320, 240, 0);
-	uiWindowSetMargined(w, 1);
+    window = uiNewWindow("Hello", 320, 240, 0);
+    uiWindowSetMargined(window, 1);
 
-	b = uiNewVerticalBox();
-	uiBoxSetPadded(b, 1);
-	uiWindowSetChild(w, uiControl(b));
+    box = uiNewVerticalBox();
+    uiBoxSetPadded(box, 1);
+    uiWindowSetChild(window, uiControl(box));
 
-	e = uiNewMultilineEntry();
-	uiMultilineEntrySetReadOnly(e, 1);
+    scroll = uiNewMultilineEntry();
+    uiMultilineEntrySetReadOnly(scroll, 1);
 
-	btn = uiNewButton("libui говорит: click me!");
-	uiButtonOnClicked(btn, saySomething, e);
-	uiBoxAppend(b, uiControl(btn), 0);
+    button = uiNewButton("libui говорит: click me!");
+    uiButtonOnClicked(button, saySomething, scroll);
+    uiBoxAppend(box, uiControl(button), 0);
 
-	uiBoxAppend(b, uiControl(e), 1);
+    uiBoxAppend(box, uiControl(scroll), 1);
 
-	uiWindowOnClosing(w, onClosing, NULL);
-	uiControlShow(uiControl(w));
-	uiMain();
-	return 0;
+    uiWindowOnClosing(window, onClosing, NULL);
+    uiControlShow(uiControl(window));
+    uiMain();
+    return 0;
 }
