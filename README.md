@@ -81,7 +81,7 @@ int main(void)
 ```
 
 Direct translation to Kotlin:
-``` kotlin
+``` kt
 import kotlinx.cinterop.*
 import libui.*
 
@@ -123,7 +123,7 @@ fun main(args: Array<String>) = memScoped {
 While this works, it's far from ideomatic Kotlin.
 A little improved:
 
-```
+``` kt
 import kotlinx.cinterop.*
 import libui.*
 
