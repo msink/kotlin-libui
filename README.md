@@ -175,4 +175,4 @@ fun main(args: Array<String>) = memScoped {
 
 There still is wide area for kotlinization.
 
-If anyone have ideas, Issues and PullRequests are wellcome.
+If anyone have ideas how to make this more ideomatic - Issues and PullRequests are wellcome.
