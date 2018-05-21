@@ -100,8 +100,8 @@ fun main(args: Array<String>) = memScoped {
     val scroll = uiNewMultilineEntry()
     uiMultilineEntrySetReadOnly(scroll, 1)
     val button = uiNewButton("libui говорит: click me!")
-    fun saySomething(box: CPointer<uiButton>?, scroll: COpaquePointer?) {
-        uiMultilineEntryAppend(scroll?.reinterpret(),
+    fun saySomething(button: CPointer<uiButton>?, data: COpaquePointer?) {
+        uiMultilineEntryAppend(data?.reinterpret(),
             "Hello, World!  Ciao, mondo!\n" +
             "Привет, мир!  你好，世界！\n\n")
     }
@@ -151,20 +151,15 @@ fun main(args: Array<String>) = memScoped {
     val button = Button(
         text = "libui говорит: click me!"
     )
-    fun saySomething(box: Button?, scroll: COpaquePointer?) {
-        uiMultilineEntryAppend(scroll?.reinterpret(),
+    uiButtonOnClicked(button, staticCFunction { _, _scroll ->
+        uiMultilineEntryAppend(_scroll?.reinterpret(),
             "Hello, World!  Ciao, mondo!\n" +
             "Привет, мир!  你好，世界！\n\n")
-    }
-    uiButtonOnClicked(button, staticCFunction(::saySomething), scroll)
+        }, scroll)
     uiBoxAppend(box, button.reinterpret(), 0)
     uiBoxAppend(box, scroll.reinterpret(), 1)
 
-    fun onClosing(window: Window?, data: COpaquePointer?): Int {
-        uiQuit()
-        return 1
-    }
-    uiWindowOnClosing(window, staticCFunction(::onClosing), null)
+    uiWindowOnClosing(window, staticCFunction { _, _ -> uiQuit(); 1 }, null)
     uiControlShow(window.reinterpret())
     uiMain()
     uiUninit()

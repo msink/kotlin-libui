@@ -42,11 +42,7 @@ fun main(args: Array<String>) = memScoped {
 
     val w = uiNewWindow("Main Window", 320, 240, 1)
 
-    fun onClosing(w: CPointer<uiWindow>?, data: COpaquePointer?): Int {
-        uiQuit()
-        return 1
-    }
-    uiWindowOnClosing(w, staticCFunction(::onClosing), null)
+    uiWindowOnClosing(w, staticCFunction { _, _ -> uiQuit(); 1 }, null)
 /*TODO
     fun onShouldQuit(data: COpaquePointer?): Int {
 		if (uiMenuItemChecked(shouldQuitItem)) {

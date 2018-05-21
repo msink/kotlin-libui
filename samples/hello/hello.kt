@@ -16,8 +16,8 @@ fun main(args: Array<String>) = memScoped {
     val scroll = uiNewMultilineEntry()
     uiMultilineEntrySetReadOnly(scroll, 1)
     val button = uiNewButton("libui говорит: click me!")
-    fun saySomething(box: CPointer<uiButton>?, scroll: COpaquePointer?) {
-        uiMultilineEntryAppend(scroll?.reinterpret(),
+    fun saySomething(button: CPointer<uiButton>?, data: COpaquePointer?) {
+        uiMultilineEntryAppend(data?.reinterpret(),
             "Hello, World!  Ciao, mondo!\n" +
             "Привет, мир!  你好，世界！\n\n")
     }
