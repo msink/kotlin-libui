@@ -121,7 +121,7 @@ fun main(args: Array<String>) = memScoped {
 ```
 
 While this works, it's far from ideomatic Kotlin.
-A little improved Kotlin:
+A little improved:
 
 ```
 import kotlinx.cinterop.*
