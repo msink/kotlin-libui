@@ -40,8 +40,8 @@ konanArtifacts {
         }
     }
 
-    program('loginForm') {
-        srcFiles 'samples/login/main.kt'
+    program('sampleForm') {
+        srcFiles 'samples/form/main.kt'
         srcFiles fileTree('src/main/kotlin')
         libraries {
             artifact 'libui'
