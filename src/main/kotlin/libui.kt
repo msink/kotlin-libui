@@ -377,7 +377,7 @@ var Spinbox.value: Int
 /** Horizontal slide to set numerical values. */
 typealias Slider = CPointer<uiSlider>
 
-/** Create a new UiSlider. */
+/** Create a new Slider. */
 fun Slider(min: Int, max: Int) : Slider = uiNewSlider(min, max) ?: throw Error()
 
 /** Destroy and free the Slider. */
@@ -544,13 +544,13 @@ var RadioButtons.selected: Int
 /** A widgets to edit date/times. */
 typealias DateTimePicker = CPointer<uiDateTimePicker>
 
-/** Create a new DateTimePicker object to edit date/times. */
+/** Create a new DateTimePicker to edit date/times. */
 fun DateTimePicker() : DateTimePicker = uiNewDateTimePicker() ?: throw Error()
 
-/** Create a new DateTimePicker object to edit dates. */
+/** Create a new DateTimePicker to edit dates. */
 fun DatePicker() : DateTimePicker = uiNewDatePicker() ?: throw Error()
 
-/** Create a new DateTimePicker object to edit times. */
+/** Create a new DateTimePicker to edit times. */
 fun TimePicker() : DateTimePicker = uiNewTimePicker() ?: throw Error()
 
 /** Destroy and free the DateTimePicker. */
@@ -1093,7 +1093,7 @@ typealias DrawTextLayoutParams = CPointer<uiDrawTextLayoutParams>
 /** A button that allows users to choose a font when they click on it. */
 typealias FontButton = CPointer<uiFontButton>
 
-/** Creates a new uiFontButton. The default font is OS-defined. */
+/** Creates a new FontButton. The default font is OS-defined. */
 fun FontButton() : FontButton = uiNewFontButton() ?: throw Error()
 
 /** Destroy and free the FontButton. */
