@@ -75,7 +75,7 @@ var Window.borderless: Boolean
     get() = uiWindowBorderless(this) != 0
     set(borderless) = uiWindowSetBorderless(this, if (borderless) 1 else 0)
 
-/** Specify if the Window content should have a margin or not. Sefaults to `false`. */
+/** Specify if the Window content should have a margin or not. Defaults to `false`. */
 var Window.margined: Boolean
     get() = uiWindowMargined(this) != 0
     set(margined) = uiWindowSetMargined(this, if (margined) 1 else 0)
