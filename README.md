@@ -15,7 +15,7 @@ Cross-platform build is automated using [Travis](https://travis-ci.org) for Linu
 [AppVeyor](https://ci.appveyor.com) for Windows targets. Just create release on GitHub, and executable files
 for all 3 major desktop platforms will be compiled and attached to release.
 
-For local build use `.\build.sh` on Linux or macOS, or `build.bat` on Windows.
+For local build use `./build.sh` on Linux or macOS, or `build.bat` on Windows.
 In this case only one - native for your platform - file will be built.
 
 ## Hello World
@@ -26,7 +26,7 @@ Let's start from minimal sample application - single button and single scrollabl
 
 ![Unix](samples/hello/hello-linux.png)
 
-![OS X](samples/hello/hello-osx.png)
+![macOS](samples/hello/hello-osx.png)
 
 C implementation:
 ``` c
@@ -122,7 +122,6 @@ fun main(args: Array<String>) = memScoped {
 
 While this works, it's far from ideomatic Kotlin.
 A little improved:
-
 ``` kt
 import kotlinx.cinterop.*
 import libui.*
@@ -170,4 +169,4 @@ fun main(args: Array<String>) = memScoped {
 
 There still is wide area for kotlinization.
 
-If anyone have ideas how to make this more ideomatic - Issues and PullRequests are wellcome.
+If anyone have ideas how to make this more ideomatic - Issues and PullRequests are welcome.
