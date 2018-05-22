@@ -39,6 +39,18 @@ konanArtifacts {
             linkerOpts "build/samples.res"
         }
     }
+
+    program('loginForm') {
+        srcFiles 'samples/login/main.kt'
+        srcFiles fileTree('src/main/kotlin')
+        libraries {
+            artifact 'libui'
+        }
+        target 'mingw', {
+            dependsOn 'windres'
+            linkerOpts "build/samples.res"
+        }
+    }
 }
 
 task windres(type: Exec) {
