@@ -1,5 +1,8 @@
 apply plugin: 'konan'
 
+def konanUserDir = System.getenv("KONAN_DATA_DIR") ?: "${System.getProperty("user.home")}/.konan"
+def resFile = file("$buildDir/konan/res/samples.res")
+
 konanArtifacts {
     interop('libui') {
         defFile 'src/main/libui.def'
@@ -12,8 +15,9 @@ konanArtifacts {
             artifact 'libui'
         }
         target 'mingw', {
-            dependsOn 'windres'
-            linkerOpts "build/samples.res"
+            linkerOpts "$resFile"
+            dependsOn 'windowsResources'
+            inputs.file resFile
         }
     }
 
@@ -23,8 +27,9 @@ konanArtifacts {
             artifact 'libui'
         }
         target 'mingw', {
-            dependsOn 'windres'
-            linkerOpts "build/samples.res"
+            linkerOpts "$resFile"
+            dependsOn 'windowsResources'
+            inputs.file resFile
         }
     }
 
@@ -35,8 +40,9 @@ konanArtifacts {
             artifact 'libui'
         }
         target 'mingw', {
-            dependsOn 'windres'
-            linkerOpts "build/samples.res"
+            linkerOpts "$resFile"
+            dependsOn 'windowsResources'
+            inputs.file resFile
         }
     }
 
@@ -47,14 +53,24 @@ konanArtifacts {
             artifact 'libui'
         }
         target 'mingw', {
-            dependsOn 'windres'
-            linkerOpts "build/samples.res"
+            linkerOpts "$resFile"
+            dependsOn 'windowsResources'
+            inputs.file resFile
         }
     }
 }
 
-task windres(type: Exec) {
-    commandLine "windres", file("samples/samples.rc"), '-O', 'coff', '-o', file("build/samples.res")
+task windowsResources (type: Exec) {
+    def rcFile = file('samples/samples.rc')
+    def path = System.getenv("PATH")
+
+    def windresDir = "$konanUserDir/dependencies/msys2-mingw-w64-x86_64-gcc-7.2.0-clang-llvm-5.0.0-windows-x86-64/bin"
+
+    commandLine "$windresDir/windres", rcFile, '-O', 'coff', '-o', resFile
+    environment 'PATH', "$windresDir;$path"
+
+    inputs.file rcFile
+    outputs.file resFile
 }
 
 buildscript {
