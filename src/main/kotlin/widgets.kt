@@ -47,9 +47,9 @@ fun Window(title: String, width: Int, height: Int, hasMenubar: Boolean = true) :
 fun Window.destroy() = uiControlDestroy(reinterpret())
 
 /** Returns the OS-level handle associated with this Window.
- *  On Windows this is an HWND of a libui-internal class.
- *  On GTK+ this is a pointer to a GtkWindow.
- *  On macOS this is a pointer to a NSWindow. */
+ *  - On Windows this is an HWND of a libui-internal class.
+ *  - On GTK+ this is a pointer to a GtkWindow.
+ *  - On macOS this is a pointer to a NSWindow. */
 val Window.handle: Long get() = uiControlHandle(reinterpret())
 
 /** Set or return the text to show in window title bar. */
@@ -162,7 +162,10 @@ fun VerticalBox() : Box = uiNewVerticalBox() ?: throw Error()
 /** Destroy and free the Box. */
 fun Box.destroy() = uiControlDestroy(reinterpret())
 
-/** Returns the OS-level handle associated with this Box. */
+/** Returns the OS-level handle associated with this Box.
+ *  - On Windows this is an HWND of a libui-internal class.
+ *  - On GTK+ this is a pointer to a GtkBox.
+ *  - On OS X this is a pointer to a NSView. */
 val Box.handle: Long get() = uiControlHandle(reinterpret())
 
 /** Whether the Box should be enabled or disabled. Defaults to `true`. */
@@ -194,7 +197,13 @@ fun Tab() : Tab = uiNewTab() ?: throw Error()
 /** Destroy and free the Tab. */
 fun Tab.destroy() = uiControlDestroy(reinterpret())
 
-/** Returns the OS-level handle associated with this Tab. */
+/** Returns the OS-level handle associated with this Tab.
+ *  - On Windows this is an HWND of a standard Windows API WC_TABCONTROL class
+ *    (as provided by Common Controls version 6).
+ *    The pages are not children of this window and there currently
+ *    is no way to directly access them.
+ *  - On GTK+ this is a pointer to a GtkNotebook.
+ *  - On OS X this is a pointer to a NSTabView. */
 val Tab.handle: Long get() = uiControlHandle(reinterpret())
 
 /** Whether the Tab should be enabled or disabled. Defaults to `true`. */
@@ -225,7 +234,11 @@ fun Group(text: String) : Group = uiNewGroup(text) ?: throw Error()
 /** Destroy and free the Group. */
 fun Group.destroy() = uiControlDestroy(reinterpret())
 
-/** Returns the OS-level handle associated with this Group. */
+/** Returns the OS-level handle associated with this Group.
+ *  - On Windows this is an HWND of a standard Windows API BUTTON class
+ *    (as provided by Common Controls version 6).
+ *  - On GTK+ this is a pointer to a GtkFrame.
+ *  - On OS X this is a pointer to a NSBox. */
 val Group.handle: Long get() = uiControlHandle(reinterpret())
 
 /** Whether the Group should be enabled or disabled. Defaults to `true`. */
@@ -268,7 +281,11 @@ fun SearchEntry() : Entry = uiNewSearchEntry() ?: throw Error()
 /** Destroy and free the Entry. */
 fun Entry.destroy() = uiControlDestroy(reinterpret())
 
-/** Returns the OS-level handle associated with this Entry. */
+/** Returns the OS-level handle associated with this Entry.
+ *  - On Windows this is an HWND of a standard Windows API EDIT class
+ *    (as provided by Common Controls version 6).
+ *  - On GTK+ this is a pointer to a GtkEntry.
+ *  - On OS X this is a pointer to a NSTextField. */
 val Entry.handle: Long get() = uiControlHandle(reinterpret())
 
 /** Whether the Entry should be enabled or disabled. Defaults to `true`. */
@@ -344,7 +361,11 @@ fun Checkbox(text: String) : Checkbox = uiNewCheckbox(text) ?: throw Error()
 /** Destroy and free the Checkbox. */
 fun Checkbox.destroy() = uiControlDestroy(reinterpret())
 
-/** Returns the OS-level handle associated with this Checkbox. */
+/** Returns the OS-level handle associated with this Checkbox.
+ *  - On Windows this is an HWND of a standard Windows API BUTTON class
+ *    (as provided by Common Controls version 6).
+ *  - On GTK+ this is a pointer to a GtkCheckButton.
+ *  - On OS X this is a pointer to a NSButton. */
 val Checkbox.handle: Long get() = uiControlHandle(reinterpret())
 
 /** Whether the Checkbox should be enabled or disabled. Defaults to `true`. */
@@ -380,7 +401,12 @@ fun Combobox() : Combobox = uiNewCombobox() ?: throw Error()
 /** Destroy and free the Combobox. */
 fun Combobox.destroy() = uiControlDestroy(reinterpret())
 
-/** Returns the OS-level handle associated with this Combobox. */
+/** Returns the OS-level handle associated with this Combobox.
+ *  - On Windows this is an HWND of a standard Windows API COMBOBOX class
+ *    (as provided by Common Controls version 6).
+ *  - On GTK+ this is a pointer to a GtkComboBoxText.
+ *  - On OS X this is a pointer to a NSComboBox for editable Comboboxes
+ *    and to a NSPopUpButton for noneditable Comboboxes. */
 val Combobox.handle: Long get() = uiControlHandle(reinterpret())
 
 /** Whether the Combobox should be enabled or disabled. Defaults to `true`. */
@@ -432,7 +458,15 @@ fun Spinbox(min: Int, max: Int) : Spinbox = uiNewSpinbox(min, max) ?: throw Erro
 /** Destroy and free the Spinbox. */
 fun Spinbox.destroy() = uiControlDestroy(reinterpret())
 
-/** Returns the OS-level handle associated with this Spinbox. */
+/** Returns the OS-level handle associated with this Spinbox.
+ *  - On Windows this is an HWND of a standard Windows API EDIT class
+ *    (as provided by Common Controls version 6).
+ *    Due to various limitations which affect the lifetime of the associated
+ *    Common Controls version 6 UPDOWN_CLASS window that provides the buttons,
+ *    there is no way to access it.
+ *  - On GTK+ this is a pointer to a GtkSpinButton.
+ *  - On OS X this is a pointer to a NSView that contains a NSTextField
+ *    and a NSStepper as subviews. */
 val Spinbox.handle: Long get() = uiControlHandle(reinterpret())
 
 /** Whether the Spinbox should be enabled or disabled. Defaults to `true`. */
@@ -463,7 +497,11 @@ fun Slider(min: Int, max: Int) : Slider = uiNewSlider(min, max) ?: throw Error()
 /** Destroy and free the Slider. */
 fun Slider.destroy() = uiControlDestroy(reinterpret())
 
-/** Returns the OS-level handle associated with this Slider. */
+/** Returns the OS-level handle associated with this Slider.
+ *  - On Windows this is an HWND of a standard Windows API TRACKBAR_CLASS class
+ *    (as provided by Common Controls version 6).
+ *  - On GTK+ this is a pointer to a GtkScale.
+ *  - On OS X this is a pointer to a NSSlider. */
 val Slider.handle: Long get() = uiControlHandle(reinterpret())
 
 /** Whether the Slider should be enabled or disabled. Defaults to `true`. */
@@ -494,7 +532,12 @@ fun RadioButtons() : RadioButtons = uiNewRadioButtons() ?: throw Error()
 /** Destroy and free the RadioButtons. */
 fun RadioButtons.destroy() = uiControlDestroy(reinterpret())
 
-/** Returns the OS-level handle associated with this RadioButtons. */
+/** Returns the OS-level handle associated with this RadioButtons.
+ *  - On Windows this is an HWND of a libui-internal class;
+ *    its child windows are instances of the standard Windows API BUTTON class
+ *    (as provided by Common Controls version 6).
+ *  - On GTK+ this is a pointer to a GtkBox containing GtkRadioButtons.
+ *  - On OS X this is a pointer to a NSView with each radio button as a NSButton subview. */
 val RadioButtons.handle: Long get() = uiControlHandle(reinterpret())
 
 /** Whether the RadioButtons should be enabled or disabled. Defaults to `true`. */
@@ -532,7 +575,11 @@ fun TimePicker() : DateTimePicker = uiNewTimePicker() ?: throw Error()
 /** Destroy and free the DateTimePicker. */
 fun DateTimePicker.destroy() = uiControlDestroy(reinterpret())
 
-/** Returns the OS-level handle associated with this DateTimePicker. */
+/** Returns the OS-level handle associated with this DateTimePicker.
+ *  - On Windows this is an HWND of a standard Windows API DATETIMEPICK_CLASS class
+ *    (as provided by Common Controls version 6).
+ *  - On GTK+ this is a pointer to a libui-internal class.
+ *  - On OS X this is a pointer to a NSDatePicker. */
 val DateTimePicker.handle: Long get() = uiControlHandle(reinterpret())
 
 /** Whether the DateTimePicker should be enabled or disabled. Defaults to `true`. */
@@ -562,7 +609,11 @@ fun Label(text: String) : Label = uiNewLabel(text) ?: throw Error()
 /** Destroy and free the Label. */
 fun Label.destroy() = uiControlDestroy(reinterpret())
 
-/** Returns the OS-level handle associated with this Label. */
+/** Returns the OS-level handle associated with this Label.
+ *  - On Windows this is an HWND of a standard Windows API STATIC class
+ *    (as provided by Common Controls version 6).
+ *  - On GTK+ this is a pointer to a GtkLabel.
+ *  - On OS X this is a pointer to a NSTextField. */
 val Label.handle: Long get() = uiControlHandle(reinterpret())
 
 /** Whether the Label should be enabled or disabled. Defaults to `true`. */
@@ -594,7 +645,11 @@ fun VerticalSeparator() : Separator = uiNewVerticalSeparator() ?: throw Error()
 /** Destroy and free the Separator. */
 fun Separator.destroy() = uiControlDestroy(reinterpret())
 
-/** Returns the OS-level handle associated with this Separator. */
+/** Returns the OS-level handle associated with this Separator.
+ *  - On Windows this is an HWND of a standard Windows API STATIC class
+ *    (as provided by Common Controls version 6).
+ *  - On GTK+ this is a pointer to a GtkSeparator.
+ *  - On OS X this is a pointer to a NSBox. */
 val Separator.handle: Long get() = uiControlHandle(reinterpret())
 
 /** Whether the Separator should be enabled or disabled. Defaults to `true`. */
@@ -618,7 +673,11 @@ fun ProgressBar() : ProgressBar = uiNewProgressBar() ?: throw Error()
 /** Destroy and free the ProgressBar. */
 fun ProgressBar.destroy() = uiControlDestroy(reinterpret())
 
-/** Returns the OS-level handle associated with this ProgressBar. */
+/** Returns the OS-level handle associated with this ProgressBar.
+ *  - On Windows this is an HWND of a standard Windows API PROGRESS_CLASS class
+ *    (as provided by Common Controls version 6).
+ *  - On GTK+ this is a pointer to a GtkProgressBar.
+ *  - On OS X this is a pointer to a NSProgressIndicator. */
 val ProgressBar.handle: Long get() = uiControlHandle(reinterpret())
 
 /** Whether the ProgressBar should be enabled or disabled. Defaults to `true`. */
@@ -648,7 +707,11 @@ fun Button(text: String) : Button = uiNewButton(text) ?: throw Error()
 /** Destroy and free the Button. */
 fun Button.destroy() = uiControlDestroy(reinterpret())
 
-/** Returns the OS-level handle associated with this Button. */
+/** Returns the OS-level handle associated with this Button.
+ *  - On Windows this is an HWND of a standard Windows API BUTTON class
+ *    (as provided by Common Controls version 6).
+ *  - On GTK+ this is a pointer to a GtkButton.
+ *  - On OS X this is a pointer to a NSButton. */
 val Button.handle: Long get() = uiControlHandle(reinterpret())
 
 /** Whether the Button should be enabled or disabled. Defaults to `true`. */
