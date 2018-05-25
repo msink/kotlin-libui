@@ -82,7 +82,16 @@ var Window.fullscreen: Boolean
 fun Window.show() = uiControlShow(reinterpret())
 
 //void uiWindowOnContentSizeChanged(uiWindow *w, void (*f)(uiWindow *, void *), void *data)
-//void uiWindowOnClosing(uiWindow *w, int (*f)(uiWindow *w, void *data), void *data)
+
+fun Window.onClosing(proc: Window.() -> Int)
+    = uiWindowOnClosing(this, staticCFunction(::_onClosing), StableRef.create(proc).asCPointer())
+
+internal fun _onClosing(window: Window?, data: COpaquePointer?): Int {
+    val ref = data!!.asStableRef<Window.() -> Int>()
+    val proc = ref.get()
+    ref.dispose()
+    return window!!.proc()
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 

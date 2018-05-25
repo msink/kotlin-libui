@@ -33,7 +33,7 @@ fun main(args: Array<String>) = memScoped {
     uiBoxAppend(box, button.reinterpret(), 0)
     uiBoxAppend(box, scroll.reinterpret(), 1)
 
-    uiWindowOnClosing(window, staticCFunction { _, _ -> uiQuit(); 1 }, null)
+    window.onClosing { uiQuit(); 1 }
     uiControlShow(window.reinterpret())
     uiMain()
     uiUninit()
