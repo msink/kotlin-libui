@@ -17,14 +17,10 @@ fun main(args: Array<String>) = memScoped {
     val box = VerticalBox().apply {
         padded = true
     }
-    uiWindowSetChild(window, box.reinterpret())
-
     val scroll = MultilineEntry().apply {
         readOnly = true
     }
-    val button = Button(
-        text = "libui говорит: click me!"
-    )
+    val button = Button("libui говорит: click me!")
     button.onClick {
         uiMultilineEntryAppend(scroll,
             "Hello, World!  Ciao, mondo!\n" +
@@ -33,8 +29,9 @@ fun main(args: Array<String>) = memScoped {
     uiBoxAppend(box, button.reinterpret(), 0)
     uiBoxAppend(box, scroll.reinterpret(), 1)
 
+    window.setChild(box)
     window.onClose { uiQuit(); true }
-    uiControlShow(window.reinterpret())
+    window.show()
     uiMain()
     uiUninit()
     disposeStableRefs()

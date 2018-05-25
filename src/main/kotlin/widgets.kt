@@ -73,16 +73,54 @@ var Window.fullscreen: Boolean
     get() = uiWindowFullscreen(this) != 0
     set(fullscreen) = uiWindowSetFullscreen(this, if (fullscreen) 1 else 0)
 
-//void uiWindowContentSize(uiWindow *w, int *width, int *height)
-//void uiWindowSetContentSize(uiWindow *w, int width, int height)
+/** Size in pixel of the content area of the window.
+ *  Window decoration size are excluded. This mean that if you set window size to 0,0
+ *  you still see title bar and OS window buttons. */
+var Window.contentSize: Size
+    get() = memScoped {
+       val width = alloc<IntVar>()
+       var height = alloc<IntVar>()
+       uiWindowContentSize(this@contentSize, width.ptr, height.ptr)
+       Size(width = width.value, height = height.value)
+    }
+    set(size) = uiWindowSetContentSize(this, size.width, size.height)
 
-//void uiWindowSetChild(uiWindow *w, uiControl *child)
+/** Specify the control to show in window content area.
+ *  Window instances can contain only one control. If you need more, you have to use Container */
+fun Window.setChild(child: Form)             = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Grid)             = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Box)              = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Tab)              = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Group)            = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Entry)            = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: MultilineEntry)   = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Checkbox)         = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Combobox)         = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: EditableCombobox) = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Spinbox)          = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Slider)           = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: RadioButtons)     = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: DateTimePicker)   = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Label)            = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Separator)        = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: ProgressBar)      = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Button)           = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: ColorButton)      = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: FontButton)       = uiWindowSetChild(this, child.reinterpret())
 
 /** Show the window. */
 fun Window.show() = uiControlShow(reinterpret())
 
-///fun Window.onContentSizeChanged(proc: Window.() -> Unit)
-///    = uiWindowOnContentSizeChanged(this, staticCFunction(::_onAction), StableRef.save(proc))
+/** Function to be run when window content size change. */
+fun Window.onSizeChanged(proc: Window.() -> Unit) {
+    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
+    uiWindowOnContentSizeChanged(this, staticCFunction(::_onWindow), ref.asCPointer())
+}
+
+internal fun _onWindow(window: Window?, ref: COpaquePointer?) {
+    val proc = ref!!.asStableRef<Window.() -> Unit>().get()
+    window!!.proc()
+}
 
 /** Function to be run when the user clicks the Window's close button.
  *  Only one function can be registered at a time.
