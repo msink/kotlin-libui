@@ -137,26 +137,26 @@ fun main(args: Array<String>) = memScoped {
         height = 240,
         hasMenubar = false).apply {
         margined = true
+        val box = VerticalBox().apply {
+            padded = true
+            val scroll = MultilineEntry().apply {
+                readOnly = true
+            }
+            val button = Button("libui говорит: click me!").apply {
+                onClick {
+                    uiMultilineEntryAppend(scroll,
+                        "Hello, World!  Ciao, mondo!\n" +
+                        "Привет, мир!  你好，世界！\n\n")
+                }
+            }
+            uiBoxAppend(this, button.reinterpret(), 0)
+            uiBoxAppend(this, scroll.reinterpret(), 1)
+        }
+        setChild(box)
+        onClose { uiQuit(); true }
+        show()
     }
 
-    val box = VerticalBox().apply {
-        padded = true
-    }
-    val scroll = MultilineEntry().apply {
-        readOnly = true
-    }
-    val button = Button("libui говорит: click me!")
-    button.onClick {
-        uiMultilineEntryAppend(scroll,
-            "Hello, World!  Ciao, mondo!\n" +
-            "Привет, мир!  你好，世界！\n\n")
-    }
-    uiBoxAppend(box, button.reinterpret(), 0)
-    uiBoxAppend(box, scroll.reinterpret(), 1)
-
-    window.setChild(box)
-    window.onClose { uiQuit(); true }
-    window.show()
     uiMain()
     uiUninit()
     disposeStableRefs()
