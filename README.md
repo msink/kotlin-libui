@@ -126,12 +126,8 @@ A little improved:
 import kotlinx.cinterop.*
 import libui.*
 
-fun main(args: Array<String>) = memScoped {
-    val options = alloc<uiInitOptions>()
-    val error = uiInit(options.ptr)
-    if (error != null) throw Error("Error: '${error.toKString()}'")
-
-    val window = Window(
+fun main(args: Array<String>) = application {
+    Window(
         title = "Hello",
         width = 320,
         height = 240,
@@ -156,10 +152,6 @@ fun main(args: Array<String>) = memScoped {
         onClose { uiQuit(); true }
         show()
     }
-
-    uiMain()
-    uiUninit()
-    disposeStableRefs()
 }
 ```
 
