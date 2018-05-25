@@ -25,16 +25,17 @@ fun main(args: Array<String>) = memScoped {
     val button = Button(
         text = "libui говорит: click me!"
     )
-    uiButtonOnClicked(button, staticCFunction { _, _scroll ->
-        uiMultilineEntryAppend(_scroll?.reinterpret(),
+    button.onClick {
+        uiMultilineEntryAppend(scroll,
             "Hello, World!  Ciao, mondo!\n" +
             "Привет, мир!  你好，世界！\n\n")
-        }, scroll)
+    }
     uiBoxAppend(box, button.reinterpret(), 0)
     uiBoxAppend(box, scroll.reinterpret(), 1)
 
-    window.onClosing { uiQuit(); 1 }
+    window.onClose { uiQuit(); true }
     uiControlShow(window.reinterpret())
     uiMain()
     uiUninit()
+    disposeStableRefs()
 }

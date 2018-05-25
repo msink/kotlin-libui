@@ -81,16 +81,20 @@ var Window.fullscreen: Boolean
 /** Show the window. */
 fun Window.show() = uiControlShow(reinterpret())
 
-//void uiWindowOnContentSizeChanged(uiWindow *w, void (*f)(uiWindow *, void *), void *data)
+///fun Window.onContentSizeChanged(proc: Window.() -> Unit)
+///    = uiWindowOnContentSizeChanged(this, staticCFunction(::_onAction), StableRef.save(proc))
 
-fun Window.onClosing(proc: Window.() -> Int)
-    = uiWindowOnClosing(this, staticCFunction(::_onClosing), StableRef.create(proc).asCPointer())
+/** Function to be run when the user clicks the Window's close button.
+ *  Only one function can be registered at a time.
+ *  @returns [true] if window is destroyed */
+fun Window.onClose(proc: Window.() -> Boolean) {
+    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
+    uiWindowOnClosing(this, staticCFunction(::_onClose), ref.asCPointer())
+}
 
-internal fun _onClosing(window: Window?, data: COpaquePointer?): Int {
-    val ref = data!!.asStableRef<Window.() -> Int>()
-    val proc = ref.get()
-    ref.dispose()
-    return window!!.proc()
+internal fun _onClose(window: Window?, ref: COpaquePointer?): Int {
+    val proc = ref!!.asStableRef<Window.() -> Boolean>().get()
+    return if (window!!.proc()) 1 else 0
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -397,7 +401,17 @@ var Checkbox.checked: Boolean
     get() = uiCheckboxChecked(this) != 0
     set(checked) = uiCheckboxSetChecked(this, if (checked) 1 else 0)
 
-//void uiCheckboxOnToggled(uiCheckbox *c, void (*f)(uiCheckbox *c, void *data), void *data)
+/** Funcion to be run when the user clicks the Checkbox.
+    Only one function can be registered at a time. */
+fun Checkbox.onClick(proc: Checkbox.() -> Unit) {
+    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
+    uiCheckboxOnToggled(this, staticCFunction(::_onCheckbox), ref.asCPointer())
+}
+
+internal fun _onCheckbox(checkbox: Checkbox?, ref: COpaquePointer?) {
+    val proc = ref!!.asStableRef<Checkbox.() -> Unit>().get()
+    checkbox!!.proc()
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -738,7 +752,17 @@ var Button.text: String
     get() = uiButtonText(this)?.toKString() ?: ""
     set(text) = uiButtonSetText(this, text)
 
-//void uiButtonOnClicked(uiButton *b, void (*f)(uiButton *b, void *data), void *data)
+/** Funcion to be run when the user clicks the Button.
+    Only one function can be registered at a time. */
+fun Button.onClick(proc: Button.() -> Unit) {
+    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
+    uiButtonOnClicked(this, staticCFunction(::_onButton), ref.asCPointer())
+}
+
+internal fun _onButton(button: Button?, ref: COpaquePointer?) {
+    val proc = ref!!.asStableRef<Button.() -> Unit>().get()
+    button!!.proc()
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
