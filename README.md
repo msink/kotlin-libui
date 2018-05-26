@@ -159,7 +159,11 @@ fun main(args: Array<String>) = application {
 
 It's still not real DSL, but much better.
 
-**Work in progress!**
+## More samples
+
+- [simple form](samples/form/README.md)
+
+## Work in progress!
 
 There still is wide area for kotlinization.
 
