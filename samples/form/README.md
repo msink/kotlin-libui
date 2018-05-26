@@ -4,4 +4,5 @@ The sample shows a window with a basic login form. It has a field for username w
 
 | Platform | Preview |
 | :--: | :--: |
-| Linux | ![Screenshot on Ubuntu](form-ubuntu.png)
+| Linux (Ubuntu) | ![Screenshot on Ubuntu](form-ubuntu.png)
+| Windows (Win7) | ![Screenshot on Windows7](form-windows7.png)
