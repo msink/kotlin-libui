@@ -1,10 +1,7 @@
 import kotlinx.cinterop.*
 import libui.*
 
-fun main(args: Array<String>) = memScoped {
-    val options = alloc<uiInitOptions>()
-    val error = uiInit(options.ptr)
-    if (error != null) throw Error("Error: '${error.toKString()}'")
+fun main(args: Array<String>) = application {
 
     val window = Window(
         title = "Authentication required",
@@ -15,24 +12,21 @@ fun main(args: Array<String>) = memScoped {
 
     val box = VerticalBox().apply { padded = true }
 
-    val (username, password) = Entry() to PasswordEntry()
+    val username = Entry()
+    val password = PasswordEntry()
+    val form = Form().apply { padded = true }
+    form.append("Username", username)
+    form.append("Password", password)
 
     val button = Button(text = "Login")
-    uiButtonOnClicked(
-         button,
-         staticCFunction { _, _ -> /* TODO: Get text from username and password */ },
-         button)
+    button.action {
+        uiMsgBox(window, title = "Info", description = "${username.text}:${password.text}")
+    }
 
-    val form = Form().apply { padded = true }
-    uiFormAppend(form, "Username", username.reinterpret(), 0)
-    uiFormAppend(form, "Password", password.reinterpret(), 0)
+    box.append(form)
+    box.append(button)
 
-    uiBoxAppend(box, form.reinterpret(), 0)
-    uiBoxAppend(box, button.reinterpret(), 0)
-
-    uiWindowSetChild(window, box.reinterpret())
-    uiWindowOnClosing(window, staticCFunction { _, _ -> uiQuit(); 1 }, null)
-    uiControlShow(window.reinterpret())
-    uiMain()
-    uiUninit()
+    window.setChild(box)
+    window.onClose { uiQuit(); true }
+    window.show()
 }
