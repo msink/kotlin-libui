@@ -161,7 +161,7 @@ It's still not real DSL, but much better.
 
 ## More samples
 
-- [simple form](samples/form/README.md)
+- [simple form](samples/form)
 
 ## Work in progress!
 
