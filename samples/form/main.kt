@@ -10,17 +10,20 @@ fun main(args: Array<String>) = application {
         hasMenubar = false)
     window.margined = true
 
-    val box = VerticalBox().apply { padded = true }
+    val box = VerticalBox { padded = true }
 
     val username = Entry()
     val password = PasswordEntry()
-    val form = Form().apply { padded = true }
-    form.append("Username", username)
-    form.append("Password", password)
+    val form = Form {
+        padded = true
+        append("Username", username)
+        append("Password", password)
+    }
 
-    val button = Button(text = "Login")
-    button.action {
-        uiMsgBox(window, title = "Info", description = "${username.text}:${password.text}")
+    val button = Button(text = "Login") {
+        action {
+            uiMsgBox(window, title = "Info", description = "${username.text}:${password.text}")
+        }
     }
 
     box.append(form)

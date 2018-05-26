@@ -41,8 +41,8 @@ import platform.posix.tm
 typealias Window = CPointer<uiWindow>
 
 /** Create a new Window. */
-fun Window(title: String, width: Int, height: Int, hasMenubar: Boolean = true) : Window
-    = uiNewWindow(title, width, height, if (hasMenubar) 1 else 0) ?: throw Error()
+fun Window(title: String, width: Int, height: Int, hasMenubar: Boolean = true, block: Window.() -> Unit = {}) : Window
+    = uiNewWindow(title, width, height, if (hasMenubar) 1 else 0)?.apply(block) ?: throw Error()
 
 /** Destroy and free the Window. */
 fun Window.destroy() = uiControlDestroy(reinterpret())
@@ -162,7 +162,7 @@ internal fun _onClose(window: Window?, ref: COpaquePointer?): Int {
 typealias Form = CPointer<uiForm>
 
 /** Create a new Form. */
-fun Form() : Form = uiNewForm() ?: throw Error()
+fun Form(block: Form.() -> Unit = {}) : Form = uiNewForm()?.apply(block) ?: throw Error()
 
 /** Destroy and free the Form. */
 fun Form.destroy() = uiControlDestroy(reinterpret())
@@ -270,10 +270,10 @@ var Grid.padded: Boolean
 typealias Box = CPointer<uiBox>
 
 /** Create a new Box object that stack its chidren horizontally. */
-fun HorizontalBox() : Box = uiNewHorizontalBox() ?: throw Error()
+fun HorizontalBox(block: Box.() -> Unit = {}) : Box = uiNewHorizontalBox()?.apply(block) ?: throw Error()
 
 /** Create a new Box object that stack its chidren vertically. */
-fun VerticalBox() : Box = uiNewVerticalBox() ?: throw Error()
+fun VerticalBox(block: Box.() -> Unit = {}) : Box = uiNewVerticalBox()?.apply(block) ?: throw Error()
 
 /** Destroy and free the Box. */
 fun Box.destroy() = uiControlDestroy(reinterpret())
@@ -527,7 +527,8 @@ internal fun _onEntry(widget: Entry?, ref: COpaquePointer?) {
 typealias MultilineEntry = CPointer<uiMultilineEntry>
 
 /** Create a new MultilineEntry. */
-fun MultilineEntry() : MultilineEntry = uiNewMultilineEntry() ?: throw Error()
+fun MultilineEntry(block: MultilineEntry.() -> Unit = {}) : MultilineEntry =
+        uiNewMultilineEntry()?.apply(block) ?: throw Error()
 
 /** Create a new non wrapping MultilineEntry. */
 fun NonWrappingMultilineEntry() : MultilineEntry = uiNewNonWrappingMultilineEntry() ?: throw Error()
@@ -1038,7 +1039,7 @@ var ProgressBar.value: Int
 typealias Button = CPointer<uiButton>
 
 /** Create a new Button. */
-fun Button(text: String) : Button = uiNewButton(text) ?: throw Error()
+fun Button(text: String, block: Button.() -> Unit = {}) : Button = uiNewButton(text)?.apply(block) ?: throw Error()
 
 /** Destroy and free the Button. */
 fun Button.destroy() = uiControlDestroy(reinterpret())
