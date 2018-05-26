@@ -1,6 +1,7 @@
-package libui                                                                  
+package libui
 
 import kotlinx.cinterop.*
+import platform.posix.tm
 
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -76,37 +77,57 @@ var Window.fullscreen: Boolean
 /** Size in pixel of the content area of the window.
  *  Window decoration size are excluded. This mean that if you set window size to 0,0
  *  you still see title bar and OS window buttons. */
-var Window.contentSize: Size
+var Window.contentSize: Size2D
     get() = memScoped {
        val width = alloc<IntVar>()
        var height = alloc<IntVar>()
        uiWindowContentSize(this@contentSize, width.ptr, height.ptr)
-       Size(width = width.value, height = height.value)
+       Size2D(width = width.value, height = height.value)
     }
     set(size) = uiWindowSetContentSize(this, size.width, size.height)
 
 /** Specify the control to show in window content area.
  *  Window instances can contain only one control. If you need more, you have to use Container */
-fun Window.setChild(child: Form)             = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Grid)             = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Box)              = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Tab)              = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Group)            = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Entry)            = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: MultilineEntry)   = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Checkbox)         = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Combobox)         = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: EditableCombobox) = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Spinbox)          = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Slider)           = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: RadioButtons)     = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: DateTimePicker)   = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Label)            = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Separator)        = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: ProgressBar)      = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Button)           = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: ColorButton)      = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: FontButton)       = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Form)
+    = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Grid)
+    = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Box)
+    = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Tab)
+    = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Group)
+    = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Entry)
+    = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: MultilineEntry)
+    = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Checkbox)
+    = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Combobox)
+    = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: EditableCombobox)
+    = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Spinbox)
+    = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Slider)
+    = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: RadioButtons)
+    = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: DateTimePicker)
+    = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Label)
+    = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Separator)
+    = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: ProgressBar)
+    = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Button)
+    = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: ColorButton)
+    = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: FontButton)
+    = uiWindowSetChild(this, child.reinterpret())
 
 /** Show the window. */
 fun Window.show() = uiControlShow(reinterpret())
@@ -164,8 +185,51 @@ var Form.padded: Boolean
     get() = uiFormPadded(this) != 0
     set(padded) = uiFormSetPadded(this, if (padded) 1 else 0)
 
-//void uiFormAppend(uiForm *f, const char *label, uiControl *c, int stretchy)
-//void uiFormDelete(uiForm *f, int index)
+/** Adds the given widget to the end of the Form. */
+fun Form.append(widget: Form, label: String, stretchy: Boolean = false)
+    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(widget: Grid, label: String, stretchy: Boolean = false)
+    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(widget: Box, label: String, stretchy: Boolean = false)
+    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(widget: Tab, label: String, stretchy: Boolean = false)
+    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(widget: Group, label: String, stretchy: Boolean = false)
+    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(widget: Entry, label: String, stretchy: Boolean = false)
+    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(widget: MultilineEntry, label: String, stretchy: Boolean = false)
+    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(widget: Checkbox, label: String, stretchy: Boolean = false)
+    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(widget: Combobox, label: String, stretchy: Boolean = false)
+    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(widget: EditableCombobox, label: String, stretchy: Boolean = false)
+    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(widget: Spinbox, label: String, stretchy: Boolean = false)
+    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(widget: Slider, label: String, stretchy: Boolean = false)
+    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(widget: RadioButtons, label: String, stretchy: Boolean = false)
+    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(widget: DateTimePicker, label: String, stretchy: Boolean = false)
+    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(widget: Label, label: String, stretchy: Boolean = false)
+    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(widget: Separator, label: String, stretchy: Boolean = false)
+    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(widget: ProgressBar, label: String, stretchy: Boolean = false)
+    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(widget: Button, label: String, stretchy: Boolean = false)
+    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(widget: ColorButton, label: String, stretchy: Boolean = false)
+    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(widget: FontButton, label: String, stretchy: Boolean = false)
+    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+
+/** deletes the nth control of the Form. */
+fun Form.delete(index: Int)
+    = uiFormDelete(this, index)
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -197,6 +261,7 @@ var Grid.padded: Boolean
     set(padded) = uiGridSetPadded(this, if (padded) 1 else 0)
 
 //void uiGridAppend(uiGrid *g, uiControl *c, int left, int top, int xspan, int yspan, int hexpand, uiAlign halign, int vexpand, uiAlign valign)
+
 //void uiGridInsertAt(uiGrid *g, uiControl *c, uiControl *existing, uiAt at, int xspan, int yspan, int hexpand, uiAlign halign, int vexpand, uiAlign valign)
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -234,8 +299,51 @@ var Box.padded: Boolean
     get() = uiBoxPadded(this) != 0
     set(padded) = uiBoxSetPadded(this, if (padded) 1 else 0)
 
-//void uiBoxAppend(uiBox *b, uiControl *child, int stretchy)
-//void uiBoxDelete(uiBox *b, int index)
+/** Adds the given widget to the end of the Box. */
+fun Box.append(widget: Form, stretchy: Boolean = false)
+    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: Grid, stretchy: Boolean = false)
+    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: Box, stretchy: Boolean = false)
+    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: Tab, stretchy: Boolean = false)
+    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: Group, stretchy: Boolean = false)
+    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: Entry, stretchy: Boolean = false)
+    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: MultilineEntry, stretchy: Boolean = false)
+    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: Checkbox, stretchy: Boolean = false)
+    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: Combobox, stretchy: Boolean = false)
+    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: EditableCombobox, stretchy: Boolean = false)
+    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: Spinbox, stretchy: Boolean = false)
+    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: Slider, stretchy: Boolean = false)
+    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: RadioButtons, stretchy: Boolean = false)
+    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: DateTimePicker, stretchy: Boolean = false)
+    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: Label, stretchy: Boolean = false)
+    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: Separator, stretchy: Boolean = false)
+    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: ProgressBar, stretchy: Boolean = false)
+    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: Button, stretchy: Boolean = false)
+    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: ColorButton, stretchy: Boolean = false)
+    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: FontButton, stretchy: Boolean = false)
+    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+
+/** deletes the nth control of the Box. */
+fun Box.delete(index: Int)
+    = uiBoxDelete(this, index)
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -269,6 +377,7 @@ var Tab.visible: Boolean
 
 //int uiTabMargined(uiTab *t, int page)
 //void uiTabSetMargined(uiTab *t, int page, int margined)
+
 //void uiTabAppend(uiTab *t, const char *name, uiControl *c)
 //void uiTabInsertAt(uiTab *t, const char *name, int before, uiControl *c)
 //void uiTabDelete(uiTab *t, int index)
@@ -312,7 +421,48 @@ var Group.margined: Boolean
     get() = uiGroupMargined(this) != 0
     set(margined) = uiGroupSetMargined(this, if (margined) 1 else 0)
 
-//void uiGroupSetChild(uiGroup *g, uiControl *c)
+/** sets the Group's child to child. If child is nil, the Group
+ *  will not have a child. */
+fun Group.setChild(child: Form)
+    = uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: Grid)
+    = uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: Box)
+    = uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: Tab)
+    = uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: Group)
+    = uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: Entry)
+    = uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: MultilineEntry)
+    = uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: Checkbox)
+    = uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: Combobox)
+    = uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: EditableCombobox)
+    = uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: Spinbox)
+    = uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: Slider)
+    = uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: RadioButtons)
+    = uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: DateTimePicker)
+    = uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: Label)
+    = uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: Separator)
+    = uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: ProgressBar)
+    = uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: Button)
+    = uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: ColorButton)
+    = uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: FontButton)
+    = uiGroupSetChild(this, child.reinterpret())
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -359,7 +509,17 @@ var Entry.readonly: Boolean
     get() = uiEntryReadOnly(this) != 0
     set(readonly) = uiEntrySetReadOnly(this, if (readonly) 1 else 0)
 
-//void uiEntryOnChanged(uiEntry *e, void (*f)(uiEntry *e, void *data), void *data)
+/** Funcion to be run when the user makes a change to the Entry.
+    Only one function can be registered at a time. */
+fun Entry.action(proc: Entry.() -> Unit) {
+    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
+    uiEntryOnChanged(this, staticCFunction(::_onEntry), ref.asCPointer())
+}
+
+internal fun _onEntry(widget: Entry?, ref: COpaquePointer?) {
+    val proc = ref!!.asStableRef<Entry.() -> Unit>().get()
+    widget!!.proc()
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -398,8 +558,21 @@ var MultilineEntry.readOnly: Boolean
     get() = uiMultilineEntryReadOnly(this) != 0
     set(readOnly) = uiMultilineEntrySetReadOnly(this, if (readOnly) 1 else 0)
 
-//void uiMultilineEntryAppend(uiMultilineEntry *e, const char *text)
-//void uiMultilineEntryOnChanged(uiMultilineEntry *e, void (*f)(uiMultilineEntry *e, void *data), void *data)
+/** Adds the text to the end of the MultilineEntry. */
+fun MultilineEntry.append(text: String)
+    = uiMultilineEntryAppend(this, text)
+
+/** Funcion to be run when the user makes a change to the MultilineEntry.
+    Only one function can be registered at a time. */
+fun MultilineEntry.action(proc: MultilineEntry.() -> Unit) {
+    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
+    uiMultilineEntryOnChanged(this, staticCFunction(::_onMultilineEntry), ref.asCPointer())
+}
+
+internal fun _onMultilineEntry(widget: MultilineEntry?, ref: COpaquePointer?) {
+    val proc = ref!!.asStableRef<MultilineEntry.() -> Unit>().get()
+    widget!!.proc()
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -441,14 +614,14 @@ var Checkbox.checked: Boolean
 
 /** Funcion to be run when the user clicks the Checkbox.
     Only one function can be registered at a time. */
-fun Checkbox.onClick(proc: Checkbox.() -> Unit) {
+fun Checkbox.action(proc: Checkbox.() -> Unit) {
     val ref = StableRef.create(proc).also { _stableRefs.add(it) }
     uiCheckboxOnToggled(this, staticCFunction(::_onCheckbox), ref.asCPointer())
 }
 
-internal fun _onCheckbox(checkbox: Checkbox?, ref: COpaquePointer?) {
+internal fun _onCheckbox(widget: Checkbox?, ref: COpaquePointer?) {
     val proc = ref!!.asStableRef<Checkbox.() -> Unit>().get()
-    checkbox!!.proc()
+    widget!!.proc()
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -480,11 +653,27 @@ var Combobox.visible: Boolean
     get() = uiControlVisible(reinterpret()) != 0
     set(visible) = if (visible) uiControlShow(reinterpret()) else uiControlHide(reinterpret())
 
-//int uiComboboxSelected(uiCombobox *c)
-//void uiComboboxSetSelected(uiCombobox *c, int n)
+/** Return or set the current choosed option by index. */
+var Combobox.selected: Int
+    get() = uiComboboxSelected(this)
+    set(value) = uiComboboxSetSelected(this, value)
 
-//void uiComboboxAppend(uiCombobox *c, const char *text)
-//void uiComboboxOnSelected(uiCombobox *c, void (*f)(uiCombobox *c, void *data), void *data)
+/** Adds the named entry to the end of the Combobox.
+ *  If this entry is the first entry, it is automatically selected. */
+fun Combobox.append(text: String)
+    = uiComboboxAppend(this, text)
+
+/** Funcion to be run when the user makes a change to the Combobox.
+    Only one function can be registered at a time. */
+fun Combobox.action(proc: Combobox.() -> Unit) {
+    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
+    uiComboboxOnSelected(this, staticCFunction(::_onCombobox), ref.asCPointer())
+}
+
+internal fun _onCombobox(widget: Combobox?, ref: COpaquePointer?) {
+    val proc = ref!!.asStableRef<Combobox.() -> Unit>().get()
+    widget!!.proc()
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -499,9 +688,24 @@ var EditableCombobox.text: String
     get() = uiEditableComboboxText(this)?.toKString() ?: ""
     set(text) = uiEditableComboboxSetText(this, text)
 
-//void uiEditableComboboxAppend(uiEditableCombobox *c, const char *text)
-//// TODO what do we call a function that sets the currently selected item and fills the text field with it? editable comboboxes have no consistent concept of selected item
-//void uiEditableComboboxOnChanged(uiEditableCombobox *c, void (*f)(uiEditableCombobox *c, void *data), void *data)
+/** Adds the named entry to the end of the EditableCombobox.
+ *  If this entry is the first entry, it is automatically selected. */
+fun EditableCombobox.append(text: String)
+    = uiEditableComboboxAppend(this, text)
+
+/** Funcion to be run when the user makes a change to the EditableCombobox.
+    Only one function can be registered at a time. */
+//TODO what do we call a function that sets the currently selected item and fills the text field with it?
+//TODO editable comboboxes have no consistent concept of selected item
+fun EditableCombobox.action(proc: EditableCombobox.() -> Unit) {
+    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
+    uiEditableComboboxOnChanged(this, staticCFunction(::_onEditableCombobox), ref.asCPointer())
+}
+
+internal fun _onEditableCombobox(widget: EditableCombobox?, ref: COpaquePointer?) {
+    val proc = ref!!.asStableRef<EditableCombobox.() -> Unit>().get()
+    widget!!.proc()
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -545,7 +749,17 @@ var Spinbox.value: Int
     get() = uiSpinboxValue(this)
     set(value) = uiSpinboxSetValue(this, value)
 
-//void uiSpinboxOnChanged(uiSpinbox *s, void (*f)(uiSpinbox *s, void *data), void *data)
+/** Funcion to be run when the user makes a change to the Spinbox.
+    Only one function can be registered at a time. */
+fun Spinbox.action(proc: Spinbox.() -> Unit) {
+    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
+    uiSpinboxOnChanged(this, staticCFunction(::_onSpinbox), ref.asCPointer())
+}
+
+internal fun _onSpinbox(widget: Spinbox?, ref: COpaquePointer?) {
+    val proc = ref!!.asStableRef<Spinbox.() -> Unit>().get()
+    widget!!.proc()
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -580,7 +794,17 @@ var Slider.value: Int
     get() = uiSliderValue(this)
     set(value) = uiSliderSetValue(this, value)
 
-//void uiSliderOnChanged(uiSlider *s, void (*f)(uiSlider *s, void *data), void *data)
+/** Funcion to be run when the user makes a change to the Slider.
+    Only one function can be registered at a time. */
+fun Slider.action(proc: Slider.() -> Unit) {
+    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
+    uiSliderOnChanged(this, staticCFunction(::_onSlider), ref.asCPointer())
+}
+
+internal fun _onSlider(widget: Slider?, ref: COpaquePointer?) {
+    val proc = ref!!.asStableRef<Slider.() -> Unit>().get()
+    widget!!.proc()
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -616,8 +840,22 @@ var RadioButtons.selected: Int
     get() = uiRadioButtonsSelected(this)
     set(value) = uiRadioButtonsSetSelected(this, value)
 
-//void uiRadioButtonsAppend(uiRadioButtons *r, const char *text)
-//void uiRadioButtonsOnSelected(uiRadioButtons *r, void (*f)(uiRadioButtons *, void *), void *data)
+/** Adds the named button to the end of the RadioButtons.
+ *  If this button is the first button, it is automatically selected. */
+fun RadioButtons.append(text: String)
+    = uiRadioButtonsAppend(this, text)
+
+/** Funcion to be run when the user makes a change to the RadioButtons.
+    Only one function can be registered at a time. */
+fun RadioButtons.action(proc: RadioButtons.() -> Unit) {
+    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
+    uiRadioButtonsOnSelected(this, staticCFunction(::_onRadioButtons), ref.asCPointer())
+}
+
+internal fun _onRadioButtons(widget: RadioButtons?, ref: COpaquePointer?) {
+    val proc = ref!!.asStableRef<RadioButtons.() -> Unit>().get()
+    widget!!.proc()
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -653,11 +891,48 @@ var DateTimePicker.visible: Boolean
     get() = uiControlVisible(reinterpret()) != 0
     set(visible) = if (visible) uiControlShow(reinterpret()) else uiControlHide(reinterpret())
 
-//struct tm
-//// TODO document that tm_wday and tm_yday are undefined, and tm_isdst should be -1
-//void uiDateTimePickerTime(uiDateTimePicker *d, struct tm *time)
-//void uiDateTimePickerSetTime(uiDateTimePicker *d, const struct tm *time)
-//void uiDateTimePickerOnChanged(uiDateTimePicker *d, void (*f)(uiDateTimePicker *, void *), void *data)
+/** The current value of the DateTimePicker. */
+/*TODO var DateTimePicker.value: DateTime
+    get() = memScoped {
+       var tm = alloc<tm>()
+       uiDateTimePickerTime(this@value, tm.ptr)
+       DateTime(
+           sec   = tm.sec,
+           min   = tm.min,
+           hour  = tm.hour,
+           mday  = tm.mday,
+           mon   = tm.mon,
+           year  = tm.year,
+           wday  = tm.wday,
+           yday  = tm.yday,
+           isdst = tm.isdst
+       )
+    }
+    set(value) = memScoped {
+       var tm = alloc<tm>()
+       tm.sec   = value.sec
+       tm.min   = value.min
+       tm.hour  = value.hour
+       tm.mday  = value.mday
+       tm.mon   = value.mon
+       tm.year  = value.year
+       tm.wday  = value.wday
+       tm.yday  = value.yday
+       tm.isdst = value.isdst
+       uiDateTimePickerSetTime(this@value, tm.ptr)
+    }*/
+
+/** Funcion to be run when the user makes a change to the DateTimePicker.
+    Only one function can be registered at a time. */
+fun DateTimePicker.action(proc: DateTimePicker.() -> Unit) {
+    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
+    uiDateTimePickerOnChanged(this, staticCFunction(::_onDateTimePicker), ref.asCPointer())
+}
+
+internal fun _onDateTimePicker(widget: DateTimePicker?, ref: COpaquePointer?) {
+    val proc = ref!!.asStableRef<DateTimePicker.() -> Unit>().get()
+    widget!!.proc()
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -792,7 +1067,7 @@ var Button.text: String
 
 /** Funcion to be run when the user clicks the Button.
     Only one function can be registered at a time. */
-fun Button.onClick(proc: Button.() -> Unit) {
+fun Button.action(proc: Button.() -> Unit) {
     val ref = StableRef.create(proc).also { _stableRefs.add(it) }
     uiButtonOnClicked(this, staticCFunction(::_onButton), ref.asCPointer())
 }
@@ -828,7 +1103,18 @@ var ColorButton.visible: Boolean
 
 //void uiColorButtonColor(uiColorButton *b, double *r, double *g, double *bl, double *a)
 //void uiColorButtonSetColor(uiColorButton *b, double r, double g, double bl, double a)
-//void uiColorButtonOnChanged(uiColorButton *b, void (*f)(uiColorButton *, void *), void *data)
+
+/** Funcion to be run when the user makes a change to the ColorButton.
+    Only one function can be registered at a time. */
+fun ColorButton.action(proc: ColorButton.() -> Unit) {
+    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
+    uiColorButtonOnChanged(this, staticCFunction(::_onColorButton), ref.asCPointer())
+}
+
+internal fun _onColorButton(widget: ColorButton?, ref: COpaquePointer?) {
+    val proc = ref!!.asStableRef<ColorButton.() -> Unit>().get()
+    widget!!.proc()
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -860,9 +1146,17 @@ var FontButton.visible: Boolean
 //// TODO have a function that sets an entire font descriptor to a range in a uiAttributedString at once, for SetFont?
 //void uiFontButtonFont(uiFontButton *b, uiFontDescriptor *desc)
 
-//// TOOD SetFont, mechanics
-//// uiFontButtonOnChanged() sets the function that is called when the font in the uiFontButton is changed.
-//void uiFontButtonOnChanged(uiFontButton *b, void (*f)(uiFontButton *, void *), void *data)
+/** Funcion to be run when the font in the FontButton is changed.
+    Only one function can be registered at a time. */
+fun FontButton.action(proc: FontButton.() -> Unit) {
+    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
+    uiFontButtonOnChanged(this, staticCFunction(::_onFontButton), ref.asCPointer())
+}
+
+internal fun _onFontButton(widget: FontButton?, ref: COpaquePointer?) {
+    val proc = ref!!.asStableRef<FontButton.() -> Unit>().get()
+    widget!!.proc()
+}
 
 //// uiFreeFontButtonFont() frees resources allocated in desc by uiFontButtonFont().
 //// After calling uiFreeFontButtonFont(), the contents of desc should be assumed to be undefined (though since you allocate desc itself, you can safely reuse desc for other font descriptors).
