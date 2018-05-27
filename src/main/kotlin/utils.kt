@@ -38,3 +38,17 @@ fun application(init: () -> Unit) {
     uiUninit()
     disposeStableRefs()
 }
+
+/** Function to be executed when the OS wants the program to quit
+ *  or when a Quit menu item has been clicked.
+ *  Only one function may be registered at a time.
+ *  @returns [true] when Quit will be called. */
+fun onShouldQuit(proc: () -> Boolean) {
+    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
+    uiOnShouldQuit(staticCFunction(::_onShouldQuit), ref.asCPointer())
+}
+
+internal fun _onShouldQuit(ref: COpaquePointer?): Int {
+    val proc = ref!!.asStableRef<() -> Boolean>().get()
+    return if (proc()) 1 else 0
+}

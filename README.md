@@ -162,6 +162,7 @@ It's still not real DSL, but much better.
 ## More samples
 
 - [simple form](samples/form)
+- [controls gallery](samples/controlgallery)
 
 ## Work in progress!
 

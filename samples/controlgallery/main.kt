@@ -1,4 +1,8 @@
 import libui.*
+import kotlinx.cinterop.toKString
+
+//TODO: make it singleton or part of Application singleton
+lateinit var mainWindow: Window
 
 fun makeBasicControlsPage() : Box {
 
@@ -122,11 +126,11 @@ fun makeDataChoosersPage() : Box {
     val entry1 = Entry()
     entry1.readOnly = true
     button1.action {
-        val filename = uiOpenFile(window)
+        val filename = uiOpenFile(mainWindow)
         if (filename == null) {
             entry1.text = "(cancelled)"
         } else {
-            entry1.text = filename
+            entry1.text = filename.toKString()
             uiFreeText(filename)
         }
     }
@@ -138,11 +142,11 @@ fun makeDataChoosersPage() : Box {
     val entry2 = Entry()
     entry2.readOnly = true
     button2.action {
-        val filename = uiSaveFile(window)
+        val filename = uiSaveFile(mainWindow)
         if (filename == null) {
             entry2.text = "(cancelled)"
         } else {
-            entry2.text = filename
+            entry2.text = filename.toKString()
             uiFreeText(filename)
         }
     }
@@ -156,7 +160,7 @@ fun makeDataChoosersPage() : Box {
 
     val button3 = Button("Message Box")
     button3.action {
-        uiMsgBox(window,
+        uiMsgBox(mainWindow,
             "This is a normal message box.",
             "More detailed information can be shown here.")
     }
@@ -164,7 +168,7 @@ fun makeDataChoosersPage() : Box {
 
     val button4 = Button("Error Box")
     button4.action {
-        uiMsgBoxError(window,
+        uiMsgBoxError(mainWindow,
             "This message box describes an error.",
             "More detailed information can be shown here.")
     }
@@ -174,13 +178,13 @@ fun makeDataChoosersPage() : Box {
 }
 
 fun main(args: Array<String>) = application {
-    val window = Window(title = "libui Control Gallery", width = 640, height = 480)
-    window.onClosing { uiQuit(); true }
-    onShouldQuit { window.destroy(); true }
+    mainWindow = Window(title = "libui Control Gallery", width = 640, height = 480)
+    mainWindow.onClose { uiQuit(); true }
+    onShouldQuit { mainWindow.destroy(); true }
 
     val tab = Tab()
-    window.setChild(tab)
-    window.margined = true
+    mainWindow.setChild(tab)
+    mainWindow.margined = true
 
     tab.append("Basic Controls", makeBasicControlsPage())
     tab.setMargined(0, true)
@@ -191,5 +195,5 @@ fun main(args: Array<String>) = application {
     tab.append("Data Choosers", makeDataChoosersPage())
     tab.setMargined(2, true)
 
-    window.show()
+    mainWindow.show()
 }

@@ -58,6 +58,19 @@ konanArtifacts {
             inputs.file resFile
         }
     }
+
+    program('controlgallery') {
+        srcFiles 'samples/controlgallery/main.kt'
+        srcFiles fileTree('src/main/kotlin')
+        libraries {
+            artifact 'libui'
+        }
+        target 'mingw', {
+            linkerOpts "$resFile"
+            dependsOn 'windowsResources'
+            inputs.file resFile
+        }
+    }
 }
 
 task windowsResources (type: Exec) {

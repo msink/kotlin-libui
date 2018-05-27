@@ -795,9 +795,9 @@ var Entry.text: String
     set(text) = uiEntrySetText(this, text)
 
 /** Whether the user is allowed to change the entry text. Defaults to `true`. */
-var Entry.readonly: Boolean
+var Entry.readOnly: Boolean
     get() = uiEntryReadOnly(this) != 0
-    set(readonly) = uiEntrySetReadOnly(this, if (readonly) 1 else 0)
+    set(readOnly) = uiEntrySetReadOnly(this, if (readOnly) 1 else 0)
 
 /** Funcion to be run when the user makes a change to the Entry.
     Only one function can be registered at a time. */
