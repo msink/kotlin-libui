@@ -124,7 +124,6 @@ While this works, it's far from ideomatic Kotlin.
 
 A little improved version, with thin wrappers around raw libui procedures:
 ``` kt
-import kotlinx.cinterop.*
 import libui.*
 
 fun main(args: Array<String>) = application {
