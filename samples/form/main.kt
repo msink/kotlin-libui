@@ -1,4 +1,3 @@
-import kotlinx.cinterop.*
 import libui.*
 
 fun main(args: Array<String>) = application {
