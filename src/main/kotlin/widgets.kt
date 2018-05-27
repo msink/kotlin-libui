@@ -260,7 +260,207 @@ var Grid.padded: Boolean
     get() = uiGridPadded(this) != 0
     set(padded) = uiGridSetPadded(this, if (padded) 1 else 0)
 
-//void uiGridAppend(uiGrid *g, uiControl *c, int left, int top, int xspan, int yspan, int hexpand, uiAlign halign, int vexpand, uiAlign valign)
+/** Adds the given page to the end of the Grid. */
+fun Grid.append(widget: Form,
+                left: Int,
+                top: Int,
+                xspan: Int,
+                yspan: Int,
+                hexpand: Int,
+                halign: Int,
+                vexpand: Int,
+                valign: Int)
+    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(widget: Grid,
+                left: Int,
+                top: Int,
+                xspan: Int,
+                yspan: Int,
+                hexpand: Int,
+                halign: Int,
+                vexpand: Int,
+                valign: Int)
+    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(widget: Box,
+                left: Int,
+                top: Int,
+                xspan: Int,
+                yspan: Int,
+                hexpand: Int,
+                halign: Int,
+                vexpand: Int,
+                valign: Int)
+    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(widget: Tab,
+                left: Int,
+                top: Int,
+                xspan: Int,
+                yspan: Int,
+                hexpand: Int,
+                halign: Int,
+                vexpand: Int,
+                valign: Int)
+    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(widget: Group,
+                left: Int,
+                top: Int,
+                xspan: Int,
+                yspan: Int,
+                hexpand: Int,
+                halign: Int,
+                vexpand: Int,
+                valign: Int)
+    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(widget: Entry,
+                left: Int,
+                top: Int,
+                xspan: Int,
+                yspan: Int,
+                hexpand: Int,
+                halign: Int,
+                vexpand: Int,
+                valign: Int)
+    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(widget: MultilineEntry,
+                left: Int,
+                top: Int,
+                xspan: Int,
+                yspan: Int,
+                hexpand: Int,
+                halign: Int,
+                vexpand: Int,
+                valign: Int)
+    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(widget: Checkbox,
+                left: Int,
+                top: Int,
+                xspan: Int,
+                yspan: Int,
+                hexpand: Int,
+                halign: Int,
+                vexpand: Int,
+                valign: Int)
+    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(widget: Combobox,
+                left: Int,
+                top: Int,
+                xspan: Int,
+                yspan: Int,
+                hexpand: Int,
+                halign: Int,
+                vexpand: Int,
+                valign: Int)
+    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(widget: EditableCombobox,
+                left: Int,
+                top: Int,
+                xspan: Int,
+                yspan: Int,
+                hexpand: Int,
+                halign: Int,
+                vexpand: Int,
+                valign: Int)
+    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(widget: Spinbox,
+                left: Int,
+                top: Int,
+                xspan: Int,
+                yspan: Int,
+                hexpand: Int,
+                halign: Int,
+                vexpand: Int,
+                valign: Int)
+    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(widget: Slider,
+                left: Int,
+                top: Int,
+                xspan: Int,
+                yspan: Int,
+                hexpand: Int,
+                halign: Int,
+                vexpand: Int,
+                valign: Int)
+    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(widget: RadioButtons,
+                left: Int,
+                top: Int,
+                xspan: Int,
+                yspan: Int,
+                hexpand: Int,
+                halign: Int,
+                vexpand: Int,
+                valign: Int)
+    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(widget: DateTimePicker,
+                left: Int,
+                top: Int,
+                xspan: Int,
+                yspan: Int,
+                hexpand: Int,
+                halign: Int,
+                vexpand: Int,
+                valign: Int)
+    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(widget: Label,
+                left: Int,
+                top: Int,
+                xspan: Int,
+                yspan: Int,
+                hexpand: Int,
+                halign: Int,
+                vexpand: Int,
+                valign: Int)
+    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(widget: Separator,
+                left: Int,
+                top: Int,
+                xspan: Int,
+                yspan: Int,
+                hexpand: Int,
+                halign: Int,
+                vexpand: Int,
+                valign: Int)
+    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(widget: ProgressBar,
+                left: Int,
+                top: Int,
+                xspan: Int,
+                yspan: Int,
+                hexpand: Int,
+                halign: Int,
+                vexpand: Int,
+                valign: Int)
+    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(widget: Button,
+                left: Int,
+                top: Int,
+                xspan: Int,
+                yspan: Int,
+                hexpand: Int,
+                halign: Int,
+                vexpand: Int,
+                valign: Int)
+    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(widget: ColorButton,
+                left: Int,
+                top: Int,
+                xspan: Int,
+                yspan: Int,
+                hexpand: Int,
+                halign: Int,
+                vexpand: Int,
+                valign: Int)
+    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(widget: FontButton,
+                left: Int,
+                top: Int,
+                xspan: Int,
+                yspan: Int,
+                hexpand: Int,
+                halign: Int,
+                vexpand: Int,
+                valign: Int)
+    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
 
 //void uiGridInsertAt(uiGrid *g, uiControl *c, uiControl *existing, uiAt at, int xspan, int yspan, int hexpand, uiAlign halign, int vexpand, uiAlign valign)
 
@@ -375,13 +575,103 @@ var Tab.visible: Boolean
     get() = uiControlVisible(reinterpret()) != 0
     set(visible) = if (visible) uiControlShow(reinterpret()) else uiControlHide(reinterpret())
 
-//int uiTabMargined(uiTab *t, int page)
-//void uiTabSetMargined(uiTab *t, int page, int margined)
+/** Whether page n (starting at 0) of the Tab has margins around its child. */
+fun Tab.getMargined(page: Int) : Boolean
+    = uiTabMargined(this, page) != 0
+fun Tab.setMargined(page: Int, margined: Boolean)
+    = uiTabSetMargined(this, page, if (margined) 1 else 0)
 
-//void uiTabAppend(uiTab *t, const char *name, uiControl *c)
-//void uiTabInsertAt(uiTab *t, const char *name, int before, uiControl *c)
-//void uiTabDelete(uiTab *t, int index)
-//int uiTabNumPages(uiTab *t)
+/** Adds the given page to the end of the Tab. */
+fun Tab.append(name: String, widget: Form)
+    = uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: Grid)
+    = uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: Box)
+    = uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: Tab)
+    = uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: Group)
+    = uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: Entry)
+    = uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: MultilineEntry)
+    = uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: Checkbox)
+    = uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: Combobox)
+    = uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: EditableCombobox)
+    = uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: Spinbox)
+    = uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: Slider)
+    = uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: RadioButtons)
+    = uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: DateTimePicker)
+    = uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: Label)
+    = uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: Separator)
+    = uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: ProgressBar)
+    = uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: Button)
+    = uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: ColorButton)
+    = uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: FontButton)
+    = uiTabAppend(this, name, widget.reinterpret())
+
+/** Adds the given page to the Tab such that it is the nth page of the Tab (starting at 0). */
+fun Tab.insertAt(index: Int, name: String, widget: Form)
+    = uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: Grid)
+    = uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: Box)
+    = uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: Tab)
+    = uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: Group)
+    = uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: Entry)
+    = uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: MultilineEntry)
+    = uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: Checkbox)
+    = uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: Combobox)
+    = uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: EditableCombobox)
+    = uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: Spinbox)
+    = uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: Slider)
+    = uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: RadioButtons)
+    = uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: DateTimePicker)
+    = uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: Label)
+    = uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: Separator)
+    = uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: ProgressBar)
+    = uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: Button)
+    = uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: ColorButton)
+    = uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: FontButton)
+    = uiTabInsertAt(this, name, index, widget.reinterpret())
+
+/** Delete deletes the nth page of the Tab. */
+fun Tab.deleteAt(index: Int)
+    = uiTabDelete(this, index)
+
+/** Number of pages in the Tab. */
+val Tab.numPages: Int
+    get() = uiTabNumPages(this)
 
 ///////////////////////////////////////////////////////////////////////////////
 
