@@ -41,8 +41,14 @@ import platform.posix.tm
 typealias Window = CPointer<uiWindow>
 
 /** Create a new Window. */
-fun Window(title: String, width: Int, height: Int, hasMenubar: Boolean = true, block: Window.() -> Unit = {}) : Window
-    = uiNewWindow(title, width, height, if (hasMenubar) 1 else 0)?.apply(block) ?: throw Error()
+fun Window(
+    title: String,
+    width: Int,
+    height: Int,
+    hasMenubar: Boolean = true,
+    block: Window.() -> Unit = {}
+) : Window =
+    uiNewWindow(title, width, height, if (hasMenubar) 1 else 0)?.apply(block) ?: throw Error()
 
 /** Destroy and free the Window. */
 fun Window.destroy() = uiControlDestroy(reinterpret())
@@ -59,7 +65,7 @@ var Window.title: String
     set(title) = uiWindowSetTitle(this, title)
 
 /** Allow to specify that the window is a frameless one, without borders,
-    title bar and OS window control widgets. */
+ *  title bar and OS window control widgets. */
 var Window.borderless: Boolean
     get() = uiWindowBorderless(this) != 0
     set(borderless) = uiWindowSetBorderless(this, if (borderless) 1 else 0)
@@ -79,55 +85,55 @@ var Window.fullscreen: Boolean
  *  you still see title bar and OS window buttons. */
 var Window.contentSize: Size2D
     get() = memScoped {
-       val width = alloc<IntVar>()
-       var height = alloc<IntVar>()
-       uiWindowContentSize(this@contentSize, width.ptr, height.ptr)
-       Size2D(width = width.value, height = height.value)
+        val width = alloc<IntVar>()
+        var height = alloc<IntVar>()
+        uiWindowContentSize(this@contentSize, width.ptr, height.ptr)
+        Size2D(width = width.value, height = height.value)
     }
     set(size) = uiWindowSetContentSize(this, size.width, size.height)
 
 /** Specify the control to show in window content area.
  *  Window instances can contain only one control. If you need more, you have to use Container */
-fun Window.setChild(child: Form)
-    = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Grid)
-    = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Box)
-    = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Tab)
-    = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Group)
-    = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Entry)
-    = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: MultilineEntry)
-    = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Checkbox)
-    = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Combobox)
-    = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: EditableCombobox)
-    = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Spinbox)
-    = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Slider)
-    = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: RadioButtons)
-    = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: DateTimePicker)
-    = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Label)
-    = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Separator)
-    = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: ProgressBar)
-    = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Button)
-    = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: ColorButton)
-    = uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: FontButton)
-    = uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Form) =
+    uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Grid) =
+    uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Box) =
+    uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Tab) =
+    uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Group) =
+    uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Entry) =
+    uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: MultilineEntry) =
+    uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Checkbox) =
+    uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Combobox) =
+    uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: EditableCombobox) =
+    uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Spinbox) =
+    uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Slider) =
+    uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: RadioButtons) =
+    uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: DateTimePicker) =
+    uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Label) =
+    uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Separator) =
+    uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: ProgressBar) =
+    uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Button) =
+    uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: ColorButton) =
+    uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: FontButton) =
+    uiWindowSetChild(this, child.reinterpret())
 
 /** Show the window. */
 fun Window.show() = uiControlShow(reinterpret())
@@ -162,7 +168,7 @@ internal fun _onClose(window: Window?, ref: COpaquePointer?): Int {
 typealias Form = CPointer<uiForm>
 
 /** Create a new Form. */
-fun Form(block: Form.() -> Unit = {}) : Form = uiNewForm()?.apply(block) ?: throw Error()
+fun Form(block: Form.() -> Unit = {}): Form = uiNewForm()?.apply(block) ?: throw Error()
 
 /** Destroy and free the Form. */
 fun Form.destroy() = uiControlDestroy(reinterpret())
@@ -186,50 +192,49 @@ var Form.padded: Boolean
     set(padded) = uiFormSetPadded(this, if (padded) 1 else 0)
 
 /** Adds the given widget to the end of the Form. */
-fun Form.append(label: String, widget: Form, stretchy: Boolean = false)
-    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Form.append(label: String, widget: Grid, stretchy: Boolean = false)
-    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Form.append(label: String, widget: Box, stretchy: Boolean = false)
-    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Form.append(label: String, widget: Tab, stretchy: Boolean = false)
-    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Form.append(label: String, widget: Group, stretchy: Boolean = false)
-    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Form.append(label: String, widget: Entry, stretchy: Boolean = false)
-    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Form.append(label: String, widget: MultilineEntry, stretchy: Boolean = false)
-    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Form.append(label: String, widget: Checkbox, stretchy: Boolean = false)
-    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Form.append(label: String, widget: Combobox, stretchy: Boolean = false)
-    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Form.append(label: String, widget: EditableCombobox, stretchy: Boolean = false)
-    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Form.append(label: String, widget: Spinbox, stretchy: Boolean = false)
-    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Form.append(label: String, widget: Slider, stretchy: Boolean = false)
-    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Form.append(label: String, widget: RadioButtons, stretchy: Boolean = false)
-    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Form.append(label: String, widget: DateTimePicker, stretchy: Boolean = false)
-    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Form.append(label: String, widget: Label, stretchy: Boolean = false)
-    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Form.append(label: String, widget: Separator, stretchy: Boolean = false)
-    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Form.append(label: String, widget: ProgressBar, stretchy: Boolean = false)
-    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Form.append(label: String, widget: Button, stretchy: Boolean = false)
-    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Form.append(label: String, widget: ColorButton, stretchy: Boolean = false)
-    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Form.append(label: String, widget: FontButton, stretchy: Boolean = false)
-    = uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(label: String, widget: Form, stretchy: Boolean = false) =
+    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(label: String, widget: Grid, stretchy: Boolean = false) =
+    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(label: String, widget: Box, stretchy: Boolean = false) =
+    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(label: String, widget: Tab, stretchy: Boolean = false) =
+    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(label: String, widget: Group, stretchy: Boolean = false) =
+    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(label: String, widget: Entry, stretchy: Boolean = false) =
+    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(label: String, widget: MultilineEntry, stretchy: Boolean = false) =
+    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(label: String, widget: Checkbox, stretchy: Boolean = false) =
+    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(label: String, widget: Combobox, stretchy: Boolean = false) =
+    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(label: String, widget: EditableCombobox, stretchy: Boolean = false) =
+    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(label: String, widget: Spinbox, stretchy: Boolean = false) =
+    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(label: String, widget: Slider, stretchy: Boolean = false) =
+    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(label: String, widget: RadioButtons, stretchy: Boolean = false) =
+    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(label: String, widget: DateTimePicker, stretchy: Boolean = false) =
+    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(label: String, widget: Label, stretchy: Boolean = false) =
+    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(label: String, widget: Separator, stretchy: Boolean = false) =
+    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(label: String, widget: ProgressBar, stretchy: Boolean = false) =
+    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(label: String, widget: Button, stretchy: Boolean = false) =
+    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(label: String, widget: ColorButton, stretchy: Boolean = false) =
+    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Form.append(label: String, widget: FontButton, stretchy: Boolean = false) =
+    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
 
 /** deletes the nth control of the Form. */
-fun Form.delete(index: Int)
-    = uiFormDelete(this, index)
+fun Form.delete(index: Int) = uiFormDelete(this, index)
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -237,7 +242,7 @@ fun Form.delete(index: Int)
 typealias Grid = CPointer<uiGrid>
 
 /** Create a new Grid. */
-fun Grid(block: Grid.() -> Unit = {}) : Grid = uiNewGrid()?.apply(block) ?: throw Error()
+fun Grid(block: Grid.() -> Unit = {}): Grid = uiNewGrid()?.apply(block) ?: throw Error()
 
 /** Destroy and free the Grid. */
 fun Grid.destroy() = uiControlDestroy(reinterpret())
@@ -261,208 +266,228 @@ var Grid.padded: Boolean
     set(padded) = uiGridSetPadded(this, if (padded) 1 else 0)
 
 /** Adds the given page to the end of the Grid. */
-fun Grid.append(widget: Form,
-                left: Int,
-                top: Int,
-                xspan: Int,
-                yspan: Int,
-                hexpand: Int,
-                halign: Int,
-                vexpand: Int,
-                valign: Int)
-    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
-fun Grid.append(widget: Grid,
-                left: Int,
-                top: Int,
-                xspan: Int,
-                yspan: Int,
-                hexpand: Int,
-                halign: Int,
-                vexpand: Int,
-                valign: Int)
-    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
-fun Grid.append(widget: Box,
-                left: Int,
-                top: Int,
-                xspan: Int,
-                yspan: Int,
-                hexpand: Int,
-                halign: Int,
-                vexpand: Int,
-                valign: Int)
-    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
-fun Grid.append(widget: Tab,
-                left: Int,
-                top: Int,
-                xspan: Int,
-                yspan: Int,
-                hexpand: Int,
-                halign: Int,
-                vexpand: Int,
-                valign: Int)
-    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
-fun Grid.append(widget: Group,
-                left: Int,
-                top: Int,
-                xspan: Int,
-                yspan: Int,
-                hexpand: Int,
-                halign: Int,
-                vexpand: Int,
-                valign: Int)
-    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
-fun Grid.append(widget: Entry,
-                left: Int,
-                top: Int,
-                xspan: Int,
-                yspan: Int,
-                hexpand: Int,
-                halign: Int,
-                vexpand: Int,
-                valign: Int)
-    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
-fun Grid.append(widget: MultilineEntry,
-                left: Int,
-                top: Int,
-                xspan: Int,
-                yspan: Int,
-                hexpand: Int,
-                halign: Int,
-                vexpand: Int,
-                valign: Int)
-    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
-fun Grid.append(widget: Checkbox,
-                left: Int,
-                top: Int,
-                xspan: Int,
-                yspan: Int,
-                hexpand: Int,
-                halign: Int,
-                vexpand: Int,
-                valign: Int)
-    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
-fun Grid.append(widget: Combobox,
-                left: Int,
-                top: Int,
-                xspan: Int,
-                yspan: Int,
-                hexpand: Int,
-                halign: Int,
-                vexpand: Int,
-                valign: Int)
-    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
-fun Grid.append(widget: EditableCombobox,
-                left: Int,
-                top: Int,
-                xspan: Int,
-                yspan: Int,
-                hexpand: Int,
-                halign: Int,
-                vexpand: Int,
-                valign: Int)
-    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
-fun Grid.append(widget: Spinbox,
-                left: Int,
-                top: Int,
-                xspan: Int,
-                yspan: Int,
-                hexpand: Int,
-                halign: Int,
-                vexpand: Int,
-                valign: Int)
-    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
-fun Grid.append(widget: Slider,
-                left: Int,
-                top: Int,
-                xspan: Int,
-                yspan: Int,
-                hexpand: Int,
-                halign: Int,
-                vexpand: Int,
-                valign: Int)
-    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
-fun Grid.append(widget: RadioButtons,
-                left: Int,
-                top: Int,
-                xspan: Int,
-                yspan: Int,
-                hexpand: Int,
-                halign: Int,
-                vexpand: Int,
-                valign: Int)
-    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
-fun Grid.append(widget: DateTimePicker,
-                left: Int,
-                top: Int,
-                xspan: Int,
-                yspan: Int,
-                hexpand: Int,
-                halign: Int,
-                vexpand: Int,
-                valign: Int)
-    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
-fun Grid.append(widget: Label,
-                left: Int,
-                top: Int,
-                xspan: Int,
-                yspan: Int,
-                hexpand: Int,
-                halign: Int,
-                vexpand: Int,
-                valign: Int)
-    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
-fun Grid.append(widget: Separator,
-                left: Int,
-                top: Int,
-                xspan: Int,
-                yspan: Int,
-                hexpand: Int,
-                halign: Int,
-                vexpand: Int,
-                valign: Int)
-    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
-fun Grid.append(widget: ProgressBar,
-                left: Int,
-                top: Int,
-                xspan: Int,
-                yspan: Int,
-                hexpand: Int,
-                halign: Int,
-                vexpand: Int,
-                valign: Int)
-    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
-fun Grid.append(widget: Button,
-                left: Int,
-                top: Int,
-                xspan: Int,
-                yspan: Int,
-                hexpand: Int,
-                halign: Int,
-                vexpand: Int,
-                valign: Int)
-    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
-fun Grid.append(widget: ColorButton,
-                left: Int,
-                top: Int,
-                xspan: Int,
-                yspan: Int,
-                hexpand: Int,
-                halign: Int,
-                vexpand: Int,
-                valign: Int)
-    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
-fun Grid.append(widget: FontButton,
-                left: Int,
-                top: Int,
-                xspan: Int,
-                yspan: Int,
-                hexpand: Int,
-                halign: Int,
-                vexpand: Int,
-                valign: Int)
-    = uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(
+    widget: Form,
+    left: Int,
+    top: Int,
+    xspan: Int,
+    yspan: Int,
+    hexpand: Int,
+    halign: Int,
+    vexpand: Int,
+    valign: Int) =
+    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(
+    widget: Grid,
+    left: Int,
+    top: Int,
+    xspan: Int,
+    yspan: Int,
+    hexpand: Int,
+    halign: Int,
+    vexpand: Int,
+    valign: Int) =
+    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(
+    widget: Box,
+    left: Int,
+    top: Int,
+    xspan: Int,
+    yspan: Int,
+    hexpand: Int,
+    halign: Int,
+    vexpand: Int,
+    valign: Int) =
+    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(
+    widget: Tab,
+    left: Int,
+    top: Int,
+    xspan: Int,
+    yspan: Int,
+    hexpand: Int,
+    halign: Int,
+    vexpand: Int,
+    valign: Int) =
+    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(
+    widget: Group,
+    left: Int,
+    top: Int,
+    xspan: Int,
+    yspan: Int,
+    hexpand: Int,
+    halign: Int,
+    vexpand: Int,
+    valign: Int) =
+    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(
+    widget: Entry,
+    left: Int,
+    top: Int,
+    xspan: Int,
+    yspan: Int,
+    hexpand: Int,
+    halign: Int,
+    vexpand: Int,
+    valign: Int) =
+    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(
+    widget: MultilineEntry,
+    left: Int,
+    top: Int,
+    xspan: Int,
+    yspan: Int,
+    hexpand: Int,
+    halign: Int,
+    vexpand: Int,
+    valign: Int) =
+    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(
+    widget: Checkbox,
+    left: Int,
+    top: Int,
+    xspan: Int,
+    yspan: Int,
+    hexpand: Int,
+    halign: Int,
+    vexpand: Int,
+    valign: Int) =
+    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(
+    widget: Combobox,
+    left: Int,
+    top: Int,
+    xspan: Int,
+    yspan: Int,
+    hexpand: Int,
+    halign: Int,
+    vexpand: Int,
+    valign: Int) =
+    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(
+    widget: EditableCombobox,
+    left: Int,
+    top: Int,
+    xspan: Int,
+    yspan: Int,
+    hexpand: Int,
+    halign: Int,
+    vexpand: Int,
+    valign: Int) =
+    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(
+    widget: Spinbox,
+    left: Int,
+    top: Int,
+    xspan: Int,
+    yspan: Int,
+    hexpand: Int,
+    halign: Int,
+    vexpand: Int,
+    valign: Int) =
+    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(
+    widget: Slider,
+    left: Int,
+    top: Int,
+    xspan: Int,
+    yspan: Int,
+    hexpand: Int,
+    halign: Int,
+    vexpand: Int,
+    valign: Int) =
+    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(
+    widget: RadioButtons,
+    left: Int,
+    top: Int,
+    xspan: Int,
+    yspan: Int,
+    hexpand: Int,
+    halign: Int,
+    vexpand: Int,
+    valign: Int) =
+    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(
+    widget: DateTimePicker,
+    left: Int,
+    top: Int,
+    xspan: Int,
+    yspan: Int,
+    hexpand: Int,
+    halign: Int,
+    vexpand: Int,
+    valign: Int) =
+    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(
+    widget: Label,
+    left: Int,
+    top: Int,
+    xspan: Int,
+    yspan: Int,
+    hexpand: Int,
+    halign: Int,
+    vexpand: Int,
+    valign: Int) =
+    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(
+    widget: Separator,
+    left: Int,
+    top: Int,
+    xspan: Int,
+    yspan: Int,
+    hexpand: Int,
+    halign: Int,
+    vexpand: Int,
+    valign: Int) =
+    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(
+    widget: ProgressBar,
+    left: Int,
+    top: Int,
+    xspan: Int,
+    yspan: Int,
+    hexpand: Int,
+    halign: Int,
+    vexpand: Int,
+    valign: Int) =
+    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(
+    widget: Button,
+    left: Int,
+    top: Int,
+    xspan: Int,
+    yspan: Int,
+    hexpand: Int,
+    halign: Int,
+    vexpand: Int,
+    valign: Int) =
+    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(
+    widget: ColorButton,
+    left: Int,
+    top: Int,
+    xspan: Int,
+    yspan: Int,
+    hexpand: Int,
+    halign: Int,
+    vexpand: Int,
+    valign: Int) =
+    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(
+    widget: FontButton,
+    left: Int,
+    top: Int,
+    xspan: Int,
+    yspan: Int,
+    hexpand: Int,
+    halign: Int,
+    vexpand: Int,
+    valign: Int) =
+    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
 
-//void uiGridInsertAt(uiGrid *g, uiControl *c, uiControl *existing, uiAt at, int xspan, int yspan, int hexpand, uiAlign halign, int vexpand, uiAlign valign)
+//TODO void uiGridInsertAt(uiGrid *g, uiControl *c, uiControl *existing, uiAt at, int xspan, int yspan, int hexpand, uiAlign halign, int vexpand, uiAlign valign)
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -470,10 +495,10 @@ fun Grid.append(widget: FontButton,
 typealias Box = CPointer<uiBox>
 
 /** Create a new Box object that stack its chidren horizontally. */
-fun HorizontalBox(block: Box.() -> Unit = {}) : Box = uiNewHorizontalBox()?.apply(block) ?: throw Error()
+fun HorizontalBox(block: Box.() -> Unit = {}): Box = uiNewHorizontalBox()?.apply(block) ?: throw Error()
 
 /** Create a new Box object that stack its chidren vertically. */
-fun VerticalBox(block: Box.() -> Unit = {}) : Box = uiNewVerticalBox()?.apply(block) ?: throw Error()
+fun VerticalBox(block: Box.() -> Unit = {}): Box = uiNewVerticalBox()?.apply(block) ?: throw Error()
 
 /** Destroy and free the Box. */
 fun Box.destroy() = uiControlDestroy(reinterpret())
@@ -500,50 +525,49 @@ var Box.padded: Boolean
     set(padded) = uiBoxSetPadded(this, if (padded) 1 else 0)
 
 /** Adds the given widget to the end of the Box. */
-fun Box.append(widget: Form, stretchy: Boolean = false)
-    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Box.append(widget: Grid, stretchy: Boolean = false)
-    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Box.append(widget: Box, stretchy: Boolean = false)
-    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Box.append(widget: Tab, stretchy: Boolean = false)
-    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Box.append(widget: Group, stretchy: Boolean = false)
-    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Box.append(widget: Entry, stretchy: Boolean = false)
-    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Box.append(widget: MultilineEntry, stretchy: Boolean = false)
-    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Box.append(widget: Checkbox, stretchy: Boolean = false)
-    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Box.append(widget: Combobox, stretchy: Boolean = false)
-    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Box.append(widget: EditableCombobox, stretchy: Boolean = false)
-    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Box.append(widget: Spinbox, stretchy: Boolean = false)
-    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Box.append(widget: Slider, stretchy: Boolean = false)
-    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Box.append(widget: RadioButtons, stretchy: Boolean = false)
-    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Box.append(widget: DateTimePicker, stretchy: Boolean = false)
-    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Box.append(widget: Label, stretchy: Boolean = false)
-    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Box.append(widget: Separator, stretchy: Boolean = false)
-    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Box.append(widget: ProgressBar, stretchy: Boolean = false)
-    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Box.append(widget: Button, stretchy: Boolean = false)
-    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Box.append(widget: ColorButton, stretchy: Boolean = false)
-    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
-fun Box.append(widget: FontButton, stretchy: Boolean = false)
-    = uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: Form, stretchy: Boolean = false) =
+    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: Grid, stretchy: Boolean = false) =
+    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: Box, stretchy: Boolean = false) =
+    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: Tab, stretchy: Boolean = false) =
+    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: Group, stretchy: Boolean = false) =
+    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: Entry, stretchy: Boolean = false) =
+    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: MultilineEntry, stretchy: Boolean = false) =
+    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: Checkbox, stretchy: Boolean = false) =
+    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: Combobox, stretchy: Boolean = false) =
+    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: EditableCombobox, stretchy: Boolean = false) =
+    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: Spinbox, stretchy: Boolean = false) =
+    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: Slider, stretchy: Boolean = false) =
+    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: RadioButtons, stretchy: Boolean = false) =
+    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: DateTimePicker, stretchy: Boolean = false) =
+    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: Label, stretchy: Boolean = false) =
+    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: Separator, stretchy: Boolean = false) =
+    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: ProgressBar, stretchy: Boolean = false) =
+    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: Button, stretchy: Boolean = false) =
+    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: ColorButton, stretchy: Boolean = false) =
+    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+fun Box.append(widget: FontButton, stretchy: Boolean = false) =
+    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
 
 /** deletes the nth control of the Box. */
-fun Box.delete(index: Int)
-    = uiBoxDelete(this, index)
+fun Box.delete(index: Int) = uiBoxDelete(this, index)
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -551,7 +575,7 @@ fun Box.delete(index: Int)
 typealias Tab = CPointer<uiTab>
 
 /** Create a new Tab. */
-fun Tab(block: Tab.() -> Unit = {}) : Tab = uiNewTab()?.apply(block) ?: throw Error()
+fun Tab(block: Tab.() -> Unit = {}): Tab = uiNewTab()?.apply(block) ?: throw Error()
 
 /** Destroy and free the Tab. */
 fun Tab.destroy() = uiControlDestroy(reinterpret())
@@ -576,98 +600,95 @@ var Tab.visible: Boolean
     set(visible) = if (visible) uiControlShow(reinterpret()) else uiControlHide(reinterpret())
 
 /** Whether page n (starting at 0) of the Tab has margins around its child. */
-fun Tab.getMargined(page: Int) : Boolean
-    = uiTabMargined(this, page) != 0
-fun Tab.setMargined(page: Int, margined: Boolean)
-    = uiTabSetMargined(this, page, if (margined) 1 else 0)
+fun Tab.getMargined(page: Int): Boolean = uiTabMargined(this, page) != 0
+fun Tab.setMargined(page: Int, margined: Boolean) = uiTabSetMargined(this, page, if (margined) 1 else 0)
 
 /** Adds the given page to the end of the Tab. */
-fun Tab.append(name: String, widget: Form)
-    = uiTabAppend(this, name, widget.reinterpret())
-fun Tab.append(name: String, widget: Grid)
-    = uiTabAppend(this, name, widget.reinterpret())
-fun Tab.append(name: String, widget: Box)
-    = uiTabAppend(this, name, widget.reinterpret())
-fun Tab.append(name: String, widget: Tab)
-    = uiTabAppend(this, name, widget.reinterpret())
-fun Tab.append(name: String, widget: Group)
-    = uiTabAppend(this, name, widget.reinterpret())
-fun Tab.append(name: String, widget: Entry)
-    = uiTabAppend(this, name, widget.reinterpret())
-fun Tab.append(name: String, widget: MultilineEntry)
-    = uiTabAppend(this, name, widget.reinterpret())
-fun Tab.append(name: String, widget: Checkbox)
-    = uiTabAppend(this, name, widget.reinterpret())
-fun Tab.append(name: String, widget: Combobox)
-    = uiTabAppend(this, name, widget.reinterpret())
-fun Tab.append(name: String, widget: EditableCombobox)
-    = uiTabAppend(this, name, widget.reinterpret())
-fun Tab.append(name: String, widget: Spinbox)
-    = uiTabAppend(this, name, widget.reinterpret())
-fun Tab.append(name: String, widget: Slider)
-    = uiTabAppend(this, name, widget.reinterpret())
-fun Tab.append(name: String, widget: RadioButtons)
-    = uiTabAppend(this, name, widget.reinterpret())
-fun Tab.append(name: String, widget: DateTimePicker)
-    = uiTabAppend(this, name, widget.reinterpret())
-fun Tab.append(name: String, widget: Label)
-    = uiTabAppend(this, name, widget.reinterpret())
-fun Tab.append(name: String, widget: Separator)
-    = uiTabAppend(this, name, widget.reinterpret())
-fun Tab.append(name: String, widget: ProgressBar)
-    = uiTabAppend(this, name, widget.reinterpret())
-fun Tab.append(name: String, widget: Button)
-    = uiTabAppend(this, name, widget.reinterpret())
-fun Tab.append(name: String, widget: ColorButton)
-    = uiTabAppend(this, name, widget.reinterpret())
-fun Tab.append(name: String, widget: FontButton)
-    = uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: Form) =
+    uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: Grid) =
+    uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: Box) =
+    uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: Tab) =
+    uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: Group) =
+    uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: Entry) =
+    uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: MultilineEntry) =
+    uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: Checkbox) =
+    uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: Combobox) =
+    uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: EditableCombobox) =
+    uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: Spinbox) =
+    uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: Slider) =
+    uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: RadioButtons) =
+    uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: DateTimePicker) =
+    uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: Label) =
+    uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: Separator) =
+    uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: ProgressBar) =
+    uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: Button) =
+    uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: ColorButton) =
+    uiTabAppend(this, name, widget.reinterpret())
+fun Tab.append(name: String, widget: FontButton) =
+    uiTabAppend(this, name, widget.reinterpret())
 
 /** Adds the given page to the Tab such that it is the nth page of the Tab (starting at 0). */
-fun Tab.insertAt(index: Int, name: String, widget: Form)
-    = uiTabInsertAt(this, name, index, widget.reinterpret())
-fun Tab.insertAt(index: Int, name: String, widget: Grid)
-    = uiTabInsertAt(this, name, index, widget.reinterpret())
-fun Tab.insertAt(index: Int, name: String, widget: Box)
-    = uiTabInsertAt(this, name, index, widget.reinterpret())
-fun Tab.insertAt(index: Int, name: String, widget: Tab)
-    = uiTabInsertAt(this, name, index, widget.reinterpret())
-fun Tab.insertAt(index: Int, name: String, widget: Group)
-    = uiTabInsertAt(this, name, index, widget.reinterpret())
-fun Tab.insertAt(index: Int, name: String, widget: Entry)
-    = uiTabInsertAt(this, name, index, widget.reinterpret())
-fun Tab.insertAt(index: Int, name: String, widget: MultilineEntry)
-    = uiTabInsertAt(this, name, index, widget.reinterpret())
-fun Tab.insertAt(index: Int, name: String, widget: Checkbox)
-    = uiTabInsertAt(this, name, index, widget.reinterpret())
-fun Tab.insertAt(index: Int, name: String, widget: Combobox)
-    = uiTabInsertAt(this, name, index, widget.reinterpret())
-fun Tab.insertAt(index: Int, name: String, widget: EditableCombobox)
-    = uiTabInsertAt(this, name, index, widget.reinterpret())
-fun Tab.insertAt(index: Int, name: String, widget: Spinbox)
-    = uiTabInsertAt(this, name, index, widget.reinterpret())
-fun Tab.insertAt(index: Int, name: String, widget: Slider)
-    = uiTabInsertAt(this, name, index, widget.reinterpret())
-fun Tab.insertAt(index: Int, name: String, widget: RadioButtons)
-    = uiTabInsertAt(this, name, index, widget.reinterpret())
-fun Tab.insertAt(index: Int, name: String, widget: DateTimePicker)
-    = uiTabInsertAt(this, name, index, widget.reinterpret())
-fun Tab.insertAt(index: Int, name: String, widget: Label)
-    = uiTabInsertAt(this, name, index, widget.reinterpret())
-fun Tab.insertAt(index: Int, name: String, widget: Separator)
-    = uiTabInsertAt(this, name, index, widget.reinterpret())
-fun Tab.insertAt(index: Int, name: String, widget: ProgressBar)
-    = uiTabInsertAt(this, name, index, widget.reinterpret())
-fun Tab.insertAt(index: Int, name: String, widget: Button)
-    = uiTabInsertAt(this, name, index, widget.reinterpret())
-fun Tab.insertAt(index: Int, name: String, widget: ColorButton)
-    = uiTabInsertAt(this, name, index, widget.reinterpret())
-fun Tab.insertAt(index: Int, name: String, widget: FontButton)
-    = uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: Form) =
+    uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: Grid) =
+    uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: Box) =
+    uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: Tab) =
+    uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: Group) =
+    uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: Entry) =
+    uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: MultilineEntry) =
+    uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: Checkbox) =
+    uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: Combobox) =
+    uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: EditableCombobox) =
+    uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: Spinbox) =
+    uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: Slider) =
+    uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: RadioButtons) =
+    uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: DateTimePicker) =
+    uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: Label) =
+    uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: Separator) =
+    uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: ProgressBar) =
+    uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: Button) =
+    uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: ColorButton) =
+    uiTabInsertAt(this, name, index, widget.reinterpret())
+fun Tab.insertAt(index: Int, name: String, widget: FontButton) =
+    uiTabInsertAt(this, name, index, widget.reinterpret())
 
 /** Delete deletes the nth page of the Tab. */
-fun Tab.deleteAt(index: Int)
-    = uiTabDelete(this, index)
+fun Tab.deleteAt(index: Int) = uiTabDelete(this, index)
 
 /** Number of pages in the Tab. */
 val Tab.numPages: Int
@@ -679,7 +700,7 @@ val Tab.numPages: Int
 typealias Group = CPointer<uiGroup>
 
 /** Create a new Group. */
-fun Group(text: String, block: Group.() -> Unit = {}) : Group =
+fun Group(text: String, block: Group.() -> Unit = {}): Group =
     uiNewGroup(text)?.apply(block) ?: throw Error()
 
 /** Destroy and free the Group. */
@@ -714,46 +735,46 @@ var Group.margined: Boolean
 
 /** sets the Group's child to child. If child is nil, the Group
  *  will not have a child. */
-fun Group.setChild(child: Form)
-    = uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: Grid)
-    = uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: Box)
-    = uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: Tab)
-    = uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: Group)
-    = uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: Entry)
-    = uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: MultilineEntry)
-    = uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: Checkbox)
-    = uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: Combobox)
-    = uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: EditableCombobox)
-    = uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: Spinbox)
-    = uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: Slider)
-    = uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: RadioButtons)
-    = uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: DateTimePicker)
-    = uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: Label)
-    = uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: Separator)
-    = uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: ProgressBar)
-    = uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: Button)
-    = uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: ColorButton)
-    = uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: FontButton)
-    = uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: Form) =
+    uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: Grid) =
+    uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: Box) =
+    uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: Tab) =
+    uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: Group) =
+    uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: Entry) =
+    uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: MultilineEntry) =
+    uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: Checkbox) =
+    uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: Combobox) =
+    uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: EditableCombobox) =
+    uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: Spinbox) =
+    uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: Slider) =
+    uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: RadioButtons) =
+    uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: DateTimePicker) =
+    uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: Label) =
+    uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: Separator) =
+    uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: ProgressBar) =
+    uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: Button) =
+    uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: ColorButton) =
+    uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: FontButton) =
+    uiGroupSetChild(this, child.reinterpret())
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -761,14 +782,14 @@ fun Group.setChild(child: FontButton)
 typealias Entry = CPointer<uiEntry>
 
 /** Create a new simple text Entry. */
-fun Entry(block: Entry.() -> Unit = {}) : Entry = uiNewEntry()?.apply(block) ?: throw Error()
+fun Entry(block: Entry.() -> Unit = {}): Entry = uiNewEntry()?.apply(block) ?: throw Error()
 
 /** Create a new text Entry widget that mask the input,
-    useful to edit passwords or other sensible data. */
-fun PasswordEntry() : Entry = uiNewPasswordEntry() ?: throw Error()
+ *  useful to edit passwords or other sensible data. */
+fun PasswordEntry(): Entry = uiNewPasswordEntry() ?: throw Error()
 
 /** Create a new text Entry to search text. */
-fun SearchEntry() : Entry = uiNewSearchEntry() ?: throw Error()
+fun SearchEntry(): Entry = uiNewSearchEntry() ?: throw Error()
 
 /** Destroy and free the Entry. */
 fun Entry.destroy() = uiControlDestroy(reinterpret())
@@ -801,7 +822,7 @@ var Entry.readOnly: Boolean
     set(readOnly) = uiEntrySetReadOnly(this, if (readOnly) 1 else 0)
 
 /** Funcion to be run when the user makes a change to the Entry.
-    Only one function can be registered at a time. */
+ *  Only one function can be registered at a time. */
 fun Entry.action(proc: Entry.() -> Unit) {
     val ref = StableRef.create(proc).also { _stableRefs.add(it) }
     uiEntryOnChanged(this, staticCFunction(::_onEntry), ref.asCPointer())
@@ -818,11 +839,11 @@ internal fun _onEntry(widget: Entry?, ref: COpaquePointer?) {
 typealias MultilineEntry = CPointer<uiMultilineEntry>
 
 /** Create a new MultilineEntry. */
-fun MultilineEntry(block: MultilineEntry.() -> Unit = {}) : MultilineEntry =
+fun MultilineEntry(block: MultilineEntry.() -> Unit = {}): MultilineEntry =
     uiNewMultilineEntry()?.apply(block) ?: throw Error()
 
 /** Create a new non wrapping MultilineEntry. */
-fun NonWrappingMultilineEntry(block: MultilineEntry.() -> Unit = {}) : MultilineEntry =
+fun NonWrappingMultilineEntry(block: MultilineEntry.() -> Unit = {}): MultilineEntry =
     uiNewNonWrappingMultilineEntry()?.apply(block) ?: throw Error()
 
 /** Destroy and free the MultilineEntry. */
@@ -852,11 +873,10 @@ var MultilineEntry.readOnly: Boolean
     set(readOnly) = uiMultilineEntrySetReadOnly(this, if (readOnly) 1 else 0)
 
 /** Adds the text to the end of the MultilineEntry. */
-fun MultilineEntry.append(text: String)
-    = uiMultilineEntryAppend(this, text)
+fun MultilineEntry.append(text: String) = uiMultilineEntryAppend(this, text)
 
 /** Funcion to be run when the user makes a change to the MultilineEntry.
-    Only one function can be registered at a time. */
+ *  Only one function can be registered at a time. */
 fun MultilineEntry.action(proc: MultilineEntry.() -> Unit) {
     val ref = StableRef.create(proc).also { _stableRefs.add(it) }
     uiMultilineEntryOnChanged(this, staticCFunction(::_onMultilineEntry), ref.asCPointer())
@@ -873,7 +893,7 @@ internal fun _onMultilineEntry(widget: MultilineEntry?, ref: COpaquePointer?) {
 typealias Checkbox = CPointer<uiCheckbox>
 
 /** Create a new Checkbox. */
-fun Checkbox(text: String, block: Checkbox.() -> Unit = {}) : Checkbox =
+fun Checkbox(text: String, block: Checkbox.() -> Unit = {}): Checkbox =
     uiNewCheckbox(text)?.apply(block) ?: throw Error()
 
 /** Destroy and free the Checkbox. */
@@ -907,7 +927,7 @@ var Checkbox.checked: Boolean
     set(checked) = uiCheckboxSetChecked(this, if (checked) 1 else 0)
 
 /** Funcion to be run when the user clicks the Checkbox.
-    Only one function can be registered at a time. */
+ *  Only one function can be registered at a time. */
 fun Checkbox.action(proc: Checkbox.() -> Unit) {
     val ref = StableRef.create(proc).also { _stableRefs.add(it) }
     uiCheckboxOnToggled(this, staticCFunction(::_onCheckbox), ref.asCPointer())
@@ -924,7 +944,7 @@ internal fun _onCheckbox(widget: Checkbox?, ref: COpaquePointer?) {
 typealias Combobox = CPointer<uiCombobox>
 
 /** Create a new Combobox. */
-fun Combobox(block: Combobox.() -> Unit = {}) : Combobox =
+fun Combobox(block: Combobox.() -> Unit = {}): Combobox =
     uiNewCombobox()?.apply(block) ?: throw Error()
 
 /** Destroy and free the Combobox. */
@@ -955,11 +975,10 @@ var Combobox.selected: Int
 
 /** Adds the named entry to the end of the Combobox.
  *  If this entry is the first entry, it is automatically selected. */
-fun Combobox.append(text: String)
-    = uiComboboxAppend(this, text)
+fun Combobox.append(text: String) = uiComboboxAppend(this, text)
 
 /** Funcion to be run when the user makes a change to the Combobox.
-    Only one function can be registered at a time. */
+ *  Only one function can be registered at a time. */
 fun Combobox.action(proc: Combobox.() -> Unit) {
     val ref = StableRef.create(proc).also { _stableRefs.add(it) }
     uiComboboxOnSelected(this, staticCFunction(::_onCombobox), ref.asCPointer())
@@ -976,7 +995,7 @@ internal fun _onCombobox(widget: Combobox?, ref: COpaquePointer?) {
 typealias EditableCombobox = CPointer<uiEditableCombobox>
 
 /** Create a new EditableCombobox. */
-fun EditableCombobox(block: EditableCombobox.() -> Unit = {}) : EditableCombobox =
+fun EditableCombobox(block: EditableCombobox.() -> Unit = {}): EditableCombobox =
     uiNewEditableCombobox()?.apply(block) ?: throw Error()
 
 /** Return or set the current selected text or the text value of the selected item in the list. */
@@ -986,11 +1005,10 @@ var EditableCombobox.text: String
 
 /** Adds the named entry to the end of the EditableCombobox.
  *  If this entry is the first entry, it is automatically selected. */
-fun EditableCombobox.append(text: String)
-    = uiEditableComboboxAppend(this, text)
+fun EditableCombobox.append(text: String) = uiEditableComboboxAppend(this, text)
 
 /** Funcion to be run when the user makes a change to the EditableCombobox.
-    Only one function can be registered at a time. */
+ *  Only one function can be registered at a time. */
 //TODO what do we call a function that sets the currently selected item and fills the text field with it?
 //TODO editable comboboxes have no consistent concept of selected item
 fun EditableCombobox.action(proc: EditableCombobox.() -> Unit) {
@@ -1014,7 +1032,7 @@ internal fun _onEditableCombobox(widget: EditableCombobox?, ref: COpaquePointer?
 typealias Spinbox = CPointer<uiSpinbox>
 
 /** Create a new Spinbox. */
-fun Spinbox(min: Int, max: Int, block: Spinbox.() -> Unit = {}) : Spinbox =
+fun Spinbox(min: Int, max: Int, block: Spinbox.() -> Unit = {}): Spinbox =
     uiNewSpinbox(min, max)?.apply(block) ?: throw Error()
 
 /** Destroy and free the Spinbox. */
@@ -1047,7 +1065,7 @@ var Spinbox.value: Int
     set(value) = uiSpinboxSetValue(this, value)
 
 /** Funcion to be run when the user makes a change to the Spinbox.
-    Only one function can be registered at a time. */
+ *  Only one function can be registered at a time. */
 fun Spinbox.action(proc: Spinbox.() -> Unit) {
     val ref = StableRef.create(proc).also { _stableRefs.add(it) }
     uiSpinboxOnChanged(this, staticCFunction(::_onSpinbox), ref.asCPointer())
@@ -1064,7 +1082,7 @@ internal fun _onSpinbox(widget: Spinbox?, ref: COpaquePointer?) {
 typealias Slider = CPointer<uiSlider>
 
 /** Create a new Slider. */
-fun Slider(min: Int, max: Int, block: Slider.() -> Unit = {}) : Slider =
+fun Slider(min: Int, max: Int, block: Slider.() -> Unit = {}): Slider =
     uiNewSlider(min, max)?.apply(block) ?: throw Error()
 
 /** Destroy and free the Slider. */
@@ -1093,7 +1111,7 @@ var Slider.value: Int
     set(value) = uiSliderSetValue(this, value)
 
 /** Funcion to be run when the user makes a change to the Slider.
-    Only one function can be registered at a time. */
+ *  Only one function can be registered at a time. */
 fun Slider.action(proc: Slider.() -> Unit) {
     val ref = StableRef.create(proc).also { _stableRefs.add(it) }
     uiSliderOnChanged(this, staticCFunction(::_onSlider), ref.asCPointer())
@@ -1110,7 +1128,7 @@ internal fun _onSlider(widget: Slider?, ref: COpaquePointer?) {
 typealias RadioButtons = CPointer<uiRadioButtons>
 
 /** Create a new RadioButtons. */
-fun RadioButtons(block: RadioButtons.() -> Unit = {}) : RadioButtons =
+fun RadioButtons(block: RadioButtons.() -> Unit = {}): RadioButtons =
     uiNewRadioButtons()?.apply(block) ?: throw Error()
 
 /** Destroy and free the RadioButtons. */
@@ -1141,11 +1159,10 @@ var RadioButtons.selected: Int
 
 /** Adds the named button to the end of the RadioButtons.
  *  If this button is the first button, it is automatically selected. */
-fun RadioButtons.append(text: String)
-    = uiRadioButtonsAppend(this, text)
+fun RadioButtons.append(text: String) = uiRadioButtonsAppend(this, text)
 
 /** Funcion to be run when the user makes a change to the RadioButtons.
-    Only one function can be registered at a time. */
+ *  Only one function can be registered at a time. */
 fun RadioButtons.action(proc: RadioButtons.() -> Unit) {
     val ref = StableRef.create(proc).also { _stableRefs.add(it) }
     uiRadioButtonsOnSelected(this, staticCFunction(::_onRadioButtons), ref.asCPointer())
@@ -1162,14 +1179,14 @@ internal fun _onRadioButtons(widget: RadioButtons?, ref: COpaquePointer?) {
 typealias DateTimePicker = CPointer<uiDateTimePicker>
 
 /** Create a new DateTimePicker to edit date/times. */
-fun DateTimePicker(block: DateTimePicker.() -> Unit = {}) : DateTimePicker =
+fun DateTimePicker(block: DateTimePicker.() -> Unit = {}): DateTimePicker =
     uiNewDateTimePicker()?.apply(block) ?: throw Error()
 
 /** Create a new DateTimePicker to edit dates. */
-fun DatePicker() : DateTimePicker = uiNewDatePicker() ?: throw Error()
+fun DatePicker(): DateTimePicker = uiNewDatePicker() ?: throw Error()
 
 /** Create a new DateTimePicker to edit times. */
-fun TimePicker() : DateTimePicker = uiNewTimePicker() ?: throw Error()
+fun TimePicker(): DateTimePicker = uiNewTimePicker() ?: throw Error()
 
 /** Destroy and free the DateTimePicker. */
 fun DateTimePicker.destroy() = uiControlDestroy(reinterpret())
@@ -1223,7 +1240,7 @@ var DateTimePicker.visible: Boolean
     }*/
 
 /** Funcion to be run when the user makes a change to the DateTimePicker.
-    Only one function can be registered at a time. */
+ *  Only one function can be registered at a time. */
 fun DateTimePicker.action(proc: DateTimePicker.() -> Unit) {
     val ref = StableRef.create(proc).also { _stableRefs.add(it) }
     uiDateTimePickerOnChanged(this, staticCFunction(::_onDateTimePicker), ref.asCPointer())
@@ -1240,7 +1257,7 @@ internal fun _onDateTimePicker(widget: DateTimePicker?, ref: COpaquePointer?) {
 typealias Label = CPointer<uiLabel>
 
 /** Create a new Label. */
-fun Label(text: String, block: Label.() -> Unit = {}) : Label =
+fun Label(text: String, block: Label.() -> Unit = {}): Label =
     uiNewLabel(text)?.apply(block) ?: throw Error()
 
 /** Destroy and free the Label. */
@@ -1274,11 +1291,11 @@ var Label.text: String
 typealias Separator = CPointer<uiSeparator>
 
 /** Create a new Separator object - an horizontal line to visually separate widgets. */
-fun HorizontalSeparator(block: Separator.() -> Unit = {}) : Separator =
+fun HorizontalSeparator(block: Separator.() -> Unit = {}): Separator =
     uiNewHorizontalSeparator()?.apply(block) ?: throw Error()
 
 /** Create a new Separator object - a vertical line to visually separate widgets. */
-fun VerticalSeparator(block: Separator.() -> Unit = {}) : Separator =
+fun VerticalSeparator(block: Separator.() -> Unit = {}): Separator =
     uiNewVerticalSeparator()?.apply(block) ?: throw Error()
 
 /** Destroy and free the Separator. */
@@ -1307,7 +1324,7 @@ var Separator.visible: Boolean
 typealias ProgressBar = CPointer<uiProgressBar>
 
 /** Create a new ProgressBar. */
-fun ProgressBar(block: ProgressBar.() -> Unit = {}) : ProgressBar =
+fun ProgressBar(block: ProgressBar.() -> Unit = {}): ProgressBar =
     uiNewProgressBar()?.apply(block) ?: throw Error()
 
 /** Destroy and free the ProgressBar. */
@@ -1331,7 +1348,7 @@ var ProgressBar.visible: Boolean
     set(visible) = if (visible) uiControlShow(reinterpret()) else uiControlHide(reinterpret())
 
 /** The current position of the progress bar.
-    Could be setted to -1 to create an indeterminate progress bar. */
+ *  Could be setted to -1 to create an indeterminate progress bar. */
 var ProgressBar.value: Int
     get() = uiProgressBarValue(this)
     set(value) = uiProgressBarSetValue(this, value)
@@ -1342,7 +1359,7 @@ var ProgressBar.value: Int
 typealias Button = CPointer<uiButton>
 
 /** Create a new Button. */
-fun Button(text: String, block: Button.() -> Unit = {}) : Button =
+fun Button(text: String, block: Button.() -> Unit = {}): Button =
     uiNewButton(text)?.apply(block) ?: throw Error()
 
 /** Destroy and free the Button. */
@@ -1371,7 +1388,7 @@ var Button.text: String
     set(text) = uiButtonSetText(this, text)
 
 /** Funcion to be run when the user clicks the Button.
-    Only one function can be registered at a time. */
+ *  Only one function can be registered at a time. */
 fun Button.action(proc: Button.() -> Unit) {
     val ref = StableRef.create(proc).also { _stableRefs.add(it) }
     uiButtonOnClicked(this, staticCFunction(::_onButton), ref.asCPointer())
@@ -1388,7 +1405,7 @@ internal fun _onButton(button: Button?, ref: COpaquePointer?) {
 typealias ColorButton = CPointer<uiColorButton>
 
 /** Create a new ColorButton. */
-fun ColorButton(block: ColorButton.() -> Unit = {}) : ColorButton =
+fun ColorButton(block: ColorButton.() -> Unit = {}): ColorButton =
     uiNewColorButton()?.apply(block) ?: throw Error()
 
 /** Destroy and free the ColorButton. */
@@ -1411,7 +1428,7 @@ var ColorButton.visible: Boolean
 //void uiColorButtonSetColor(uiColorButton *b, double r, double g, double bl, double a)
 
 /** Funcion to be run when the user makes a change to the ColorButton.
-    Only one function can be registered at a time. */
+ *  Only one function can be registered at a time. */
 fun ColorButton.action(proc: ColorButton.() -> Unit) {
     val ref = StableRef.create(proc).also { _stableRefs.add(it) }
     uiColorButtonOnChanged(this, staticCFunction(::_onColorButton), ref.asCPointer())
@@ -1428,7 +1445,7 @@ internal fun _onColorButton(widget: ColorButton?, ref: COpaquePointer?) {
 typealias FontButton = CPointer<uiFontButton>
 
 /** Creates a new FontButton. The default font is OS-defined. */
-fun FontButton(block: FontButton.() -> Unit = {}) : FontButton =
+fun FontButton(block: FontButton.() -> Unit = {}): FontButton =
     uiNewFontButton()?.apply(block) ?: throw Error()
 
 /** Destroy and free the FontButton. */
@@ -1454,7 +1471,7 @@ var FontButton.visible: Boolean
 //void uiFontButtonFont(uiFontButton *b, uiFontDescriptor *desc)
 
 /** Funcion to be run when the font in the FontButton is changed.
-    Only one function can be registered at a time. */
+ *  Only one function can be registered at a time. */
 fun FontButton.action(proc: FontButton.() -> Unit) {
     val ref = StableRef.create(proc).also { _stableRefs.add(it) }
     uiFontButtonOnChanged(this, staticCFunction(::_onFontButton), ref.asCPointer())
