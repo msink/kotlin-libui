@@ -1,34 +1,37 @@
 import libui.*
 
+//TODO: make it singleton or part of Application singleton
+lateinit var mainWindow: Window
+
 fun main(args: Array<String>) = application {
 
-    val window = Window(
+    mainWindow = Window(
         title = "Authentication required",
         width = 320,
         height = 200,
-        hasMenubar = false)
-    window.margined = true
+        hasMenubar = false) {
+        margined = true
 
-    val box = VerticalBox { padded = true }
+        setChild(VerticalBox {
+            padded = true
 
-    val username = Entry()
-    val password = PasswordEntry()
-    val form = Form {
-        padded = true
-        append("Username", username)
-        append("Password", password)
+            val username = Entry()
+            val password = PasswordEntry()
+
+            append(Form {
+                padded = true
+                append("Username", username)
+                append("Password", password)
+            })
+
+            append(Button(text = "Login") {
+                action {
+                    uiMsgBox(mainWindow, "${username.text}:${password.text}", "")
+                }
+            })
+        })
+
+        onClose { uiQuit(); true }
+        show()
     }
-
-    val button = Button(text = "Login") {
-        action {
-            uiMsgBox(window, title = "Info", description = "${username.text}:${password.text}")
-        }
-    }
-
-    box.append(form)
-    box.append(button)
-
-    window.setChild(box)
-    window.onClose { uiQuit(); true }
-    window.show()
 }

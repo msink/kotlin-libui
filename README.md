@@ -134,7 +134,7 @@ fun main(args: Array<String>) = application {
         hasMenubar = false) {
         margined = true
 
-        val box = VerticalBox {
+        setChild(VerticalBox {
             padded = true
             val scroll = MultilineEntry {
                 readOnly = true
@@ -147,8 +147,7 @@ fun main(args: Array<String>) = application {
             }
             append(button)
             append(scroll, stretchy = true)
-        }
-        setChild(box)
+        })
 
         onClose { uiQuit(); true }
         show()

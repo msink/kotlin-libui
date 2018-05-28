@@ -1,180 +1,144 @@
 import libui.*
-import kotlinx.cinterop.toKString
 
 //TODO: make it singleton or part of Application singleton
 lateinit var mainWindow: Window
 
-fun makeBasicControlsPage() : Box {
+fun makeBasicControlsPage() = VerticalBox() {
+    padded = true
 
-    val vbox = VerticalBox()
-    vbox.padded = true
-
-    val hbox = HorizontalBox()
-    hbox.padded = true
-    vbox.append(hbox)
-
-    hbox.append(Button("Button"))
-    hbox.append(Checkbox("Checkbox"))
-    vbox.append(Label("This is a label. Right now, labels can only span one line."))
-    vbox.append(HorizontalSeparator())
-
-    val group = Group("Entries")
-    group.margined = true
-    vbox.append(group, stretchy = true)
-
-    val entryForm = Form()
-    entryForm.padded = true
-    group.setChild(entryForm)
-
-    entryForm.append("Entry", Entry())
-    entryForm.append("Password Entry", PasswordEntry())
-    entryForm.append("Search Entry", SearchEntry())
-    entryForm.append("Multiline Entry", MultilineEntry(), stretchy = true)
-    entryForm.append("Multiline Entry No Wrap", NonWrappingMultilineEntry(), stretchy = true)
-
-    return vbox
+    append(HorizontalBox() {
+        padded = true
+        append(Button("Button"))
+        append(Checkbox("Checkbox"))
+    })
+    append(Label("This is a label. Right now, labels can only span one line."))
+    append(HorizontalSeparator())
+    append(Group("Entries") {
+        margined = true
+        setChild(Form() {
+            padded = true
+            append("Entry", Entry())
+            append("Password Entry", PasswordEntry())
+            append("Search Entry", SearchEntry())
+            append("Multiline Entry", MultilineEntry(), stretchy = true)
+            append("Multiline Entry No Wrap", NonWrappingMultilineEntry(), stretchy = true)
+        })
+    }, stretchy = true)
 }
 
-fun makeNumbersPage() : Box {
+fun makeNumbersPage() = HorizontalBox() {
+    padded = true
 
-    val hbox = HorizontalBox()
-    hbox.padded = true
+    append(Group("Numbers") {
+        margined = true
+        setChild(VerticalBox() {
+            padded = true
+            val spinbox = Spinbox(min = 0, max = 100)
+            val slider = Slider(min = 0, max = 100)
+            val pbar = ProgressBar()
+            spinbox.action {
+                slider.value = value
+                pbar.value = value
+            }
+            slider.action {
+                spinbox.value = value
+                pbar.value = value
+            }
+            append(spinbox)
+            append(slider)
+            append(pbar)
+            append(ProgressBar() {
+                value = -1
+            })
+        })
+    }, stretchy = true)
 
-    val group1 = Group("Numbers")
-    group1.margined = true
-    hbox.append(group1, stretchy = true)
-
-    val vbox1 = VerticalBox()
-    vbox1.padded = true
-    group1.setChild(vbox1)
-
-    val spinbox = Spinbox(min = 0, max = 100)
-    val slider = Slider(min = 0, max = 100)
-    val pbar = ProgressBar()
-    spinbox.action {
-        slider.value = value
-        pbar.value = value
-    }
-    slider.action {
-        spinbox.value = value
-        pbar.value = value
-    }
-    vbox1.append(spinbox)
-    vbox1.append(slider)
-    vbox1.append(pbar)
-
-    val ip = ProgressBar()
-    ip.value = -1
-    vbox1.append(ip)
-
-    val group2 = Group("Lists")
-    group2.margined = true
-    hbox.append(group2, stretchy = true)
-
-    val vbox2 = VerticalBox()
-    vbox2.padded = true
-    group2.setChild(vbox2)
-
-    val cbox = Combobox()
-    cbox.append("Combobox Item 1")
-    cbox.append("Combobox Item 2")
-    cbox.append("Combobox Item 3")
-    vbox2.append(cbox)
-
-    val ecbox = EditableCombobox()
-    ecbox.append("Editable Item 1")
-    ecbox.append("Editable Item 2")
-    ecbox.append("Editable Item 3")
-    vbox2.append(ecbox)
-
-    val rb = RadioButtons()
-    rb.append("Radio Button 1")
-    rb.append("Radio Button 2")
-    rb.append("Radio Button 3")
-    vbox2.append(rb)
-
-    return hbox
+    append(Group("Lists") {
+        margined = true
+        setChild(VerticalBox() {
+            padded = true
+            append(Combobox() {
+                append("Combobox Item 1")
+                append("Combobox Item 2")
+                append("Combobox Item 3")
+            })
+            append(EditableCombobox() {
+                append("Editable Item 1")
+                append("Editable Item 2")
+                append("Editable Item 3")
+            })
+            append(RadioButtons() {
+                append("Radio Button 1")
+                append("Radio Button 2")
+                append("Radio Button 3")
+            })
+        })
+    }, stretchy = true)
 }
 
-fun makeDataChoosersPage() : Box {
+fun makeDataChoosersPage() = HorizontalBox() {
+    padded = true
 
-    val hbox = HorizontalBox()
-    hbox.padded = true
+    append(VerticalBox() {
+        padded = true
 
-    val vbox1 = VerticalBox()
-    vbox1.padded = true
-    hbox.append(vbox1)
+        append(DatePicker())
+        append(TimePicker())
+        append(DateTimePicker())
 
-    vbox1.append(DatePicker())
-    vbox1.append(TimePicker())
-    vbox1.append(DateTimePicker())
+        append(FontButton())
+        append(ColorButton())
+    })
 
-    vbox1.append(FontButton())
-    vbox1.append(ColorButton())
+    append(VerticalSeparator())
 
-    hbox.append(VerticalSeparator())
+    append(VerticalBox() {
+        padded = true
 
-    val vbox2 = VerticalBox()
-    vbox2.padded = true
-    hbox.append(vbox2, stretchy = true)
+        append(Grid() {
+            padded = true
 
-    val grid = Grid()
-    grid.padded = true
-    vbox2.append(grid)
+            val entry1 = Entry() {
+                readOnly = true
+            }
+            val button1 = Button("Open File") {
+                action {
+                    entry1.text = OpenFileDialog(mainWindow) ?: "(cancelled)"
+                }
+            }
+            append(button1, 0, 0, 1, 1, 0, uiAlignFill, 0, uiAlignFill)
+            append(entry1,  1, 0, 1, 1, 1, uiAlignFill, 0, uiAlignFill)
 
-    val button1 = Button("Open File")
-    val entry1 = Entry()
-    entry1.readOnly = true
-    button1.action {
-        val filename = uiOpenFile(mainWindow)
-        if (filename == null) {
-            entry1.text = "(cancelled)"
-        } else {
-            entry1.text = filename.toKString()
-            uiFreeText(filename)
-        }
-    }
+            val entry2 = Entry() {
+                readOnly = true
+            }
+            val button2 = Button("Save File") {
+                action {
+                    entry2.text = SaveFileDialog(mainWindow) ?: "(cancelled)"
+                }
+            }
+            append(button2, 0, 1, 1, 1, 0, uiAlignFill, 0, uiAlignFill)
+            append(entry2,  1, 1, 1, 1, 1, uiAlignFill, 0, uiAlignFill)
 
-    grid.append(button1, 0, 0, 1, 1, 0, uiAlignFill, 0, uiAlignFill)
-    grid.append(entry1,  1, 0, 1, 1, 1, uiAlignFill, 0, uiAlignFill)
-
-    val button2 = Button("Save File")
-    val entry2 = Entry()
-    entry2.readOnly = true
-    button2.action {
-        val filename = uiSaveFile(mainWindow)
-        if (filename == null) {
-            entry2.text = "(cancelled)"
-        } else {
-            entry2.text = filename.toKString()
-            uiFreeText(filename)
-        }
-    }
-
-    grid.append(button2, 0, 1, 1, 1, 0, uiAlignFill, 0, uiAlignFill)
-    grid.append(entry2,  1, 1, 1, 1, 1, uiAlignFill, 0, uiAlignFill)
-
-    val msggrid = Grid()
-    msggrid.padded = true
-    grid.append(msggrid, 0, 2, 2, 1, 0, uiAlignCenter, 0, uiAlignStart)
-
-    val button3 = Button("Message Box")
-    button3.action {
-        uiMsgBox(mainWindow,
-            "This is a normal message box.",
-            "More detailed information can be shown here.")
-    }
-    msggrid.append(button3, 0, 0, 1, 1, 0, uiAlignFill, 0, uiAlignFill)
-
-    val button4 = Button("Error Box")
-    button4.action {
-        uiMsgBoxError(mainWindow,
-            "This message box describes an error.",
-            "More detailed information can be shown here.")
-    }
-    msggrid.append(button4, 1, 0, 1, 1, 0, uiAlignFill, 0, uiAlignFill)
-
-    return hbox
+            append(Grid() {
+                padded = true
+                append(Button("Message Box") {
+                    action {
+                        uiMsgBox(mainWindow,
+                            "This is a normal message box.",
+                            "More detailed information can be shown here.")
+                    }
+                }, 0, 0, 1, 1, 0, uiAlignFill, 0, uiAlignFill)
+                append(Button("Error Box") {
+                    action {
+                        uiMsgBoxError(mainWindow,
+                            "This message box describes an error.",
+                            "More detailed information can be shown here.")
+                    }
+                }, 1, 0, 1, 1, 0, uiAlignFill, 0, uiAlignFill)
+            }, 0, 2, 2, 1, 0, uiAlignCenter, 0, uiAlignStart)
+        })
+    }, stretchy = true)
 }
 
 fun main(args: Array<String>) = application {
