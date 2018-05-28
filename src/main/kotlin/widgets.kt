@@ -237,7 +237,7 @@ fun Form.delete(index: Int)
 typealias Grid = CPointer<uiGrid>
 
 /** Create a new Grid. */
-fun Grid() : Grid = uiNewGrid() ?: throw Error()
+fun Grid(block: Grid.() -> Unit = {}) : Grid = uiNewGrid()?.apply(block) ?: throw Error()
 
 /** Destroy and free the Grid. */
 fun Grid.destroy() = uiControlDestroy(reinterpret())
@@ -551,7 +551,7 @@ fun Box.delete(index: Int)
 typealias Tab = CPointer<uiTab>
 
 /** Create a new Tab. */
-fun Tab() : Tab = uiNewTab() ?: throw Error()
+fun Tab(block: Tab.() -> Unit = {}) : Tab = uiNewTab()?.apply(block) ?: throw Error()
 
 /** Destroy and free the Tab. */
 fun Tab.destroy() = uiControlDestroy(reinterpret())
@@ -679,7 +679,8 @@ val Tab.numPages: Int
 typealias Group = CPointer<uiGroup>
 
 /** Create a new Group. */
-fun Group(text: String) : Group = uiNewGroup(text) ?: throw Error()
+fun Group(text: String, block: Group.() -> Unit = {}) : Group =
+    uiNewGroup(text)?.apply(block) ?: throw Error()
 
 /** Destroy and free the Group. */
 fun Group.destroy() = uiControlDestroy(reinterpret())
@@ -760,7 +761,7 @@ fun Group.setChild(child: FontButton)
 typealias Entry = CPointer<uiEntry>
 
 /** Create a new simple text Entry. */
-fun Entry() : Entry = uiNewEntry() ?: throw Error()
+fun Entry(block: Entry.() -> Unit = {}) : Entry = uiNewEntry()?.apply(block) ?: throw Error()
 
 /** Create a new text Entry widget that mask the input,
     useful to edit passwords or other sensible data. */
@@ -818,10 +819,11 @@ typealias MultilineEntry = CPointer<uiMultilineEntry>
 
 /** Create a new MultilineEntry. */
 fun MultilineEntry(block: MultilineEntry.() -> Unit = {}) : MultilineEntry =
-        uiNewMultilineEntry()?.apply(block) ?: throw Error()
+    uiNewMultilineEntry()?.apply(block) ?: throw Error()
 
 /** Create a new non wrapping MultilineEntry. */
-fun NonWrappingMultilineEntry() : MultilineEntry = uiNewNonWrappingMultilineEntry() ?: throw Error()
+fun NonWrappingMultilineEntry(block: MultilineEntry.() -> Unit = {}) : MultilineEntry =
+    uiNewNonWrappingMultilineEntry()?.apply(block) ?: throw Error()
 
 /** Destroy and free the MultilineEntry. */
 fun MultilineEntry.destroy() = uiControlDestroy(reinterpret())
@@ -871,7 +873,8 @@ internal fun _onMultilineEntry(widget: MultilineEntry?, ref: COpaquePointer?) {
 typealias Checkbox = CPointer<uiCheckbox>
 
 /** Create a new Checkbox. */
-fun Checkbox(text: String) : Checkbox = uiNewCheckbox(text) ?: throw Error()
+fun Checkbox(text: String, block: Checkbox.() -> Unit = {}) : Checkbox =
+    uiNewCheckbox(text)?.apply(block) ?: throw Error()
 
 /** Destroy and free the Checkbox. */
 fun Checkbox.destroy() = uiControlDestroy(reinterpret())
@@ -921,7 +924,8 @@ internal fun _onCheckbox(widget: Checkbox?, ref: COpaquePointer?) {
 typealias Combobox = CPointer<uiCombobox>
 
 /** Create a new Combobox. */
-fun Combobox() : Combobox = uiNewCombobox() ?: throw Error()
+fun Combobox(block: Combobox.() -> Unit = {}) : Combobox =
+    uiNewCombobox()?.apply(block) ?: throw Error()
 
 /** Destroy and free the Combobox. */
 fun Combobox.destroy() = uiControlDestroy(reinterpret())
@@ -972,7 +976,8 @@ internal fun _onCombobox(widget: Combobox?, ref: COpaquePointer?) {
 typealias EditableCombobox = CPointer<uiEditableCombobox>
 
 /** Create a new EditableCombobox. */
-fun EditableCombobox() : EditableCombobox = uiNewEditableCombobox() ?: throw Error()
+fun EditableCombobox(block: EditableCombobox.() -> Unit = {}) : EditableCombobox =
+    uiNewEditableCombobox()?.apply(block) ?: throw Error()
 
 /** Return or set the current selected text or the text value of the selected item in the list. */
 var EditableCombobox.text: String
@@ -1009,7 +1014,8 @@ internal fun _onEditableCombobox(widget: EditableCombobox?, ref: COpaquePointer?
 typealias Spinbox = CPointer<uiSpinbox>
 
 /** Create a new Spinbox. */
-fun Spinbox(min: Int, max: Int) : Spinbox = uiNewSpinbox(min, max) ?: throw Error()
+fun Spinbox(min: Int, max: Int, block: Spinbox.() -> Unit = {}) : Spinbox =
+    uiNewSpinbox(min, max)?.apply(block) ?: throw Error()
 
 /** Destroy and free the Spinbox. */
 fun Spinbox.destroy() = uiControlDestroy(reinterpret())
@@ -1058,7 +1064,8 @@ internal fun _onSpinbox(widget: Spinbox?, ref: COpaquePointer?) {
 typealias Slider = CPointer<uiSlider>
 
 /** Create a new Slider. */
-fun Slider(min: Int, max: Int) : Slider = uiNewSlider(min, max) ?: throw Error()
+fun Slider(min: Int, max: Int, block: Slider.() -> Unit = {}) : Slider =
+    uiNewSlider(min, max)?.apply(block) ?: throw Error()
 
 /** Destroy and free the Slider. */
 fun Slider.destroy() = uiControlDestroy(reinterpret())
@@ -1103,7 +1110,8 @@ internal fun _onSlider(widget: Slider?, ref: COpaquePointer?) {
 typealias RadioButtons = CPointer<uiRadioButtons>
 
 /** Create a new RadioButtons. */
-fun RadioButtons() : RadioButtons = uiNewRadioButtons() ?: throw Error()
+fun RadioButtons(block: RadioButtons.() -> Unit = {}) : RadioButtons =
+    uiNewRadioButtons()?.apply(block) ?: throw Error()
 
 /** Destroy and free the RadioButtons. */
 fun RadioButtons.destroy() = uiControlDestroy(reinterpret())
@@ -1154,7 +1162,8 @@ internal fun _onRadioButtons(widget: RadioButtons?, ref: COpaquePointer?) {
 typealias DateTimePicker = CPointer<uiDateTimePicker>
 
 /** Create a new DateTimePicker to edit date/times. */
-fun DateTimePicker() : DateTimePicker = uiNewDateTimePicker() ?: throw Error()
+fun DateTimePicker(block: DateTimePicker.() -> Unit = {}) : DateTimePicker =
+    uiNewDateTimePicker()?.apply(block) ?: throw Error()
 
 /** Create a new DateTimePicker to edit dates. */
 fun DatePicker() : DateTimePicker = uiNewDatePicker() ?: throw Error()
@@ -1231,7 +1240,8 @@ internal fun _onDateTimePicker(widget: DateTimePicker?, ref: COpaquePointer?) {
 typealias Label = CPointer<uiLabel>
 
 /** Create a new Label. */
-fun Label(text: String) : Label = uiNewLabel(text) ?: throw Error()
+fun Label(text: String, block: Label.() -> Unit = {}) : Label =
+    uiNewLabel(text)?.apply(block) ?: throw Error()
 
 /** Destroy and free the Label. */
 fun Label.destroy() = uiControlDestroy(reinterpret())
@@ -1264,10 +1274,12 @@ var Label.text: String
 typealias Separator = CPointer<uiSeparator>
 
 /** Create a new Separator object - an horizontal line to visually separate widgets. */
-fun HorizontalSeparator() : Separator = uiNewHorizontalSeparator() ?: throw Error()
+fun HorizontalSeparator(block: Separator.() -> Unit = {}) : Separator =
+    uiNewHorizontalSeparator()?.apply(block) ?: throw Error()
 
 /** Create a new Separator object - a vertical line to visually separate widgets. */
-fun VerticalSeparator() : Separator = uiNewVerticalSeparator() ?: throw Error()
+fun VerticalSeparator(block: Separator.() -> Unit = {}) : Separator =
+    uiNewVerticalSeparator()?.apply(block) ?: throw Error()
 
 /** Destroy and free the Separator. */
 fun Separator.destroy() = uiControlDestroy(reinterpret())
@@ -1295,7 +1307,8 @@ var Separator.visible: Boolean
 typealias ProgressBar = CPointer<uiProgressBar>
 
 /** Create a new ProgressBar. */
-fun ProgressBar() : ProgressBar = uiNewProgressBar() ?: throw Error()
+fun ProgressBar(block: ProgressBar.() -> Unit = {}) : ProgressBar =
+    uiNewProgressBar()?.apply(block) ?: throw Error()
 
 /** Destroy and free the ProgressBar. */
 fun ProgressBar.destroy() = uiControlDestroy(reinterpret())
@@ -1329,7 +1342,8 @@ var ProgressBar.value: Int
 typealias Button = CPointer<uiButton>
 
 /** Create a new Button. */
-fun Button(text: String, block: Button.() -> Unit = {}) : Button = uiNewButton(text)?.apply(block) ?: throw Error()
+fun Button(text: String, block: Button.() -> Unit = {}) : Button =
+    uiNewButton(text)?.apply(block) ?: throw Error()
 
 /** Destroy and free the Button. */
 fun Button.destroy() = uiControlDestroy(reinterpret())
@@ -1374,7 +1388,8 @@ internal fun _onButton(button: Button?, ref: COpaquePointer?) {
 typealias ColorButton = CPointer<uiColorButton>
 
 /** Create a new ColorButton. */
-fun ColorButton() : ColorButton = uiNewColorButton() ?: throw Error()
+fun ColorButton(block: ColorButton.() -> Unit = {}) : ColorButton =
+    uiNewColorButton()?.apply(block) ?: throw Error()
 
 /** Destroy and free the ColorButton. */
 fun ColorButton.destroy() = uiControlDestroy(reinterpret())
@@ -1413,7 +1428,8 @@ internal fun _onColorButton(widget: ColorButton?, ref: COpaquePointer?) {
 typealias FontButton = CPointer<uiFontButton>
 
 /** Creates a new FontButton. The default font is OS-defined. */
-fun FontButton() : FontButton = uiNewFontButton() ?: throw Error()
+fun FontButton(block: FontButton.() -> Unit = {}) : FontButton =
+    uiNewFontButton()?.apply(block) ?: throw Error()
 
 /** Destroy and free the FontButton. */
 fun FontButton.destroy() = uiControlDestroy(reinterpret())
