@@ -27,7 +27,7 @@ konanArtifacts {
             artifact 'libui'
         }
         target 'mingw', {
-            linkerOpts "$resFile"
+            linkerOpts "$resFile -mwindows"
             dependsOn 'windowsResources'
             inputs.file resFile
         }
@@ -40,7 +40,7 @@ konanArtifacts {
             artifact 'libui'
         }
         target 'mingw', {
-            linkerOpts "$resFile"
+            linkerOpts "$resFile -mwindows"
             dependsOn 'windowsResources'
             inputs.file resFile
         }
@@ -53,7 +53,7 @@ konanArtifacts {
             artifact 'libui'
         }
         target 'mingw', {
-            linkerOpts "$resFile"
+            linkerOpts "$resFile -mwindows"
             dependsOn 'windowsResources'
             inputs.file resFile
         }
@@ -66,7 +66,7 @@ konanArtifacts {
             artifact 'libui'
         }
         target 'mingw', {
-            linkerOpts "$resFile"
+            linkerOpts "$resFile -mwindows"
             dependsOn 'windowsResources'
             inputs.file resFile
         }

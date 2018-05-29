@@ -134,5 +134,7 @@ fun main(args: Array<String>) = memScoped {
 //		while (uiMainStep(1))
 //			
 //	}
+	println("after uiMain()");
 	uiUninit()
+	println("after uiUninit()");
 }
