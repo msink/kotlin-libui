@@ -36,6 +36,31 @@ import platform.posix.tm
 //
 ///////////////////////////////////////////////////////////////////////////////
 
+typealias Control = CPointer<uiControl>
+
+internal fun Control(widget: Form): Control = widget.reinterpret()
+internal fun Control(widget: Grid): Control = widget.reinterpret()
+internal fun Control(widget: Box): Control = widget.reinterpret()
+internal fun Control(widget: Tab): Control = widget.reinterpret()
+internal fun Control(widget: Group): Control = widget.reinterpret()
+internal fun Control(widget: Entry): Control = widget.reinterpret()
+internal fun Control(widget: MultilineEntry): Control = widget.reinterpret()
+internal fun Control(widget: Checkbox): Control = widget.reinterpret()
+internal fun Control(widget: Combobox): Control = widget.reinterpret()
+internal fun Control(widget: EditableCombobox): Control = widget.reinterpret()
+internal fun Control(widget: Spinbox): Control = widget.reinterpret()
+internal fun Control(widget: Slider): Control = widget.reinterpret()
+internal fun Control(widget: RadioButtons): Control = widget.reinterpret()
+internal fun Control(widget: DateTimePicker): Control = widget.reinterpret()
+internal fun Control(widget: Label): Control = widget.reinterpret()
+internal fun Control(widget: Separator): Control = widget.reinterpret()
+internal fun Control(widget: ProgressBar): Control = widget.reinterpret()
+internal fun Control(widget: Button): Control = widget.reinterpret()
+internal fun Control(widget: ColorButton): Control = widget.reinterpret()
+internal fun Control(widget: FontButton): Control = widget.reinterpret()
+
+///////////////////////////////////////////////////////////////////////////////
+
 /** Represents a top-level window.
  *  Contains one child control that occupies the entirety of the window. */
 typealias Window = CPointer<uiWindow>
@@ -94,46 +119,26 @@ var Window.contentSize: Size2D
 
 /** Specify the control to show in window content area.
  *  Window instances can contain only one control. If you need more, you have to use Container */
-fun Window.setChild(child: Form) =
-    uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Grid) =
-    uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Box) =
-    uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Tab) =
-    uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Group) =
-    uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Entry) =
-    uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: MultilineEntry) =
-    uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Checkbox) =
-    uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Combobox) =
-    uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: EditableCombobox) =
-    uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Spinbox) =
-    uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Slider) =
-    uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: RadioButtons) =
-    uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: DateTimePicker) =
-    uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Label) =
-    uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Separator) =
-    uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: ProgressBar) =
-    uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: Button) =
-    uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: ColorButton) =
-    uiWindowSetChild(this, child.reinterpret())
-fun Window.setChild(child: FontButton) =
-    uiWindowSetChild(this, child.reinterpret())
+fun Window.setChild(child: Form) = uiWindowSetChild(this, Control(child))
+fun Window.setChild(child: Grid) = uiWindowSetChild(this, Control(child))
+fun Window.setChild(child: Box) = uiWindowSetChild(this, Control(child))
+fun Window.setChild(child: Tab) = uiWindowSetChild(this, Control(child))
+fun Window.setChild(child: Group) = uiWindowSetChild(this, Control(child))
+fun Window.setChild(child: Entry) = uiWindowSetChild(this, Control(child))
+fun Window.setChild(child: MultilineEntry) = uiWindowSetChild(this, Control(child))
+fun Window.setChild(child: Checkbox) = uiWindowSetChild(this, Control(child))
+fun Window.setChild(child: Combobox) = uiWindowSetChild(this, Control(child))
+fun Window.setChild(child: EditableCombobox) = uiWindowSetChild(this, Control(child))
+fun Window.setChild(child: Spinbox) = uiWindowSetChild(this, Control(child))
+fun Window.setChild(child: Slider) = uiWindowSetChild(this, Control(child))
+fun Window.setChild(child: RadioButtons) = uiWindowSetChild(this, Control(child))
+fun Window.setChild(child: DateTimePicker) = uiWindowSetChild(this, Control(child))
+fun Window.setChild(child: Label) = uiWindowSetChild(this, Control(child))
+fun Window.setChild(child: Separator) = uiWindowSetChild(this, Control(child))
+fun Window.setChild(child: ProgressBar) = uiWindowSetChild(this, Control(child))
+fun Window.setChild(child: Button) = uiWindowSetChild(this, Control(child))
+fun Window.setChild(child: ColorButton) = uiWindowSetChild(this, Control(child))
+fun Window.setChild(child: FontButton) = uiWindowSetChild(this, Control(child))
 
 /** Show the window. */
 fun Window.show() = uiControlShow(reinterpret())
@@ -171,20 +176,20 @@ typealias Form = CPointer<uiForm>
 fun Form(block: Form.() -> Unit = {}): Form = uiNewForm()?.apply(block) ?: throw Error()
 
 /** Destroy and free the Form. */
-fun Form.destroy() = uiControlDestroy(reinterpret())
+fun Form.destroy() = uiControlDestroy(Control(this))
 
 /** Returns the OS-level handle associated with this Form. */
-val Form.handle: Long get() = uiControlHandle(reinterpret())
+val Form.handle: Long get() = uiControlHandle(Control(this))
 
 /** Whether the Form should be enabled or disabled. Defaults to `true`. */
 var Form.enabled: Boolean
-    get() = uiControlEnabled(reinterpret()) != 0
-    set(enabled) = if (enabled) uiControlEnable(reinterpret()) else uiControlDisable(reinterpret())
+    get() = uiControlEnabled(Control(this)) != 0
+    set(enabled) = if (enabled) uiControlEnable(Control(this)) else uiControlDisable(Control(this))
 
 /** Whether the Form should be visible or hidden. Defaults to `true`. */
 var Form.visible: Boolean
-    get() = uiControlVisible(reinterpret()) != 0
-    set(visible) = if (visible) uiControlShow(reinterpret()) else uiControlHide(reinterpret())
+    get() = uiControlVisible(Control(this)) != 0
+    set(visible) = if (visible) uiControlShow(Control(this)) else uiControlHide(Control(this))
 
 /** If true, the container insert some space between children. */
 var Form.padded: Boolean
@@ -193,45 +198,45 @@ var Form.padded: Boolean
 
 /** Adds the given widget to the end of the Form. */
 fun Form.append(label: String, widget: Form, stretchy: Boolean = false) =
-    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiFormAppend(this, label, Control(widget), if (stretchy) 1 else 0)
 fun Form.append(label: String, widget: Grid, stretchy: Boolean = false) =
-    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiFormAppend(this, label, Control(widget), if (stretchy) 1 else 0)
 fun Form.append(label: String, widget: Box, stretchy: Boolean = false) =
-    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiFormAppend(this, label, Control(widget), if (stretchy) 1 else 0)
 fun Form.append(label: String, widget: Tab, stretchy: Boolean = false) =
-    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiFormAppend(this, label, Control(widget), if (stretchy) 1 else 0)
 fun Form.append(label: String, widget: Group, stretchy: Boolean = false) =
-    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiFormAppend(this, label, Control(widget), if (stretchy) 1 else 0)
 fun Form.append(label: String, widget: Entry, stretchy: Boolean = false) =
-    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiFormAppend(this, label, Control(widget), if (stretchy) 1 else 0)
 fun Form.append(label: String, widget: MultilineEntry, stretchy: Boolean = false) =
-    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiFormAppend(this, label, Control(widget), if (stretchy) 1 else 0)
 fun Form.append(label: String, widget: Checkbox, stretchy: Boolean = false) =
-    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiFormAppend(this, label, Control(widget), if (stretchy) 1 else 0)
 fun Form.append(label: String, widget: Combobox, stretchy: Boolean = false) =
-    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiFormAppend(this, label, Control(widget), if (stretchy) 1 else 0)
 fun Form.append(label: String, widget: EditableCombobox, stretchy: Boolean = false) =
-    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiFormAppend(this, label, Control(widget), if (stretchy) 1 else 0)
 fun Form.append(label: String, widget: Spinbox, stretchy: Boolean = false) =
-    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiFormAppend(this, label, Control(widget), if (stretchy) 1 else 0)
 fun Form.append(label: String, widget: Slider, stretchy: Boolean = false) =
-    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiFormAppend(this, label, Control(widget), if (stretchy) 1 else 0)
 fun Form.append(label: String, widget: RadioButtons, stretchy: Boolean = false) =
-    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiFormAppend(this, label, Control(widget), if (stretchy) 1 else 0)
 fun Form.append(label: String, widget: DateTimePicker, stretchy: Boolean = false) =
-    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiFormAppend(this, label, Control(widget), if (stretchy) 1 else 0)
 fun Form.append(label: String, widget: Label, stretchy: Boolean = false) =
-    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiFormAppend(this, label, Control(widget), if (stretchy) 1 else 0)
 fun Form.append(label: String, widget: Separator, stretchy: Boolean = false) =
-    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiFormAppend(this, label, Control(widget), if (stretchy) 1 else 0)
 fun Form.append(label: String, widget: ProgressBar, stretchy: Boolean = false) =
-    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiFormAppend(this, label, Control(widget), if (stretchy) 1 else 0)
 fun Form.append(label: String, widget: Button, stretchy: Boolean = false) =
-    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiFormAppend(this, label, Control(widget), if (stretchy) 1 else 0)
 fun Form.append(label: String, widget: ColorButton, stretchy: Boolean = false) =
-    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiFormAppend(this, label, Control(widget), if (stretchy) 1 else 0)
 fun Form.append(label: String, widget: FontButton, stretchy: Boolean = false) =
-    uiFormAppend(this, label, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiFormAppend(this, label, Control(widget), if (stretchy) 1 else 0)
 
 /** deletes the nth control of the Form. */
 fun Form.delete(index: Int) = uiFormDelete(this, index)
@@ -245,20 +250,20 @@ typealias Grid = CPointer<uiGrid>
 fun Grid(block: Grid.() -> Unit = {}): Grid = uiNewGrid()?.apply(block) ?: throw Error()
 
 /** Destroy and free the Grid. */
-fun Grid.destroy() = uiControlDestroy(reinterpret())
+fun Grid.destroy() = uiControlDestroy(Control(this))
 
 /** Returns the OS-level handle associated with this Grid. */
-val Grid.handle: Long get() = uiControlHandle(reinterpret())
+val Grid.handle: Long get() = uiControlHandle(Control(this))
 
 /** Whether the Grid should be enabled or disabled. Defaults to `true`. */
 var Grid.enabled: Boolean
-    get() = uiControlEnabled(reinterpret()) != 0
-    set(enabled) = if (enabled) uiControlEnable(reinterpret()) else uiControlDisable(reinterpret())
+    get() = uiControlEnabled(Control(this)) != 0
+    set(enabled) = if (enabled) uiControlEnable(Control(this)) else uiControlDisable(Control(this))
 
 /** Whether the Grid should be visible or hidden. Defaults to `true`. */
 var Grid.visible: Boolean
-    get() = uiControlVisible(reinterpret()) != 0
-    set(visible) = if (visible) uiControlShow(reinterpret()) else uiControlHide(reinterpret())
+    get() = uiControlVisible(Control(this)) != 0
+    set(visible) = if (visible) uiControlShow(Control(this)) else uiControlHide(Control(this))
 
 /** If true, the container insert some space between children. */
 var Grid.padded: Boolean
@@ -276,7 +281,7 @@ fun Grid.append(
     halign: Int,
     vexpand: Int,
     valign: Int) =
-    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+    uiGridAppend(this, Control(widget), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
 fun Grid.append(
     widget: Grid,
     left: Int,
@@ -287,7 +292,7 @@ fun Grid.append(
     halign: Int,
     vexpand: Int,
     valign: Int) =
-    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+    uiGridAppend(this, Control(widget), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
 fun Grid.append(
     widget: Box,
     left: Int,
@@ -298,7 +303,7 @@ fun Grid.append(
     halign: Int,
     vexpand: Int,
     valign: Int) =
-    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+    uiGridAppend(this, Control(widget), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
 fun Grid.append(
     widget: Tab,
     left: Int,
@@ -309,7 +314,7 @@ fun Grid.append(
     halign: Int,
     vexpand: Int,
     valign: Int) =
-    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+    uiGridAppend(this, Control(widget), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
 fun Grid.append(
     widget: Group,
     left: Int,
@@ -320,7 +325,7 @@ fun Grid.append(
     halign: Int,
     vexpand: Int,
     valign: Int) =
-    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+    uiGridAppend(this, Control(widget), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
 fun Grid.append(
     widget: Entry,
     left: Int,
@@ -331,7 +336,7 @@ fun Grid.append(
     halign: Int,
     vexpand: Int,
     valign: Int) =
-    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+    uiGridAppend(this, Control(widget), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
 fun Grid.append(
     widget: MultilineEntry,
     left: Int,
@@ -342,7 +347,7 @@ fun Grid.append(
     halign: Int,
     vexpand: Int,
     valign: Int) =
-    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+    uiGridAppend(this, Control(widget), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
 fun Grid.append(
     widget: Checkbox,
     left: Int,
@@ -353,7 +358,7 @@ fun Grid.append(
     halign: Int,
     vexpand: Int,
     valign: Int) =
-    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+    uiGridAppend(this, Control(widget), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
 fun Grid.append(
     widget: Combobox,
     left: Int,
@@ -364,7 +369,7 @@ fun Grid.append(
     halign: Int,
     vexpand: Int,
     valign: Int) =
-    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+    uiGridAppend(this, Control(widget), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
 fun Grid.append(
     widget: EditableCombobox,
     left: Int,
@@ -375,7 +380,7 @@ fun Grid.append(
     halign: Int,
     vexpand: Int,
     valign: Int) =
-    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+    uiGridAppend(this, Control(widget), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
 fun Grid.append(
     widget: Spinbox,
     left: Int,
@@ -386,7 +391,7 @@ fun Grid.append(
     halign: Int,
     vexpand: Int,
     valign: Int) =
-    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+    uiGridAppend(this, Control(widget), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
 fun Grid.append(
     widget: Slider,
     left: Int,
@@ -397,7 +402,7 @@ fun Grid.append(
     halign: Int,
     vexpand: Int,
     valign: Int) =
-    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+    uiGridAppend(this, Control(widget), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
 fun Grid.append(
     widget: RadioButtons,
     left: Int,
@@ -408,7 +413,7 @@ fun Grid.append(
     halign: Int,
     vexpand: Int,
     valign: Int) =
-    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+    uiGridAppend(this, Control(widget), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
 fun Grid.append(
     widget: DateTimePicker,
     left: Int,
@@ -419,7 +424,7 @@ fun Grid.append(
     halign: Int,
     vexpand: Int,
     valign: Int) =
-    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+    uiGridAppend(this, Control(widget), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
 fun Grid.append(
     widget: Label,
     left: Int,
@@ -430,7 +435,7 @@ fun Grid.append(
     halign: Int,
     vexpand: Int,
     valign: Int) =
-    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+    uiGridAppend(this, Control(widget), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
 fun Grid.append(
     widget: Separator,
     left: Int,
@@ -441,7 +446,7 @@ fun Grid.append(
     halign: Int,
     vexpand: Int,
     valign: Int) =
-    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+    uiGridAppend(this, Control(widget), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
 fun Grid.append(
     widget: ProgressBar,
     left: Int,
@@ -452,7 +457,7 @@ fun Grid.append(
     halign: Int,
     vexpand: Int,
     valign: Int) =
-    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+    uiGridAppend(this, Control(widget), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
 fun Grid.append(
     widget: Button,
     left: Int,
@@ -463,7 +468,7 @@ fun Grid.append(
     halign: Int,
     vexpand: Int,
     valign: Int) =
-    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+    uiGridAppend(this, Control(widget), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
 fun Grid.append(
     widget: ColorButton,
     left: Int,
@@ -474,7 +479,7 @@ fun Grid.append(
     halign: Int,
     vexpand: Int,
     valign: Int) =
-    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+    uiGridAppend(this, Control(widget), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
 fun Grid.append(
     widget: FontButton,
     left: Int,
@@ -485,7 +490,7 @@ fun Grid.append(
     halign: Int,
     vexpand: Int,
     valign: Int) =
-    uiGridAppend(this, widget.reinterpret(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+    uiGridAppend(this, Control(widget), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
 
 //TODO void uiGridInsertAt(uiGrid *g, uiControl *c, uiControl *existing, uiAt at, int xspan, int yspan, int hexpand, uiAlign halign, int vexpand, uiAlign valign)
 
@@ -501,23 +506,23 @@ fun HorizontalBox(block: Box.() -> Unit = {}): Box = uiNewHorizontalBox()?.apply
 fun VerticalBox(block: Box.() -> Unit = {}): Box = uiNewVerticalBox()?.apply(block) ?: throw Error()
 
 /** Destroy and free the Box. */
-fun Box.destroy() = uiControlDestroy(reinterpret())
+fun Box.destroy() = uiControlDestroy(Control(this))
 
 /** Returns the OS-level handle associated with this Box.
  *  - On Windows this is an HWND of a libui-internal class.
  *  - On GTK+ this is a pointer to a GtkBox.
  *  - On OS X this is a pointer to a NSView. */
-val Box.handle: Long get() = uiControlHandle(reinterpret())
+val Box.handle: Long get() = uiControlHandle(Control(this))
 
 /** Whether the Box should be enabled or disabled. Defaults to `true`. */
 var Box.enabled: Boolean
-    get() = uiControlEnabled(reinterpret()) != 0
-    set(enabled) = if (enabled) uiControlEnable(reinterpret()) else uiControlDisable(reinterpret())
+    get() = uiControlEnabled(Control(this)) != 0
+    set(enabled) = if (enabled) uiControlEnable(Control(this)) else uiControlDisable(Control(this))
 
 /** Whether the Box should be visible or hidden. Defaults to `true`. */
 var Box.visible: Boolean
-    get() = uiControlVisible(reinterpret()) != 0
-    set(visible) = if (visible) uiControlShow(reinterpret()) else uiControlHide(reinterpret())
+    get() = uiControlVisible(Control(this)) != 0
+    set(visible) = if (visible) uiControlShow(Control(this)) else uiControlHide(Control(this))
 
 /** If true, the container insert some space between children. Defaults to false. */
 var Box.padded: Boolean
@@ -526,45 +531,45 @@ var Box.padded: Boolean
 
 /** Adds the given widget to the end of the Box. */
 fun Box.append(widget: Form, stretchy: Boolean = false) =
-    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiBoxAppend(this, Control(widget), if (stretchy) 1 else 0)
 fun Box.append(widget: Grid, stretchy: Boolean = false) =
-    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiBoxAppend(this, Control(widget), if (stretchy) 1 else 0)
 fun Box.append(widget: Box, stretchy: Boolean = false) =
-    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiBoxAppend(this, Control(widget), if (stretchy) 1 else 0)
 fun Box.append(widget: Tab, stretchy: Boolean = false) =
-    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiBoxAppend(this, Control(widget), if (stretchy) 1 else 0)
 fun Box.append(widget: Group, stretchy: Boolean = false) =
-    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiBoxAppend(this, Control(widget), if (stretchy) 1 else 0)
 fun Box.append(widget: Entry, stretchy: Boolean = false) =
-    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiBoxAppend(this, Control(widget), if (stretchy) 1 else 0)
 fun Box.append(widget: MultilineEntry, stretchy: Boolean = false) =
-    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiBoxAppend(this, Control(widget), if (stretchy) 1 else 0)
 fun Box.append(widget: Checkbox, stretchy: Boolean = false) =
-    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiBoxAppend(this, Control(widget), if (stretchy) 1 else 0)
 fun Box.append(widget: Combobox, stretchy: Boolean = false) =
-    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiBoxAppend(this, Control(widget), if (stretchy) 1 else 0)
 fun Box.append(widget: EditableCombobox, stretchy: Boolean = false) =
-    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiBoxAppend(this, Control(widget), if (stretchy) 1 else 0)
 fun Box.append(widget: Spinbox, stretchy: Boolean = false) =
-    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiBoxAppend(this, Control(widget), if (stretchy) 1 else 0)
 fun Box.append(widget: Slider, stretchy: Boolean = false) =
-    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiBoxAppend(this, Control(widget), if (stretchy) 1 else 0)
 fun Box.append(widget: RadioButtons, stretchy: Boolean = false) =
-    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiBoxAppend(this, Control(widget), if (stretchy) 1 else 0)
 fun Box.append(widget: DateTimePicker, stretchy: Boolean = false) =
-    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiBoxAppend(this, Control(widget), if (stretchy) 1 else 0)
 fun Box.append(widget: Label, stretchy: Boolean = false) =
-    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiBoxAppend(this, Control(widget), if (stretchy) 1 else 0)
 fun Box.append(widget: Separator, stretchy: Boolean = false) =
-    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiBoxAppend(this, Control(widget), if (stretchy) 1 else 0)
 fun Box.append(widget: ProgressBar, stretchy: Boolean = false) =
-    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiBoxAppend(this, Control(widget), if (stretchy) 1 else 0)
 fun Box.append(widget: Button, stretchy: Boolean = false) =
-    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiBoxAppend(this, Control(widget), if (stretchy) 1 else 0)
 fun Box.append(widget: ColorButton, stretchy: Boolean = false) =
-    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiBoxAppend(this, Control(widget), if (stretchy) 1 else 0)
 fun Box.append(widget: FontButton, stretchy: Boolean = false) =
-    uiBoxAppend(this, widget.reinterpret(), if (stretchy) 1 else 0)
+    uiBoxAppend(this, Control(widget), if (stretchy) 1 else 0)
 
 /** deletes the nth control of the Box. */
 fun Box.delete(index: Int) = uiBoxDelete(this, index)
@@ -578,7 +583,7 @@ typealias Tab = CPointer<uiTab>
 fun Tab(block: Tab.() -> Unit = {}): Tab = uiNewTab()?.apply(block) ?: throw Error()
 
 /** Destroy and free the Tab. */
-fun Tab.destroy() = uiControlDestroy(reinterpret())
+fun Tab.destroy() = uiControlDestroy(Control(this))
 
 /** Returns the OS-level handle associated with this Tab.
  *  - On Windows this is an HWND of a standard Windows API WC_TABCONTROL class
@@ -587,17 +592,17 @@ fun Tab.destroy() = uiControlDestroy(reinterpret())
  *    is no way to directly access them.
  *  - On GTK+ this is a pointer to a GtkNotebook.
  *  - On OS X this is a pointer to a NSTabView. */
-val Tab.handle: Long get() = uiControlHandle(reinterpret())
+val Tab.handle: Long get() = uiControlHandle(Control(this))
 
 /** Whether the Tab should be enabled or disabled. Defaults to `true`. */
 var Tab.enabled: Boolean
-    get() = uiControlEnabled(reinterpret()) != 0
-    set(enabled) = if (enabled) uiControlEnable(reinterpret()) else uiControlDisable(reinterpret())
+    get() = uiControlEnabled(Control(this)) != 0
+    set(enabled) = if (enabled) uiControlEnable(Control(this)) else uiControlDisable(Control(this))
 
 /** Whether the Tab should be visible or hidden. Defaults to `true`. */
 var Tab.visible: Boolean
-    get() = uiControlVisible(reinterpret()) != 0
-    set(visible) = if (visible) uiControlShow(reinterpret()) else uiControlHide(reinterpret())
+    get() = uiControlVisible(Control(this)) != 0
+    set(visible) = if (visible) uiControlShow(Control(this)) else uiControlHide(Control(this))
 
 /** Whether page n (starting at 0) of the Tab has margins around its child. */
 fun Tab.getMargined(page: Int): Boolean = uiTabMargined(this, page) != 0
@@ -605,87 +610,87 @@ fun Tab.setMargined(page: Int, margined: Boolean) = uiTabSetMargined(this, page,
 
 /** Adds the given page to the end of the Tab. */
 fun Tab.append(name: String, widget: Form) =
-    uiTabAppend(this, name, widget.reinterpret())
+    uiTabAppend(this, name, Control(widget))
 fun Tab.append(name: String, widget: Grid) =
-    uiTabAppend(this, name, widget.reinterpret())
+    uiTabAppend(this, name, Control(widget))
 fun Tab.append(name: String, widget: Box) =
-    uiTabAppend(this, name, widget.reinterpret())
+    uiTabAppend(this, name, Control(widget))
 fun Tab.append(name: String, widget: Tab) =
-    uiTabAppend(this, name, widget.reinterpret())
+    uiTabAppend(this, name, Control(widget))
 fun Tab.append(name: String, widget: Group) =
-    uiTabAppend(this, name, widget.reinterpret())
+    uiTabAppend(this, name, Control(widget))
 fun Tab.append(name: String, widget: Entry) =
-    uiTabAppend(this, name, widget.reinterpret())
+    uiTabAppend(this, name, Control(widget))
 fun Tab.append(name: String, widget: MultilineEntry) =
-    uiTabAppend(this, name, widget.reinterpret())
+    uiTabAppend(this, name, Control(widget))
 fun Tab.append(name: String, widget: Checkbox) =
-    uiTabAppend(this, name, widget.reinterpret())
+    uiTabAppend(this, name, Control(widget))
 fun Tab.append(name: String, widget: Combobox) =
-    uiTabAppend(this, name, widget.reinterpret())
+    uiTabAppend(this, name, Control(widget))
 fun Tab.append(name: String, widget: EditableCombobox) =
-    uiTabAppend(this, name, widget.reinterpret())
+    uiTabAppend(this, name, Control(widget))
 fun Tab.append(name: String, widget: Spinbox) =
-    uiTabAppend(this, name, widget.reinterpret())
+    uiTabAppend(this, name, Control(widget))
 fun Tab.append(name: String, widget: Slider) =
-    uiTabAppend(this, name, widget.reinterpret())
+    uiTabAppend(this, name, Control(widget))
 fun Tab.append(name: String, widget: RadioButtons) =
-    uiTabAppend(this, name, widget.reinterpret())
+    uiTabAppend(this, name, Control(widget))
 fun Tab.append(name: String, widget: DateTimePicker) =
-    uiTabAppend(this, name, widget.reinterpret())
+    uiTabAppend(this, name, Control(widget))
 fun Tab.append(name: String, widget: Label) =
-    uiTabAppend(this, name, widget.reinterpret())
+    uiTabAppend(this, name, Control(widget))
 fun Tab.append(name: String, widget: Separator) =
-    uiTabAppend(this, name, widget.reinterpret())
+    uiTabAppend(this, name, Control(widget))
 fun Tab.append(name: String, widget: ProgressBar) =
-    uiTabAppend(this, name, widget.reinterpret())
+    uiTabAppend(this, name, Control(widget))
 fun Tab.append(name: String, widget: Button) =
-    uiTabAppend(this, name, widget.reinterpret())
+    uiTabAppend(this, name, Control(widget))
 fun Tab.append(name: String, widget: ColorButton) =
-    uiTabAppend(this, name, widget.reinterpret())
+    uiTabAppend(this, name, Control(widget))
 fun Tab.append(name: String, widget: FontButton) =
-    uiTabAppend(this, name, widget.reinterpret())
+    uiTabAppend(this, name, Control(widget))
 
 /** Adds the given page to the Tab such that it is the nth page of the Tab (starting at 0). */
 fun Tab.insertAt(index: Int, name: String, widget: Form) =
-    uiTabInsertAt(this, name, index, widget.reinterpret())
+    uiTabInsertAt(this, name, index, Control(widget))
 fun Tab.insertAt(index: Int, name: String, widget: Grid) =
-    uiTabInsertAt(this, name, index, widget.reinterpret())
+    uiTabInsertAt(this, name, index, Control(widget))
 fun Tab.insertAt(index: Int, name: String, widget: Box) =
-    uiTabInsertAt(this, name, index, widget.reinterpret())
+    uiTabInsertAt(this, name, index, Control(widget))
 fun Tab.insertAt(index: Int, name: String, widget: Tab) =
-    uiTabInsertAt(this, name, index, widget.reinterpret())
+    uiTabInsertAt(this, name, index, Control(widget))
 fun Tab.insertAt(index: Int, name: String, widget: Group) =
-    uiTabInsertAt(this, name, index, widget.reinterpret())
+    uiTabInsertAt(this, name, index, Control(widget))
 fun Tab.insertAt(index: Int, name: String, widget: Entry) =
-    uiTabInsertAt(this, name, index, widget.reinterpret())
+    uiTabInsertAt(this, name, index, Control(widget))
 fun Tab.insertAt(index: Int, name: String, widget: MultilineEntry) =
-    uiTabInsertAt(this, name, index, widget.reinterpret())
+    uiTabInsertAt(this, name, index, Control(widget))
 fun Tab.insertAt(index: Int, name: String, widget: Checkbox) =
-    uiTabInsertAt(this, name, index, widget.reinterpret())
+    uiTabInsertAt(this, name, index, Control(widget))
 fun Tab.insertAt(index: Int, name: String, widget: Combobox) =
-    uiTabInsertAt(this, name, index, widget.reinterpret())
+    uiTabInsertAt(this, name, index, Control(widget))
 fun Tab.insertAt(index: Int, name: String, widget: EditableCombobox) =
-    uiTabInsertAt(this, name, index, widget.reinterpret())
+    uiTabInsertAt(this, name, index, Control(widget))
 fun Tab.insertAt(index: Int, name: String, widget: Spinbox) =
-    uiTabInsertAt(this, name, index, widget.reinterpret())
+    uiTabInsertAt(this, name, index, Control(widget))
 fun Tab.insertAt(index: Int, name: String, widget: Slider) =
-    uiTabInsertAt(this, name, index, widget.reinterpret())
+    uiTabInsertAt(this, name, index, Control(widget))
 fun Tab.insertAt(index: Int, name: String, widget: RadioButtons) =
-    uiTabInsertAt(this, name, index, widget.reinterpret())
+    uiTabInsertAt(this, name, index, Control(widget))
 fun Tab.insertAt(index: Int, name: String, widget: DateTimePicker) =
-    uiTabInsertAt(this, name, index, widget.reinterpret())
+    uiTabInsertAt(this, name, index, Control(widget))
 fun Tab.insertAt(index: Int, name: String, widget: Label) =
-    uiTabInsertAt(this, name, index, widget.reinterpret())
+    uiTabInsertAt(this, name, index, Control(widget))
 fun Tab.insertAt(index: Int, name: String, widget: Separator) =
-    uiTabInsertAt(this, name, index, widget.reinterpret())
+    uiTabInsertAt(this, name, index, Control(widget))
 fun Tab.insertAt(index: Int, name: String, widget: ProgressBar) =
-    uiTabInsertAt(this, name, index, widget.reinterpret())
+    uiTabInsertAt(this, name, index, Control(widget))
 fun Tab.insertAt(index: Int, name: String, widget: Button) =
-    uiTabInsertAt(this, name, index, widget.reinterpret())
+    uiTabInsertAt(this, name, index, Control(widget))
 fun Tab.insertAt(index: Int, name: String, widget: ColorButton) =
-    uiTabInsertAt(this, name, index, widget.reinterpret())
+    uiTabInsertAt(this, name, index, Control(widget))
 fun Tab.insertAt(index: Int, name: String, widget: FontButton) =
-    uiTabInsertAt(this, name, index, widget.reinterpret())
+    uiTabInsertAt(this, name, index, Control(widget))
 
 /** Delete deletes the nth page of the Tab. */
 fun Tab.deleteAt(index: Int) = uiTabDelete(this, index)
@@ -704,24 +709,24 @@ fun Group(text: String, block: Group.() -> Unit = {}): Group =
     uiNewGroup(text)?.apply(block) ?: throw Error()
 
 /** Destroy and free the Group. */
-fun Group.destroy() = uiControlDestroy(reinterpret())
+fun Group.destroy() = uiControlDestroy(Control(this))
 
 /** Returns the OS-level handle associated with this Group.
  *  - On Windows this is an HWND of a standard Windows API BUTTON class
  *    (as provided by Common Controls version 6).
  *  - On GTK+ this is a pointer to a GtkFrame.
  *  - On OS X this is a pointer to a NSBox. */
-val Group.handle: Long get() = uiControlHandle(reinterpret())
+val Group.handle: Long get() = uiControlHandle(Control(this))
 
 /** Whether the Group should be enabled or disabled. Defaults to `true`. */
 var Group.enabled: Boolean
-    get() = uiControlEnabled(reinterpret()) != 0
-    set(enabled) = if (enabled) uiControlEnable(reinterpret()) else uiControlDisable(reinterpret())
+    get() = uiControlEnabled(Control(this)) != 0
+    set(enabled) = if (enabled) uiControlEnable(Control(this)) else uiControlDisable(Control(this))
 
 /** Whether the Group should be visible or hidden. Defaults to `true`. */
 var Group.visible: Boolean
-    get() = uiControlVisible(reinterpret()) != 0
-    set(visible) = if (visible) uiControlShow(reinterpret()) else uiControlHide(reinterpret())
+    get() = uiControlVisible(Control(this)) != 0
+    set(visible) = if (visible) uiControlShow(Control(this)) else uiControlHide(Control(this))
 
 /** Specify the caption of the group. */
 var Group.title: String
@@ -735,46 +740,26 @@ var Group.margined: Boolean
 
 /** sets the Group's child to child. If child is nil, the Group
  *  will not have a child. */
-fun Group.setChild(child: Form) =
-    uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: Grid) =
-    uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: Box) =
-    uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: Tab) =
-    uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: Group) =
-    uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: Entry) =
-    uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: MultilineEntry) =
-    uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: Checkbox) =
-    uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: Combobox) =
-    uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: EditableCombobox) =
-    uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: Spinbox) =
-    uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: Slider) =
-    uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: RadioButtons) =
-    uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: DateTimePicker) =
-    uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: Label) =
-    uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: Separator) =
-    uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: ProgressBar) =
-    uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: Button) =
-    uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: ColorButton) =
-    uiGroupSetChild(this, child.reinterpret())
-fun Group.setChild(child: FontButton) =
-    uiGroupSetChild(this, child.reinterpret())
+fun Group.setChild(child: Form) = uiGroupSetChild(this, Control(child))
+fun Group.setChild(child: Grid) = uiGroupSetChild(this, Control(child))
+fun Group.setChild(child: Box) = uiGroupSetChild(this, Control(child))
+fun Group.setChild(child: Tab) = uiGroupSetChild(this, Control(child))
+fun Group.setChild(child: Group) = uiGroupSetChild(this, Control(child))
+fun Group.setChild(child: Entry) = uiGroupSetChild(this, Control(child))
+fun Group.setChild(child: MultilineEntry) = uiGroupSetChild(this, Control(child))
+fun Group.setChild(child: Checkbox) = uiGroupSetChild(this, Control(child))
+fun Group.setChild(child: Combobox) = uiGroupSetChild(this, Control(child))
+fun Group.setChild(child: EditableCombobox) = uiGroupSetChild(this, Control(child))
+fun Group.setChild(child: Spinbox) = uiGroupSetChild(this, Control(child))
+fun Group.setChild(child: Slider) = uiGroupSetChild(this, Control(child))
+fun Group.setChild(child: RadioButtons) = uiGroupSetChild(this, Control(child))
+fun Group.setChild(child: DateTimePicker) = uiGroupSetChild(this, Control(child))
+fun Group.setChild(child: Label) = uiGroupSetChild(this, Control(child))
+fun Group.setChild(child: Separator) = uiGroupSetChild(this, Control(child))
+fun Group.setChild(child: ProgressBar) = uiGroupSetChild(this, Control(child))
+fun Group.setChild(child: Button) = uiGroupSetChild(this, Control(child))
+fun Group.setChild(child: ColorButton) = uiGroupSetChild(this, Control(child))
+fun Group.setChild(child: FontButton) = uiGroupSetChild(this, Control(child))
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -792,24 +777,24 @@ fun PasswordEntry(): Entry = uiNewPasswordEntry() ?: throw Error()
 fun SearchEntry(): Entry = uiNewSearchEntry() ?: throw Error()
 
 /** Destroy and free the Entry. */
-fun Entry.destroy() = uiControlDestroy(reinterpret())
+fun Entry.destroy() = uiControlDestroy(Control(this))
 
 /** Returns the OS-level handle associated with this Entry.
  *  - On Windows this is an HWND of a standard Windows API EDIT class
  *    (as provided by Common Controls version 6).
  *  - On GTK+ this is a pointer to a GtkEntry.
  *  - On OS X this is a pointer to a NSTextField. */
-val Entry.handle: Long get() = uiControlHandle(reinterpret())
+val Entry.handle: Long get() = uiControlHandle(Control(this))
 
 /** Whether the Entry should be enabled or disabled. Defaults to `true`. */
 var Entry.enabled: Boolean
-    get() = uiControlEnabled(reinterpret()) != 0
-    set(enabled) = if (enabled) uiControlEnable(reinterpret()) else uiControlDisable(reinterpret())
+    get() = uiControlEnabled(Control(this)) != 0
+    set(enabled) = if (enabled) uiControlEnable(Control(this)) else uiControlDisable(Control(this))
 
 /** Whether the Entry should be visible or hidden. Defaults to `true`. */
 var Entry.visible: Boolean
-    get() = uiControlVisible(reinterpret()) != 0
-    set(visible) = if (visible) uiControlShow(reinterpret()) else uiControlHide(reinterpret())
+    get() = uiControlVisible(Control(this)) != 0
+    set(visible) = if (visible) uiControlShow(Control(this)) else uiControlHide(Control(this))
 
 /** The current text of the Entry. */
 var Entry.text: String
@@ -847,20 +832,20 @@ fun NonWrappingMultilineEntry(block: MultilineEntry.() -> Unit = {}): MultilineE
     uiNewNonWrappingMultilineEntry()?.apply(block) ?: throw Error()
 
 /** Destroy and free the MultilineEntry. */
-fun MultilineEntry.destroy() = uiControlDestroy(reinterpret())
+fun MultilineEntry.destroy() = uiControlDestroy(Control(this))
 
 /** Returns the OS-level handle associated with this MultilineEntry. */
-val MultilineEntry.handle: Long get() = uiControlHandle(reinterpret())
+val MultilineEntry.handle: Long get() = uiControlHandle(Control(this))
 
 /** Whether the MultilineEntry should be enabled or disabled. Defaults to `true`. */
 var MultilineEntry.enabled: Boolean
-    get() = uiControlEnabled(reinterpret()) != 0
-    set(enabled) = if (enabled) uiControlEnable(reinterpret()) else uiControlDisable(reinterpret())
+    get() = uiControlEnabled(Control(this)) != 0
+    set(enabled) = if (enabled) uiControlEnable(Control(this)) else uiControlDisable(Control(this))
 
 /** Whether the MultilineEntry should be visible or hidden. Defaults to `true`. */
 var MultilineEntry.visible: Boolean
-    get() = uiControlVisible(reinterpret()) != 0
-    set(visible) = if (visible) uiControlShow(reinterpret()) else uiControlHide(reinterpret())
+    get() = uiControlVisible(Control(this)) != 0
+    set(visible) = if (visible) uiControlShow(Control(this)) else uiControlHide(Control(this))
 
 /** The current text of the multiline entry. */
 var MultilineEntry.text: String
@@ -897,24 +882,24 @@ fun Checkbox(text: String, block: Checkbox.() -> Unit = {}): Checkbox =
     uiNewCheckbox(text)?.apply(block) ?: throw Error()
 
 /** Destroy and free the Checkbox. */
-fun Checkbox.destroy() = uiControlDestroy(reinterpret())
+fun Checkbox.destroy() = uiControlDestroy(Control(this))
 
 /** Returns the OS-level handle associated with this Checkbox.
  *  - On Windows this is an HWND of a standard Windows API BUTTON class
  *    (as provided by Common Controls version 6).
  *  - On GTK+ this is a pointer to a GtkCheckButton.
  *  - On OS X this is a pointer to a NSButton. */
-val Checkbox.handle: Long get() = uiControlHandle(reinterpret())
+val Checkbox.handle: Long get() = uiControlHandle(Control(this))
 
 /** Whether the Checkbox should be enabled or disabled. Defaults to `true`. */
 var Checkbox.enabled: Boolean
-    get() = uiControlEnabled(reinterpret()) != 0
-    set(enabled) = if (enabled) uiControlEnable(reinterpret()) else uiControlDisable(reinterpret())
+    get() = uiControlEnabled(Control(this)) != 0
+    set(enabled) = if (enabled) uiControlEnable(Control(this)) else uiControlDisable(Control(this))
 
 /** Whether the Checkbox should be visible or hidden. Defaults to `true`. */
 var Checkbox.visible: Boolean
-    get() = uiControlVisible(reinterpret()) != 0
-    set(visible) = if (visible) uiControlShow(reinterpret()) else uiControlHide(reinterpret())
+    get() = uiControlVisible(Control(this)) != 0
+    set(visible) = if (visible) uiControlShow(Control(this)) else uiControlHide(Control(this))
 
 /** The static text of the checkbox. */
 var Checkbox.text: String
@@ -948,7 +933,7 @@ fun Combobox(block: Combobox.() -> Unit = {}): Combobox =
     uiNewCombobox()?.apply(block) ?: throw Error()
 
 /** Destroy and free the Combobox. */
-fun Combobox.destroy() = uiControlDestroy(reinterpret())
+fun Combobox.destroy() = uiControlDestroy(Control(this))
 
 /** Returns the OS-level handle associated with this Combobox.
  *  - On Windows this is an HWND of a standard Windows API COMBOBOX class
@@ -956,17 +941,17 @@ fun Combobox.destroy() = uiControlDestroy(reinterpret())
  *  - On GTK+ this is a pointer to a GtkComboBoxText.
  *  - On OS X this is a pointer to a NSComboBox for editable Comboboxes
  *    and to a NSPopUpButton for noneditable Comboboxes. */
-val Combobox.handle: Long get() = uiControlHandle(reinterpret())
+val Combobox.handle: Long get() = uiControlHandle(Control(this))
 
 /** Whether the Combobox should be enabled or disabled. Defaults to `true`. */
 var Combobox.enabled: Boolean
-    get() = uiControlEnabled(reinterpret()) != 0
-    set(enabled) = if (enabled) uiControlEnable(reinterpret()) else uiControlDisable(reinterpret())
+    get() = uiControlEnabled(Control(this)) != 0
+    set(enabled) = if (enabled) uiControlEnable(Control(this)) else uiControlDisable(Control(this))
 
 /** Whether the Combobox should be visible or hidden. Defaults to `true`. */
 var Combobox.visible: Boolean
-    get() = uiControlVisible(reinterpret()) != 0
-    set(visible) = if (visible) uiControlShow(reinterpret()) else uiControlHide(reinterpret())
+    get() = uiControlVisible(Control(this)) != 0
+    set(visible) = if (visible) uiControlShow(Control(this)) else uiControlHide(Control(this))
 
 /** Return or set the current choosed option by index. */
 var Combobox.selected: Int
@@ -1036,7 +1021,7 @@ fun Spinbox(min: Int, max: Int, block: Spinbox.() -> Unit = {}): Spinbox =
     uiNewSpinbox(min, max)?.apply(block) ?: throw Error()
 
 /** Destroy and free the Spinbox. */
-fun Spinbox.destroy() = uiControlDestroy(reinterpret())
+fun Spinbox.destroy() = uiControlDestroy(Control(this))
 
 /** Returns the OS-level handle associated with this Spinbox.
  *  - On Windows this is an HWND of a standard Windows API EDIT class
@@ -1047,17 +1032,17 @@ fun Spinbox.destroy() = uiControlDestroy(reinterpret())
  *  - On GTK+ this is a pointer to a GtkSpinButton.
  *  - On OS X this is a pointer to a NSView that contains a NSTextField
  *    and a NSStepper as subviews. */
-val Spinbox.handle: Long get() = uiControlHandle(reinterpret())
+val Spinbox.handle: Long get() = uiControlHandle(Control(this))
 
 /** Whether the Spinbox should be enabled or disabled. Defaults to `true`. */
 var Spinbox.enabled: Boolean
-    get() = uiControlEnabled(reinterpret()) != 0
-    set(enabled) = if (enabled) uiControlEnable(reinterpret()) else uiControlDisable(reinterpret())
+    get() = uiControlEnabled(Control(this)) != 0
+    set(enabled) = if (enabled) uiControlEnable(Control(this)) else uiControlDisable(Control(this))
 
 /** Whether the Spinbox should be visible or hidden. Defaults to `true`. */
 var Spinbox.visible: Boolean
-    get() = uiControlVisible(reinterpret()) != 0
-    set(visible) = if (visible) uiControlShow(reinterpret()) else uiControlHide(reinterpret())
+    get() = uiControlVisible(Control(this)) != 0
+    set(visible) = if (visible) uiControlShow(Control(this)) else uiControlHide(Control(this))
 
 /** The current numeric value of the spinbox. */
 var Spinbox.value: Int
@@ -1086,24 +1071,24 @@ fun Slider(min: Int, max: Int, block: Slider.() -> Unit = {}): Slider =
     uiNewSlider(min, max)?.apply(block) ?: throw Error()
 
 /** Destroy and free the Slider. */
-fun Slider.destroy() = uiControlDestroy(reinterpret())
+fun Slider.destroy() = uiControlDestroy(Control(this))
 
 /** Returns the OS-level handle associated with this Slider.
  *  - On Windows this is an HWND of a standard Windows API TRACKBAR_CLASS class
  *    (as provided by Common Controls version 6).
  *  - On GTK+ this is a pointer to a GtkScale.
  *  - On OS X this is a pointer to a NSSlider. */
-val Slider.handle: Long get() = uiControlHandle(reinterpret())
+val Slider.handle: Long get() = uiControlHandle(Control(this))
 
 /** Whether the Slider should be enabled or disabled. Defaults to `true`. */
 var Slider.enabled: Boolean
-    get() = uiControlEnabled(reinterpret()) != 0
-    set(enabled) = if (enabled) uiControlEnable(reinterpret()) else uiControlDisable(reinterpret())
+    get() = uiControlEnabled(Control(this)) != 0
+    set(enabled) = if (enabled) uiControlEnable(Control(this)) else uiControlDisable(Control(this))
 
 /** Whether the Slider should be visible or hidden. Defaults to `true`. */
 var Slider.visible: Boolean
-    get() = uiControlVisible(reinterpret()) != 0
-    set(visible) = if (visible) uiControlShow(reinterpret()) else uiControlHide(reinterpret())
+    get() = uiControlVisible(Control(this)) != 0
+    set(visible) = if (visible) uiControlShow(Control(this)) else uiControlHide(Control(this))
 
 /** The current numeric value of the slider. */
 var Slider.value: Int
@@ -1132,7 +1117,7 @@ fun RadioButtons(block: RadioButtons.() -> Unit = {}): RadioButtons =
     uiNewRadioButtons()?.apply(block) ?: throw Error()
 
 /** Destroy and free the RadioButtons. */
-fun RadioButtons.destroy() = uiControlDestroy(reinterpret())
+fun RadioButtons.destroy() = uiControlDestroy(Control(this))
 
 /** Returns the OS-level handle associated with this RadioButtons.
  *  - On Windows this is an HWND of a libui-internal class;
@@ -1140,17 +1125,17 @@ fun RadioButtons.destroy() = uiControlDestroy(reinterpret())
  *    (as provided by Common Controls version 6).
  *  - On GTK+ this is a pointer to a GtkBox containing GtkRadioButtons.
  *  - On OS X this is a pointer to a NSView with each radio button as a NSButton subview. */
-val RadioButtons.handle: Long get() = uiControlHandle(reinterpret())
+val RadioButtons.handle: Long get() = uiControlHandle(Control(this))
 
 /** Whether the RadioButtons should be enabled or disabled. Defaults to `true`. */
 var RadioButtons.enabled: Boolean
-    get() = uiControlEnabled(reinterpret()) != 0
-    set(enabled) = if (enabled) uiControlEnable(reinterpret()) else uiControlDisable(reinterpret())
+    get() = uiControlEnabled(Control(this)) != 0
+    set(enabled) = if (enabled) uiControlEnable(Control(this)) else uiControlDisable(Control(this))
 
 /** Whether the RadioButtons should be visible or hidden. Defaults to `true`. */
 var RadioButtons.visible: Boolean
-    get() = uiControlVisible(reinterpret()) != 0
-    set(visible) = if (visible) uiControlShow(reinterpret()) else uiControlHide(reinterpret())
+    get() = uiControlVisible(Control(this)) != 0
+    set(visible) = if (visible) uiControlShow(Control(this)) else uiControlHide(Control(this))
 
 /** Return or set the current choosed option by index. */
 var RadioButtons.selected: Int
@@ -1189,24 +1174,24 @@ fun DatePicker(): DateTimePicker = uiNewDatePicker() ?: throw Error()
 fun TimePicker(): DateTimePicker = uiNewTimePicker() ?: throw Error()
 
 /** Destroy and free the DateTimePicker. */
-fun DateTimePicker.destroy() = uiControlDestroy(reinterpret())
+fun DateTimePicker.destroy() = uiControlDestroy(Control(this))
 
 /** Returns the OS-level handle associated with this DateTimePicker.
  *  - On Windows this is an HWND of a standard Windows API DATETIMEPICK_CLASS class
  *    (as provided by Common Controls version 6).
  *  - On GTK+ this is a pointer to a libui-internal class.
  *  - On OS X this is a pointer to a NSDatePicker. */
-val DateTimePicker.handle: Long get() = uiControlHandle(reinterpret())
+val DateTimePicker.handle: Long get() = uiControlHandle(Control(this))
 
 /** Whether the DateTimePicker should be enabled or disabled. Defaults to `true`. */
 var DateTimePicker.enabled: Boolean
-    get() = uiControlEnabled(reinterpret()) != 0
-    set(enabled) = if (enabled) uiControlEnable(reinterpret()) else uiControlDisable(reinterpret())
+    get() = uiControlEnabled(Control(this)) != 0
+    set(enabled) = if (enabled) uiControlEnable(Control(this)) else uiControlDisable(Control(this))
 
 /** Whether the DateTimePicker should be visible or hidden. Defaults to `true`. */
 var DateTimePicker.visible: Boolean
-    get() = uiControlVisible(reinterpret()) != 0
-    set(visible) = if (visible) uiControlShow(reinterpret()) else uiControlHide(reinterpret())
+    get() = uiControlVisible(Control(this)) != 0
+    set(visible) = if (visible) uiControlShow(Control(this)) else uiControlHide(Control(this))
 
 /** The current value of the DateTimePicker. */
 /*TODO var DateTimePicker.value: DateTime
@@ -1261,24 +1246,24 @@ fun Label(text: String, block: Label.() -> Unit = {}): Label =
     uiNewLabel(text)?.apply(block) ?: throw Error()
 
 /** Destroy and free the Label. */
-fun Label.destroy() = uiControlDestroy(reinterpret())
+fun Label.destroy() = uiControlDestroy(Control(this))
 
 /** Returns the OS-level handle associated with this Label.
  *  - On Windows this is an HWND of a standard Windows API STATIC class
  *    (as provided by Common Controls version 6).
  *  - On GTK+ this is a pointer to a GtkLabel.
  *  - On OS X this is a pointer to a NSTextField. */
-val Label.handle: Long get() = uiControlHandle(reinterpret())
+val Label.handle: Long get() = uiControlHandle(Control(this))
 
 /** Whether the Label should be enabled or disabled. Defaults to `true`. */
 var Label.enabled: Boolean
-    get() = uiControlEnabled(reinterpret()) != 0
-    set(enabled) = if (enabled) uiControlEnable(reinterpret()) else uiControlDisable(reinterpret())
+    get() = uiControlEnabled(Control(this)) != 0
+    set(enabled) = if (enabled) uiControlEnable(Control(this)) else uiControlDisable(Control(this))
 
 /** Whether the Label should be visible or hidden. Defaults to `true`. */
 var Label.visible: Boolean
-    get() = uiControlVisible(reinterpret()) != 0
-    set(visible) = if (visible) uiControlShow(reinterpret()) else uiControlHide(reinterpret())
+    get() = uiControlVisible(Control(this)) != 0
+    set(visible) = if (visible) uiControlShow(Control(this)) else uiControlHide(Control(this))
 
 /** The static text of the label. */
 var Label.text: String
@@ -1299,24 +1284,24 @@ fun VerticalSeparator(block: Separator.() -> Unit = {}): Separator =
     uiNewVerticalSeparator()?.apply(block) ?: throw Error()
 
 /** Destroy and free the Separator. */
-fun Separator.destroy() = uiControlDestroy(reinterpret())
+fun Separator.destroy() = uiControlDestroy(Control(this))
 
 /** Returns the OS-level handle associated with this Separator.
  *  - On Windows this is an HWND of a standard Windows API STATIC class
  *    (as provided by Common Controls version 6).
  *  - On GTK+ this is a pointer to a GtkSeparator.
  *  - On OS X this is a pointer to a NSBox. */
-val Separator.handle: Long get() = uiControlHandle(reinterpret())
+val Separator.handle: Long get() = uiControlHandle(Control(this))
 
 /** Whether the Separator should be enabled or disabled. Defaults to `true`. */
 var Separator.enabled: Boolean
-    get() = uiControlEnabled(reinterpret()) != 0
-    set(enabled) = if (enabled) uiControlEnable(reinterpret()) else uiControlDisable(reinterpret())
+    get() = uiControlEnabled(Control(this)) != 0
+    set(enabled) = if (enabled) uiControlEnable(Control(this)) else uiControlDisable(Control(this))
 
 /** Whether the Separator should be visible or hidden. Defaults to `true`. */
 var Separator.visible: Boolean
-    get() = uiControlVisible(reinterpret()) != 0
-    set(visible) = if (visible) uiControlShow(reinterpret()) else uiControlHide(reinterpret())
+    get() = uiControlVisible(Control(this)) != 0
+    set(visible) = if (visible) uiControlShow(Control(this)) else uiControlHide(Control(this))
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -1328,24 +1313,24 @@ fun ProgressBar(block: ProgressBar.() -> Unit = {}): ProgressBar =
     uiNewProgressBar()?.apply(block) ?: throw Error()
 
 /** Destroy and free the ProgressBar. */
-fun ProgressBar.destroy() = uiControlDestroy(reinterpret())
+fun ProgressBar.destroy() = uiControlDestroy(Control(this))
 
 /** Returns the OS-level handle associated with this ProgressBar.
  *  - On Windows this is an HWND of a standard Windows API PROGRESS_CLASS class
  *    (as provided by Common Controls version 6).
  *  - On GTK+ this is a pointer to a GtkProgressBar.
  *  - On OS X this is a pointer to a NSProgressIndicator. */
-val ProgressBar.handle: Long get() = uiControlHandle(reinterpret())
+val ProgressBar.handle: Long get() = uiControlHandle(Control(this))
 
 /** Whether the ProgressBar should be enabled or disabled. Defaults to `true`. */
 var ProgressBar.enabled: Boolean
-    get() = uiControlEnabled(reinterpret()) != 0
-    set(enabled) = if (enabled) uiControlEnable(reinterpret()) else uiControlDisable(reinterpret())
+    get() = uiControlEnabled(Control(this)) != 0
+    set(enabled) = if (enabled) uiControlEnable(Control(this)) else uiControlDisable(Control(this))
 
 /** Whether the ProgressBar should be visible or hidden. Defaults to `true`. */
 var ProgressBar.visible: Boolean
-    get() = uiControlVisible(reinterpret()) != 0
-    set(visible) = if (visible) uiControlShow(reinterpret()) else uiControlHide(reinterpret())
+    get() = uiControlVisible(Control(this)) != 0
+    set(visible) = if (visible) uiControlShow(Control(this)) else uiControlHide(Control(this))
 
 /** The current position of the progress bar.
  *  Could be setted to -1 to create an indeterminate progress bar. */
@@ -1363,24 +1348,24 @@ fun Button(text: String, block: Button.() -> Unit = {}): Button =
     uiNewButton(text)?.apply(block) ?: throw Error()
 
 /** Destroy and free the Button. */
-fun Button.destroy() = uiControlDestroy(reinterpret())
+fun Button.destroy() = uiControlDestroy(Control(this))
 
 /** Returns the OS-level handle associated with this Button.
  *  - On Windows this is an HWND of a standard Windows API BUTTON class
  *    (as provided by Common Controls version 6).
  *  - On GTK+ this is a pointer to a GtkButton.
  *  - On OS X this is a pointer to a NSButton. */
-val Button.handle: Long get() = uiControlHandle(reinterpret())
+val Button.handle: Long get() = uiControlHandle(Control(this))
 
 /** Whether the Button should be enabled or disabled. Defaults to `true`. */
 var Button.enabled: Boolean
-    get() = uiControlEnabled(reinterpret()) != 0
-    set(enabled) = if (enabled) uiControlEnable(reinterpret()) else uiControlDisable(reinterpret())
+    get() = uiControlEnabled(Control(this)) != 0
+    set(enabled) = if (enabled) uiControlEnable(Control(this)) else uiControlDisable(Control(this))
 
 /** Whether the Button should be visible or hidden. Defaults to `true`. */
 var Button.visible: Boolean
-    get() = uiControlVisible(reinterpret()) != 0
-    set(visible) = if (visible) uiControlShow(reinterpret()) else uiControlHide(reinterpret())
+    get() = uiControlVisible(Control(this)) != 0
+    set(visible) = if (visible) uiControlShow(Control(this)) else uiControlHide(Control(this))
 
 /** The static text of the Button. */
 var Button.text: String
@@ -1409,23 +1394,23 @@ fun ColorButton(block: ColorButton.() -> Unit = {}): ColorButton =
     uiNewColorButton()?.apply(block) ?: throw Error()
 
 /** Destroy and free the ColorButton. */
-fun ColorButton.destroy() = uiControlDestroy(reinterpret())
+fun ColorButton.destroy() = uiControlDestroy(Control(this))
 
 /** Returns the OS-level handle associated with this ColorButton. */
-val ColorButton.handle: Long get() = uiControlHandle(reinterpret())
+val ColorButton.handle: Long get() = uiControlHandle(Control(this))
 
 /** Whether the ColorButton should be enabled or disabled. Defaults to `true`. */
 var ColorButton.enabled: Boolean
-    get() = uiControlEnabled(reinterpret()) != 0
-    set(enabled) = if (enabled) uiControlEnable(reinterpret()) else uiControlDisable(reinterpret())
+    get() = uiControlEnabled(Control(this)) != 0
+    set(enabled) = if (enabled) uiControlEnable(Control(this)) else uiControlDisable(Control(this))
 
 /** Whether the ColorButton should be visible or hidden. Defaults to `true`. */
 var ColorButton.visible: Boolean
-    get() = uiControlVisible(reinterpret()) != 0
-    set(visible) = if (visible) uiControlShow(reinterpret()) else uiControlHide(reinterpret())
+    get() = uiControlVisible(Control(this)) != 0
+    set(visible) = if (visible) uiControlShow(Control(this)) else uiControlHide(Control(this))
 
-//void uiColorButtonColor(uiColorButton *b, double *r, double *g, double *bl, double *a)
-//void uiColorButtonSetColor(uiColorButton *b, double r, double g, double bl, double a)
+//TODO void uiColorButtonColor(uiColorButton *b, double *r, double *g, double *bl, double *a)
+//TODO void uiColorButtonSetColor(uiColorButton *b, double r, double g, double bl, double a)
 
 /** Funcion to be run when the user makes a change to the ColorButton.
  *  Only one function can be registered at a time. */
@@ -1449,26 +1434,26 @@ fun FontButton(block: FontButton.() -> Unit = {}): FontButton =
     uiNewFontButton()?.apply(block) ?: throw Error()
 
 /** Destroy and free the FontButton. */
-fun FontButton.destroy() = uiControlDestroy(reinterpret())
+fun FontButton.destroy() = uiControlDestroy(Control(this))
 
 /** Returns the OS-level handle associated with this FontButton. */
-val FontButton.handle: Long get() = uiControlHandle(reinterpret())
+val FontButton.handle: Long get() = uiControlHandle(Control(this))
 
 /** Whether the FontButton should be enabled or disabled. Defaults to `true`. */
 var FontButton.enabled: Boolean
-    get() = uiControlEnabled(reinterpret()) != 0
-    set(enabled) = if (enabled) uiControlEnable(reinterpret()) else uiControlDisable(reinterpret())
+    get() = uiControlEnabled(Control(this)) != 0
+    set(enabled) = if (enabled) uiControlEnable(Control(this)) else uiControlDisable(Control(this))
 
 /** Whether the FontButton should be visible or hidden. Defaults to `true`. */
 var FontButton.visible: Boolean
-    get() = uiControlVisible(reinterpret()) != 0
-    set(visible) = if (visible) uiControlShow(reinterpret()) else uiControlHide(reinterpret())
+    get() = uiControlVisible(Control(this)) != 0
+    set(visible) = if (visible) uiControlShow(Control(this)) else uiControlHide(Control(this))
 
-//// uiFontButtonFont() returns the font currently selected in the uiFontButton in desc.
-//// uiFontButtonFont() allocates resources in desc when you are done with the font, call uiFreeFontButtonFont() to release them.
-//// uiFontButtonFont() does not allocate desc itself you must do so.
-//// TODO have a function that sets an entire font descriptor to a range in a uiAttributedString at once, for SetFont?
-//void uiFontButtonFont(uiFontButton *b, uiFontDescriptor *desc)
+/** Returns the font currently selected in the uiFontButton in desc.
+ *  allocates resources in desc when you are done with the font, call uiFreeFontButtonFont() to release them.
+ *  does not allocate desc itself you must do so. */
+//TODO have a function that sets an entire font descriptor to a range in a uiAttributedString at once, for SetFont?
+//TODO void uiFontButtonFont(uiFontButton *b, uiFontDescriptor *desc)
 
 /** Funcion to be run when the font in the FontButton is changed.
  *  Only one function can be registered at a time. */
@@ -1482,7 +1467,9 @@ internal fun _onFontButton(widget: FontButton?, ref: COpaquePointer?) {
     widget!!.proc()
 }
 
-//// uiFreeFontButtonFont() frees resources allocated in desc by uiFontButtonFont().
-//// After calling uiFreeFontButtonFont(), the contents of desc should be assumed to be undefined (though since you allocate desc itself, you can safely reuse desc for other font descriptors).
-//// Calling uiFreeFontButtonFont() on a uiFontDescriptor not returned by uiFontButtonFont() results in undefined behavior.
-//void uiFreeFontButtonFont(uiFontDescriptor *desc)
+/** Frees resources allocated in desc by uiFontButtonFont().
+ *  After calling uiFreeFontButtonFont(), the contents of desc should be assumed to be undefined
+ *  (though since you allocate desc itself, you can safely reuse desc for other font descriptors).
+ *  Calling uiFreeFontButtonFont() on a uiFontDescriptor not returned by uiFontButtonFont()
+ * results in undefined behavior. */
+//TODO void uiFreeFontButtonFont(uiFontDescriptor *desc)
