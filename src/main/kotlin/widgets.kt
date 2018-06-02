@@ -80,7 +80,7 @@ fun Control.isVisible(): Boolean = uiControlVisible(this) != 0
 /** Shows the Control. */
 fun Control.show() = uiControlShow(this)
 
-/** Hid the Control. Hidden controls do not participate in layout
+/** Hides the Control. Hidden controls do not participate in layout
  *  (that is, Box, Grid, etc. does not reserve space for hidden controls). */
 fun Control.hide() = uiControlHide(this)
 
