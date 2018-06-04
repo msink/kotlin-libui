@@ -17,8 +17,13 @@ class Window(
     val ref = StableRef.create(this)
     val ptr: CWindow = uiNewWindow(title, width, height, if (hasMenubar) 1 else 0) ?: throw Error()
 
+    var onResize: (Window.() -> Unit)? = null
+    var onClose: (Window.() -> Boolean)? = null
+
     init {
         apply(block)
+        uiWindowOnContentSizeChanged(ptr, staticCFunction(::_onResize), ref.asCPointer())
+        uiWindowOnClosing(ptr, staticCFunction(::_onClose), ref.asCPointer())
     }
 
     fun dispose() {
@@ -95,27 +100,27 @@ fun Window.setChild(child: FontButton) = uiWindowSetChild(ptr, child.asControl()
 fun Window.show() = uiControlShow(ptr.reinterpret())
 
 /** Function to be run when window content size change. */
-//fun Window.onSizeChanged(proc: Window.() -> Unit) {
-//    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
-//    uiWindowOnContentSizeChanged(ptr, staticCFunction(::_onWindow), ref.asCPointer())
-//}
+fun Window.onResize(proc: Window.() -> Unit) {
+    onResize = proc
+}
 
-//internal fun _onWindow(window: CWindow?, ref: COpaquePointer?) {
-//    val proc = ref!!.asStableRef<Window.() -> Unit>().get()
-//    window!!.proc()
-//}
+@Suppress("UNUSED_PARAMETER")
+private fun _onResize(ptr: CWindow?, ref: COpaquePointer?) {
+    val window = ref!!.asStableRef<Window>().get()
+    window.onResize?.invoke(window)
+}
 
 /** Function to be run when the user clicks the Window's close button.
  *  Only one function can be registered at a time.
  *  @returns [true] if window is destroyed */
 fun Window.onClose(proc: Window.() -> Boolean) {
-    uiWindowOnClosing(ptr, staticCFunction(::_onClose), ref.asCPointer())
+    onClose = proc
 }
 
-internal fun _onClose(window: CWindow?, ref: COpaquePointer?): Int {
+@Suppress("UNUSED_PARAMETER")
+private fun _onClose(ptr: CWindow?, ref: COpaquePointer?): Int {
     val window = ref!!.asStableRef<Window>().get()
-//  return if (window.proc()) 1 else 0
-    uiQuit()
-    window.dispose()
-    return 1
+    val close = window.onClose?.invoke(window) ?: true
+    if (close) window.dispose()
+    return if (close) 1 else 0
 }
