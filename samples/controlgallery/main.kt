@@ -1,9 +1,6 @@
 import libui.*
 
-//TODO: make it singleton or part of Application singleton
-lateinit var mainWindow: Window
-
-fun makeBasicControlsPage() = VerticalBox() {
+fun Window.basicControlsPage() = VerticalBox() {
     padded = true
 
     append(HorizontalBox() {
@@ -26,7 +23,7 @@ fun makeBasicControlsPage() = VerticalBox() {
     }, stretchy = true)
 }
 
-fun makeNumbersPage() = HorizontalBox() {
+fun Window.numbersPage() = HorizontalBox() {
     padded = true
 
     append(Group("Numbers") {
@@ -76,7 +73,7 @@ fun makeNumbersPage() = HorizontalBox() {
     }, stretchy = true)
 }
 
-fun makeDataChoosersPage() = HorizontalBox() {
+fun Window.dataChoosersPage() = HorizontalBox() {
     padded = true
 
     append(VerticalBox() {
@@ -103,7 +100,7 @@ fun makeDataChoosersPage() = HorizontalBox() {
             }
             val button1 = Button("Open File") {
                 action {
-                    entry1.text = OpenFileDialog(mainWindow) ?: "(cancelled)"
+                    entry1.text = OpenFileDialog() ?: "(cancelled)"
                 }
             }
             append(button1, 0, 0, 1, 1, 0, uiAlignFill, 0, uiAlignFill)
@@ -114,7 +111,7 @@ fun makeDataChoosersPage() = HorizontalBox() {
             }
             val button2 = Button("Save File") {
                 action {
-                    entry2.text = SaveFileDialog(mainWindow) ?: "(cancelled)"
+                    entry2.text = SaveFileDialog() ?: "(cancelled)"
                 }
             }
             append(button2, 0, 1, 1, 1, 0, uiAlignFill, 0, uiAlignFill)
@@ -124,16 +121,14 @@ fun makeDataChoosersPage() = HorizontalBox() {
                 padded = true
                 append(Button("Message Box") {
                     action {
-                        uiMsgBox(mainWindow,
-                            "This is a normal message box.",
-                            "More detailed information can be shown here.")
+                        MsgBox(text = "This is a normal message box.",
+                            details = "More detailed information can be shown here.")
                     }
                 }, 0, 0, 1, 1, 0, uiAlignFill, 0, uiAlignFill)
                 append(Button("Error Box") {
                     action {
-                        uiMsgBoxError(mainWindow,
-                            "This message box describes an error.",
-                            "More detailed information can be shown here.")
+                        MsgBoxError(text = "This message box describes an error.",
+                            details = "More detailed information can be shown here.")
                     }
                 }, 1, 0, 1, 1, 0, uiAlignFill, 0, uiAlignFill)
             }, 0, 2, 2, 1, 0, uiAlignCenter, 0, uiAlignStart)
@@ -142,22 +137,22 @@ fun makeDataChoosersPage() = HorizontalBox() {
 }
 
 fun main(args: Array<String>) = application {
-    mainWindow = Window(title = "libui Control Gallery", width = 640, height = 480)
-    mainWindow.onClose { uiQuit(); true }
-    onShouldQuit { mainWindow.destroy(); true }
+    Window(title = "libui Control Gallery", width = 640, height = 480) {
+        onClose { uiQuit(); true }
+        onShouldQuit { destroy(); true }
+        margined = true
 
-    val tab = Tab()
-    mainWindow.setChild(tab)
-    mainWindow.margined = true
+        setChild(Tab() {
+            append("Basic Controls", basicControlsPage())
+            setMargined(0, true)
 
-    tab.append("Basic Controls", makeBasicControlsPage())
-    tab.setMargined(0, true)
+            append("Numbers and Lists", numbersPage())
+            setMargined(1, true)
 
-    tab.append("Numbers and Lists", makeNumbersPage())
-    tab.setMargined(1, true)
+            append("Data Choosers", dataChoosersPage())
+            setMargined(2, true)
+        })
 
-    tab.append("Data Choosers", makeDataChoosersPage())
-    tab.setMargined(2, true)
-
-    mainWindow.show()
+        show()
+    }
 }

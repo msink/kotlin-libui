@@ -1,11 +1,8 @@
 import libui.*
 
-//TODO: make it singleton or part of Application singleton
-lateinit var mainWindow: Window
-
 fun main(args: Array<String>) = application {
 
-    mainWindow = Window(
+    Window(
         title = "Authentication required",
         width = 320,
         height = 200,
@@ -26,7 +23,7 @@ fun main(args: Array<String>) = application {
 
             append(Button(text = "Login") {
                 action {
-                    uiMsgBox(mainWindow, "${username.text}:${password.text}", "")
+                    MsgBox("${username.text}:${password.text}")
                 }
             })
         })
