@@ -723,18 +723,6 @@ var Entry.readOnly: Boolean
     get() = uiEntryReadOnly(this) != 0
     set(readOnly) = uiEntrySetReadOnly(this, if (readOnly) 1 else 0)
 
-/** Funcion to be run when the user makes a change to the Entry.
- *  Only one function can be registered at a time. */
-fun Entry.action(proc: Entry.() -> Unit) {
-    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
-    uiEntryOnChanged(this, staticCFunction(::_onEntry), ref.asCPointer())
-}
-
-internal fun _onEntry(widget: Entry?, ref: COpaquePointer?) {
-    val proc = ref!!.asStableRef<Entry.() -> Unit>().get()
-    widget!!.proc()
-}
-
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A multiline text entry widget. */
@@ -777,18 +765,6 @@ var MultilineEntry.readOnly: Boolean
 /** Adds the text to the end of the MultilineEntry. */
 fun MultilineEntry.append(text: String) = uiMultilineEntryAppend(this, text)
 
-/** Funcion to be run when the user makes a change to the MultilineEntry.
- *  Only one function can be registered at a time. */
-fun MultilineEntry.action(proc: MultilineEntry.() -> Unit) {
-    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
-    uiMultilineEntryOnChanged(this, staticCFunction(::_onMultilineEntry), ref.asCPointer())
-}
-
-internal fun _onMultilineEntry(widget: MultilineEntry?, ref: COpaquePointer?) {
-    val proc = ref!!.asStableRef<MultilineEntry.() -> Unit>().get()
-    widget!!.proc()
-}
-
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A checkbox widget. */
@@ -827,18 +803,6 @@ var Checkbox.text: String
 var Checkbox.checked: Boolean
     get() = uiCheckboxChecked(this) != 0
     set(checked) = uiCheckboxSetChecked(this, if (checked) 1 else 0)
-
-/** Funcion to be run when the user clicks the Checkbox.
- *  Only one function can be registered at a time. */
-fun Checkbox.action(proc: Checkbox.() -> Unit) {
-    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
-    uiCheckboxOnToggled(this, staticCFunction(::_onCheckbox), ref.asCPointer())
-}
-
-internal fun _onCheckbox(widget: Checkbox?, ref: COpaquePointer?) {
-    val proc = ref!!.asStableRef<Checkbox.() -> Unit>().get()
-    widget!!.proc()
-}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -879,18 +843,6 @@ var Combobox.selected: Int
  *  If this entry is the first entry, it is automatically selected. */
 fun Combobox.append(text: String) = uiComboboxAppend(this, text)
 
-/** Funcion to be run when the user makes a change to the Combobox.
- *  Only one function can be registered at a time. */
-fun Combobox.action(proc: Combobox.() -> Unit) {
-    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
-    uiComboboxOnSelected(this, staticCFunction(::_onCombobox), ref.asCPointer())
-}
-
-internal fun _onCombobox(widget: Combobox?, ref: COpaquePointer?) {
-    val proc = ref!!.asStableRef<Combobox.() -> Unit>().get()
-    widget!!.proc()
-}
-
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A drop down combo box that allow selection from list or free text entry. */
@@ -908,20 +860,6 @@ var EditableCombobox.text: String
 /** Adds the named entry to the end of the EditableCombobox.
  *  If this entry is the first entry, it is automatically selected. */
 fun EditableCombobox.append(text: String) = uiEditableComboboxAppend(this, text)
-
-/** Funcion to be run when the user makes a change to the EditableCombobox.
- *  Only one function can be registered at a time. */
-//TODO what do we call a function that sets the currently selected item and fills the text field with it?
-//TODO editable comboboxes have no consistent concept of selected item
-fun EditableCombobox.action(proc: EditableCombobox.() -> Unit) {
-    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
-    uiEditableComboboxOnChanged(this, staticCFunction(::_onEditableCombobox), ref.asCPointer())
-}
-
-internal fun _onEditableCombobox(widget: EditableCombobox?, ref: COpaquePointer?) {
-    val proc = ref!!.asStableRef<EditableCombobox.() -> Unit>().get()
-    widget!!.proc()
-}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -966,18 +904,6 @@ var Spinbox.value: Int
     get() = uiSpinboxValue(this)
     set(value) = uiSpinboxSetValue(this, value)
 
-/** Funcion to be run when the user makes a change to the Spinbox.
- *  Only one function can be registered at a time. */
-fun Spinbox.action(proc: Spinbox.() -> Unit) {
-    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
-    uiSpinboxOnChanged(this, staticCFunction(::_onSpinbox), ref.asCPointer())
-}
-
-internal fun _onSpinbox(widget: Spinbox?, ref: COpaquePointer?) {
-    val proc = ref!!.asStableRef<Spinbox.() -> Unit>().get()
-    widget!!.proc()
-}
-
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Horizontal slide to set numerical values. */
@@ -1011,18 +937,6 @@ var Slider.visible: Boolean
 var Slider.value: Int
     get() = uiSliderValue(this)
     set(value) = uiSliderSetValue(this, value)
-
-/** Funcion to be run when the user makes a change to the Slider.
- *  Only one function can be registered at a time. */
-fun Slider.action(proc: Slider.() -> Unit) {
-    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
-    uiSliderOnChanged(this, staticCFunction(::_onSlider), ref.asCPointer())
-}
-
-internal fun _onSlider(widget: Slider?, ref: COpaquePointer?) {
-    val proc = ref!!.asStableRef<Slider.() -> Unit>().get()
-    widget!!.proc()
-}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -1062,18 +976,6 @@ var RadioButtons.selected: Int
 /** Adds the named button to the end of the RadioButtons.
  *  If this button is the first button, it is automatically selected. */
 fun RadioButtons.append(text: String) = uiRadioButtonsAppend(this, text)
-
-/** Funcion to be run when the user makes a change to the RadioButtons.
- *  Only one function can be registered at a time. */
-fun RadioButtons.action(proc: RadioButtons.() -> Unit) {
-    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
-    uiRadioButtonsOnSelected(this, staticCFunction(::_onRadioButtons), ref.asCPointer())
-}
-
-internal fun _onRadioButtons(widget: RadioButtons?, ref: COpaquePointer?) {
-    val proc = ref!!.asStableRef<RadioButtons.() -> Unit>().get()
-    widget!!.proc()
-}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -1140,18 +1042,6 @@ var DateTimePicker.visible: Boolean
        tm.isdst = value.isdst
        uiDateTimePickerSetTime(this@value, tm.ptr)
     }*/
-
-/** Funcion to be run when the user makes a change to the DateTimePicker.
- *  Only one function can be registered at a time. */
-fun DateTimePicker.action(proc: DateTimePicker.() -> Unit) {
-    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
-    uiDateTimePickerOnChanged(this, staticCFunction(::_onDateTimePicker), ref.asCPointer())
-}
-
-internal fun _onDateTimePicker(widget: DateTimePicker?, ref: COpaquePointer?) {
-    val proc = ref!!.asStableRef<DateTimePicker.() -> Unit>().get()
-    widget!!.proc()
-}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -1289,18 +1179,6 @@ var Button.text: String
     get() = uiButtonText(this)?.toKString() ?: ""
     set(text) = uiButtonSetText(this, text)
 
-/** Funcion to be run when the user clicks the Button.
- *  Only one function can be registered at a time. */
-fun Button.action(proc: Button.() -> Unit) {
-    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
-    uiButtonOnClicked(this, staticCFunction(::_onButton), ref.asCPointer())
-}
-
-internal fun _onButton(button: Button?, ref: COpaquePointer?) {
-    val proc = ref!!.asStableRef<Button.() -> Unit>().get()
-    button!!.proc()
-}
-
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A button that opens a color palette popup. */
@@ -1328,18 +1206,6 @@ var ColorButton.visible: Boolean
 
 //TODO void uiColorButtonColor(uiColorButton *b, double *r, double *g, double *bl, double *a)
 //TODO void uiColorButtonSetColor(uiColorButton *b, double r, double g, double bl, double a)
-
-/** Funcion to be run when the user makes a change to the ColorButton.
- *  Only one function can be registered at a time. */
-fun ColorButton.action(proc: ColorButton.() -> Unit) {
-    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
-    uiColorButtonOnChanged(this, staticCFunction(::_onColorButton), ref.asCPointer())
-}
-
-internal fun _onColorButton(widget: ColorButton?, ref: COpaquePointer?) {
-    val proc = ref!!.asStableRef<ColorButton.() -> Unit>().get()
-    widget!!.proc()
-}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -1371,18 +1237,6 @@ var FontButton.visible: Boolean
  *  does not allocate desc itself you must do so. */
 //TODO have a function that sets an entire font descriptor to a range in a uiAttributedString at once, for SetFont?
 //TODO void uiFontButtonFont(uiFontButton *b, uiFontDescriptor *desc)
-
-/** Funcion to be run when the font in the FontButton is changed.
- *  Only one function can be registered at a time. */
-fun FontButton.action(proc: FontButton.() -> Unit) {
-    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
-    uiFontButtonOnChanged(this, staticCFunction(::_onFontButton), ref.asCPointer())
-}
-
-internal fun _onFontButton(widget: FontButton?, ref: COpaquePointer?) {
-    val proc = ref!!.asStableRef<FontButton.() -> Unit>().get()
-    widget!!.proc()
-}
 
 /** Frees resources allocated in desc by uiFontButtonFont().
  *  After calling uiFreeFontButtonFont(), the contents of desc should be assumed to be undefined

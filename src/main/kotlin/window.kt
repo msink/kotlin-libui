@@ -17,8 +17,9 @@ class Window(
     val ref = StableRef.create(this)
     val ptr: CWindow = uiNewWindow(title, width, height, if (hasMenubar) 1 else 0) ?: throw Error()
 
-    var onResize: (Window.() -> Unit)? = null
-    var onClose: (Window.() -> Boolean)? = null
+    internal var onResize: (Window.() -> Unit)? = null
+    internal var onClose: (Window.() -> Boolean)? = null
+    internal var actions = mutableListOf<StableRef<Any>>()
 
     init {
         apply(block)
@@ -27,7 +28,115 @@ class Window(
     }
 
     fun dispose() {
+        actions.forEach { it.dispose() }
         ref.dispose()
+    }
+
+    /** Function to be run when window content size change. */
+    fun onResize(proc: Window.() -> Unit) {
+        onResize = proc
+    }
+
+    /** Function to be run when the user clicks the Window's close button.
+     *  Only one function can be registered at a time.
+     *  @returns [true] if window is destroyed */
+    fun onClose(proc: Window.() -> Boolean) {
+        onClose = proc
+    }
+
+    /** Function to be executed when the OS wants the program to quit
+     *  or when a Quit menu item has been clicked.
+     *  Only one function may be registered at a time.
+     *  @returns [true] when Quit will be called. */
+    fun onShouldQuit(proc: () -> Boolean) {
+        val ref = StableRef.create(proc).also { actions.add(it) }
+        uiOnShouldQuit(staticCFunction(::_onShouldQuit), ref.asCPointer())
+    }
+
+    /** Funcion to be run when the user makes a change to the Entry.
+     *  Only one function can be registered at a time. */
+    fun Entry.action(proc: Entry.() -> Unit) {
+        val ref = StableRef.create(proc).also { actions.add(it) }
+        uiEntryOnChanged(this, staticCFunction(::_onEntry), ref.asCPointer())
+    }
+
+    /** Funcion to be run when the user makes a change to the MultilineEntry.
+     *  Only one function can be registered at a time. */
+    fun MultilineEntry.action(proc: MultilineEntry.() -> Unit) {
+        val ref = StableRef.create(proc).also { actions.add(it) }
+        uiMultilineEntryOnChanged(this, staticCFunction(::_onMultilineEntry), ref.asCPointer())
+    }
+
+    /** Funcion to be run when the user clicks the Checkbox.
+     *  Only one function can be registered at a time. */
+    fun Checkbox.action(proc: Checkbox.() -> Unit) {
+        val ref = StableRef.create(proc).also { actions.add(it) }
+        uiCheckboxOnToggled(this, staticCFunction(::_onCheckbox), ref.asCPointer())
+    }
+
+    /** Funcion to be run when the user makes a change to the Combobox.
+     *  Only one function can be registered at a time. */
+    fun Combobox.action(proc: Combobox.() -> Unit) {
+        val ref = StableRef.create(proc).also { actions.add(it) }
+        uiComboboxOnSelected(this, staticCFunction(::_onCombobox), ref.asCPointer())
+    }
+
+    /** Funcion to be run when the user makes a change to the EditableCombobox.
+     *  Only one function can be registered at a time. */
+    //TODO what do we call a function that sets the currently selected item and fills the text field with it?
+    //TODO editable comboboxes have no consistent concept of selected item
+    fun EditableCombobox.action(proc: EditableCombobox.() -> Unit) {
+        val ref = StableRef.create(proc).also { actions.add(it) }
+        uiEditableComboboxOnChanged(this, staticCFunction(::_onEditableCombobox), ref.asCPointer())
+    }
+
+    /** Funcion to be run when the user makes a change to the Spinbox.
+     *  Only one function can be registered at a time. */
+    fun Spinbox.action(proc: Spinbox.() -> Unit) {
+        val ref = StableRef.create(proc).also { actions.add(it) }
+        uiSpinboxOnChanged(this, staticCFunction(::_onSpinbox), ref.asCPointer())
+    }
+
+    /** Funcion to be run when the user makes a change to the Slider.
+     *  Only one function can be registered at a time. */
+    fun Slider.action(proc: Slider.() -> Unit) {
+        val ref = StableRef.create(proc).also { actions.add(it) }
+        uiSliderOnChanged(this, staticCFunction(::_onSlider), ref.asCPointer())
+    }
+
+    /** Funcion to be run when the user makes a change to the RadioButtons.
+     *  Only one function can be registered at a time. */
+    fun RadioButtons.action(proc: RadioButtons.() -> Unit) {
+        val ref = StableRef.create(proc).also { actions.add(it) }
+        uiRadioButtonsOnSelected(this, staticCFunction(::_onRadioButtons), ref.asCPointer())
+    }
+
+    /** Funcion to be run when the user makes a change to the DateTimePicker.
+     *  Only one function can be registered at a time. */
+    fun DateTimePicker.action(proc: DateTimePicker.() -> Unit) {
+        val ref = StableRef.create(proc).also { actions.add(it) }
+        uiDateTimePickerOnChanged(this, staticCFunction(::_onDateTimePicker), ref.asCPointer())
+    }
+
+    /** Funcion to be run when the user clicks the Button.
+     *  Only one function can be registered at a time. */
+    fun Button.action(proc: Button.() -> Unit) {
+        val ref = StableRef.create(proc).also { actions.add(it) }
+        uiButtonOnClicked(this, staticCFunction(::_onButton), ref.asCPointer())
+    }
+
+    /** Funcion to be run when the user makes a change to the ColorButton.
+     *  Only one function can be registered at a time. */
+    fun ColorButton.action(proc: ColorButton.() -> Unit) {
+        val ref = StableRef.create(proc).also { actions.add(it) }
+        uiColorButtonOnChanged(this, staticCFunction(::_onColorButton), ref.asCPointer())
+    }
+
+    /** Funcion to be run when the font in the FontButton is changed.
+     *  Only one function can be registered at a time. */
+    fun FontButton.action(proc: FontButton.() -> Unit) {
+        val ref = StableRef.create(proc).also { actions.add(it) }
+        uiFontButtonOnChanged(this, staticCFunction(::_onFontButton), ref.asCPointer())
     }
 }
 
@@ -99,22 +208,34 @@ fun Window.setChild(child: FontButton) = uiWindowSetChild(ptr, child.asControl()
 /** Show the window. */
 fun Window.show() = uiControlShow(ptr.reinterpret())
 
-/** Function to be run when window content size change. */
-fun Window.onResize(proc: Window.() -> Unit) {
-    onResize = proc
+fun Window.OpenFileDialog(): String? {
+    val rawName = uiOpenFile(ptr)
+    if (rawName == null) return null
+    val strName = rawName.toKString()
+    uiFreeText(rawName)
+    return strName
 }
+
+fun Window.SaveFileDialog(): String? {
+    val rawName = uiSaveFile(ptr)
+    if (rawName == null) return null
+    val strName = rawName.toKString()
+    uiFreeText(rawName)
+    return strName
+}
+
+fun Window.MsgBox(text: String, details: String = "")
+    = uiMsgBox(ptr, text, details)
+
+fun Window.MsgBoxError(text: String, details: String = "")
+    = uiMsgBoxError(ptr, text, details)
+
+///////////////////////////////////////////////////////////////////////////////
 
 @Suppress("UNUSED_PARAMETER")
 private fun _onResize(ptr: CWindow?, ref: COpaquePointer?) {
     val window = ref!!.asStableRef<Window>().get()
     window.onResize?.invoke(window)
-}
-
-/** Function to be run when the user clicks the Window's close button.
- *  Only one function can be registered at a time.
- *  @returns [true] if window is destroyed */
-fun Window.onClose(proc: Window.() -> Boolean) {
-    onClose = proc
 }
 
 @Suppress("UNUSED_PARAMETER")
@@ -123,4 +244,69 @@ private fun _onClose(ptr: CWindow?, ref: COpaquePointer?): Int {
     val close = window.onClose?.invoke(window) ?: true
     if (close) window.dispose()
     return if (close) 1 else 0
+}
+
+internal fun _onShouldQuit(ref: COpaquePointer?): Int {
+    val proc = ref!!.asStableRef<() -> Boolean>().get()
+    return if (proc()) 1 else 0
+}
+
+private fun _onEntry(widget: Entry?, ref: COpaquePointer?) {
+    val proc = ref!!.asStableRef<Entry.() -> Unit>().get()
+    widget!!.proc()
+}
+
+private fun _onMultilineEntry(widget: MultilineEntry?, ref: COpaquePointer?) {
+    val proc = ref!!.asStableRef<MultilineEntry.() -> Unit>().get()
+    widget!!.proc()
+}
+
+private fun _onCheckbox(widget: Checkbox?, ref: COpaquePointer?) {
+    val proc = ref!!.asStableRef<Checkbox.() -> Unit>().get()
+    widget!!.proc()
+}
+
+private fun _onCombobox(widget: Combobox?, ref: COpaquePointer?) {
+    val proc = ref!!.asStableRef<Combobox.() -> Unit>().get()
+    widget!!.proc()
+}
+
+private fun _onEditableCombobox(widget: EditableCombobox?, ref: COpaquePointer?) {
+    val proc = ref!!.asStableRef<EditableCombobox.() -> Unit>().get()
+    widget!!.proc()
+}
+
+private fun _onSpinbox(widget: Spinbox?, ref: COpaquePointer?) {
+    val proc = ref!!.asStableRef<Spinbox.() -> Unit>().get()
+    widget!!.proc()
+}
+
+private fun _onSlider(widget: Slider?, ref: COpaquePointer?) {
+    val proc = ref!!.asStableRef<Slider.() -> Unit>().get()
+    widget!!.proc()
+}
+
+private fun _onRadioButtons(widget: RadioButtons?, ref: COpaquePointer?) {
+    val proc = ref!!.asStableRef<RadioButtons.() -> Unit>().get()
+    widget!!.proc()
+}
+
+private fun _onDateTimePicker(widget: DateTimePicker?, ref: COpaquePointer?) {
+    val proc = ref!!.asStableRef<DateTimePicker.() -> Unit>().get()
+    widget!!.proc()
+}
+
+private fun _onButton(button: Button?, ref: COpaquePointer?) {
+    val proc = ref!!.asStableRef<Button.() -> Unit>().get()
+    button!!.proc()
+}
+
+private fun _onColorButton(widget: ColorButton?, ref: COpaquePointer?) {
+    val proc = ref!!.asStableRef<ColorButton.() -> Unit>().get()
+    widget!!.proc()
+}
+
+private fun _onFontButton(widget: FontButton?, ref: COpaquePointer?) {
+    val proc = ref!!.asStableRef<FontButton.() -> Unit>().get()
+    widget!!.proc()
 }

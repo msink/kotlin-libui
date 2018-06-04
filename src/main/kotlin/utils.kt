@@ -15,10 +15,6 @@ data class DateTime(//posix struct tm
     val yday: Int,	// days since January 1	0-365
     val isdst: Int)	// Daylight Saving Time flag
 
-fun disposeStableRefs() = _stableRefs.forEach { it.dispose() }
-
-internal var _stableRefs = mutableListOf<StableRef<Any>>()
-
 /**
  * Initializes package ui, runs [init] to set up the program,
  * and executes the GUI main loop. [init] should set up the program's
@@ -36,41 +32,4 @@ fun application(init: () -> Unit) {
 
     uiMain()
     uiUninit()
-    disposeStableRefs()
 }
-
-/** Function to be executed when the OS wants the program to quit
- *  or when a Quit menu item has been clicked.
- *  Only one function may be registered at a time.
- *  @returns [true] when Quit will be called. */
-fun onShouldQuit(proc: () -> Boolean) {
-    val ref = StableRef.create(proc).also { _stableRefs.add(it) }
-    uiOnShouldQuit(staticCFunction(::_onShouldQuit), ref.asCPointer())
-}
-
-internal fun _onShouldQuit(ref: COpaquePointer?): Int {
-    val proc = ref!!.asStableRef<() -> Boolean>().get()
-    return if (proc()) 1 else 0
-}
-
-fun Window.OpenFileDialog(): String? {
-    val rawName = uiOpenFile(ptr)
-    if (rawName == null) return null
-    val strName = rawName.toKString()
-    uiFreeText(rawName)
-    return strName
-}
-
-fun Window.SaveFileDialog(): String? {
-    val rawName = uiSaveFile(ptr)
-    if (rawName == null) return null
-    val strName = rawName.toKString()
-    uiFreeText(rawName)
-    return strName
-}
-
-fun Window.MsgBox(text: String, details: String = "")
-    = uiMsgBox(ptr, text, details)
-
-fun Window.MsgBoxError(text: String, details: String = "")
-    = uiMsgBoxError(ptr, text, details)
