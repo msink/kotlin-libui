@@ -54,7 +54,7 @@ internal fun _onShouldQuit(ref: COpaquePointer?): Int {
 }
 
 fun Window.OpenFileDialog(): String? {
-    val rawName = uiOpenFile(this)
+    val rawName = uiOpenFile(ptr)
     if (rawName == null) return null
     val strName = rawName.toKString()
     uiFreeText(rawName)
@@ -62,7 +62,7 @@ fun Window.OpenFileDialog(): String? {
 }
 
 fun Window.SaveFileDialog(): String? {
-    val rawName = uiSaveFile(this)
+    val rawName = uiSaveFile(ptr)
     if (rawName == null) return null
     val strName = rawName.toKString()
     uiFreeText(rawName)
@@ -70,7 +70,7 @@ fun Window.SaveFileDialog(): String? {
 }
 
 fun Window.MsgBox(text: String, details: String = "")
-    = uiMsgBox(this, text, details)
+    = uiMsgBox(ptr, text, details)
 
 fun Window.MsgBoxError(text: String, details: String = "")
-    = uiMsgBoxError(this, text, details)
+    = uiMsgBoxError(ptr, text, details)
