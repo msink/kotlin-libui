@@ -1204,8 +1204,19 @@ var ColorButton.visible: Boolean
     get() = asControl().isVisible()
     set(visible) = if (visible) asControl().show() else asControl().hide()
 
-//TODO void uiColorButtonColor(uiColorButton *b, double *r, double *g, double *bl, double *a)
-//TODO void uiColorButtonSetColor(uiColorButton *b, double r, double g, double bl, double a)
+/** Return or set the currently selected color */
+var ColorButton.color: RGBA
+    get() = memScoped {
+        val r = alloc<DoubleVar>()
+        val g = alloc<DoubleVar>()
+        val b = alloc<DoubleVar>()
+        val a = alloc<DoubleVar>()
+        uiColorButtonColor(this@color, r.ptr, g.ptr, b.ptr, a.ptr)
+        RGBA(r.value, g.value, b.value, a.value)
+    }
+    set(color) {
+        uiColorButtonSetColor(this, color.R, color.G, color.B, color.A)
+    }
 
 ///////////////////////////////////////////////////////////////////////////////
 

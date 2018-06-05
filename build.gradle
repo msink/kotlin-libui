@@ -71,6 +71,19 @@ konanArtifacts {
             inputs.file resFile
         }
     }
+
+    program('histogram') {
+        srcFiles 'samples/histogram/main.kt'
+        srcFiles fileTree('src/main/kotlin')
+        libraries {
+            artifact 'libui'
+        }
+        target 'mingw', {
+            linkerOpts "$resFile -mwindows"
+            dependsOn 'windowsResources'
+            inputs.file resFile
+        }
+    }
 }
 
 task windowsResources (type: Exec) {
