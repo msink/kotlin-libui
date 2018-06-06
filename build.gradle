@@ -9,10 +9,18 @@ konanArtifacts {
         includeDirs "${project.rootDir}/libui"
     }
 
-    program('test') {
-        srcFiles fileTree('src/test/kotlin')
+    library('libuiKt') {
+        srcDir 'src/main/kotlin'
         libraries {
             artifact 'libui'
+        }
+    }
+
+    program('test') {
+        srcDir 'src/test/kotlin'
+        libraries {
+            artifact 'libui'
+            artifact 'libuiKt'
         }
         target 'mingw', {
             linkerOpts "$resFile"
@@ -35,9 +43,9 @@ konanArtifacts {
 
     program('hello2') {
         srcFiles 'samples/hello/hello2.kt'
-        srcFiles fileTree('src/main/kotlin')
         libraries {
             artifact 'libui'
+            artifact 'libuiKt'
         }
         target 'mingw', {
             linkerOpts "$resFile -mwindows"
@@ -47,10 +55,10 @@ konanArtifacts {
     }
 
     program('sampleForm') {
-        srcFiles 'samples/form/main.kt'
-        srcFiles fileTree('src/main/kotlin')
+        srcDir 'samples/form'
         libraries {
             artifact 'libui'
+            artifact 'libuiKt'
         }
         target 'mingw', {
             linkerOpts "$resFile -mwindows"
@@ -60,10 +68,10 @@ konanArtifacts {
     }
 
     program('controlgallery') {
-        srcFiles 'samples/controlgallery/main.kt'
-        srcFiles fileTree('src/main/kotlin')
+        srcDir 'samples/controlgallery'
         libraries {
             artifact 'libui'
+            artifact 'libuiKt'
         }
         target 'mingw', {
             linkerOpts "$resFile -mwindows"
@@ -73,10 +81,10 @@ konanArtifacts {
     }
 
     program('histogram') {
-        srcFiles 'samples/histogram/main.kt'
-        srcFiles fileTree('src/main/kotlin')
+        srcDir 'samples/histogram'
         libraries {
             artifact 'libui'
+            artifact 'libuiKt'
         }
         target 'mingw', {
             linkerOpts "$resFile -mwindows"
