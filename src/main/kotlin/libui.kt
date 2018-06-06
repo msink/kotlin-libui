@@ -52,32 +52,7 @@ typealias Menu = CPointer<uiMenu>
 
 ///////////////////////////////////////////////////////////
 
-typealias Area = CPointer<uiArea>
-typealias AreaHandler = CPointer<uiAreaHandler>
-typealias AreaDrawParams = CPointer<uiAreaDrawParams>
-typealias AreaMouseEvent = CPointer<uiAreaMouseEvent>
-typealias AreaKeyEvent = CPointer<uiAreaKeyEvent>
-
 typealias DrawContext = CPointer<uiDrawContext>
-
-//// TODO RTL layouts?
-//// TODO reconcile edge and corner naming
-
-//// TODO give a better name
-//// TODO document the types of width and height
-//void uiAreaSetSize(uiArea *a, int width, int height)
-//// TODO uiAreaQueueRedraw()
-//void uiAreaQueueRedrawAll(uiArea *a)
-//void uiAreaScrollTo(uiArea *a, double x, double y, double width, double height)
-//// TODO document these can only be called within Mouse() handlers
-//// TODO should these be allowed on scrolling areas?
-//// TODO decide which mouse events should be accepted Down is the only one guaranteed to work right now
-//// TODO what happens to events after calling this up to and including the next mouse up?
-//// TODO release capture?
-//void uiAreaBeginUserWindowMove(uiArea *a)
-//void uiAreaBeginUserWindowResize(uiArea *a, uiWindowResizeEdge edge)
-//uiArea *uiNewArea(uiAreaHandler *ah)
-//uiArea *uiNewScrollingArea(uiAreaHandler *ah, int width, int height)
 
 typealias DrawPath = CPointer<uiDrawPath>
 typealias DrawBrush = CPointer<uiDrawBrush>

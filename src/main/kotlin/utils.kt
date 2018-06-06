@@ -2,6 +2,20 @@
 
 import kotlinx.cinterop.*
 
+data class RGBA(
+    val R: Double,
+    val G: Double,
+    val B: Double,
+    val A: Double = 1.0
+)
+
+fun RGBA(color: Int, alpha: Double = 1.0) = RGBA(
+    R = ((color shr 16) and 255).toDouble() / 255,
+    G = ((color shr 8) and 255).toDouble() / 255,
+    B = ((color) and 255).toDouble() / 255,
+    A = alpha
+)
+
 data class Size2D(val width: Int, val height: Int)
 
 data class DateTime(//posix struct tm

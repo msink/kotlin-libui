@@ -58,6 +58,7 @@ fun ProgressBar.asControl(): Control = reinterpret()
 fun Button.asControl(): Control = reinterpret()
 fun ColorButton.asControl(): Control = reinterpret()
 fun FontButton.asControl(): Control = reinterpret()
+fun Area.asControl(): Control = reinterpret()
 
 /** Destroy and free the Control. */
 fun Control.destroy() = uiControlDestroy(this)
@@ -153,6 +154,8 @@ fun Form.append(label: String, widget: Button, stretchy: Boolean = false) =
 fun Form.append(label: String, widget: ColorButton, stretchy: Boolean = false) =
     uiFormAppend(this, label, widget.asControl(), if (stretchy) 1 else 0)
 fun Form.append(label: String, widget: FontButton, stretchy: Boolean = false) =
+    uiFormAppend(this, label, widget.asControl(), if (stretchy) 1 else 0)
+fun Form.append(label: String, widget: Area, stretchy: Boolean = false) =
     uiFormAppend(this, label, widget.asControl(), if (stretchy) 1 else 0)
 
 /** deletes the nth control of the Form. */
@@ -408,6 +411,17 @@ fun Grid.append(
     vexpand: Int,
     valign: Int) =
     uiGridAppend(this, widget.asControl(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+fun Grid.append(
+    widget: Area,
+    left: Int,
+    top: Int,
+    xspan: Int,
+    yspan: Int,
+    hexpand: Int,
+    halign: Int,
+    vexpand: Int,
+    valign: Int) =
+    uiGridAppend(this, widget.asControl(), left, top, xspan, yspan, hexpand, halign, vexpand, valign)
 
 //TODO void uiGridInsertAt(uiGrid *g, uiControl *c, uiControl *existing, uiAt at, int xspan, int yspan, int hexpand, uiAlign halign, int vexpand, uiAlign valign)
 
@@ -486,6 +500,8 @@ fun Box.append(widget: Button, stretchy: Boolean = false) =
 fun Box.append(widget: ColorButton, stretchy: Boolean = false) =
     uiBoxAppend(this, widget.asControl(), if (stretchy) 1 else 0)
 fun Box.append(widget: FontButton, stretchy: Boolean = false) =
+    uiBoxAppend(this, widget.asControl(), if (stretchy) 1 else 0)
+fun Box.append(widget: Area, stretchy: Boolean = false) =
     uiBoxAppend(this, widget.asControl(), if (stretchy) 1 else 0)
 
 /** deletes the nth control of the Box. */
@@ -566,6 +582,8 @@ fun Tab.append(name: String, widget: ColorButton) =
     uiTabAppend(this, name, widget.asControl())
 fun Tab.append(name: String, widget: FontButton) =
     uiTabAppend(this, name, widget.asControl())
+fun Tab.append(name: String, widget: Area) =
+    uiTabAppend(this, name, widget.asControl())
 
 /** Adds the given page to the Tab such that it is the nth page of the Tab (starting at 0). */
 fun Tab.insertAt(index: Int, name: String, widget: Form) =
@@ -607,6 +625,8 @@ fun Tab.insertAt(index: Int, name: String, widget: Button) =
 fun Tab.insertAt(index: Int, name: String, widget: ColorButton) =
     uiTabInsertAt(this, name, index, widget.asControl())
 fun Tab.insertAt(index: Int, name: String, widget: FontButton) =
+    uiTabInsertAt(this, name, index, widget.asControl())
+fun Tab.insertAt(index: Int, name: String, widget: Area) =
     uiTabInsertAt(this, name, index, widget.asControl())
 
 /** Delete deletes the nth page of the Tab. */
@@ -677,6 +697,7 @@ fun Group.setChild(child: ProgressBar) = uiGroupSetChild(this, child.asControl()
 fun Group.setChild(child: Button) = uiGroupSetChild(this, child.asControl())
 fun Group.setChild(child: ColorButton) = uiGroupSetChild(this, child.asControl())
 fun Group.setChild(child: FontButton) = uiGroupSetChild(this, child.asControl())
+fun Group.setChild(child: Area) = uiGroupSetChild(this, child.asControl())
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -688,10 +709,10 @@ fun Entry(block: Entry.() -> Unit = {}): Entry = uiNewEntry()?.apply(block) ?: t
 
 /** Create a new text Entry widget that mask the input,
  *  useful to edit passwords or other sensible data. */
-fun PasswordEntry(): Entry = uiNewPasswordEntry() ?: throw Error()
+fun PasswordEntry(block: Entry.() -> Unit = {}): Entry = uiNewPasswordEntry()?.apply(block) ?: throw Error()
 
 /** Create a new text Entry to search text. */
-fun SearchEntry(): Entry = uiNewSearchEntry() ?: throw Error()
+fun SearchEntry(block: Entry.() -> Unit = {}): Entry = uiNewSearchEntry()?.apply(block) ?: throw Error()
 
 /** Destroy and free the Entry. */
 fun Entry.destroy() = asControl().destroy()
@@ -987,10 +1008,12 @@ fun DateTimePicker(block: DateTimePicker.() -> Unit = {}): DateTimePicker =
     uiNewDateTimePicker()?.apply(block) ?: throw Error()
 
 /** Create a new DateTimePicker to edit dates. */
-fun DatePicker(): DateTimePicker = uiNewDatePicker() ?: throw Error()
+fun DatePicker(block: DateTimePicker.() -> Unit = {}): DateTimePicker =
+    uiNewDatePicker()?.apply(block) ?: throw Error()
 
 /** Create a new DateTimePicker to edit times. */
-fun TimePicker(): DateTimePicker = uiNewTimePicker() ?: throw Error()
+fun TimePicker(block: DateTimePicker.() -> Unit = {}): DateTimePicker =
+    uiNewTimePicker()?.apply(block) ?: throw Error()
 
 /** Destroy and free the DateTimePicker. */
 fun DateTimePicker.destroy() = asControl().destroy()

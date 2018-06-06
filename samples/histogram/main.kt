@@ -27,12 +27,10 @@ fun main(args: Array<String>) = application {
             srand(time(null).narrow())
             val datapoints = Array(10) { Spinbox(0, 100) { value = rand() % 101 } }
             val colorButton = ColorButton() { color = RGBA(colorDodgerBlue) }
-/*
-            var currentPoint = -1
+//          var currentPoint = -1
 
-            val histogram = Canvas(
-            onDraw = { params ->
-
+            val histogram = Area(AreaHandler(
+            draw = { /*params ->
                 fun setSolidBrush(uiDrawBrush *brush, uint32_t color, double alpha) {
                     uint8_t component
 
@@ -173,9 +171,10 @@ fun main(args: Array<String>) = application {
                     uiDrawFill(params.Context, path, &brush)
                     uiDrawFreePath(path)
                 }
+*/
             },
 
-            onClick = { event ->
+            mouseEvent = { /*event ->
                 double graphWidth, graphHeight
                 double xs[10], ys[10]
                 int i
@@ -189,7 +188,7 @@ fun main(args: Array<String>) = application {
                         && (yy <= ytest + pointRadius)
                 }
                 
-                graphSize(e->AreaWidth, e->AreaHeight, &graphWidth, &graphHeight)
+                graphSize(event.AreaWidth, event.AreaHeight, &graphWidth, &graphHeight)
                 pointLocations(graphWidth, graphHeight, xs, ys)
                 
                 for (i = 0 i < 10 i++)
@@ -199,21 +198,21 @@ fun main(args: Array<String>) = application {
                     i = -1
                 
                 currentPoint = i
-                
-                uiAreaQueueRedrawAll(this)
-            })
 */
+                queueRedrawAll()
+            }))
+
             append(VerticalBox() {
                 padded = true
                 datapoints.forEach {
-//                  it.action { histogram.queueRedrawAll() }
+                    it.action { histogram.queueRedrawAll() }
                     append(it)
                 }
-//              colorButton.action { histogram.queueRedrawAll() }
+                colorButton.action { histogram.queueRedrawAll() }
                 append(colorButton)
             })
 
-//          append(histogram, stretchy = true)
+            append(histogram, stretchy = true)
         })
 
         show()

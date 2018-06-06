@@ -20,6 +20,7 @@ class Window(
     internal var onResize: (Window.() -> Unit)? = null
     internal var onClose: (Window.() -> Boolean)? = null
     internal var actions = mutableListOf<StableRef<Any>>()
+    internal var handlers = mutableListOf<CPointer<*>>()
 
     init {
         apply(block)
@@ -29,6 +30,7 @@ class Window(
 
     fun dispose() {
         actions.forEach { it.dispose() }
+        handlers.forEach { nativeHeap.free(it) }
         ref.dispose()
     }
 
