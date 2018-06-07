@@ -3,16 +3,19 @@ import platform.posix.*
 import libui.*
 
 // histogram margins
-const val xoffLeft          = 20            
-const val yoffTop           = 20
-const val xoffRight         = 20
-const val yoffBottom        = 20
-const val pointRadius       = 5
+const val xoffLeft          = 20.0
+const val yoffTop           = 20.0
+const val xoffRight         = 20.0
+const val yoffBottom        = 20.0
+const val pointRadius       = 5.0
 
 // and some colors
 const val colorWhite        = 0xFFFFFF
 const val colorBlack        = 0x000000
 const val colorDodgerBlue   = 0x1E90FF
+
+fun graphWidth(clientWidth: Double): Double = clientWidth - xoffLeft - xoffRight
+fun graphHeight(clientHeight: Double): Double = clientHeight - yoffTop - yoffBottom
 
 fun main(args: Array<String>) = application {
 
@@ -27,178 +30,121 @@ fun main(args: Array<String>) = application {
             srand(time(null).narrow())
             val datapoints = Array(10) { Spinbox(0, 100) { value = rand() % 101 } }
             val colorButton = ColorButton() { color = RGBA(colorDodgerBlue) }
-//          var currentPoint = -1
+            var currentPoint = -1
+
+            fun pointLocations(width: Double, height: Double, xs: DoubleArray, ys: DoubleArray) {
+                val xincr = width / 9  // 10 - 1 to make the last point be at the end
+                val yincr = height / 100
+                for (i in 0 until 10) {
+                    // because y=0 is the top but n=0 is the bottom, we need to flip
+                    val n = 100 - datapoints[i].value
+                    xs[i] = xincr * i
+                    ys[i] = yincr * n
+                }
+            }
+
+            fun DrawPath.constructGraph(width: Double, height: Double, extend: Boolean = false) {
+                val xs = DoubleArray(10)
+                val ys = DoubleArray(10)
+                pointLocations(width, height, xs, ys)
+
+                figure(xs[0], ys[0])
+
+                for (i in 1 until 10)
+                    lineTo(xs[i], ys[i])
+
+                if (extend) {
+                    lineTo(width, height)
+                    lineTo(0.0, height)
+                    closeFigure()
+                }
+            }
 
             val histogram = Area(AreaHandler(
-            draw = { /*params ->
-                fun setSolidBrush(uiDrawBrush *brush, uint32_t color, double alpha) {
-                    uint8_t component
+            draw = { draw ->
+                val context = draw.pointed.Context!!
+                val areaWidth = draw.pointed.AreaWidth
+                val areaHeight = draw.pointed.AreaHeight
+                val graphWidth = graphWidth(areaWidth)
+                val graphHeight = graphHeight(areaHeight)
+                val graphColor = colorButton.color
 
-                    brush->Type = uiDrawBrushTypeSolid
-                    component = (uint8_t) ((color >> 16) & 0xFF)
-                    brush->R = ((double) component) / 255
-                    component = (uint8_t) ((color >> 8) & 0xFF)
-                    brush->G = ((double) component) / 255
-                    component = (uint8_t) (color & 0xFF)
-                    brush->B = ((double) component) / 255
-                    brush->A = alpha
-                }
-
-                fun pointLocations(double width, double height, double *xs, double *ys) {
-                    double xincr, yincr
-                    int i, n
-
-                    xincr = width / 9        // 10 - 1 to make the last point be at the end
-                    yincr = height / 100
-
-                    for (i = 0 i < 10 i++) {
-                        // get the value of the point
-                        n = uiSpinboxValue(datapoints[i])
-                        // because y=0 is the top but n=0 is the bottom, we need to flip
-                        n = 100 - n
-                        xs[i] = xincr * i
-                        ys[i] = yincr * n
-                    }
-                }
-
-                fun constructGraph(double width, double height, int extend): CPointer<uiDrawPath> {
-                    uiDrawPath *path
-                    double xs[10], ys[10]
-                    int i
-
-                    pointLocations(width, height, xs, ys)
-
-                    path = uiDrawNewPath(uiDrawFillModeWinding)
-
-                    uiDrawPathNewFigure(path, xs[0], ys[0])
-                    for (i = 1 i < 10 i++)
-                        uiDrawPathLineTo(path, xs[i], ys[i])
-
-                    if (extend) {
-                        uiDrawPathLineTo(path, width, height)
-                        uiDrawPathLineTo(path, 0, height)
-                        uiDrawPathCloseFigure(path)
-                    }
-
-                    uiDrawPathEnd(path)
-                    return path
-                }
-
-                fun graphSize(double clientWidth, double clientHeight, double *graphWidth, double *graphHeight) {
-                    *graphWidth = clientWidth - xoffLeft - xoffRight
-                    *graphHeight = clientHeight - yoffTop - yoffBottom
-                }
-
-                uiDrawPath *path
-                uiDrawBrush brush
-                uiDrawStrokeParams sp
-                uiDrawMatrix m
-                double graphWidth, graphHeight
-                double graphR, graphG, graphB, graphA
-
-                // fill the area with white
-                setSolidBrush(&brush, colorWhite, 1.0)
-                path = uiDrawNewPath(uiDrawFillModeWinding)
-                uiDrawPathAddRectangle(path, 0, 0, params.AreaWidth, params.AreaHeight)
-                uiDrawPathEnd(path)
-                uiDrawFill(params.Context, path, &brush)
-                uiDrawFreePath(path)
-
-                // figure out dimensions
-                graphSize(params.AreaWidth, params.AreaHeight, &graphWidth, &graphHeight)
-
-                // clear sp to avoid passing garbage to uiDrawStroke()
-                // for example, we don't use dashing
-                memset(&sp, 0, sizeof (uiDrawStrokeParams))
+            memScoped {
+                val brush = alloc<uiDrawBrush>().ptr
 
                 // make a stroke for both the axes and the histogram line
-                sp.Cap = uiDrawLineCapFlat
-                sp.Join = uiDrawLineJoinMiter
-                sp.Thickness = 2
-                sp.MiterLimit = uiDrawDefaultMiterLimit
+                val stroke = alloc<uiDrawStrokeParams>().ptr
+                stroke.pointed.Cap = uiDrawLineCapFlat
+                stroke.pointed.Join = uiDrawLineJoinMiter
+                stroke.pointed.Thickness = 2.0
+                stroke.pointed.MiterLimit = uiDrawDefaultMiterLimit
+
+                // fill the area with white
+                context.fill(uiDrawFillModeWinding, brush.solid(colorWhite)) {
+                    rectangle(0.0, 0.0, areaWidth, areaHeight)
+                }
 
                 // draw the axes
-                setSolidBrush(&brush, colorBlack, 1.0)
-                path = uiDrawNewPath(uiDrawFillModeWinding)
-                uiDrawPathNewFigure(path,
-                    xoffLeft, yoffTop)
-                uiDrawPathLineTo(path,
-                    xoffLeft, yoffTop + graphHeight)
-                uiDrawPathLineTo(path,
-                    xoffLeft + graphWidth, yoffTop + graphHeight)
-                uiDrawPathEnd(path)
-                uiDrawStroke(params.Context, path, &brush, &sp)
-                uiDrawFreePath(path)
+                context.stroke(uiDrawFillModeWinding, brush.solid(colorBlack), stroke) {
+                    figure(xoffLeft, yoffTop)
+                    lineTo(xoffLeft, yoffTop + graphHeight)
+                    lineTo(xoffLeft + graphWidth, yoffTop + graphHeight)
+                }
 
                 // now transform the coordinate space so (0, 0) is the top-left corner of the graph
-                uiDrawMatrixSetIdentity(&m)
-                uiDrawMatrixTranslate(&m, xoffLeft, yoffTop)
-                uiDrawTransform(params.Context, &m)
-
-                // now get the color for the graph itself and set up the brush
-                uiColorButtonColor(colorButton, &graphR, &graphG, &graphB, &graphA)
-                brush.Type = uiDrawBrushTypeSolid
-                brush.R = graphR
-                brush.G = graphG
-                brush.B = graphB
-                // we set brush->A below to different values for the fill and stroke
+                context.transform {
+                    translate(xoffLeft, yoffTop)
+                }
 
                 // now create the fill for the graph below the graph line
-                path = constructGraph(graphWidth, graphHeight, 1)
-                brush.A = graphA / 2
-                uiDrawFill(params.Context, path, &brush)
-                uiDrawFreePath(path)
+                context.fill(uiDrawFillModeWinding, brush.solid(graphColor, 0.5)) {
+                    constructGraph(graphWidth, graphHeight, extend = true)
+                }
 
                 // now draw the histogram line
-                path = constructGraph(graphWidth, graphHeight, 0)
-                brush.A = graphA
-                uiDrawStroke(params.Context, path, &brush, &sp)
-                uiDrawFreePath(path)
+                context.stroke(uiDrawFillModeWinding, brush.solid(graphColor), stroke) {
+                    constructGraph(graphWidth, graphHeight)
+                }
 
                 // now draw the point being hovered over
                 if (currentPoint != -1) {
-                    double xs[10], ys[10]
-                
+                    val xs = DoubleArray(10)
+                    val ys = DoubleArray(10)
                     pointLocations(graphWidth, graphHeight, xs, ys)
-                    path = uiDrawNewPath(uiDrawFillModeWinding)
-                    uiDrawPathNewFigureWithArc(path,
-                        xs[currentPoint], ys[currentPoint],
-                        pointRadius,
-                        0, 6.23,        // TODO pi
-                        0)
-                    uiDrawPathEnd(path)
-                    // use the same brush as for the histogram lines
-                    uiDrawFill(params.Context, path, &brush)
-                    uiDrawFreePath(path)
-                }
-*/
-            },
 
-            mouseEvent = { /*event ->
-                double graphWidth, graphHeight
-                double xs[10], ys[10]
-                int i
-
-                fun inPoint(x: Double, y: Double, xtest: Double, ytest: Double): Boolean {
-                    val xx = x - xoffLeft
-                    val yy = y - yoffTop
-                    return (xx >= xtest - pointRadius)
-                        && (xx <= xtest + pointRadius)
-                        && (yy >= ytest - pointRadius)
-                        && (yy <= ytest + pointRadius)
+                    context.fill(uiDrawFillModeWinding, brush) {
+                        figureWithArc(xs[currentPoint], ys[currentPoint],
+                                      pointRadius, 0.0, 6.23, false)
+                    }
                 }
-                
-                graphSize(event.AreaWidth, event.AreaHeight, &graphWidth, &graphHeight)
+            }},
+
+            mouseEvent = { event ->
+                val eventX = event.pointed.X
+                val eventY = event.pointed.Y
+                val areaWidth = event.pointed.AreaWidth
+                val areaHeight = event.pointed.AreaHeight
+                val graphWidth = graphWidth(areaWidth)
+                val graphHeight = graphHeight(areaHeight)
+
+                val xs = DoubleArray(10)
+                val ys = DoubleArray(10)
                 pointLocations(graphWidth, graphHeight, xs, ys)
-                
-                for (i = 0 i < 10 i++)
-                    if (inPoint(event.X, event.Y, xs[i], ys[i]))
+
+                currentPoint = -1
+
+                val x = eventX - xoffLeft
+                val y = eventY - yoffTop
+                for (i in 0 until 10) {
+                    if ((x >= xs[i] - pointRadius) &&
+                        (x <= xs[i] + pointRadius) &&
+                        (y >= ys[i] - pointRadius) &&
+                        (y <= ys[i] + pointRadius)) {
+                        currentPoint = i
                         break
-                if (i == 10)        // not in a point
-                    i = -1
+                    }
+                }
                 
-                currentPoint = i
-*/
                 queueRedrawAll()
             }))
 

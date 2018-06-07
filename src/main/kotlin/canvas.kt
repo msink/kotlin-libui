@@ -99,3 +99,119 @@ private fun _onKeyEvent(handler: AreaHandler?, area: Area?, event: AreaKeyEvent?
     val proc = refs.pointed.kt.keyEvent!!.asStableRef<Area.(event: AreaKeyEvent) -> Boolean>().get()
     return if (area!!.proc(event!!)) 1 else 0
 }
+
+///////////////////////////////////////////////////////////////////////////////
+
+typealias DrawBrush = CPointer<uiDrawBrush>
+typealias DrawBrushGradientStop = CPointer<uiDrawBrushGradientStop>
+typealias DrawStrokeParams = CPointer<uiDrawStrokeParams>
+typealias DrawPath = CPointer<uiDrawPath>
+
+fun DrawBrush.solid(rgba: RGBA, opacity: Double = 1.0): DrawBrush {
+    pointed.Type = uiDrawBrushTypeSolid
+    pointed.R = rgba.R
+    pointed.G = rgba.G
+    pointed.B = rgba.B
+    pointed.A = rgba.A * opacity
+    return this
+}
+
+fun DrawBrush.solid(color: Int, alpha: Double = 1.0): DrawBrush {
+    pointed.Type = uiDrawBrushTypeSolid
+    val rgba = RGBA(color, alpha)
+    pointed.R = rgba.R
+    pointed.G = rgba.G
+    pointed.B = rgba.B
+    pointed.A = alpha
+    return this
+}
+
+fun DrawPath.figure(x: Double, y: Double) = uiDrawPathNewFigure(this, x, y)
+
+fun DrawPath.lineTo(x: Double, y: Double) = uiDrawPathLineTo(this, x, y)
+
+fun DrawPath.figureWithArc(xCenter: Double, yCenter: Double, radius: Double,
+                           startAngle: Double, sweep: Double, negative: Boolean = false) =
+    uiDrawPathNewFigureWithArc(this, xCenter, yCenter, radius, startAngle, sweep, if (negative) 1 else 0)
+
+fun DrawPath.arcTo(xCenter: Double, yCenter: Double, radius: Double,
+                           startAngle: Double, sweep: Double, negative: Boolean = false) =
+    uiDrawPathArcTo(this, xCenter, yCenter, radius, startAngle, sweep, if (negative) 1 else 0)
+
+fun DrawPath.arcTo(c1x: Double, c1y: Double, c2x: Double, c2y: Double, endX: Double, endY: Double) =
+    uiDrawPathBezierTo(this, c1x, c1y, c2x, c2y, endX, endY)
+
+fun DrawPath.closeFigure() = uiDrawPathCloseFigure(this)
+
+fun DrawPath.rectangle(x: Double, y: Double, width: Double, height: Double) =
+    uiDrawPathAddRectangle(this, x, y, width, height)
+
+///////////////////////////////////////////////////////////////////////////////
+
+typealias DrawMatrix = CPointer<uiDrawMatrix>
+
+fun DrawMatrix.translate(x: Double, y: Double) =
+    uiDrawMatrixTranslate(this, x, y)
+
+fun DrawMatrix.scale(xCenter: Double, yCenter: Double, x: Double, y: Double) =
+    uiDrawMatrixScale(this, xCenter, yCenter, x, y)
+
+fun DrawMatrix.scale(x: Double, y: Double, amount: Double) =
+    uiDrawMatrixRotate(this, x, y, amount)
+
+fun DrawMatrix.skew(x: Double, y: Double, xamount: Double, yamount: Double) =
+    uiDrawMatrixSkew(this, x, y, xamount, yamount)
+
+fun DrawMatrix.skew(other: DrawMatrix) =
+    uiDrawMatrixMultiply(this, other)
+
+fun DrawMatrix.invertible() =
+    uiDrawMatrixInvertible(this)
+
+fun DrawMatrix.invert() =
+    uiDrawMatrixInvert(this)
+
+//void uiDrawMatrixTransformPoint(uiDrawMatrix *m, double *x, double *y)
+//void uiDrawMatrixTransformSize(uiDrawMatrix *m, double *x, double *y)
+
+///////////////////////////////////////////////////////////////////////////////
+
+typealias DrawContext = CPointer<uiDrawContext>
+
+fun DrawContext.fill(
+    mode: uiDrawFillMode,
+    brush: DrawBrush,
+    block: DrawPath.() -> Unit
+) {
+    val path = uiDrawNewPath(mode) ?: throw Error()
+    path.block()
+    uiDrawPathEnd(path)
+    uiDrawFill(this, path, brush)
+    uiDrawFreePath(path)
+}
+
+fun DrawContext.stroke(
+    mode: uiDrawFillMode,
+    brush: DrawBrush,
+    stroke: DrawStrokeParams,
+    block: DrawPath.() -> Unit
+) {
+    val path = uiDrawNewPath(mode) ?: throw Error()
+    path.block()
+    uiDrawPathEnd(path)
+    uiDrawStroke(this, path, brush, stroke)
+    uiDrawFreePath(path)
+}
+
+fun DrawContext.transform(block: DrawMatrix.() -> Unit) = memScoped {
+    val matrix = alloc<uiDrawMatrix>().ptr
+    uiDrawMatrixSetIdentity(matrix)
+    matrix.block()
+    uiDrawTransform(this@transform, matrix)
+}
+
+fun DrawContext.clip(path: DrawPath) = uiDrawClip(this, path)
+
+fun DrawContext.save() = uiDrawSave(this)
+
+fun DrawContext.restore() = uiDrawRestore(this)

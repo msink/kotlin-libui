@@ -45,72 +45,7 @@ typealias Menu = CPointer<uiMenu>
 //void uiMenuAppendSeparator(uiMenu *m)
 //uiMenu *uiNewMenu(const char *name)
 
-//char *uiOpenFile(uiWindow *parent)
-//char *uiSaveFile(uiWindow *parent)
-//void uiMsgBox(uiWindow *parent, const char *title, const char *description)
-//void uiMsgBoxError(uiWindow *parent, const char *title, const char *description)
-
 ///////////////////////////////////////////////////////////
-
-typealias DrawContext = CPointer<uiDrawContext>
-
-typealias DrawPath = CPointer<uiDrawPath>
-typealias DrawBrush = CPointer<uiDrawBrush>
-typealias DrawStrokeParams = CPointer<uiDrawStrokeParams>
-typealias DrawMatrix = CPointer<uiDrawMatrix>
-
-typealias DrawBrushGradientStop = CPointer<uiDrawBrushGradientStop>
-
-//// this is the default for botoh cairo and Direct2D (in the latter case, from the C++ helper functions)
-//// Core Graphics doesn't explicitly specify a default, but NSBezierPath allows you to choose one, and this is the initial value
-//// so we're good to use it too!
-//#define uiDrawDefaultMiterLimit 10.0
-
-//uiDrawPath *uiDrawNewPath(uiDrawFillMode fillMode)
-//void uiDrawFreePath(uiDrawPath *p)
-
-//void uiDrawPathNewFigure(uiDrawPath *p, double x, double y)
-//void uiDrawPathNewFigureWithArc(uiDrawPath *p, double xCenter, double yCenter, double radius, double startAngle, double sweep, int negative)
-//void uiDrawPathLineTo(uiDrawPath *p, double x, double y)
-//// notes: angles are both relative to 0 and go counterclockwise
-//// TODO is the initial line segment on cairo and OS X a proper join?
-//// TODO what if sweep < 0?
-//void uiDrawPathArcTo(uiDrawPath *p, double xCenter, double yCenter, double radius, double startAngle, double sweep, int negative)
-//void uiDrawPathBezierTo(uiDrawPath *p, double c1x, double c1y, double c2x, double c2y, double endX, double endY)
-//// TODO quadratic bezier
-//void uiDrawPathCloseFigure(uiDrawPath *p)
-
-//// TODO effect of these when a figure is already started
-//void uiDrawPathAddRectangle(uiDrawPath *p, double x, double y, double width, double height)
-
-//void uiDrawPathEnd(uiDrawPath *p)
-
-//void uiDrawStroke(uiDrawContext *c, uiDrawPath *path, uiDrawBrush *b, uiDrawStrokeParams *p)
-//void uiDrawFill(uiDrawContext *c, uiDrawPath *path, uiDrawBrush *b)
-
-//// TODO primitives:
-//// - rounded rectangles
-//// - elliptical arcs
-//// - quadratic bezier curves
-
-//void uiDrawMatrixSetIdentity(uiDrawMatrix *m)
-//void uiDrawMatrixTranslate(uiDrawMatrix *m, double x, double y)
-//void uiDrawMatrixScale(uiDrawMatrix *m, double xCenter, double yCenter, double x, double y)
-//void uiDrawMatrixRotate(uiDrawMatrix *m, double x, double y, double amount)
-//void uiDrawMatrixSkew(uiDrawMatrix *m, double x, double y, double xamount, double yamount)
-//void uiDrawMatrixMultiply(uiDrawMatrix *dest, uiDrawMatrix *src)
-//int uiDrawMatrixInvertible(uiDrawMatrix *m)
-//int uiDrawMatrixInvert(uiDrawMatrix *m)
-//void uiDrawMatrixTransformPoint(uiDrawMatrix *m, double *x, double *y)
-//void uiDrawMatrixTransformSize(uiDrawMatrix *m, double *x, double *y)
-
-//void uiDrawTransform(uiDrawContext *c, uiDrawMatrix *m)
-
-//// TODO add a uiDrawPathStrokeToFill() or something like that
-//void uiDrawClip(uiDrawContext *c, uiDrawPath *path)
-
-//void uiDrawSave(uiDrawContext *c)
-//void uiDrawRestore(uiDrawContext *c)
 
 //// uiAttribute stores information about an attribute in a
 //// uiAttributedString.
