@@ -43,23 +43,6 @@ fun main(args: Array<String>) = application {
                 }
             }
 
-            fun DrawPath.constructGraph(width: Double, height: Double, extend: Boolean = false) {
-                val xs = DoubleArray(10)
-                val ys = DoubleArray(10)
-                pointLocations(width, height, xs, ys)
-
-                figure(xs[0], ys[0])
-
-                for (i in 1 until 10)
-                    lineTo(xs[i], ys[i])
-
-                if (extend) {
-                    lineTo(width, height)
-                    lineTo(0.0, height)
-                    closeFigure()
-                }
-            }
-
             val histogram = Area(AreaHandler(
             draw = { draw ->
                 val context = draw.pointed.Context!!
@@ -68,6 +51,10 @@ fun main(args: Array<String>) = application {
                 val graphWidth = graphWidth(areaWidth)
                 val graphHeight = graphHeight(areaHeight)
                 val graphColor = colorButton.color
+
+                val xs = DoubleArray(10)
+                val ys = DoubleArray(10)
+                pointLocations(graphWidth, graphHeight, xs, ys)
 
             memScoped {
                 val brush = alloc<uiDrawBrush>().ptr
@@ -97,24 +84,27 @@ fun main(args: Array<String>) = application {
                 }
 
                 // now create the fill for the graph below the graph line
-                context.fill(uiDrawFillModeWinding, brush.solid(graphColor, 0.5)) {
-                    constructGraph(graphWidth, graphHeight, extend = true)
+                context.fill(uiDrawFillModeWinding, brush.solid(graphColor, opacity = 0.5)) {
+                    figure(xs[0], ys[0])
+                    for (i in 1 until 10)
+                        lineTo(xs[i], ys[i])
+                    lineTo(graphWidth, graphHeight)
+                    lineTo(0.0, graphHeight)
+                    closeFigure()
                 }
 
                 // now draw the histogram line
                 context.stroke(uiDrawFillModeWinding, brush.solid(graphColor), stroke) {
-                    constructGraph(graphWidth, graphHeight)
+                    figure(xs[0], ys[0])
+                    for (i in 1 until 10)
+                        lineTo(xs[i], ys[i])
                 }
 
                 // now draw the point being hovered over
                 if (currentPoint != -1) {
-                    val xs = DoubleArray(10)
-                    val ys = DoubleArray(10)
-                    pointLocations(graphWidth, graphHeight, xs, ys)
-
                     context.fill(uiDrawFillModeWinding, brush) {
-                        figureWithArc(xs[currentPoint], ys[currentPoint],
-                                      pointRadius, 0.0, 6.23, false)
+                        figureWithArc(xs[currentPoint], ys[currentPoint], pointRadius,
+                                      startAngle = 0.0, sweep = 6.23)
                     }
                 }
             }},
