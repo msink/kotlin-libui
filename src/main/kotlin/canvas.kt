@@ -48,7 +48,7 @@ typealias AreaKeyEvent = CPointer<uiAreaKeyEvent>
  *  @param[keyEvent] called when a key was pressed. Return `true` to indicate that the key event was handled
  *    (a menu item with that accelerator won't activate, no error sound on macOS). Event is an [AreaKeyEvent] */
 fun Window.AreaHandler(
-    draw: Area.(params: AreaDrawParams) -> Unit = {},
+    draw: Area.(params: AreaDrawParams) -> Unit,
     mouseEvent: Area.(event: AreaMouseEvent) -> Unit = {},
     mouseCrossed: Area.(left: Boolean) -> Unit = {},
     dragBroken: Area.() -> Unit = {},

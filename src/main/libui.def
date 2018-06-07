@@ -1,5 +1,7 @@
 package = libui
 headers = ui.h
+noStringConversion = uiFreeInitError
+
 staticLibraries = libui.a
 libraryPaths = build/libui/out
 

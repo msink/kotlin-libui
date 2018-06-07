@@ -39,7 +39,11 @@ fun application(init: () -> Unit) {
     memScoped {
         val options = alloc<uiInitOptions>()
         val error = uiInit(options.ptr)
-        if (error != null) throw Error("Error: '${error.toKString()}'")
+        if (error != null) {
+            val errorString = error.toKString()
+            uiFreeInitError(error)
+            throw Error("error initializing ui: '$errorString'")
+        }
     }
 
     init()
