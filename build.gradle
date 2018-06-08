@@ -44,7 +44,6 @@ konanArtifacts {
     program('hello2') {
         srcFiles 'samples/hello/hello2.kt'
         libraries {
-            artifact 'libui'
             artifact 'libuiKt'
         }
         target 'mingw', {
@@ -57,7 +56,6 @@ konanArtifacts {
     program('sampleForm') {
         srcDir 'samples/form'
         libraries {
-            artifact 'libui'
             artifact 'libuiKt'
         }
         target 'mingw', {
@@ -70,7 +68,6 @@ konanArtifacts {
     program('controlgallery') {
         srcDir 'samples/controlgallery'
         libraries {
-            artifact 'libui'
             artifact 'libuiKt'
         }
         target 'mingw', {
@@ -83,7 +80,6 @@ konanArtifacts {
     program('histogram') {
         srcDir 'samples/histogram'
         libraries {
-            artifact 'libui'
             artifact 'libuiKt'
         }
         target 'mingw', {
