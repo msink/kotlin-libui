@@ -88,6 +88,18 @@ konanArtifacts {
             inputs.file resFile
         }
     }
+
+    program('drawtext') {
+        srcDir 'samples/drawtext'
+        libraries {
+            artifact 'libuiKt'
+        }
+        target 'mingw', {
+            linkerOpts "$resFile -mwindows"
+            dependsOn 'windowsResources'
+            inputs.file resFile
+        }
+    }
 }
 
 task windowsResources (type: Exec) {
