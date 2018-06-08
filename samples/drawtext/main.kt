@@ -1,87 +1,57 @@
+import kotlinx.cinterop.*
 import libui.*
 
-/*
-fun appendWithAttribute(const char *what, uiAttribute *attr, uiAttribute *attr2)
-{
-    size_t start, end
-
-    start = uiAttributedStringLen(attrstr)
-    end = start + strlen(what)
-    uiAttributedStringAppendUnattributed(attrstr, what)
-    uiAttributedStringSetAttribute(attrstr, attr, start, end)
-    if (attr2 != NULL)
-        uiAttributedStringSetAttribute(attrstr, attr2, start, end)
+fun AttributedString.append(what: String, attr: Attribute, attr2: Attribute? = null) {
+    val start = length
+    val end = start + what.length
+    append(what)
+    setAttribute(attr, start, end)
+    if (attr2 != null)
+        setAttribute(attr2, start, end)
 }
 
-fun makeAttributedString(void)
-{
-    uiAttribute *attr, *attr2
-    uiOpenTypeFeatures *otf
+fun makeAttributedString() = AttributedString(
+    "Drawing strings with libui is done with the uiAttributedString and uiDrawTextLayout objects.\n" +
+    "uiAttributedString lets you have a variety of attributes: ").apply {
+    append("font family", FamilyAttribute("Courier New"))
+    append(", ")
+    append("font size", SizeAttribute(18.0))
+    append(", ")
+    append("font weight", WeightAttribute(uiTextWeightBold))
+    append(", ")
+    append("font italicness", ItalicAttribute(uiTextItalicItalic))
+    append(", ")
+    append("font stretch", StretchAttribute(uiTextStretchCondensed))
+    append(", ")
+    append("text color", ColorAttribute(RGBA(0.75, 0.25, 0.5, 0.75)))
+    append(", ")
+    append("text background color", BackgroundAttribute(RGBA(0.5, 0.5, 0.25, 0.5)))
+    append(", ")
+    append("underline style", UnderlineAttribute(uiUnderlineSingle))
+    append(", ")
+    append("and ")
+    append("underline color",
+           UnderlineAttribute(uiUnderlineDouble),
+           UnderlineColorAttribute(uiUnderlineColorCustom, RGBA(1.0, 0.0, 0.5, 1.0)))
+    append(". ")
+    append("Furthermore, there are attributes allowing for ")
+    append("special underlines for indicating spelling errors",
+           UnderlineAttribute(uiUnderlineSuggestion),
+           UnderlineColorAttribute(uiUnderlineColorSpelling, RGBA(0.0, 0.0, 0.0, 0.0)))
+    append(" (and other types of errors) ")
+    append("and control over OpenType features such as ligatures (for instance, ")
 
-    attrstr = uiNewAttributedString(
-        "Drawing strings with libui is done with the uiAttributedString and uiDrawTextLayout objects.\n"
-        "uiAttributedString lets you have a variety of attributes: ")
+    val otf = OpenTypeFeatures()
+    otf.add("liga", 0)
+    append("afford", FeaturesAttribute(otf))
+    append(" vs. ")
+    otf.add("liga", 1)
+    append("afford", FeaturesAttribute(otf))
+    otf.dispose()
+    append(").\n")
 
-    attr = uiNewFamilyAttribute("Courier New")
-    appendWithAttribute("font family", attr, NULL)
-    uiAttributedStringAppendUnattributed(attrstr, ", ")
-
-    attr = uiNewSizeAttribute(18)
-    appendWithAttribute("font size", attr, NULL)
-    uiAttributedStringAppendUnattributed(attrstr, ", ")
-
-    attr = uiNewWeightAttribute(uiTextWeightBold)
-    appendWithAttribute("font weight", attr, NULL)
-    uiAttributedStringAppendUnattributed(attrstr, ", ")
-
-    attr = uiNewItalicAttribute(uiTextItalicItalic)
-    appendWithAttribute("font italicness", attr, NULL)
-    uiAttributedStringAppendUnattributed(attrstr, ", ")
-
-    attr = uiNewStretchAttribute(uiTextStretchCondensed)
-    appendWithAttribute("font stretch", attr, NULL)
-    uiAttributedStringAppendUnattributed(attrstr, ", ")
-
-    attr = uiNewColorAttribute(0.75, 0.25, 0.5, 0.75)
-    appendWithAttribute("text color", attr, NULL)
-    uiAttributedStringAppendUnattributed(attrstr, ", ")
-
-    attr = uiNewBackgroundAttribute(0.5, 0.5, 0.25, 0.5)
-    appendWithAttribute("text background color", attr, NULL)
-    uiAttributedStringAppendUnattributed(attrstr, ", ")
-
-
-    attr = uiNewUnderlineAttribute(uiUnderlineSingle)
-    appendWithAttribute("underline style", attr, NULL)
-    uiAttributedStringAppendUnattributed(attrstr, ", ")
-
-    uiAttributedStringAppendUnattributed(attrstr, "and ")
-    attr = uiNewUnderlineAttribute(uiUnderlineDouble)
-    attr2 = uiNewUnderlineColorAttribute(uiUnderlineColorCustom, 1.0, 0.0, 0.5, 1.0)
-    appendWithAttribute("underline color", attr, attr2)
-    uiAttributedStringAppendUnattributed(attrstr, ". ")
-
-    uiAttributedStringAppendUnattributed(attrstr, "Furthermore, there are attributes allowing for ")
-    attr = uiNewUnderlineAttribute(uiUnderlineSuggestion)
-    attr2 = uiNewUnderlineColorAttribute(uiUnderlineColorSpelling, 0, 0, 0, 0)
-    appendWithAttribute("special underlines for indicating spelling errors", attr, attr2)
-    uiAttributedStringAppendUnattributed(attrstr, " (and other types of errors) ")
-
-    uiAttributedStringAppendUnattributed(attrstr, "and control over OpenType features such as ligatures (for instance, ")
-    otf = uiNewOpenTypeFeatures()
-    uiOpenTypeFeaturesAdd(otf, 'l', 'i', 'g', 'a', 0)
-    attr = uiNewFeaturesAttribute(otf)
-    appendWithAttribute("afford", attr, NULL)
-    uiAttributedStringAppendUnattributed(attrstr, " vs. ")
-    uiOpenTypeFeaturesAdd(otf, 'l', 'i', 'g', 'a', 1)
-    attr = uiNewFeaturesAttribute(otf)
-    appendWithAttribute("afford", attr, NULL)
-    uiFreeOpenTypeFeatures(otf)
-    uiAttributedStringAppendUnattributed(attrstr, ").\n")
-
-    uiAttributedStringAppendUnattributed(attrstr, "Use the controls opposite to the text to control properties of the text.")
+    append("Use the controls opposite to the text to control properties of the text.")
 }
-*/
 
 fun main(args: Array<String>) = application {
 
@@ -90,7 +60,8 @@ fun main(args: Array<String>) = application {
         onClose { uiQuit(); true }
         onShouldQuit { destroy(); true }
 
-//      val attrstr = makeAttributedString()
+        val attrstr = makeAttributedString()
+        astrings.add(attrstr)
 
         val fontButton = FontButton()
 
@@ -101,21 +72,15 @@ fun main(args: Array<String>) = application {
             selected = 0
         }
 
-        val area = Area(AreaHandler(draw = { /*draw ->
-            uiDrawTextLayout *textLayout
-            uiFontDescriptor defaultFont
-            uiDrawTextLayoutParams params
-        
-            params.String = attrstr
-            uiFontButtonFont(fontButton, &defaultFont)
-            params.DefaultFont = &defaultFont
-            params.Width = draw.AreaWidth
-            params.Align = alignment.selected
-            textLayout = uiDrawNewTextLayout(&params)
-            uiDrawText(draw.Context, textLayout, 0, 0)
-            uiDrawFreeTextLayout(textLayout)
-            uiFreeFontButtonFont(&defaultFont)*/
-        }))
+        val area = Area(AreaHandler(draw = { draw ->
+            val context = draw.pointed.Context!!
+            val areaWidth = draw.pointed.AreaWidth
+        memScoped {
+            val defaultFont = alloc<uiFontDescriptor>().ptr
+            fontButton.getFont(defaultFont)
+            context.text(attrstr, defaultFont, areaWidth, alignment.selected, 0.0, 0.0)
+            defaultFont.destroy()
+        }}))
 
         fontButton.action { area.queueRedrawAll() }
         alignment.action { area.queueRedrawAll() }
@@ -134,5 +99,4 @@ fun main(args: Array<String>) = application {
         })
         show()
     }
-//  uiFreeAttributedString(attrstr)
 }

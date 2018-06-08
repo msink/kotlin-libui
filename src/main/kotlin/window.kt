@@ -21,6 +21,7 @@ class Window(
     internal var onClose: (Window.() -> Boolean)? = null
     internal var actions = mutableListOf<StableRef<Any>>()
     internal var handlers = mutableListOf<CPointer<*>>()
+    /*internal*/ var astrings = mutableListOf<AttributedString>()
 
     init {
         apply(block)
@@ -29,8 +30,10 @@ class Window(
     }
 
     fun dispose() {
+        astrings.forEach { it.dispose() }
         actions.forEach { it.dispose() }
         handlers.forEach { nativeHeap.free(it) }
+
         ref.dispose()
     }
 

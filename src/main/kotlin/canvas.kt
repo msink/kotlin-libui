@@ -174,6 +174,234 @@ fun DrawMatrix.invert() =
 //void uiDrawMatrixTransformPoint(uiDrawMatrix *m, double *x, double *y)
 //void uiDrawMatrixTransformSize(uiDrawMatrix *m, double *x, double *y)
 
+///////////////////////////////////////////////////////////
+
+/** Stores information about an attribute in a AttributedString. */
+typealias Attribute = CPointer<uiAttribute>
+
+/** Frees a uiAttribute. You generally do not need to call this yourself,
+ *  as uiAttributedString does this for you. */
+fun Attribute.dispose() = uiFreeAttribute(this)
+
+/** Returns the type of Attribute. */
+val Attribute.type: uiAttributeType get() = uiAttributeGetType(this)
+
+/** Creates a new Attribute that changes the font family of the text it is applied to. */
+fun FamilyAttribute(family: String): Attribute = uiNewFamilyAttribute(family) ?: throw Error()
+
+/** Returns the font family stored in Attribute. */
+val Attribute.family: String? get() = uiAttributeFamily(this)?.toKString()
+
+/** Creates a new Attribute that changes the size of the text it is applied to, in typographical points. */
+fun SizeAttribute(size: Double): Attribute = uiNewSizeAttribute(size) ?: throw Error()
+
+/** Returns the font size stored in Attribute. */
+val Attribute.size: Double get() = uiAttributeSize(this)
+
+/** Creates a new uiAttribute that changes the weight of the text it is applied to. */
+fun WeightAttribute(weight: uiTextWeight): Attribute = uiNewWeightAttribute(weight) ?: throw Error()
+
+/** uiAttributeWeight() returns the font weight stored in Attribute. */
+val Attribute.weight: uiTextWeight get() = uiAttributeWeight(this)
+
+/** Creates a new uiAttribute that changes the italic mode of the text it is applied to. */
+fun ItalicAttribute(italic: uiTextItalic): Attribute = uiNewItalicAttribute(italic) ?: throw Error()
+
+/** uiAttributeItalic() returns the font italic mode stored in Attribute. */
+val Attribute.italic: uiTextItalic get() = uiAttributeItalic(this)
+
+/** Creates a new uiAttribute that changes the stretch of the text it is applied to. */
+fun StretchAttribute(stretch: uiTextStretch): Attribute = uiNewStretchAttribute(stretch) ?: throw Error()
+
+/** Returns the font stretch stored in Attribute. */
+val Attribute.stretch: uiTextStretch get() = uiAttributeStretch(this)
+
+/** Creates a new uiAttribute that changes the color of the text it is applied to. */
+fun ColorAttribute(color: RGBA): Attribute =
+    uiNewColorAttribute(color.R, color.G, color.B, color.A) ?: throw Error()
+
+/** Returns the text color stored in Attribute. */
+val Attribute.color: RGBA get() = memScoped {
+    val r = alloc<DoubleVar>()
+    val g = alloc<DoubleVar>()
+    val b = alloc<DoubleVar>()
+    val a = alloc<DoubleVar>()
+    uiAttributeColor(this@color, r.ptr, g.ptr, b.ptr, a.ptr)
+    RGBA(r.value, g.value, b.value, a.value)
+}
+
+/** Creates a new uiAttribute that changes the background color of the text it is applied to. */
+fun BackgroundAttribute(color: RGBA): Attribute =
+    uiNewBackgroundAttribute(color.R, color.G, color.B, color.A) ?: throw Error()
+
+/** Creates a new uiAttribute that changes the type of underline on the text it is applied to. */
+fun UnderlineAttribute(u: uiUnderline): Attribute = uiNewUnderlineAttribute(u) ?: throw Error()
+
+/** Returns the underline type stored in Attribute. */
+val Attribute.underline: uiUnderline get() = uiAttributeUnderline(this)
+
+/** creates a new uiAttribute that changes the color of the underline on the text it is applied to. */
+fun UnderlineColorAttribute(u: uiUnderlineColor, color: RGBA): Attribute =
+    uiNewUnderlineColorAttribute(u, color.R, color.G, color.B, color.A) ?: throw Error()
+
+/** Returns the underline color kind stored in Attribute. */
+val Attribute.underlineKind: uiUnderlineColor get() = memScoped {
+    val k = alloc<uiUnderlineColorVar>()
+    val r = alloc<DoubleVar>()
+    val g = alloc<DoubleVar>()
+    val b = alloc<DoubleVar>()
+    val a = alloc<DoubleVar>()
+    uiAttributeUnderlineColor(this@underlineKind, k.ptr, r.ptr, g.ptr, b.ptr, a.ptr)
+    k.value
+}
+
+/** Returns the underline color stored in Attribute. */
+val Attribute.underlineColor: RGBA get() = memScoped {
+    val k = alloc<uiUnderlineColorVar>()
+    val r = alloc<DoubleVar>()
+    val g = alloc<DoubleVar>()
+    val b = alloc<DoubleVar>()
+    val a = alloc<DoubleVar>()
+    uiAttributeUnderlineColor(this@underlineColor, k.ptr, r.ptr, g.ptr, b.ptr, a.ptr)
+    RGBA(r.value, g.value, b.value, a.value)
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+/** Represents a set of OpenType feature tag-value pairs, for applying OpenType features to text. */
+typealias OpenTypeFeatures = CPointer<uiOpenTypeFeatures>
+
+/** Creates a new OpenTypeFeatures instance, with no tags yet added. */
+fun OpenTypeFeatures(): OpenTypeFeatures = uiNewOpenTypeFeatures() ?: throw Error()
+
+/** Frees OpenTypeFeatures instance. */
+fun OpenTypeFeatures.dispose() = uiFreeOpenTypeFeatures(this)
+
+/** Makes a copy of otf and returns it. Changing one will not affect the other. */
+fun OpenTypeFeatures.copy(): OpenTypeFeatures = uiOpenTypeFeaturesClone(this) ?: throw Error()
+
+/** Adds the given feature tag and value to OpenTypeFeatures. If there is already a value
+ *  associated with the specified tag in otf, the old value is removed. */
+fun OpenTypeFeatures.add(tag: String, value: Int) =
+    uiOpenTypeFeaturesAdd(this, tag[0].toByte(), tag[1].toByte(), tag[2].toByte(), tag[3].toByte(), value)
+
+/** Removes the given feature tag and value from OpenTypeFeatures. If the tag is not present
+ *  in OpenTypeFeatures, it does nothing. */
+fun OpenTypeFeatures.remove(tag: String) =
+    uiOpenTypeFeaturesRemove(this, tag[0].toByte(), tag[1].toByte(), tag[2].toByte(), tag[3].toByte())
+
+/** Determines whether the given feature tag is present in OpenTypeFeatures. */
+fun OpenTypeFeatures.get(tag: String): Int = memScoped {
+    val value = alloc<IntVar>()
+    uiOpenTypeFeaturesGet(this@get, tag[0].toByte(), tag[1].toByte(), tag[2].toByte(), tag[3].toByte(), value.ptr)
+    value.value
+}
+
+//// uiOpenTypeFeaturesForEachFunc is the type of the function
+//// invoked by uiOpenTypeFeaturesForEach() for every OpenType
+//// feature in otf. Refer to that function's documentation for more
+//// details.
+//typedef uiForEach (*uiOpenTypeFeaturesForEachFunc)(const uiOpenTypeFeatures *otf, char a, char b, char c, char d, uint32_t value, void *data)
+
+//// uiOpenTypeFeaturesForEach() executes f for every tag-value
+//// pair in otf. The enumeration order is unspecified. You cannot
+//// modify otf while uiOpenTypeFeaturesForEach() is running.
+//void uiOpenTypeFeaturesForEach(const uiOpenTypeFeatures *otf, uiOpenTypeFeaturesForEachFunc f, void *data)
+
+/** Creates a new uiAttribute that changes the font family of the text it is applied to.
+ *  otf is copied you may free it after uiNewFeaturesAttribute() returns. */
+fun FeaturesAttribute(otf: OpenTypeFeatures): Attribute = uiNewFeaturesAttribute(otf) ?: throw Error()
+
+/** Returns the OpenType features stored in Attribute. */
+val Attribute.features: OpenTypeFeatures? get() = uiAttributeFeatures(this)
+
+///////////////////////////////////////////////////////////////////////////////
+
+/** represents a string of UTF-8 text that can be embellished with formatting attributes. */
+typealias AttributedString = CPointer<uiAttributedString>
+
+/** Creates a new uiAttributedString from initialString. The string will be entirely unattributed. */
+fun AttributedString(initString: String): AttributedString =
+    uiNewAttributedString(initString) ?: throw Error()
+
+/** Destroys the AttributedString. It will also free all Attributes within. */
+fun AttributedString.dispose() = uiFreeAttributedString(this)
+
+/** Returns the textual content of AttributedString. */
+val AttributedString.string: String get() = uiAttributedStringString(this)?.toKString() ?: ""
+
+/** Returns the number of UTF-8 bytes in the textual content, excluding the terminating '\0'. */
+val AttributedString.length: Int get() = uiAttributedStringLen(this).narrow()
+
+/** Adds the '\0'-terminated UTF-8 string str to the end. The new substring will be unattributed. */
+fun AttributedString.append(str: String) = uiAttributedStringAppendUnattributed(this, str)
+
+/** Adds the '\0'-terminated UTF-8 string str to s at the byte position specified by [at].
+ *  The new substring will be unattributed existing attributes will be moved along with their text. */
+fun AttributedString.insertAt(str: String, at: Int) =
+    uiAttributedStringInsertAtUnattributed(this, str, at.signExtend())
+
+/** Deletes the characters and attributes in the byte range [start, end). */
+fun AttributedString.delete(start: Int, end: Int) =
+    uiAttributedStringDelete(this, start.signExtend(), end.signExtend())
+
+/** Sets a in the byte range [start, end). Any existing attributes in that byte range of the same type are
+ *  removed. Takes ownership of [a] you should not use it after uiAttributedStringSetAttribute() returns. */
+fun AttributedString.setAttribute(a: Attribute, start: Int, end: Int) =
+    uiAttributedStringSetAttribute(this, a, start.signExtend(), end.signExtend())
+
+//// uiAttributedStringForEachAttributeFunc is the type of the function
+//// invoked by uiAttributedStringForEachAttribute() for every
+//// attribute in s. Refer to that function's documentation for more
+//// details.
+//typedef uiForEach (*uiAttributedStringForEachAttributeFunc)(const uiAttributedString *s, const uiAttribute *a, size_t start, size_t end, void *data)
+
+//// uiAttributedStringForEachAttribute() enumerates all the
+//// uiAttributes in s. It is an error to modify s in f. Within f, s still
+//// owns the attribute you can neither free it nor save it for later
+//// use.
+//// TODO reword the above for consistency (TODO and find out what I meant by that)
+//// TODO define an enumeration order (or mark it as undefined) also define how consecutive runs of identical attributes are handled here and sync with the definition of uiAttributedString itself
+//void uiAttributedStringForEachAttribute(const uiAttributedString *s, uiAttributedStringForEachAttributeFunc f, void *data)
+
+//// TODO const correct this somehow (the implementation needs to mutate the structure)
+//size_t uiAttributedStringNumGraphemes(uiAttributedString *s)
+
+//// TODO const correct this somehow (the implementation needs to mutate the structure)
+//size_t uiAttributedStringByteIndexToGrapheme(uiAttributedString *s, size_t pos)
+
+//// TODO const correct this somehow (the implementation needs to mutate the structure)
+//size_t uiAttributedStringGraphemeToByteIndex(uiAttributedString *s, size_t pos)
+
+///////////////////////////////////////////////////////////////////////////////
+
+/** Concrete representation of a AttributedString that can be displayed in a uiDrawContext. */
+typealias DrawTextLayout = CPointer<uiDrawTextLayout>
+
+/** Provides a complete description of a font where one is needed.  */
+typealias FontDescriptor = CPointer<uiFontDescriptor>
+
+/** Creates a new DrawTextLayout from the given parameters. */
+fun DrawTextLayout(
+    string: AttributedString,
+    defaultFont: FontDescriptor,
+	width: Double,
+    align: uiDrawTextAlign
+): DrawTextLayout = memScoped {
+    val params = alloc<uiDrawTextLayoutParams>()
+	params.String = string
+	params.DefaultFont = defaultFont
+	params.Width = width
+	params.Align = align
+    return uiDrawNewTextLayout(params.ptr) ?: throw Error()
+}
+
+/** Frees DrawTextLayout. The underlying AttributedString is not freed. */
+fun DrawTextLayout.dispose() = uiDrawFreeTextLayout(this);
+
+/** Returns the width and height in width and height. */
+//TODO void uiDrawTextLayoutExtents(uiDrawTextLayout *tl, double *width, double *height)
+
 ///////////////////////////////////////////////////////////////////////////////
 
 typealias DrawContext = CPointer<uiDrawContext>
@@ -210,8 +438,21 @@ fun DrawContext.transform(block: DrawMatrix.() -> Unit) = memScoped {
     uiDrawTransform(this@transform, matrix)
 }
 
-fun DrawContext.clip(path: DrawPath) = uiDrawClip(this, path)
+/** draws formatted text with the top-left point at ([x], [y]). */
+fun DrawContext.text(
+    string: AttributedString,
+    defaultFont: FontDescriptor,
+	width: Double,
+    align: uiDrawTextAlign,
+    x: Double, y: Double
+) {
+    val layout = DrawTextLayout(string, defaultFont, width, align)
+    uiDrawText(this, layout, x, y)
+    uiDrawFreeTextLayout(layout)
+}
 
-fun DrawContext.save() = uiDrawSave(this)
+//TODO fun DrawContext.clip(path: DrawPath) = uiDrawClip(this, path)
 
-fun DrawContext.restore() = uiDrawRestore(this)
+//TODO fun DrawContext.save() = uiDrawSave(this)
+
+//TODO fun DrawContext.restore() = uiDrawRestore(this)

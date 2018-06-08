@@ -1269,12 +1269,11 @@ var FontButton.visible: Boolean
 /** Returns the font currently selected in the uiFontButton in desc.
  *  allocates resources in desc when you are done with the font, call uiFreeFontButtonFont() to release them.
  *  does not allocate desc itself you must do so. */
-//TODO have a function that sets an entire font descriptor to a range in a uiAttributedString at once, for SetFont?
-//TODO void uiFontButtonFont(uiFontButton *b, uiFontDescriptor *desc)
+fun FontButton.getFont(desc: FontDescriptor) = uiFontButtonFont(this, desc)
 
 /** Frees resources allocated in desc by uiFontButtonFont().
  *  After calling uiFreeFontButtonFont(), the contents of desc should be assumed to be undefined
  *  (though since you allocate desc itself, you can safely reuse desc for other font descriptors).
  *  Calling uiFreeFontButtonFont() on a uiFontDescriptor not returned by uiFontButtonFont()
  * results in undefined behavior. */
-//TODO void uiFreeFontButtonFont(uiFontDescriptor *desc)
+fun FontDescriptor.destroy() = uiFreeFontButtonFont(this)
