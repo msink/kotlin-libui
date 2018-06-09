@@ -28,7 +28,9 @@ Let's start from minimal sample application - single button and single scrollabl
 
 ![macOS](samples/hello/hello-osx.png)
 
-C implementation:
+<details>
+ <summary>C implementation:</summary>
+    
 ``` c
 #include "ui.h"
 
@@ -79,8 +81,11 @@ int main(void)
     return 0;
 }
 ```
+</details><br/>
 
-Direct translation to Kotlin:
+<details>
+ <summary>Direct translation to Kotlin:</summary>
+    
 ``` kt
 import kotlinx.cinterop.*
 import libui.*
@@ -119,10 +124,13 @@ fun main(args: Array<String>) = memScoped {
     uiUninit()
 }
 ```
+</details><br/>
 
 While this works, it's far from ideomatic Kotlin.
 
-A little improved version, with thin wrappers around raw libui procedures:
+<details>
+ <summary>A little improved version, with thin wrappers around raw libui procedures:</summary>
+
 ``` kt
 import libui.*
 
@@ -154,6 +162,7 @@ fun main(args: Array<String>) = application {
     }
 }
 ```
+</details><br/>
 
 It's still not real DSL, but much better.
 
