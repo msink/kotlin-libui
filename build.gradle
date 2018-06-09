@@ -121,6 +121,6 @@ buildscript {
         maven { url "https://dl.bintray.com/jetbrains/kotlin-native-dependencies" }
     }
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:0.7"
+        classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:0.7.1"
     }
 }
