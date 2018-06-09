@@ -1,7 +1,7 @@
 package libui
 
 import kotlinx.cinterop.*
-import platform.posix.tm
+import platform.posix.*
 
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -1035,36 +1035,27 @@ var DateTimePicker.visible: Boolean
     get() = asControl().isVisible()
     set(visible) = if (visible) asControl().show() else asControl().hide()
 
-/** The current value of the DateTimePicker. */
-/*TODO var DateTimePicker.value: DateTime
+/** The current value as Unix epoch */
+var DateTimePicker.value: Long
     get() = memScoped {
-       var tm = alloc<tm>()
-       uiDateTimePickerTime(this@value, tm.ptr)
-       DateTime(
-           sec   = tm.sec,
-           min   = tm.min,
-           hour  = tm.hour,
-           mday  = tm.mday,
-           mon   = tm.mon,
-           year  = tm.year,
-           wday  = tm.wday,
-           yday  = tm.yday,
-           isdst = tm.isdst
-       )
+       var tm = alloc<tm>().ptr
+       uiDateTimePickerTime(this@value, tm)
+       mktime(tm)
     }
     set(value) = memScoped {
-       var tm = alloc<tm>()
-       tm.sec   = value.sec
-       tm.min   = value.min
-       tm.hour  = value.hour
-       tm.mday  = value.mday
-       tm.mon   = value.mon
-       tm.year  = value.year
-       tm.wday  = value.wday
-       tm.yday  = value.yday
-       tm.isdst = value.isdst
-       uiDateTimePickerSetTime(this@value, tm.ptr)
-    }*/
+       var time = alloc<time_tVar>()
+       time.value = value
+       uiDateTimePickerSetTime(this@value, localtime(time.ptr))
+    }
+
+/** The current value as String. */
+fun DateTimePicker.text(format: String): String = memScoped {
+    var tm = alloc<tm>().ptr
+    var buf = allocArray<ByteVar>(64)
+    uiDateTimePickerTime(this@text, tm)
+    strftime(buf, 64, format, tm)
+    return buf.toKString()
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
