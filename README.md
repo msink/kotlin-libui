@@ -22,11 +22,15 @@ In this case only one - native for your platform - file will be built.
 
 Let's start from minimal sample application - single button and single scrollable text area.
 
+<details>
+ <summary>Screenshots:</summary>
+
 ![Windows](samples/hello/hello-windows.png)
 
 ![Unix](samples/hello/hello-linux.png)
 
 ![macOS](samples/hello/hello-osx.png)
+</details><br/>
 
 <details>
  <summary>C implementation:</summary>
