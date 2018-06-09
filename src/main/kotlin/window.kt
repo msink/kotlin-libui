@@ -52,10 +52,17 @@ class Window(
     /** Function to be executed when the OS wants the program to quit
      *  or when a Quit menu item has been clicked.
      *  Only one function may be registered at a time.
-     *  @returns [true] when Quit will be called. */
+     *  @returns `true` when Quit will be called. */
     fun onShouldQuit(proc: () -> Boolean) {
         val ref = StableRef.create(proc).also { actions.add(it) }
-        uiOnShouldQuit(staticCFunction(::_onShouldQuit), ref.asCPointer())
+        uiOnShouldQuit(staticCFunction(::_onBoolHandler), ref.asCPointer())
+    }
+
+    /** Function to be executed on a timer on the main thread.
+     *  @returns `true` to continue and `false` to stop. */
+    fun onTimer(milliseconds: Int, proc: () -> Boolean) {
+        val ref = StableRef.create(proc).also { actions.add(it) }
+        uiTimer(milliseconds, staticCFunction(::_onBoolHandler), ref.asCPointer())
     }
 
     /** Funcion to be run when the user makes a change to the Entry.
@@ -251,7 +258,7 @@ private fun _onClose(ptr: CWindow?, ref: COpaquePointer?): Int {
     return if (close) 1 else 0
 }
 
-internal fun _onShouldQuit(ref: COpaquePointer?): Int {
+internal fun _onBoolHandler(ref: COpaquePointer?): Int {
     val proc = ref!!.asStableRef<() -> Boolean>().get()
     return if (proc()) 1 else 0
 }

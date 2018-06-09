@@ -112,6 +112,18 @@ konanArtifacts {
             inputs.file resFile
         }
     }
+
+    program('timer') {
+        srcDir 'samples/timer'
+        libraries {
+            artifact 'libuiKt'
+        }
+        target 'mingw', {
+            linkerOpts "$resFile -mwindows"
+            dependsOn 'windowsResources'
+            inputs.file resFile
+        }
+    }
 }
 
 task windowsResources (type: Exec) {
