@@ -4,24 +4,16 @@ import kotlinx.cinterop.*
 
 /** A canvas you can draw on. It also receives keyboard and mouse events,
  *  supports scrolling, is DPI aware, and has several other useful features. */
-typealias Area = CPointer<uiArea>
-
-/** Create a new simple rectangular area without scrollbars. */
-fun Area(handler: AreaHandler, block: Area.() -> Unit = {}): Area =
-    uiNewArea(handler)?.apply(block) ?: throw Error()
-
-/** Create a new scrolling area with horziontal and vertical scrollbars. */
-fun ScrollingArea(handler: AreaHandler, width: Int, height: Int, block: Area.() -> Unit = {}): Area =
-    uiNewScrollingArea(handler, width, height)?.apply(block) ?: throw Error()
+class Area(handler: AreaHandler, block: Area.() -> Unit = {}): Control(uiNewArea(handler)) {
+    internal val p: CPointer<uiArea> get() = _p?.reinterpret() ?: throw Error("Control is disposed")
+    init { apply(block) }
+}
 
 fun Area.setSize(width: Int, height: Int) =
-    uiAreaSetSize(this, width, height)
+    uiAreaSetSize(p, width, height)
 
 fun Area.queueRedrawAll() =
-    uiAreaQueueRedrawAll(this)
-
-fun Area.scrollTo(x: Double, y: Double, width: Double, height: Double) =
-    uiAreaScrollTo(this, x, y, width, height)
+    uiAreaQueueRedrawAll(p)
 
 //// TODO document these can only be called within Mouse() handlers
 //// TODO should these be allowed on scrolling areas?
@@ -30,6 +22,24 @@ fun Area.scrollTo(x: Double, y: Double, width: Double, height: Double) =
 //// TODO release capture?
 //void uiAreaBeginUserWindowMove(uiArea *a)
 //void uiAreaBeginUserWindowResize(uiArea *a, uiWindowResizeEdge edge)
+
+///////////////////////////////////////////////////////////////////////////////
+
+/** Area with horziontal and vertical scrollbars. */
+class ScrollingArea(handler: AreaHandler, width: Int, height: Int, block: ScrollingArea.() -> Unit = {}):
+    Control(uiNewScrollingArea(handler, width, height)) {
+    internal val p: CPointer<uiArea> get() = _p?.reinterpret() ?: throw Error("Control is disposed")
+    init { apply(block) }
+}
+
+fun ScrollingArea.setSize(width: Int, height: Int) =
+    uiAreaSetSize(p, width, height)
+
+fun ScrollingArea.queueRedrawAll() =
+    uiAreaQueueRedrawAll(p)
+
+fun ScrollingArea.scrollTo(x: Double, y: Double, width: Double, height: Double) =
+    uiAreaScrollTo(p, x, y, width, height)
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -47,7 +57,7 @@ typealias AreaKeyEvent = CPointer<uiAreaKeyEvent>
  *  @param[dragBroken] called to indicate that a drag should be ended. Only implemented on Windows.
  *  @param[keyEvent] called when a key was pressed. Return `true` to indicate that the key event was handled
  *    (a menu item with that accelerator won't activate, no error sound on macOS). Event is an [AreaKeyEvent] */
-fun Window.AreaHandler(
+/*TODO fun Window.AreaHandler(
     draw: Area.(params: AreaDrawParams) -> Unit,
     mouseEvent: Area.(event: AreaMouseEvent) -> Unit = {},
     mouseCrossed: Area.(left: Boolean) -> Unit = {},
@@ -70,35 +80,35 @@ fun Window.AreaHandler(
     return handler.ui.ptr
 }
 
-private fun _onDraw(handler: AreaHandler?, area: Area?, params: AreaDrawParams?) {
+private fun _onDraw(handler: AreaHandler?, area: CPointer<uiArea>?, params: AreaDrawParams?) {
     val refs: CPointer<ktAreaHandler> = handler!!.reinterpret()
     val proc = refs.pointed.kt.draw!!.asStableRef<Area.(params: AreaDrawParams) -> Unit>().get()
     area!!.proc(params!!)
 }
 
-private fun _onMouseEvent(handler: AreaHandler?, area: Area?, event: AreaMouseEvent?) {
+private fun _onMouseEvent(handler: AreaHandler?, area: CPointer<uiArea>?, event: AreaMouseEvent?) {
     val refs: CPointer<ktAreaHandler> = handler!!.reinterpret()
     val proc = refs.pointed.kt.mouseEvent!!.asStableRef<Area.(event: AreaMouseEvent) -> Unit>().get()
     area!!.proc(event!!)
 }
 
-private fun _onMouseCrossed(handler: AreaHandler?, area: Area?, left: Int) {
+private fun _onMouseCrossed(handler: AreaHandler?, area: CPointer<uiArea>?, left: Int) {
     val refs: CPointer<ktAreaHandler> = handler!!.reinterpret()
     val proc = refs.pointed.kt.mouseCrossed!!.asStableRef<Area.(left: Boolean) -> Unit>().get()
     area!!.proc(left != 0)
 }
 
-private fun _onDragBroken(handler: AreaHandler?, area: Area?) {
+private fun _onDragBroken(handler: AreaHandler?, area: CPointer<uiArea>?) {
     val refs: CPointer<ktAreaHandler> = handler!!.reinterpret()
     val proc = refs.pointed.kt.dragBroken!!.asStableRef<Area.() -> Unit>().get()
     area!!.proc()
 }
 
-private fun _onKeyEvent(handler: AreaHandler?, area: Area?, event: AreaKeyEvent?) : Int {
+private fun _onKeyEvent(handler: AreaHandler?, area: CPointer<uiArea>?, event: AreaKeyEvent?) : Int {
     val refs: CPointer<ktAreaHandler> = handler!!.reinterpret()
     val proc = refs.pointed.kt.keyEvent!!.asStableRef<Area.(event: AreaKeyEvent) -> Boolean>().get()
     return if (area!!.proc(event!!)) 1 else 0
-}
+}*/
 
 ///////////////////////////////////////////////////////////////////////////////
 

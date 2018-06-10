@@ -76,7 +76,7 @@ konanArtifacts {
             inputs.file resFile
         }
     }
-
+/*
     program('histogram') {
         srcDir 'samples/histogram'
         libraries {
@@ -100,7 +100,7 @@ konanArtifacts {
             inputs.file resFile
         }
     }
-
+*/
     program('datetime') {
         srcDir 'samples/datetime'
         libraries {
