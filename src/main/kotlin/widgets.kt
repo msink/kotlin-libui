@@ -105,7 +105,7 @@ var Control.visible: Boolean
 
 /** A container that organize children as labeled fields. */
 class Form(block: Form.() -> Unit = {}): Control(uiNewForm()) {
-    internal val ptr: CPointer<uiForm> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiForm> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     init { apply(block) }
 }
 
@@ -125,7 +125,7 @@ fun Form.delete(index: Int) = uiFormDelete(ptr, index)
 
 /** A powerful container that allow to specify size and position of each children. */
 class Grid(block: Grid.() -> Unit = {}): Control(uiNewGrid()) {
-    internal val ptr: CPointer<uiGrid> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiGrid> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     init { apply(block) }
 }
 
@@ -163,7 +163,7 @@ fun Grid.insertAt(
 
 /** A container that stack its chidren horizontally. */
 class HorizontalBox(block: HorizontalBox.() -> Unit = {}): Control(uiNewHorizontalBox()) {
-    internal val ptr: CPointer<uiBox> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiBox> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     init { apply(block) }
 }
 
@@ -183,7 +183,7 @@ fun HorizontalBox.delete(index: Int) = uiBoxDelete(ptr, index)
 
 /** A container that stack its chidren vertically. */
 class VerticalBox(block: VerticalBox.() -> Unit = {}): Control(uiNewVerticalBox()) {
-    internal val ptr: CPointer<uiBox> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiBox> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     init { apply(block) }
 }
 
@@ -203,7 +203,7 @@ fun VerticalBox.delete(index: Int) = uiBoxDelete(ptr, index)
 
 /** A container that show each chidren in a separate tab. */
 class Tab(block: Tab.() -> Unit = {}): Control(uiNewTab()) {
-    internal val ptr: CPointer<uiTab> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiTab> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     init { apply(block) }
 }
 
@@ -227,7 +227,7 @@ val Tab.numPages: Int get() = uiTabNumPages(ptr)
 
 /** A container for a single widget that provide a caption and visually group it's children. */
 class Group(text: String, block: Group.() -> Unit = {}): Control(uiNewGroup(text)) {
-    internal val ptr: CPointer<uiGroup> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiGroup> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     init { apply(block) }
 }
 
@@ -248,7 +248,7 @@ fun Group.setChild(child: Control?) = uiGroupSetChild(ptr, child?.ctl)
 
 /** A simple, single line text entry widget. */
 class Entry(block: Entry.() -> Unit = {}): Control(uiNewEntry()) {
-    internal val ptr: CPointer<uiEntry> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiEntry> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (Entry.() -> Unit)? = null
     init { apply(block) }
 }
@@ -279,7 +279,7 @@ private fun _onEntry(ptr: CPointer<uiEntry>?, ref: COpaquePointer?) {
 
 /** Text entry widget that mask the input, useful to edit passwords or other sensible data. */
 class PasswordEntry(block: PasswordEntry.() -> Unit = {}): Control(uiNewPasswordEntry()) {
-    internal val ptr: CPointer<uiEntry> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiEntry> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (PasswordEntry.() -> Unit)? = null
     init { apply(block) }
 }
@@ -310,7 +310,7 @@ private fun _onPasswordEntry(ptr: CPointer<uiEntry>?, ref: COpaquePointer?) {
 
 /** Text entry to search text. */
 class SearchEntry(block: SearchEntry.() -> Unit = {}): Control(uiNewSearchEntry()) {
-    internal val ptr: CPointer<uiEntry> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiEntry> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (SearchEntry.() -> Unit)? = null
     init { apply(block) }
 }
@@ -341,7 +341,7 @@ private fun _onSearchEntry(ptr: CPointer<uiEntry>?, ref: COpaquePointer?) {
 
 /** A multiline text entry widget. */
 class MultilineEntry(block: MultilineEntry.() -> Unit = {}): Control(uiNewMultilineEntry()) {
-    internal val ptr: CPointer<uiMultilineEntry> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiMultilineEntry> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (MultilineEntry.() -> Unit)? = null
     init { apply(block) }
 }
@@ -376,7 +376,7 @@ private fun _onMultilineEntry(ptr: CPointer<uiMultilineEntry>?, ref: COpaquePoin
 /** A non wrapping multiline text entry widget. */
 class NonWrappingMultilineEntry(block: NonWrappingMultilineEntry.() -> Unit = {}):
     Control(uiNewNonWrappingMultilineEntry()) {
-    internal val ptr: CPointer<uiMultilineEntry> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiMultilineEntry> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (NonWrappingMultilineEntry.() -> Unit)? = null
     init { apply(block) }
 }
@@ -410,7 +410,7 @@ private fun _onNonWrappingMultilineEntry(ptr: CPointer<uiMultilineEntry>?, ref: 
 
 /** A checkbox widget. */
 class Checkbox(text: String, block: Checkbox.() -> Unit = {}): Control(uiNewCheckbox(text)) {
-    internal val ptr: CPointer<uiCheckbox> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiCheckbox> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (Checkbox.() -> Unit)? = null
     init { apply(block) }
 }
@@ -441,7 +441,7 @@ private fun _onCheckbox(ptr: CPointer<uiCheckbox>?, ref: COpaquePointer?) {
 
 /** A drop down combo box that allow list selection only. */
 class Combobox(block: Combobox.() -> Unit = {}): Control(uiNewCombobox()) {
-    internal val ptr: CPointer<uiCombobox> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiCombobox> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (Combobox.() -> Unit)? = null
     init { apply(block) }
 }
@@ -471,7 +471,7 @@ private fun _onCombobox(ptr: CPointer<uiCombobox>?, ref: COpaquePointer?) {
 
 /** A drop down combo box that allow selection from list or free text entry. */
 class EditableCombobox(block: EditableCombobox.() -> Unit = {}): Control(uiNewEditableCombobox()) {
-    internal val ptr: CPointer<uiEditableCombobox> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiEditableCombobox> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (EditableCombobox.() -> Unit)? = null
     init { apply(block) }
 }
@@ -501,7 +501,7 @@ private fun _onEditableCombobox(ptr: CPointer<uiEditableCombobox>?, ref: COpaque
 
 /** An entry widget for numerical values. */
 class Spinbox(min: Int, max: Int, block: Spinbox.() -> Unit = {}): Control(uiNewSpinbox(min, max)) {
-    internal val ptr: CPointer<uiSpinbox> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiSpinbox> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (Spinbox.() -> Unit)? = null
     init { apply(block) }
 }
@@ -527,7 +527,7 @@ private fun _onSpinbox(ptr: CPointer<uiSpinbox>?, ref: COpaquePointer?) {
 
 /** Horizontal slide to set numerical values. */
 class Slider(min: Int, max: Int, block: Slider.() -> Unit = {}): Control(uiNewSlider(min, max)) {
-    internal val ptr: CPointer<uiSlider> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiSlider> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (Slider.() -> Unit)? = null
     init { apply(block) }
 }
@@ -553,7 +553,7 @@ private fun _onSlider(ptr: CPointer<uiSlider>?, ref: COpaquePointer?) {
 
 /** A widget that represent a group of radio options. */
 class RadioButtons(block: RadioButtons.() -> Unit = {}): Control(uiNewRadioButtons()) {
-    internal val ptr: CPointer<uiRadioButtons> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiRadioButtons> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (RadioButtons.() -> Unit)? = null
     init { apply(block) }
 }
@@ -583,7 +583,7 @@ private fun _onRadioButtons(ptr: CPointer<uiRadioButtons>?, ref: COpaquePointer?
 
 /** A widgets to edit date and time. */
 class DateTimePicker(block: DateTimePicker.() -> Unit = {}): Control(uiNewDateTimePicker()) {
-    internal val ptr: CPointer<uiDateTimePicker> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiDateTimePicker> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (DateTimePicker.() -> Unit)? = null
     init { apply(block) }
 }
@@ -626,7 +626,7 @@ private fun _onDateTimePicker(ptr: CPointer<uiDateTimePicker>?, ref: COpaquePoin
 
 /** A widgets to edit date. */
 class DatePicker(block: DatePicker.() -> Unit = {}): Control(uiNewDatePicker()) {
-    internal val ptr: CPointer<uiDateTimePicker> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiDateTimePicker> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (DatePicker.() -> Unit)? = null
     init { apply(block) }
 }
@@ -669,7 +669,7 @@ private fun _onDatePicker(ptr: CPointer<uiDateTimePicker>?, ref: COpaquePointer?
 
 /** A widgets to edit time. */
 class TimePicker(block: TimePicker.() -> Unit = {}): Control(uiNewTimePicker()) {
-    internal val ptr: CPointer<uiDateTimePicker> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiDateTimePicker> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (TimePicker.() -> Unit)? = null
     init { apply(block) }
 }
@@ -712,7 +712,7 @@ private fun _onTimePicker(ptr: CPointer<uiDateTimePicker>?, ref: COpaquePointer?
 
 /** A static text label. */
 class Label(text: String, block: Label.() -> Unit = {}): Control(uiNewLabel(text)) {
-    internal val ptr: CPointer<uiLabel> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiLabel> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     init { apply(block) }
 }
 
@@ -725,7 +725,7 @@ var Label.text: String
 
 /** A vertical or an horizontal line to visually separate widgets. */
 class HorizontalSeparator(block: HorizontalSeparator.() -> Unit = {}): Control(uiNewHorizontalSeparator()) {
-    internal val ptr: CPointer<uiSeparator> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiSeparator> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     init { apply(block) }
 }
 
@@ -733,7 +733,7 @@ class HorizontalSeparator(block: HorizontalSeparator.() -> Unit = {}): Control(u
 
 /** A vertical or an horizontal line to visually separate widgets. */
 class VerticalSeparator(block: VerticalSeparator.() -> Unit = {}): Control(uiNewVerticalSeparator()) {
-    internal val ptr: CPointer<uiSeparator> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiSeparator> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     init { apply(block) }
 }
 
@@ -741,7 +741,7 @@ class VerticalSeparator(block: VerticalSeparator.() -> Unit = {}): Control(uiNew
 
 /** Progress bar widget. */
 class ProgressBar(block: ProgressBar.() -> Unit = {}): Control(uiNewProgressBar()) {
-    internal val ptr: CPointer<uiProgressBar> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiProgressBar> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     init { apply(block) }
 }
 
@@ -755,7 +755,7 @@ var ProgressBar.value: Int
 
 /** A simple button. */
 class Button(text: String, block: Button.() -> Unit = {}): Control(uiNewButton(text)) {
-    internal val ptr: CPointer<uiButton> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiButton> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (Button.() -> Unit)? = null
     init { apply(block) }
 }
@@ -781,7 +781,7 @@ private fun _onButton(ptr: CPointer<uiButton>?, ref: COpaquePointer?) {
 
 /** A button that opens a color palette popup. */
 class ColorButton(block: ColorButton.() -> Unit = {}): Control(uiNewColorButton()) {
-    internal val ptr: CPointer<uiColorButton> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiColorButton> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (ColorButton.() -> Unit)? = null
     init { apply(block) }
 }
@@ -816,7 +816,7 @@ private fun _onColorButton(ptr: CPointer<uiColorButton>?, ref: COpaquePointer?) 
 
 /** A button that allows users to choose a font when they click on it. */
 class FontButton(block: FontButton.() -> Unit = {}): Control(uiNewFontButton()) {
-    internal val ptr: CPointer<uiFontButton> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiFontButton> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (FontButton.() -> Unit)? = null
     init { apply(block) }
 }

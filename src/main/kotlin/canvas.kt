@@ -5,7 +5,7 @@ import kotlinx.cinterop.*
 /** A canvas you can draw on. It also receives keyboard and mouse events,
  *  supports scrolling, is DPI aware, and has several other useful features. */
 class Area(handler: AreaHandler, block: Area.() -> Unit = {}): Control(uiNewArea(handler)) {
-    internal val ptr: CPointer<uiArea> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiArea> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     init { apply(block) }
 }
 
