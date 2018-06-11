@@ -14,10 +14,10 @@ fun Window.basicControlsPage() = VerticalBox() {
         margined = true
         setChild(Form() {
             padded = true
-            append("Entry", Entry())
+            append("Text Entry", TextEntry())
             append("Password Entry", PasswordEntry())
             append("Search Entry", SearchEntry())
-            append("Multiline Entry", MultilineEntry(), stretchy = true)
+            append("Multiline Entry", WrappingMultilineEntry(), stretchy = true)
             append("Multiline Entry No Wrap", NonWrappingMultilineEntry(), stretchy = true)
         })
     }, stretchy = true)
@@ -95,7 +95,7 @@ fun Window.dataChoosersPage() = HorizontalBox() {
         append(Grid() {
             padded = true
 
-            val entry1 = Entry() {
+            val entry1 = TextEntry() {
                 readOnly = true
             }
             val button1 = Button("Open File") {
@@ -106,7 +106,7 @@ fun Window.dataChoosersPage() = HorizontalBox() {
             append(button1, 0, 0, 1, 1, 0, uiAlignFill, 0, uiAlignFill)
             append(entry1,  1, 0, 1, 1, 1, uiAlignFill, 0, uiAlignFill)
 
-            val entry2 = Entry() {
+            val entry2 = TextEntry() {
                 readOnly = true
             }
             val button2 = Button("Save File") {

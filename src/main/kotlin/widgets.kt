@@ -104,7 +104,7 @@ var Control.visible: Boolean
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A container that organize children as labeled fields. */
-class Form(block: Form.() -> Unit = {}): Control(uiNewForm()) {
+class Form(block: Form.() -> Unit = {}) : Control(uiNewForm()) {
     internal val ptr: CPointer<uiForm> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     init { apply(block) }
 }
@@ -124,7 +124,7 @@ fun Form.delete(index: Int) = uiFormDelete(ptr, index)
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A powerful container that allow to specify size and position of each children. */
-class Grid(block: Grid.() -> Unit = {}): Control(uiNewGrid()) {
+class Grid(block: Grid.() -> Unit = {}) : Control(uiNewGrid()) {
     internal val ptr: CPointer<uiGrid> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     init { apply(block) }
 }
@@ -161,48 +161,37 @@ fun Grid.insertAt(
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A container that stack its chidren horizontally. */
-class HorizontalBox(block: HorizontalBox.() -> Unit = {}): Control(uiNewHorizontalBox()) {
+/** A container that stack its chidren horizontally or vertically. */
+abstract class Box(_ptr: CPointer<uiBox>?) : Control(_ptr) {
     internal val ptr: CPointer<uiBox> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
-    init { apply(block) }
 }
 
-/** If `true`, the container insert some space between children. Defaults to `false`. */
-var HorizontalBox.padded: Boolean
-    get() = uiBoxPadded(ptr) != 0
-    set(padded) = uiBoxSetPadded(ptr, if (padded) 1 else 0)
-
-/** Adds the given widget to the end of the HorizontalBox. */
-fun HorizontalBox.append(widget: Control, stretchy: Boolean = false) =
-    uiBoxAppend(ptr, widget.ctl, if (stretchy) 1 else 0)
-
-/** deletes the nth control of the HorizontalBox. */
-fun HorizontalBox.delete(index: Int) = uiBoxDelete(ptr, index)
-
-///////////////////////////////////////////////////////////////////////////////
+/** A container that stack its chidren horizontally. */
+class HorizontalBox(block: HorizontalBox.() -> Unit = {}) : Box(uiNewHorizontalBox()) {
+    init { apply(block) }
+}
 
 /** A container that stack its chidren vertically. */
-class VerticalBox(block: VerticalBox.() -> Unit = {}): Control(uiNewVerticalBox()) {
-    internal val ptr: CPointer<uiBox> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
+class VerticalBox(block: VerticalBox.() -> Unit = {}) : Box(uiNewVerticalBox()) {
     init { apply(block) }
 }
 
 /** If `true`, the container insert some space between children. Defaults to `false`. */
-var VerticalBox.padded: Boolean
+var Box.padded: Boolean
     get() = uiBoxPadded(ptr) != 0
     set(padded) = uiBoxSetPadded(ptr, if (padded) 1 else 0)
 
 /** Adds the given widget to the end of the HorizontalBox. */
-fun VerticalBox.append(widget: Control, stretchy: Boolean = false) =
+fun Box.append(widget: Control, stretchy: Boolean = false) =
     uiBoxAppend(ptr, widget.ctl, if (stretchy) 1 else 0)
 
 /** deletes the nth control of the HorizontalBox. */
-fun VerticalBox.delete(index: Int) = uiBoxDelete(ptr, index)
+fun Box.delete(index: Int) = uiBoxDelete(ptr, index)
 
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A container that show each chidren in a separate tab. */
-class Tab(block: Tab.() -> Unit = {}): Control(uiNewTab()) {
+class Tab(block: Tab.() -> Unit = {}) : Control(uiNewTab()) {
     internal val ptr: CPointer<uiTab> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     init { apply(block) }
 }
@@ -226,7 +215,7 @@ val Tab.numPages: Int get() = uiTabNumPages(ptr)
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A container for a single widget that provide a caption and visually group it's children. */
-class Group(text: String, block: Group.() -> Unit = {}): Control(uiNewGroup(text)) {
+class Group(text: String, block: Group.() -> Unit = {}) : Control(uiNewGroup(text)) {
     internal val ptr: CPointer<uiGroup> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     init { apply(block) }
 }
@@ -246,10 +235,24 @@ fun Group.setChild(child: Control?) = uiGroupSetChild(ptr, child?.ctl)
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A simple, single line text entry widget. */
-class Entry(block: Entry.() -> Unit = {}): Control(uiNewEntry()) {
+/** Single line text entry widget. */
+abstract class Entry(_ptr: CPointer<uiEntry>?) : Control(_ptr) {
     internal val ptr: CPointer<uiEntry> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (Entry.() -> Unit)? = null
+}
+
+/** A simple single line text entry widget. */
+class TextEntry(block: Entry.() -> Unit = {}) : Entry(uiNewEntry()) {
+    init { apply(block) }
+}
+
+/** Text entry widget that mask the input, useful to edit passwords or other sensible data. */
+class PasswordEntry(block: PasswordEntry.() -> Unit = {}) : Entry(uiNewPasswordEntry()) {
+    init { apply(block) }
+}
+
+/** Text entry widget to search text. */
+class SearchEntry(block: SearchEntry.() -> Unit = {}) : Entry(uiNewSearchEntry()) {
     init { apply(block) }
 }
 
@@ -271,78 +274,26 @@ fun Entry.action(proc: Entry.() -> Unit) {
 }
 @Suppress("UNUSED_PARAMETER")
 private fun _onEntry(ptr: CPointer<uiEntry>?, ref: COpaquePointer?) {
-    val entry = ref!!.asStableRef<Entry>().get()
-    entry.action?.invoke(entry)
-}
-
-///////////////////////////////////////////////////////////////////////////////
-
-/** Text entry widget that mask the input, useful to edit passwords or other sensible data. */
-class PasswordEntry(block: PasswordEntry.() -> Unit = {}): Control(uiNewPasswordEntry()) {
-    internal val ptr: CPointer<uiEntry> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
-    internal var action: (PasswordEntry.() -> Unit)? = null
-    init { apply(block) }
-}
-
-/** The current text of the PasswordEntry. */
-var PasswordEntry.text: String
-    get() = uiEntryText(ptr)?.toKString() ?: ""
-    set(text) = uiEntrySetText(ptr, text)
-
-/** Whether the user is allowed to change the entry text. Defaults to `true`. */
-var PasswordEntry.readOnly: Boolean
-    get() = uiEntryReadOnly(ptr) != 0
-    set(readOnly) = uiEntrySetReadOnly(ptr, if (readOnly) 1 else 0)
-
-/** Funcion to be run when the user makes a change to the Entry.
- *  Only one function can be registered at a time. */
-fun PasswordEntry.action(proc: PasswordEntry.() -> Unit) {
-    action = proc
-    uiEntryOnChanged(ptr, staticCFunction(::_onPasswordEntry), ref.asCPointer())
-}
-@Suppress("UNUSED_PARAMETER")
-private fun _onPasswordEntry(ptr: CPointer<uiEntry>?, ref: COpaquePointer?) {
-    val entry = ref!!.asStableRef<PasswordEntry>().get()
-    entry.action?.invoke(entry)
-}
-
-///////////////////////////////////////////////////////////////////////////////
-
-/** Text entry to search text. */
-class SearchEntry(block: SearchEntry.() -> Unit = {}): Control(uiNewSearchEntry()) {
-    internal val ptr: CPointer<uiEntry> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
-    internal var action: (SearchEntry.() -> Unit)? = null
-    init { apply(block) }
-}
-
-/** The current text of the Entry. */
-var SearchEntry.text: String
-    get() = uiEntryText(ptr)?.toKString() ?: ""
-    set(text) = uiEntrySetText(ptr, text)
-
-/** Whether the user is allowed to change the entry text. Defaults to `true`. */
-var SearchEntry.readOnly: Boolean
-    get() = uiEntryReadOnly(ptr) != 0
-    set(readOnly) = uiEntrySetReadOnly(ptr, if (readOnly) 1 else 0)
-
-/** Funcion to be run when the user makes a change to the Entry.
- *  Only one function can be registered at a time. */
-fun SearchEntry.action(proc: SearchEntry.() -> Unit) {
-    action = proc
-    uiEntryOnChanged(ptr, staticCFunction(::_onSearchEntry), ref.asCPointer())
-}
-@Suppress("UNUSED_PARAMETER")
-private fun _onSearchEntry(ptr: CPointer<uiEntry>?, ref: COpaquePointer?) {
-    val entry = ref!!.asStableRef<SearchEntry>().get()
-    entry.action?.invoke(entry)
+    ref!!.asStableRef<Entry>().get().apply { action?.invoke(this) }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A multiline text entry widget. */
-class MultilineEntry(block: MultilineEntry.() -> Unit = {}): Control(uiNewMultilineEntry()) {
+abstract class MultilineEntry(_ptr: CPointer<uiMultilineEntry>?) : Control(_ptr) {
     internal val ptr: CPointer<uiMultilineEntry> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (MultilineEntry.() -> Unit)? = null
+}
+
+/** A wrapping multiline text entry widget. */
+class WrappingMultilineEntry(block: MultilineEntry.() -> Unit = {}) :
+    MultilineEntry(uiNewMultilineEntry()) {
+    init { apply(block) }
+}
+
+/** A non wrapping multiline text entry widget. */
+class NonWrappingMultilineEntry(block: NonWrappingMultilineEntry.() -> Unit = {}) :
+    MultilineEntry(uiNewNonWrappingMultilineEntry()) {
     init { apply(block) }
 }
 
@@ -367,49 +318,13 @@ fun MultilineEntry.action(proc: MultilineEntry.() -> Unit) {
 }
 @Suppress("UNUSED_PARAMETER")
 private fun _onMultilineEntry(ptr: CPointer<uiMultilineEntry>?, ref: COpaquePointer?) {
-    val entry = ref!!.asStableRef<MultilineEntry>().get()
-    entry.action?.invoke(entry)
-}
-
-///////////////////////////////////////////////////////////////////////////////
-
-/** A non wrapping multiline text entry widget. */
-class NonWrappingMultilineEntry(block: NonWrappingMultilineEntry.() -> Unit = {}):
-    Control(uiNewNonWrappingMultilineEntry()) {
-    internal val ptr: CPointer<uiMultilineEntry> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
-    internal var action: (NonWrappingMultilineEntry.() -> Unit)? = null
-    init { apply(block) }
-}
-
-/** The current text of the multiline entry. */
-var NonWrappingMultilineEntry.text: String
-    get() = uiMultilineEntryText(ptr)?.toKString() ?: ""
-    set(text) = uiMultilineEntrySetText(ptr, text)
-
-/** Whether the user is allowed to change the entry text. */
-var NonWrappingMultilineEntry.readOnly: Boolean
-    get() = uiMultilineEntryReadOnly(ptr) != 0
-    set(readOnly) = uiMultilineEntrySetReadOnly(ptr, if (readOnly) 1 else 0)
-
-/** Adds the text to the end of the multiline entry. */
-fun NonWrappingMultilineEntry.append(text: String) = uiMultilineEntryAppend(ptr, text)
-
-/** Funcion to be run when the user makes a change to the MultilineEntry.
- *  Only one function can be registered at a time. */
-fun NonWrappingMultilineEntry.action(proc: NonWrappingMultilineEntry.() -> Unit) {
-    action = proc
-    uiMultilineEntryOnChanged(ptr, staticCFunction(::_onNonWrappingMultilineEntry), ref.asCPointer())
-}
-@Suppress("UNUSED_PARAMETER")
-private fun _onNonWrappingMultilineEntry(ptr: CPointer<uiMultilineEntry>?, ref: COpaquePointer?) {
-    val entry = ref!!.asStableRef<NonWrappingMultilineEntry>().get()
-    entry.action?.invoke(entry)
+    ref!!.asStableRef<MultilineEntry>().get().apply { action?.invoke(this) }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A checkbox widget. */
-class Checkbox(text: String, block: Checkbox.() -> Unit = {}): Control(uiNewCheckbox(text)) {
+class Checkbox(text: String, block: Checkbox.() -> Unit = {}) : Control(uiNewCheckbox(text)) {
     internal val ptr: CPointer<uiCheckbox> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (Checkbox.() -> Unit)? = null
     init { apply(block) }
@@ -433,14 +348,13 @@ fun Checkbox.action(proc: Checkbox.() -> Unit) {
 }
 @Suppress("UNUSED_PARAMETER")
 private fun _onCheckbox(ptr: CPointer<uiCheckbox>?, ref: COpaquePointer?) {
-    val checkbox = ref!!.asStableRef<Checkbox>().get()
-    checkbox.action?.invoke(checkbox)
+    ref!!.asStableRef<Checkbox>().get().apply { action?.invoke(this) }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A drop down combo box that allow list selection only. */
-class Combobox(block: Combobox.() -> Unit = {}): Control(uiNewCombobox()) {
+class Combobox(block: Combobox.() -> Unit = {}) : Control(uiNewCombobox()) {
     internal val ptr: CPointer<uiCombobox> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (Combobox.() -> Unit)? = null
     init { apply(block) }
@@ -463,14 +377,13 @@ fun Combobox.action(proc: Combobox.() -> Unit) {
 }
 @Suppress("UNUSED_PARAMETER")
 private fun _onCombobox(ptr: CPointer<uiCombobox>?, ref: COpaquePointer?) {
-    val combobox = ref!!.asStableRef<Combobox>().get()
-    combobox.action?.invoke(combobox)
+    ref!!.asStableRef<Combobox>().get().apply { action?.invoke(this) }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A drop down combo box that allow selection from list or free text entry. */
-class EditableCombobox(block: EditableCombobox.() -> Unit = {}): Control(uiNewEditableCombobox()) {
+class EditableCombobox(block: EditableCombobox.() -> Unit = {}) : Control(uiNewEditableCombobox()) {
     internal val ptr: CPointer<uiEditableCombobox> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (EditableCombobox.() -> Unit)? = null
     init { apply(block) }
@@ -493,14 +406,13 @@ fun EditableCombobox.action(proc: EditableCombobox.() -> Unit) {
 }
 @Suppress("UNUSED_PARAMETER")
 private fun _onEditableCombobox(ptr: CPointer<uiEditableCombobox>?, ref: COpaquePointer?) {
-    val combobox = ref!!.asStableRef<EditableCombobox>().get()
-    combobox.action?.invoke(combobox)
+    ref!!.asStableRef<EditableCombobox>().get().apply { action?.invoke(this) }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
 /** An entry widget for numerical values. */
-class Spinbox(min: Int, max: Int, block: Spinbox.() -> Unit = {}): Control(uiNewSpinbox(min, max)) {
+class Spinbox(min: Int, max: Int, block: Spinbox.() -> Unit = {}) : Control(uiNewSpinbox(min, max)) {
     internal val ptr: CPointer<uiSpinbox> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (Spinbox.() -> Unit)? = null
     init { apply(block) }
@@ -519,14 +431,13 @@ fun Spinbox.action(proc: Spinbox.() -> Unit) {
 }
 @Suppress("UNUSED_PARAMETER")
 private fun _onSpinbox(ptr: CPointer<uiSpinbox>?, ref: COpaquePointer?) {
-    val spinbox = ref!!.asStableRef<Spinbox>().get()
-    spinbox.action?.invoke(spinbox)
+    ref!!.asStableRef<Spinbox>().get().apply { action?.invoke(this) }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Horizontal slide to set numerical values. */
-class Slider(min: Int, max: Int, block: Slider.() -> Unit = {}): Control(uiNewSlider(min, max)) {
+class Slider(min: Int, max: Int, block: Slider.() -> Unit = {}) : Control(uiNewSlider(min, max)) {
     internal val ptr: CPointer<uiSlider> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (Slider.() -> Unit)? = null
     init { apply(block) }
@@ -545,14 +456,13 @@ fun Slider.action(proc: Slider.() -> Unit) {
 }
 @Suppress("UNUSED_PARAMETER")
 private fun _onSlider(ptr: CPointer<uiSlider>?, ref: COpaquePointer?) {
-    val slider = ref!!.asStableRef<Slider>().get()
-    slider.action?.invoke(slider)
+    ref!!.asStableRef<Slider>().get().apply { action?.invoke(this) }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A widget that represent a group of radio options. */
-class RadioButtons(block: RadioButtons.() -> Unit = {}): Control(uiNewRadioButtons()) {
+class RadioButtons(block: RadioButtons.() -> Unit = {}) : Control(uiNewRadioButtons()) {
     internal val ptr: CPointer<uiRadioButtons> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (RadioButtons.() -> Unit)? = null
     init { apply(block) }
@@ -575,21 +485,34 @@ fun RadioButtons.action(proc: RadioButtons.() -> Unit) {
 }
 @Suppress("UNUSED_PARAMETER")
 private fun _onRadioButtons(ptr: CPointer<uiRadioButtons>?, ref: COpaquePointer?) {
-    val radio = ref!!.asStableRef<RadioButtons>().get()
-    radio.action?.invoke(radio)
+    ref!!.asStableRef<RadioButtons>().get().apply { action?.invoke(this) }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A widgets to edit date and time. */
-class DateTimePicker(block: DateTimePicker.() -> Unit = {}): Control(uiNewDateTimePicker()) {
+abstract class TmPicker(_ptr: CPointer<uiDateTimePicker>?) : Control(_ptr) {
     internal val ptr: CPointer<uiDateTimePicker> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
-    internal var action: (DateTimePicker.() -> Unit)? = null
+    internal var action: (TmPicker.() -> Unit)? = null
+}
+
+/** A widgets to edit date and time. */
+class DateTimePicker(block: DateTimePicker.() -> Unit = {}) : TmPicker(uiNewDateTimePicker()) {
+    init { apply(block) }
+}
+
+/** A widgets to edit date. */
+class DatePicker(block: DatePicker.() -> Unit = {}) : TmPicker(uiNewDatePicker()) {
+    init { apply(block) }
+}
+
+/** A widgets to edit time. */
+class TimePicker(block: TimePicker.() -> Unit = {}) : TmPicker(uiNewTimePicker()) {
     init { apply(block) }
 }
 
 /** The current value as Unix epoch */
-var DateTimePicker.value: Long
+var TmPicker.value: Long
     get() = memScoped {
        var tm = alloc<tm>().ptr
        uiDateTimePickerTime(ptr, tm)
@@ -602,7 +525,7 @@ var DateTimePicker.value: Long
     }
 
 /** The current value as String. */
-fun DateTimePicker.text(format: String): String = memScoped {
+fun TmPicker.text(format: String): String = memScoped {
     var tm = alloc<tm>().ptr
     var buf = allocArray<ByteVar>(64)
     uiDateTimePickerTime(ptr, tm)
@@ -610,108 +533,21 @@ fun DateTimePicker.text(format: String): String = memScoped {
     return buf.toKString()
 }
 
-/** Funcion to be run when the user makes a change to the DateTimePicker.
+/** Funcion to be run when the user makes a change to the Picker.
  *  Only one function can be registered at a time. */
-fun DateTimePicker.action(proc: DateTimePicker.() -> Unit) {
+fun TmPicker.action(proc: TmPicker.() -> Unit) {
     action = proc
     uiDateTimePickerOnChanged(ptr, staticCFunction(::_onDateTimePicker), ref.asCPointer())
 }
 @Suppress("UNUSED_PARAMETER")
 private fun _onDateTimePicker(ptr: CPointer<uiDateTimePicker>?, ref: COpaquePointer?) {
-    val time = ref!!.asStableRef<DateTimePicker>().get()
-    time.action?.invoke(time)
-}
-
-///////////////////////////////////////////////////////////////////////////////
-
-/** A widgets to edit date. */
-class DatePicker(block: DatePicker.() -> Unit = {}): Control(uiNewDatePicker()) {
-    internal val ptr: CPointer<uiDateTimePicker> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
-    internal var action: (DatePicker.() -> Unit)? = null
-    init { apply(block) }
-}
-
-/** The current value as Unix epoch */
-var DatePicker.value: Long
-    get() = memScoped {
-       var tm = alloc<tm>().ptr
-       uiDateTimePickerTime(ptr, tm)
-       mktime(tm)
-    }
-    set(value) = memScoped {
-       var time = alloc<time_tVar>()
-       time.value = value
-       uiDateTimePickerSetTime(ptr, localtime(time.ptr))
-    }
-
-/** The current value as String. */
-fun DatePicker.text(format: String): String = memScoped {
-    var tm = alloc<tm>().ptr
-    var buf = allocArray<ByteVar>(64)
-    uiDateTimePickerTime(ptr, tm)
-    strftime(buf, 64, format, tm)
-    return buf.toKString()
-}
-
-/** Funcion to be run when the user makes a change to the DateTimePicker.
- *  Only one function can be registered at a time. */
-fun DatePicker.action(proc: DatePicker.() -> Unit) {
-    action = proc
-    uiDateTimePickerOnChanged(ptr, staticCFunction(::_onDatePicker), ref.asCPointer())
-}
-@Suppress("UNUSED_PARAMETER")
-private fun _onDatePicker(ptr: CPointer<uiDateTimePicker>?, ref: COpaquePointer?) {
-    val time = ref!!.asStableRef<DatePicker>().get()
-    time.action?.invoke(time)
-}
-
-///////////////////////////////////////////////////////////////////////////////
-
-/** A widgets to edit time. */
-class TimePicker(block: TimePicker.() -> Unit = {}): Control(uiNewTimePicker()) {
-    internal val ptr: CPointer<uiDateTimePicker> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
-    internal var action: (TimePicker.() -> Unit)? = null
-    init { apply(block) }
-}
-
-/** The current value as Unix epoch */
-var TimePicker.value: Long
-    get() = memScoped {
-       var tm = alloc<tm>().ptr
-       uiDateTimePickerTime(ptr, tm)
-       mktime(tm)
-    }
-    set(value) = memScoped {
-       var time = alloc<time_tVar>()
-       time.value = value
-       uiDateTimePickerSetTime(ptr, localtime(time.ptr))
-    }
-
-/** The current value as String. */
-fun TimePicker.text(format: String): String = memScoped {
-    var tm = alloc<tm>().ptr
-    var buf = allocArray<ByteVar>(64)
-    uiDateTimePickerTime(ptr, tm)
-    strftime(buf, 64, format, tm)
-    return buf.toKString()
-}
-
-/** Funcion to be run when the user makes a change to the DateTimePicker.
- *  Only one function can be registered at a time. */
-fun TimePicker.action(proc: TimePicker.() -> Unit) {
-    action = proc
-    uiDateTimePickerOnChanged(ptr, staticCFunction(::_onTimePicker), ref.asCPointer())
-}
-@Suppress("UNUSED_PARAMETER")
-private fun _onTimePicker(ptr: CPointer<uiDateTimePicker>?, ref: COpaquePointer?) {
-    val time = ref!!.asStableRef<TimePicker>().get()
-    time.action?.invoke(time)
+    ref!!.asStableRef<TmPicker>().get().apply { action?.invoke(this) }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A static text label. */
-class Label(text: String, block: Label.() -> Unit = {}): Control(uiNewLabel(text)) {
+class Label(text: String, block: Label.() -> Unit = {}) : Control(uiNewLabel(text)) {
     internal val ptr: CPointer<uiLabel> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     init { apply(block) }
 }
@@ -724,23 +560,24 @@ var Label.text: String
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A vertical or an horizontal line to visually separate widgets. */
-class HorizontalSeparator(block: HorizontalSeparator.() -> Unit = {}): Control(uiNewHorizontalSeparator()) {
+abstract class Separator(_ptr: CPointer<uiSeparator>?) : Control(_ptr) {
     internal val ptr: CPointer<uiSeparator> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
+}
+
+/** An horizontal line to visually separate widgets. */
+class HorizontalSeparator(block: HorizontalSeparator.() -> Unit = {}) : Separator(uiNewHorizontalSeparator()) {
     init { apply(block) }
 }
 
-///////////////////////////////////////////////////////////////////////////////
-
-/** A vertical or an horizontal line to visually separate widgets. */
-class VerticalSeparator(block: VerticalSeparator.() -> Unit = {}): Control(uiNewVerticalSeparator()) {
-    internal val ptr: CPointer<uiSeparator> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
+/** A vertical line to visually separate widgets. */
+class VerticalSeparator(block: VerticalSeparator.() -> Unit = {}) : Separator(uiNewVerticalSeparator()) {
     init { apply(block) }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Progress bar widget. */
-class ProgressBar(block: ProgressBar.() -> Unit = {}): Control(uiNewProgressBar()) {
+class ProgressBar(block: ProgressBar.() -> Unit = {}) : Control(uiNewProgressBar()) {
     internal val ptr: CPointer<uiProgressBar> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     init { apply(block) }
 }
@@ -754,7 +591,7 @@ var ProgressBar.value: Int
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A simple button. */
-class Button(text: String, block: Button.() -> Unit = {}): Control(uiNewButton(text)) {
+class Button(text: String, block: Button.() -> Unit = {}) : Control(uiNewButton(text)) {
     internal val ptr: CPointer<uiButton> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (Button.() -> Unit)? = null
     init { apply(block) }
@@ -773,14 +610,13 @@ fun Button.action(proc: Button.() -> Unit) {
 }
 @Suppress("UNUSED_PARAMETER")
 private fun _onButton(ptr: CPointer<uiButton>?, ref: COpaquePointer?) {
-    val button = ref!!.asStableRef<Button>().get()
-    button.action?.invoke(button)
+    ref!!.asStableRef<Button>().get().apply { action?.invoke(this) }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A button that opens a color palette popup. */
-class ColorButton(block: ColorButton.() -> Unit = {}): Control(uiNewColorButton()) {
+class ColorButton(block: ColorButton.() -> Unit = {}) : Control(uiNewColorButton()) {
     internal val ptr: CPointer<uiColorButton> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (ColorButton.() -> Unit)? = null
     init { apply(block) }
@@ -808,14 +644,13 @@ fun ColorButton.action(proc: ColorButton.() -> Unit) {
 }
 @Suppress("UNUSED_PARAMETER")
 private fun _onColorButton(ptr: CPointer<uiColorButton>?, ref: COpaquePointer?) {
-    val button = ref!!.asStableRef<ColorButton>().get()
-    button.action?.invoke(button)
+    ref!!.asStableRef<ColorButton>().get().apply { action?.invoke(this) }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A button that allows users to choose a font when they click on it. */
-class FontButton(block: FontButton.() -> Unit = {}): Control(uiNewFontButton()) {
+class FontButton(block: FontButton.() -> Unit = {}) : Control(uiNewFontButton()) {
     internal val ptr: CPointer<uiFontButton> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (FontButton.() -> Unit)? = null
     init { apply(block) }
@@ -841,6 +676,5 @@ fun FontButton.action(proc: FontButton.() -> Unit) {
 }
 @Suppress("UNUSED_PARAMETER")
 private fun _onFontButton(ptr: CPointer<uiFontButton>?, ref: COpaquePointer?) {
-    val button = ref!!.asStableRef<ColorButton>().get()
-    button.action?.invoke(button)
+    ref!!.asStableRef<ColorButton>().get().apply { action?.invoke(this) }
 }

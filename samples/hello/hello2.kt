@@ -10,7 +10,7 @@ fun main(args: Array<String>) = application {
 
         setChild(VerticalBox {
             padded = true
-            val scroll = MultilineEntry {
+            val scroll = WrappingMultilineEntry {
                 readOnly = true
             }
             val button = Button("libui говорит: click me!") {

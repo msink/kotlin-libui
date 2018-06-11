@@ -12,7 +12,7 @@ fun main(args: Array<String>) = application {
         setChild(VerticalBox {
             padded = true
 
-            val username = Entry()
+            val username = TextEntry()
             val password = PasswordEntry()
 
             append(Form {
