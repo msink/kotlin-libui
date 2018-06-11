@@ -5,15 +5,15 @@ import kotlinx.cinterop.*
 /** A canvas you can draw on. It also receives keyboard and mouse events,
  *  supports scrolling, is DPI aware, and has several other useful features. */
 class Area(handler: AreaHandler, block: Area.() -> Unit = {}): Control(uiNewArea(handler)) {
-    internal val p: CPointer<uiArea> get() = _p?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiArea> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
     init { apply(block) }
 }
 
 fun Area.setSize(width: Int, height: Int) =
-    uiAreaSetSize(p, width, height)
+    uiAreaSetSize(ptr, width, height)
 
 fun Area.queueRedrawAll() =
-    uiAreaQueueRedrawAll(p)
+    uiAreaQueueRedrawAll(ptr)
 
 //// TODO document these can only be called within Mouse() handlers
 //// TODO should these be allowed on scrolling areas?
@@ -28,18 +28,18 @@ fun Area.queueRedrawAll() =
 /** Area with horziontal and vertical scrollbars. */
 class ScrollingArea(handler: AreaHandler, width: Int, height: Int, block: ScrollingArea.() -> Unit = {}):
     Control(uiNewScrollingArea(handler, width, height)) {
-    internal val p: CPointer<uiArea> get() = _p?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ptr: CPointer<uiArea> get() = _ptr?.reinterpret() ?: throw Error("Control is destriyed")
     init { apply(block) }
 }
 
 fun ScrollingArea.setSize(width: Int, height: Int) =
-    uiAreaSetSize(p, width, height)
+    uiAreaSetSize(ptr, width, height)
 
 fun ScrollingArea.queueRedrawAll() =
-    uiAreaQueueRedrawAll(p)
+    uiAreaQueueRedrawAll(ptr)
 
 fun ScrollingArea.scrollTo(x: Double, y: Double, width: Double, height: Double) =
-    uiAreaScrollTo(p, x, y, width, height)
+    uiAreaScrollTo(ptr, x, y, width, height)
 
 ///////////////////////////////////////////////////////////////////////////////
 

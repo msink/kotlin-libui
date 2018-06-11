@@ -108,7 +108,7 @@ var Window.contentSize: Size2D
 
 /** Specify the control to show in window content area.
  *  Window instances can contain only one control. If you need more, you have to use Container */
-fun Window.setChild(widget: Control) = uiWindowSetChild(ptr, widget.c)
+fun Window.setChild(widget: Control) = uiWindowSetChild(ptr, widget.ctl)
 
 /** Show the window. */
 fun Window.show() = uiControlShow(ptr.reinterpret())
