@@ -42,8 +42,8 @@ import platform.posix.*
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-/** Represents a GUI control (widget). It provdes methods common to all Controls. */
-open class Control(internal var _ptr: COpaquePointer?) {
+/** Represents a GUI control (widget). It provides methods common to all Controls. */
+abstract class Control(internal var _ptr: COpaquePointer?) {
     internal val ctl: CPointer<uiControl> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal val ref = StableRef.create(this)
     internal val ctlDestroy = ctl.pointed.Destroy
@@ -54,7 +54,7 @@ open class Control(internal var _ptr: COpaquePointer?) {
 }
 private var controls = mutableMapOf<CPointer<uiControl>, Control>()
 private fun onDestroy(ctl: CPointer<uiControl>?) {
-    with (controls[ctl] ?: throw Error("Control is destroyed")) {
+    with (controls[ctl!!] ?: throw Error("Control is destroyed")) {
         ctlDestroy?.invoke(ctl)
         controls.remove(ctl)
         ref.dispose()
