@@ -45,8 +45,8 @@ import platform.posix.*
 /** Represents a GUI control (widget). It provdes methods common to all Controls. */
 open class Control(internal var _ptr: COpaquePointer?) {
     internal val ctl: CPointer<uiControl> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
-    internal val ctlDestroy = ctl.pointed.Destroy
     internal val ref = StableRef.create(this)
+    internal val ctlDestroy = ctl.pointed.Destroy
     init {
         ctl.pointed.Destroy = staticCFunction(::onDestroy)
         controls[ctl] = this
@@ -62,8 +62,8 @@ private fun onDestroy(ctl: CPointer<uiControl>?) {
     }
 }
 
-/** Returns `true` if Control was destroyed - in this case all other operstios
- *  are invalid and will throw Exception. */
+/** Returns `true` if Control was destroyed - in this case all other operations
+ *  are invalid and will `throw Error("Control is destroyed")`. */
 val Control.destroyed: Boolean get() = _ptr == null
 
 /** Destroy and free all allocated resources. */
