@@ -4,15 +4,15 @@ import kotlinx.cinterop.*
 
 /** A canvas you can draw on. It also receives keyboard and mouse events,
  *  is DPI aware, and has several other useful features. */
-fun DrawArea() : Area {
+fun Area(block: Area.() -> Unit = {}): Area {
     val handler = nativeHeap.alloc<ktAreaHandler>()
-    return Area(uiNewArea(handler.ui.ptr), handler.ptr)
+    return Area(uiNewArea(handler.ui.ptr), handler.ptr).apply(block)
 }
 
 /** Area with horziontal and vertical scrollbars. */
-fun ScrollingArea(width: Int, height: Int) : Area {
+fun ScrollingArea(width: Int, height: Int, block: Area.() -> Unit = {}): Area {
     val handler = nativeHeap.alloc<ktAreaHandler>()
-    return Area(uiNewScrollingArea(handler.ui.ptr, width, height), handler.ptr)
+    return Area(uiNewScrollingArea(handler.ui.ptr, width, height), handler.ptr).apply(block)
 }
 
 typealias AreaDrawParams = CPointer<uiAreaDrawParams>

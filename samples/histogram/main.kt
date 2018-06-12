@@ -43,100 +43,101 @@ fun main(args: Array<String>) = application {
                 }
             }
 
-            val histogram = DrawArea().apply {
-            draw { draw ->
-                val context = draw.pointed.Context!!
-                val areaWidth = draw.pointed.AreaWidth
-                val areaHeight = draw.pointed.AreaHeight
-                val graphWidth = graphWidth(areaWidth)
-                val graphHeight = graphHeight(areaHeight)
-                val graphColor = colorButton.color
-
-                val xs = DoubleArray(10)
-                val ys = DoubleArray(10)
-                pointLocations(graphWidth, graphHeight, xs, ys)
-
-            memScoped {
-                val brush = alloc<uiDrawBrush>().ptr
-
-                // make a stroke for both the axes and the histogram line
-                val stroke = alloc<uiDrawStrokeParams>().ptr
-                stroke.pointed.Cap = uiDrawLineCapFlat
-                stroke.pointed.Join = uiDrawLineJoinMiter
-                stroke.pointed.Thickness = 2.0
-                stroke.pointed.MiterLimit = uiDrawDefaultMiterLimit
-
-                // fill the area with white
-                context.fill(uiDrawFillModeWinding, brush.solid(colorWhite)) {
-                    rectangle(0.0, 0.0, areaWidth, areaHeight)
-                }
-
-                // draw the axes
-                context.stroke(uiDrawFillModeWinding, brush.solid(colorBlack), stroke) {
-                    figure(xoffLeft, yoffTop)
-                    lineTo(xoffLeft, yoffTop + graphHeight)
-                    lineTo(xoffLeft + graphWidth, yoffTop + graphHeight)
-                }
-
-                // now transform the coordinate space so (0, 0) is the top-left corner of the graph
-                context.transform {
-                    translate(xoffLeft, yoffTop)
-                }
-
-                // now create the fill for the graph below the graph line
-                context.fill(uiDrawFillModeWinding, brush.solid(graphColor, opacity = 0.5)) {
-                    figure(xs[0], ys[0])
-                    for (i in 1 until 10)
-                        lineTo(xs[i], ys[i])
-                    lineTo(graphWidth, graphHeight)
-                    lineTo(0.0, graphHeight)
-                    closeFigure()
-                }
-
-                // now draw the histogram line
-                context.stroke(uiDrawFillModeWinding, brush.solid(graphColor), stroke) {
-                    figure(xs[0], ys[0])
-                    for (i in 1 until 10)
-                        lineTo(xs[i], ys[i])
-                }
-
-                // now draw the point being hovered over
-                if (currentPoint != -1) {
-                    context.fill(uiDrawFillModeWinding, brush) {
-                        figureWithArc(xs[currentPoint], ys[currentPoint], pointRadius,
-                                      startAngle = 0.0, sweep = 6.23)
+            val histogram = Area {
+                draw { draw ->
+                    val context = draw.pointed.Context!!
+                    val areaWidth = draw.pointed.AreaWidth
+                    val areaHeight = draw.pointed.AreaHeight
+                    val graphWidth = graphWidth(areaWidth)
+                    val graphHeight = graphHeight(areaHeight)
+                    val graphColor = colorButton.color
+            
+                    val xs = DoubleArray(10)
+                    val ys = DoubleArray(10)
+                    pointLocations(graphWidth, graphHeight, xs, ys)
+            
+                memScoped {
+                    val brush = alloc<uiDrawBrush>().ptr
+            
+                    // make a stroke for both the axes and the histogram line
+                    val stroke = alloc<uiDrawStrokeParams>().ptr
+                    stroke.pointed.Cap = uiDrawLineCapFlat
+                    stroke.pointed.Join = uiDrawLineJoinMiter
+                    stroke.pointed.Thickness = 2.0
+                    stroke.pointed.MiterLimit = uiDrawDefaultMiterLimit
+            
+                    // fill the area with white
+                    context.fill(uiDrawFillModeWinding, brush.solid(colorWhite)) {
+                        rectangle(0.0, 0.0, areaWidth, areaHeight)
                     }
-                }
-            }}
-
-            mouseEvent { event ->
-                val eventX = event.pointed.X
-                val eventY = event.pointed.Y
-                val areaWidth = event.pointed.AreaWidth
-                val areaHeight = event.pointed.AreaHeight
-                val graphWidth = graphWidth(areaWidth)
-                val graphHeight = graphHeight(areaHeight)
-
-                val xs = DoubleArray(10)
-                val ys = DoubleArray(10)
-                pointLocations(graphWidth, graphHeight, xs, ys)
-
-                currentPoint = -1
-
-                val x = eventX - xoffLeft
-                val y = eventY - yoffTop
-                for (i in 0 until 10) {
-                    if ((x >= xs[i] - pointRadius) &&
-                        (x <= xs[i] + pointRadius) &&
-                        (y >= ys[i] - pointRadius) &&
-                        (y <= ys[i] + pointRadius)) {
-                        currentPoint = i
-                        break
+            
+                    // draw the axes
+                    context.stroke(uiDrawFillModeWinding, brush.solid(colorBlack), stroke) {
+                        figure(xoffLeft, yoffTop)
+                        lineTo(xoffLeft, yoffTop + graphHeight)
+                        lineTo(xoffLeft + graphWidth, yoffTop + graphHeight)
                     }
+            
+                    // now transform the coordinate space so (0, 0) is the top-left corner of the graph
+                    context.transform {
+                        translate(xoffLeft, yoffTop)
+                    }
+            
+                    // now create the fill for the graph below the graph line
+                    context.fill(uiDrawFillModeWinding, brush.solid(graphColor, opacity = 0.5)) {
+                        figure(xs[0], ys[0])
+                        for (i in 1 until 10)
+                            lineTo(xs[i], ys[i])
+                        lineTo(graphWidth, graphHeight)
+                        lineTo(0.0, graphHeight)
+                        closeFigure()
+                    }
+            
+                    // now draw the histogram line
+                    context.stroke(uiDrawFillModeWinding, brush.solid(graphColor), stroke) {
+                        figure(xs[0], ys[0])
+                        for (i in 1 until 10)
+                            lineTo(xs[i], ys[i])
+                    }
+            
+                    // now draw the point being hovered over
+                    if (currentPoint != -1) {
+                        context.fill(uiDrawFillModeWinding, brush) {
+                            figureWithArc(xs[currentPoint], ys[currentPoint], pointRadius,
+                                          startAngle = 0.0, sweep = 6.23)
+                        }
+                    }
+                }}
+
+                mouseEvent { event ->
+                    val eventX = event.pointed.X
+                    val eventY = event.pointed.Y
+                    val areaWidth = event.pointed.AreaWidth
+                    val areaHeight = event.pointed.AreaHeight
+                    val graphWidth = graphWidth(areaWidth)
+                    val graphHeight = graphHeight(areaHeight)
+            
+                    val xs = DoubleArray(10)
+                    val ys = DoubleArray(10)
+                    pointLocations(graphWidth, graphHeight, xs, ys)
+            
+                    currentPoint = -1
+            
+                    val x = eventX - xoffLeft
+                    val y = eventY - yoffTop
+                    for (i in 0 until 10) {
+                        if ((x >= xs[i] - pointRadius) &&
+                            (x <= xs[i] + pointRadius) &&
+                            (y >= ys[i] - pointRadius) &&
+                            (y <= ys[i] + pointRadius)) {
+                            currentPoint = i
+                            break
+                        }
+                    }
+                    
+                    queueRedrawAll()
                 }
-                
-                queueRedrawAll()
-            }}
+            }
 
             append(VerticalBox() {
                 padded = true

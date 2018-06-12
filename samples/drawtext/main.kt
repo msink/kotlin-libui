@@ -72,16 +72,17 @@ fun main(args: Array<String>) = application {
             selected = 0
         }
 
-        val area = DrawArea().apply {
-        draw { draw ->
-            val context = draw.pointed.Context!!
-            val areaWidth = draw.pointed.AreaWidth
-        memScoped {
-            val defaultFont = alloc<uiFontDescriptor>().ptr
-            fontButton.getFont(defaultFont)
-            context.text(attrstr, defaultFont, areaWidth, alignment.selected, 0.0, 0.0)
-            defaultFont.destroy()
-        }}}
+        val area = Area {
+            draw { draw ->
+                val context = draw.pointed.Context!!
+                val areaWidth = draw.pointed.AreaWidth
+            memScoped {
+                val defaultFont = alloc<uiFontDescriptor>().ptr
+                fontButton.getFont(defaultFont)
+                context.text(attrstr, defaultFont, areaWidth, alignment.selected, 0.0, 0.0)
+                defaultFont.destroy()
+            }}
+        }
 
         fontButton.action { area.queueRedrawAll() }
         alignment.action { area.queueRedrawAll() }
