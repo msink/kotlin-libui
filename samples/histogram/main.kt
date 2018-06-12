@@ -43,8 +43,8 @@ fun main(args: Array<String>) = application {
                 }
             }
 
-            val histogram = Area(AreaHandler(
-            draw = { draw ->
+            val histogram = DrawArea().apply {
+            draw { draw ->
                 val context = draw.pointed.Context!!
                 val areaWidth = draw.pointed.AreaWidth
                 val areaHeight = draw.pointed.AreaHeight
@@ -107,9 +107,9 @@ fun main(args: Array<String>) = application {
                                       startAngle = 0.0, sweep = 6.23)
                     }
                 }
-            }},
+            }}
 
-            mouseEvent = { event ->
+            mouseEvent { event ->
                 val eventX = event.pointed.X
                 val eventY = event.pointed.Y
                 val areaWidth = event.pointed.AreaWidth
@@ -136,7 +136,7 @@ fun main(args: Array<String>) = application {
                 }
                 
                 queueRedrawAll()
-            }))
+            }}
 
             append(VerticalBox() {
                 padded = true

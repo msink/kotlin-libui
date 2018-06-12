@@ -30,8 +30,6 @@ class Window(
     fun dispose() {
         astrings.forEach { it.dispose() }
         actions.forEach { it.dispose() }
-        handlers.forEach { nativeHeap.free(it) }
-
         ref.dispose()
     }
 
