@@ -66,9 +66,9 @@ fun main(args: Array<String>) = application {
         val fontButton = FontButton()
 
         val alignment = Combobox {
-            append("Left")
-            append("Center")
-            append("Right")
+            add("Left")
+            add("Center")
+            add("Right")
             selected = 0
         }
 
@@ -87,17 +87,17 @@ fun main(args: Array<String>) = application {
         fontButton.action { area.queueRedrawAll() }
         alignment.action { area.queueRedrawAll() }
 
-        setChild(HorizontalBox {
+        add(HorizontalBox {
             padded = true
-            append(VerticalBox {
+            add(VerticalBox {
                 padded = true
-                append(fontButton)
-                append(Form {
+                add(fontButton)
+                add(Form {
                     padded = true
-                    append("Alignment", alignment)
+                    add("Alignment", alignment)
                 })
             })
-            append(area, stretchy = true)
+            add(area, stretchy = true)
         })
         show()
     }

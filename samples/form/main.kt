@@ -9,19 +9,19 @@ fun main(args: Array<String>) = application {
         hasMenubar = false) {
         margined = true
 
-        setChild(VerticalBox {
+        add(VerticalBox {
             padded = true
 
             val username = TextEntry()
             val password = PasswordEntry()
 
-            append(Form {
+            add(Form {
                 padded = true
-                append("Username", username)
-                append("Password", password)
+                add("Username", username)
+                add("Password", password)
             })
 
-            append(Button(text = "Login") {
+            add(Button(text = "Login") {
                 action {
                     MsgBox("${username.text}:${password.text}")
                 }

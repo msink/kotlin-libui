@@ -24,7 +24,7 @@ fun main(args: Array<String>) = application {
         onClose { uiQuit(); true }
         onShouldQuit { destroy(); true }
 
-        setChild(HorizontalBox() {
+        add(HorizontalBox() {
             padded = true
 
             srand(time(null).narrow())
@@ -139,17 +139,17 @@ fun main(args: Array<String>) = application {
                 }
             }
 
-            append(VerticalBox() {
+            add(VerticalBox() {
                 padded = true
                 datapoints.forEach {
                     it.action { histogram.queueRedrawAll() }
-                    append(it)
+                    add(it)
                 }
                 colorButton.action { histogram.queueRedrawAll() }
-                append(colorButton)
+                add(colorButton)
             })
 
-            append(histogram, stretchy = true)
+            add(histogram, stretchy = true)
         })
 
         show()

@@ -118,7 +118,7 @@ var Form.padded: Boolean
     set(padded) = uiFormSetPadded(ptr, if (padded) 1 else 0)
 
 /** Adds the given widget to the end of the form. */
-fun Form.append(label: String, widget: Control, stretchy: Boolean = false) =
+fun Form.add(label: String, widget: Control, stretchy: Boolean = false) =
     uiFormAppend(ptr, label, widget.ctl, if (stretchy) 1 else 0)
 
 /** deletes the nth control of the form. */
@@ -138,7 +138,7 @@ var Grid.padded: Boolean
     set(padded) = uiGridSetPadded(ptr, if (padded) 1 else 0)
 
 /** Adds the given Control to the end of the Grid. */
-fun Grid.append(
+fun Grid.add(
     widget: Control,
     left: Int,
     top: Int,
@@ -185,7 +185,7 @@ var Box.padded: Boolean
     set(padded) = uiBoxSetPadded(ptr, if (padded) 1 else 0)
 
 /** Adds the given widget to the end of the HorizontalBox. */
-fun Box.append(widget: Control, stretchy: Boolean = false) =
+fun Box.add(widget: Control, stretchy: Boolean = false) =
     uiBoxAppend(ptr, widget.ctl, if (stretchy) 1 else 0)
 
 /** deletes the nth control of the HorizontalBox. */
@@ -204,7 +204,7 @@ fun Tab.getMargined(page: Int): Boolean = uiTabMargined(ptr, page) != 0
 fun Tab.setMargined(page: Int, margined: Boolean) = uiTabSetMargined(ptr, page, if (margined) 1 else 0)
 
 /** Adds the given page to the end of the Tab. */
-fun Tab.append(name: String, widget: Control) = uiTabAppend(ptr, name, widget.ctl)
+fun Tab.add(name: String, widget: Control) = uiTabAppend(ptr, name, widget.ctl)
 
 /** Adds the given page to the Tab such that it is the nth page of the Tab (starting at 0). */
 fun Tab.insertAt(index: Int, name: String, widget: Control) = uiTabInsertAt(ptr, name, index, widget.ctl)
@@ -234,7 +234,7 @@ var Group.margined: Boolean
     set(margined) = uiGroupSetMargined(ptr, if (margined) 1 else 0)
 
 /** sets the group's child. If child is null, the group will not have a child. */
-fun Group.setChild(child: Control?) = uiGroupSetChild(ptr, child?.ctl)
+fun Group.add(child: Control?) = uiGroupSetChild(ptr, child?.ctl)
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -370,7 +370,7 @@ var Combobox.selected: Int
 
 /** Adds the named entry to the end of the combobox.
  *  If it is the first entry, it is automatically selected. */
-fun Combobox.append(text: String) = uiComboboxAppend(ptr, text)
+fun Combobox.add(text: String) = uiComboboxAppend(ptr, text)
 
 /** Funcion to be run when the user makes a change to the Combobox.
  *  Only one function can be registered at a time. */
@@ -399,7 +399,7 @@ var EditableCombobox.text: String
 
 /** Adds the named entry to the end of the editable combobox.
  *  If it is the first entry, it is automatically selected. */
-fun EditableCombobox.append(text: String) = uiEditableComboboxAppend(ptr, text)
+fun EditableCombobox.add(text: String) = uiEditableComboboxAppend(ptr, text)
 
 /** Funcion to be run when the user makes a change to the EditableCombobox.
  *  Only one function can be registered at a time. */
@@ -478,7 +478,7 @@ var RadioButtons.selected: Int
 
 /** Adds the named button to the end of the radiobuttons.
  *  If it is the first button, it is automatically selected. */
-fun RadioButtons.append(text: String) = uiRadioButtonsAppend(ptr, text)
+fun RadioButtons.add(text: String) = uiRadioButtonsAppend(ptr, text)
 
 /** Funcion to be run when the user makes a change to the RadioButtons.
  *  Only one function can be registered at a time. */

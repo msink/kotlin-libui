@@ -6,7 +6,7 @@ fun main(args: Array<String>) = application {
     Window("Hello", width = 320, height = 240, hasMenubar = false) {
         margined = true
 
-        setChild(VerticalBox {
+        add(VerticalBox {
             padded = true
             val scroll = WrappingMultilineEntry {
                 readOnly = true
@@ -24,8 +24,8 @@ fun main(args: Array<String>) = application {
                 true
             }
 
-            append(button)
-            append(scroll, stretchy = true)
+            add(button)
+            add(scroll, stretchy = true)
         })
 
         onClose { uiQuit(); true }

@@ -8,7 +8,7 @@ fun main(args: Array<String>) = application {
         hasMenubar = false) {
         margined = true
 
-        setChild(VerticalBox {
+        add(VerticalBox {
             padded = true
             val scroll = WrappingMultilineEntry {
                 readOnly = true
@@ -19,8 +19,8 @@ fun main(args: Array<String>) = application {
                                   "Привет, мир!  你好，世界！\n\n")
                 }
             }
-            append(button)
-            append(scroll, stretchy = true)
+            add(button)
+            add(scroll, stretchy = true)
         })
 
         onClose { uiQuit(); true }
