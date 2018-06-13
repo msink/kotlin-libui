@@ -3,7 +3,7 @@ import libui.*
 fun Window.basicControlsPage() = VerticalBox() {
     padded = true
 
-    add(HorizontalBox() {
+    add(HorizontalBox {
         padded = true
         add(Button("Button"))
         add(Checkbox("Checkbox"))
@@ -12,7 +12,7 @@ fun Window.basicControlsPage() = VerticalBox() {
     add(HorizontalSeparator())
     add(Group("Entries") {
         margined = true
-        add(Form() {
+        add(Form {
             padded = true
             add("Text Entry", TextEntry())
             add("Password Entry", PasswordEntry())
@@ -28,7 +28,7 @@ fun Window.numbersPage() = HorizontalBox() {
 
     add(Group("Numbers") {
         margined = true
-        add(VerticalBox() {
+        add(VerticalBox {
             padded = true
             val spinbox = Spinbox(min = 0, max = 100)
             val slider = Slider(min = 0, max = 100)
@@ -44,7 +44,7 @@ fun Window.numbersPage() = HorizontalBox() {
             add(spinbox)
             add(slider)
             add(pbar)
-            add(ProgressBar() {
+            add(ProgressBar {
                 value = -1
             })
         })
@@ -52,19 +52,19 @@ fun Window.numbersPage() = HorizontalBox() {
 
     add(Group("Lists") {
         margined = true
-        add(VerticalBox() {
+        add(VerticalBox {
             padded = true
-            add(Combobox() {
+            add(Combobox {
                 add("Combobox Item 1")
                 add("Combobox Item 2")
                 add("Combobox Item 3")
             })
-            add(EditableCombobox() {
+            add(EditableCombobox {
                 add("Editable Item 1")
                 add("Editable Item 2")
                 add("Editable Item 3")
             })
-            add(RadioButtons() {
+            add(RadioButtons {
                 add("Radio Button 1")
                 add("Radio Button 2")
                 add("Radio Button 3")
@@ -76,7 +76,7 @@ fun Window.numbersPage() = HorizontalBox() {
 fun Window.dataChoosersPage() = HorizontalBox() {
     padded = true
 
-    add(VerticalBox() {
+    add(VerticalBox {
         padded = true
 
         add(DatePicker())
@@ -89,10 +89,10 @@ fun Window.dataChoosersPage() = HorizontalBox() {
 
     add(VerticalSeparator())
 
-    add(VerticalBox() {
+    add(VerticalBox {
         padded = true
 
-        add(Grid() {
+        add(Grid {
             padded = true
 
             val entry1 = TextEntry() {
@@ -117,7 +117,7 @@ fun Window.dataChoosersPage() = HorizontalBox() {
             add(button2, 0, 1, 1, 1, 0, uiAlignFill, 0, uiAlignFill)
             add(entry2,  1, 1, 1, 1, 1, uiAlignFill, 0, uiAlignFill)
 
-            add(Grid() {
+            add(Grid {
                 padded = true
                 add(Button("Message Box") {
                     action {
@@ -142,7 +142,7 @@ fun main(args: Array<String>) = application {
         onShouldQuit { destroy(); true }
         margined = true
 
-        add(Tab() {
+        add(Tab {
             add("Basic Controls", basicControlsPage())
             setMargined(0, true)
 

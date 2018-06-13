@@ -24,7 +24,7 @@ fun main(args: Array<String>) = application {
         onClose { uiQuit(); true }
         onShouldQuit { destroy(); true }
 
-        add(HorizontalBox() {
+        add(HorizontalBox {
             padded = true
 
             srand(time(null).narrow())
@@ -139,7 +139,7 @@ fun main(args: Array<String>) = application {
                 }
             }
 
-            add(VerticalBox() {
+            add(VerticalBox {
                 padded = true
                 datapoints.forEach {
                     it.action { histogram.queueRedrawAll() }
