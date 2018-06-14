@@ -11,9 +11,8 @@ class Window(
     height: Int,
     hasMenubar: Boolean = true,
     block: Window.() -> Unit = {}
-) {
-    val ref = StableRef.create(this)
-    val ptr: CPointer<uiWindow> = uiNewWindow(title, width, height, if (hasMenubar) 1 else 0) ?: throw Error()
+) : Control(uiNewWindow(title, width, height, if (hasMenubar) 1 else 0)) {
+    internal val ptr: CPointer<uiWindow> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
 
     internal var onResize: (Window.() -> Unit)? = null
     internal var onClose: (Window.() -> Boolean)? = null
@@ -21,25 +20,13 @@ class Window(
 
     init {
         apply(block)
-        uiWindowOnContentSizeChanged(ptr, staticCFunction(::_onResize), ref.asCPointer())
-        uiWindowOnClosing(ptr, staticCFunction(::_onClose), ref.asCPointer())
+        uiWindowOnContentSizeChanged(ptr, staticCFunction(::_Resize), ref.asCPointer())
+        uiWindowOnClosing(ptr, staticCFunction(::_Close), ref.asCPointer())
     }
 
-    fun dispose() {
+    override fun dispose() {
         actions.forEach { it.dispose() }
-        ref.dispose()
-    }
-
-    /** Function to be run when window content size change. */
-    fun onResize(proc: Window.() -> Unit) {
-        onResize = proc
-    }
-
-    /** Function to be run when the user clicks the Window's close button.
-     *  Only one function can be registered at a time.
-     *  @returns [true] if window is destroyed */
-    fun onClose(proc: Window.() -> Boolean) {
-        onClose = proc
+        super.dispose()
     }
 
     /** Function to be executed when the OS wants the program to quit
@@ -59,14 +46,10 @@ class Window(
     }
 }
 
-/** Destroy and free the Window. */
-fun Window.destroy() = uiControlDestroy(ptr.reinterpret())
-
-/** Returns the OS-level handle associated with this Window.
- *  - On Windows this is an HWND of a libui-internal class.
- *  - On GTK+ this is a pointer to a GtkWindow.
- *  - On macOS this is a pointer to a NSWindow. */
-val Window.handle: Long get() = uiControlHandle(ptr.reinterpret())
+private fun _onBoolHandler(ref: COpaquePointer?): Int {
+    val proc = ref!!.asStableRef<() -> Boolean>().get()
+    return if (proc()) 1 else 0
+}
 
 /** Set or return the text to show in window title bar. */
 var Window.title: String
@@ -105,8 +88,29 @@ var Window.contentSize: SizeInt
  *  Window instances can contain only one control. If you need more, you have to use Container */
 fun Window.add(widget: Control) = uiWindowSetChild(ptr, widget.ctl)
 
-/** Show the window. */
-fun Window.show() = uiControlShow(ptr.reinterpret())
+/** Function to be run when window content size change. */
+fun Window.onResize(proc: Window.() -> Unit) {
+    onResize = proc
+}
+@Suppress("UNUSED_PARAMETER")
+private fun _Resize(ptr: CPointer<uiWindow>?, ref: COpaquePointer?) {
+    with (ref!!.asStableRef<Window>().get()) {
+        onResize?.invoke(this)
+	}
+}
+
+/** Function to be run when the user clicks the Window's close button.
+ *  Only one function can be registered at a time.
+ *  @returns [true] if window is destroyed */
+fun Window.onClose(proc: Window.() -> Boolean) {
+    onClose = proc
+}
+@Suppress("UNUSED_PARAMETER")
+private fun _Close(ptr: CPointer<uiWindow>?, ref: COpaquePointer?): Int {
+    with (ref!!.asStableRef<Window>().get()) {
+    	return if (onClose?.invoke(this) ?: true) 1 else 0
+	}
+}
 
 fun Window.OpenFileDialog(): String? {
     val rawName = uiOpenFile(ptr)
@@ -129,24 +133,3 @@ fun Window.MsgBox(text: String, details: String = "")
 
 fun Window.MsgBoxError(text: String, details: String = "")
     = uiMsgBoxError(ptr, text, details)
-
-///////////////////////////////////////////////////////////////////////////////
-
-@Suppress("UNUSED_PARAMETER")
-private fun _onResize(ptr: CPointer<uiWindow>?, ref: COpaquePointer?) {
-    val window = ref!!.asStableRef<Window>().get()
-    window.onResize?.invoke(window)
-}
-
-@Suppress("UNUSED_PARAMETER")
-private fun _onClose(ptr: CPointer<uiWindow>?, ref: COpaquePointer?): Int {
-    val window = ref!!.asStableRef<Window>().get()
-    val close = window.onClose?.invoke(window) ?: true
-    if (close) window.dispose()
-    return if (close) 1 else 0
-}
-
-internal fun _onBoolHandler(ref: COpaquePointer?): Int {
-    val proc = ref!!.asStableRef<() -> Boolean>().get()
-    return if (proc()) 1 else 0
-}

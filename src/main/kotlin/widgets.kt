@@ -46,18 +46,18 @@ import platform.posix.*
 abstract class Control(internal var _ptr: COpaquePointer?) {
     internal val ctl: CPointer<uiControl> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal val ctlDestroy = ctl.pointed.Destroy
+    internal val ref = StableRef.create(this)
     init {
-        ctl.pointed.Destroy = staticCFunction(::onDestroy)
+        ctl.pointed.Destroy = staticCFunction(::_Destroy)
         controls[ctl] = this
     }
-    internal val ref = StableRef.create(this)
     internal open fun dispose() {
         ref.dispose()
         _ptr = null
     }
 }
 private var controls = mutableMapOf<CPointer<uiControl>, Control>()
-private fun onDestroy(ctl: CPointer<uiControl>?) {
+private fun _Destroy(ctl: CPointer<uiControl>?) {
     with (controls[ctl!!] ?: throw Error("Control is destroyed")) {
         ctlDestroy?.invoke(ctl)
         controls.remove(ctl)
