@@ -44,6 +44,16 @@ fun main(args: Array<String>) = application {
             }
 
             val histogram = Area {
+                val brush = DrawBrush()
+
+                // make a stroke for both the axes and the histogram line
+                val stroke = DrawStrokeParams {
+                    Cap = uiDrawLineCapFlat
+                    Join = uiDrawLineJoinMiter
+                    Thickness = 2.0
+                    MiterLimit = uiDrawDefaultMiterLimit
+                }
+
                 draw { draw ->
                     val context = draw.pointed.Context!!
                     val areaWidth = draw.pointed.AreaWidth
@@ -51,20 +61,9 @@ fun main(args: Array<String>) = application {
                     val graphWidth = graphWidth(areaWidth)
                     val graphHeight = graphHeight(areaHeight)
                     val graphColor = colorButton.color
-            
                     val xs = DoubleArray(10)
                     val ys = DoubleArray(10)
                     pointLocations(graphWidth, graphHeight, xs, ys)
-            
-                memScoped {
-                    val brush = alloc<uiDrawBrush>().ptr
-            
-                    // make a stroke for both the axes and the histogram line
-                    val stroke = alloc<uiDrawStrokeParams>().ptr
-                    stroke.pointed.Cap = uiDrawLineCapFlat
-                    stroke.pointed.Join = uiDrawLineJoinMiter
-                    stroke.pointed.Thickness = 2.0
-                    stroke.pointed.MiterLimit = uiDrawDefaultMiterLimit
             
                     // fill the area with white
                     context.fill(uiDrawFillModeWinding, brush.solid(colorWhite)) {
@@ -107,7 +106,7 @@ fun main(args: Array<String>) = application {
                                           startAngle = 0.0, sweep = 6.23)
                         }
                     }
-                }}
+                }
 
                 mouseEvent { event ->
                     val eventX = event.pointed.X
@@ -116,7 +115,6 @@ fun main(args: Array<String>) = application {
                     val areaHeight = event.pointed.AreaHeight
                     val graphWidth = graphWidth(areaWidth)
                     val graphHeight = graphHeight(areaHeight)
-            
                     val xs = DoubleArray(10)
                     val ys = DoubleArray(10)
                     pointLocations(graphWidth, graphHeight, xs, ys)

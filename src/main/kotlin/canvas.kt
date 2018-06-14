@@ -1,6 +1,7 @@
 package libui
 
 import kotlinx.cinterop.*
+import platform.posix.*
 
 /** A canvas you can draw on. It also receives keyboard and mouse events,
  *  is DPI aware, and has several other useful features. */
@@ -137,7 +138,14 @@ typealias DrawBrushGradientStop = CPointer<uiDrawBrushGradientStop>
 typealias DrawStrokeParams = CPointer<uiDrawStrokeParams>
 typealias DrawPath = CPointer<uiDrawPath>
 
+fun Area.DrawBrush(): DrawBrush {
+    val brush = nativeHeap.alloc<uiDrawBrush>().ptr
+    natives.add(brush)
+    return brush
+}
+
 fun DrawBrush.solid(rgba: RGBA, opacity: Double = 1.0): DrawBrush {
+    memset(this, 0, uiDrawBrush.size)
     pointed.Type = uiDrawBrushTypeSolid
     pointed.R = rgba.R
     pointed.G = rgba.G
@@ -147,6 +155,7 @@ fun DrawBrush.solid(rgba: RGBA, opacity: Double = 1.0): DrawBrush {
 }
 
 fun DrawBrush.solid(color: Int, alpha: Double = 1.0): DrawBrush {
+    memset(this, 0, uiDrawBrush.size)
     pointed.Type = uiDrawBrushTypeSolid
     val rgba = RGBA(color, alpha)
     pointed.R = rgba.R
@@ -154,6 +163,13 @@ fun DrawBrush.solid(color: Int, alpha: Double = 1.0): DrawBrush {
     pointed.B = rgba.B
     pointed.A = alpha
     return this
+}
+
+fun Area.DrawStrokeParams(block: uiDrawStrokeParams.() -> Unit = {}): DrawStrokeParams {
+    val stroke = nativeHeap.alloc<uiDrawStrokeParams>().ptr
+    natives.add(stroke)
+    block.invoke(stroke.pointed)
+    return stroke
 }
 
 fun DrawPath.figure(x: Double, y: Double) = uiDrawPathNewFigure(this, x, y)
