@@ -62,24 +62,24 @@ fun main(args: Array<String>) = application {
                     val xs = DoubleArray(10)
                     val ys = DoubleArray(10)
                     pointLocations(graphWidth, graphHeight, xs, ys)
-            
+
                     // fill the area with white
                     context.fill(uiDrawFillModeWinding, brush.solid(colorWhite)) {
                         rectangle(0.0, 0.0, draw.AreaWidth, draw.AreaHeight)
                     }
-            
+
                     // draw the axes
                     context.stroke(uiDrawFillModeWinding, brush.solid(colorBlack), stroke) {
                         figure(xoffLeft, yoffTop)
                         lineTo(xoffLeft, yoffTop + graphHeight)
                         lineTo(xoffLeft + graphWidth, yoffTop + graphHeight)
                     }
-            
+
                     // now transform the coordinate space so (0, 0) is the top-left corner of the graph
                     context.transform {
                         translate(xoffLeft, yoffTop)
                     }
-            
+
                     // now create the fill for the graph below the graph line
                     context.fill(uiDrawFillModeWinding, brush.solid(graphColor, opacity = 0.5)) {
                         figure(xs[0], ys[0])
@@ -89,14 +89,14 @@ fun main(args: Array<String>) = application {
                         lineTo(0.0, graphHeight)
                         closeFigure()
                     }
-            
+
                     // now draw the histogram line
                     context.stroke(uiDrawFillModeWinding, brush.solid(graphColor), stroke) {
                         figure(xs[0], ys[0])
                         for (i in 1 until 10)
                             lineTo(xs[i], ys[i])
                     }
-            
+
                     // now draw the point being hovered over
                     if (currentPoint != -1) {
                         context.fill(uiDrawFillModeWinding, brush) {
@@ -114,9 +114,8 @@ fun main(args: Array<String>) = application {
                     val xs = DoubleArray(10)
                     val ys = DoubleArray(10)
                     pointLocations(graphWidth, graphHeight, xs, ys)
-            
+
                     currentPoint = -1
-            
                     for (i in 0 until 10) {
                         if ((x >= xs[i] - pointRadius) &&
                             (x <= xs[i] + pointRadius) &&
@@ -126,7 +125,7 @@ fun main(args: Array<String>) = application {
                             break
                         }
                     }
-                    
+
                     queueRedrawAll()
                 }
             }
