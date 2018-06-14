@@ -3,20 +3,23 @@
 import kotlinx.cinterop.*
 
 data class RGBA(
-    val R: Double,
-    val G: Double,
-    val B: Double,
-    val A: Double = 1.0
+    val r: Double,
+    val g: Double,
+    val b: Double,
+    val a: Double = 1.0
 )
 
 fun RGBA(color: Int, alpha: Double = 1.0) = RGBA(
-    R = ((color shr 16) and 255).toDouble() / 255,
-    G = ((color shr 8) and 255).toDouble() / 255,
-    B = ((color) and 255).toDouble() / 255,
-    A = alpha
+    r = ((color shr 16) and 255).toDouble() / 255,
+    g = ((color shr 8) and 255).toDouble() / 255,
+    b = ((color) and 255).toDouble() / 255,
+    a = alpha
 )
 
-data class Size2D(val width: Int, val height: Int)
+data class SizeInt(
+    val width: Int,
+    val height: Int
+)
 
 /**
  * Initializes package ui, runs [init] to set up the program,

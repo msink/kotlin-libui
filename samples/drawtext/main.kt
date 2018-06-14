@@ -66,7 +66,7 @@ fun main(args: Array<String>) = application {
             add("Left")
             add("Center")
             add("Right")
-            selected = 0
+            value = 0
         }
 
         val area = Area {
@@ -77,7 +77,7 @@ fun main(args: Array<String>) = application {
             memScoped {
                 val defaultFont = alloc<uiFontDescriptor>().ptr
                 fontButton.getFont(defaultFont)
-                context.text(astr, defaultFont, areaWidth, alignment.selected, 0.0, 0.0)
+                context.text(astr, defaultFont, areaWidth, alignment.value, 0.0, 0.0)
                 defaultFont.destroy()
             }}
         }

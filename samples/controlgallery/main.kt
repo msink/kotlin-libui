@@ -100,7 +100,7 @@ fun Window.dataChoosersPage() = HorizontalBox() {
             }
             val button1 = Button("Open File") {
                 action {
-                    entry1.text = OpenFileDialog() ?: "(cancelled)"
+                    entry1.value = OpenFileDialog() ?: "(cancelled)"
                 }
             }
             add(button1, 0, 0, 1, 1, 0, uiAlignFill, 0, uiAlignFill)
@@ -111,7 +111,7 @@ fun Window.dataChoosersPage() = HorizontalBox() {
             }
             val button2 = Button("Save File") {
                 action {
-                    entry2.text = SaveFileDialog() ?: "(cancelled)"
+                    entry2.value = SaveFileDialog() ?: "(cancelled)"
                 }
             }
             add(button2, 0, 1, 1, 1, 0, uiAlignFill, 0, uiAlignFill)

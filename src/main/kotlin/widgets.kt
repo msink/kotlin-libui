@@ -260,9 +260,9 @@ class SearchEntry(block: SearchEntry.() -> Unit = {}) : Entry(uiNewSearchEntry()
 }
 
 /** The current text of the Entry. */
-var Entry.text: String
+var Entry.value: String
     get() = uiEntryText(ptr)?.toKString() ?: ""
-    set(text) = uiEntrySetText(ptr, text)
+    set(value) = uiEntrySetText(ptr, value)
 
 /** Whether the user is allowed to change the entry text. Defaults to `true`. */
 var Entry.readOnly: Boolean
@@ -301,9 +301,9 @@ class NonWrappingMultilineEntry(block: NonWrappingMultilineEntry.() -> Unit = {}
 }
 
 /** The current text of the multiline entry. */
-var MultilineEntry.text: String
+var MultilineEntry.value: String
     get() = uiMultilineEntryText(ptr)?.toKString() ?: ""
-    set(text) = uiMultilineEntrySetText(ptr, text)
+    set(value) = uiMultilineEntrySetText(ptr, value)
 
 /** Whether the user is allowed to change the entry text. */
 var MultilineEntry.readOnly: Boolean
@@ -327,21 +327,21 @@ private fun _onMultilineEntry(ptr: CPointer<uiMultilineEntry>?, ref: COpaquePoin
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A checkbox widget. */
-class Checkbox(text: String, block: Checkbox.() -> Unit = {}) : Control(uiNewCheckbox(text)) {
+class Checkbox(label: String, block: Checkbox.() -> Unit = {}) : Control(uiNewCheckbox(label)) {
     internal val ptr: CPointer<uiCheckbox> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (Checkbox.() -> Unit)? = null
     init { apply(block) }
 }
 
 /** The static text of the checkbox. */
-var Checkbox.text: String
+var Checkbox.label: String
     get() = uiCheckboxText(ptr)?.toKString() ?: ""
-    set(text) = uiCheckboxSetText(ptr, text)
+    set(label) = uiCheckboxSetText(ptr, label)
 
 /** Whether the checkbox is checked or unchecked. Defaults to `false`. */
-var Checkbox.checked: Boolean
+var Checkbox.value: Boolean
     get() = uiCheckboxChecked(ptr) != 0
-    set(checked) = uiCheckboxSetChecked(ptr, if (checked) 1 else 0)
+    set(value) = uiCheckboxSetChecked(ptr, if (value) 1 else 0)
 
 /** Funcion to be run when the user clicks the Checkbox.
  *  Only one function can be registered at a time. */
@@ -363,14 +363,14 @@ class Combobox(block: Combobox.() -> Unit = {}) : Control(uiNewCombobox()) {
     init { apply(block) }
 }
 
-/** Return or set the current choosed option by index. */
-var Combobox.selected: Int
-    get() = uiComboboxSelected(ptr)
-    set(value) = uiComboboxSetSelected(ptr, value)
-
 /** Adds the named entry to the end of the combobox.
  *  If it is the first entry, it is automatically selected. */
 fun Combobox.add(text: String) = uiComboboxAppend(ptr, text)
+
+/** Return or set the current choosed option by index. */
+var Combobox.value: Int
+    get() = uiComboboxSelected(ptr)
+    set(value) = uiComboboxSetSelected(ptr, value)
 
 /** Funcion to be run when the user makes a change to the Combobox.
  *  Only one function can be registered at a time. */
@@ -392,14 +392,14 @@ class EditableCombobox(block: EditableCombobox.() -> Unit = {}) : Control(uiNewE
     init { apply(block) }
 }
 
-/** Return or set the current selected text or the text value of the selected item in the list. */
-var EditableCombobox.text: String
-    get() = uiEditableComboboxText(ptr)?.toKString() ?: ""
-    set(text) = uiEditableComboboxSetText(ptr, text)
-
 /** Adds the named entry to the end of the editable combobox.
  *  If it is the first entry, it is automatically selected. */
 fun EditableCombobox.add(text: String) = uiEditableComboboxAppend(ptr, text)
+
+/** Return or set the current selected text or the text value of the selected item in the list. */
+var EditableCombobox.value: String
+    get() = uiEditableComboboxText(ptr)?.toKString() ?: ""
+    set(value) = uiEditableComboboxSetText(ptr, value)
 
 /** Funcion to be run when the user makes a change to the EditableCombobox.
  *  Only one function can be registered at a time. */
@@ -471,14 +471,14 @@ class RadioButtons(block: RadioButtons.() -> Unit = {}) : Control(uiNewRadioButt
     init { apply(block) }
 }
 
-/** Return or set the current choosed option by index. */
-var RadioButtons.selected: Int
-    get() = uiRadioButtonsSelected(ptr)
-    set(value) = uiRadioButtonsSetSelected(ptr, value)
-
 /** Adds the named button to the end of the radiobuttons.
  *  If it is the first button, it is automatically selected. */
 fun RadioButtons.add(text: String) = uiRadioButtonsAppend(ptr, text)
+
+/** Return or set the current choosed option by index. */
+var RadioButtons.value: Int
+    get() = uiRadioButtonsSelected(ptr)
+    set(value) = uiRadioButtonsSetSelected(ptr, value)
 
 /** Funcion to be run when the user makes a change to the RadioButtons.
  *  Only one function can be registered at a time. */
@@ -528,7 +528,7 @@ var TmPicker.value: Long
     }
 
 /** The current value as String. */
-fun TmPicker.text(format: String): String = memScoped {
+fun TmPicker.textValue(format: String): String = memScoped {
     var tm = alloc<tm>().ptr
     var buf = allocArray<ByteVar>(64)
     uiDateTimePickerTime(ptr, tm)
@@ -556,9 +556,9 @@ class Label(text: String, block: Label.() -> Unit = {}) : Control(uiNewLabel(tex
 }
 
 /** The static text of the label. */
-var Label.text: String
+var Label.value: String
     get() = uiLabelText(ptr)?.toKString() ?: ""
-    set(text) = uiLabelSetText(ptr, text)
+    set(value) = uiLabelSetText(ptr, value)
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -626,7 +626,7 @@ class ColorButton(block: ColorButton.() -> Unit = {}) : Control(uiNewColorButton
 }
 
 /** Return or set the currently selected color */
-var ColorButton.color: RGBA
+var ColorButton.value: RGBA
     get() = memScoped {
         val r = alloc<DoubleVar>()
         val g = alloc<DoubleVar>()
@@ -635,8 +635,8 @@ var ColorButton.color: RGBA
         uiColorButtonColor(ptr, r.ptr, g.ptr, b.ptr, a.ptr)
         RGBA(r.value, g.value, b.value, a.value)
     }
-    set(color) {
-        uiColorButtonSetColor(ptr, color.R, color.G, color.B, color.A)
+    set(value) {
+        uiColorButtonSetColor(ptr, value.r, value.g, value.b, value.a)
     }
 
 /** Funcion to be run when the user makes a change to the ColorButton.

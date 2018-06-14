@@ -92,12 +92,12 @@ var Window.fullscreen: Boolean
 /** Size in pixel of the content area of the window.
  *  Window decoration size are excluded. This mean that if you set window size to 0,0
  *  you still see title bar and OS window buttons. */
-var Window.contentSize: Size2D
+var Window.contentSize: SizeInt
     get() = memScoped {
         val width = alloc<IntVar>()
         var height = alloc<IntVar>()
         uiWindowContentSize(ptr, width.ptr, height.ptr)
-        Size2D(width = width.value, height = height.value)
+        SizeInt(width.value, height.value)
     }
     set(size) = uiWindowSetContentSize(ptr, size.width, size.height)
 

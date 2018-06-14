@@ -147,10 +147,10 @@ fun Area.DrawBrush(): DrawBrush {
 fun DrawBrush.solid(rgba: RGBA, opacity: Double = 1.0): DrawBrush {
     memset(this, 0, uiDrawBrush.size)
     pointed.Type = uiDrawBrushTypeSolid
-    pointed.R = rgba.R
-    pointed.G = rgba.G
-    pointed.B = rgba.B
-    pointed.A = rgba.A * opacity
+    pointed.R = rgba.r
+    pointed.G = rgba.g
+    pointed.B = rgba.b
+    pointed.A = rgba.a * opacity
     return this
 }
 
@@ -158,9 +158,9 @@ fun DrawBrush.solid(color: Int, alpha: Double = 1.0): DrawBrush {
     memset(this, 0, uiDrawBrush.size)
     pointed.Type = uiDrawBrushTypeSolid
     val rgba = RGBA(color, alpha)
-    pointed.R = rgba.R
-    pointed.G = rgba.G
-    pointed.B = rgba.B
+    pointed.R = rgba.r
+    pointed.G = rgba.g
+    pointed.B = rgba.b
     pointed.A = alpha
     return this
 }
@@ -264,7 +264,7 @@ val Attribute.stretch: uiTextStretch get() = uiAttributeStretch(this)
 
 /** Creates a new uiAttribute that changes the color of the text it is applied to. */
 fun ColorAttribute(color: RGBA): Attribute =
-    uiNewColorAttribute(color.R, color.G, color.B, color.A) ?: throw Error()
+    uiNewColorAttribute(color.r, color.g, color.b, color.a) ?: throw Error()
 
 /** Returns the text color stored in Attribute. */
 val Attribute.color: RGBA get() = memScoped {
@@ -278,7 +278,7 @@ val Attribute.color: RGBA get() = memScoped {
 
 /** Creates a new uiAttribute that changes the background color of the text it is applied to. */
 fun BackgroundAttribute(color: RGBA): Attribute =
-    uiNewBackgroundAttribute(color.R, color.G, color.B, color.A) ?: throw Error()
+    uiNewBackgroundAttribute(color.r, color.g, color.b, color.a) ?: throw Error()
 
 /** Creates a new uiAttribute that changes the type of underline on the text it is applied to. */
 fun UnderlineAttribute(u: uiUnderline): Attribute = uiNewUnderlineAttribute(u) ?: throw Error()
@@ -288,7 +288,7 @@ val Attribute.underline: uiUnderline get() = uiAttributeUnderline(this)
 
 /** creates a new uiAttribute that changes the color of the underline on the text it is applied to. */
 fun UnderlineColorAttribute(u: uiUnderlineColor, color: RGBA): Attribute =
-    uiNewUnderlineColorAttribute(u, color.R, color.G, color.B, color.A) ?: throw Error()
+    uiNewUnderlineColorAttribute(u, color.r, color.g, color.b, color.a) ?: throw Error()
 
 /** Returns the underline color kind stored in Attribute. */
 val Attribute.underlineKind: uiUnderlineColor get() = memScoped {

@@ -12,9 +12,9 @@ fun main(args: Array<String>) = application {
             val labelDate = Label("")
             val labelTime = Label("")
 
-            val pickerBoth = DateTimePicker() { action { labelBoth.text = text("%c") } }
-            val pickerDate = DatePicker() { action { labelDate.text = text("%x") } }
-            val pickerTime = TimePicker() { action { labelTime.text = text("%X") } }
+            val pickerBoth = DateTimePicker() { action { labelBoth.value = textValue("%c") } }
+            val pickerDate = DatePicker() { action { labelDate.value = textValue("%x") } }
+            val pickerTime = TimePicker() { action { labelTime.value = textValue("%X") } }
 
             val buttonUnix = Button("Unix epoch") { action { pickerBoth.value = 0 } }
             val buttonNow = Button("Now") {

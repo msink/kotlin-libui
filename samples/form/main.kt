@@ -23,7 +23,7 @@ fun main(args: Array<String>) = application {
 
             add(Button(text = "Login") {
                 action {
-                    MsgBox("${username.text}:${password.text}")
+                    MsgBox("${username.value}:${password.value}")
                 }
             })
         })

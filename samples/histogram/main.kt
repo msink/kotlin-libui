@@ -29,7 +29,7 @@ fun main(args: Array<String>) = application {
 
             srand(time(null).narrow())
             val datapoints = Array(10) { Spinbox(0, 100) { value = rand() % 101 } }
-            val colorButton = ColorButton() { color = RGBA(colorDodgerBlue) }
+            val colorButton = ColorButton() { value = RGBA(colorDodgerBlue) }
             var currentPoint = -1
 
             fun pointLocations(width: Double, height: Double, xs: DoubleArray, ys: DoubleArray) {
@@ -58,7 +58,7 @@ fun main(args: Array<String>) = application {
                     val context = draw.Context!!
                     val graphWidth = graphWidth(draw.AreaWidth)
                     val graphHeight = graphHeight(draw.AreaHeight)
-                    val graphColor = colorButton.color
+                    val graphColor = colorButton.value
                     val xs = DoubleArray(10)
                     val ys = DoubleArray(10)
                     pointLocations(graphWidth, graphHeight, xs, ys)
