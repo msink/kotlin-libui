@@ -19,13 +19,18 @@ typealias AreaDrawParams = CPointer<uiAreaDrawParams>
 typealias AreaMouseEvent = CPointer<uiAreaMouseEvent>
 typealias AreaKeyEvent = CPointer<uiAreaKeyEvent>
 
-class Area(_ptr: CPointer<uiArea>?, var handler: CPointer<ktAreaHandler>) : Control(_ptr) {
+class Area(_ptr: CPointer<uiArea>?, handler: CPointer<ktAreaHandler>) : Control(_ptr) {
     internal val ptr: CPointer<uiArea> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
+
     internal var draw: Area.(params: AreaDrawParams) -> Unit = {}
     internal var mouseEvent: Area.(event: AreaMouseEvent) -> Unit = {}
     internal var mouseCrossed: Area.(left: Boolean) -> Unit = {}
     internal var dragBroken: Area.() -> Unit = {}
     internal var keyEvent: Area.(event: AreaKeyEvent) -> Boolean = { false }
+
+    internal var astrings = mutableListOf<AttributedString>()
+    internal var natives = mutableListOf<CPointer<*>>()
+
     init {
         handler.pointed.ui.Draw = staticCFunction(::_onDraw)
         handler.pointed.ui.MouseEvent = staticCFunction(::_onMouseEvent)
@@ -33,9 +38,12 @@ class Area(_ptr: CPointer<uiArea>?, var handler: CPointer<ktAreaHandler>) : Cont
         handler.pointed.ui.DragBroken = staticCFunction(::_onDragBroken)
         handler.pointed.ui.KeyEvent = staticCFunction(::_onKeyEvent)
         handler.pointed.ref = ref.asCPointer()
+        natives.add(handler)
     }
+
     override fun dispose() {
-        nativeHeap.free(handler)
+        astrings.forEach { it.dispose() }
+        natives.forEach { nativeHeap.free(it) }
         super.dispose()
     }
 }
@@ -343,8 +351,8 @@ val Attribute.features: OpenTypeFeatures? get() = uiAttributeFeatures(this)
 typealias AttributedString = CPointer<uiAttributedString>
 
 /** Creates a new uiAttributedString from initialString. The string will be entirely unattributed. */
-fun AttributedString(initString: String): AttributedString =
-    uiNewAttributedString(initString) ?: throw Error()
+fun Area.AttributedString(initString: String): AttributedString =
+    (uiNewAttributedString(initString) ?: throw Error()).also { astrings.add(it) }
 
 /** Destroys the AttributedString. It will also free all Attributes within. */
 fun AttributedString.dispose() = uiFreeAttributedString(this)

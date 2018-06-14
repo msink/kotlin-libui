@@ -10,7 +10,7 @@ fun AttributedString.append(what: String, attr: Attribute, attr2: Attribute? = n
         setAttribute(attr2, start, end)
 }
 
-fun makeAttributedString() = AttributedString(
+fun Area.makeAttributedString() = AttributedString(
     "Drawing strings with libui is done with the uiAttributedString and uiDrawTextLayout objects.\n" +
     "uiAttributedString lets you have a variety of attributes: ").apply {
     append("font family", FamilyAttribute("Courier New"))
@@ -60,9 +60,6 @@ fun main(args: Array<String>) = application {
         onClose { uiQuit(); true }
         onShouldQuit { destroy(); true }
 
-        val attrstr = makeAttributedString()
-        astrings.add(attrstr)
-
         val fontButton = FontButton()
 
         val alignment = Combobox {
@@ -73,13 +70,14 @@ fun main(args: Array<String>) = application {
         }
 
         val area = Area {
+            val astr = makeAttributedString()
             draw { draw ->
                 val context = draw.pointed.Context!!
                 val areaWidth = draw.pointed.AreaWidth
             memScoped {
                 val defaultFont = alloc<uiFontDescriptor>().ptr
                 fontButton.getFont(defaultFont)
-                context.text(attrstr, defaultFont, areaWidth, alignment.selected, 0.0, 0.0)
+                context.text(astr, defaultFont, areaWidth, alignment.selected, 0.0, 0.0)
                 defaultFont.destroy()
             }}
         }
@@ -99,6 +97,7 @@ fun main(args: Array<String>) = application {
             })
             add(area, stretchy = true)
         })
+
         show()
     }
 }
