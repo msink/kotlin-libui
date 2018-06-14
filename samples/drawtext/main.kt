@@ -72,8 +72,8 @@ fun main(args: Array<String>) = application {
         val area = Area {
             val astr = makeAttributedString()
             draw { draw ->
-                val context = draw.pointed.Context!!
-                val areaWidth = draw.pointed.AreaWidth
+                val context = draw.Context!!
+                val areaWidth = draw.AreaWidth
             memScoped {
                 val defaultFont = alloc<uiFontDescriptor>().ptr
                 fontButton.getFont(defaultFont)

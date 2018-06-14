@@ -23,11 +23,11 @@ typealias AreaKeyEvent = CPointer<uiAreaKeyEvent>
 class Area(_ptr: CPointer<uiArea>?, handler: CPointer<ktAreaHandler>) : Control(_ptr) {
     internal val ptr: CPointer<uiArea> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
 
-    internal var draw: Area.(params: AreaDrawParams) -> Unit = {}
-    internal var mouseEvent: Area.(event: AreaMouseEvent) -> Unit = {}
+    internal var draw: Area.(params: uiAreaDrawParams) -> Unit = {}
+    internal var mouseEvent: Area.(event: uiAreaMouseEvent) -> Unit = {}
     internal var mouseCrossed: Area.(left: Boolean) -> Unit = {}
     internal var dragBroken: Area.() -> Unit = {}
-    internal var keyEvent: Area.(event: AreaKeyEvent) -> Boolean = { false }
+    internal var keyEvent: Area.(event: uiAreaKeyEvent) -> Boolean = { false }
 
     internal var astrings = mutableListOf<AttributedString>()
     internal var natives = mutableListOf<CPointer<*>>()
@@ -67,27 +67,27 @@ fun Area.scrollTo(x: Double, y: Double, width: Double, height: Double) =
 
 /** Funcion to be run when the area was created or got resized with [AreaDrawParams] as parameter.
  *  Only one function can be registered at a time. */
-fun Area.draw(proc: Area.(params: AreaDrawParams) -> Unit) {
+fun Area.draw(proc: Area.(params: uiAreaDrawParams) -> Unit) {
     draw = proc
 }
 @Suppress("UNUSED_PARAMETER")
 private fun _onDraw(handler: CPointer<uiAreaHandler>?, area: CPointer<uiArea>?, params: AreaDrawParams?) {
     val h: CPointer<ktAreaHandler> = handler!!.reinterpret()
     with (h.pointed.ref!!.asStableRef<Area>().get()) {
-        draw.invoke(this, params!!)
+        draw.invoke(this, params!!.pointed)
     }
 }
 
 /** Funcion to be run when the mouse was moved or clicked over the area with [AreaMouseEvent] as parameter.
  *  Only one function can be registered at a time. */
-fun Area.mouseEvent(proc: Area.(event: AreaMouseEvent) -> Unit) {
+fun Area.mouseEvent(proc: Area.(event: uiAreaMouseEvent) -> Unit) {
     mouseEvent = proc
 }
 @Suppress("UNUSED_PARAMETER")
 private fun _onMouseEvent(handler: CPointer<uiAreaHandler>?, area: CPointer<uiArea>?, params: AreaMouseEvent?) {
     val h: CPointer<ktAreaHandler> = handler!!.reinterpret()
     with (h.pointed.ref!!.asStableRef<Area>().get()) {
-        mouseEvent.invoke(this, params!!)
+        mouseEvent.invoke(this, params!!.pointed)
     }
 }
 
@@ -120,14 +120,14 @@ private fun _onDragBroken(handler: CPointer<uiAreaHandler>?, area: CPointer<uiAr
 /** Funcion to be run when a key was pressed. Return `true` to indicate that the key event was handled.
  *  (a menu item with that accelerator won't activate, no error sound on macOS). Event is an [AreaKeyEvent]
  *  Only one function can be registered at a time. */
-fun Area.keyEvent(proc: Area.(event: AreaKeyEvent) -> Boolean) {
+fun Area.keyEvent(proc: Area.(event: uiAreaKeyEvent) -> Boolean) {
     keyEvent = proc
 }
 @Suppress("UNUSED_PARAMETER")
 private fun _onKeyEvent(handler: CPointer<uiAreaHandler>?, area: CPointer<uiArea>?, event: AreaKeyEvent?): Int {
     val h: CPointer<ktAreaHandler> = handler!!.reinterpret()
     with (h.pointed.ref!!.asStableRef<Area>().get()) {
-        return if (keyEvent.invoke(this, event!!)) 1 else 0
+        return if (keyEvent.invoke(this, event!!.pointed)) 1 else 0
     }
 }
 

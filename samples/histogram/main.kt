@@ -55,11 +55,9 @@ fun main(args: Array<String>) = application {
                 }
 
                 draw { draw ->
-                    val context = draw.pointed.Context!!
-                    val areaWidth = draw.pointed.AreaWidth
-                    val areaHeight = draw.pointed.AreaHeight
-                    val graphWidth = graphWidth(areaWidth)
-                    val graphHeight = graphHeight(areaHeight)
+                    val context = draw.Context!!
+                    val graphWidth = graphWidth(draw.AreaWidth)
+                    val graphHeight = graphHeight(draw.AreaHeight)
                     val graphColor = colorButton.color
                     val xs = DoubleArray(10)
                     val ys = DoubleArray(10)
@@ -67,7 +65,7 @@ fun main(args: Array<String>) = application {
             
                     // fill the area with white
                     context.fill(uiDrawFillModeWinding, brush.solid(colorWhite)) {
-                        rectangle(0.0, 0.0, areaWidth, areaHeight)
+                        rectangle(0.0, 0.0, draw.AreaWidth, draw.AreaHeight)
                     }
             
                     // draw the axes
@@ -109,20 +107,16 @@ fun main(args: Array<String>) = application {
                 }
 
                 mouseEvent { event ->
-                    val eventX = event.pointed.X
-                    val eventY = event.pointed.Y
-                    val areaWidth = event.pointed.AreaWidth
-                    val areaHeight = event.pointed.AreaHeight
-                    val graphWidth = graphWidth(areaWidth)
-                    val graphHeight = graphHeight(areaHeight)
+                    val graphWidth = graphWidth(event.AreaWidth)
+                    val graphHeight = graphHeight(event.AreaHeight)
+                    val x = event.X - xoffLeft
+                    val y = event.Y - yoffTop
                     val xs = DoubleArray(10)
                     val ys = DoubleArray(10)
                     pointLocations(graphWidth, graphHeight, xs, ys)
             
                     currentPoint = -1
             
-                    val x = eventX - xoffLeft
-                    val y = eventY - yoffTop
                     for (i in 0 until 10) {
                         if ((x >= xs[i] - pointRadius) &&
                             (x <= xs[i] + pointRadius) &&
