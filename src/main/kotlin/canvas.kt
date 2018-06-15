@@ -384,7 +384,7 @@ fun AttributedString.append(str: String) = uiAttributedStringAppendUnattributed(
 
 /** Adds the '\0'-terminated UTF-8 string str to s at the byte position specified by [at].
  *  The new substring will be unattributed existing attributes will be moved along with their text. */
-fun AttributedString.insertAt(str: String, at: Int) =
+fun AttributedString.insert(str: String, at: Int) =
     uiAttributedStringInsertAtUnattributed(this, str, at.signExtend())
 
 /** Deletes the characters and attributes in the byte range [start, end). */

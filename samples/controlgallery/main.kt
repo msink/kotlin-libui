@@ -136,7 +136,7 @@ fun Window.dataChoosersPage() = HorizontalBox() {
     }, stretchy = true)
 }
 
-fun main(args: Array<String>) = application {
+fun main(args: Array<String>) = libuiApplication {
     Window(title = "libui Control Gallery", width = 640, height = 480) {
         onClose { uiQuit(); true }
         onShouldQuit { destroy(); true }

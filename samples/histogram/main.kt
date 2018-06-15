@@ -17,7 +17,7 @@ const val colorDodgerBlue   = 0x1E90FF
 fun graphWidth(clientWidth: Double): Double = clientWidth - xoffLeft - xoffRight
 fun graphHeight(clientHeight: Double): Double = clientHeight - yoffTop - yoffBottom
 
-fun main(args: Array<String>) = application {
+fun main(args: Array<String>) = libuiApplication {
 
     Window("libui Histogram Example", 640, 480) {
         margined = true

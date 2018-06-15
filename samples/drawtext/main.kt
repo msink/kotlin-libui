@@ -52,7 +52,7 @@ fun Area.makeAttributedString() = AttributedString(
     append("Use the controls opposite to the text to control properties of the text.")
 }
 
-fun main(args: Array<String>) = application {
+fun main(args: Array<String>) = libuiApplication {
 
     Window("libui Text-Drawing Example", 640, 480) {
         margined = true

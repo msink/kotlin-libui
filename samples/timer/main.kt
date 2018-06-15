@@ -2,7 +2,7 @@ import kotlinx.cinterop.*
 import platform.posix.*
 import libui.*
 
-fun main(args: Array<String>) = application {
+fun main(args: Array<String>) = libuiApplication {
     Window("Hello", width = 320, height = 240, hasMenubar = false) {
         margined = true
 

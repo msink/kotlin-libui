@@ -152,7 +152,8 @@ fun Grid.add(
     valign: Int) =
     uiGridAppend(ptr, widget.ctl, left, top, xspan, yspan, hexpand, halign, vexpand, valign)
 
-fun Grid.insertAt(
+/** Insert the given Control after existing Control. */
+fun Grid.insert(
     widget: Control,
     existing: Control,
     at: uiAt,
@@ -186,11 +187,11 @@ var Box.padded: Boolean
     get() = uiBoxPadded(ptr) != 0
     set(padded) = uiBoxSetPadded(ptr, if (padded) 1 else 0)
 
-/** Adds the given widget to the end of the HorizontalBox. */
+/** Adds the given widget to the end of the Box. */
 fun Box.add(widget: Control, stretchy: Boolean = false) =
     uiBoxAppend(ptr, widget.ctl, if (stretchy) 1 else 0)
 
-/** deletes the nth control of the HorizontalBox. */
+/** Deletes the nth control of the Box. */
 fun Box.delete(index: Int) = uiBoxDelete(ptr, index)
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -209,10 +210,10 @@ fun Tab.setMargined(page: Int, margined: Boolean) = uiTabSetMargined(ptr, page, 
 fun Tab.add(name: String, widget: Control) = uiTabAppend(ptr, name, widget.ctl)
 
 /** Adds the given page to the Tab such that it is the nth page of the Tab (starting at 0). */
-fun Tab.insertAt(index: Int, name: String, widget: Control) = uiTabInsertAt(ptr, name, index, widget.ctl)
+fun Tab.insert(index: Int, name: String, widget: Control) = uiTabInsertAt(ptr, name, index, widget.ctl)
 
 /** Delete deletes the nth page of the Tab. */
-fun Tab.deleteAt(index: Int) = uiTabDelete(ptr, index)
+fun Tab.delete(index: Int) = uiTabDelete(ptr, index)
 
 /** Number of pages in the Tab. */
 val Tab.numPages: Int get() = uiTabNumPages(ptr)
@@ -523,21 +524,28 @@ private fun _RadioButtons(ptr: CPointer<uiRadioButtons>?, ref: COpaquePointer?) 
 abstract class TmPicker(_ptr: CPointer<uiDateTimePicker>?) : Control(_ptr) {
     internal val ptr: CPointer<uiDateTimePicker> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (TmPicker.() -> Unit)? = null
+    internal var defaultFormat = "%c"
 }
 
-/** A widgets to edit date and time. */
+/** A widget to edit date and time. */
 class DateTimePicker(block: DateTimePicker.() -> Unit = {}) : TmPicker(uiNewDateTimePicker()) {
     init { apply(block) }
 }
 
-/** A widgets to edit date. */
+/** A widget to edit date. */
 class DatePicker(block: DatePicker.() -> Unit = {}) : TmPicker(uiNewDatePicker()) {
-    init { apply(block) }
+    init {
+        defaultFormat = "%x"
+        apply(block)
+    }
 }
 
-/** A widgets to edit time. */
+/** A widget to edit time. */
 class TimePicker(block: TimePicker.() -> Unit = {}) : TmPicker(uiNewTimePicker()) {
-    init { apply(block) }
+    init {
+        defaultFormat = "%X"
+        apply(block)
+    }
 }
 
 /** The current value as Unix epoch */
@@ -554,7 +562,7 @@ var TmPicker.value: Long
     }
 
 /** The current value as String. */
-fun TmPicker.textValue(format: String): String = memScoped {
+fun TmPicker.textValue(format: String = defaultFormat): String = memScoped {
     var tm = alloc<tm>().ptr
     var buf = allocArray<ByteVar>(64)
     uiDateTimePickerTime(ptr, tm)
@@ -700,7 +708,7 @@ class FontButton(block: FontButton.() -> Unit = {}) : Control(uiNewFontButton())
     }
 }
 
-/** Returns the font currently selected in the uiFontButton. */
+/** Returns the font currently selected in the FontButton. */
 val FontButton.value: FontDescriptor get() {
     if (desc.pointed.Family != null) desc.destroy()
     uiFontButtonFont(ptr, desc)

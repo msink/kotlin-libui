@@ -1,6 +1,6 @@
 import libui.*
 
-fun main(args: Array<String>) = application {
+fun main(args: Array<String>) = libuiApplication {
 
     Window(
         title = "Authentication required",

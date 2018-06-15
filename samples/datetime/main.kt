@@ -1,6 +1,6 @@
 import libui.*
 
-fun main(args: Array<String>) = application {
+fun main(args: Array<String>) = libuiApplication {
 
     Window("Date / Time", width = 320, height = 240, hasMenubar = false) {
         margined = true
@@ -12,9 +12,9 @@ fun main(args: Array<String>) = application {
             val labelDate = Label("")
             val labelTime = Label("")
 
-            val pickerBoth = DateTimePicker() { action { labelBoth.value = textValue("%c") } }
-            val pickerDate = DatePicker() { action { labelDate.value = textValue("%x") } }
-            val pickerTime = TimePicker() { action { labelTime.value = textValue("%X") } }
+            val pickerBoth = DateTimePicker() { action { labelBoth.value = textValue() } }
+            val pickerDate = DatePicker() { action { labelDate.value = textValue() } }
+            val pickerTime = TimePicker() { action { labelTime.value = textValue() } }
 
             val buttonUnix = Button("Unix epoch") { action { pickerBoth.value = 0 } }
             val buttonNow = Button("Now") {

@@ -27,7 +27,7 @@ data class SizeInt(
  * initial state: open the main window, create controls, and set up
  * events.
  */
-fun application(init: () -> Unit) {
+fun libuiApplication(init: () -> Unit) {
     memScoped {
         val options = alloc<uiInitOptions>()
         val error = uiInit(options.ptr)
