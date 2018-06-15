@@ -16,10 +16,11 @@ fun RGBA(color: Int, alpha: Double = 1.0) = RGBA(
     a = alpha
 )
 
-data class SizeInt(
-    val width: Int,
-    val height: Int
-)
+data class SizeInt(val width: Int, val height: Int)
+
+data class SizeDouble(val width: Double, val height: Double)
+
+data class PointDouble(val x: Double, val y: Double)
 
 /**
  * Initializes package ui, runs [init] to set up the program,

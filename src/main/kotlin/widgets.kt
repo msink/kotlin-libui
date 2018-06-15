@@ -702,7 +702,7 @@ class FontButton(block: FontButton.() -> Unit = {}) : Control(uiNewFontButton())
     internal val desc = nativeHeap.alloc<uiFontDescriptor>().ptr
     init { apply(block) }
     override fun dispose() {
-        if (desc.pointed.Family != null) desc.destroy()
+        if (desc.pointed.Family != null) desc.dispose()
         nativeHeap.free(desc)
         super.dispose()
     }
@@ -710,7 +710,7 @@ class FontButton(block: FontButton.() -> Unit = {}) : Control(uiNewFontButton())
 
 /** Returns the font currently selected in the FontButton. */
 val FontButton.value: FontDescriptor get() {
-    if (desc.pointed.Family != null) desc.destroy()
+    if (desc.pointed.Family != null) desc.dispose()
     uiFontButtonFont(ptr, desc)
     return desc
 }
