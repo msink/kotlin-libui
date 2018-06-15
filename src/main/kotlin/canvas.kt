@@ -260,21 +260,21 @@ val DrawMatrix.invertible: Boolean get() = uiDrawMatrixInvertible(this) != 0
 fun DrawMatrix.invert() = uiDrawMatrixInvert(this)
 
 /** Returns the transformed point. */
-val DrawMatrix.transformPoint: PointDouble
+val DrawMatrix.transformPoint: Point
     get() = memScoped {
         val x = alloc<DoubleVar>()
         var y = alloc<DoubleVar>()
         uiDrawMatrixTransformPoint(this@transformPoint, x.ptr, y.ptr)
-        PointDouble(x.value, y.value)
+        Point(x.value, y.value)
     }
 
 /** Returns the transformed size. */
-val DrawMatrix.transformSize: SizeDouble
+val DrawMatrix.transformSize: Size
     get() = memScoped {
         val width = alloc<DoubleVar>()
         var height = alloc<DoubleVar>()
         uiDrawMatrixTransformSize(this@transformSize, width.ptr, height.ptr)
-        SizeDouble(width.value, height.value)
+        Size(width.value, height.value)
     }
 
 ///////////////////////////////////////////////////////////
@@ -511,13 +511,20 @@ fun DrawTextLayout(
 /** Frees DrawTextLayout. The underlying AttributedString is not freed. */
 fun DrawTextLayout.dispose() = uiDrawFreeTextLayout(this);
 
-/** Returns the width and height in width and height. */
-//TODO void uiDrawTextLayoutExtents(uiDrawTextLayout *tl, double *width, double *height)
+/** Returns the size of DrawTextLayout. */
+val DrawTextLayout.extents: Size
+    get() = memScoped {
+        val width = alloc<DoubleVar>()
+        var height = alloc<DoubleVar>()
+        uiDrawTextLayoutExtents(this@extents, width.ptr, height.ptr)
+        Size(width.value, height.value)
+    }
 
 ///////////////////////////////////////////////////////////////////////////////
 
 typealias DrawContext = CPointer<uiDrawContext>
 
+/** Draw a path filled with a color. */
 fun DrawContext.fill(
     mode: uiDrawFillMode,
     brush: DrawBrush,
@@ -530,6 +537,7 @@ fun DrawContext.fill(
     uiDrawFreePath(path)
 }
 
+/** Draw a path in the context. */
 fun DrawContext.stroke(
     mode: uiDrawFillMode,
     brush: DrawBrush,
@@ -543,6 +551,7 @@ fun DrawContext.stroke(
     uiDrawFreePath(path)
 }
 
+/** Apply a different transform matrix to the context. */
 fun DrawContext.transform(block: DrawMatrix.() -> Unit) = memScoped {
     val matrix = alloc<uiDrawMatrix>().ptr
     uiDrawMatrixSetIdentity(matrix)

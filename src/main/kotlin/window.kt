@@ -13,14 +13,12 @@ class Window(
     block: Window.() -> Unit = {}
 ) : Control(uiNewWindow(title, width, height, if (hasMenubar) 1 else 0)) {
     internal val ptr: CPointer<uiWindow> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
-
     internal var onClose: (Window.() -> Boolean)? = null
     internal var onResize: (Window.() -> Unit)? = null
-
     init {
-        apply(block)
         uiWindowOnClosing(ptr, staticCFunction(::_Close), ref.asCPointer())
         uiWindowOnContentSizeChanged(ptr, staticCFunction(::_Resize), ref.asCPointer())
+        apply(block)
     }
 }
 
@@ -87,6 +85,7 @@ private fun _Close(ptr: CPointer<uiWindow>?, ref: COpaquePointer?): Int {
 	}
 }
 
+/** Displays a modal Open File Dialog. */
 fun Window.OpenFileDialog(): String? {
     val rawName = uiOpenFile(ptr)
     if (rawName == null) return null
@@ -95,6 +94,7 @@ fun Window.OpenFileDialog(): String? {
     return strName
 }
 
+/** Displays a modal Save File Dialog. */
 fun Window.SaveFileDialog(): String? {
     val rawName = uiSaveFile(ptr)
     if (rawName == null) return null
@@ -103,8 +103,10 @@ fun Window.SaveFileDialog(): String? {
     return strName
 }
 
+/** Displays a modal Message Box. */
 fun Window.MsgBox(text: String, details: String = "")
     = uiMsgBox(ptr, text, details)
 
+/** Displays a modal Error Message Box. */
 fun Window.MsgBoxError(text: String, details: String = "")
     = uiMsgBoxError(ptr, text, details)

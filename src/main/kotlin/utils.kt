@@ -18,11 +18,9 @@ fun RGBA(color: Int, alpha: Double = 1.0) = RGBA(
 
 data class SizeInt(val width: Int, val height: Int)
 
-data class SizeDouble(val width: Double, val height: Double)
+data class Size(val width: Double, val height: Double)
 
-data class PointDouble(val x: Double, val y: Double)
-
-internal var actions = mutableListOf<StableRef<Any>>()
+data class Point(val x: Double, val y: Double)
 
 /**
  * Initializes package ui, runs [init] to set up the program,
@@ -47,6 +45,8 @@ fun libuiApplication(init: () -> Unit) {
     uiUninit()
     actions.forEach { it.dispose() }
 }
+
+private val actions = mutableListOf<StableRef<Any>>()
 
 /** Function to be executed when the OS wants the program to quit
  *  or when a Quit menu item has been clicked.

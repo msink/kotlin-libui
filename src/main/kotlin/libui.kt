@@ -2,18 +2,12 @@ package libui
 
 import kotlinx.cinterop.*
 
-//const char *uiInit(uiInitOptions *options)
-//void uiUninit(void)
-//void uiFreeInitError(const char *err)
-
 //void uiMain(void)
 //void uiMainSteps(void)
 //int uiMainStep(int wait)
 //void uiQuit(void)
 
 //void uiQueueMain(void (*f)(void *data), void *data)
-
-//void uiFreeText(char *text)
 
 ///////////////////////////////////////////////////////////
 
