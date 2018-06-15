@@ -22,6 +22,8 @@ data class SizeDouble(val width: Double, val height: Double)
 
 data class PointDouble(val x: Double, val y: Double)
 
+internal var actions = mutableListOf<StableRef<Any>>()
+
 /**
  * Initializes package ui, runs [init] to set up the program,
  * and executes the GUI main loop. [init] should set up the program's
@@ -43,4 +45,26 @@ fun libuiApplication(init: () -> Unit) {
 
     uiMain()
     uiUninit()
+    actions.forEach { it.dispose() }
+}
+
+/** Function to be executed when the OS wants the program to quit
+ *  or when a Quit menu item has been clicked.
+ *  Only one function may be registered at a time.
+ *  @returns `true` when Quit will be called. */
+fun onShouldQuit(proc: () -> Boolean) {
+    val ref = StableRef.create(proc).also { actions.add(it) }
+    uiOnShouldQuit(staticCFunction(::_onBoolHandler), ref.asCPointer())
+}
+
+/** Function to be executed on a timer on the main thread.
+ *  @returns `true` to continue and `false` to stop. */
+fun onTimer(milliseconds: Int, proc: () -> Boolean) {
+    val ref = StableRef.create(proc).also { actions.add(it) }
+    uiTimer(milliseconds, staticCFunction(::_onBoolHandler), ref.asCPointer())
+}
+
+private fun _onBoolHandler(ref: COpaquePointer?): Int {
+    val proc = ref!!.asStableRef<() -> Boolean>().get()
+    return if (proc()) 1 else 0
 }

@@ -14,41 +14,14 @@ class Window(
 ) : Control(uiNewWindow(title, width, height, if (hasMenubar) 1 else 0)) {
     internal val ptr: CPointer<uiWindow> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
 
-    internal var onResize: (Window.() -> Unit)? = null
     internal var onClose: (Window.() -> Boolean)? = null
-    internal var actions = mutableListOf<StableRef<Any>>()
+    internal var onResize: (Window.() -> Unit)? = null
 
     init {
         apply(block)
-        uiWindowOnContentSizeChanged(ptr, staticCFunction(::_Resize), ref.asCPointer())
         uiWindowOnClosing(ptr, staticCFunction(::_Close), ref.asCPointer())
+        uiWindowOnContentSizeChanged(ptr, staticCFunction(::_Resize), ref.asCPointer())
     }
-
-    override fun dispose() {
-        actions.forEach { it.dispose() }
-        super.dispose()
-    }
-
-    /** Function to be executed when the OS wants the program to quit
-     *  or when a Quit menu item has been clicked.
-     *  Only one function may be registered at a time.
-     *  @returns `true` when Quit will be called. */
-    fun onShouldQuit(proc: () -> Boolean) {
-        val ref = StableRef.create(proc).also { actions.add(it) }
-        uiOnShouldQuit(staticCFunction(::_onBoolHandler), ref.asCPointer())
-    }
-
-    /** Function to be executed on a timer on the main thread.
-     *  @returns `true` to continue and `false` to stop. */
-    fun onTimer(milliseconds: Int, proc: () -> Boolean) {
-        val ref = StableRef.create(proc).also { actions.add(it) }
-        uiTimer(milliseconds, staticCFunction(::_onBoolHandler), ref.asCPointer())
-    }
-}
-
-private fun _onBoolHandler(ref: COpaquePointer?): Int {
-    val proc = ref!!.asStableRef<() -> Boolean>().get()
-    return if (proc()) 1 else 0
 }
 
 /** Set or return the text to show in window title bar. */
@@ -92,6 +65,7 @@ fun Window.add(widget: Control) = uiWindowSetChild(ptr, widget.ctl)
 fun Window.onResize(proc: Window.() -> Unit) {
     onResize = proc
 }
+
 @Suppress("UNUSED_PARAMETER")
 private fun _Resize(ptr: CPointer<uiWindow>?, ref: COpaquePointer?) {
     with (ref!!.asStableRef<Window>().get()) {
@@ -105,6 +79,7 @@ private fun _Resize(ptr: CPointer<uiWindow>?, ref: COpaquePointer?) {
 fun Window.onClose(proc: Window.() -> Boolean) {
     onClose = proc
 }
+
 @Suppress("UNUSED_PARAMETER")
 private fun _Close(ptr: CPointer<uiWindow>?, ref: COpaquePointer?): Int {
     with (ref!!.asStableRef<Window>().get()) {

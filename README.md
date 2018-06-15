@@ -177,6 +177,7 @@ It's still not real DSL, but much better.
 - [histogram](samples/histogram)
 - [drawtext](samples/drawtext)
 - [datetime](samples/datetime)
+- [timer](samples/timer)
 
 ## Work in progress!
 
