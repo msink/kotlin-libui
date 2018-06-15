@@ -427,6 +427,13 @@ typealias DrawTextLayout = CPointer<uiDrawTextLayout>
 /** Provides a complete description of a font where one is needed.  */
 typealias FontDescriptor = CPointer<uiFontDescriptor>
 
+/** Frees resources allocated in desc by uiFontButtonFont().
+ *  After calling uiFreeFontButtonFont(), the contents of desc should be assumed to be undefined
+ *  (though since you allocate desc itself, you can safely reuse desc for other font descriptors).
+ *  Calling uiFreeFontButtonFont() on a uiFontDescriptor not returned by uiFontButtonFont()
+ * results in undefined behavior. */
+fun FontDescriptor.destroy() = uiFreeFontButtonFont(this)
+
 /** Creates a new DrawTextLayout from the given parameters. */
 fun DrawTextLayout(
     string: AttributedString,
@@ -485,12 +492,13 @@ fun DrawContext.transform(block: DrawMatrix.() -> Unit) = memScoped {
 }
 
 /** draws formatted text with the top-left point at ([x], [y]). */
-fun DrawContext.text(
+fun DrawContext.draw(
     string: AttributedString,
     defaultFont: FontDescriptor,
 	width: Double,
     align: uiDrawTextAlign,
-    x: Double, y: Double
+    x: Double,
+    y: Double
 ) {
     val layout = DrawTextLayout(string, defaultFont, width, align)
     uiDrawText(this, layout, x, y)

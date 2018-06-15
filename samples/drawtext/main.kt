@@ -1,4 +1,3 @@
-import kotlinx.cinterop.*
 import libui.*
 
 fun AttributedString.append(what: String, attr: Attribute, attr2: Attribute? = null) {
@@ -60,7 +59,7 @@ fun main(args: Array<String>) = application {
         onClose { uiQuit(); true }
         onShouldQuit { destroy(); true }
 
-        val fontButton = FontButton()
+        val defaultFont = FontButton()
 
         val alignment = Combobox {
             add("Left")
@@ -73,23 +72,18 @@ fun main(args: Array<String>) = application {
             val astr = makeAttributedString()
             draw { draw ->
                 val context = draw.Context!!
-                val areaWidth = draw.AreaWidth
-            memScoped {
-                val defaultFont = alloc<uiFontDescriptor>().ptr
-                fontButton.getFont(defaultFont)
-                context.text(astr, defaultFont, areaWidth, alignment.value, 0.0, 0.0)
-                defaultFont.destroy()
-            }}
+                context.draw(astr, defaultFont.value, draw.AreaWidth, alignment.value, 0.0, 0.0)
+            }
         }
 
-        fontButton.action { area.queueRedrawAll() }
+        defaultFont.action { area.queueRedrawAll() }
         alignment.action { area.queueRedrawAll() }
 
         add(HorizontalBox {
             padded = true
             add(VerticalBox {
                 padded = true
-                add(fontButton)
+                add(defaultFont)
                 add(Form {
                     padded = true
                     add("Alignment", alignment)

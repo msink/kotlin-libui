@@ -691,20 +691,21 @@ private fun _ColorButton(ptr: CPointer<uiColorButton>?, ref: COpaquePointer?) {
 class FontButton(block: FontButton.() -> Unit = {}) : Control(uiNewFontButton()) {
     internal val ptr: CPointer<uiFontButton> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (FontButton.() -> Unit)? = null
+    internal val desc = nativeHeap.alloc<uiFontDescriptor>().ptr
     init { apply(block) }
+    override fun dispose() {
+        if (desc.pointed.Family != null) desc.destroy()
+        nativeHeap.free(desc)
+        super.dispose()
+    }
 }
 
-/** Returns the font currently selected in the uiFontButton in desc.
- *  allocates resources in desc when you are done with the font, call uiFreeFontButtonFont() to release them.
- *  does not allocate desc itself you must do so. */
-fun FontButton.getFont(desc: FontDescriptor) = uiFontButtonFont(ptr, desc)
-
-/** Frees resources allocated in desc by uiFontButtonFont().
- *  After calling uiFreeFontButtonFont(), the contents of desc should be assumed to be undefined
- *  (though since you allocate desc itself, you can safely reuse desc for other font descriptors).
- *  Calling uiFreeFontButtonFont() on a uiFontDescriptor not returned by uiFontButtonFont()
- * results in undefined behavior. */
-fun FontDescriptor.destroy() = uiFreeFontButtonFont(this)
+/** Returns the font currently selected in the uiFontButton. */
+val FontButton.value: FontDescriptor get() {
+    if (desc.pointed.Family != null) desc.destroy()
+    uiFontButtonFont(ptr, desc)
+    return desc
+}
 
 /** Funcion to be run when the font in the FontButton is changed.
  *  Only one function can be registered at a time. */
