@@ -56,7 +56,9 @@ abstract class Control(internal var _ptr: COpaquePointer?) {
         _ptr = null
     }
 }
+
 private var controls = mutableMapOf<CPointer<uiControl>, Control>()
+
 private fun _Destroy(ctl: CPointer<uiControl>?) {
     with (controls[ctl!!] ?: throw Error("Control is destroyed")) {
         ctlDestroy?.invoke(ctl)
@@ -273,11 +275,14 @@ var Entry.readOnly: Boolean
  *  Only one function can be registered at a time. */
 fun Entry.action(proc: Entry.() -> Unit) {
     action = proc
-    uiEntryOnChanged(ptr, staticCFunction(::_onEntry), ref.asCPointer())
+    uiEntryOnChanged(ptr, staticCFunction(::_Entry), ref.asCPointer())
 }
+
 @Suppress("UNUSED_PARAMETER")
-private fun _onEntry(ptr: CPointer<uiEntry>?, ref: COpaquePointer?) {
-    ref!!.asStableRef<Entry>().get().apply { action?.invoke(this) }
+private fun _Entry(ptr: CPointer<uiEntry>?, ref: COpaquePointer?) {
+    with (ref!!.asStableRef<Entry>().get()) {
+        action?.invoke(this)
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -317,11 +322,14 @@ fun MultilineEntry.append(text: String) = uiMultilineEntryAppend(ptr, text)
  *  Only one function can be registered at a time. */
 fun MultilineEntry.action(proc: MultilineEntry.() -> Unit) {
     action = proc
-    uiMultilineEntryOnChanged(ptr, staticCFunction(::_onMultilineEntry), ref.asCPointer())
+    uiMultilineEntryOnChanged(ptr, staticCFunction(::_MultilineEntry), ref.asCPointer())
 }
+
 @Suppress("UNUSED_PARAMETER")
-private fun _onMultilineEntry(ptr: CPointer<uiMultilineEntry>?, ref: COpaquePointer?) {
-    ref!!.asStableRef<MultilineEntry>().get().apply { action?.invoke(this) }
+private fun _MultilineEntry(ptr: CPointer<uiMultilineEntry>?, ref: COpaquePointer?) {
+    with (ref!!.asStableRef<MultilineEntry>().get()) {
+        action?.invoke(this)
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -347,11 +355,14 @@ var Checkbox.value: Boolean
  *  Only one function can be registered at a time. */
 fun Checkbox.action(proc: Checkbox.() -> Unit) {
     action = proc
-    uiCheckboxOnToggled(ptr, staticCFunction(::_onCheckbox), ref.asCPointer())
+    uiCheckboxOnToggled(ptr, staticCFunction(::_Checkbox), ref.asCPointer())
 }
+
 @Suppress("UNUSED_PARAMETER")
-private fun _onCheckbox(ptr: CPointer<uiCheckbox>?, ref: COpaquePointer?) {
-    ref!!.asStableRef<Checkbox>().get().apply { action?.invoke(this) }
+private fun _Checkbox(ptr: CPointer<uiCheckbox>?, ref: COpaquePointer?) {
+    with (ref!!.asStableRef<Checkbox>().get()) {
+        action?.invoke(this)
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -376,11 +387,14 @@ var Combobox.value: Int
  *  Only one function can be registered at a time. */
 fun Combobox.action(proc: Combobox.() -> Unit) {
     action = proc
-    uiComboboxOnSelected(ptr, staticCFunction(::_onCombobox), ref.asCPointer())
+    uiComboboxOnSelected(ptr, staticCFunction(::_Combobox), ref.asCPointer())
 }
+
 @Suppress("UNUSED_PARAMETER")
-private fun _onCombobox(ptr: CPointer<uiCombobox>?, ref: COpaquePointer?) {
-    ref!!.asStableRef<Combobox>().get().apply { action?.invoke(this) }
+private fun _Combobox(ptr: CPointer<uiCombobox>?, ref: COpaquePointer?) {
+    with (ref!!.asStableRef<Combobox>().get()) {
+        action?.invoke(this)
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -405,11 +419,14 @@ var EditableCombobox.value: String
  *  Only one function can be registered at a time. */
 fun EditableCombobox.action(proc: EditableCombobox.() -> Unit) {
     action = proc
-    uiEditableComboboxOnChanged(ptr, staticCFunction(::_onEditableCombobox), ref.asCPointer())
+    uiEditableComboboxOnChanged(ptr, staticCFunction(::_EditableCombobox), ref.asCPointer())
 }
+
 @Suppress("UNUSED_PARAMETER")
-private fun _onEditableCombobox(ptr: CPointer<uiEditableCombobox>?, ref: COpaquePointer?) {
-    ref!!.asStableRef<EditableCombobox>().get().apply { action?.invoke(this) }
+private fun _EditableCombobox(ptr: CPointer<uiEditableCombobox>?, ref: COpaquePointer?) {
+    with (ref!!.asStableRef<EditableCombobox>().get()) {
+        action?.invoke(this)
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -430,11 +447,14 @@ var Spinbox.value: Int
  *  Only one function can be registered at a time. */
 fun Spinbox.action(proc: Spinbox.() -> Unit) {
     action = proc
-    uiSpinboxOnChanged(ptr, staticCFunction(::_onSpinbox), ref.asCPointer())
+    uiSpinboxOnChanged(ptr, staticCFunction(::_Spinbox), ref.asCPointer())
 }
+
 @Suppress("UNUSED_PARAMETER")
-private fun _onSpinbox(ptr: CPointer<uiSpinbox>?, ref: COpaquePointer?) {
-    ref!!.asStableRef<Spinbox>().get().apply { action?.invoke(this) }
+private fun _Spinbox(ptr: CPointer<uiSpinbox>?, ref: COpaquePointer?) {
+    with (ref!!.asStableRef<Spinbox>().get()) {
+        action?.invoke(this)
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -455,11 +475,14 @@ var Slider.value: Int
  *  Only one function can be registered at a time. */
 fun Slider.action(proc: Slider.() -> Unit) {
     action = proc
-    uiSliderOnChanged(ptr, staticCFunction(::_onSlider), ref.asCPointer())
+    uiSliderOnChanged(ptr, staticCFunction(::_Slider), ref.asCPointer())
 }
+
 @Suppress("UNUSED_PARAMETER")
-private fun _onSlider(ptr: CPointer<uiSlider>?, ref: COpaquePointer?) {
-    ref!!.asStableRef<Slider>().get().apply { action?.invoke(this) }
+private fun _Slider(ptr: CPointer<uiSlider>?, ref: COpaquePointer?) {
+    with (ref!!.asStableRef<Slider>().get()) {
+        action?.invoke(this)
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -484,11 +507,14 @@ var RadioButtons.value: Int
  *  Only one function can be registered at a time. */
 fun RadioButtons.action(proc: RadioButtons.() -> Unit) {
     action = proc
-    uiRadioButtonsOnSelected(ptr, staticCFunction(::_onRadioButtons), ref.asCPointer())
+    uiRadioButtonsOnSelected(ptr, staticCFunction(::_RadioButtons), ref.asCPointer())
 }
+
 @Suppress("UNUSED_PARAMETER")
-private fun _onRadioButtons(ptr: CPointer<uiRadioButtons>?, ref: COpaquePointer?) {
-    ref!!.asStableRef<RadioButtons>().get().apply { action?.invoke(this) }
+private fun _RadioButtons(ptr: CPointer<uiRadioButtons>?, ref: COpaquePointer?) {
+    with (ref!!.asStableRef<RadioButtons>().get()) {
+        action?.invoke(this)
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -540,11 +566,14 @@ fun TmPicker.textValue(format: String): String = memScoped {
  *  Only one function can be registered at a time. */
 fun TmPicker.action(proc: TmPicker.() -> Unit) {
     action = proc
-    uiDateTimePickerOnChanged(ptr, staticCFunction(::_onDateTimePicker), ref.asCPointer())
+    uiDateTimePickerOnChanged(ptr, staticCFunction(::_DateTimePicker), ref.asCPointer())
 }
+
 @Suppress("UNUSED_PARAMETER")
-private fun _onDateTimePicker(ptr: CPointer<uiDateTimePicker>?, ref: COpaquePointer?) {
-    ref!!.asStableRef<TmPicker>().get().apply { action?.invoke(this) }
+private fun _DateTimePicker(ptr: CPointer<uiDateTimePicker>?, ref: COpaquePointer?) {
+    with (ref!!.asStableRef<TmPicker>().get()) {
+        action?.invoke(this)
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -609,11 +638,14 @@ var Button.text: String
  *  Only one function can be registered at a time. */
 fun Button.action(proc: Button.() -> Unit) {
     action = proc
-    uiButtonOnClicked(ptr, staticCFunction(::_onButton), ref.asCPointer())
+    uiButtonOnClicked(ptr, staticCFunction(::_Button), ref.asCPointer())
 }
+
 @Suppress("UNUSED_PARAMETER")
-private fun _onButton(ptr: CPointer<uiButton>?, ref: COpaquePointer?) {
-    ref!!.asStableRef<Button>().get().apply { action?.invoke(this) }
+private fun _Button(ptr: CPointer<uiButton>?, ref: COpaquePointer?) {
+    with (ref!!.asStableRef<Button>().get()) {
+        action?.invoke(this)
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -643,11 +675,14 @@ var ColorButton.value: RGBA
  *  Only one function can be registered at a time. */
 fun ColorButton.action(proc: ColorButton.() -> Unit) {
     action = proc
-    uiColorButtonOnChanged(ptr, staticCFunction(::_onColorButton), ref.asCPointer())
+    uiColorButtonOnChanged(ptr, staticCFunction(::_ColorButton), ref.asCPointer())
 }
+
 @Suppress("UNUSED_PARAMETER")
-private fun _onColorButton(ptr: CPointer<uiColorButton>?, ref: COpaquePointer?) {
-    ref!!.asStableRef<ColorButton>().get().apply { action?.invoke(this) }
+private fun _ColorButton(ptr: CPointer<uiColorButton>?, ref: COpaquePointer?) {
+    with (ref!!.asStableRef<ColorButton>().get()) {
+        action?.invoke(this)
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -675,9 +710,12 @@ fun FontDescriptor.destroy() = uiFreeFontButtonFont(this)
  *  Only one function can be registered at a time. */
 fun FontButton.action(proc: FontButton.() -> Unit) {
     action = proc
-    uiFontButtonOnChanged(ptr, staticCFunction(::_onFontButton), ref.asCPointer())
+    uiFontButtonOnChanged(ptr, staticCFunction(::_FontButton), ref.asCPointer())
 }
+
 @Suppress("UNUSED_PARAMETER")
-private fun _onFontButton(ptr: CPointer<uiFontButton>?, ref: COpaquePointer?) {
-    ref!!.asStableRef<ColorButton>().get().apply { action?.invoke(this) }
+private fun _FontButton(ptr: CPointer<uiFontButton>?, ref: COpaquePointer?) {
+    with (ref!!.asStableRef<FontButton>().get()) {
+        action?.invoke(this)
+    }
 }
