@@ -18,11 +18,5 @@ linkerOpts.mingw = -luser32 -lkernel32 -lgdi32 -lcomctl32 -luxtheme \
 typedef struct ktAreaHandler ktAreaHandler;
 struct ktAreaHandler {
     uiAreaHandler ui;
-    struct {
-        void *draw;
-        void *mouseEvent;
-        void *mouseCrossed;
-        void *dragBroken;
-        void *keyEvent;
-    } kt;
+    void *ref;
 };

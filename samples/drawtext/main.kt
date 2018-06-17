@@ -1,4 +1,3 @@
-import kotlinx.cinterop.*
 import libui.*
 
 fun AttributedString.append(what: String, attr: Attribute, attr2: Attribute? = null) {
@@ -10,7 +9,7 @@ fun AttributedString.append(what: String, attr: Attribute, attr2: Attribute? = n
         setAttribute(attr2, start, end)
 }
 
-fun makeAttributedString() = AttributedString(
+fun Area.makeAttributedString() = AttributedString(
     "Drawing strings with libui is done with the uiAttributedString and uiDrawTextLayout objects.\n" +
     "uiAttributedString lets you have a variety of attributes: ").apply {
     append("font family", FamilyAttribute("Courier New"))
@@ -53,50 +52,46 @@ fun makeAttributedString() = AttributedString(
     append("Use the controls opposite to the text to control properties of the text.")
 }
 
-fun main(args: Array<String>) = application {
+fun main(args: Array<String>) = libuiApplication {
 
     Window("libui Text-Drawing Example", 640, 480) {
         margined = true
         onClose { uiQuit(); true }
         onShouldQuit { destroy(); true }
 
-        val attrstr = makeAttributedString()
-        astrings.add(attrstr)
-
-        val fontButton = FontButton()
+        val defaultFont = FontButton()
 
         val alignment = Combobox {
-            append("Left")
-            append("Center")
-            append("Right")
-            selected = 0
+            add("Left")
+            add("Center")
+            add("Right")
+            value = 0
         }
 
-        val area = Area(AreaHandler(draw = { draw ->
-            val context = draw.pointed.Context!!
-            val areaWidth = draw.pointed.AreaWidth
-        memScoped {
-            val defaultFont = alloc<uiFontDescriptor>().ptr
-            fontButton.getFont(defaultFont)
-            context.text(attrstr, defaultFont, areaWidth, alignment.selected, 0.0, 0.0)
-            defaultFont.destroy()
-        }}))
+        val area = Area {
+            val astr = makeAttributedString()
+            draw { draw ->
+                val context = draw.Context!!
+                context.draw(astr, defaultFont.value, draw.AreaWidth, alignment.value, 0.0, 0.0)
+            }
+        }
 
-        fontButton.action { area.queueRedrawAll() }
+        defaultFont.action { area.queueRedrawAll() }
         alignment.action { area.queueRedrawAll() }
 
-        setChild(HorizontalBox {
+        add(HorizontalBox {
             padded = true
-            append(VerticalBox {
+            add(VerticalBox {
                 padded = true
-                append(fontButton)
-                append(Form {
+                add(defaultFont)
+                add(Form {
                     padded = true
-                    append("Alignment", alignment)
+                    add("Alignment", alignment)
                 })
             })
-            append(area, stretchy = true)
+            add(area, stretchy = true)
         })
+
         show()
     }
 }

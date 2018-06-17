@@ -2,13 +2,13 @@ import kotlinx.cinterop.*
 import platform.posix.*
 import libui.*
 
-fun main(args: Array<String>) = application {
+fun main(args: Array<String>) = libuiApplication {
     Window("Hello", width = 320, height = 240, hasMenubar = false) {
         margined = true
 
-        setChild(VerticalBox {
+        add(VerticalBox {
             padded = true
-            val scroll = MultilineEntry {
+            val scroll = WrappingMultilineEntry {
                 readOnly = true
             }
             val button = Button("Say Something") {
@@ -19,13 +19,14 @@ fun main(args: Array<String>) = application {
                 memScoped {
                     var now = alloc<time_tVar>()
                     now.value = time(null)
-                    scroll.append(ctime(now.ptr)!!.toKString())
+                    if (!scroll.destroyed)
+                        scroll.append(ctime(now.ptr)!!.toKString())
                 }
                 true
             }
 
-            append(button)
-            append(scroll, stretchy = true)
+            add(button)
+            add(scroll, stretchy = true)
         })
 
         onClose { uiQuit(); true }

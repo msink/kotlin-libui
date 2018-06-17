@@ -3,22 +3,22 @@ import libui.*
 fun Window.basicControlsPage() = VerticalBox() {
     padded = true
 
-    append(HorizontalBox() {
+    add(HorizontalBox {
         padded = true
-        append(Button("Button"))
-        append(Checkbox("Checkbox"))
+        add(Button("Button"))
+        add(Checkbox("Checkbox"))
     })
-    append(Label("This is a label. Right now, labels can only span one line."))
-    append(HorizontalSeparator())
-    append(Group("Entries") {
+    add(Label("This is a label. Right now, labels can only span one line."))
+    add(HorizontalSeparator())
+    add(Group("Entries") {
         margined = true
-        setChild(Form() {
+        add(Form {
             padded = true
-            append("Entry", Entry())
-            append("Password Entry", PasswordEntry())
-            append("Search Entry", SearchEntry())
-            append("Multiline Entry", MultilineEntry(), stretchy = true)
-            append("Multiline Entry No Wrap", NonWrappingMultilineEntry(), stretchy = true)
+            add("Text Entry", TextEntry())
+            add("Password Entry", PasswordEntry())
+            add("Search Entry", SearchEntry())
+            add("Multiline Entry", WrappingMultilineEntry(), stretchy = true)
+            add("Multiline Entry No Wrap", NonWrappingMultilineEntry(), stretchy = true)
         })
     }, stretchy = true)
 }
@@ -26,9 +26,9 @@ fun Window.basicControlsPage() = VerticalBox() {
 fun Window.numbersPage() = HorizontalBox() {
     padded = true
 
-    append(Group("Numbers") {
+    add(Group("Numbers") {
         margined = true
-        setChild(VerticalBox() {
+        add(VerticalBox {
             padded = true
             val spinbox = Spinbox(min = 0, max = 100)
             val slider = Slider(min = 0, max = 100)
@@ -41,33 +41,33 @@ fun Window.numbersPage() = HorizontalBox() {
                 spinbox.value = value
                 pbar.value = value
             }
-            append(spinbox)
-            append(slider)
-            append(pbar)
-            append(ProgressBar() {
+            add(spinbox)
+            add(slider)
+            add(pbar)
+            add(ProgressBar {
                 value = -1
             })
         })
     }, stretchy = true)
 
-    append(Group("Lists") {
+    add(Group("Lists") {
         margined = true
-        setChild(VerticalBox() {
+        add(VerticalBox {
             padded = true
-            append(Combobox() {
-                append("Combobox Item 1")
-                append("Combobox Item 2")
-                append("Combobox Item 3")
+            add(Combobox {
+                add("Combobox Item 1")
+                add("Combobox Item 2")
+                add("Combobox Item 3")
             })
-            append(EditableCombobox() {
-                append("Editable Item 1")
-                append("Editable Item 2")
-                append("Editable Item 3")
+            add(EditableCombobox {
+                add("Editable Item 1")
+                add("Editable Item 2")
+                add("Editable Item 3")
             })
-            append(RadioButtons() {
-                append("Radio Button 1")
-                append("Radio Button 2")
-                append("Radio Button 3")
+            add(RadioButtons {
+                add("Radio Button 1")
+                add("Radio Button 2")
+                add("Radio Button 3")
             })
         })
     }, stretchy = true)
@@ -76,56 +76,56 @@ fun Window.numbersPage() = HorizontalBox() {
 fun Window.dataChoosersPage() = HorizontalBox() {
     padded = true
 
-    append(VerticalBox() {
+    add(VerticalBox {
         padded = true
 
-        append(DatePicker())
-        append(TimePicker())
-        append(DateTimePicker())
+        add(DatePicker())
+        add(TimePicker())
+        add(DateTimePicker())
 
-        append(FontButton())
-        append(ColorButton())
+        add(FontButton())
+        add(ColorButton())
     })
 
-    append(VerticalSeparator())
+    add(VerticalSeparator())
 
-    append(VerticalBox() {
+    add(VerticalBox {
         padded = true
 
-        append(Grid() {
+        add(Grid {
             padded = true
 
-            val entry1 = Entry() {
+            val entry1 = TextEntry() {
                 readOnly = true
             }
             val button1 = Button("Open File") {
                 action {
-                    entry1.text = OpenFileDialog() ?: "(cancelled)"
+                    entry1.value = OpenFileDialog() ?: "(cancelled)"
                 }
             }
-            append(button1, 0, 0, 1, 1, 0, uiAlignFill, 0, uiAlignFill)
-            append(entry1,  1, 0, 1, 1, 1, uiAlignFill, 0, uiAlignFill)
+            add(button1, 0, 0, 1, 1, 0, uiAlignFill, 0, uiAlignFill)
+            add(entry1,  1, 0, 1, 1, 1, uiAlignFill, 0, uiAlignFill)
 
-            val entry2 = Entry() {
+            val entry2 = TextEntry() {
                 readOnly = true
             }
             val button2 = Button("Save File") {
                 action {
-                    entry2.text = SaveFileDialog() ?: "(cancelled)"
+                    entry2.value = SaveFileDialog() ?: "(cancelled)"
                 }
             }
-            append(button2, 0, 1, 1, 1, 0, uiAlignFill, 0, uiAlignFill)
-            append(entry2,  1, 1, 1, 1, 1, uiAlignFill, 0, uiAlignFill)
+            add(button2, 0, 1, 1, 1, 0, uiAlignFill, 0, uiAlignFill)
+            add(entry2,  1, 1, 1, 1, 1, uiAlignFill, 0, uiAlignFill)
 
-            append(Grid() {
+            add(Grid {
                 padded = true
-                append(Button("Message Box") {
+                add(Button("Message Box") {
                     action {
                         MsgBox(text = "This is a normal message box.",
                             details = "More detailed information can be shown here.")
                     }
                 }, 0, 0, 1, 1, 0, uiAlignFill, 0, uiAlignFill)
-                append(Button("Error Box") {
+                add(Button("Error Box") {
                     action {
                         MsgBoxError(text = "This message box describes an error.",
                             details = "More detailed information can be shown here.")
@@ -136,20 +136,20 @@ fun Window.dataChoosersPage() = HorizontalBox() {
     }, stretchy = true)
 }
 
-fun main(args: Array<String>) = application {
+fun main(args: Array<String>) = libuiApplication {
     Window(title = "libui Control Gallery", width = 640, height = 480) {
         onClose { uiQuit(); true }
         onShouldQuit { destroy(); true }
         margined = true
 
-        setChild(Tab() {
-            append("Basic Controls", basicControlsPage())
+        add(Tab {
+            add("Basic Controls", basicControlsPage())
             setMargined(0, true)
 
-            append("Numbers and Lists", numbersPage())
+            add("Numbers and Lists", numbersPage())
             setMargined(1, true)
 
-            append("Data Choosers", dataChoosersPage())
+            add("Data Choosers", dataChoosersPage())
             setMargined(2, true)
         })
 
