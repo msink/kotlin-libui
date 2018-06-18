@@ -77,8 +77,20 @@ fun Control.destroy() = uiControlDestroy(ctl)
 /** Returns the OS-level handle associated with this Control. */
 fun Control.getHandle(): Long = uiControlHandle(ctl)
 
+/** Returns whether the control is a top level one or not. */
+val Control.toplevel: Boolean
+    get() = uiControlToplevel(ctl) != 0
+
+/** Returns parent of the control or `null` for detached. */
+var Control.parent: Control?
+    get() = controls[uiControlParent(ctl)]
+    set(parent) = uiControlSetParent(ctl, parent?.ctl)
+
 /** Whether the Control is enabled. */
 fun Control.isEnabled(): Boolean = uiControlEnabled(ctl) != 0
+
+/** Whether the Control and all parents are enabled. */
+fun Control.isEnabledToUser(): Boolean = uiControlEnabledToUser(ctl) != 0
 
 /** Enables the Control. */
 fun Control.enable() = uiControlEnable(ctl)
@@ -548,17 +560,23 @@ class TimePicker(block: TimePicker.() -> Unit = {}) : TmPicker(uiNewTimePicker()
     }
 }
 
+/** The current value as `struct tm` */
+fun TmPicker.getValue(value: CPointer<tm>) = uiDateTimePickerTime(ptr, value)
+
+/** Set current value from `struct tm` */
+fun TmPicker.setValue(value: CPointer<tm>) = uiDateTimePickerSetTime(ptr, value)
+
 /** The current value as Unix epoch */
 var TmPicker.value: Long
     get() = memScoped {
        var tm = alloc<tm>().ptr
-       uiDateTimePickerTime(ptr, tm)
+       getValue(tm)
        mktime(tm)
     }
     set(value) = memScoped {
        var time = alloc<time_tVar>()
        time.value = value
-       uiDateTimePickerSetTime(ptr, localtime(time.ptr))
+       setValue(localtime(time.ptr)!!)
     }
 
 /** The current value as String. */
@@ -593,7 +611,7 @@ class Label(text: String, block: Label.() -> Unit = {}) : Control(uiNewLabel(tex
 }
 
 /** The static text of the label. */
-var Label.value: String
+var Label.text: String
     get() = uiLabelText(ptr)?.toKString() ?: ""
     set(value) = uiLabelSetText(ptr, value)
 

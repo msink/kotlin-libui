@@ -12,9 +12,9 @@ fun main(args: Array<String>) = libuiApplication {
             val labelDate = Label("")
             val labelTime = Label("")
 
-            val pickerBoth = DateTimePicker() { action { labelBoth.value = textValue() } }
-            val pickerDate = DatePicker() { action { labelDate.value = textValue() } }
-            val pickerTime = TimePicker() { action { labelTime.value = textValue() } }
+            val pickerBoth = DateTimePicker() { action { labelBoth.text = textValue() } }
+            val pickerDate = DatePicker() { action { labelDate.text = textValue() } }
+            val pickerTime = TimePicker() { action { labelTime.text = textValue() } }
 
             val buttonUnix = Button("Unix epoch") { action { pickerBoth.value = 0 } }
             val buttonNow = Button("Now") {

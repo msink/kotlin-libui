@@ -56,10 +56,10 @@ fun main(args: Array<String>) = libuiApplication {
                     MiterLimit = uiDrawDefaultMiterLimit
                 }
 
-                draw { draw ->
-                    val context = draw.Context!!
-                    val graphWidth = graphWidth(draw.AreaWidth)
-                    val graphHeight = graphHeight(draw.AreaHeight)
+                draw {
+                    val context = it.Context!!
+                    val graphWidth = graphWidth(it.AreaWidth)
+                    val graphHeight = graphHeight(it.AreaHeight)
                     val graphColor = colorButton.value
                     val xs = DoubleArray(10)
                     val ys = DoubleArray(10)
@@ -67,7 +67,7 @@ fun main(args: Array<String>) = libuiApplication {
 
                     // fill the area with white
                     context.fill(uiDrawFillModeWinding, brush.solid(colorWhite)) {
-                        rectangle(0.0, 0.0, draw.AreaWidth, draw.AreaHeight)
+                        rectangle(0.0, 0.0, it.AreaWidth, it.AreaHeight)
                     }
 
                     // draw the axes
@@ -108,11 +108,11 @@ fun main(args: Array<String>) = libuiApplication {
                     }
                 }
 
-                mouseEvent { event ->
-                    val graphWidth = graphWidth(event.AreaWidth)
-                    val graphHeight = graphHeight(event.AreaHeight)
-                    val x = event.X - xoffLeft
-                    val y = event.Y - yoffTop
+                mouseEvent {
+                    val graphWidth = graphWidth(it.AreaWidth)
+                    val graphHeight = graphHeight(it.AreaHeight)
+                    val x = it.X - xoffLeft
+                    val y = it.Y - yoffTop
                     val xs = DoubleArray(10)
                     val ys = DoubleArray(10)
                     pointLocations(graphWidth, graphHeight, xs, ys)

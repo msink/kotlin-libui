@@ -70,9 +70,9 @@ fun main(args: Array<String>) = libuiApplication {
 
         val area = Area {
             val astr = makeAttributedString()
-            draw { draw ->
-                val context = draw.Context!!
-                context.draw(astr, defaultFont.value, draw.AreaWidth, alignment.value, 0.0, 0.0)
+            draw {
+                val context = it.Context!!
+                context.draw(astr, defaultFont.value, it.AreaWidth, alignment.value, 0.0, 0.0)
             }
         }
 
