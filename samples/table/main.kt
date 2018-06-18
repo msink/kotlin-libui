@@ -3,8 +3,8 @@ import libui.*
 fun main(args: Array<String>) = libuiApplication {
     Window(
         title = "Hello",
-        width = 320,
-        height = 240,
+        width = 800,
+        height = 480,
         hasMenubar = false) {
         margined = true
 
@@ -12,26 +12,26 @@ fun main(args: Array<String>) = libuiApplication {
         var yellowRow = -1
         var checkStates = IntArray(15)
 
-        val image0 = Image(16, 16) {
-            add("andlabs_16x16test_24june2016.png")
-            add("andlabs_32x32test_24june2016.png")
+        val image0 = Image(16.0, 16.0) {
+            add(image0_16x16, 16, 16, 64)
+            add(image0_32x32, 32, 32, 128)
         }
 
-        val image1 = Image(16, 16) {
-            add("tango-icon-theme-0.8.90_16x16_x-office-spreadsheet.png")
-            add("tango-icon-theme-0.8.90_32x32_x-office-spreadsheet.png")
+        val image1 = Image(16.0, 16.0) {
+            add(image1_16x16, 16, 16, 64)
+            add(image1_32x32, 32, 32, 128)
         }
 
         val model = TableModel {
-            numColumns = { 9 }
-            columnType = { return when (it) {
+            numColumns { 9 }
+            columnType { when (it) {
                 3, 4 -> uiTableDataTypeColor
                 5    -> uiTableDataTypeImage
                 7, 8 -> uiTableDataTypeInt
                 else -> uiTableDataTypeString
             }}
-            numRows = { 15 }
-            cellValue = { row, col -> return when (col) {
+            numRows { 15 }
+            getCellValue { row, col -> when (col) {
                 0 -> TableDataString("Row $row")
                 1 -> TableDataString("Part")
                 2 -> TableDataString(if (row == 9) row9text else "Part")
@@ -41,7 +41,7 @@ fun main(args: Array<String>) = libuiApplication {
                          11        -> TableDataColor(RGBA(0.0, 0.5, 1.0, 0.5))
                          else      -> null
                      }
-                4 -> ((row % 2) == 1) TableDataColor(RGBA(0.5, 0.0, 0.75)) else null
+                4 -> if ((row % 2) == 1) TableDataColor(RGBA(0.5, 0.0, 0.75)) else null
                 5 -> if (row < 8) TableDataImage(image0) else TableDataImage(image1)
                 6 -> TableDataString("Make Yellow")
                 7 -> TableDataInt(checkStates[row])
@@ -51,8 +51,9 @@ fun main(args: Array<String>) = libuiApplication {
                      14   -> TableDataInt(-1)
                      else -> TableDataInt(50)
                 }
+                else -> null
             }}
-            setCellValue = { row, col, value -> when (col) {
+            setCellValue { row, col, value -> when (col) {
                 2 -> if (row == 9) row9text = value.string
                 6 -> {
                     val prevYellowRow = yellowRow
@@ -67,18 +68,18 @@ fun main(args: Array<String>) = libuiApplication {
 
         add(VerticalBox {
             padded = true
-            append(Table(model, {
+            add(Table(model, {
                 textColumn("Column 1", 0, uiTableModelColumnNeverEditable)
-                imageTextColumn(t, "Column 2", 5, 1, uiTableModelColumnNeverEditable, 4)
-                textColumn(t, "Editable", 2, uiTableModelColumnAlwaysEditable)
+                imageTextColumn("Column 2", 5, 1, uiTableModelColumnNeverEditable, 4)
+                textColumn("Editable", 2, uiTableModelColumnAlwaysEditable)
                 setRowBackgroundColorModelColumn(3)
-                checkboxColumn(t, "Checkboxes", 7, uiTableModelColumnAlwaysEditable)
-                buttonColumn(t, "Buttons", 6, uiTableModelColumnAlwaysEditable)
-                progressBarColumn(t, "Progress Bar", 8)
+                checkboxColumn("Checkboxes", 7, uiTableModelColumnAlwaysEditable)
+                buttonColumn("Buttons", 6, uiTableModelColumnAlwaysEditable)
+                progressBarColumn("Progress Bar", 8)
             }), stretchy = true)
         })
 
-        onClose { uiQuit() true }
+        onClose { uiQuit(); true }
         show()
     }
 }

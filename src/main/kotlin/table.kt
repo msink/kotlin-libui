@@ -4,11 +4,12 @@ import kotlinx.cinterop.*
 
 typealias Image = CPointer<uiImage>
 
-fun Image(width: Double, height: Double): Image = uiNewImage(width, height) ?: throw Error()
+fun Image(width: Double, height: Double, block: Image.() -> Unit = {}): Image =
+    uiNewImage(width, height)?.apply(block) ?: throw Error()
 
 fun Image.dispose() = uiFreeImage(this)
 
-fun Image.append(pixels: CPointer<IntVar>, width: Int, height: Int, stride: Int) =
+fun Image.add(pixels: CValuesRef<IntVar>, width: Int, height: Int, stride: Int) =
     uiImageAppend(this, pixels, width, height, stride)
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -45,7 +46,7 @@ val TableData.color: RGBA get() = memScoped {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-class TableModel() {
+class TableModel(block: TableModel.() -> Unit = {}) {
     internal val ptr: CPointer<uiTableModel>
     internal val ref = StableRef.create(this)
     internal val handler = nativeHeap.alloc<ktTableModelHandler>().ptr
@@ -53,7 +54,7 @@ class TableModel() {
     internal var numColumns: TableModel.() -> Int = { 0 }
     internal var columnType: TableModel.(col: Int) -> uiTableDataType = { uiTableDataTypeString }
     internal var numRows: TableModel.() -> Int = { 0 }
-    internal var getCellValue: TableModel.(row: Int, col: Int) -> TableData = { _, _ -> TableDataString("") }
+    internal var getCellValue: TableModel.(row: Int, col: Int) -> TableData? = { _, _ -> null }
     internal var setCellValue: TableModel.(row: Int, col: Int, value: TableData) -> Unit = { _, _, _ -> }
 
     init {
@@ -64,6 +65,7 @@ class TableModel() {
         handler.pointed.ui.SetCellValue = staticCFunction(::_SetCellValue)
         handler.pointed.ref = ref.asCPointer()
         ptr = uiNewTableModel(handler.pointed.ui.ptr) ?: throw Error()
+        apply(block)
     }
 
     fun dispose() {
@@ -125,7 +127,7 @@ private fun _NumRows(
     }
 }
 
-fun TableModel.getCellValue(proc: TableModel.(row: Int, column: Int) -> TableData) {
+fun TableModel.getCellValue(proc: TableModel.(row: Int, column: Int) -> TableData?) {
     getCellValue = proc
 }
 
@@ -162,8 +164,9 @@ private fun _SetCellValue(
 
 ///////////////////////////////////////////////////////////////////////////////
 
-class Table(val model: TableModel) : Control(uiNewTable(model.ptr)) {
+class Table(val model: TableModel, block: Table.() -> Unit = {}) : Control(uiNewTable(model.ptr)) {
     internal val ptr: CPointer<uiTable> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
+    init { apply(block) }
     override fun dispose() {
         model.dispose()
         super.dispose()
@@ -244,7 +247,7 @@ fun Table.buttonColumn(
     name: String,
     buttonTextModelColumn: Int,
     buttonClickableModelColumn: Int
-) = uiTableAppendCheckboxColumn(ptr, name, buttonTextModelColumn, buttonClickableModelColumn)
+) = uiTableAppendButtonColumn(ptr, name, buttonTextModelColumn, buttonClickableModelColumn)
 
 fun Table.setRowBackgroundColorModelColumn(modelColumn: Int) =
     uiTableSetRowBackgroundColorModelColumn(ptr, modelColumn)

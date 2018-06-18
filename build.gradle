@@ -124,6 +124,18 @@ konanArtifacts {
             inputs.file resFile
         }
     }
+
+    program('table') {
+        srcDir 'samples/table'
+        libraries {
+            artifact 'libuiKt'
+        }
+        target 'mingw', {
+            linkerOpts "$resFile -mwindows"
+            dependsOn 'windowsResources'
+            inputs.file resFile
+        }
+    }
 }
 
 task windowsResources (type: Exec) {
