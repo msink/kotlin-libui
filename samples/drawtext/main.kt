@@ -79,17 +79,17 @@ fun main(args: Array<String>) = libuiApplication {
         defaultFont.action { area.queueRedrawAll() }
         alignment.action { area.queueRedrawAll() }
 
-        add(HorizontalBox {
+        add(widget = HorizontalBox {
             padded = true
-            add(VerticalBox {
+            add(widget = VerticalBox {
                 padded = true
-                add(defaultFont)
-                add(Form {
+                add(widget = defaultFont)
+                add(widget = Form {
                     padded = true
-                    add("Alignment", alignment)
+                    add(label = "Alignment", widget = alignment)
                 })
             })
-            add(area, stretchy = true)
+            add(stretchy = true, widget = area)
         })
 
         show()

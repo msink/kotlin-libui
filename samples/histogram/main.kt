@@ -26,7 +26,7 @@ fun main(args: Array<String>) = libuiApplication {
         onClose { uiQuit(); true }
         onShouldQuit { destroy(); true }
 
-        add(HorizontalBox {
+        add(widget = HorizontalBox {
             padded = true
 
             srand(time(null).toInt())
@@ -132,17 +132,17 @@ fun main(args: Array<String>) = libuiApplication {
                 }
             }
 
-            add(VerticalBox {
+            add(widget = VerticalBox {
                 padded = true
                 datapoints.forEach {
                     it.action { histogram.queueRedrawAll() }
-                    add(it)
+                    add(widget = it)
                 }
                 colorButton.action { histogram.queueRedrawAll() }
-                add(colorButton)
+                add(widget = colorButton)
             })
 
-            add(histogram, stretchy = true)
+            add(widget = histogram, stretchy = true)
         })
 
         show()

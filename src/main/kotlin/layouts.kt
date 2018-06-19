@@ -14,8 +14,13 @@ import kotlinx.cinterop.*
 //
 ///////////////////////////////////////////////////////////////////////////////
 
+/** Represents a Control that contains a container for child controls. */
+abstract class Layout(_ptr: COpaquePointer?) : Control(_ptr)
+
+///////////////////////////////////////////////////////////////////////////////
+
 /** A container for a single widget that provide a caption and visually group it's children. */
-class Group(text: String, block: Group.() -> Unit = {}) : Control(uiNewGroup(text)) {
+class Group(title: String, block: Group.() -> Unit = {}) : Layout(uiNewGroup(title)) {
     internal val ptr: CPointer<uiGroup> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     init { apply(block) }
 }
@@ -30,8 +35,8 @@ var Group.margined: Boolean
     get() = uiGroupMargined(ptr) != 0
     set(margined) = uiGroupSetMargined(ptr, if (margined) 1 else 0)
 
-/** sets the group's child. If child is null, the group will not have a child. */
-fun Group.add(child: Control?) = uiGroupSetChild(ptr, child?.ctl)
+/** Sets the group's child. If child is null, the group will not have a child. */
+fun Group.add(widget: Control?) = uiGroupSetChild(ptr, widget?.ctl)
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -46,7 +51,7 @@ class VerticalBox(block: VerticalBox.() -> Unit = {}) : Box(uiNewVerticalBox()) 
 }
 
 /** A container that stack its chidren horizontally or vertically. */
-abstract class Box(_ptr: CPointer<uiBox>?) : Control(_ptr) {
+abstract class Box(_ptr: CPointer<uiBox>?) : Layout(_ptr) {
     internal val ptr: CPointer<uiBox> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
 }
 
@@ -65,7 +70,7 @@ fun Box.delete(index: Int) = uiBoxDelete(ptr, index)
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A container that organize children as labeled fields. */
-class Form(block: Form.() -> Unit = {}) : Control(uiNewForm()) {
+class Form(block: Form.() -> Unit = {}) : Layout(uiNewForm()) {
     internal val ptr: CPointer<uiForm> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     init { apply(block) }
 }
@@ -85,7 +90,7 @@ fun Form.delete(index: Int) = uiFormDelete(ptr, index)
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A container that show each chidren in a separate tab. */
-class Tab(block: Tab.() -> Unit = {}) : Control(uiNewTab()) {
+class Tab(block: Tab.() -> Unit = {}) : Layout(uiNewTab()) {
     internal val ptr: CPointer<uiTab> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     init { apply(block) }
 }
@@ -95,7 +100,7 @@ fun Tab.getMargined(page: Int): Boolean = uiTabMargined(ptr, page) != 0
 fun Tab.setMargined(page: Int, margined: Boolean) = uiTabSetMargined(ptr, page, if (margined) 1 else 0)
 
 /** Adds the given page to the end of the Tab. */
-fun Tab.add(name: String, widget: Control) = uiTabAppend(ptr, name, widget.ctl)
+fun Tab.add(label: String, widget: Control) = uiTabAppend(ptr, label, widget.ctl)
 
 /** Adds the given page to the Tab such that it is the nth page of the Tab (starting at 0). */
 fun Tab.insert(index: Int, name: String, widget: Control) = uiTabInsertAt(ptr, name, index, widget.ctl)
@@ -109,7 +114,7 @@ val Tab.numPages: Int get() = uiTabNumPages(ptr)
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A powerful container that allow to specify size and position of each children. */
-class Grid(block: Grid.() -> Unit = {}) : Control(uiNewGrid()) {
+class Grid(block: Grid.() -> Unit = {}) : Layout(uiNewGrid()) {
     internal val ptr: CPointer<uiGrid> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     init { apply(block) }
 }
@@ -121,7 +126,6 @@ var Grid.padded: Boolean
 
 /** Adds the given Control to the end of the Grid. */
 fun Grid.add(
-    widget: Control,
     left: Int,
     top: Int,
     xspan: Int,
@@ -129,12 +133,12 @@ fun Grid.add(
     hexpand: Int,
     halign: Int,
     vexpand: Int,
-    valign: Int) =
-    uiGridAppend(ptr, widget.ctl, left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+    valign: Int,
+    widget: Control
+) = uiGridAppend(ptr, widget.ctl, left, top, xspan, yspan, hexpand, halign, vexpand, valign)
 
 /** Insert the given Control after existing Control. */
 fun Grid.insert(
-    widget: Control,
     existing: Control,
     at: uiAt,
     xspan: Int,
@@ -142,5 +146,6 @@ fun Grid.insert(
     hexpand: Int,
     halign: Int,
     vexpand: Int,
-    valign: Int) =
-    uiGridInsertAt(ptr, widget.ctl, existing.ctl, at, xspan, yspan, hexpand, halign, vexpand, valign)
+    valign: Int,
+    widget: Control
+) = uiGridInsertAt(ptr, widget.ctl, existing.ctl, at, xspan, yspan, hexpand, halign, vexpand, valign)

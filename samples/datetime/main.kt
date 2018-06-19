@@ -5,7 +5,7 @@ fun main(args: Array<String>) = libuiApplication {
     Window("Date / Time", width = 320, height = 240, hasMenubar = false) {
         margined = true
 
-        add(Grid {
+        add(widget = Grid {
             padded = true
 
             val labelBoth = Label("")
@@ -25,14 +25,14 @@ fun main(args: Array<String>) = libuiApplication {
                 }
             }
 
-            add(pickerBoth, 0, 0, 2, 1, 1, uiAlignFill, 0, uiAlignFill)
-            add(pickerDate, 0, 1, 1, 1, 1, uiAlignFill, 0, uiAlignFill)
-            add(pickerTime, 1, 1, 1, 1, 1, uiAlignFill, 0, uiAlignFill)
-            add(labelBoth,  0, 2, 2, 1, 1, uiAlignCenter, 0, uiAlignFill)
-            add(labelDate,  0, 3, 1, 1, 1, uiAlignCenter, 0, uiAlignFill)
-            add(labelTime,  1, 3, 1, 1, 1, uiAlignCenter, 0, uiAlignFill)
-            add(buttonNow,  0, 4, 1, 1, 1, uiAlignFill, 1, uiAlignEnd)
-            add(buttonUnix, 1, 4, 1, 1, 1, uiAlignFill, 1, uiAlignEnd)
+            add(0, 0, 2, 1, 1, uiAlignFill, 0, uiAlignFill, widget = pickerBoth)
+            add(0, 1, 1, 1, 1, uiAlignFill, 0, uiAlignFill, widget = pickerDate)
+            add(1, 1, 1, 1, 1, uiAlignFill, 0, uiAlignFill, widget = pickerTime)
+            add(0, 2, 2, 1, 1, uiAlignCenter, 0, uiAlignFill, widget = labelBoth)
+            add(0, 3, 1, 1, 1, uiAlignCenter, 0, uiAlignFill, widget = labelDate)
+            add(1, 3, 1, 1, 1, uiAlignCenter, 0, uiAlignFill, widget = labelTime)
+            add(0, 4, 1, 1, 1, uiAlignFill, 1, uiAlignEnd, widget = buttonNow)
+            add(1, 4, 1, 1, 1, uiAlignFill, 1, uiAlignEnd, widget = buttonUnix)
         })
 
         onClose { uiQuit(); true }

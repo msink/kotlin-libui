@@ -15,13 +15,13 @@ fun main(args: Array<String>) = libuiApplication {
             val username = TextEntry()
             val password = PasswordEntry()
 
-            add(Form {
+            add(widget = Form {
                 padded = true
-                add("Username", username)
-                add("Password", password)
+                add(label = "Username", widget = username)
+                add(label = "Password", widget = password)
             })
 
-            add(Button(text = "Login") {
+            add(widget = Button(text = "Login") {
                 action {
                     MsgBox("${username.value}:${password.value}")
                 }
