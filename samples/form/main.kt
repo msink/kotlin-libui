@@ -12,7 +12,7 @@ fun main(args: Array<String>) = libuiApplication {
         add(VerticalBox {
             padded = true
 
-            val username = TextEntry()
+            val username = Entry()
             val password = PasswordEntry()
 
             add(widget = Form {

@@ -8,7 +8,7 @@ fun main(args: Array<String>) = libuiApplication {
 
         add(widget = VerticalBox {
             padded = true
-            val scroll = WrappingMultilineEntry { readOnly = true }
+            val scroll = MultilineEntry { readOnly = true }
             val button = Button("Say Something") {
                 action { scroll.append("Saying something\n") }
             }

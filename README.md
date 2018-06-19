@@ -148,7 +148,7 @@ fun main(args: Array<String>) = libuiApplication {
 
         add(widget = VerticalBox {
             padded = true
-            val scroll = WrappingMultilineEntry { readOnly = true }
+            val scroll = MultilineEntry { readOnly = true }
             val button = Button("libui говорит: click me!") {
                 action {
                     scroll.append("Hello, World!  Ciao, mondo!\n" +

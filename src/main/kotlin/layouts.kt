@@ -40,6 +40,11 @@ fun Group.add(widget: Control?) = uiGroupSetChild(ptr, widget?.ctl)
 
 ///////////////////////////////////////////////////////////////////////////////
 
+/** A container that stack its chidren horizontally or vertically. */
+abstract class Box(_ptr: CPointer<uiBox>?) : Layout(_ptr) {
+    internal val ptr: CPointer<uiBox> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
+}
+
 /** A container that stack its chidren horizontally. */
 class HorizontalBox(block: HorizontalBox.() -> Unit = {}) : Box(uiNewHorizontalBox()) {
     init { apply(block) }
@@ -48,11 +53,6 @@ class HorizontalBox(block: HorizontalBox.() -> Unit = {}) : Box(uiNewHorizontalB
 /** A container that stack its chidren vertically. */
 class VerticalBox(block: VerticalBox.() -> Unit = {}) : Box(uiNewVerticalBox()) {
     init { apply(block) }
-}
-
-/** A container that stack its chidren horizontally or vertically. */
-abstract class Box(_ptr: CPointer<uiBox>?) : Layout(_ptr) {
-    internal val ptr: CPointer<uiBox> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
 }
 
 /** If `true`, the container insert some space between children. Defaults to `false`. */

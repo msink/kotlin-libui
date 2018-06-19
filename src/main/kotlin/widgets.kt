@@ -112,15 +112,11 @@ var Control.visible: Boolean
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** Single line text entry widget. */
-abstract class Entry(_ptr: CPointer<uiEntry>?) : Control(_ptr) {
+/** A simple single line text entry widget. */
+open class Entry internal constructor(_ptr: CPointer<uiEntry>?) : Control(_ptr) {
+    constructor(block: Entry.() -> Unit = {}): this(uiNewEntry()) { apply(block) }
     internal val ptr: CPointer<uiEntry> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (Entry.() -> Unit)? = null
-}
-
-/** A simple single line text entry widget. */
-class TextEntry(block: Entry.() -> Unit = {}) : Entry(uiNewEntry()) {
-    init { apply(block) }
 }
 
 /** Text entry widget that mask the input, useful to edit passwords or other sensible data. */
@@ -160,15 +156,10 @@ private fun _Entry(ptr: CPointer<uiEntry>?, ref: COpaquePointer?) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A multiline text entry widget. */
-abstract class MultilineEntry(_ptr: CPointer<uiMultilineEntry>?) : Control(_ptr) {
+open class MultilineEntry internal constructor(_ptr: CPointer<uiMultilineEntry>?) : Control(_ptr) {
+    constructor(block: MultilineEntry.() -> Unit = {}): this(uiNewMultilineEntry()) { apply(block) }
     internal val ptr: CPointer<uiMultilineEntry> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (MultilineEntry.() -> Unit)? = null
-}
-
-/** A wrapping multiline text entry widget. */
-class WrappingMultilineEntry(block: MultilineEntry.() -> Unit = {}) :
-    MultilineEntry(uiNewMultilineEntry()) {
-    init { apply(block) }
 }
 
 /** A non wrapping multiline text entry widget. */
@@ -391,20 +382,16 @@ private fun _RadioButtons(ptr: CPointer<uiRadioButtons>?, ref: COpaquePointer?) 
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A widgets to edit date and time. */
-abstract class TmPicker(_ptr: CPointer<uiDateTimePicker>?) : Control(_ptr) {
+/** A widget to edit date and time. */
+open class DateTimePicker internal constructor(_ptr: CPointer<uiDateTimePicker>?) : Control(_ptr) {
+    constructor(block: DateTimePicker.() -> Unit = {}): this(uiNewDateTimePicker()) { apply(block) }
     internal val ptr: CPointer<uiDateTimePicker> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
-    internal var action: (TmPicker.() -> Unit)? = null
+    internal var action: (DateTimePicker.() -> Unit)? = null
     internal var defaultFormat = "%c"
 }
 
-/** A widget to edit date and time. */
-class DateTimePicker(block: DateTimePicker.() -> Unit = {}) : TmPicker(uiNewDateTimePicker()) {
-    init { apply(block) }
-}
-
 /** A widget to edit date. */
-class DatePicker(block: DatePicker.() -> Unit = {}) : TmPicker(uiNewDatePicker()) {
+class DatePicker(block: DateTimePicker.() -> Unit = {}) : DateTimePicker(uiNewDatePicker()) {
     init {
         defaultFormat = "%x"
         apply(block)
@@ -412,25 +399,25 @@ class DatePicker(block: DatePicker.() -> Unit = {}) : TmPicker(uiNewDatePicker()
 }
 
 /** A widget to edit time. */
-class TimePicker(block: TimePicker.() -> Unit = {}) : TmPicker(uiNewTimePicker()) {
+class TimePicker(block: DateTimePicker.() -> Unit = {}) : DateTimePicker(uiNewTimePicker()) {
     init {
         defaultFormat = "%X"
         apply(block)
     }
 }
 
-/** The current value as `struct tm` */
-fun TmPicker.getValue(value: CPointer<tm>) = uiDateTimePickerTime(ptr, value)
+/** The current value as posix `struct tm` */
+fun DateTimePicker.getValue(value: CPointer<tm>) = uiDateTimePickerTime(ptr, value)
 
-/** Set current value from `struct tm` */
-fun TmPicker.setValue(value: CPointer<tm>) = uiDateTimePickerSetTime(ptr, value)
+/** Set current value from posix `struct tm` */
+fun DateTimePicker.setValue(value: CPointer<tm>) = uiDateTimePickerSetTime(ptr, value)
 
-/** The current value as Unix epoch */
-var TmPicker.value: Long
+/** The current value in Unix epoch */
+var DateTimePicker.value: Long
     get() = memScoped {
-       var tm = alloc<tm>().ptr
-       getValue(tm)
-       mktime(tm)
+       var tm = alloc<tm>()
+       getValue(tm.ptr)
+       mktime(tm.ptr)
     }
     set(value) = memScoped {
        var time = alloc<time_tVar>()
@@ -439,24 +426,24 @@ var TmPicker.value: Long
     }
 
 /** The current value as String. */
-fun TmPicker.textValue(format: String = defaultFormat): String = memScoped {
-    var tm = alloc<tm>().ptr
+fun DateTimePicker.textValue(format: String = defaultFormat): String = memScoped {
+    var tm = alloc<tm>()
     var buf = allocArray<ByteVar>(64)
-    uiDateTimePickerTime(ptr, tm)
-    strftime(buf, 64, format, tm)
+    uiDateTimePickerTime(ptr, tm.ptr)
+    strftime(buf, 64, format, tm.ptr)
     return buf.toKString()
 }
 
 /** Funcion to be run when the user makes a change to the Picker.
  *  Only one function can be registered at a time. */
-fun TmPicker.action(proc: TmPicker.() -> Unit) {
+fun DateTimePicker.action(proc: DateTimePicker.() -> Unit) {
     action = proc
     uiDateTimePickerOnChanged(ptr, staticCFunction(::_DateTimePicker), ref.asCPointer())
 }
 
 @Suppress("UNUSED_PARAMETER")
 private fun _DateTimePicker(ptr: CPointer<uiDateTimePicker>?, ref: COpaquePointer?) {
-    with (ref!!.asStableRef<TmPicker>().get()) {
+    with (ref!!.asStableRef<DateTimePicker>().get()) {
         action?.invoke(this)
     }
 }
