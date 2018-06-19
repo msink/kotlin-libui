@@ -25,14 +25,41 @@ fun main(args: Array<String>) = libuiApplication {
                 }
             }
 
-            add(0, 0, 2, 1, 1, uiAlignFill, 0, uiAlignFill, widget = pickerBoth)
-            add(0, 1, 1, 1, 1, uiAlignFill, 0, uiAlignFill, widget = pickerDate)
-            add(1, 1, 1, 1, 1, uiAlignFill, 0, uiAlignFill, widget = pickerTime)
-            add(0, 2, 2, 1, 1, uiAlignCenter, 0, uiAlignFill, widget = labelBoth)
-            add(0, 3, 1, 1, 1, uiAlignCenter, 0, uiAlignFill, widget = labelDate)
-            add(1, 3, 1, 1, 1, uiAlignCenter, 0, uiAlignFill, widget = labelTime)
-            add(0, 4, 1, 1, 1, uiAlignFill, 1, uiAlignEnd, widget = buttonNow)
-            add(1, 4, 1, 1, 1, uiAlignFill, 1, uiAlignEnd, widget = buttonUnix)
+            add(xspan = 2,
+                hexpand = true,
+                widget = pickerBoth)
+            add(y = 1,
+                hexpand = true,
+                widget = pickerDate)
+            add(y = 1,
+                x = 1,
+                hexpand = true,
+                widget = pickerTime)
+            add(y = 2,
+                xspan = 2,
+                hexpand = true,
+                halign = uiAlignCenter,
+                widget = labelBoth)
+            add(y = 3,
+                hexpand = true,
+                halign = uiAlignCenter,
+                widget = labelDate)
+            add(y = 3,
+                x = 1,
+                hexpand = true,
+                halign = uiAlignCenter,
+                widget = labelTime)
+            add(y = 4,
+                hexpand = true,
+                vexpand = true,
+                valign = uiAlignEnd,
+                widget = buttonNow)
+            add(y = 4,
+                x = 1,
+                hexpand = true,
+                vexpand = true,
+                valign = uiAlignEnd,
+                widget = buttonUnix)
         })
 
         onClose { uiQuit(); true }

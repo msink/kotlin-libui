@@ -108,8 +108,8 @@ fun Window.dataChoosersPage() = HorizontalBox() {
                     entry1.value = OpenFileDialog() ?: "(cancelled)"
                 }
             }
-            add(0, 0, 1, 1, 0, uiAlignFill, 0, uiAlignFill, widget = button1)
-            add(1, 0, 1, 1, 1, uiAlignFill, 0, uiAlignFill, widget = entry1)
+            add(widget = button1, y = 0, x = 0)
+            add(widget = entry1, y = 0, x = 1, hexpand = true)
 
             val entry2 = Entry() { readOnly = true }
             val button2 = Button("Save File") {
@@ -117,18 +117,18 @@ fun Window.dataChoosersPage() = HorizontalBox() {
                     entry2.value = SaveFileDialog() ?: "(cancelled)"
                 }
             }
-            add(0, 1, 1, 1, 0, uiAlignFill, 0, uiAlignFill, widget = button2)
-            add(1, 1, 1, 1, 1, uiAlignFill, 0, uiAlignFill, widget = entry2)
+            add(widget = button2, y = 1, x = 0)
+            add(widget = entry2, y = 1, x = 1, hexpand = true)
 
-            add(0, 2, 2, 1, 0, uiAlignCenter, 0, uiAlignStart, widget = Grid {
+            add(y = 2, xspan = 2, widget = Grid {
                 padded = true
-                add(0, 0, 1, 1, 0, uiAlignFill, 0, uiAlignFill, widget = Button("Message Box") {
+                add(x = 0, widget = Button("Message Box") {
                     action {
                         MsgBox(text = "This is a normal message box.",
                             details = "More detailed information can be shown here.")
                     }
                 })
-                add(1, 0, 1, 1, 0, uiAlignFill, 0, uiAlignFill, widget = Button("Error Box") {
+                add(x = 1, widget = Button("Error Box") {
                     action {
                         MsgBoxError(text = "This message box describes an error.",
                             details = "More detailed information can be shown here.")

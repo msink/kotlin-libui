@@ -124,28 +124,56 @@ var Grid.padded: Boolean
     get() = uiGridPadded(ptr) != 0
     set(padded) = uiGridSetPadded(ptr, if (padded) 1 else 0)
 
-/** Adds the given Control to the end of the Grid. */
+/** Adds the given Control to the end of the Grid.
+ *
+ *  @param[x] The x-coordinate of the Control's location.
+ *  @param[y] The y-coordinate of the Control's location.
+ *  @param[xspan] The width of the Control.
+ *  @param[yspan] The height of the Control.
+ *  @param[hexpand] The horizontal expand of Control.
+ *  @param[halign] The horizontal alignment of Control.
+ *  @param[vexpand] The vertical expand of Control.
+ *  @param[valign] The vertical alignment of Control.
+ *  @param[widget] The Control to be added.
+ */
 fun Grid.add(
-    left: Int,
-    top: Int,
-    xspan: Int,
-    yspan: Int,
-    hexpand: Int,
-    halign: Int,
-    vexpand: Int,
-    valign: Int,
+    x: Int = 0,
+    y: Int = 0,
+    xspan: Int = 1,
+    yspan: Int = 1,
+    hexpand: Boolean = false,
+    halign: uiAlign = uiAlignFill,
+    vexpand: Boolean = false,
+    valign: uiAlign = uiAlignFill,
     widget: Control
-) = uiGridAppend(ptr, widget.ctl, left, top, xspan, yspan, hexpand, halign, vexpand, valign)
+) = uiGridAppend(ptr, widget.ctl,
+    x, y, xspan, yspan,
+    if (hexpand) 1 else 0, halign,
+    if (vexpand) 1 else 0, valign)
 
-/** Insert the given Control after existing Control. */
+/** Insert the given Control after existing Control.
+ *
+ *  @param[existing] The existing Control at which Control be inserted.
+ *  @param[at] The relative placement of the Control to the existing one.
+ *  @param[xspan] The width of the Control.
+ *  @param[yspan] The height of the Control.
+ *  @param[hexpand] The horizontal expand of Control.
+ *  @param[halign] The horizontal alignment of Control.
+ *  @param[vexpand] The vertical expand of Control.
+ *  @param[valign] The vertical alignment of Control.
+ *  @param[widget] The Control to be added.
+ */
 fun Grid.insert(
     existing: Control,
     at: uiAt,
-    xspan: Int,
-    yspan: Int,
-    hexpand: Int,
-    halign: Int,
-    vexpand: Int,
-    valign: Int,
+    xspan: Int = 1,
+    yspan: Int = 1,
+    hexpand: Boolean = false,
+    halign: uiAlign = uiAlignFill,
+    vexpand: Boolean = false,
+    valign: uiAlign = uiAlignFill,
     widget: Control
-) = uiGridInsertAt(ptr, widget.ctl, existing.ctl, at, xspan, yspan, hexpand, halign, vexpand, valign)
+) = uiGridInsertAt(ptr, widget.ctl, existing.ctl,
+    at, xspan, yspan,
+    if (hexpand) 1 else 0, halign,
+    if (vexpand) 1 else 0, valign)
