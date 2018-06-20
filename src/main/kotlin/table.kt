@@ -55,7 +55,7 @@ class TableModel(block: TableModel.() -> Unit = {}) {
     internal var columnType: TableModel.(col: Int) -> uiTableDataType = { uiTableDataTypeString }
     internal var numRows: TableModel.() -> Int = { 0 }
     internal var getCellValue: TableModel.(row: Int, col: Int) -> TableData? = { _, _ -> null }
-    internal var setCellValue: TableModel.(row: Int, col: Int, value: TableData) -> Unit = { _, _, _ -> }
+    internal var setCellValue: TableModel.(row: Int, col: Int, value: TableData?) -> Unit = { _, _, _ -> }
 
     init {
         handler.pointed.ui.NumColumns = staticCFunction(::_NumColumns)
@@ -144,7 +144,7 @@ private fun _CellValue(
     }
 }
 
-fun TableModel.setCellValue(proc: TableModel.(row: Int, column: Int, value: TableData) -> Unit) {
+fun TableModel.setCellValue(proc: TableModel.(row: Int, column: Int, value: TableData?) -> Unit) {
     setCellValue = proc
 }
 
@@ -158,7 +158,7 @@ private fun _SetCellValue(
 ) {
     val h: CPointer<ktTableModelHandler> = handler!!.reinterpret()
     with (h.pointed.ref!!.asStableRef<TableModel>().get()) {
-        setCellValue.invoke(this, row, column, value!!)
+        setCellValue.invoke(this, row, column, value)
     }
 }
 

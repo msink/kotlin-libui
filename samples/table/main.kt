@@ -5,21 +5,19 @@ fun main(args: Array<String>) = appWindow(
     width = 800,
     height = 480
 ) {
-    var row9text = "Part"
-    var yellowRow = -1
-    var checkStates = IntArray(15)
-
-    val image0 = Image(16.0, 16.0) {
-        add(image0_16x16, 16, 16, 64)
-        add(image0_32x32, 32, 32, 128)
-    }
-
-    val image1 = Image(16.0, 16.0) {
-        add(image1_16x16, 16, 16, 64)
-        add(image1_32x32, 32, 32, 128)
-    }
-
     val model = TableModel {
+        var row9text = "Part"
+        var yellowRow = -1
+        var checkStates = IntArray(15)
+        val image0 = Image(16.0, 16.0) {
+            add(image0_16x16, 16, 16, 64)
+            add(image0_32x32, 32, 32, 128)
+        }
+        val image1 = Image(16.0, 16.0) {
+            add(image1_16x16, 16, 16, 64)
+            add(image1_32x32, 32, 32, 128)
+        }
+
         numColumns { 9 }
         columnType { when (it) {
             3, 4 -> uiTableDataTypeColor
@@ -51,7 +49,7 @@ fun main(args: Array<String>) = appWindow(
             else -> null
         }}
         setCellValue { row, col, value -> when (col) {
-            2 -> if (row == 9) row9text = value.string
+            2 -> if (row == 9) row9text = value?.string ?: ""
             6 -> {
                 val prevYellowRow = yellowRow
                 yellowRow = row
@@ -59,7 +57,7 @@ fun main(args: Array<String>) = appWindow(
                     rowChanged(prevYellowRow)
                 rowChanged(yellowRow)
             }
-            7 -> checkStates[row] = value.int
+            7 -> checkStates[row] = value?.int ?: 0
         }}
     }
 
