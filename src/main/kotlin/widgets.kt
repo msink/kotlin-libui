@@ -5,14 +5,6 @@ import platform.posix.*
 
 ///////////////////////////////////////////////////////////////////////////////
 //
-// Container widgets:
-// - [Form]
-// - [Grid]
-// - [HorizontalBox]
-// - [VerticalBox]
-// - [Tab]
-// - [Group]
-//
 // Data entry widgets:
 // - [Entry]
 // - [PasswordEntry]
@@ -48,8 +40,8 @@ abstract class Control(internal var _ptr: COpaquePointer?) {
     internal val ctlDestroy = ctl.pointed.Destroy
     internal val ref = StableRef.create(this)
     init {
-        ctl.pointed.Destroy = staticCFunction(::_Destroy)
         controls[ctl] = this
+        ctl.pointed.Destroy = staticCFunction(::_Destroy)
     }
     internal open fun dispose() {
         ref.dispose()
@@ -77,8 +69,20 @@ fun Control.destroy() = uiControlDestroy(ctl)
 /** Returns the OS-level handle associated with this Control. */
 fun Control.getHandle(): Long = uiControlHandle(ctl)
 
+/** Returns whether the control is a top level one or not. */
+val Control.toplevel: Boolean
+    get() = uiControlToplevel(ctl) != 0
+
+/** Returns parent of the control or `null` for detached. */
+var Control.parent: Control?
+    get() = controls[uiControlParent(ctl)]
+    set(parent) = uiControlSetParent(ctl, parent?.ctl)
+
 /** Whether the Control is enabled. */
 fun Control.isEnabled(): Boolean = uiControlEnabled(ctl) != 0
+
+/** Whether the Control and all parents are enabled. */
+fun Control.isEnabledToUser(): Boolean = uiControlEnabledToUser(ctl) != 0
 
 /** Enables the Control. */
 fun Control.enable() = uiControlEnable(ctl)
@@ -108,148 +112,11 @@ var Control.visible: Boolean
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A container that organize children as labeled fields. */
-class Form(block: Form.() -> Unit = {}) : Control(uiNewForm()) {
-    internal val ptr: CPointer<uiForm> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
-    init { apply(block) }
-}
-
-/** If true, the container insert some space between children. */
-var Form.padded: Boolean
-    get() = uiFormPadded(ptr) != 0
-    set(padded) = uiFormSetPadded(ptr, if (padded) 1 else 0)
-
-/** Adds the given widget to the end of the form. */
-fun Form.add(label: String, widget: Control, stretchy: Boolean = false) =
-    uiFormAppend(ptr, label, widget.ctl, if (stretchy) 1 else 0)
-
-/** deletes the nth control of the form. */
-fun Form.delete(index: Int) = uiFormDelete(ptr, index)
-
-///////////////////////////////////////////////////////////////////////////////
-
-/** A powerful container that allow to specify size and position of each children. */
-class Grid(block: Grid.() -> Unit = {}) : Control(uiNewGrid()) {
-    internal val ptr: CPointer<uiGrid> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
-    init { apply(block) }
-}
-
-/** If true, the container insert some space between children. */
-var Grid.padded: Boolean
-    get() = uiGridPadded(ptr) != 0
-    set(padded) = uiGridSetPadded(ptr, if (padded) 1 else 0)
-
-/** Adds the given Control to the end of the Grid. */
-fun Grid.add(
-    widget: Control,
-    left: Int,
-    top: Int,
-    xspan: Int,
-    yspan: Int,
-    hexpand: Int,
-    halign: Int,
-    vexpand: Int,
-    valign: Int) =
-    uiGridAppend(ptr, widget.ctl, left, top, xspan, yspan, hexpand, halign, vexpand, valign)
-
-/** Insert the given Control after existing Control. */
-fun Grid.insert(
-    widget: Control,
-    existing: Control,
-    at: uiAt,
-    xspan: Int,
-    yspan: Int,
-    hexpand: Int,
-    halign: Int,
-    vexpand: Int,
-    valign: Int) =
-    uiGridInsertAt(ptr, widget.ctl, existing.ctl, at, xspan, yspan, hexpand, halign, vexpand, valign)
-
-///////////////////////////////////////////////////////////////////////////////
-
-/** A container that stack its chidren horizontally or vertically. */
-abstract class Box(_ptr: CPointer<uiBox>?) : Control(_ptr) {
-    internal val ptr: CPointer<uiBox> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
-}
-
-/** A container that stack its chidren horizontally. */
-class HorizontalBox(block: HorizontalBox.() -> Unit = {}) : Box(uiNewHorizontalBox()) {
-    init { apply(block) }
-}
-
-/** A container that stack its chidren vertically. */
-class VerticalBox(block: VerticalBox.() -> Unit = {}) : Box(uiNewVerticalBox()) {
-    init { apply(block) }
-}
-
-/** If `true`, the container insert some space between children. Defaults to `false`. */
-var Box.padded: Boolean
-    get() = uiBoxPadded(ptr) != 0
-    set(padded) = uiBoxSetPadded(ptr, if (padded) 1 else 0)
-
-/** Adds the given widget to the end of the Box. */
-fun Box.add(widget: Control, stretchy: Boolean = false) =
-    uiBoxAppend(ptr, widget.ctl, if (stretchy) 1 else 0)
-
-/** Deletes the nth control of the Box. */
-fun Box.delete(index: Int) = uiBoxDelete(ptr, index)
-
-///////////////////////////////////////////////////////////////////////////////
-
-/** A container that show each chidren in a separate tab. */
-class Tab(block: Tab.() -> Unit = {}) : Control(uiNewTab()) {
-    internal val ptr: CPointer<uiTab> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
-    init { apply(block) }
-}
-
-/** Whether page n (starting at 0) of the Tab has margins around its child. */
-fun Tab.getMargined(page: Int): Boolean = uiTabMargined(ptr, page) != 0
-fun Tab.setMargined(page: Int, margined: Boolean) = uiTabSetMargined(ptr, page, if (margined) 1 else 0)
-
-/** Adds the given page to the end of the Tab. */
-fun Tab.add(name: String, widget: Control) = uiTabAppend(ptr, name, widget.ctl)
-
-/** Adds the given page to the Tab such that it is the nth page of the Tab (starting at 0). */
-fun Tab.insert(index: Int, name: String, widget: Control) = uiTabInsertAt(ptr, name, index, widget.ctl)
-
-/** Delete deletes the nth page of the Tab. */
-fun Tab.delete(index: Int) = uiTabDelete(ptr, index)
-
-/** Number of pages in the Tab. */
-val Tab.numPages: Int get() = uiTabNumPages(ptr)
-
-///////////////////////////////////////////////////////////////////////////////
-
-/** A container for a single widget that provide a caption and visually group it's children. */
-class Group(text: String, block: Group.() -> Unit = {}) : Control(uiNewGroup(text)) {
-    internal val ptr: CPointer<uiGroup> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
-    init { apply(block) }
-}
-
-/** Specify the caption of the group. */
-var Group.title: String
-    get() = uiGroupTitle(ptr)?.toKString() ?: ""
-    set(title) = uiGroupSetTitle(ptr, title)
-
-/** Specify if the group content area should have a margin or not. */
-var Group.margined: Boolean
-    get() = uiGroupMargined(ptr) != 0
-    set(margined) = uiGroupSetMargined(ptr, if (margined) 1 else 0)
-
-/** sets the group's child. If child is null, the group will not have a child. */
-fun Group.add(child: Control?) = uiGroupSetChild(ptr, child?.ctl)
-
-///////////////////////////////////////////////////////////////////////////////
-
-/** Single line text entry widget. */
-abstract class Entry(_ptr: CPointer<uiEntry>?) : Control(_ptr) {
+/** A simple single line text entry widget. */
+open class Entry internal constructor(_ptr: CPointer<uiEntry>?) : Control(_ptr) {
+    constructor(block: Entry.() -> Unit = {}): this(uiNewEntry()) { apply(block) }
     internal val ptr: CPointer<uiEntry> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (Entry.() -> Unit)? = null
-}
-
-/** A simple single line text entry widget. */
-class TextEntry(block: Entry.() -> Unit = {}) : Entry(uiNewEntry()) {
-    init { apply(block) }
 }
 
 /** Text entry widget that mask the input, useful to edit passwords or other sensible data. */
@@ -289,15 +156,10 @@ private fun _Entry(ptr: CPointer<uiEntry>?, ref: COpaquePointer?) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A multiline text entry widget. */
-abstract class MultilineEntry(_ptr: CPointer<uiMultilineEntry>?) : Control(_ptr) {
+open class MultilineEntry internal constructor(_ptr: CPointer<uiMultilineEntry>?) : Control(_ptr) {
+    constructor(block: MultilineEntry.() -> Unit = {}): this(uiNewMultilineEntry()) { apply(block) }
     internal val ptr: CPointer<uiMultilineEntry> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (MultilineEntry.() -> Unit)? = null
-}
-
-/** A wrapping multiline text entry widget. */
-class WrappingMultilineEntry(block: MultilineEntry.() -> Unit = {}) :
-    MultilineEntry(uiNewMultilineEntry()) {
-    init { apply(block) }
 }
 
 /** A non wrapping multiline text entry widget. */
@@ -520,20 +382,16 @@ private fun _RadioButtons(ptr: CPointer<uiRadioButtons>?, ref: COpaquePointer?) 
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A widgets to edit date and time. */
-abstract class TmPicker(_ptr: CPointer<uiDateTimePicker>?) : Control(_ptr) {
+/** A widget to edit date and time. */
+open class DateTimePicker internal constructor(_ptr: CPointer<uiDateTimePicker>?) : Control(_ptr) {
+    constructor(block: DateTimePicker.() -> Unit = {}): this(uiNewDateTimePicker()) { apply(block) }
     internal val ptr: CPointer<uiDateTimePicker> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
-    internal var action: (TmPicker.() -> Unit)? = null
+    internal var action: (DateTimePicker.() -> Unit)? = null
     internal var defaultFormat = "%c"
 }
 
-/** A widget to edit date and time. */
-class DateTimePicker(block: DateTimePicker.() -> Unit = {}) : TmPicker(uiNewDateTimePicker()) {
-    init { apply(block) }
-}
-
 /** A widget to edit date. */
-class DatePicker(block: DatePicker.() -> Unit = {}) : TmPicker(uiNewDatePicker()) {
+class DatePicker(block: DateTimePicker.() -> Unit = {}) : DateTimePicker(uiNewDatePicker()) {
     init {
         defaultFormat = "%x"
         apply(block)
@@ -541,45 +399,51 @@ class DatePicker(block: DatePicker.() -> Unit = {}) : TmPicker(uiNewDatePicker()
 }
 
 /** A widget to edit time. */
-class TimePicker(block: TimePicker.() -> Unit = {}) : TmPicker(uiNewTimePicker()) {
+class TimePicker(block: DateTimePicker.() -> Unit = {}) : DateTimePicker(uiNewTimePicker()) {
     init {
         defaultFormat = "%X"
         apply(block)
     }
 }
 
-/** The current value as Unix epoch */
-var TmPicker.value: Long
+/** The current value as posix `struct tm` */
+fun DateTimePicker.getValue(value: CPointer<tm>) = uiDateTimePickerTime(ptr, value)
+
+/** Set current value from posix `struct tm` */
+fun DateTimePicker.setValue(value: CPointer<tm>) = uiDateTimePickerSetTime(ptr, value)
+
+/** The current value in Unix epoch */
+var DateTimePicker.value: Long
     get() = memScoped {
-       var tm = alloc<tm>().ptr
-       uiDateTimePickerTime(ptr, tm)
-       mktime(tm)
+       var tm = alloc<tm>()
+       getValue(tm.ptr)
+       mktime(tm.ptr)
     }
     set(value) = memScoped {
        var time = alloc<time_tVar>()
        time.value = value
-       uiDateTimePickerSetTime(ptr, localtime(time.ptr))
+       setValue(localtime(time.ptr)!!)
     }
 
 /** The current value as String. */
-fun TmPicker.textValue(format: String = defaultFormat): String = memScoped {
-    var tm = alloc<tm>().ptr
+fun DateTimePicker.textValue(format: String = defaultFormat): String = memScoped {
+    var tm = alloc<tm>()
     var buf = allocArray<ByteVar>(64)
-    uiDateTimePickerTime(ptr, tm)
-    strftime(buf, 64, format, tm)
+    uiDateTimePickerTime(ptr, tm.ptr)
+    strftime(buf, 64, format, tm.ptr)
     return buf.toKString()
 }
 
 /** Funcion to be run when the user makes a change to the Picker.
  *  Only one function can be registered at a time. */
-fun TmPicker.action(proc: TmPicker.() -> Unit) {
+fun DateTimePicker.action(proc: DateTimePicker.() -> Unit) {
     action = proc
     uiDateTimePickerOnChanged(ptr, staticCFunction(::_DateTimePicker), ref.asCPointer())
 }
 
 @Suppress("UNUSED_PARAMETER")
 private fun _DateTimePicker(ptr: CPointer<uiDateTimePicker>?, ref: COpaquePointer?) {
-    with (ref!!.asStableRef<TmPicker>().get()) {
+    with (ref!!.asStableRef<DateTimePicker>().get()) {
         action?.invoke(this)
     }
 }
@@ -593,7 +457,7 @@ class Label(text: String, block: Label.() -> Unit = {}) : Control(uiNewLabel(tex
 }
 
 /** The static text of the label. */
-var Label.value: String
+var Label.text: String
     get() = uiLabelText(ptr)?.toKString() ?: ""
     set(value) = uiLabelSetText(ptr, value)
 

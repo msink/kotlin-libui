@@ -9,6 +9,8 @@ import kotlinx.cinterop.*
 
 //void uiQueueMain(void (*f)(void *data), void *data)
 
+//_UI_EXTERN void uiFreeText(char *text);
+
 ///////////////////////////////////////////////////////////
 
 typealias MenuItem = CPointer<uiMenuItem>

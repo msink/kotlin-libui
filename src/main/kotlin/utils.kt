@@ -22,13 +22,22 @@ data class Size(val width: Double, val height: Double)
 
 data class Point(val x: Double, val y: Double)
 
+fun random() = platform.posix.rand()
+
 /**
  * Initializes package ui, runs [init] to set up the program,
  * and executes the GUI main loop. [init] should set up the program's
  * initial state: open the main window, create controls, and set up
  * events.
  */
-fun libuiApplication(init: () -> Unit) {
+fun appWindow(
+    title: String,
+    width: Int,
+    height: Int,
+    block: Window.() -> Unit = {}
+) {
+    platform.posix.srand(platform.posix.time(null).toInt())
+
     memScoped {
         val options = alloc<uiInitOptions>()
         val error = uiInit(options.ptr)
@@ -39,7 +48,15 @@ fun libuiApplication(init: () -> Unit) {
         }
     }
 
-    init()
+    Window(title, width, height, false) {
+        onClose { uiQuit(); true }
+        onShouldQuit { destroy(); true }
+        margined = true
+
+        block()
+
+        show()
+    }
 
     uiMain()
     uiUninit()

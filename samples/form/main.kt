@@ -1,34 +1,26 @@
 import libui.*
 
-fun main(args: Array<String>) = libuiApplication {
+fun main(args: Array<String>) = appWindow(
+    title = "Authentication required",
+    width = 320,
+    height = 200
+) {
+    add(widget = VerticalBox {
+        padded = true
 
-    Window(
-        title = "Authentication required",
-        width = 320,
-        height = 200,
-        hasMenubar = false) {
-        margined = true
+        val username = Entry()
+        val password = PasswordEntry()
 
-        add(VerticalBox {
+        add(widget = Form {
             padded = true
-
-            val username = TextEntry()
-            val password = PasswordEntry()
-
-            add(Form {
-                padded = true
-                add("Username", username)
-                add("Password", password)
-            })
-
-            add(Button(text = "Login") {
-                action {
-                    MsgBox("${username.value}:${password.value}")
-                }
-            })
+            add(label = "Username", widget = username)
+            add(label = "Password", widget = password)
         })
 
-        onClose { uiQuit(); true }
-        show()
-    }
+        add(widget = Button(text = "Login") {
+            action {
+                MsgBox("${username.value}:${password.value}")
+            }
+        })
+    })
 }
