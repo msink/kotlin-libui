@@ -30,7 +30,12 @@ fun random() = platform.posix.rand()
  * initial state: open the main window, create controls, and set up
  * events.
  */
-fun libuiApplication(block: () -> Unit) {
+fun appWindow(
+    title: String,
+    width: Int,
+    height: Int,
+    block: Window.() -> Unit = {}
+) {
     platform.posix.srand(platform.posix.time(null).toInt())
 
     memScoped {
@@ -43,7 +48,15 @@ fun libuiApplication(block: () -> Unit) {
         }
     }
 
-    block()
+    Window(title, width, height, false) {
+        onClose { uiQuit(); true }
+        onShouldQuit { destroy(); true }
+        margined = true
+
+        block()
+
+        show()
+    }
 
     uiMain()
     uiUninit()

@@ -139,26 +139,22 @@ fun Window.dataChoosersPage() = HorizontalBox() {
     })
 }
 
-fun main(args: Array<String>) = libuiApplication {
-    Window(title = "libui Control Gallery", width = 640, height = 480) {
-        onClose { uiQuit(); true }
-        onShouldQuit { destroy(); true }
-        margined = true
+fun main(args: Array<String>) = appWindow(
+    title = "libui Control Gallery",
+    width = 640,
+    height = 480
+) {
+    add(widget = Tab {
+        add(label = "Basic Controls",
+            margined = true,
+            widget = basicControlsPage())
 
-        add(widget = Tab {
-            add(label = "Basic Controls",
-                margined = true,
-                widget = basicControlsPage())
+        add(label = "Numbers and Lists",
+            margined = true,
+            widget = numbersPage())
 
-            add(label = "Numbers and Lists",
-                margined = true,
-                widget = numbersPage())
-
-            add(label = "Data Choosers",
-                margined = true,
-                widget = dataChoosersPage())
-        })
-
-        show()
-    }
+        add(label = "Data Choosers",
+            margined = true,
+            widget = dataChoosersPage())
+    })
 }

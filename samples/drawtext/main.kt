@@ -52,46 +52,41 @@ fun Area.makeAttributedString() = AttributedString(
     append("Use the controls opposite to the text to control properties of the text.")
 }
 
-fun main(args: Array<String>) = libuiApplication {
+fun main(args: Array<String>) = appWindow(
+    title = "libui Text-Drawing Example",
+    width = 640,
+    height = 480
+) {
+    val defaultFont = FontButton()
 
-    Window("libui Text-Drawing Example", 640, 480) {
-        margined = true
-        onClose { uiQuit(); true }
-        onShouldQuit { destroy(); true }
-
-        val defaultFont = FontButton()
-
-        val alignment = Combobox {
-            add("Left")
-            add("Center")
-            add("Right")
-            value = 0
-        }
-
-        val area = Area {
-            val astr = makeAttributedString()
-            draw {
-                val context = it.Context!!
-                context.draw(astr, defaultFont.value, it.AreaWidth, alignment.value, 0.0, 0.0)
-            }
-        }
-
-        defaultFont.action { area.queueRedrawAll() }
-        alignment.action { area.queueRedrawAll() }
-
-        add(widget = HorizontalBox {
-            padded = true
-            add(widget = VerticalBox {
-                padded = true
-                add(widget = defaultFont)
-                add(widget = Form {
-                    padded = true
-                    add(label = "Alignment", widget = alignment)
-                })
-            })
-            add(stretchy = true, widget = area)
-        })
-
-        show()
+    val alignment = Combobox {
+        add("Left")
+        add("Center")
+        add("Right")
+        value = 0
     }
+
+    val area = Area {
+        val astr = makeAttributedString()
+        draw {
+            val context = it.Context!!
+            context.draw(astr, defaultFont.value, it.AreaWidth, alignment.value, 0.0, 0.0)
+        }
+    }
+
+    defaultFont.action { area.queueRedrawAll() }
+    alignment.action { area.queueRedrawAll() }
+
+    add(widget = HorizontalBox {
+        padded = true
+        add(widget = VerticalBox {
+            padded = true
+            add(widget = defaultFont)
+            add(widget = Form {
+                padded = true
+                add(label = "Alignment", widget = alignment)
+            })
+        })
+        add(stretchy = true, widget = area)
+    })
 }
