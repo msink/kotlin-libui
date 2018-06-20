@@ -16,11 +16,16 @@ fun ScrollingArea(width: Int, height: Int, block: Area.() -> Unit = {}): Area {
     return Area(uiNewScrollingArea(handler.ui.ptr, width, height), handler.ptr).apply(block)
 }
 
+interface Disposable {
+    val disposed: Boolean
+    fun dispose()
+}
+
 typealias AreaDrawParams = CPointer<uiAreaDrawParams>
 typealias AreaMouseEvent = CPointer<uiAreaMouseEvent>
 typealias AreaKeyEvent = CPointer<uiAreaKeyEvent>
 
-class Area internal constructor(_ptr: CPointer<uiArea>?, handler: CPointer<ktAreaHandler>) : Control(_ptr) {
+class Area internal constructor(_ptr: CPointer<uiArea>?, val handler: CPointer<ktAreaHandler>) : Control(_ptr) {
     internal val ptr: CPointer<uiArea> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
 
     internal var draw: Area.(params: uiAreaDrawParams) -> Unit = {}
@@ -29,9 +34,6 @@ class Area internal constructor(_ptr: CPointer<uiArea>?, handler: CPointer<ktAre
     internal var dragBroken: Area.() -> Unit = {}
     internal var keyEvent: Area.(event: uiAreaKeyEvent) -> Boolean = { false }
 
-    internal var astrings = mutableListOf<AttributedString>()
-    internal var natives = mutableListOf<CPointer<*>>()
-
     init {
         handler.pointed.ui.Draw = staticCFunction(::_Draw)
         handler.pointed.ui.MouseEvent = staticCFunction(::_MouseEvent)
@@ -39,12 +41,14 @@ class Area internal constructor(_ptr: CPointer<uiArea>?, handler: CPointer<ktAre
         handler.pointed.ui.DragBroken = staticCFunction(::_DragBroken)
         handler.pointed.ui.KeyEvent = staticCFunction(::_KeyEvent)
         handler.pointed.ref = ref.asCPointer()
-        natives.add(handler)
     }
 
+    internal val disposables = mutableListOf<Disposable>()
+
     override fun dispose() {
-        astrings.forEach { it.dispose() }
-        natives.forEach { nativeHeap.free(it) }
+        disposables.forEach { it.dispose() }
+        disposables.clear()
+        nativeHeap.free(handler)
         super.dispose()
     }
 }
@@ -145,35 +149,39 @@ private fun _KeyEvent(handler: CPointer<uiAreaHandler>?, area: CPointer<uiArea>?
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Defines the color(s) to draw a path with. */
-typealias DrawBrush = CPointer<uiDrawBrush>
+class DrawBrush internal constructor() : Disposable {
+    internal var _ptr: CPointer<uiDrawBrush>? = nativeHeap.alloc<uiDrawBrush>().ptr
+    internal val ptr get() = _ptr ?: throw Error("DrawBrush is disposed")
+    override val disposed get() = _ptr == null
+    override fun dispose() {
+        nativeHeap.free(ptr)
+        _ptr = null
+    }
+}
 
 /** Creates a new DrawBrush with lifecycle delegated to Area. */
-fun Area.DrawBrush(): DrawBrush {
-    val brush = nativeHeap.alloc<uiDrawBrush>().ptr
-    natives.add(brush)
-    return brush
-}
+fun Area.DrawBrush() = libui.DrawBrush().also { disposables.add(it) }
 
 /** Helper to quickly set a brush color */
 fun DrawBrush.solid(rgba: RGBA, opacity: Double = 1.0): DrawBrush {
-    memset(this, 0, uiDrawBrush.size)
-    pointed.Type = uiDrawBrushTypeSolid
-    pointed.R = rgba.r
-    pointed.G = rgba.g
-    pointed.B = rgba.b
-    pointed.A = rgba.a * opacity
+    memset(ptr, 0, uiDrawBrush.size)
+    ptr.pointed.Type = uiDrawBrushTypeSolid
+    ptr.pointed.R = rgba.r
+    ptr.pointed.G = rgba.g
+    ptr.pointed.B = rgba.b
+    ptr.pointed.A = rgba.a * opacity
     return this
 }
 
 /** Helper to quickly set a brush color */
 fun DrawBrush.solid(color: Int, alpha: Double = 1.0): DrawBrush {
-    memset(this, 0, uiDrawBrush.size)
-    pointed.Type = uiDrawBrushTypeSolid
+    memset(ptr, 0, uiDrawBrush.size)
+    ptr.pointed.Type = uiDrawBrushTypeSolid
     val rgba = RGBA(color, alpha)
-    pointed.R = rgba.r
-    pointed.G = rgba.g
-    pointed.B = rgba.b
-    pointed.A = alpha
+    ptr.pointed.R = rgba.r
+    ptr.pointed.G = rgba.g
+    ptr.pointed.B = rgba.b
+    ptr.pointed.A = alpha
     return this
 }
 
@@ -181,15 +189,22 @@ fun DrawBrush.solid(color: Int, alpha: Double = 1.0): DrawBrush {
 typealias DrawBrushGradientStop = CPointer<uiDrawBrushGradientStop>
 
 /** Describes the stroke to draw with. */
-typealias DrawStrokeParams = CPointer<uiDrawStrokeParams>
+class DrawStrokeParams internal constructor() : Disposable {
+    internal var _ptr: CPointer<uiDrawStrokeParams>? = nativeHeap.alloc<uiDrawStrokeParams>().ptr
+    internal val ptr get() = _ptr ?: throw Error("DrawStrokeParams is disposed")
+    override val disposed get() = _ptr == null
+    override fun dispose() {
+        nativeHeap.free(ptr)
+        _ptr = null
+    }
+}
 
 /** Creates a new DrawStrokeParams with lifecycle delegated to Area. */
-fun Area.DrawStrokeParams(block: uiDrawStrokeParams.() -> Unit = {}): DrawStrokeParams {
-    val stroke = nativeHeap.alloc<uiDrawStrokeParams>().ptr
-    natives.add(stroke)
-    block.invoke(stroke.pointed)
-    return stroke
-}
+fun Area.DrawStrokeParams(block: uiDrawStrokeParams.() -> Unit = {}) =
+    libui.DrawStrokeParams().also {
+        disposables.add(it)
+        block.invoke(it.ptr.pointed)
+    }
 
 /** Represent a path that could be drawed on a DrawContext */
 typealias DrawPath = CPointer<uiDrawPath>
@@ -420,38 +435,44 @@ val Attribute.features: OpenTypeFeatures? get() = uiAttributeFeatures(this)
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** represents a string of UTF-8 text that can be embellished with formatting attributes. */
-typealias AttributedString = CPointer<uiAttributedString>
-
-/** Creates a new AttributedString from initialString. The string will be entirely unattributed. */
-fun Area.AttributedString(initString: String): AttributedString =
-    (uiNewAttributedString(initString) ?: throw Error()).also { astrings.add(it) }
+/** Represents a string of UTF-8 text that can be embellished with formatting attributes. */
+class AttributedString internal constructor(init: String) : Disposable {
+    internal var _ptr: CPointer<uiAttributedString>? = uiNewAttributedString(init)
+    internal val ptr get() = _ptr ?: throw Error("AttributedString is disposed")
+    override val disposed get() = _ptr == null
 
 /** Destroys the AttributedString. It will also free all Attributes within. */
-fun AttributedString.dispose() = uiFreeAttributedString(this)
+    override fun dispose() {
+        uiFreeAttributedString(ptr)
+        _ptr = null
+    }
+}
+
+/** Creates a new AttributedString from initial String. The string will be entirely unattributed. */
+fun Area.AttributedString(init: String) = libui.AttributedString(init).also { disposables.add(it) }
 
 /** Returns the textual content of AttributedString. */
-val AttributedString.string: String get() = uiAttributedStringString(this)?.toKString() ?: ""
+val AttributedString.string: String get() = uiAttributedStringString(ptr)?.toKString() ?: ""
 
 /** Returns the number of UTF-8 bytes in the textual content, excluding the terminating '\0'. */
-val AttributedString.length: Int get() = uiAttributedStringLen(this).narrow()
+val AttributedString.length: Int get() = uiAttributedStringLen(ptr).narrow()
 
 /** Adds the '\0'-terminated UTF-8 string str to the end. The new substring will be unattributed. */
-fun AttributedString.append(str: String) = uiAttributedStringAppendUnattributed(this, str)
+fun AttributedString.append(str: String) = uiAttributedStringAppendUnattributed(ptr, str)
 
 /** Adds the '\0'-terminated UTF-8 string str to s at the byte position specified by [at].
  *  The new substring will be unattributed existing attributes will be moved along with their text. */
 fun AttributedString.insert(str: String, at: Int) =
-    uiAttributedStringInsertAtUnattributed(this, str, at.signExtend())
+    uiAttributedStringInsertAtUnattributed(ptr, str, at.signExtend())
 
 /** Deletes the characters and attributes in the byte range [start, end). */
 fun AttributedString.delete(start: Int, end: Int) =
-    uiAttributedStringDelete(this, start.signExtend(), end.signExtend())
+    uiAttributedStringDelete(ptr, start.signExtend(), end.signExtend())
 
 /** Sets a in the byte range [start, end). Any existing attributes in that byte range of the same type are
  *  removed. Takes ownership of [a] you should not use it after uiAttributedStringSetAttribute() returns. */
 fun AttributedString.setAttribute(a: Attribute, start: Int, end: Int) =
-    uiAttributedStringSetAttribute(this, a, start.signExtend(), end.signExtend())
+    uiAttributedStringSetAttribute(ptr, a, start.signExtend(), end.signExtend())
 
 //// uiAttributedStringForEachAttributeFunc is the type of the function
 //// invoked by uiAttributedStringForEachAttribute() for every
@@ -485,7 +506,7 @@ typealias FontDescriptor = CPointer<uiFontDescriptor>
  *  After calling uiFreeFontButtonFont(), the contents of desc should be assumed to be undefined
  *  (though since you allocate desc itself, you can safely reuse desc for other font descriptors).
  *  Calling uiFreeFontButtonFont() on a uiFontDescriptor not returned by uiFontButtonFont()
- * results in undefined behavior. */
+ *  results in undefined behavior. */
 fun FontDescriptor.dispose() = uiFreeFontButtonFont(this)
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -501,7 +522,7 @@ fun DrawTextLayout(
     align: uiDrawTextAlign
 ): DrawTextLayout = memScoped {
     val params = alloc<uiDrawTextLayoutParams>()
-	params.String = string
+	params.String = string.ptr
 	params.DefaultFont = defaultFont
 	params.Width = width
 	params.Align = align
@@ -533,7 +554,7 @@ fun DrawContext.fill(
     val path = uiDrawNewPath(mode) ?: throw Error()
     path.block()
     uiDrawPathEnd(path)
-    uiDrawFill(this, path, brush)
+    uiDrawFill(this, path, brush.ptr)
     uiDrawFreePath(path)
 }
 
@@ -547,7 +568,7 @@ fun DrawContext.stroke(
     val path = uiDrawNewPath(mode) ?: throw Error()
     path.block()
     uiDrawPathEnd(path)
-    uiDrawStroke(this, path, brush, stroke)
+    uiDrawStroke(this, path, brush.ptr, stroke.ptr)
     uiDrawFreePath(path)
 }
 
@@ -570,7 +591,7 @@ fun DrawContext.draw(
 ) {
     val layout = DrawTextLayout(string, defaultFont, width, align)
     uiDrawText(this, layout, x, y)
-    uiDrawFreeTextLayout(layout)
+    layout.dispose()
 }
 
 //TODO fun DrawContext.clip(path: DrawPath) = uiDrawClip(this, path)
