@@ -11,9 +11,9 @@ fun Area(block: Area.() -> Unit = {}): Area {
 }
 
 /** Area with horziontal and vertical scrollbars. */
-fun ScrollingArea(width: Int, height: Int, block: Area.() -> Unit = {}): Area {
+fun ScrollingArea(width: Int, height: Int, block: ScrollingArea.() -> Unit = {}): ScrollingArea {
     val handler = nativeHeap.alloc<ktAreaHandler>()
-    return Area(uiNewScrollingArea(handler.ui.ptr, width, height), handler.ptr).apply(block)
+    return ScrollingArea(uiNewScrollingArea(handler.ui.ptr, width, height), handler.ptr).apply(block)
 }
 
 interface Disposable {
@@ -25,7 +25,10 @@ typealias AreaDrawParams = CPointer<uiAreaDrawParams>
 typealias AreaMouseEvent = CPointer<uiAreaMouseEvent>
 typealias AreaKeyEvent = CPointer<uiAreaKeyEvent>
 
-class Area internal constructor(_ptr: CPointer<uiArea>?, val handler: CPointer<ktAreaHandler>) : Control(_ptr) {
+open class Area internal constructor(
+    _ptr: CPointer<uiArea>?,
+    val handler: CPointer<ktAreaHandler>
+) : Control(_ptr) {
     internal val ptr: CPointer<uiArea> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
 
     internal var draw: Area.(params: uiAreaDrawParams) -> Unit = {}
@@ -53,18 +56,21 @@ class Area internal constructor(_ptr: CPointer<uiArea>?, val handler: CPointer<k
     }
 }
 
+class ScrollingArea internal constructor(
+    _ptr: CPointer<uiArea>?,
+    handler: CPointer<ktAreaHandler>
+) : Area(_ptr, handler)
+
 /** Queues the entire Area for redraw.
  *  The Area is not redrawn before this function returns; it is redrawn when next possible. */
 fun Area.queueRedrawAll() = uiAreaQueueRedrawAll(ptr)
 
-/** Sets the size of a ScrollingArea to the given size, in points.
- *  Panics if called on a non-scrolling Area. */
-fun Area.setSize(width: Int, height: Int) =
+/** Sets the size of a ScrollingArea to the given size, in points. */
+fun ScrollingArea.setSize(width: Int, height: Int) =
     uiAreaSetSize(ptr, width, height)
 
-/** Scrolls the ScrollingArea to show the given rectangle
- *  Panics if called on a non-scrolling Area. */
-fun Area.scrollTo(x: Double, y: Double, width: Double, height: Double) =
+/** Scrolls the ScrollingArea to show the given rectangle. */
+fun ScrollingArea.scrollTo(x: Double, y: Double, width: Double, height: Double) =
     uiAreaScrollTo(ptr, x, y, width, height)
 
 //// TODO document these can only be called within Mouse() handlers
@@ -165,23 +171,27 @@ fun Area.DrawBrush() = libui.DrawBrush().also { disposables.add(it) }
 /** Helper to quickly set a brush color */
 fun DrawBrush.solid(rgba: RGBA, opacity: Double = 1.0): DrawBrush {
     memset(ptr, 0, uiDrawBrush.size)
-    ptr.pointed.Type = uiDrawBrushTypeSolid
-    ptr.pointed.R = rgba.r
-    ptr.pointed.G = rgba.g
-    ptr.pointed.B = rgba.b
-    ptr.pointed.A = rgba.a * opacity
+    with (ptr.pointed) {
+        Type = uiDrawBrushTypeSolid
+        R = rgba.r
+        G = rgba.g
+        B = rgba.b
+        A = rgba.a * opacity
+    }
     return this
 }
 
 /** Helper to quickly set a brush color */
 fun DrawBrush.solid(color: Int, alpha: Double = 1.0): DrawBrush {
     memset(ptr, 0, uiDrawBrush.size)
-    ptr.pointed.Type = uiDrawBrushTypeSolid
     val rgba = RGBA(color, alpha)
-    ptr.pointed.R = rgba.r
-    ptr.pointed.G = rgba.g
-    ptr.pointed.B = rgba.b
-    ptr.pointed.A = alpha
+    with (ptr.pointed) {
+        Type = uiDrawBrushTypeSolid
+        R = rgba.r
+        G = rgba.g
+        B = rgba.b
+        A = alpha
+    }
     return this
 }
 
