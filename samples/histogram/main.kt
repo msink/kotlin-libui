@@ -1,9 +1,5 @@
 import libui.*
 
-import platform.posix.rand
-import platform.posix.srand
-import platform.posix.time
-
 // histogram margins
 const val xoffLeft          = 20.0
 const val yoffTop           = 20.0
@@ -29,8 +25,7 @@ fun main(args: Array<String>) = libuiApplication {
         add(widget = HorizontalBox {
             padded = true
 
-            srand(time(null).toInt())
-            val datapoints = Array(10) { Spinbox(0, 100) { value = rand() % 101 } }
+            val datapoints = Array(10) { Spinbox(0, 100) { value = random() % 101 } }
             val colorButton = ColorButton() { value = RGBA(colorDodgerBlue) }
             var currentPoint = -1
 

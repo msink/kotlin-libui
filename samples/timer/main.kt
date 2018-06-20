@@ -15,10 +15,9 @@ fun main(args: Array<String>) = libuiApplication {
 
             onTimer(1000) {
                 memScoped {
-                    var now = alloc<time_tVar>()
-                    now.value = time(null)
-                    if (!scroll.destroyed)
-                        scroll.append(ctime(now.ptr)!!.toKString())
+                    val now = alloc<time_tVar>().apply { value = time(null) }
+                    val str = ctime(now.ptr)!!.toKString()
+                    if (!scroll.destroyed) scroll.append(str)
                 }
                 true
             }

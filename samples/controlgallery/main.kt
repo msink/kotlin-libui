@@ -146,14 +146,17 @@ fun main(args: Array<String>) = libuiApplication {
         margined = true
 
         add(widget = Tab {
-            add(label = "Basic Controls", widget = basicControlsPage())
-            setMargined(0, true)
+            add(label = "Basic Controls",
+                margined = true,
+                widget = basicControlsPage())
 
-            add(label = "Numbers and Lists", widget = numbersPage())
-            setMargined(1, true)
+            add(label = "Numbers and Lists",
+                margined = true,
+                widget = numbersPage())
 
-            add(label = "Data Choosers", widget = dataChoosersPage())
-            setMargined(2, true)
+            add(label = "Data Choosers",
+                margined = true,
+                widget = dataChoosersPage())
         })
 
         show()

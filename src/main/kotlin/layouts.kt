@@ -100,7 +100,10 @@ fun Tab.getMargined(page: Int): Boolean = uiTabMargined(ptr, page) != 0
 fun Tab.setMargined(page: Int, margined: Boolean) = uiTabSetMargined(ptr, page, if (margined) 1 else 0)
 
 /** Adds the given page to the end of the Tab. */
-fun Tab.add(label: String, widget: Control) = uiTabAppend(ptr, label, widget.ctl)
+fun Tab.add(label: String, widget: Control, margined: Boolean = false) {
+    uiTabAppend(ptr, label, widget.ctl)
+    if (margined) setMargined(numPages - 1, true)
+}
 
 /** Adds the given page to the Tab such that it is the nth page of the Tab (starting at 0). */
 fun Tab.insert(index: Int, name: String, widget: Control) = uiTabInsertAt(ptr, name, index, widget.ctl)
@@ -137,6 +140,7 @@ var Grid.padded: Boolean
  *  @param[widget] The Control to be added.
  */
 fun Grid.add(
+    widget: Control,
     x: Int = 0,
     y: Int = 0,
     xspan: Int = 1,
@@ -144,8 +148,7 @@ fun Grid.add(
     hexpand: Boolean = false,
     halign: uiAlign = uiAlignFill,
     vexpand: Boolean = false,
-    valign: uiAlign = uiAlignFill,
-    widget: Control
+    valign: uiAlign = uiAlignFill
 ) = uiGridAppend(ptr, widget.ctl,
     x, y, xspan, yspan,
     if (hexpand) 1 else 0, halign,
@@ -164,6 +167,7 @@ fun Grid.add(
  *  @param[widget] The Control to be added.
  */
 fun Grid.insert(
+    widget: Control,
     existing: Control,
     at: uiAt,
     xspan: Int = 1,
@@ -171,8 +175,7 @@ fun Grid.insert(
     hexpand: Boolean = false,
     halign: uiAlign = uiAlignFill,
     vexpand: Boolean = false,
-    valign: uiAlign = uiAlignFill,
-    widget: Control
+    valign: uiAlign = uiAlignFill
 ) = uiGridInsertAt(ptr, widget.ctl, existing.ctl,
     at, xspan, yspan,
     if (hexpand) 1 else 0, halign,
