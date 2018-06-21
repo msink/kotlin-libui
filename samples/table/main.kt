@@ -49,7 +49,7 @@ fun main(args: Array<String>) = appWindow(
             else -> null
         }}
         setCellValue { row, col, value -> when (col) {
-            2 -> if (row == 9) row9text = value?.string ?: ""
+            2 -> if (row == 9) row9text = value!!.string
             6 -> {
                 val prevYellowRow = yellowRow
                 yellowRow = row
@@ -57,7 +57,7 @@ fun main(args: Array<String>) = appWindow(
                     rowChanged(prevYellowRow)
                 rowChanged(yellowRow)
             }
-            7 -> checkStates[row] = value?.int ?: 0
+            7 -> checkStates[row] = value!!.int
         }}
     }
 

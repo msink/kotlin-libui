@@ -2,15 +2,24 @@ package libui
 
 import kotlinx.cinterop.*
 
-typealias Image = CPointer<uiImage>
+class Image internal constructor(width: Double, height: Double) : Disposable {
+    internal var _ptr: CPointer<uiImage>? = uiNewImage(width, height)
+    internal val ptr get() = _ptr ?: throw Error("Image is disposed")
+    override val disposed get() = _ptr == null
+    override fun dispose() {
+        uiFreeImage(ptr)
+        _ptr = null
+    }
+}
 
-fun Image(width: Double, height: Double, block: Image.() -> Unit = {}): Image =
-    uiNewImage(width, height)?.apply(block) ?: throw Error()
-
-fun Image.dispose() = uiFreeImage(this)
+fun TableModel.Image(width: Double, height: Double, block: Image.() -> Unit = {}): Image =
+    libui.Image(width, height).also {
+        disposables.add(it)
+        block.invoke(it)
+    }
 
 fun Image.add(pixels: CValuesRef<IntVar>, width: Int, height: Int, stride: Int) =
-    uiImageAppend(this, pixels, width, height, stride)
+    uiImageAppend(ptr, pixels, width, height, stride)
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -24,9 +33,9 @@ fun TableDataString(value: String): TableData = uiNewTableDataString(value) ?: t
 
 val TableData.string: String get() = uiTableDataString(this)?.toKString() ?: throw Error()
 
-fun TableDataImage(value: Image): TableData = uiNewTableDataImage(value) ?: throw Error()
+fun TableDataImage(value: Image): TableData = uiNewTableDataImage(value.ptr) ?: throw Error()
 
-val TableData.image: Image get() = uiTableDataImage(this) ?: throw Error()
+//TODO val TableData.image: Image get() = uiTableDataImage(this) ?: throw Error()
 
 fun TableDataInt(value: Int): TableData = uiNewTableDataInt(value) ?: throw Error()
 
@@ -57,6 +66,8 @@ class TableModel(block: TableModel.() -> Unit = {}) {
     internal var getCellValue: TableModel.(row: Int, col: Int) -> TableData? = { _, _ -> null }
     internal var setCellValue: TableModel.(row: Int, col: Int, value: TableData?) -> Unit = { _, _, _ -> }
 
+    internal val disposables = mutableListOf<Disposable>()
+
     init {
         handler.pointed.ui.NumColumns = staticCFunction(::_NumColumns)
         handler.pointed.ui.ColumnType = staticCFunction(::_ColumnType)
@@ -69,6 +80,8 @@ class TableModel(block: TableModel.() -> Unit = {}) {
     }
 
     fun dispose() {
+        disposables.forEach { it.dispose() }
+        disposables.clear()
         uiFreeTableModel(ptr)
         nativeHeap.free(handler)
         ref.dispose()
