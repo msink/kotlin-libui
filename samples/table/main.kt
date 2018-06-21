@@ -6,8 +6,8 @@ fun main(args: Array<String>) = appWindow(
     height = 480
 ) {
     val model = TableModel {
-        var row9text = "Part"
         var yellowRow = -1
+        var col2text = Array<String>(15) { "Part" }
         var checkStates = IntArray(15)
         val image0 = Image(16.0, 16.0) {
             add(image0_16x16, 16, 16, 64)
@@ -29,7 +29,7 @@ fun main(args: Array<String>) = appWindow(
         getCellValue { row, col -> when (col) {
             0 -> TableDataString("Row $row")
             1 -> TableDataString("Part")
-            2 -> TableDataString(if (row == 9) row9text else "Part")
+            2 -> TableDataString(col2text[row])
             3 -> when (row) {
                      yellowRow -> TableDataColor(RGBA(1.0, 1.0, 0.0))
                      3         -> TableDataColor(RGBA(1.0, 0.0, 0.0))
@@ -49,7 +49,7 @@ fun main(args: Array<String>) = appWindow(
             else -> null
         }}
         setCellValue { row, col, value -> when (col) {
-            2 -> if (row == 9) row9text = value!!.string
+            2 -> col2text[row] = value!!.string
             6 -> {
                 val prevYellowRow = yellowRow
                 yellowRow = row
