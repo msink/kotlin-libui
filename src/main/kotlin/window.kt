@@ -12,8 +12,7 @@ class Window(
     margined: Boolean = true,
     hasMenubar: Boolean = false,
     block: Window.() -> Unit = {}
-) : Control(uiNewWindow(title, width, height, if (hasMenubar) 1 else 0)) {
-    internal val ptr: CPointer<uiWindow> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
+) : Control<uiWindow>(uiNewWindow(title, width, height, if (hasMenubar) 1 else 0)) {
     internal var onClose: (Window.() -> Boolean)? = null
     internal var onResize: (Window.() -> Unit)? = null
     init {
@@ -59,7 +58,7 @@ var Window.contentSize: SizeInt
 
 /** Specify the control to show in window content area.
  *  Window instances can contain only one control. If you need more, you have to use Container */
-fun Window.add(widget: Control) = uiWindowSetChild(ptr, widget.ctl)
+fun Window.add(widget: Control<*>) = uiWindowSetChild(ptr, widget.ctl)
 
 /** Function to be run when window content size change. */
 fun Window.onResize(proc: Window.() -> Unit) {

@@ -1,4 +1,4 @@
-﻿package libui                                                                  
+package libui
 
 import kotlinx.cinterop.*
 

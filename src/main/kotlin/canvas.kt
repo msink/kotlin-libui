@@ -28,15 +28,13 @@ typealias AreaKeyEvent = CPointer<uiAreaKeyEvent>
 open class Area internal constructor(
     _ptr: CPointer<uiArea>?,
     val handler: CPointer<ktAreaHandler>
-) : Control(_ptr) {
-    internal val ptr: CPointer<uiArea> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
+) : Control<uiArea>(_ptr) {
 
     internal var draw: Area.(params: uiAreaDrawParams) -> Unit = {}
     internal var mouseEvent: Area.(event: uiAreaMouseEvent) -> Unit = {}
     internal var mouseCrossed: Area.(left: Boolean) -> Unit = {}
     internal var dragBroken: Area.() -> Unit = {}
     internal var keyEvent: Area.(event: uiAreaKeyEvent) -> Boolean = { false }
-
     init {
         handler.pointed.ui.Draw = staticCFunction(::_Draw)
         handler.pointed.ui.MouseEvent = staticCFunction(::_MouseEvent)
@@ -47,7 +45,6 @@ open class Area internal constructor(
     }
 
     internal val disposables = mutableListOf<Disposable>()
-
     override fun dispose() {
         disposables.forEach { it.dispose() }
         disposables.clear()
@@ -248,7 +245,7 @@ fun DrawPath.bezierTo(c1x: Double, c1y: Double, c2x: Double, c2y: Double, endX: 
 fun DrawPath.rectangle(x: Double, y: Double, width: Double, height: Double) =
     uiDrawPathAddRectangle(this, x, y, width, height)
 
-/** Causes the point of the pen to move back to the start of the current sub-path. It tries to draw 
+/** Causes the point of the pen to move back to the start of the current sub-path. It tries to draw
  *  a straight line from the current point to the start. If the shape has already been closed or has
  *  only one point, this function does nothing.
  *  It end the path. */
