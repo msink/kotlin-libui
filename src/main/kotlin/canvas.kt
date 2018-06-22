@@ -527,14 +527,16 @@ fun AttributedString.setAttribute(a: Attribute, start: Int, end: Int) =
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Provides a complete description of a font where one is needed.  */
-typealias FontDescriptor = CPointer<uiFontDescriptor>
+typealias Font = CPointer<uiFontDescriptor>
 
 /** Frees resources allocated in desc by uiFontButtonFont().
  *  After calling uiFreeFontButtonFont(), the contents of desc should be assumed to be undefined
  *  (though since you allocate desc itself, you can safely reuse desc for other font descriptors).
  *  Calling uiFreeFontButtonFont() on a uiFontDescriptor not returned by uiFontButtonFont()
  *  results in undefined behavior. */
-fun FontDescriptor.dispose() = uiFreeFontButtonFont(this)
+fun Font.dispose() {
+    if (pointed.Family != null) uiFreeFontButtonFont(this)
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -544,7 +546,7 @@ typealias DrawTextLayout = CPointer<uiDrawTextLayout>
 /** Creates a new DrawTextLayout from the given parameters. */
 fun DrawTextLayout(
     string: AttributedString,
-    defaultFont: FontDescriptor,
+    defaultFont: Font,
 	width: Double,
     align: uiDrawTextAlign
 ): DrawTextLayout = memScoped {
@@ -610,7 +612,7 @@ fun DrawContext.transform(block: DrawMatrix.() -> Unit) = memScoped {
 /** draws formatted text with the top-left point at ([x], [y]). */
 fun DrawContext.draw(
     string: AttributedString,
-    defaultFont: FontDescriptor,
+    defaultFont: Font,
 	width: Double,
     align: uiDrawTextAlign,
     x: Double,
