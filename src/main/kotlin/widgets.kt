@@ -35,9 +35,8 @@ import platform.posix.*
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Represents a GUI control (widget). It provides methods common to all Controls. */
-abstract class Control<T : CPointed> constructor(
-    internal var _ptr: CPointer<T>?
-) {
+abstract class Control<T : CPointed>(alloc: CPointer<T>?) {
+    internal var _ptr: CPointer<T>? = alloc
     internal val ptr: CPointer<T> get() = _ptr ?: throw Error("Control is destroyed")
     internal val ctl: CPointer<uiControl> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal val ctlDestroy = ctl.pointed.Destroy

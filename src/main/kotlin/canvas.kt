@@ -36,11 +36,6 @@ fun ScrollingArea(width: Int, height: Int, block: ScrollingArea.() -> Unit = {})
     return ScrollingArea(uiNewScrollingArea(handler.ui.ptr, width, height), handler.ptr).apply(block)
 }
 
-interface Disposable {
-    val disposed: Boolean
-    fun dispose()
-}
-
 typealias AreaDrawParams = CPointer<uiAreaDrawParams>
 typealias AreaMouseEvent = CPointer<uiAreaMouseEvent>
 typealias AreaKeyEvent = CPointer<uiAreaKeyEvent>
@@ -64,7 +59,7 @@ open class Area internal constructor(
         handler.pointed.ref = ref.asCPointer()
     }
 
-    internal val disposables = mutableListOf<Disposable>()
+    internal val disposables = mutableListOf<Disposable<*>>()
     override fun dispose() {
         disposables.forEach { it.dispose() }
         disposables.clear()
@@ -172,14 +167,9 @@ private fun _KeyEvent(handler: CPointer<uiAreaHandler>?, area: CPointer<uiArea>?
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Defines the color(s) to draw a path with. */
-class DrawBrush internal constructor() : Disposable {
-    internal var _ptr: CPointer<uiDrawBrush>? = nativeHeap.alloc<uiDrawBrush>().ptr
-    internal val ptr get() = _ptr ?: throw Error("DrawBrush is disposed")
-    override val disposed get() = _ptr == null
-    override fun dispose() {
-        nativeHeap.free(ptr)
-        _ptr = null
-    }
+class DrawBrush() : Disposable<uiDrawBrush>(
+    alloc = nativeHeap.alloc<uiDrawBrush>().ptr) {
+    override fun free() = nativeHeap.free(ptr)
 }
 
 /** Creates a new DrawBrush with lifecycle delegated to Area. */
@@ -216,14 +206,9 @@ fun DrawBrush.solid(rgb: Int, alpha: Double = 1.0): DrawBrush {
 typealias DrawBrushGradientStop = CPointer<uiDrawBrushGradientStop>
 
 /** Describes the stroke to draw with. */
-class DrawStrokeParams internal constructor() : Disposable {
-    internal var _ptr: CPointer<uiDrawStrokeParams>? = nativeHeap.alloc<uiDrawStrokeParams>().ptr
-    internal val ptr get() = _ptr ?: throw Error("DrawStrokeParams is disposed")
-    override val disposed get() = _ptr == null
-    override fun dispose() {
-        nativeHeap.free(ptr)
-        _ptr = null
-    }
+class DrawStrokeParams() : Disposable<uiDrawStrokeParams>(
+    alloc = nativeHeap.alloc<uiDrawStrokeParams>().ptr) {
+    override fun free() = nativeHeap.free(ptr)
 }
 
 /** Creates a new DrawStrokeParams with lifecycle delegated to Area. */
@@ -463,16 +448,9 @@ val Attribute.features: OpenTypeFeatures? get() = uiAttributeFeatures(this)
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Represents a string of UTF-8 text that can be embellished with formatting attributes. */
-class AttributedString internal constructor(init: String) : Disposable {
-    internal var _ptr: CPointer<uiAttributedString>? = uiNewAttributedString(init)
-    internal val ptr get() = _ptr ?: throw Error("AttributedString is disposed")
-    override val disposed get() = _ptr == null
-
-/** Destroys the AttributedString. It will also free all Attributes within. */
-    override fun dispose() {
-        uiFreeAttributedString(ptr)
-        _ptr = null
-    }
+class AttributedString(init: String) : Disposable<uiAttributedString>(
+    alloc = uiNewAttributedString(init)) {
+    override fun free() = uiFreeAttributedString(ptr)
 }
 
 /** Creates a new AttributedString from initial String. The string will be entirely unattributed. */
