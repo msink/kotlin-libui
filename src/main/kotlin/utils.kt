@@ -2,26 +2,6 @@ package libui
 
 import kotlinx.cinterop.*
 
-data class RGBA(
-    val r: Double,
-    val g: Double,
-    val b: Double,
-    val a: Double = 1.0
-)
-
-fun RGBA(color: Int, alpha: Double = 1.0) = RGBA(
-    r = ((color shr 16) and 255).toDouble() / 255,
-    g = ((color shr 8) and 255).toDouble() / 255,
-    b = ((color) and 255).toDouble() / 255,
-    a = alpha
-)
-
-data class SizeInt(val width: Int, val height: Int)
-
-data class Size(val width: Double, val height: Double)
-
-data class Point(val x: Double, val y: Double)
-
 fun random() = platform.posix.rand()
 
 /**

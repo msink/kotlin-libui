@@ -22,21 +22,21 @@ fun Area.makeAttributedString() = AttributedString(
     append(", ")
     append("font stretch", StretchAttribute(uiTextStretchCondensed))
     append(", ")
-    append("text color", ColorAttribute(RGBA(0.75, 0.25, 0.5, 0.75)))
+    append("text color", ColorAttribute(Color(r=0.75, g=0.25, b=0.5, a=0.75)))
     append(", ")
-    append("text background color", BackgroundAttribute(RGBA(0.5, 0.5, 0.25, 0.5)))
+    append("text background color", BackgroundAttribute(Color(r=0.5, g=0.5, b=0.25, a=0.5)))
     append(", ")
     append("underline style", UnderlineAttribute(uiUnderlineSingle))
     append(", ")
     append("and ")
     append("underline color",
            UnderlineAttribute(uiUnderlineDouble),
-           UnderlineColorAttribute(uiUnderlineColorCustom, RGBA(1.0, 0.0, 0.5, 1.0)))
+           UnderlineColorAttribute(uiUnderlineColorCustom, Color(r=1.0, g=0.0, b=0.5, a=1.0)))
     append(". ")
     append("Furthermore, there are attributes allowing for ")
     append("special underlines for indicating spelling errors",
            UnderlineAttribute(uiUnderlineSuggestion),
-           UnderlineColorAttribute(uiUnderlineColorSpelling, RGBA(0.0, 0.0, 0.0, 0.0)))
+           UnderlineColorAttribute(uiUnderlineColorSpelling, Color(r=0.0, g=0.0, b=0.0, a=0.0)))
     append(" (and other types of errors) ")
     append("and control over OpenType features such as ligatures (for instance, ")
 

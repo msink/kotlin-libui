@@ -538,14 +538,14 @@ class ColorButton(block: ColorButton.() -> Unit = {}
 }
 
 /** Return or set the currently selected color */
-var ColorButton.value: RGBA
+var ColorButton.value: Color
     get() = memScoped {
         val r = alloc<DoubleVar>()
         val g = alloc<DoubleVar>()
         val b = alloc<DoubleVar>()
         val a = alloc<DoubleVar>()
         uiColorButtonColor(ptr, r.ptr, g.ptr, b.ptr, a.ptr)
-        RGBA(r.value, g.value, b.value, a.value)
+        Color(r.value, g.value, b.value, a.value)
     }
     set(value) {
         uiColorButtonSetColor(ptr, value.r, value.g, value.b, value.a)

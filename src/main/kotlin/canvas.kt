@@ -3,6 +3,26 @@ package libui
 import kotlinx.cinterop.*
 import platform.posix.*
 
+data class Color(
+    val r: Double,
+    val g: Double,
+    val b: Double,
+    val a: Double = 1.0
+)
+
+fun Color(rgb: Int, alpha: Double = 1.0) = Color(
+    r = ((rgb shr 16) and 255).toDouble() / 255,
+    g = ((rgb shr 8) and 255).toDouble() / 255,
+    b = ((rgb) and 255).toDouble() / 255,
+    a = alpha
+)
+
+data class SizeInt(val width: Int, val height: Int)
+
+data class Size(val width: Double, val height: Double)
+
+data class Point(val x: Double, val y: Double)
+
 /** A canvas you can draw on. It also receives keyboard and mouse events,
  *  is DPI aware, and has several other useful features. */
 fun Area(block: Area.() -> Unit = {}): Area {
@@ -166,27 +186,27 @@ class DrawBrush internal constructor() : Disposable {
 fun Area.DrawBrush() = libui.DrawBrush().also { disposables.add(it) }
 
 /** Helper to quickly set a brush color */
-fun DrawBrush.solid(rgba: RGBA, opacity: Double = 1.0): DrawBrush {
+fun DrawBrush.solid(color: Color, opacity: Double = 1.0): DrawBrush {
     memset(ptr, 0, uiDrawBrush.size)
     with (ptr.pointed) {
         Type = uiDrawBrushTypeSolid
-        R = rgba.r
-        G = rgba.g
-        B = rgba.b
-        A = rgba.a * opacity
+        R = color.r
+        G = color.g
+        B = color.b
+        A = color.a * opacity
     }
     return this
 }
 
 /** Helper to quickly set a brush color */
-fun DrawBrush.solid(color: Int, alpha: Double = 1.0): DrawBrush {
+fun DrawBrush.solid(rgb: Int, alpha: Double = 1.0): DrawBrush {
     memset(ptr, 0, uiDrawBrush.size)
-    val rgba = RGBA(color, alpha)
+    val color = Color(rgb, alpha)
     with (ptr.pointed) {
         Type = uiDrawBrushTypeSolid
-        R = rgba.r
-        G = rgba.g
-        B = rgba.b
+        R = color.r
+        G = color.g
+        B = color.b
         A = alpha
     }
     return this
@@ -342,21 +362,21 @@ fun StretchAttribute(stretch: uiTextStretch): Attribute = uiNewStretchAttribute(
 val Attribute.stretch: uiTextStretch get() = uiAttributeStretch(this)
 
 /** Creates a new Attribute that changes the color of the text it is applied to. */
-fun ColorAttribute(color: RGBA): Attribute =
+fun ColorAttribute(color: Color): Attribute =
     uiNewColorAttribute(color.r, color.g, color.b, color.a) ?: throw Error()
 
 /** Returns the text color stored in Attribute. */
-val Attribute.color: RGBA get() = memScoped {
+val Attribute.color: Color get() = memScoped {
     val r = alloc<DoubleVar>()
     val g = alloc<DoubleVar>()
     val b = alloc<DoubleVar>()
     val a = alloc<DoubleVar>()
     uiAttributeColor(this@color, r.ptr, g.ptr, b.ptr, a.ptr)
-    RGBA(r.value, g.value, b.value, a.value)
+    Color(r.value, g.value, b.value, a.value)
 }
 
 /** Creates a new Attribute that changes the background color of the text it is applied to. */
-fun BackgroundAttribute(color: RGBA): Attribute =
+fun BackgroundAttribute(color: Color): Attribute =
     uiNewBackgroundAttribute(color.r, color.g, color.b, color.a) ?: throw Error()
 
 /** Creates a new Attribute that changes the type of underline on the text it is applied to. */
@@ -366,7 +386,7 @@ fun UnderlineAttribute(u: uiUnderline): Attribute = uiNewUnderlineAttribute(u) ?
 val Attribute.underline: uiUnderline get() = uiAttributeUnderline(this)
 
 /** creates a new Attribute that changes the color of the underline on the text it is applied to. */
-fun UnderlineColorAttribute(u: uiUnderlineColor, color: RGBA): Attribute =
+fun UnderlineColorAttribute(u: uiUnderlineColor, color: Color): Attribute =
     uiNewUnderlineColorAttribute(u, color.r, color.g, color.b, color.a) ?: throw Error()
 
 /** Returns the underline color kind stored in Attribute. */
@@ -381,14 +401,14 @@ val Attribute.underlineKind: uiUnderlineColor get() = memScoped {
 }
 
 /** Returns the underline color stored in Attribute. */
-val Attribute.underlineColor: RGBA get() = memScoped {
+val Attribute.underlineColor: Color get() = memScoped {
     val k = alloc<uiUnderlineColorVar>()
     val r = alloc<DoubleVar>()
     val g = alloc<DoubleVar>()
     val b = alloc<DoubleVar>()
     val a = alloc<DoubleVar>()
     uiAttributeUnderlineColor(this@underlineColor, k.ptr, r.ptr, g.ptr, b.ptr, a.ptr)
-    RGBA(r.value, g.value, b.value, a.value)
+    Color(r.value, g.value, b.value, a.value)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
