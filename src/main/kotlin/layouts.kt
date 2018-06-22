@@ -20,9 +20,16 @@ abstract class Layout(_ptr: COpaquePointer?) : Control(_ptr)
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A container for a single widget that provide a caption and visually group it's children. */
-class Group(title: String, block: Group.() -> Unit = {}) : Layout(uiNewGroup(title)) {
+class Group(
+    title: String,
+    margined: Boolean = true,
+    block: Group.() -> Unit = {}
+) : Layout(uiNewGroup(title)) {
     internal val ptr: CPointer<uiGroup> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
-    init { apply(block) }
+    init {
+        apply(block)
+        if (margined) this.margined = margined
+    }
 }
 
 /** Specify the caption of the group. */
@@ -100,7 +107,7 @@ fun Tab.getMargined(page: Int): Boolean = uiTabMargined(ptr, page) != 0
 fun Tab.setMargined(page: Int, margined: Boolean) = uiTabSetMargined(ptr, page, if (margined) 1 else 0)
 
 /** Adds the given page to the end of the Tab. */
-fun Tab.add(label: String, widget: Control, margined: Boolean = false) {
+fun Tab.add(label: String, widget: Control, margined: Boolean = true) {
     uiTabAppend(ptr, label, widget.ctl)
     if (margined) setMargined(numPages - 1, true)
 }

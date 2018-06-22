@@ -9,7 +9,8 @@ class Window(
     title: String,
     width: Int,
     height: Int,
-    hasMenubar: Boolean = true,
+    margined: Boolean = true,
+    hasMenubar: Boolean = false,
     block: Window.() -> Unit = {}
 ) : Control(uiNewWindow(title, width, height, if (hasMenubar) 1 else 0)) {
     internal val ptr: CPointer<uiWindow> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
@@ -19,6 +20,7 @@ class Window(
         uiWindowOnClosing(ptr, staticCFunction(::_Close), ref.asCPointer())
         uiWindowOnContentSizeChanged(ptr, staticCFunction(::_Resize), ref.asCPointer())
         apply(block)
+        if (margined) this.margined = margined
     }
 }
 

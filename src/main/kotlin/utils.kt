@@ -48,10 +48,9 @@ fun appWindow(
         }
     }
 
-    Window(title, width, height, false) {
+    Window(title, width, height) {
         onClose { uiQuit(); true }
         onShouldQuit { destroy(); true }
-        margined = true
 
         block()
 

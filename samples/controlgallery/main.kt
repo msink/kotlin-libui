@@ -11,7 +11,6 @@ fun Window.basicControlsPage() = VerticalBox() {
     add(widget = Label("This is a label. Right now, labels can only span one line."))
     add(widget = HorizontalSeparator())
     add(stretchy = true, widget = Group("Entries") {
-        margined = true
         add(widget = Form {
             padded = true
             add(label = "Text Entry",
@@ -34,7 +33,6 @@ fun Window.numbersPage() = HorizontalBox() {
     padded = true
 
     add(stretchy = true, widget = Group("Numbers") {
-        margined = true
         add(widget = VerticalBox {
             padded = true
             val spinbox = Spinbox(min = 0, max = 100)
@@ -58,7 +56,6 @@ fun Window.numbersPage() = HorizontalBox() {
     })
 
     add(stretchy = true, widget = Group("Lists") {
-        margined = true
         add(widget = VerticalBox {
             padded = true
             add(widget = Combobox {
@@ -146,15 +143,12 @@ fun main(args: Array<String>) = appWindow(
 ) {
     add(widget = Tab {
         add(label = "Basic Controls",
-            margined = true,
             widget = basicControlsPage())
 
         add(label = "Numbers and Lists",
-            margined = true,
             widget = numbersPage())
 
         add(label = "Data Choosers",
-            margined = true,
             widget = dataChoosersPage())
     })
 }
