@@ -570,19 +570,18 @@ private fun _ColorButton(ptr: CPointer<uiColorButton>?, ref: COpaquePointer?) {
 class FontButton(block: FontButton.() -> Unit = {}
 ) : Control<uiFontButton>(uiNewFontButton()) {
     internal var action: (FontButton.() -> Unit)? = null
-    internal val font = nativeHeap.alloc<uiFontDescriptor>().ptr
+    internal val font = Font()
     init { apply(block) }
     override fun dispose() {
         font.dispose()
-        nativeHeap.free(font)
         super.dispose()
     }
 }
 
 /** Returns the font currently selected in the FontButton. */
 val FontButton.value: Font get() {
-    font.dispose()
-    uiFontButtonFont(ptr, font)
+    font.clear()
+    uiFontButtonFont(ptr, font.ptr)
     return font
 }
 

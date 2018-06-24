@@ -505,15 +505,15 @@ fun AttributedString.setAttribute(a: Attribute, start: Int, end: Int) =
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Provides a complete description of a font where one is needed.  */
-typealias Font = CPointer<uiFontDescriptor>
-
-/** Frees resources allocated in desc by uiFontButtonFont().
- *  After calling uiFreeFontButtonFont(), the contents of desc should be assumed to be undefined
- *  (though since you allocate desc itself, you can safely reuse desc for other font descriptors).
- *  Calling uiFreeFontButtonFont() on a uiFontDescriptor not returned by uiFontButtonFont()
- *  results in undefined behavior. */
-fun Font.dispose() {
-    if (pointed.Family != null) uiFreeFontButtonFont(this)
+class Font : Disposable<uiFontDescriptor>(
+    alloc = nativeHeap.alloc<uiFontDescriptor>().ptr) {
+    override fun clear() {
+        if (ptr.pointed.Family != null) uiFreeFontButtonFont(ptr)
+    }
+    override fun free() {
+        clear()
+        nativeHeap.free(ptr)
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -530,7 +530,7 @@ fun DrawTextLayout(
 ): DrawTextLayout = memScoped {
     val params = alloc<uiDrawTextLayoutParams>()
 	params.String = string.ptr
-	params.DefaultFont = defaultFont
+	params.DefaultFont = defaultFont.ptr
 	params.Width = width
 	params.Align = align
     return uiDrawNewTextLayout(params.ptr) ?: throw Error()
