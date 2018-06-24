@@ -545,23 +545,25 @@ class Font : Disposable<uiFontDescriptor>(
 class TextLayout(
     string: AttributedString,
     defaultFont: Font,
-	width: Double,
+    width: Double,
     align: uiDrawTextAlign
 ) : Disposable<uiDrawTextLayout>(
     alloc = memScoped {
-        val params = alloc<uiDrawTextLayoutParams>()
-		params.String = string.ptr
-		params.DefaultFont = defaultFont.ptr
-		params.Width = width
-		params.Align = align
+        val params = alloc<uiDrawTextLayoutParams>().apply {
+            String = string.ptr
+            DefaultFont = defaultFont.ptr
+            Width = width
+            Align = align
+        }
         uiDrawNewTextLayout(params.ptr)
-    }) {
+    }
+) {
 
     /** Frees [TextLayout]. The underlying [AttributedString] is not freed. */
     override fun free() = uiDrawFreeTextLayout(ptr)
 
-    /** Returns the size of [TextLayout[. */
-    val extents: Size get() = memScoped {
+    /** Returns the size of [TextLayout]. */
+    val size: Size get() = memScoped {
         val width = alloc<DoubleVar>()
         val height = alloc<DoubleVar>()
         uiDrawTextLayoutExtents(ptr, width.ptr, height.ptr)
@@ -612,7 +614,7 @@ fun DrawContext.transform(block: DrawMatrix.() -> Unit) = memScoped {
 fun DrawContext.draw(
     string: AttributedString,
     defaultFont: Font,
-	width: Double,
+    width: Double,
     align: uiDrawTextAlign,
     x: Double,
     y: Double
