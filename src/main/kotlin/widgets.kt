@@ -36,7 +36,7 @@ import platform.posix.*
 
 /** Represents a GUI control (widget). It provides methods common to all Controls. */
 abstract class Control<T : CPointed>(alloc: CPointer<T>?) : Disposable<T>(alloc) {
-    internal val ctl: CPointer<uiControl> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
+    internal val ctl: CPointer<uiControl> get() = ptr.reinterpret()
     internal val ctlDestroy = ctl.pointed.Destroy
     internal val ref = StableRef.create(this)
     init {
@@ -114,8 +114,8 @@ private fun _Destroy(ctl: CPointer<uiControl>?) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A simple single line text entry widget. */
-open class Entry internal constructor(_ptr: CPointer<uiEntry>?
-) : Control<uiEntry>(_ptr) {
+open class Entry internal constructor(alloc: CPointer<uiEntry>?
+) : Control<uiEntry>(alloc) {
     constructor(block: Entry.() -> Unit = {}): this(uiNewEntry()) { apply(block) }
     internal var action: (Entry.() -> Unit)? = null
 }
@@ -159,8 +159,8 @@ private fun _Entry(ptr: CPointer<uiEntry>?, ref: COpaquePointer?) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A multiline text entry widget. */
-open class MultilineEntry internal constructor(_ptr: CPointer<uiMultilineEntry>?
-) : Control<uiMultilineEntry>(_ptr) {
+open class MultilineEntry internal constructor(alloc: CPointer<uiMultilineEntry>?
+) : Control<uiMultilineEntry>(alloc) {
     constructor(block: MultilineEntry.() -> Unit = {}): this(uiNewMultilineEntry()) { apply(block) }
     internal var action: (MultilineEntry.() -> Unit)? = null
 }
@@ -386,8 +386,8 @@ private fun _RadioButtons(ptr: CPointer<uiRadioButtons>?, ref: COpaquePointer?) 
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A widget to edit date and time. */
-open class DateTimePicker internal constructor(_ptr: CPointer<uiDateTimePicker>?
-) : Control<uiDateTimePicker>(_ptr) {
+open class DateTimePicker internal constructor(alloc: CPointer<uiDateTimePicker>?
+) : Control<uiDateTimePicker>(alloc) {
     constructor(block: DateTimePicker.() -> Unit = {}): this(uiNewDateTimePicker()) { apply(block) }
     internal var action: (DateTimePicker.() -> Unit)? = null
     internal var defaultFormat = "%c"
@@ -469,8 +469,8 @@ var Label.text: String
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A vertical or an horizontal line to visually separate widgets. */
-abstract class Separator(_ptr: CPointer<uiSeparator>?
-) : Control<uiSeparator>(_ptr)
+abstract class Separator(alloc: CPointer<uiSeparator>?
+) : Control<uiSeparator>(alloc)
 
 /** An horizontal line to visually separate widgets. */
 class HorizontalSeparator(block: HorizontalSeparator.() -> Unit = {}

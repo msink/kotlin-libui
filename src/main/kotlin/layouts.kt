@@ -47,7 +47,7 @@ fun Group.add(widget: Control<*>?) = uiGroupSetChild(ptr, widget?.ctl)
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A container that stack its chidren horizontally or vertically. */
-abstract class Box(_ptr: CPointer<uiBox>?) : Layout<uiBox>(_ptr)
+abstract class Box(alloc: CPointer<uiBox>?) : Layout<uiBox>(alloc)
 
 /** A container that stack its chidren horizontally. */
 class HorizontalBox(block: HorizontalBox.() -> Unit = {}

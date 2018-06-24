@@ -41,9 +41,9 @@ typealias AreaMouseEvent = CPointer<uiAreaMouseEvent>
 typealias AreaKeyEvent = CPointer<uiAreaKeyEvent>
 
 open class Area internal constructor(
-    _ptr: CPointer<uiArea>?,
+    alloc: CPointer<uiArea>?,
     val handler: CPointer<ktAreaHandler>
-) : Control<uiArea>(_ptr) {
+) : Control<uiArea>(alloc) {
 
     internal var draw: Area.(params: uiAreaDrawParams) -> Unit = {}
     internal var mouseEvent: Area.(event: uiAreaMouseEvent) -> Unit = {}
@@ -69,9 +69,9 @@ open class Area internal constructor(
 }
 
 class ScrollingArea internal constructor(
-    _ptr: CPointer<uiArea>?,
+    alloc: CPointer<uiArea>?,
     handler: CPointer<ktAreaHandler>
-) : Area(_ptr, handler)
+) : Area(alloc, handler)
 
 /** Queues the entire Area for redraw.
  *  The Area is not redrawn before this function returns; it is redrawn when next possible. */
