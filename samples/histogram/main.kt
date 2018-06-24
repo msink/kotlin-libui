@@ -39,10 +39,10 @@ fun main(args: Array<String>) = appWindow(
         }
 
         val histogram = Area {
-            val brush = DrawBrush()
+            val brush = Brush()
 
             // make a stroke for both the axes and the histogram line
-            val stroke = DrawStrokeParams {
+            val stroke = Stroke {
                 Cap = uiDrawLineCapFlat
                 Join = uiDrawLineJoinMiter
                 Thickness = 2.0

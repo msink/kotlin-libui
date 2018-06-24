@@ -167,16 +167,16 @@ private fun _KeyEvent(handler: CPointer<uiAreaHandler>?, area: CPointer<uiArea>?
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Defines the color(s) to draw a path with. */
-class DrawBrush() : Disposable<uiDrawBrush>(
+class Brush : Disposable<uiDrawBrush>(
     alloc = nativeHeap.alloc<uiDrawBrush>().ptr) {
     override fun free() = nativeHeap.free(ptr)
 }
 
-/** Creates a new DrawBrush with lifecycle delegated to Area. */
-fun Area.DrawBrush() = libui.DrawBrush().also { disposables.add(it) }
+/** Creates a new Brush with lifecycle delegated to Area. */
+fun Area.Brush() = libui.Brush().also { disposables.add(it) }
 
 /** Helper to quickly set a brush color */
-fun DrawBrush.solid(color: Color, opacity: Double = 1.0): DrawBrush {
+fun Brush.solid(color: Color, opacity: Double = 1.0): Brush {
     memset(ptr, 0, uiDrawBrush.size)
     with (ptr.pointed) {
         Type = uiDrawBrushTypeSolid
@@ -189,7 +189,7 @@ fun DrawBrush.solid(color: Color, opacity: Double = 1.0): DrawBrush {
 }
 
 /** Helper to quickly set a brush color */
-fun DrawBrush.solid(rgb: Int, alpha: Double = 1.0): DrawBrush {
+fun Brush.solid(rgb: Int, alpha: Double = 1.0): Brush {
     memset(ptr, 0, uiDrawBrush.size)
     val color = Color(rgb, alpha)
     with (ptr.pointed) {
@@ -206,14 +206,14 @@ fun DrawBrush.solid(rgb: Int, alpha: Double = 1.0): DrawBrush {
 typealias DrawBrushGradientStop = CPointer<uiDrawBrushGradientStop>
 
 /** Describes the stroke to draw with. */
-class DrawStrokeParams() : Disposable<uiDrawStrokeParams>(
+class Stroke : Disposable<uiDrawStrokeParams>(
     alloc = nativeHeap.alloc<uiDrawStrokeParams>().ptr) {
     override fun free() = nativeHeap.free(ptr)
 }
 
-/** Creates a new DrawStrokeParams with lifecycle delegated to Area. */
-fun Area.DrawStrokeParams(block: uiDrawStrokeParams.() -> Unit = {}) =
-    libui.DrawStrokeParams().also {
+/** Creates a new Stroke with lifecycle delegated to Area. */
+fun Area.Stroke(block: uiDrawStrokeParams.() -> Unit = {}) =
+    libui.Stroke().also {
         disposables.add(it)
         block.invoke(it.ptr.pointed)
     }
@@ -555,7 +555,7 @@ typealias DrawContext = CPointer<uiDrawContext>
 /** Draw a path filled with a color. */
 fun DrawContext.fill(
     mode: uiDrawFillMode,
-    brush: DrawBrush,
+    brush: Brush,
     block: DrawPath.() -> Unit
 ) {
     val path = uiDrawNewPath(mode) ?: throw Error()
@@ -568,8 +568,8 @@ fun DrawContext.fill(
 /** Draw a path in the context. */
 fun DrawContext.stroke(
     mode: uiDrawFillMode,
-    brush: DrawBrush,
-    stroke: DrawStrokeParams,
+    brush: Brush,
+    stroke: Stroke,
     block: DrawPath.() -> Unit
 ) {
     val path = uiDrawNewPath(mode) ?: throw Error()
