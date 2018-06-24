@@ -425,42 +425,39 @@ class UnderlineColorAttribute(kind: uiUnderlineColor, color: Color) : Attribute(
     }
 }
 
-/** Creates a new Attribute that changes the font family of the text it is applied to.
- *  otf is copied you may free it after uiNewFeaturesAttribute() returns. */
-class FeaturesAttribute(otf: OpenTypeFeatures) : Attribute(uiNewFeaturesAttribute(otf)) {
-
-    /** Returns the OpenType features stored. */
-    val value: OpenTypeFeatures? get() = uiAttributeFeatures(ptr)
-}
-
 ///////////////////////////////////////////////////////////////////////////////
 
+/** Creates a new Attribute that changes the font family of the text it is applied to.
+ *  otf is copied you may free it after uiNewFeaturesAttribute() returns. */
+class FeaturesAttribute(otf: OpenTypeFeatures) : Attribute(uiNewFeaturesAttribute(otf.ptr)) {
+
+    /** Returns the OpenType features stored. */
+    val value: OpenTypeFeatures get() = OpenTypeFeatures(uiAttributeFeatures(ptr))
+}
+
 /** Represents a set of OpenType feature tag-value pairs, for applying OpenType features to text. */
-typealias OpenTypeFeatures = CPointer<uiOpenTypeFeatures>
-
-/** Creates a new OpenTypeFeatures instance, with no tags yet added. */
-fun OpenTypeFeatures(): OpenTypeFeatures = uiNewOpenTypeFeatures() ?: throw Error()
-
-/** Frees OpenTypeFeatures instance. */
-fun OpenTypeFeatures.dispose() = uiFreeOpenTypeFeatures(this)
+class OpenTypeFeatures(copy: CPointer<uiOpenTypeFeatures>? = null) : Disposable<uiOpenTypeFeatures>(
+    alloc = copy ?: uiNewOpenTypeFeatures()) {
+    override fun free() = uiFreeOpenTypeFeatures(ptr)
+}
 
 /** Makes a copy of otf and returns it. Changing one will not affect the other. */
-fun OpenTypeFeatures.copy(): OpenTypeFeatures = uiOpenTypeFeaturesClone(this) ?: throw Error()
+fun OpenTypeFeatures.copy() = OpenTypeFeatures(uiOpenTypeFeaturesClone(ptr))
 
 /** Adds the given feature tag and value to OpenTypeFeatures. If there is already a value
  *  associated with the specified tag in otf, the old value is removed. */
 fun OpenTypeFeatures.add(tag: String, value: Int) =
-    uiOpenTypeFeaturesAdd(this, tag[0].toByte(), tag[1].toByte(), tag[2].toByte(), tag[3].toByte(), value)
+    uiOpenTypeFeaturesAdd(ptr, tag[0].toByte(), tag[1].toByte(), tag[2].toByte(), tag[3].toByte(), value)
 
 /** Removes the given feature tag and value from OpenTypeFeatures. If the tag is not present
  *  in OpenTypeFeatures, it does nothing. */
 fun OpenTypeFeatures.remove(tag: String) =
-    uiOpenTypeFeaturesRemove(this, tag[0].toByte(), tag[1].toByte(), tag[2].toByte(), tag[3].toByte())
+    uiOpenTypeFeaturesRemove(ptr, tag[0].toByte(), tag[1].toByte(), tag[2].toByte(), tag[3].toByte())
 
 /** Determines whether the given feature tag is present in OpenTypeFeatures. */
 fun OpenTypeFeatures.get(tag: String): Int = memScoped {
     val value = alloc<IntVar>()
-    uiOpenTypeFeaturesGet(this@get, tag[0].toByte(), tag[1].toByte(), tag[2].toByte(), tag[3].toByte(), value.ptr)
+    uiOpenTypeFeaturesGet(ptr, tag[0].toByte(), tag[1].toByte(), tag[2].toByte(), tag[3].toByte(), value.ptr)
     value.value
 }
 
