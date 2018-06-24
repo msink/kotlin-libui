@@ -177,7 +177,14 @@ private fun _KeyEvent(
 /** Defines the color(s) to draw a path with. */
 class Brush : Disposable<uiDrawBrush>(
     alloc = nativeHeap.alloc<uiDrawBrush>().ptr) {
-    override fun free() = nativeHeap.free(ptr)
+    override fun clear() {
+        ptr.pointed.Stops?.let { nativeHeap.free(it) }
+        memset(ptr, 0, uiDrawBrush.size)
+    }
+    override fun free() {
+        clear()
+        nativeHeap.free(ptr)
+    }
 }
 
 /** Creates a new Brush with lifecycle delegated to Area. */
@@ -185,7 +192,7 @@ fun Area.Brush() = libui.Brush().also { disposables.add(it) }
 
 /** Helper to quickly set a brush color */
 fun Brush.solid(color: Color, opacity: Double = 1.0): Brush {
-    memset(ptr, 0, uiDrawBrush.size)
+    clear()
     with (ptr.pointed) {
         Type = uiDrawBrushTypeSolid
         R = color.r
@@ -198,7 +205,7 @@ fun Brush.solid(color: Color, opacity: Double = 1.0): Brush {
 
 /** Helper to quickly set a brush color */
 fun Brush.solid(rgb: Int, alpha: Double = 1.0): Brush {
-    memset(ptr, 0, uiDrawBrush.size)
+    clear()
     val color = Color(rgb, alpha)
     with (ptr.pointed) {
         Type = uiDrawBrushTypeSolid
@@ -210,8 +217,54 @@ fun Brush.solid(rgb: Int, alpha: Double = 1.0): Brush {
     return this
 }
 
-/** Represents a color value in a gradient. */
-typealias DrawBrushGradientStop = CPointer<uiDrawBrushGradientStop>
+/** Helper to quickly create linear brush */
+fun Brush.linear(start: Point, end: Point, vararg stops: Pair<Double, Color>): Brush {
+    clear()
+    with (ptr.pointed) {
+        Type = uiDrawBrushTypeLinearGradient
+        X0 = start.x
+        Y0 = start.y
+        X1 = end.x
+        Y1 = end.y
+        NumStops = stops.size.signExtend()
+        Stops = nativeHeap.allocArray<uiDrawBrushGradientStop>(stops.size)
+        stops.forEachIndexed { i, (pos, color) ->
+            with (Stops!![i]) {
+                Pos = pos
+                R = color.r
+                G = color.g
+                B = color.b
+                A = color.a
+            }
+        }
+    }
+    return this
+}
+
+/** Helper to quickly create radial brush */
+fun Brush.radial(start: Point, center: Point, radius: Double, vararg stops: Pair<Double, Color>): Brush {
+    clear()
+    with (ptr.pointed) {
+        Type = uiDrawBrushTypeRadialGradient
+        X0 = start.x
+        Y0 = start.y
+        X1 = center.x
+        Y1 = center.y
+        OuterRadius = radius
+        NumStops = stops.size.signExtend()
+        Stops = nativeHeap.allocArray<uiDrawBrushGradientStop>(stops.size)
+        stops.forEachIndexed { i, (pos, color) ->
+            with (Stops!![i]) {
+                Pos = pos
+                R = color.r
+                G = color.g
+                B = color.b
+                A = color.a
+            }
+        }
+    }
+    return this
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
