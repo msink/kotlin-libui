@@ -15,7 +15,7 @@ import kotlinx.cinterop.*
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Represents a Control that contains a container for child controls. */
-abstract class Layout<T : CPointed> constructor(_ptr: CPointer<T>?) : Control<T>(_ptr)
+abstract class Layout<T : CPointed>(alloc: CPointer<T>?) : Control<T>(alloc)
 
 ///////////////////////////////////////////////////////////////////////////////
 

@@ -60,11 +60,11 @@ open class Area internal constructor(
     }
 
     internal val disposables = mutableListOf<Disposable<*>>()
-    override fun dispose() {
+    override fun free() {
         disposables.forEach { it.dispose() }
         disposables.clear()
         nativeHeap.free(handler)
-        super.dispose()
+        super.free()
     }
 }
 

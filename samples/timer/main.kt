@@ -19,7 +19,7 @@ fun main(args: Array<String>) = appWindow(
             memScoped {
                 val now = alloc<time_tVar>().apply { value = time(null) }
                 val str = ctime(now.ptr)!!.toKString()
-                if (!scroll.destroyed) scroll.append(str)
+                if (!scroll.disposed) scroll.append(str)
             }
             true
         }

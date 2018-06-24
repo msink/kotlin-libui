@@ -30,7 +30,7 @@ fun appWindow(
 
     Window(title, width, height) {
         onClose { uiQuit(); true }
-        onShouldQuit { destroy(); true }
+        onShouldQuit { dispose(); true }
 
         block()
 

@@ -35,27 +35,25 @@ import platform.posix.*
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Represents a GUI control (widget). It provides methods common to all Controls. */
-abstract class Control<T : CPointed>(alloc: CPointer<T>?) {
-    internal var _ptr: CPointer<T>? = alloc
-    internal val ptr: CPointer<T> get() = _ptr ?: throw Error("Control is destroyed")
-    internal val ctl: CPointer<uiControl> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
+abstract class Control<T : CPointed>(alloc: CPointer<T>?) : Disposable<T>(alloc) {
+    internal val ctl: CPointer<uiControl> get() = _ptr?.reinterpret() ?: throw Error("Control is disposed")
     internal val ctlDestroy = ctl.pointed.Destroy
     internal val ref = StableRef.create(this)
     init {
         controls[ctl] = this
         ctl.pointed.Destroy = staticCFunction(::_Destroy)
     }
-    internal open fun dispose() {
+
+    /** *INTERNAL* Free all allocated resources. */
+    override fun free() {
         ref.dispose()
         _ptr = null
     }
 
-    /** Returns `true` if Control was destroyed - in this case all other operations
-     *  are invalid and will `throw Error("Control is destroyed")`. */
-    val destroyed: Boolean get() = _ptr == null
-
-    /** Destroy and free all allocated resources. */
-    fun destroy() = uiControlDestroy(ctl)
+    /** Dispose and free all allocated resources. */
+    override fun dispose() {
+        if (!disposed) uiControlDestroy(ctl)
+    }
 
     /** Returns the OS-level handle associated with this Control. */
     fun getHandle(): Long = uiControlHandle(ctl)
@@ -105,10 +103,10 @@ abstract class Control<T : CPointed>(alloc: CPointer<T>?) {
 private var controls = mutableMapOf<CPointer<uiControl>, Control<*>>()
 
 private fun _Destroy(ctl: CPointer<uiControl>?) {
-    with (controls[ctl!!] ?: throw Error("Control is destroyed")) {
+    with (controls[ctl!!] ?: throw Error("Control is disposed")) {
         ctlDestroy?.invoke(ctl)
         controls.remove(ctl)
-        dispose()
+        free()
     }
 }
 
@@ -572,9 +570,9 @@ class FontButton(block: FontButton.() -> Unit = {}
     internal var action: (FontButton.() -> Unit)? = null
     internal val font = Font()
     init { apply(block) }
-    override fun dispose() {
+    override fun free() {
         font.dispose()
-        super.dispose()
+        super.free()
     }
 }
 
