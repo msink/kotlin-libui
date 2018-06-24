@@ -322,7 +322,7 @@ abstract class Attribute(alloc: CPointer<uiAttribute>?) : Disposable<uiAttribute
 
     /** Frees a [Attribute]. You generally do not need to call this yourself,
      *  as [AttributedString] does this for you. */
-    override fun dispose() = uiFreeAttribute(ptr)
+    override fun free() = uiFreeAttribute(ptr)
 
     /** Returns the type of [Attribute]. */
     val type: uiAttributeType get() = uiAttributeGetType(ptr)
