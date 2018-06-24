@@ -36,10 +36,6 @@ fun ScrollingArea(width: Int, height: Int, block: ScrollingArea.() -> Unit = {})
     return ScrollingArea(uiNewScrollingArea(handler.ui.ptr, width, height), handler.ptr).apply(block)
 }
 
-typealias AreaDrawParams = CPointer<uiAreaDrawParams>
-typealias AreaMouseEvent = CPointer<uiAreaMouseEvent>
-typealias AreaKeyEvent = CPointer<uiAreaKeyEvent>
-
 open class Area internal constructor(
     alloc: CPointer<uiArea>?,
     val handler: CPointer<ktAreaHandler>
@@ -100,7 +96,11 @@ fun Area.draw(proc: Area.(params: uiAreaDrawParams) -> Unit) {
 }
 
 @Suppress("UNUSED_PARAMETER")
-private fun _Draw(handler: CPointer<uiAreaHandler>?, area: CPointer<uiArea>?, params: AreaDrawParams?) {
+private fun _Draw(
+    handler: CPointer<uiAreaHandler>?,
+    area: CPointer<uiArea>?,
+    params: CPointer<uiAreaDrawParams>?
+) {
     val h: CPointer<ktAreaHandler> = handler!!.reinterpret()
     with (h.pointed.ref!!.asStableRef<Area>().get()) {
         draw.invoke(this, params!!.pointed)
@@ -114,7 +114,11 @@ fun Area.mouseEvent(proc: Area.(event: uiAreaMouseEvent) -> Unit) {
 }
 
 @Suppress("UNUSED_PARAMETER")
-private fun _MouseEvent(handler: CPointer<uiAreaHandler>?, area: CPointer<uiArea>?, params: AreaMouseEvent?) {
+private fun _MouseEvent(
+    handler: CPointer<uiAreaHandler>?,
+    area: CPointer<uiArea>?,
+    params: CPointer<uiAreaMouseEvent>?
+) {
     val h: CPointer<ktAreaHandler> = handler!!.reinterpret()
     with (h.pointed.ref!!.asStableRef<Area>().get()) {
         mouseEvent.invoke(this, params!!.pointed)
@@ -157,7 +161,11 @@ fun Area.keyEvent(proc: Area.(event: uiAreaKeyEvent) -> Boolean) {
 }
 
 @Suppress("UNUSED_PARAMETER")
-private fun _KeyEvent(handler: CPointer<uiAreaHandler>?, area: CPointer<uiArea>?, event: AreaKeyEvent?): Int {
+private fun _KeyEvent(
+    handler: CPointer<uiAreaHandler>?,
+    area: CPointer<uiArea>?,
+    event: CPointer<uiAreaKeyEvent>?
+): Int {
     val h: CPointer<ktAreaHandler> = handler!!.reinterpret()
     with (h.pointed.ref!!.asStableRef<Area>().get()) {
         return if (keyEvent.invoke(this, event!!.pointed)) 1 else 0
