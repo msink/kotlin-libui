@@ -30,7 +30,7 @@ fun Area(block: Area.() -> Unit = {}): Area {
     return Area(uiNewArea(handler.ui.ptr), handler.ptr).apply(block)
 }
 
-/** Area with horziontal and vertical scrollbars. */
+/** [Area] with horziontal and vertical scrollbars. */
 fun ScrollingArea(width: Int, height: Int, block: ScrollingArea.() -> Unit = {}): ScrollingArea {
     val handler = nativeHeap.alloc<ktAreaHandler>()
     return ScrollingArea(uiNewScrollingArea(handler.ui.ptr, width, height), handler.ptr).apply(block)
@@ -213,6 +213,8 @@ fun Brush.solid(rgb: Int, alpha: Double = 1.0): Brush {
 /** Represents a color value in a gradient. */
 typealias DrawBrushGradientStop = CPointer<uiDrawBrushGradientStop>
 
+///////////////////////////////////////////////////////////////////////////////
+
 /** Describes the stroke to draw with. */
 class Stroke : Disposable<uiDrawStrokeParams>(
     alloc = nativeHeap.alloc<uiDrawStrokeParams>().ptr) {
@@ -226,7 +228,9 @@ fun Area.Stroke(block: uiDrawStrokeParams.() -> Unit = {}) =
         block.invoke(it.ptr.pointed)
     }
 
-/** Represent a path that could be drawed on a DrawContext */
+///////////////////////////////////////////////////////////////////////////////
+
+/** Represent a path that could be drawed on a [DrawContext] */
 class Path(mode: uiDrawFillMode) : Disposable<uiDrawPath>(
     alloc = uiDrawNewPath(mode)) {
     override fun free() = uiDrawFreePath(ptr)
@@ -270,48 +274,51 @@ fun Path.closeFigure() = uiDrawPathCloseFigure(ptr)
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Defines a transformation (e.g. rotation, translation) */
-typealias DrawMatrix = CPointer<uiDrawMatrix>
+class Matrix : Disposable<uiDrawMatrix>(
+    alloc = nativeHeap.alloc<uiDrawMatrix>().ptr) {
+    override fun free() = nativeHeap.free(ptr)
+}
 
 /** Moves paths over by [x] to the right and [y] down. */
-fun DrawMatrix.translate(x: Double, y: Double) =
-    uiDrawMatrixTranslate(this, x, y)
+fun Matrix.translate(x: Double, y: Double) =
+    uiDrawMatrixTranslate(ptr, x, y)
 
 /** Scales pathes by a factor of [x] and [y] with ([xCenter], [yCenter]) as the scale center. */
-fun DrawMatrix.scale(xCenter: Double, yCenter: Double, x: Double, y: Double) =
-    uiDrawMatrixScale(this, xCenter, yCenter, x, y)
+fun Matrix.scale(xCenter: Double, yCenter: Double, x: Double, y: Double) =
+    uiDrawMatrixScale(ptr, xCenter, yCenter, x, y)
 
 /** Rotates paths by [r] *radians* around ([x], [y]). */
-fun DrawMatrix.rotate(x: Double, y: Double, amount: Double) =
-    uiDrawMatrixRotate(this, x, y, amount)
+fun Matrix.rotate(x: Double, y: Double, amount: Double) =
+    uiDrawMatrixRotate(ptr, x, y, amount)
 
 /** Skews path by [xAmount] *radians* horizontally and by [yAmount] *radians* vertically around ([x], [y]) */
-fun DrawMatrix.skew(x: Double, y: Double, xamount: Double, yamount: Double) =
-    uiDrawMatrixSkew(this, x, y, xamount, yamount)
+fun Matrix.skew(x: Double, y: Double, xamount: Double, yamount: Double) =
+    uiDrawMatrixSkew(ptr, x, y, xamount, yamount)
 
 /** Sets the matrix to the product of itself with [other] matrix. */
-fun DrawMatrix.multiply(other: DrawMatrix) = uiDrawMatrixMultiply(this, other)
+fun Matrix.multiply(other: Matrix) = uiDrawMatrixMultiply(ptr, other.ptr)
 
 /** Returns `true` if the matrix is invertible. */
-val DrawMatrix.invertible: Boolean get() = uiDrawMatrixInvertible(this) != 0
+val Matrix.invertible: Boolean get() = uiDrawMatrixInvertible(ptr) != 0
 
 /** Inverts the matrix. */
-fun DrawMatrix.invert() = uiDrawMatrixInvert(this)
+fun Matrix.invert() = uiDrawMatrixInvert(ptr)
 
 /** Returns the transformed point. */
-val DrawMatrix.transformPoint: Point
+val Matrix.point: Point
     get() = memScoped {
         val x = alloc<DoubleVar>()
         var y = alloc<DoubleVar>()
-        uiDrawMatrixTransformPoint(this@transformPoint, x.ptr, y.ptr)
+        uiDrawMatrixTransformPoint(ptr, x.ptr, y.ptr)
         Point(x.value, y.value)
     }
 
 /** Returns the transformed size. */
-val DrawMatrix.transformSize: Size
+val Matrix.size: Size
     get() = memScoped {
         val width = alloc<DoubleVar>()
         var height = alloc<DoubleVar>()
-        uiDrawMatrixTransformSize(this@transformSize, width.ptr, height.ptr)
+        uiDrawMatrixTransformSize(ptr, width.ptr, height.ptr)
         Size(width.value, height.value)
     }
 
@@ -603,11 +610,12 @@ fun DrawContext.stroke(
 }
 
 /** Apply a different transform matrix to the context. */
-fun DrawContext.transform(block: DrawMatrix.() -> Unit) = memScoped {
-    val matrix = alloc<uiDrawMatrix>().ptr
-    uiDrawMatrixSetIdentity(matrix)
+fun DrawContext.transform(block: Matrix.() -> Unit) {
+    val matrix = Matrix()
+    uiDrawMatrixSetIdentity(matrix.ptr)
     matrix.block()
-    uiDrawTransform(this@transform, matrix)
+    uiDrawTransform(this, matrix.ptr)
+    matrix.dispose()
 }
 
 /** draws formatted text with the top-left point at ([x], [y]). */
