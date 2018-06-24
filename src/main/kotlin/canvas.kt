@@ -227,42 +227,45 @@ fun Area.Stroke(block: uiDrawStrokeParams.() -> Unit = {}) =
     }
 
 /** Represent a path that could be drawed on a DrawContext */
-typealias DrawPath = CPointer<uiDrawPath>
+class Path(mode: uiDrawFillMode) : Disposable<uiDrawPath>(
+    alloc = uiDrawNewPath(mode)) {
+    override fun free() = uiDrawFreePath(ptr)
+}
 
 /** Starts a new figure at the specified point. Call this method when you want to create a new path. */
-fun DrawPath.figure(x: Double, y: Double) = uiDrawPathNewFigure(this, x, y)
+fun Path.figure(x: Double, y: Double) = uiDrawPathNewFigure(ptr, x, y)
 
 /** Starts a new figure and adds an arc to the path which is centered at ([xCenter], [yCenter]) position
  *  with radius [radius] starting at [startAngle] and with sweep angle [sweep] going in the given direction
  *  by anticlockwise (defaulting to clockwise) as specified by [negative]. */
-fun DrawPath.figureWithArc(xCenter: Double, yCenter: Double, radius: Double,
-                           startAngle: Double, sweep: Double, negative: Boolean = false) =
-    uiDrawPathNewFigureWithArc(this, xCenter, yCenter, radius, startAngle, sweep, if (negative) 1 else 0)
+fun Path.figureWithArc(xCenter: Double, yCenter: Double, radius: Double,
+                       startAngle: Double, sweep: Double, negative: Boolean = false) =
+    uiDrawPathNewFigureWithArc(ptr, xCenter, yCenter, radius, startAngle, sweep, if (negative) 1 else 0)
 
 /** Connects the last point in the subpath to the x, y coordinates with a straight line. */
-fun DrawPath.lineTo(x: Double, y: Double) = uiDrawPathLineTo(this, x, y)
+fun Path.lineTo(x: Double, y: Double) = uiDrawPathLineTo(ptr, x, y)
 
 /** Adds an arc to the path which is centered at ([xCenter], [yCenter]) position with radius [radius]
  *  starting at [startAngle] and with sweep angle [sweep] going in the given direction by
  *  anticlockwise (defaulting to clockwise) as specified by [negative]. */
-fun DrawPath.arcTo(xCenter: Double, yCenter: Double, radius: Double,
-                           startAngle: Double, sweep: Double, negative: Boolean = false) =
-    uiDrawPathArcTo(this, xCenter, yCenter, radius, startAngle, sweep, if (negative) 1 else 0)
+fun Path.arcTo(xCenter: Double, yCenter: Double, radius: Double,
+               startAngle: Double, sweep: Double, negative: Boolean = false) =
+    uiDrawPathArcTo(ptr, xCenter, yCenter, radius, startAngle, sweep, if (negative) 1 else 0)
 
 /** Adds a cubic Bézier curve to the path. It requires three points. The first two points are control
  *  points and the third one is the end point. The starting point is the last point in the current path. */
-fun DrawPath.bezierTo(c1x: Double, c1y: Double, c2x: Double, c2y: Double, endX: Double, endY: Double) =
-    uiDrawPathBezierTo(this, c1x, c1y, c2x, c2y, endX, endY)
+fun Path.bezierTo(c1x: Double, c1y: Double, c2x: Double, c2y: Double, endX: Double, endY: Double) =
+    uiDrawPathBezierTo(ptr, c1x, c1y, c2x, c2y, endX, endY)
 
 /** Creates a path for a rectangle at position (x, y) with a size that is determined by width and height. */
-fun DrawPath.rectangle(x: Double, y: Double, width: Double, height: Double) =
-    uiDrawPathAddRectangle(this, x, y, width, height)
+fun Path.rectangle(x: Double, y: Double, width: Double, height: Double) =
+    uiDrawPathAddRectangle(ptr, x, y, width, height)
 
 /** Causes the point of the pen to move back to the start of the current sub-path. It tries to draw
  *  a straight line from the current point to the start. If the shape has already been closed or has
  *  only one point, this function does nothing.
  *  It end the path. */
-fun DrawPath.closeFigure() = uiDrawPathCloseFigure(this)
+fun Path.closeFigure() = uiDrawPathCloseFigure(ptr)
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -576,13 +579,13 @@ typealias DrawContext = CPointer<uiDrawContext>
 fun DrawContext.fill(
     mode: uiDrawFillMode,
     brush: Brush,
-    block: DrawPath.() -> Unit
+    block: Path.() -> Unit
 ) {
-    val path = uiDrawNewPath(mode) ?: throw Error()
+    val path = Path(mode)
     path.block()
-    uiDrawPathEnd(path)
-    uiDrawFill(this, path, brush.ptr)
-    uiDrawFreePath(path)
+    uiDrawPathEnd(path.ptr)
+    uiDrawFill(this, path.ptr, brush.ptr)
+    path.dispose()
 }
 
 /** Draw a path in the context. */
@@ -590,13 +593,13 @@ fun DrawContext.stroke(
     mode: uiDrawFillMode,
     brush: Brush,
     stroke: Stroke,
-    block: DrawPath.() -> Unit
+    block: Path.() -> Unit
 ) {
-    val path = uiDrawNewPath(mode) ?: throw Error()
+    val path = Path(mode)
     path.block()
-    uiDrawPathEnd(path)
-    uiDrawStroke(this, path, brush.ptr, stroke.ptr)
-    uiDrawFreePath(path)
+    uiDrawPathEnd(path.ptr)
+    uiDrawStroke(this, path.ptr, brush.ptr, stroke.ptr)
+    path.dispose()
 }
 
 /** Apply a different transform matrix to the context. */
@@ -621,7 +624,7 @@ fun DrawContext.draw(
     layout.dispose()
 }
 
-//TODO fun DrawContext.clip(path: DrawPath) = uiDrawClip(this, path)
+//TODO fun DrawContext.clip(path: Path) = uiDrawClip(this, path)
 
 //TODO fun DrawContext.save() = uiDrawSave(this)
 
