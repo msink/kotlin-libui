@@ -45,7 +45,7 @@ abstract class Control<T : CPointed>(alloc: CPointer<T>?) : Disposable<T>(alloc)
     }
 
     /** *INTERNAL* Free all allocated resources.
-     *  NOTE: Must be called *only* from libui callback [_Destroy]` */
+     *  NOTE: Must be called *only* from libui callback [_Destroy] */
     override fun free() {
         ref.dispose()
         _ptr = null
