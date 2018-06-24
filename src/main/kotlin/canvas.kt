@@ -306,94 +306,113 @@ val DrawMatrix.transformSize: Size
 
 ///////////////////////////////////////////////////////////
 
-/** Stores information about an attribute in a AttributedString. */
-typealias Attribute = CPointer<uiAttribute>
+/** Stores information about an attribute in a [AttributedString]. */
+abstract class Attribute(alloc: CPointer<uiAttribute>?) : Disposable<uiAttribute>(alloc) {
 
-/** Frees a Attribute. You generally do not need to call this yourself,
- *  as AttributedString does this for you. */
-fun Attribute.dispose() = uiFreeAttribute(this)
+    /** Frees a [Attribute]. You generally do not need to call this yourself,
+     *  as [AttributedString] does this for you. */
+    override fun dispose() = uiFreeAttribute(ptr)
 
-/** Returns the type of Attribute. */
-val Attribute.type: uiAttributeType get() = uiAttributeGetType(this)
-
-/** Creates a new Attribute that changes the font family of the text it is applied to. */
-fun FamilyAttribute(family: String): Attribute = uiNewFamilyAttribute(family) ?: throw Error()
-
-/** Returns the font family stored in Attribute. */
-val Attribute.family: String? get() = uiAttributeFamily(this)?.toKString()
-
-/** Creates a new Attribute that changes the size of the text it is applied to, in typographical points. */
-fun SizeAttribute(size: Double): Attribute = uiNewSizeAttribute(size) ?: throw Error()
-
-/** Returns the font size stored in Attribute. */
-val Attribute.size: Double get() = uiAttributeSize(this)
-
-/** Creates a new Attribute that changes the weight of the text it is applied to. */
-fun WeightAttribute(weight: uiTextWeight): Attribute = uiNewWeightAttribute(weight) ?: throw Error()
-
-/** uiAttributeWeight() returns the font weight stored in Attribute. */
-val Attribute.weight: uiTextWeight get() = uiAttributeWeight(this)
-
-/** Creates a new Attribute that changes the italic mode of the text it is applied to. */
-fun ItalicAttribute(italic: uiTextItalic): Attribute = uiNewItalicAttribute(italic) ?: throw Error()
-
-/** uiAttributeItalic() returns the font italic mode stored in Attribute. */
-val Attribute.italic: uiTextItalic get() = uiAttributeItalic(this)
-
-/** Creates a new Attribute that changes the stretch of the text it is applied to. */
-fun StretchAttribute(stretch: uiTextStretch): Attribute = uiNewStretchAttribute(stretch) ?: throw Error()
-
-/** Returns the font stretch stored in Attribute. */
-val Attribute.stretch: uiTextStretch get() = uiAttributeStretch(this)
-
-/** Creates a new Attribute that changes the color of the text it is applied to. */
-fun ColorAttribute(color: Color): Attribute =
-    uiNewColorAttribute(color.r, color.g, color.b, color.a) ?: throw Error()
-
-/** Returns the text color stored in Attribute. */
-val Attribute.color: Color get() = memScoped {
-    val r = alloc<DoubleVar>()
-    val g = alloc<DoubleVar>()
-    val b = alloc<DoubleVar>()
-    val a = alloc<DoubleVar>()
-    uiAttributeColor(this@color, r.ptr, g.ptr, b.ptr, a.ptr)
-    Color(r.value, g.value, b.value, a.value)
+    /** Returns the type of [Attribute]. */
+    val type: uiAttributeType get() = uiAttributeGetType(ptr)
 }
 
-/** Creates a new Attribute that changes the background color of the text it is applied to. */
-fun BackgroundAttribute(color: Color): Attribute =
-    uiNewBackgroundAttribute(color.r, color.g, color.b, color.a) ?: throw Error()
+/** Changes the font family of the text it is applied to. */
+class FamilyAttribute(family: String) : Attribute(uiNewFamilyAttribute(family)) {
 
-/** Creates a new Attribute that changes the type of underline on the text it is applied to. */
-fun UnderlineAttribute(u: uiUnderline): Attribute = uiNewUnderlineAttribute(u) ?: throw Error()
-
-/** Returns the underline type stored in Attribute. */
-val Attribute.underline: uiUnderline get() = uiAttributeUnderline(this)
-
-/** creates a new Attribute that changes the color of the underline on the text it is applied to. */
-fun UnderlineColorAttribute(u: uiUnderlineColor, color: Color): Attribute =
-    uiNewUnderlineColorAttribute(u, color.r, color.g, color.b, color.a) ?: throw Error()
-
-/** Returns the underline color kind stored in Attribute. */
-val Attribute.underlineKind: uiUnderlineColor get() = memScoped {
-    val k = alloc<uiUnderlineColorVar>()
-    val r = alloc<DoubleVar>()
-    val g = alloc<DoubleVar>()
-    val b = alloc<DoubleVar>()
-    val a = alloc<DoubleVar>()
-    uiAttributeUnderlineColor(this@underlineKind, k.ptr, r.ptr, g.ptr, b.ptr, a.ptr)
-    k.value
+    /** Returns the font family stored. */
+    val value: String? get() = uiAttributeFamily(ptr)?.toKString()
 }
 
-/** Returns the underline color stored in Attribute. */
-val Attribute.underlineColor: Color get() = memScoped {
-    val k = alloc<uiUnderlineColorVar>()
-    val r = alloc<DoubleVar>()
-    val g = alloc<DoubleVar>()
-    val b = alloc<DoubleVar>()
-    val a = alloc<DoubleVar>()
-    uiAttributeUnderlineColor(this@underlineColor, k.ptr, r.ptr, g.ptr, b.ptr, a.ptr)
-    Color(r.value, g.value, b.value, a.value)
+/** Changes the size of the text it is applied to, in typographical points. */
+class SizeAttribute(size: Double) : Attribute(uiNewSizeAttribute(size)) {
+
+    /** Returns the font size stored. */
+    val value: Double get() = uiAttributeSize(ptr)
+}
+
+/** Changes the weight of the text it is applied to. */
+class WeightAttribute(weight: uiTextWeight) : Attribute(uiNewWeightAttribute(weight)) {
+
+    /** Returns the font weight stored. */
+    val value: uiTextWeight get() = uiAttributeWeight(ptr)
+}
+
+/** Changes the italic mode of the text it is applied to. */
+class ItalicAttribute(italic: uiTextItalic) : Attribute(uiNewItalicAttribute(italic)) {
+
+    /** uiAttributeItalic() returns the font italic mode stored. */
+    val value: uiTextItalic get() = uiAttributeItalic(ptr)
+}
+
+/** Changes the stretch of the text it is applied to. */
+class StretchAttribute(stretch: uiTextStretch) : Attribute(uiNewStretchAttribute(stretch)) {
+
+    /** Returns the font stretch stored in [Attribute]. */
+    val value: uiTextStretch get() = uiAttributeStretch(ptr)
+}
+
+/** Changes the color of the text it is applied to. */
+class ColorAttribute(color: Color) : Attribute(uiNewColorAttribute(color.r, color.g, color.b, color.a)) {
+
+    /** Returns the text color stored. */
+    val value: Color get() = memScoped {
+        val r = alloc<DoubleVar>()
+        val g = alloc<DoubleVar>()
+        val b = alloc<DoubleVar>()
+        val a = alloc<DoubleVar>()
+        uiAttributeColor(ptr, r.ptr, g.ptr, b.ptr, a.ptr)
+        Color(r.value, g.value, b.value, a.value)
+    }
+}
+
+/** Changes the background color of the text it is applied to. */
+class BackgroundAttribute(color: Color) :
+    Attribute(uiNewBackgroundAttribute(color.r, color.g, color.b, color.a)) {
+
+    //TODO: value
+}
+
+/** Changes the type of underline on the text it is applied to. */
+class UnderlineAttribute(u: uiUnderline) : Attribute(uiNewUnderlineAttribute(u)) {
+
+    /** Returns the underline type stored in [Attribute]. */
+    val value: uiUnderline get() = uiAttributeUnderline(ptr)
+}
+
+/** Changes the color of the underline on the text it is applied to. */
+class UnderlineColorAttribute(kind: uiUnderlineColor, color: Color) : Attribute(
+    uiNewUnderlineColorAttribute(kind, color.r, color.g, color.b, color.a)) {
+
+    /** Returns the underline color kind stored. */
+    val kind: uiUnderlineColor get() = memScoped {
+        val kind = alloc<uiUnderlineColorVar>()
+        val r = alloc<DoubleVar>()
+        val g = alloc<DoubleVar>()
+        val b = alloc<DoubleVar>()
+        val a = alloc<DoubleVar>()
+        uiAttributeUnderlineColor(ptr, kind.ptr, r.ptr, g.ptr, b.ptr, a.ptr)
+        kind.value
+    }
+
+    /** Returns the underline color stored. */
+    val color: Color get() = memScoped {
+        val kind = alloc<uiUnderlineColorVar>()
+        val r = alloc<DoubleVar>()
+        val g = alloc<DoubleVar>()
+        val b = alloc<DoubleVar>()
+        val a = alloc<DoubleVar>()
+        uiAttributeUnderlineColor(ptr, kind.ptr, r.ptr, g.ptr, b.ptr, a.ptr)
+        Color(r.value, g.value, b.value, a.value)
+    }
+}
+
+/** Creates a new Attribute that changes the font family of the text it is applied to.
+ *  otf is copied you may free it after uiNewFeaturesAttribute() returns. */
+class FeaturesAttribute(otf: OpenTypeFeatures) : Attribute(uiNewFeaturesAttribute(otf)) {
+
+    /** Returns the OpenType features stored. */
+    val value: OpenTypeFeatures? get() = uiAttributeFeatures(ptr)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -438,13 +457,6 @@ fun OpenTypeFeatures.get(tag: String): Int = memScoped {
 //// modify otf while uiOpenTypeFeaturesForEach() is running.
 //void uiOpenTypeFeaturesForEach(const uiOpenTypeFeatures *otf, uiOpenTypeFeaturesForEachFunc f, void *data)
 
-/** Creates a new Attribute that changes the font family of the text it is applied to.
- *  otf is copied you may free it after uiNewFeaturesAttribute() returns. */
-fun FeaturesAttribute(otf: OpenTypeFeatures): Attribute = uiNewFeaturesAttribute(otf) ?: throw Error()
-
-/** Returns the OpenType features stored in Attribute. */
-val Attribute.features: OpenTypeFeatures? get() = uiAttributeFeatures(this)
-
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Represents a string of UTF-8 text that can be embellished with formatting attributes. */
@@ -477,7 +489,7 @@ fun AttributedString.delete(start: Int, end: Int) =
 /** Sets a in the byte range [start, end). Any existing attributes in that byte range of the same type are
  *  removed. Takes ownership of [a] you should not use it after uiAttributedStringSetAttribute() returns. */
 fun AttributedString.setAttribute(a: Attribute, start: Int, end: Int) =
-    uiAttributedStringSetAttribute(ptr, a, start.signExtend(), end.signExtend())
+    uiAttributedStringSetAttribute(ptr, a.ptr, start.signExtend(), end.signExtend())
 
 //// uiAttributedStringForEachAttributeFunc is the type of the function
 //// invoked by uiAttributedStringForEachAttribute() for every
