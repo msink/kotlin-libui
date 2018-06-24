@@ -44,7 +44,8 @@ abstract class Control<T : CPointed>(alloc: CPointer<T>?) : Disposable<T>(alloc)
         ctl.pointed.Destroy = staticCFunction(::_Destroy)
     }
 
-    /** *INTERNAL* Free all allocated resources. */
+    /** *INTERNAL* Free all allocated resources.
+     *  NOTE: Must be called *only* from libui callback [_Destroy]` */
     override fun free() {
         ref.dispose()
         _ptr = null
