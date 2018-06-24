@@ -541,35 +541,33 @@ class Font : Disposable<uiFontDescriptor>(
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** Concrete representation of a AttributedString that can be displayed in a uiDrawContext. */
-typealias DrawTextLayout = CPointer<uiDrawTextLayout>
-
-/** Creates a new DrawTextLayout from the given parameters. */
-fun DrawTextLayout(
+/** Representation of a [AttributedString] that can be displayed in a [DrawContext]. */
+class TextLayout(
     string: AttributedString,
     defaultFont: Font,
 	width: Double,
     align: uiDrawTextAlign
-): DrawTextLayout = memScoped {
-    val params = alloc<uiDrawTextLayoutParams>()
-	params.String = string.ptr
-	params.DefaultFont = defaultFont.ptr
-	params.Width = width
-	params.Align = align
-    return uiDrawNewTextLayout(params.ptr) ?: throw Error()
-}
+) : Disposable<uiDrawTextLayout>(
+    alloc = memScoped {
+        val params = alloc<uiDrawTextLayoutParams>()
+		params.String = string.ptr
+		params.DefaultFont = defaultFont.ptr
+		params.Width = width
+		params.Align = align
+        uiDrawNewTextLayout(params.ptr)
+    }) {
 
-/** Frees DrawTextLayout. The underlying AttributedString is not freed. */
-fun DrawTextLayout.dispose() = uiDrawFreeTextLayout(this);
+    /** Frees [TextLayout]. The underlying [AttributedString] is not freed. */
+    override fun free() = uiDrawFreeTextLayout(ptr)
 
-/** Returns the size of DrawTextLayout. */
-val DrawTextLayout.extents: Size
-    get() = memScoped {
+    /** Returns the size of [TextLayout[. */
+    val extents: Size get() = memScoped {
         val width = alloc<DoubleVar>()
-        var height = alloc<DoubleVar>()
-        uiDrawTextLayoutExtents(this@extents, width.ptr, height.ptr)
+        val height = alloc<DoubleVar>()
+        uiDrawTextLayoutExtents(ptr, width.ptr, height.ptr)
         Size(width.value, height.value)
     }
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -619,8 +617,8 @@ fun DrawContext.draw(
     x: Double,
     y: Double
 ) {
-    val layout = DrawTextLayout(string, defaultFont, width, align)
-    uiDrawText(this, layout, x, y)
+    val layout = TextLayout(string, defaultFont, width, align)
+    uiDrawText(this, layout.ptr, x, y)
     layout.dispose()
 }
 
