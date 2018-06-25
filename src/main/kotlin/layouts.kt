@@ -15,14 +15,20 @@ import kotlinx.cinterop.*
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Represents a Control that contains a container for child controls. */
-abstract class Layout(_ptr: COpaquePointer?) : Control(_ptr)
+abstract class Layout<T : CPointed>(alloc: CPointer<T>?) : Control<T>(alloc)
 
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A container for a single widget that provide a caption and visually group it's children. */
-class Group(title: String, block: Group.() -> Unit = {}) : Layout(uiNewGroup(title)) {
-    internal val ptr: CPointer<uiGroup> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
-    init { apply(block) }
+class Group(
+    title: String,
+    margined: Boolean = true,
+    block: Group.() -> Unit = {}
+) : Layout<uiGroup>(uiNewGroup(title)) {
+    init {
+        apply(block)
+        if (margined) this.margined = margined
+    }
 }
 
 /** Specify the caption of the group. */
@@ -36,22 +42,22 @@ var Group.margined: Boolean
     set(margined) = uiGroupSetMargined(ptr, if (margined) 1 else 0)
 
 /** Sets the group's child. If child is null, the group will not have a child. */
-fun Group.add(widget: Control?) = uiGroupSetChild(ptr, widget?.ctl)
+fun Group.add(widget: Control<*>?) = uiGroupSetChild(ptr, widget?.ctl)
 
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A container that stack its chidren horizontally or vertically. */
-abstract class Box(_ptr: CPointer<uiBox>?) : Layout(_ptr) {
-    internal val ptr: CPointer<uiBox> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
-}
+abstract class Box(alloc: CPointer<uiBox>?) : Layout<uiBox>(alloc)
 
 /** A container that stack its chidren horizontally. */
-class HorizontalBox(block: HorizontalBox.() -> Unit = {}) : Box(uiNewHorizontalBox()) {
+class HorizontalBox(block: HorizontalBox.() -> Unit = {}
+) : Box(uiNewHorizontalBox()) {
     init { apply(block) }
 }
 
 /** A container that stack its chidren vertically. */
-class VerticalBox(block: VerticalBox.() -> Unit = {}) : Box(uiNewVerticalBox()) {
+class VerticalBox(block: VerticalBox.() -> Unit = {}
+) : Box(uiNewVerticalBox()) {
     init { apply(block) }
 }
 
@@ -61,7 +67,7 @@ var Box.padded: Boolean
     set(padded) = uiBoxSetPadded(ptr, if (padded) 1 else 0)
 
 /** Adds the given widget to the end of the Box. */
-fun Box.add(widget: Control, stretchy: Boolean = false) =
+fun Box.add(widget: Control<*>, stretchy: Boolean = false) =
     uiBoxAppend(ptr, widget.ctl, if (stretchy) 1 else 0)
 
 /** Deletes the nth control of the Box. */
@@ -70,8 +76,8 @@ fun Box.delete(index: Int) = uiBoxDelete(ptr, index)
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A container that organize children as labeled fields. */
-class Form(block: Form.() -> Unit = {}) : Layout(uiNewForm()) {
-    internal val ptr: CPointer<uiForm> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
+class Form(block: Form.() -> Unit = {}
+) : Layout<uiForm>(uiNewForm()) {
     init { apply(block) }
 }
 
@@ -81,7 +87,7 @@ var Form.padded: Boolean
     set(padded) = uiFormSetPadded(ptr, if (padded) 1 else 0)
 
 /** Adds the given widget to the end of the form. */
-fun Form.add(label: String, widget: Control, stretchy: Boolean = false) =
+fun Form.add(label: String, widget: Control<*>, stretchy: Boolean = false) =
     uiFormAppend(ptr, label, widget.ctl, if (stretchy) 1 else 0)
 
 /** deletes the nth control of the form. */
@@ -90,8 +96,8 @@ fun Form.delete(index: Int) = uiFormDelete(ptr, index)
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A container that show each chidren in a separate tab. */
-class Tab(block: Tab.() -> Unit = {}) : Layout(uiNewTab()) {
-    internal val ptr: CPointer<uiTab> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
+class Tab(block: Tab.() -> Unit = {}
+) : Layout<uiTab>(uiNewTab()) {
     init { apply(block) }
 }
 
@@ -100,13 +106,13 @@ fun Tab.getMargined(page: Int): Boolean = uiTabMargined(ptr, page) != 0
 fun Tab.setMargined(page: Int, margined: Boolean) = uiTabSetMargined(ptr, page, if (margined) 1 else 0)
 
 /** Adds the given page to the end of the Tab. */
-fun Tab.add(label: String, widget: Control, margined: Boolean = false) {
+fun Tab.add(label: String, widget: Control<*>, margined: Boolean = true) {
     uiTabAppend(ptr, label, widget.ctl)
     if (margined) setMargined(numPages - 1, true)
 }
 
 /** Adds the given page to the Tab such that it is the nth page of the Tab (starting at 0). */
-fun Tab.insert(index: Int, name: String, widget: Control) = uiTabInsertAt(ptr, name, index, widget.ctl)
+fun Tab.insert(index: Int, name: String, widget: Control<*>) = uiTabInsertAt(ptr, name, index, widget.ctl)
 
 /** Delete deletes the nth page of the Tab. */
 fun Tab.delete(index: Int) = uiTabDelete(ptr, index)
@@ -117,8 +123,8 @@ val Tab.numPages: Int get() = uiTabNumPages(ptr)
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A powerful container that allow to specify size and position of each children. */
-class Grid(block: Grid.() -> Unit = {}) : Layout(uiNewGrid()) {
-    internal val ptr: CPointer<uiGrid> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
+class Grid(block: Grid.() -> Unit = {}
+) : Layout<uiGrid>(uiNewGrid()) {
     init { apply(block) }
 }
 
@@ -140,7 +146,7 @@ var Grid.padded: Boolean
  *  @param[widget] The Control to be added.
  */
 fun Grid.add(
-    widget: Control,
+    widget: Control<*>,
     x: Int = 0,
     y: Int = 0,
     xspan: Int = 1,
@@ -167,8 +173,8 @@ fun Grid.add(
  *  @param[widget] The Control to be added.
  */
 fun Grid.insert(
-    widget: Control,
-    existing: Control,
+    widget: Control<*>,
+    existing: Control<*>,
     at: uiAt,
     xspan: Int = 1,
     yspan: Int = 1,

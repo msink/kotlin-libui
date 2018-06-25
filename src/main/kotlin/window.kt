@@ -9,16 +9,17 @@ class Window(
     title: String,
     width: Int,
     height: Int,
-    hasMenubar: Boolean = true,
+    margined: Boolean = true,
+    hasMenubar: Boolean = false,
     block: Window.() -> Unit = {}
-) : Control(uiNewWindow(title, width, height, if (hasMenubar) 1 else 0)) {
-    internal val ptr: CPointer<uiWindow> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
+) : Control<uiWindow>(uiNewWindow(title, width, height, if (hasMenubar) 1 else 0)) {
     internal var onClose: (Window.() -> Boolean)? = null
     internal var onResize: (Window.() -> Unit)? = null
     init {
         uiWindowOnClosing(ptr, staticCFunction(::_Close), ref.asCPointer())
         uiWindowOnContentSizeChanged(ptr, staticCFunction(::_Resize), ref.asCPointer())
         apply(block)
+        if (margined) this.margined = margined
     }
 }
 
@@ -57,11 +58,11 @@ var Window.contentSize: SizeInt
 
 /** Specify the control to show in window content area.
  *  Window instances can contain only one control. If you need more, you have to use Container */
-fun Window.add(widget: Control) = uiWindowSetChild(ptr, widget.ctl)
+fun Window.add(widget: Control<*>) = uiWindowSetChild(ptr, widget.ctl)
 
 /** Function to be run when window content size change. */
-fun Window.onResize(proc: Window.() -> Unit) {
-    onResize = proc
+fun Window.onResize(block: Window.() -> Unit) {
+    onResize = block
 }
 
 @Suppress("UNUSED_PARAMETER")
@@ -73,9 +74,9 @@ private fun _Resize(ptr: CPointer<uiWindow>?, ref: COpaquePointer?) {
 
 /** Function to be run when the user clicks the Window's close button.
  *  Only one function can be registered at a time.
- *  @returns [true] if window is destroyed */
-fun Window.onClose(proc: Window.() -> Boolean) {
-    onClose = proc
+ *  @returns [true] if window is disposed */
+fun Window.onClose(block: Window.() -> Boolean) {
+    onClose = block
 }
 
 @Suppress("UNUSED_PARAMETER")

@@ -3,6 +3,26 @@ package libui
 import kotlinx.cinterop.*
 import platform.posix.*
 
+data class Color(
+    val r: Double,
+    val g: Double,
+    val b: Double,
+    val a: Double = 1.0
+)
+
+fun Color(rgb: Int, alpha: Double = 1.0) = Color(
+    r = ((rgb shr 16) and 255).toDouble() / 255,
+    g = ((rgb shr 8) and 255).toDouble() / 255,
+    b = ((rgb) and 255).toDouble() / 255,
+    a = alpha
+)
+
+data class SizeInt(val width: Int, val height: Int)
+
+data class Size(val width: Double, val height: Double)
+
+data class Point(val x: Double, val y: Double)
+
 /** A canvas you can draw on. It also receives keyboard and mouse events,
  *  is DPI aware, and has several other useful features. */
 fun Area(block: Area.() -> Unit = {}): Area {
@@ -10,33 +30,22 @@ fun Area(block: Area.() -> Unit = {}): Area {
     return Area(uiNewArea(handler.ui.ptr), handler.ptr).apply(block)
 }
 
-/** Area with horziontal and vertical scrollbars. */
+/** [Area] with horziontal and vertical scrollbars. */
 fun ScrollingArea(width: Int, height: Int, block: ScrollingArea.() -> Unit = {}): ScrollingArea {
     val handler = nativeHeap.alloc<ktAreaHandler>()
     return ScrollingArea(uiNewScrollingArea(handler.ui.ptr, width, height), handler.ptr).apply(block)
 }
 
-interface Disposable {
-    val disposed: Boolean
-    fun dispose()
-}
-
-typealias AreaDrawParams = CPointer<uiAreaDrawParams>
-typealias AreaMouseEvent = CPointer<uiAreaMouseEvent>
-typealias AreaKeyEvent = CPointer<uiAreaKeyEvent>
-
 open class Area internal constructor(
-    _ptr: CPointer<uiArea>?,
+    alloc: CPointer<uiArea>?,
     val handler: CPointer<ktAreaHandler>
-) : Control(_ptr) {
-    internal val ptr: CPointer<uiArea> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
+) : Control<uiArea>(alloc) {
 
     internal var draw: Area.(params: uiAreaDrawParams) -> Unit = {}
     internal var mouseEvent: Area.(event: uiAreaMouseEvent) -> Unit = {}
     internal var mouseCrossed: Area.(left: Boolean) -> Unit = {}
     internal var dragBroken: Area.() -> Unit = {}
     internal var keyEvent: Area.(event: uiAreaKeyEvent) -> Boolean = { false }
-
     init {
         handler.pointed.ui.Draw = staticCFunction(::_Draw)
         handler.pointed.ui.MouseEvent = staticCFunction(::_MouseEvent)
@@ -46,20 +55,19 @@ open class Area internal constructor(
         handler.pointed.ref = ref.asCPointer()
     }
 
-    internal val disposables = mutableListOf<Disposable>()
-
-    override fun dispose() {
+    internal val disposables = mutableListOf<Disposable<*>>()
+    override fun free() {
         disposables.forEach { it.dispose() }
         disposables.clear()
         nativeHeap.free(handler)
-        super.dispose()
+        super.free()
     }
 }
 
 class ScrollingArea internal constructor(
-    _ptr: CPointer<uiArea>?,
+    alloc: CPointer<uiArea>?,
     handler: CPointer<ktAreaHandler>
-) : Area(_ptr, handler)
+) : Area(alloc, handler)
 
 /** Queues the entire Area for redraw.
  *  The Area is not redrawn before this function returns; it is redrawn when next possible. */
@@ -83,12 +91,16 @@ fun ScrollingArea.scrollTo(x: Double, y: Double, width: Double, height: Double) 
 
 /** Funcion to be run when the area was created or got resized with [uiAreaDrawParams] as parameter.
  *  Only one function can be registered at a time. */
-fun Area.draw(proc: Area.(params: uiAreaDrawParams) -> Unit) {
-    draw = proc
+fun Area.draw(block: Area.(params: uiAreaDrawParams) -> Unit) {
+    draw = block
 }
 
 @Suppress("UNUSED_PARAMETER")
-private fun _Draw(handler: CPointer<uiAreaHandler>?, area: CPointer<uiArea>?, params: AreaDrawParams?) {
+private fun _Draw(
+    handler: CPointer<uiAreaHandler>?,
+    area: CPointer<uiArea>?,
+    params: CPointer<uiAreaDrawParams>?
+) {
     val h: CPointer<ktAreaHandler> = handler!!.reinterpret()
     with (h.pointed.ref!!.asStableRef<Area>().get()) {
         draw.invoke(this, params!!.pointed)
@@ -97,12 +109,16 @@ private fun _Draw(handler: CPointer<uiAreaHandler>?, area: CPointer<uiArea>?, pa
 
 /** Funcion to be run when the mouse was moved or clicked over the area with [uiAreaMouseEvent] as parameter.
  *  Only one function can be registered at a time. */
-fun Area.mouseEvent(proc: Area.(event: uiAreaMouseEvent) -> Unit) {
-    mouseEvent = proc
+fun Area.mouseEvent(block: Area.(event: uiAreaMouseEvent) -> Unit) {
+    mouseEvent = block
 }
 
 @Suppress("UNUSED_PARAMETER")
-private fun _MouseEvent(handler: CPointer<uiAreaHandler>?, area: CPointer<uiArea>?, params: AreaMouseEvent?) {
+private fun _MouseEvent(
+    handler: CPointer<uiAreaHandler>?,
+    area: CPointer<uiArea>?,
+    params: CPointer<uiAreaMouseEvent>?
+) {
     val h: CPointer<ktAreaHandler> = handler!!.reinterpret()
     with (h.pointed.ref!!.asStableRef<Area>().get()) {
         mouseEvent.invoke(this, params!!.pointed)
@@ -111,8 +127,8 @@ private fun _MouseEvent(handler: CPointer<uiAreaHandler>?, area: CPointer<uiArea
 
 /** Funcion to be run when the mouse entered (`left == false`) or left the area.
  *  Only one function can be registered at a time. */
-fun Area.mouseCrossed(proc: Area.(left: Boolean) -> Unit) {
-    mouseCrossed = proc
+fun Area.mouseCrossed(block: Area.(left: Boolean) -> Unit) {
+    mouseCrossed = block
 }
 
 @Suppress("UNUSED_PARAMETER")
@@ -125,8 +141,8 @@ private fun _MouseCrossed(handler: CPointer<uiAreaHandler>?, area: CPointer<uiAr
 
 /** Funcion to be run to indicate that a drag should be ended. Only implemented on Windows.
  *  Only one function can be registered at a time. */
-fun Area.dragBroken(proc: Area.() -> Unit) {
-    dragBroken = proc
+fun Area.dragBroken(block: Area.() -> Unit) {
+    dragBroken = block
 }
 
 @Suppress("UNUSED_PARAMETER")
@@ -140,12 +156,16 @@ private fun _DragBroken(handler: CPointer<uiAreaHandler>?, area: CPointer<uiArea
 /** Funcion to be run when a key was pressed. Return `true` to indicate that the key event was handled.
  *  (a menu item with that accelerator won't activate, no error sound on macOS). Event is an [uiAreaKeyEvent]
  *  Only one function can be registered at a time. */
-fun Area.keyEvent(proc: Area.(event: uiAreaKeyEvent) -> Boolean) {
-    keyEvent = proc
+fun Area.keyEvent(block: Area.(event: uiAreaKeyEvent) -> Boolean) {
+    keyEvent = block
 }
 
 @Suppress("UNUSED_PARAMETER")
-private fun _KeyEvent(handler: CPointer<uiAreaHandler>?, area: CPointer<uiArea>?, event: AreaKeyEvent?): Int {
+private fun _KeyEvent(
+    handler: CPointer<uiAreaHandler>?,
+    area: CPointer<uiArea>?,
+    event: CPointer<uiAreaKeyEvent>?
+): Int {
     val h: CPointer<ktAreaHandler> = handler!!.reinterpret()
     with (h.pointed.ref!!.asStableRef<Area>().get()) {
         return if (keyEvent.invoke(this, event!!.pointed)) 1 else 0
@@ -155,273 +175,342 @@ private fun _KeyEvent(handler: CPointer<uiAreaHandler>?, area: CPointer<uiArea>?
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Defines the color(s) to draw a path with. */
-class DrawBrush internal constructor() : Disposable {
-    internal var _ptr: CPointer<uiDrawBrush>? = nativeHeap.alloc<uiDrawBrush>().ptr
-    internal val ptr get() = _ptr ?: throw Error("DrawBrush is disposed")
-    override val disposed get() = _ptr == null
-    override fun dispose() {
+class Brush : Disposable<uiDrawBrush>(
+    alloc = nativeHeap.alloc<uiDrawBrush>().ptr) {
+    override fun clear() {
+        ptr.pointed.Stops?.let { nativeHeap.free(it) }
+        memset(ptr, 0, uiDrawBrush.size)
+    }
+    override fun free() {
+        clear()
         nativeHeap.free(ptr)
-        _ptr = null
     }
 }
 
-/** Creates a new DrawBrush with lifecycle delegated to Area. */
-fun Area.DrawBrush() = libui.DrawBrush().also { disposables.add(it) }
+/** Creates a new Brush with lifecycle delegated to Area. */
+fun Area.Brush() = libui.Brush().also { disposables.add(it) }
 
 /** Helper to quickly set a brush color */
-fun DrawBrush.solid(rgba: RGBA, opacity: Double = 1.0): DrawBrush {
-    memset(ptr, 0, uiDrawBrush.size)
+fun Brush.solid(color: Color, opacity: Double = 1.0): Brush {
+    clear()
     with (ptr.pointed) {
         Type = uiDrawBrushTypeSolid
-        R = rgba.r
-        G = rgba.g
-        B = rgba.b
-        A = rgba.a * opacity
+        R = color.r
+        G = color.g
+        B = color.b
+        A = color.a * opacity
     }
     return this
 }
 
 /** Helper to quickly set a brush color */
-fun DrawBrush.solid(color: Int, alpha: Double = 1.0): DrawBrush {
-    memset(ptr, 0, uiDrawBrush.size)
-    val rgba = RGBA(color, alpha)
+fun Brush.solid(rgb: Int, alpha: Double = 1.0): Brush {
+    clear()
+    val color = Color(rgb, alpha)
     with (ptr.pointed) {
         Type = uiDrawBrushTypeSolid
-        R = rgba.r
-        G = rgba.g
-        B = rgba.b
+        R = color.r
+        G = color.g
+        B = color.b
         A = alpha
     }
     return this
 }
 
-/** Represents a color value in a gradient. */
-typealias DrawBrushGradientStop = CPointer<uiDrawBrushGradientStop>
-
-/** Describes the stroke to draw with. */
-class DrawStrokeParams internal constructor() : Disposable {
-    internal var _ptr: CPointer<uiDrawStrokeParams>? = nativeHeap.alloc<uiDrawStrokeParams>().ptr
-    internal val ptr get() = _ptr ?: throw Error("DrawStrokeParams is disposed")
-    override val disposed get() = _ptr == null
-    override fun dispose() {
-        nativeHeap.free(ptr)
-        _ptr = null
+/** Helper to quickly create linear brush */
+fun Brush.linear(start: Point, end: Point, vararg stops: Pair<Double, Color>): Brush {
+    clear()
+    with (ptr.pointed) {
+        Type = uiDrawBrushTypeLinearGradient
+        X0 = start.x
+        Y0 = start.y
+        X1 = end.x
+        Y1 = end.y
+        NumStops = stops.size.signExtend()
+        Stops = nativeHeap.allocArray<uiDrawBrushGradientStop>(stops.size)
+        stops.forEachIndexed { i, (pos, color) ->
+            with (Stops!![i]) {
+                Pos = pos
+                R = color.r
+                G = color.g
+                B = color.b
+                A = color.a
+            }
+        }
     }
+    return this
 }
 
-/** Creates a new DrawStrokeParams with lifecycle delegated to Area. */
-fun Area.DrawStrokeParams(block: uiDrawStrokeParams.() -> Unit = {}) =
-    libui.DrawStrokeParams().also {
+/** Helper to quickly create radial brush */
+fun Brush.radial(start: Point, center: Point, radius: Double, vararg stops: Pair<Double, Color>): Brush {
+    clear()
+    with (ptr.pointed) {
+        Type = uiDrawBrushTypeRadialGradient
+        X0 = start.x
+        Y0 = start.y
+        X1 = center.x
+        Y1 = center.y
+        OuterRadius = radius
+        NumStops = stops.size.signExtend()
+        Stops = nativeHeap.allocArray<uiDrawBrushGradientStop>(stops.size)
+        stops.forEachIndexed { i, (pos, color) ->
+            with (Stops!![i]) {
+                Pos = pos
+                R = color.r
+                G = color.g
+                B = color.b
+                A = color.a
+            }
+        }
+    }
+    return this
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+/** Describes the stroke to draw with. */
+class Stroke : Disposable<uiDrawStrokeParams>(
+    alloc = nativeHeap.alloc<uiDrawStrokeParams>().ptr) {
+    override fun free() = nativeHeap.free(ptr)
+}
+
+/** Creates a new Stroke with lifecycle delegated to Area. */
+fun Area.Stroke(block: uiDrawStrokeParams.() -> Unit = {}) =
+    libui.Stroke().also {
         disposables.add(it)
         block.invoke(it.ptr.pointed)
     }
 
-/** Represent a path that could be drawed on a DrawContext */
-typealias DrawPath = CPointer<uiDrawPath>
+///////////////////////////////////////////////////////////////////////////////
+
+/** Represent a path that could be drawed on a [DrawContext] */
+class Path(mode: uiDrawFillMode) : Disposable<uiDrawPath>(
+    alloc = uiDrawNewPath(mode)) {
+    override fun free() = uiDrawFreePath(ptr)
+}
 
 /** Starts a new figure at the specified point. Call this method when you want to create a new path. */
-fun DrawPath.figure(x: Double, y: Double) = uiDrawPathNewFigure(this, x, y)
+fun Path.figure(x: Double, y: Double) = uiDrawPathNewFigure(ptr, x, y)
 
 /** Starts a new figure and adds an arc to the path which is centered at ([xCenter], [yCenter]) position
  *  with radius [radius] starting at [startAngle] and with sweep angle [sweep] going in the given direction
  *  by anticlockwise (defaulting to clockwise) as specified by [negative]. */
-fun DrawPath.figureWithArc(xCenter: Double, yCenter: Double, radius: Double,
-                           startAngle: Double, sweep: Double, negative: Boolean = false) =
-    uiDrawPathNewFigureWithArc(this, xCenter, yCenter, radius, startAngle, sweep, if (negative) 1 else 0)
+fun Path.figureWithArc(xCenter: Double, yCenter: Double, radius: Double,
+                       startAngle: Double, sweep: Double, negative: Boolean = false) =
+    uiDrawPathNewFigureWithArc(ptr, xCenter, yCenter, radius, startAngle, sweep, if (negative) 1 else 0)
 
 /** Connects the last point in the subpath to the x, y coordinates with a straight line. */
-fun DrawPath.lineTo(x: Double, y: Double) = uiDrawPathLineTo(this, x, y)
+fun Path.lineTo(x: Double, y: Double) = uiDrawPathLineTo(ptr, x, y)
 
 /** Adds an arc to the path which is centered at ([xCenter], [yCenter]) position with radius [radius]
  *  starting at [startAngle] and with sweep angle [sweep] going in the given direction by
  *  anticlockwise (defaulting to clockwise) as specified by [negative]. */
-fun DrawPath.arcTo(xCenter: Double, yCenter: Double, radius: Double,
-                           startAngle: Double, sweep: Double, negative: Boolean = false) =
-    uiDrawPathArcTo(this, xCenter, yCenter, radius, startAngle, sweep, if (negative) 1 else 0)
+fun Path.arcTo(xCenter: Double, yCenter: Double, radius: Double,
+               startAngle: Double, sweep: Double, negative: Boolean = false) =
+    uiDrawPathArcTo(ptr, xCenter, yCenter, radius, startAngle, sweep, if (negative) 1 else 0)
 
 /** Adds a cubic Bézier curve to the path. It requires three points. The first two points are control
  *  points and the third one is the end point. The starting point is the last point in the current path. */
-fun DrawPath.bezierTo(c1x: Double, c1y: Double, c2x: Double, c2y: Double, endX: Double, endY: Double) =
-    uiDrawPathBezierTo(this, c1x, c1y, c2x, c2y, endX, endY)
+fun Path.bezierTo(c1x: Double, c1y: Double, c2x: Double, c2y: Double, endX: Double, endY: Double) =
+    uiDrawPathBezierTo(ptr, c1x, c1y, c2x, c2y, endX, endY)
 
 /** Creates a path for a rectangle at position (x, y) with a size that is determined by width and height. */
-fun DrawPath.rectangle(x: Double, y: Double, width: Double, height: Double) =
-    uiDrawPathAddRectangle(this, x, y, width, height)
+fun Path.rectangle(x: Double, y: Double, width: Double, height: Double) =
+    uiDrawPathAddRectangle(ptr, x, y, width, height)
 
-/** Causes the point of the pen to move back to the start of the current sub-path. It tries to draw 
+/** Causes the point of the pen to move back to the start of the current sub-path. It tries to draw
  *  a straight line from the current point to the start. If the shape has already been closed or has
  *  only one point, this function does nothing.
  *  It end the path. */
-fun DrawPath.closeFigure() = uiDrawPathCloseFigure(this)
+fun Path.closeFigure() = uiDrawPathCloseFigure(ptr)
 
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Defines a transformation (e.g. rotation, translation) */
-typealias DrawMatrix = CPointer<uiDrawMatrix>
+class Matrix : Disposable<uiDrawMatrix>(
+    alloc = nativeHeap.alloc<uiDrawMatrix>().ptr) {
+    override fun free() = nativeHeap.free(ptr)
+}
 
 /** Moves paths over by [x] to the right and [y] down. */
-fun DrawMatrix.translate(x: Double, y: Double) =
-    uiDrawMatrixTranslate(this, x, y)
+fun Matrix.translate(x: Double, y: Double) =
+    uiDrawMatrixTranslate(ptr, x, y)
 
 /** Scales pathes by a factor of [x] and [y] with ([xCenter], [yCenter]) as the scale center. */
-fun DrawMatrix.scale(xCenter: Double, yCenter: Double, x: Double, y: Double) =
-    uiDrawMatrixScale(this, xCenter, yCenter, x, y)
+fun Matrix.scale(xCenter: Double, yCenter: Double, x: Double, y: Double) =
+    uiDrawMatrixScale(ptr, xCenter, yCenter, x, y)
 
 /** Rotates paths by [r] *radians* around ([x], [y]). */
-fun DrawMatrix.rotate(x: Double, y: Double, amount: Double) =
-    uiDrawMatrixRotate(this, x, y, amount)
+fun Matrix.rotate(x: Double, y: Double, amount: Double) =
+    uiDrawMatrixRotate(ptr, x, y, amount)
 
 /** Skews path by [xAmount] *radians* horizontally and by [yAmount] *radians* vertically around ([x], [y]) */
-fun DrawMatrix.skew(x: Double, y: Double, xamount: Double, yamount: Double) =
-    uiDrawMatrixSkew(this, x, y, xamount, yamount)
+fun Matrix.skew(x: Double, y: Double, xamount: Double, yamount: Double) =
+    uiDrawMatrixSkew(ptr, x, y, xamount, yamount)
 
 /** Sets the matrix to the product of itself with [other] matrix. */
-fun DrawMatrix.multiply(other: DrawMatrix) = uiDrawMatrixMultiply(this, other)
+fun Matrix.multiply(other: Matrix) = uiDrawMatrixMultiply(ptr, other.ptr)
 
 /** Returns `true` if the matrix is invertible. */
-val DrawMatrix.invertible: Boolean get() = uiDrawMatrixInvertible(this) != 0
+val Matrix.invertible: Boolean get() = uiDrawMatrixInvertible(ptr) != 0
 
 /** Inverts the matrix. */
-fun DrawMatrix.invert() = uiDrawMatrixInvert(this)
+fun Matrix.invert() = uiDrawMatrixInvert(ptr)
 
 /** Returns the transformed point. */
-val DrawMatrix.transformPoint: Point
+val Matrix.point: Point
     get() = memScoped {
         val x = alloc<DoubleVar>()
         var y = alloc<DoubleVar>()
-        uiDrawMatrixTransformPoint(this@transformPoint, x.ptr, y.ptr)
+        uiDrawMatrixTransformPoint(ptr, x.ptr, y.ptr)
         Point(x.value, y.value)
     }
 
 /** Returns the transformed size. */
-val DrawMatrix.transformSize: Size
+val Matrix.size: Size
     get() = memScoped {
         val width = alloc<DoubleVar>()
         var height = alloc<DoubleVar>()
-        uiDrawMatrixTransformSize(this@transformSize, width.ptr, height.ptr)
+        uiDrawMatrixTransformSize(ptr, width.ptr, height.ptr)
         Size(width.value, height.value)
     }
 
 ///////////////////////////////////////////////////////////
 
-/** Stores information about an attribute in a AttributedString. */
-typealias Attribute = CPointer<uiAttribute>
+/** Stores information about an attribute in a [AttributedString]. */
+abstract class Attribute(alloc: CPointer<uiAttribute>?) : Disposable<uiAttribute>(alloc) {
 
-/** Frees a Attribute. You generally do not need to call this yourself,
- *  as AttributedString does this for you. */
-fun Attribute.dispose() = uiFreeAttribute(this)
+    /** Frees a [Attribute]. You generally do not need to call this yourself,
+     *  as [AttributedString] does this for you. */
+    override fun free() = uiFreeAttribute(ptr)
 
-/** Returns the type of Attribute. */
-val Attribute.type: uiAttributeType get() = uiAttributeGetType(this)
-
-/** Creates a new Attribute that changes the font family of the text it is applied to. */
-fun FamilyAttribute(family: String): Attribute = uiNewFamilyAttribute(family) ?: throw Error()
-
-/** Returns the font family stored in Attribute. */
-val Attribute.family: String? get() = uiAttributeFamily(this)?.toKString()
-
-/** Creates a new Attribute that changes the size of the text it is applied to, in typographical points. */
-fun SizeAttribute(size: Double): Attribute = uiNewSizeAttribute(size) ?: throw Error()
-
-/** Returns the font size stored in Attribute. */
-val Attribute.size: Double get() = uiAttributeSize(this)
-
-/** Creates a new Attribute that changes the weight of the text it is applied to. */
-fun WeightAttribute(weight: uiTextWeight): Attribute = uiNewWeightAttribute(weight) ?: throw Error()
-
-/** uiAttributeWeight() returns the font weight stored in Attribute. */
-val Attribute.weight: uiTextWeight get() = uiAttributeWeight(this)
-
-/** Creates a new Attribute that changes the italic mode of the text it is applied to. */
-fun ItalicAttribute(italic: uiTextItalic): Attribute = uiNewItalicAttribute(italic) ?: throw Error()
-
-/** uiAttributeItalic() returns the font italic mode stored in Attribute. */
-val Attribute.italic: uiTextItalic get() = uiAttributeItalic(this)
-
-/** Creates a new Attribute that changes the stretch of the text it is applied to. */
-fun StretchAttribute(stretch: uiTextStretch): Attribute = uiNewStretchAttribute(stretch) ?: throw Error()
-
-/** Returns the font stretch stored in Attribute. */
-val Attribute.stretch: uiTextStretch get() = uiAttributeStretch(this)
-
-/** Creates a new Attribute that changes the color of the text it is applied to. */
-fun ColorAttribute(color: RGBA): Attribute =
-    uiNewColorAttribute(color.r, color.g, color.b, color.a) ?: throw Error()
-
-/** Returns the text color stored in Attribute. */
-val Attribute.color: RGBA get() = memScoped {
-    val r = alloc<DoubleVar>()
-    val g = alloc<DoubleVar>()
-    val b = alloc<DoubleVar>()
-    val a = alloc<DoubleVar>()
-    uiAttributeColor(this@color, r.ptr, g.ptr, b.ptr, a.ptr)
-    RGBA(r.value, g.value, b.value, a.value)
+    /** Returns the type of [Attribute]. */
+    val type: uiAttributeType get() = uiAttributeGetType(ptr)
 }
 
-/** Creates a new Attribute that changes the background color of the text it is applied to. */
-fun BackgroundAttribute(color: RGBA): Attribute =
-    uiNewBackgroundAttribute(color.r, color.g, color.b, color.a) ?: throw Error()
+/** Changes the font family of the text it is applied to. */
+class FamilyAttribute(family: String) : Attribute(uiNewFamilyAttribute(family)) {
 
-/** Creates a new Attribute that changes the type of underline on the text it is applied to. */
-fun UnderlineAttribute(u: uiUnderline): Attribute = uiNewUnderlineAttribute(u) ?: throw Error()
-
-/** Returns the underline type stored in Attribute. */
-val Attribute.underline: uiUnderline get() = uiAttributeUnderline(this)
-
-/** creates a new Attribute that changes the color of the underline on the text it is applied to. */
-fun UnderlineColorAttribute(u: uiUnderlineColor, color: RGBA): Attribute =
-    uiNewUnderlineColorAttribute(u, color.r, color.g, color.b, color.a) ?: throw Error()
-
-/** Returns the underline color kind stored in Attribute. */
-val Attribute.underlineKind: uiUnderlineColor get() = memScoped {
-    val k = alloc<uiUnderlineColorVar>()
-    val r = alloc<DoubleVar>()
-    val g = alloc<DoubleVar>()
-    val b = alloc<DoubleVar>()
-    val a = alloc<DoubleVar>()
-    uiAttributeUnderlineColor(this@underlineKind, k.ptr, r.ptr, g.ptr, b.ptr, a.ptr)
-    k.value
+    /** Returns the font family stored. */
+    val value: String? get() = uiAttributeFamily(ptr)?.toKString()
 }
 
-/** Returns the underline color stored in Attribute. */
-val Attribute.underlineColor: RGBA get() = memScoped {
-    val k = alloc<uiUnderlineColorVar>()
-    val r = alloc<DoubleVar>()
-    val g = alloc<DoubleVar>()
-    val b = alloc<DoubleVar>()
-    val a = alloc<DoubleVar>()
-    uiAttributeUnderlineColor(this@underlineColor, k.ptr, r.ptr, g.ptr, b.ptr, a.ptr)
-    RGBA(r.value, g.value, b.value, a.value)
+/** Changes the size of the text it is applied to, in typographical points. */
+class SizeAttribute(size: Double) : Attribute(uiNewSizeAttribute(size)) {
+
+    /** Returns the font size stored. */
+    val value: Double get() = uiAttributeSize(ptr)
+}
+
+/** Changes the weight of the text it is applied to. */
+class WeightAttribute(weight: uiTextWeight) : Attribute(uiNewWeightAttribute(weight)) {
+
+    /** Returns the font weight stored. */
+    val value: uiTextWeight get() = uiAttributeWeight(ptr)
+}
+
+/** Changes the italic mode of the text it is applied to. */
+class ItalicAttribute(italic: uiTextItalic) : Attribute(uiNewItalicAttribute(italic)) {
+
+    /** uiAttributeItalic() returns the font italic mode stored. */
+    val value: uiTextItalic get() = uiAttributeItalic(ptr)
+}
+
+/** Changes the stretch of the text it is applied to. */
+class StretchAttribute(stretch: uiTextStretch) : Attribute(uiNewStretchAttribute(stretch)) {
+
+    /** Returns the font stretch stored in [Attribute]. */
+    val value: uiTextStretch get() = uiAttributeStretch(ptr)
+}
+
+/** Changes the color of the text it is applied to. */
+class ColorAttribute(color: Color) : Attribute(uiNewColorAttribute(color.r, color.g, color.b, color.a)) {
+
+    /** Returns the text color stored. */
+    val value: Color get() = memScoped {
+        val r = alloc<DoubleVar>()
+        val g = alloc<DoubleVar>()
+        val b = alloc<DoubleVar>()
+        val a = alloc<DoubleVar>()
+        uiAttributeColor(ptr, r.ptr, g.ptr, b.ptr, a.ptr)
+        Color(r.value, g.value, b.value, a.value)
+    }
+}
+
+/** Changes the background color of the text it is applied to. */
+class BackgroundAttribute(color: Color) :
+    Attribute(uiNewBackgroundAttribute(color.r, color.g, color.b, color.a)) {
+
+    //TODO: value
+}
+
+/** Changes the type of underline on the text it is applied to. */
+class UnderlineAttribute(u: uiUnderline) : Attribute(uiNewUnderlineAttribute(u)) {
+
+    /** Returns the underline type stored in [Attribute]. */
+    val value: uiUnderline get() = uiAttributeUnderline(ptr)
+}
+
+/** Changes the color of the underline on the text it is applied to. */
+class UnderlineColorAttribute(kind: uiUnderlineColor, color: Color) : Attribute(
+    uiNewUnderlineColorAttribute(kind, color.r, color.g, color.b, color.a)) {
+
+    /** Returns the underline color kind stored. */
+    val kind: uiUnderlineColor get() = memScoped {
+        val kind = alloc<uiUnderlineColorVar>()
+        val r = alloc<DoubleVar>()
+        val g = alloc<DoubleVar>()
+        val b = alloc<DoubleVar>()
+        val a = alloc<DoubleVar>()
+        uiAttributeUnderlineColor(ptr, kind.ptr, r.ptr, g.ptr, b.ptr, a.ptr)
+        kind.value
+    }
+
+    /** Returns the underline color stored. */
+    val color: Color get() = memScoped {
+        val kind = alloc<uiUnderlineColorVar>()
+        val r = alloc<DoubleVar>()
+        val g = alloc<DoubleVar>()
+        val b = alloc<DoubleVar>()
+        val a = alloc<DoubleVar>()
+        uiAttributeUnderlineColor(ptr, kind.ptr, r.ptr, g.ptr, b.ptr, a.ptr)
+        Color(r.value, g.value, b.value, a.value)
+    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
+/** Creates a new Attribute that changes the font family of the text it is applied to.
+ *  otf is copied you may free it after uiNewFeaturesAttribute() returns. */
+class FeaturesAttribute(otf: OpenTypeFeatures) : Attribute(uiNewFeaturesAttribute(otf.ptr)) {
+
+    /** Returns the OpenType features stored. */
+    val value: OpenTypeFeatures get() = OpenTypeFeatures(uiAttributeFeatures(ptr))
+}
+
 /** Represents a set of OpenType feature tag-value pairs, for applying OpenType features to text. */
-typealias OpenTypeFeatures = CPointer<uiOpenTypeFeatures>
-
-/** Creates a new OpenTypeFeatures instance, with no tags yet added. */
-fun OpenTypeFeatures(): OpenTypeFeatures = uiNewOpenTypeFeatures() ?: throw Error()
-
-/** Frees OpenTypeFeatures instance. */
-fun OpenTypeFeatures.dispose() = uiFreeOpenTypeFeatures(this)
+class OpenTypeFeatures(copy: CPointer<uiOpenTypeFeatures>? = null) : Disposable<uiOpenTypeFeatures>(
+    alloc = copy ?: uiNewOpenTypeFeatures()) {
+    override fun free() = uiFreeOpenTypeFeatures(ptr)
+}
 
 /** Makes a copy of otf and returns it. Changing one will not affect the other. */
-fun OpenTypeFeatures.copy(): OpenTypeFeatures = uiOpenTypeFeaturesClone(this) ?: throw Error()
+fun OpenTypeFeatures.copy() = OpenTypeFeatures(uiOpenTypeFeaturesClone(ptr))
 
 /** Adds the given feature tag and value to OpenTypeFeatures. If there is already a value
  *  associated with the specified tag in otf, the old value is removed. */
 fun OpenTypeFeatures.add(tag: String, value: Int) =
-    uiOpenTypeFeaturesAdd(this, tag[0].toByte(), tag[1].toByte(), tag[2].toByte(), tag[3].toByte(), value)
+    uiOpenTypeFeaturesAdd(ptr, tag[0].toByte(), tag[1].toByte(), tag[2].toByte(), tag[3].toByte(), value)
 
 /** Removes the given feature tag and value from OpenTypeFeatures. If the tag is not present
  *  in OpenTypeFeatures, it does nothing. */
 fun OpenTypeFeatures.remove(tag: String) =
-    uiOpenTypeFeaturesRemove(this, tag[0].toByte(), tag[1].toByte(), tag[2].toByte(), tag[3].toByte())
+    uiOpenTypeFeaturesRemove(ptr, tag[0].toByte(), tag[1].toByte(), tag[2].toByte(), tag[3].toByte())
 
 /** Determines whether the given feature tag is present in OpenTypeFeatures. */
 fun OpenTypeFeatures.get(tag: String): Int = memScoped {
     val value = alloc<IntVar>()
-    uiOpenTypeFeaturesGet(this@get, tag[0].toByte(), tag[1].toByte(), tag[2].toByte(), tag[3].toByte(), value.ptr)
+    uiOpenTypeFeaturesGet(ptr, tag[0].toByte(), tag[1].toByte(), tag[2].toByte(), tag[3].toByte(), value.ptr)
     value.value
 }
 
@@ -436,26 +525,12 @@ fun OpenTypeFeatures.get(tag: String): Int = memScoped {
 //// modify otf while uiOpenTypeFeaturesForEach() is running.
 //void uiOpenTypeFeaturesForEach(const uiOpenTypeFeatures *otf, uiOpenTypeFeaturesForEachFunc f, void *data)
 
-/** Creates a new Attribute that changes the font family of the text it is applied to.
- *  otf is copied you may free it after uiNewFeaturesAttribute() returns. */
-fun FeaturesAttribute(otf: OpenTypeFeatures): Attribute = uiNewFeaturesAttribute(otf) ?: throw Error()
-
-/** Returns the OpenType features stored in Attribute. */
-val Attribute.features: OpenTypeFeatures? get() = uiAttributeFeatures(this)
-
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Represents a string of UTF-8 text that can be embellished with formatting attributes. */
-class AttributedString internal constructor(init: String) : Disposable {
-    internal var _ptr: CPointer<uiAttributedString>? = uiNewAttributedString(init)
-    internal val ptr get() = _ptr ?: throw Error("AttributedString is disposed")
-    override val disposed get() = _ptr == null
-
-/** Destroys the AttributedString. It will also free all Attributes within. */
-    override fun dispose() {
-        uiFreeAttributedString(ptr)
-        _ptr = null
-    }
+class AttributedString(init: String) : Disposable<uiAttributedString>(
+    alloc = uiNewAttributedString(init)) {
+    override fun free() = uiFreeAttributedString(ptr)
 }
 
 /** Creates a new AttributedString from initial String. The string will be entirely unattributed. */
@@ -482,7 +557,7 @@ fun AttributedString.delete(start: Int, end: Int) =
 /** Sets a in the byte range [start, end). Any existing attributes in that byte range of the same type are
  *  removed. Takes ownership of [a] you should not use it after uiAttributedStringSetAttribute() returns. */
 fun AttributedString.setAttribute(a: Attribute, start: Int, end: Int) =
-    uiAttributedStringSetAttribute(ptr, a, start.signExtend(), end.signExtend())
+    uiAttributedStringSetAttribute(ptr, a.ptr, start.signExtend(), end.signExtend())
 
 //// uiAttributedStringForEachAttributeFunc is the type of the function
 //// invoked by uiAttributedStringForEachAttribute() for every
@@ -510,46 +585,48 @@ fun AttributedString.setAttribute(a: Attribute, start: Int, end: Int) =
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Provides a complete description of a font where one is needed.  */
-typealias FontDescriptor = CPointer<uiFontDescriptor>
-
-/** Frees resources allocated in desc by uiFontButtonFont().
- *  After calling uiFreeFontButtonFont(), the contents of desc should be assumed to be undefined
- *  (though since you allocate desc itself, you can safely reuse desc for other font descriptors).
- *  Calling uiFreeFontButtonFont() on a uiFontDescriptor not returned by uiFontButtonFont()
- *  results in undefined behavior. */
-fun FontDescriptor.dispose() = uiFreeFontButtonFont(this)
+class Font : Disposable<uiFontDescriptor>(
+    alloc = nativeHeap.alloc<uiFontDescriptor>().ptr) {
+    override fun clear() {
+        if (ptr.pointed.Family != null) uiFreeFontButtonFont(ptr)
+    }
+    override fun free() {
+        clear()
+        nativeHeap.free(ptr)
+    }
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** Concrete representation of a AttributedString that can be displayed in a uiDrawContext. */
-typealias DrawTextLayout = CPointer<uiDrawTextLayout>
-
-/** Creates a new DrawTextLayout from the given parameters. */
-fun DrawTextLayout(
+/** Representation of a [AttributedString] that can be displayed in a [DrawContext]. */
+class TextLayout(
     string: AttributedString,
-    defaultFont: FontDescriptor,
-	width: Double,
+    defaultFont: Font,
+    width: Double,
     align: uiDrawTextAlign
-): DrawTextLayout = memScoped {
-    val params = alloc<uiDrawTextLayoutParams>()
-	params.String = string.ptr
-	params.DefaultFont = defaultFont
-	params.Width = width
-	params.Align = align
-    return uiDrawNewTextLayout(params.ptr) ?: throw Error()
-}
+) : Disposable<uiDrawTextLayout>(
+    alloc = memScoped {
+        val params = alloc<uiDrawTextLayoutParams>().apply {
+            String = string.ptr
+            DefaultFont = defaultFont.ptr
+            Width = width
+            Align = align
+        }
+        uiDrawNewTextLayout(params.ptr)
+    }
+) {
 
-/** Frees DrawTextLayout. The underlying AttributedString is not freed. */
-fun DrawTextLayout.dispose() = uiDrawFreeTextLayout(this);
+    /** Frees [TextLayout]. The underlying [AttributedString] is not freed. */
+    override fun free() = uiDrawFreeTextLayout(ptr)
 
-/** Returns the size of DrawTextLayout. */
-val DrawTextLayout.extents: Size
-    get() = memScoped {
+    /** Returns the size of [TextLayout]. */
+    val size: Size get() = memScoped {
         val width = alloc<DoubleVar>()
-        var height = alloc<DoubleVar>()
-        uiDrawTextLayoutExtents(this@extents, width.ptr, height.ptr)
+        val height = alloc<DoubleVar>()
+        uiDrawTextLayoutExtents(ptr, width.ptr, height.ptr)
         Size(width.value, height.value)
     }
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -558,53 +635,54 @@ typealias DrawContext = CPointer<uiDrawContext>
 /** Draw a path filled with a color. */
 fun DrawContext.fill(
     mode: uiDrawFillMode,
-    brush: DrawBrush,
-    block: DrawPath.() -> Unit
+    brush: Brush,
+    block: Path.() -> Unit
 ) {
-    val path = uiDrawNewPath(mode) ?: throw Error()
+    val path = Path(mode)
     path.block()
-    uiDrawPathEnd(path)
-    uiDrawFill(this, path, brush.ptr)
-    uiDrawFreePath(path)
+    uiDrawPathEnd(path.ptr)
+    uiDrawFill(this, path.ptr, brush.ptr)
+    path.dispose()
 }
 
 /** Draw a path in the context. */
 fun DrawContext.stroke(
     mode: uiDrawFillMode,
-    brush: DrawBrush,
-    stroke: DrawStrokeParams,
-    block: DrawPath.() -> Unit
+    brush: Brush,
+    stroke: Stroke,
+    block: Path.() -> Unit
 ) {
-    val path = uiDrawNewPath(mode) ?: throw Error()
+    val path = Path(mode)
     path.block()
-    uiDrawPathEnd(path)
-    uiDrawStroke(this, path, brush.ptr, stroke.ptr)
-    uiDrawFreePath(path)
+    uiDrawPathEnd(path.ptr)
+    uiDrawStroke(this, path.ptr, brush.ptr, stroke.ptr)
+    path.dispose()
 }
 
 /** Apply a different transform matrix to the context. */
-fun DrawContext.transform(block: DrawMatrix.() -> Unit) = memScoped {
-    val matrix = alloc<uiDrawMatrix>().ptr
-    uiDrawMatrixSetIdentity(matrix)
+fun DrawContext.transform(block: Matrix.() -> Unit) {
+    val matrix = Matrix()
+    uiDrawMatrixSetIdentity(matrix.ptr)
     matrix.block()
-    uiDrawTransform(this@transform, matrix)
+    uiDrawTransform(this, matrix.ptr)
+    matrix.dispose()
 }
 
 /** draws formatted text with the top-left point at ([x], [y]). */
 fun DrawContext.draw(
     string: AttributedString,
-    defaultFont: FontDescriptor,
-	width: Double,
+    defaultFont: Font,
+    width: Double,
     align: uiDrawTextAlign,
     x: Double,
     y: Double
 ) {
-    val layout = DrawTextLayout(string, defaultFont, width, align)
-    uiDrawText(this, layout, x, y)
+    val layout = TextLayout(string, defaultFont, width, align)
+    uiDrawText(this, layout.ptr, x, y)
     layout.dispose()
 }
 
-//TODO fun DrawContext.clip(path: DrawPath) = uiDrawClip(this, path)
+//TODO fun DrawContext.clip(path: Path) = uiDrawClip(this, path)
 
 //TODO fun DrawContext.save() = uiDrawSave(this)
 

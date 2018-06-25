@@ -24,7 +24,7 @@ fun main(args: Array<String>) = appWindow(
         padded = true
 
         val datapoints = Array(10) { Spinbox(0, 100) { value = random() % 101 } }
-        val colorButton = ColorButton() { value = RGBA(colorDodgerBlue) }
+        val colorButton = ColorButton() { value = Color(colorDodgerBlue) }
         var currentPoint = -1
 
         fun pointLocations(width: Double, height: Double, xs: DoubleArray, ys: DoubleArray) {
@@ -39,10 +39,10 @@ fun main(args: Array<String>) = appWindow(
         }
 
         val histogram = Area {
-            val brush = DrawBrush()
+            val brush = Brush()
 
             // make a stroke for both the axes and the histogram line
-            val stroke = DrawStrokeParams {
+            val stroke = Stroke {
                 Cap = uiDrawLineCapFlat
                 Join = uiDrawLineJoinMiter
                 Thickness = 2.0

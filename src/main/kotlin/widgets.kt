@@ -34,98 +34,22 @@ import platform.posix.*
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-/** Represents a GUI control (widget). It provides methods common to all Controls. */
-abstract class Control(internal var _ptr: COpaquePointer?) {
-    internal val ctl: CPointer<uiControl> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
-    internal val ctlDestroy = ctl.pointed.Destroy
-    internal val ref = StableRef.create(this)
-    init {
-        controls[ctl] = this
-        ctl.pointed.Destroy = staticCFunction(::_Destroy)
-    }
-    internal open fun dispose() {
-        ref.dispose()
-        _ptr = null
-    }
-}
-
-private var controls = mutableMapOf<CPointer<uiControl>, Control>()
-
-private fun _Destroy(ctl: CPointer<uiControl>?) {
-    with (controls[ctl!!] ?: throw Error("Control is destroyed")) {
-        ctlDestroy?.invoke(ctl)
-        controls.remove(ctl)
-        dispose()
-    }
-}
-
-/** Returns `true` if Control was destroyed - in this case all other operations
- *  are invalid and will `throw Error("Control is destroyed")`. */
-val Control.destroyed: Boolean get() = _ptr == null
-
-/** Destroy and free all allocated resources. */
-fun Control.destroy() = uiControlDestroy(ctl)
-
-/** Returns the OS-level handle associated with this Control. */
-fun Control.getHandle(): Long = uiControlHandle(ctl)
-
-/** Returns whether the control is a top level one or not. */
-val Control.toplevel: Boolean
-    get() = uiControlToplevel(ctl) != 0
-
-/** Returns parent of the control or `null` for detached. */
-var Control.parent: Control?
-    get() = controls[uiControlParent(ctl)]
-    set(parent) = uiControlSetParent(ctl, parent?.ctl)
-
-/** Whether the Control is enabled. */
-fun Control.isEnabled(): Boolean = uiControlEnabled(ctl) != 0
-
-/** Whether the Control and all parents are enabled. */
-fun Control.isEnabledToUser(): Boolean = uiControlEnabledToUser(ctl) != 0
-
-/** Enables the Control. */
-fun Control.enable() = uiControlEnable(ctl)
-
-/** Disables the Control. */
-fun Control.disable() = uiControlDisable(ctl)
-
-/** Whether the Control should be enabled or disabled. Defaults to `true`. */
-var Control.enabled: Boolean
-    get() = isEnabled()
-    set(enabled) = if (enabled) enable() else disable()
-
-/** Whether the Control is visible. */
-fun Control.isVisible(): Boolean = uiControlVisible(ctl) != 0
-
-/** Shows the Control. */
-fun Control.show() = uiControlShow(ctl)
-
-/** Hides the Control. Hidden controls do not participate in layout
- *  (that is, Box, Grid, etc. does not reserve space for hidden controls). */
-fun Control.hide() = uiControlHide(ctl)
-
-/** Whether the Control should be visible or hidden. Defaults to `true`. */
-var Control.visible: Boolean
-    get() = isVisible()
-    set(visible) = if (visible) show() else hide()
-
-///////////////////////////////////////////////////////////////////////////////
-
 /** A simple single line text entry widget. */
-open class Entry internal constructor(_ptr: CPointer<uiEntry>?) : Control(_ptr) {
+open class Entry internal constructor(alloc: CPointer<uiEntry>?
+) : Control<uiEntry>(alloc) {
     constructor(block: Entry.() -> Unit = {}): this(uiNewEntry()) { apply(block) }
-    internal val ptr: CPointer<uiEntry> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (Entry.() -> Unit)? = null
 }
 
 /** Text entry widget that mask the input, useful to edit passwords or other sensible data. */
-class PasswordEntry(block: PasswordEntry.() -> Unit = {}) : Entry(uiNewPasswordEntry()) {
+class PasswordEntry(block: PasswordEntry.() -> Unit = {}
+) : Entry(uiNewPasswordEntry()) {
     init { apply(block) }
 }
 
 /** Text entry widget to search text. */
-class SearchEntry(block: SearchEntry.() -> Unit = {}) : Entry(uiNewSearchEntry()) {
+class SearchEntry(block: SearchEntry.() -> Unit = {}
+) : Entry(uiNewSearchEntry()) {
     init { apply(block) }
 }
 
@@ -135,14 +59,14 @@ var Entry.value: String
     set(value) = uiEntrySetText(ptr, value)
 
 /** Whether the user is allowed to change the entry text. Defaults to `true`. */
-var Entry.readOnly: Boolean
+var Entry.readonly: Boolean
     get() = uiEntryReadOnly(ptr) != 0
-    set(readOnly) = uiEntrySetReadOnly(ptr, if (readOnly) 1 else 0)
+    set(readonly) = uiEntrySetReadOnly(ptr, if (readonly) 1 else 0)
 
 /** Funcion to be run when the user makes a change to the Entry.
  *  Only one function can be registered at a time. */
-fun Entry.action(proc: Entry.() -> Unit) {
-    action = proc
+fun Entry.action(block: Entry.() -> Unit) {
+    action = block
     uiEntryOnChanged(ptr, staticCFunction(::_Entry), ref.asCPointer())
 }
 
@@ -156,15 +80,15 @@ private fun _Entry(ptr: CPointer<uiEntry>?, ref: COpaquePointer?) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A multiline text entry widget. */
-open class MultilineEntry internal constructor(_ptr: CPointer<uiMultilineEntry>?) : Control(_ptr) {
+open class MultilineEntry internal constructor(alloc: CPointer<uiMultilineEntry>?
+) : Control<uiMultilineEntry>(alloc) {
     constructor(block: MultilineEntry.() -> Unit = {}): this(uiNewMultilineEntry()) { apply(block) }
-    internal val ptr: CPointer<uiMultilineEntry> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (MultilineEntry.() -> Unit)? = null
 }
 
 /** A non wrapping multiline text entry widget. */
-class NonWrappingMultilineEntry(block: NonWrappingMultilineEntry.() -> Unit = {}) :
-    MultilineEntry(uiNewNonWrappingMultilineEntry()) {
+class NonWrappingMultilineEntry(block: NonWrappingMultilineEntry.() -> Unit = {}
+) : MultilineEntry(uiNewNonWrappingMultilineEntry()) {
     init { apply(block) }
 }
 
@@ -174,17 +98,17 @@ var MultilineEntry.value: String
     set(value) = uiMultilineEntrySetText(ptr, value)
 
 /** Whether the user is allowed to change the entry text. */
-var MultilineEntry.readOnly: Boolean
+var MultilineEntry.readonly: Boolean
     get() = uiMultilineEntryReadOnly(ptr) != 0
-    set(readOnly) = uiMultilineEntrySetReadOnly(ptr, if (readOnly) 1 else 0)
+    set(readonly) = uiMultilineEntrySetReadOnly(ptr, if (readonly) 1 else 0)
 
 /** Adds the text to the end of the multiline entry. */
 fun MultilineEntry.append(text: String) = uiMultilineEntryAppend(ptr, text)
 
 /** Funcion to be run when the user makes a change to the MultilineEntry.
  *  Only one function can be registered at a time. */
-fun MultilineEntry.action(proc: MultilineEntry.() -> Unit) {
-    action = proc
+fun MultilineEntry.action(block: MultilineEntry.() -> Unit) {
+    action = block
     uiMultilineEntryOnChanged(ptr, staticCFunction(::_MultilineEntry), ref.asCPointer())
 }
 
@@ -198,8 +122,8 @@ private fun _MultilineEntry(ptr: CPointer<uiMultilineEntry>?, ref: COpaquePointe
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A checkbox widget. */
-class Checkbox(label: String, block: Checkbox.() -> Unit = {}) : Control(uiNewCheckbox(label)) {
-    internal val ptr: CPointer<uiCheckbox> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
+class Checkbox(label: String, block: Checkbox.() -> Unit = {}
+) : Control<uiCheckbox>(uiNewCheckbox(label)) {
     internal var action: (Checkbox.() -> Unit)? = null
     init { apply(block) }
 }
@@ -216,8 +140,8 @@ var Checkbox.value: Boolean
 
 /** Funcion to be run when the user clicks the Checkbox.
  *  Only one function can be registered at a time. */
-fun Checkbox.action(proc: Checkbox.() -> Unit) {
-    action = proc
+fun Checkbox.action(block: Checkbox.() -> Unit) {
+    action = block
     uiCheckboxOnToggled(ptr, staticCFunction(::_Checkbox), ref.asCPointer())
 }
 
@@ -231,8 +155,8 @@ private fun _Checkbox(ptr: CPointer<uiCheckbox>?, ref: COpaquePointer?) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A drop down combo box that allow list selection only. */
-class Combobox(block: Combobox.() -> Unit = {}) : Control(uiNewCombobox()) {
-    internal val ptr: CPointer<uiCombobox> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
+class Combobox(block: Combobox.() -> Unit = {}
+) : Control<uiCombobox>(uiNewCombobox()) {
     internal var action: (Combobox.() -> Unit)? = null
     init { apply(block) }
 }
@@ -248,8 +172,8 @@ var Combobox.value: Int
 
 /** Funcion to be run when the user makes a change to the Combobox.
  *  Only one function can be registered at a time. */
-fun Combobox.action(proc: Combobox.() -> Unit) {
-    action = proc
+fun Combobox.action(block: Combobox.() -> Unit) {
+    action = block
     uiComboboxOnSelected(ptr, staticCFunction(::_Combobox), ref.asCPointer())
 }
 
@@ -263,8 +187,8 @@ private fun _Combobox(ptr: CPointer<uiCombobox>?, ref: COpaquePointer?) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A drop down combo box that allow selection from list or free text entry. */
-class EditableCombobox(block: EditableCombobox.() -> Unit = {}) : Control(uiNewEditableCombobox()) {
-    internal val ptr: CPointer<uiEditableCombobox> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
+class EditableCombobox(block: EditableCombobox.() -> Unit = {}
+) : Control<uiEditableCombobox>(uiNewEditableCombobox()) {
     internal var action: (EditableCombobox.() -> Unit)? = null
     init { apply(block) }
 }
@@ -280,8 +204,8 @@ var EditableCombobox.value: String
 
 /** Funcion to be run when the user makes a change to the EditableCombobox.
  *  Only one function can be registered at a time. */
-fun EditableCombobox.action(proc: EditableCombobox.() -> Unit) {
-    action = proc
+fun EditableCombobox.action(block: EditableCombobox.() -> Unit) {
+    action = block
     uiEditableComboboxOnChanged(ptr, staticCFunction(::_EditableCombobox), ref.asCPointer())
 }
 
@@ -295,8 +219,8 @@ private fun _EditableCombobox(ptr: CPointer<uiEditableCombobox>?, ref: COpaquePo
 ///////////////////////////////////////////////////////////////////////////////
 
 /** An entry widget for numerical values. */
-class Spinbox(min: Int, max: Int, block: Spinbox.() -> Unit = {}) : Control(uiNewSpinbox(min, max)) {
-    internal val ptr: CPointer<uiSpinbox> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
+class Spinbox(min: Int, max: Int, block: Spinbox.() -> Unit = {}
+) : Control<uiSpinbox>(uiNewSpinbox(min, max)) {
     internal var action: (Spinbox.() -> Unit)? = null
     init { apply(block) }
 }
@@ -308,8 +232,8 @@ var Spinbox.value: Int
 
 /** Funcion to be run when the user makes a change to the Spinbox.
  *  Only one function can be registered at a time. */
-fun Spinbox.action(proc: Spinbox.() -> Unit) {
-    action = proc
+fun Spinbox.action(block: Spinbox.() -> Unit) {
+    action = block
     uiSpinboxOnChanged(ptr, staticCFunction(::_Spinbox), ref.asCPointer())
 }
 
@@ -323,8 +247,8 @@ private fun _Spinbox(ptr: CPointer<uiSpinbox>?, ref: COpaquePointer?) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Horizontal slide to set numerical values. */
-class Slider(min: Int, max: Int, block: Slider.() -> Unit = {}) : Control(uiNewSlider(min, max)) {
-    internal val ptr: CPointer<uiSlider> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
+class Slider(min: Int, max: Int, block: Slider.() -> Unit = {}
+) : Control<uiSlider>(uiNewSlider(min, max)) {
     internal var action: (Slider.() -> Unit)? = null
     init { apply(block) }
 }
@@ -336,8 +260,8 @@ var Slider.value: Int
 
 /** Funcion to be run when the user makes a change to the Slider.
  *  Only one function can be registered at a time. */
-fun Slider.action(proc: Slider.() -> Unit) {
-    action = proc
+fun Slider.action(block: Slider.() -> Unit) {
+    action = block
     uiSliderOnChanged(ptr, staticCFunction(::_Slider), ref.asCPointer())
 }
 
@@ -351,8 +275,8 @@ private fun _Slider(ptr: CPointer<uiSlider>?, ref: COpaquePointer?) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A widget that represent a group of radio options. */
-class RadioButtons(block: RadioButtons.() -> Unit = {}) : Control(uiNewRadioButtons()) {
-    internal val ptr: CPointer<uiRadioButtons> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
+class RadioButtons(block: RadioButtons.() -> Unit = {}
+) : Control<uiRadioButtons>(uiNewRadioButtons()) {
     internal var action: (RadioButtons.() -> Unit)? = null
     init { apply(block) }
 }
@@ -368,8 +292,8 @@ var RadioButtons.value: Int
 
 /** Funcion to be run when the user makes a change to the RadioButtons.
  *  Only one function can be registered at a time. */
-fun RadioButtons.action(proc: RadioButtons.() -> Unit) {
-    action = proc
+fun RadioButtons.action(block: RadioButtons.() -> Unit) {
+    action = block
     uiRadioButtonsOnSelected(ptr, staticCFunction(::_RadioButtons), ref.asCPointer())
 }
 
@@ -383,15 +307,16 @@ private fun _RadioButtons(ptr: CPointer<uiRadioButtons>?, ref: COpaquePointer?) 
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A widget to edit date and time. */
-open class DateTimePicker internal constructor(_ptr: CPointer<uiDateTimePicker>?) : Control(_ptr) {
+open class DateTimePicker internal constructor(alloc: CPointer<uiDateTimePicker>?
+) : Control<uiDateTimePicker>(alloc) {
     constructor(block: DateTimePicker.() -> Unit = {}): this(uiNewDateTimePicker()) { apply(block) }
-    internal val ptr: CPointer<uiDateTimePicker> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
     internal var action: (DateTimePicker.() -> Unit)? = null
     internal var defaultFormat = "%c"
 }
 
 /** A widget to edit date. */
-class DatePicker(block: DateTimePicker.() -> Unit = {}) : DateTimePicker(uiNewDatePicker()) {
+class DatePicker(block: DateTimePicker.() -> Unit = {}
+) : DateTimePicker(uiNewDatePicker()) {
     init {
         defaultFormat = "%x"
         apply(block)
@@ -399,7 +324,8 @@ class DatePicker(block: DateTimePicker.() -> Unit = {}) : DateTimePicker(uiNewDa
 }
 
 /** A widget to edit time. */
-class TimePicker(block: DateTimePicker.() -> Unit = {}) : DateTimePicker(uiNewTimePicker()) {
+class TimePicker(block: DateTimePicker.() -> Unit = {}
+) : DateTimePicker(uiNewTimePicker()) {
     init {
         defaultFormat = "%X"
         apply(block)
@@ -436,8 +362,8 @@ fun DateTimePicker.textValue(format: String = defaultFormat): String = memScoped
 
 /** Funcion to be run when the user makes a change to the Picker.
  *  Only one function can be registered at a time. */
-fun DateTimePicker.action(proc: DateTimePicker.() -> Unit) {
-    action = proc
+fun DateTimePicker.action(block: DateTimePicker.() -> Unit) {
+    action = block
     uiDateTimePickerOnChanged(ptr, staticCFunction(::_DateTimePicker), ref.asCPointer())
 }
 
@@ -451,8 +377,8 @@ private fun _DateTimePicker(ptr: CPointer<uiDateTimePicker>?, ref: COpaquePointe
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A static text label. */
-class Label(text: String, block: Label.() -> Unit = {}) : Control(uiNewLabel(text)) {
-    internal val ptr: CPointer<uiLabel> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
+class Label(text: String, block: Label.() -> Unit = {}
+) : Control<uiLabel>(uiNewLabel(text)) {
     init { apply(block) }
 }
 
@@ -464,25 +390,26 @@ var Label.text: String
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A vertical or an horizontal line to visually separate widgets. */
-abstract class Separator(_ptr: CPointer<uiSeparator>?) : Control(_ptr) {
-    internal val ptr: CPointer<uiSeparator> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
-}
+abstract class Separator(alloc: CPointer<uiSeparator>?
+) : Control<uiSeparator>(alloc)
 
 /** An horizontal line to visually separate widgets. */
-class HorizontalSeparator(block: HorizontalSeparator.() -> Unit = {}) : Separator(uiNewHorizontalSeparator()) {
+class HorizontalSeparator(block: HorizontalSeparator.() -> Unit = {}
+) : Separator(uiNewHorizontalSeparator()) {
     init { apply(block) }
 }
 
 /** A vertical line to visually separate widgets. */
-class VerticalSeparator(block: VerticalSeparator.() -> Unit = {}) : Separator(uiNewVerticalSeparator()) {
+class VerticalSeparator(block: VerticalSeparator.() -> Unit = {}
+) : Separator(uiNewVerticalSeparator()) {
     init { apply(block) }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Progress bar widget. */
-class ProgressBar(block: ProgressBar.() -> Unit = {}) : Control(uiNewProgressBar()) {
-    internal val ptr: CPointer<uiProgressBar> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
+class ProgressBar(block: ProgressBar.() -> Unit = {}
+) : Control<uiProgressBar>(uiNewProgressBar()) {
     init { apply(block) }
 }
 
@@ -495,8 +422,8 @@ var ProgressBar.value: Int
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A simple button. */
-class Button(text: String, block: Button.() -> Unit = {}) : Control(uiNewButton(text)) {
-    internal val ptr: CPointer<uiButton> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
+class Button(text: String, block: Button.() -> Unit = {}
+) : Control<uiButton>(uiNewButton(text)) {
     internal var action: (Button.() -> Unit)? = null
     init { apply(block) }
 }
@@ -508,8 +435,8 @@ var Button.text: String
 
 /** Funcion to be run when the user clicks the Button.
  *  Only one function can be registered at a time. */
-fun Button.action(proc: Button.() -> Unit) {
-    action = proc
+fun Button.action(block: Button.() -> Unit) {
+    action = block
     uiButtonOnClicked(ptr, staticCFunction(::_Button), ref.asCPointer())
 }
 
@@ -523,21 +450,21 @@ private fun _Button(ptr: CPointer<uiButton>?, ref: COpaquePointer?) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A button that opens a color palette popup. */
-class ColorButton(block: ColorButton.() -> Unit = {}) : Control(uiNewColorButton()) {
-    internal val ptr: CPointer<uiColorButton> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
+class ColorButton(block: ColorButton.() -> Unit = {}
+) : Control<uiColorButton>(uiNewColorButton()) {
     internal var action: (ColorButton.() -> Unit)? = null
     init { apply(block) }
 }
 
 /** Return or set the currently selected color */
-var ColorButton.value: RGBA
+var ColorButton.value: Color
     get() = memScoped {
         val r = alloc<DoubleVar>()
         val g = alloc<DoubleVar>()
         val b = alloc<DoubleVar>()
         val a = alloc<DoubleVar>()
         uiColorButtonColor(ptr, r.ptr, g.ptr, b.ptr, a.ptr)
-        RGBA(r.value, g.value, b.value, a.value)
+        Color(r.value, g.value, b.value, a.value)
     }
     set(value) {
         uiColorButtonSetColor(ptr, value.r, value.g, value.b, value.a)
@@ -545,8 +472,8 @@ var ColorButton.value: RGBA
 
 /** Funcion to be run when the user makes a change to the ColorButton.
  *  Only one function can be registered at a time. */
-fun ColorButton.action(proc: ColorButton.() -> Unit) {
-    action = proc
+fun ColorButton.action(block: ColorButton.() -> Unit) {
+    action = block
     uiColorButtonOnChanged(ptr, staticCFunction(::_ColorButton), ref.asCPointer())
 }
 
@@ -560,29 +487,30 @@ private fun _ColorButton(ptr: CPointer<uiColorButton>?, ref: COpaquePointer?) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A button that allows users to choose a font when they click on it. */
-class FontButton(block: FontButton.() -> Unit = {}) : Control(uiNewFontButton()) {
-    internal val ptr: CPointer<uiFontButton> get() = _ptr?.reinterpret() ?: throw Error("Control is destroyed")
+class FontButton(block: FontButton.() -> Unit = {}
+) : Control<uiFontButton>(uiNewFontButton()) {
     internal var action: (FontButton.() -> Unit)? = null
-    internal val desc = nativeHeap.alloc<uiFontDescriptor>().ptr
+    internal val font = Font()
     init { apply(block) }
-    override fun dispose() {
-        if (desc.pointed.Family != null) desc.dispose()
-        nativeHeap.free(desc)
-        super.dispose()
+    override fun free() {
+        font.dispose()
+        super.free()
     }
 }
 
 /** Returns the font currently selected in the FontButton. */
-val FontButton.value: FontDescriptor get() {
-    if (desc.pointed.Family != null) desc.dispose()
-    uiFontButtonFont(ptr, desc)
-    return desc
-}
+val FontButton.value: Font
+    get() {
+        font.clear()
+        uiFontButtonFont(ptr, font.ptr)
+        return font
+    }
+//TODO: set
 
 /** Funcion to be run when the font in the FontButton is changed.
  *  Only one function can be registered at a time. */
-fun FontButton.action(proc: FontButton.() -> Unit) {
-    action = proc
+fun FontButton.action(block: FontButton.() -> Unit) {
+    action = block
     uiFontButtonOnChanged(ptr, staticCFunction(::_FontButton), ref.asCPointer())
 }
 

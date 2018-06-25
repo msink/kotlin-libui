@@ -10,7 +10,7 @@ fun main(args: Array<String>) = appWindow(
     add(widget = VerticalBox {
         padded = true
 
-        val scroll = MultilineEntry { readOnly = true }
+        val scroll = MultilineEntry { readonly = true }
         val button = Button("Say Something") {
             action { scroll.append("Saying something\n") }
         }
@@ -19,7 +19,7 @@ fun main(args: Array<String>) = appWindow(
             memScoped {
                 val now = alloc<time_tVar>().apply { value = time(null) }
                 val str = ctime(now.ptr)!!.toKString()
-                if (!scroll.destroyed) scroll.append(str)
+                if (!scroll.disposed) scroll.append(str)
             }
             true
         }
