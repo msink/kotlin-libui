@@ -48,19 +48,19 @@ private val actions = mutableListOf<StableRef<Any>>()
  *  or when a Quit menu item has been clicked.
  *  Only one function may be registered at a time.
  *  @returns `true` when Quit will be called. */
-fun onShouldQuit(proc: () -> Boolean) {
-    val ref = StableRef.create(proc).also { actions.add(it) }
+fun onShouldQuit(block: () -> Boolean) {
+    val ref = StableRef.create(block).also { actions.add(it) }
     uiOnShouldQuit(staticCFunction(::_onBoolHandler), ref.asCPointer())
 }
 
 /** Function to be executed on a timer on the main thread.
  *  @returns `true` to continue and `false` to stop. */
-fun onTimer(milliseconds: Int, proc: () -> Boolean) {
-    val ref = StableRef.create(proc).also { actions.add(it) }
+fun onTimer(milliseconds: Int, block: () -> Boolean) {
+    val ref = StableRef.create(block).also { actions.add(it) }
     uiTimer(milliseconds, staticCFunction(::_onBoolHandler), ref.asCPointer())
 }
 
 private fun _onBoolHandler(ref: COpaquePointer?): Int {
-    val proc = ref!!.asStableRef<() -> Boolean>().get()
-    return if (proc()) 1 else 0
+    val block = ref!!.asStableRef<() -> Boolean>().get()
+    return if (block()) 1 else 0
 }

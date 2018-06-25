@@ -59,14 +59,14 @@ var Entry.value: String
     set(value) = uiEntrySetText(ptr, value)
 
 /** Whether the user is allowed to change the entry text. Defaults to `true`. */
-var Entry.readOnly: Boolean
+var Entry.readonly: Boolean
     get() = uiEntryReadOnly(ptr) != 0
-    set(readOnly) = uiEntrySetReadOnly(ptr, if (readOnly) 1 else 0)
+    set(readonly) = uiEntrySetReadOnly(ptr, if (readonly) 1 else 0)
 
 /** Funcion to be run when the user makes a change to the Entry.
  *  Only one function can be registered at a time. */
-fun Entry.action(proc: Entry.() -> Unit) {
-    action = proc
+fun Entry.action(block: Entry.() -> Unit) {
+    action = block
     uiEntryOnChanged(ptr, staticCFunction(::_Entry), ref.asCPointer())
 }
 
@@ -98,17 +98,17 @@ var MultilineEntry.value: String
     set(value) = uiMultilineEntrySetText(ptr, value)
 
 /** Whether the user is allowed to change the entry text. */
-var MultilineEntry.readOnly: Boolean
+var MultilineEntry.readonly: Boolean
     get() = uiMultilineEntryReadOnly(ptr) != 0
-    set(readOnly) = uiMultilineEntrySetReadOnly(ptr, if (readOnly) 1 else 0)
+    set(readonly) = uiMultilineEntrySetReadOnly(ptr, if (readonly) 1 else 0)
 
 /** Adds the text to the end of the multiline entry. */
 fun MultilineEntry.append(text: String) = uiMultilineEntryAppend(ptr, text)
 
 /** Funcion to be run when the user makes a change to the MultilineEntry.
  *  Only one function can be registered at a time. */
-fun MultilineEntry.action(proc: MultilineEntry.() -> Unit) {
-    action = proc
+fun MultilineEntry.action(block: MultilineEntry.() -> Unit) {
+    action = block
     uiMultilineEntryOnChanged(ptr, staticCFunction(::_MultilineEntry), ref.asCPointer())
 }
 
@@ -140,8 +140,8 @@ var Checkbox.value: Boolean
 
 /** Funcion to be run when the user clicks the Checkbox.
  *  Only one function can be registered at a time. */
-fun Checkbox.action(proc: Checkbox.() -> Unit) {
-    action = proc
+fun Checkbox.action(block: Checkbox.() -> Unit) {
+    action = block
     uiCheckboxOnToggled(ptr, staticCFunction(::_Checkbox), ref.asCPointer())
 }
 
@@ -172,8 +172,8 @@ var Combobox.value: Int
 
 /** Funcion to be run when the user makes a change to the Combobox.
  *  Only one function can be registered at a time. */
-fun Combobox.action(proc: Combobox.() -> Unit) {
-    action = proc
+fun Combobox.action(block: Combobox.() -> Unit) {
+    action = block
     uiComboboxOnSelected(ptr, staticCFunction(::_Combobox), ref.asCPointer())
 }
 
@@ -204,8 +204,8 @@ var EditableCombobox.value: String
 
 /** Funcion to be run when the user makes a change to the EditableCombobox.
  *  Only one function can be registered at a time. */
-fun EditableCombobox.action(proc: EditableCombobox.() -> Unit) {
-    action = proc
+fun EditableCombobox.action(block: EditableCombobox.() -> Unit) {
+    action = block
     uiEditableComboboxOnChanged(ptr, staticCFunction(::_EditableCombobox), ref.asCPointer())
 }
 
@@ -232,8 +232,8 @@ var Spinbox.value: Int
 
 /** Funcion to be run when the user makes a change to the Spinbox.
  *  Only one function can be registered at a time. */
-fun Spinbox.action(proc: Spinbox.() -> Unit) {
-    action = proc
+fun Spinbox.action(block: Spinbox.() -> Unit) {
+    action = block
     uiSpinboxOnChanged(ptr, staticCFunction(::_Spinbox), ref.asCPointer())
 }
 
@@ -260,8 +260,8 @@ var Slider.value: Int
 
 /** Funcion to be run when the user makes a change to the Slider.
  *  Only one function can be registered at a time. */
-fun Slider.action(proc: Slider.() -> Unit) {
-    action = proc
+fun Slider.action(block: Slider.() -> Unit) {
+    action = block
     uiSliderOnChanged(ptr, staticCFunction(::_Slider), ref.asCPointer())
 }
 
@@ -292,8 +292,8 @@ var RadioButtons.value: Int
 
 /** Funcion to be run when the user makes a change to the RadioButtons.
  *  Only one function can be registered at a time. */
-fun RadioButtons.action(proc: RadioButtons.() -> Unit) {
-    action = proc
+fun RadioButtons.action(block: RadioButtons.() -> Unit) {
+    action = block
     uiRadioButtonsOnSelected(ptr, staticCFunction(::_RadioButtons), ref.asCPointer())
 }
 
@@ -362,8 +362,8 @@ fun DateTimePicker.textValue(format: String = defaultFormat): String = memScoped
 
 /** Funcion to be run when the user makes a change to the Picker.
  *  Only one function can be registered at a time. */
-fun DateTimePicker.action(proc: DateTimePicker.() -> Unit) {
-    action = proc
+fun DateTimePicker.action(block: DateTimePicker.() -> Unit) {
+    action = block
     uiDateTimePickerOnChanged(ptr, staticCFunction(::_DateTimePicker), ref.asCPointer())
 }
 
@@ -435,8 +435,8 @@ var Button.text: String
 
 /** Funcion to be run when the user clicks the Button.
  *  Only one function can be registered at a time. */
-fun Button.action(proc: Button.() -> Unit) {
-    action = proc
+fun Button.action(block: Button.() -> Unit) {
+    action = block
     uiButtonOnClicked(ptr, staticCFunction(::_Button), ref.asCPointer())
 }
 
@@ -472,8 +472,8 @@ var ColorButton.value: Color
 
 /** Funcion to be run when the user makes a change to the ColorButton.
  *  Only one function can be registered at a time. */
-fun ColorButton.action(proc: ColorButton.() -> Unit) {
-    action = proc
+fun ColorButton.action(block: ColorButton.() -> Unit) {
+    action = block
     uiColorButtonOnChanged(ptr, staticCFunction(::_ColorButton), ref.asCPointer())
 }
 
@@ -499,16 +499,18 @@ class FontButton(block: FontButton.() -> Unit = {}
 }
 
 /** Returns the font currently selected in the FontButton. */
-val FontButton.value: Font get() {
-    font.clear()
-    uiFontButtonFont(ptr, font.ptr)
-    return font
-}
+val FontButton.value: Font
+    get() {
+        font.clear()
+        uiFontButtonFont(ptr, font.ptr)
+        return font
+    }
+//TODO: set
 
 /** Funcion to be run when the font in the FontButton is changed.
  *  Only one function can be registered at a time. */
-fun FontButton.action(proc: FontButton.() -> Unit) {
-    action = proc
+fun FontButton.action(block: FontButton.() -> Unit) {
+    action = block
     uiFontButtonOnChanged(ptr, staticCFunction(::_FontButton), ref.asCPointer())
 }
 

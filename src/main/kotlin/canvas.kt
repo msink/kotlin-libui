@@ -91,8 +91,8 @@ fun ScrollingArea.scrollTo(x: Double, y: Double, width: Double, height: Double) 
 
 /** Funcion to be run when the area was created or got resized with [uiAreaDrawParams] as parameter.
  *  Only one function can be registered at a time. */
-fun Area.draw(proc: Area.(params: uiAreaDrawParams) -> Unit) {
-    draw = proc
+fun Area.draw(block: Area.(params: uiAreaDrawParams) -> Unit) {
+    draw = block
 }
 
 @Suppress("UNUSED_PARAMETER")
@@ -109,8 +109,8 @@ private fun _Draw(
 
 /** Funcion to be run when the mouse was moved or clicked over the area with [uiAreaMouseEvent] as parameter.
  *  Only one function can be registered at a time. */
-fun Area.mouseEvent(proc: Area.(event: uiAreaMouseEvent) -> Unit) {
-    mouseEvent = proc
+fun Area.mouseEvent(block: Area.(event: uiAreaMouseEvent) -> Unit) {
+    mouseEvent = block
 }
 
 @Suppress("UNUSED_PARAMETER")
@@ -127,8 +127,8 @@ private fun _MouseEvent(
 
 /** Funcion to be run when the mouse entered (`left == false`) or left the area.
  *  Only one function can be registered at a time. */
-fun Area.mouseCrossed(proc: Area.(left: Boolean) -> Unit) {
-    mouseCrossed = proc
+fun Area.mouseCrossed(block: Area.(left: Boolean) -> Unit) {
+    mouseCrossed = block
 }
 
 @Suppress("UNUSED_PARAMETER")
@@ -141,8 +141,8 @@ private fun _MouseCrossed(handler: CPointer<uiAreaHandler>?, area: CPointer<uiAr
 
 /** Funcion to be run to indicate that a drag should be ended. Only implemented on Windows.
  *  Only one function can be registered at a time. */
-fun Area.dragBroken(proc: Area.() -> Unit) {
-    dragBroken = proc
+fun Area.dragBroken(block: Area.() -> Unit) {
+    dragBroken = block
 }
 
 @Suppress("UNUSED_PARAMETER")
@@ -156,8 +156,8 @@ private fun _DragBroken(handler: CPointer<uiAreaHandler>?, area: CPointer<uiArea
 /** Funcion to be run when a key was pressed. Return `true` to indicate that the key event was handled.
  *  (a menu item with that accelerator won't activate, no error sound on macOS). Event is an [uiAreaKeyEvent]
  *  Only one function can be registered at a time. */
-fun Area.keyEvent(proc: Area.(event: uiAreaKeyEvent) -> Boolean) {
-    keyEvent = proc
+fun Area.keyEvent(block: Area.(event: uiAreaKeyEvent) -> Boolean) {
+    keyEvent = block
 }
 
 @Suppress("UNUSED_PARAMETER")

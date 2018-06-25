@@ -99,7 +99,7 @@ fun Window.dataChoosersPage() = HorizontalBox() {
         add(widget = Grid {
             padded = true
 
-            val entry1 = Entry() { readOnly = true }
+            val entry1 = Entry() { readonly = true }
             val button1 = Button("Open File") {
                 action {
                     entry1.value = OpenFileDialog() ?: "(cancelled)"
@@ -108,7 +108,7 @@ fun Window.dataChoosersPage() = HorizontalBox() {
             add(widget = button1, y = 0, x = 0)
             add(widget = entry1, y = 0, x = 1, hexpand = true)
 
-            val entry2 = Entry() { readOnly = true }
+            val entry2 = Entry() { readonly = true }
             val button2 = Button("Save File") {
                 action {
                     entry2.value = SaveFileDialog() ?: "(cancelled)"

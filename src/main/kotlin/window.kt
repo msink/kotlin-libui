@@ -61,8 +61,8 @@ var Window.contentSize: SizeInt
 fun Window.add(widget: Control<*>) = uiWindowSetChild(ptr, widget.ctl)
 
 /** Function to be run when window content size change. */
-fun Window.onResize(proc: Window.() -> Unit) {
-    onResize = proc
+fun Window.onResize(block: Window.() -> Unit) {
+    onResize = block
 }
 
 @Suppress("UNUSED_PARAMETER")
@@ -75,8 +75,8 @@ private fun _Resize(ptr: CPointer<uiWindow>?, ref: COpaquePointer?) {
 /** Function to be run when the user clicks the Window's close button.
  *  Only one function can be registered at a time.
  *  @returns [true] if window is disposed */
-fun Window.onClose(proc: Window.() -> Boolean) {
-    onClose = proc
+fun Window.onClose(block: Window.() -> Boolean) {
+    onClose = block
 }
 
 @Suppress("UNUSED_PARAMETER")

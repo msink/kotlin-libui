@@ -10,11 +10,11 @@ import kotlinx.cinterop.*
  *    to be used after being disposed.
  */
 abstract class Disposable<T : CPointed>(alloc: CPointer<T>?) {
-    internal var _ptr: CPointer<T>? = alloc
+    internal var _ptr: CPointer<T>? = alloc ?: throw Error("Resource not allocated")
     internal val ptr: CPointer<T> get() = _ptr ?: throw Error("Resource is disposed")
 
     /** Free all allocated native resources. */
-    internal open fun free() {}
+    internal abstract fun free()
 
     /** Frees all additional native resources, except one allocated during construction. */
     internal open fun clear() {}
