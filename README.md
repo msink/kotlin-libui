@@ -169,6 +169,7 @@ It's still not real DSL, but much better.
 - [drawtext](samples/drawtext)
 - [datetime](samples/datetime)
 - [timer](samples/timer)
+- [logo](samples/logo)
 
 ## Work in progress!
 
