@@ -20,31 +20,31 @@ fun main(args: Array<String>) = appWindow(
 
         numColumns { 9 }
         columnType { when (it) {
-            3, 4 -> uiTableDataTypeColor
-            5    -> uiTableDataTypeImage
-            7, 8 -> uiTableDataTypeInt
-            else -> uiTableDataTypeString
+            3, 4 -> uiTableValueTypeColor
+            5    -> uiTableValueTypeImage
+            7, 8 -> uiTableValueTypeInt
+            else -> uiTableValueTypeString
         }}
         numRows { 15 }
         getCellValue { row, col -> when (col) {
-            0 -> TableDataString("Row $row")
-            1 -> TableDataString("Part")
-            2 -> TableDataString(col2text[row])
+            0 -> TableValueString("Row $row")
+            1 -> TableValueString("Part")
+            2 -> TableValueString(col2text[row])
             3 -> when (row) {
-                     yellowRow -> TableDataColor(RGBA(1.0, 1.0, 0.0))
-                     3         -> TableDataColor(RGBA(1.0, 0.0, 0.0))
-                     11        -> TableDataColor(RGBA(0.0, 0.5, 1.0, 0.5))
+                     yellowRow -> TableValueColor(Color(r=1.0, g=1.0, b=0.0))
+                     3         -> TableValueColor(Color(r=1.0, g=0.0, b=0.0))
+                     11        -> TableValueColor(Color(r=0.0, g=0.5, b=1.0, a=0.5))
                      else      -> null
                  }
-            4 -> if ((row % 2) == 1) TableDataColor(RGBA(0.5, 0.0, 0.75)) else null
-            5 -> if (row < 8) TableDataImage(image0) else TableDataImage(image1)
-            6 -> TableDataString("Make Yellow")
-            7 -> TableDataInt(checkStates[row])
+            4 -> if ((row % 2) == 1) TableValueColor(Color(r=0.5, g=0.0, b=0.75)) else null
+            5 -> if (row < 8) TableValueImage(image0) else TableValueImage(image1)
+            6 -> TableValueString("Make Yellow")
+            7 -> TableValueInt(checkStates[row])
             8 -> when (row) {
-                 0    -> TableDataInt(0)
-                 13   -> TableDataInt(100)
-                 14   -> TableDataInt(-1)
-                 else -> TableDataInt(50)
+                 0    -> TableValueInt(0)
+                 13   -> TableValueInt(100)
+                 14   -> TableValueInt(-1)
+                 else -> TableValueInt(50)
             }
             else -> null
         }}
