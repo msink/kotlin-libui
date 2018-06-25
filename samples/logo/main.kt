@@ -1,13 +1,22 @@
 import libui.*
+import kotlin.math.PI
 
 fun main(args: Array<String>) = appWindow(
-    title = "Kotlin Logo",
+    title = "Kotlin Logo (click to rotate)",
     width = 500,
     height = 500,
     margined = false
 ) {
     add(widget = Area {
         val brush = Brush()
+        var angle = 0.0
+
+        mouseEvent {
+            if (it.Down != 0) {
+                angle += PI / 2.0
+                queueRedrawAll()
+            }
+        }
 
         draw {
             with (it.Context!!) {
@@ -18,6 +27,7 @@ fun main(args: Array<String>) = appWindow(
 
                 transform {
                     scale(0.0, 0.0, it.AreaWidth / 60.0, it.AreaHeight / 60.0)
+                    rotate(it.AreaWidth / 2.0, it.AreaHeight / 2.0, angle)
                 }
 
                 fill(uiDrawFillModeWinding, brush.linear(
