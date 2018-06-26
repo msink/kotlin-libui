@@ -63,11 +63,10 @@ fun main(args: Array<String>) = appWindow(
 
     add(widget = VerticalBox {
         padded = true
-        add(stretchy = true, widget = Table(model, {
+        add(stretchy = true, widget = Table(model, 3, {
             textColumn("Column 1", 0, uiTableModelColumnNeverEditable)
             imageTextColumn("Column 2", 5, 1, uiTableModelColumnNeverEditable, 4)
             textColumn("Editable", 2, uiTableModelColumnAlwaysEditable)
-            setRowBackgroundColorModelColumn(3)
             checkboxColumn("Checkboxes", 7, uiTableModelColumnAlwaysEditable)
             buttonColumn("Buttons", 6, uiTableModelColumnAlwaysEditable)
             progressBarColumn("Progress Bar", 8)

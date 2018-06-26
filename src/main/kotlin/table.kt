@@ -172,8 +172,13 @@ private fun _SetCellValue(
 
 ///////////////////////////////////////////////////////////////////////////////
 
-class Table(val model: TableModel, block: Table.() -> Unit = {}) : Control<uiTable>(
-    alloc = uiNewTable(model.ptr)) {
+class Table(val model: TableModel, val bgModel: Int, block: Table.() -> Unit = {}) : Control<uiTable>(
+    alloc = memScoped {
+        val params = alloc<uiTableParams>().apply {
+            Model = model.ptr
+            RowBackgroundColorModelColumn = bgModel
+        }
+        uiNewTable(params.ptr)}) {
     init { apply(block) }
     override fun free() {
         model.free()
@@ -256,6 +261,3 @@ fun Table.buttonColumn(
     buttonTextModelColumn: Int,
     buttonClickableModelColumn: Int
 ) = uiTableAppendButtonColumn(ptr, name, buttonTextModelColumn, buttonClickableModelColumn)
-
-fun Table.setRowBackgroundColorModelColumn(modelColumn: Int) =
-    uiTableSetRowBackgroundColorModelColumn(ptr, modelColumn)
