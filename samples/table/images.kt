@@ -1,6 +1,6 @@
 import kotlinx.cinterop.*
 
-val image0_16x16 = cValuesOf(
+val `andlabs_16x16test_24june2016.png` = cValuesOf(
     0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(),
     0xFF89C57C.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFF89C57C.toInt(),
     0xFF89C57C.toInt(), 0xFFFFFB43.toInt(), 0xFFFF4079.toInt(), 0xFFFF4079.toInt(), 0xFFFF4079.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFF4079.toInt(), 0xFFFF4079.toInt(), 0xFFFF4079.toInt(), 0xFFFF4079.toInt(), 0xFFFFFB43.toInt(), 0xFF89C57C.toInt(),
@@ -19,7 +19,7 @@ val image0_16x16 = cValuesOf(
     0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt()
 )
 
-val image0_32x32 = cValuesOf(
+val `andlabs_32x32test_24june2016.png` = cValuesOf(
     0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(),
     0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(),
     0xFF89C57C.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(), 0xFFFFFB43.toInt(),
@@ -86,7 +86,7 @@ val image0_32x32 = cValuesOf(
     0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt()
 )
 
-val image1_16x16 = cValuesOf(
+val `tango-icon-theme-0.8.90_16x16_x-office-spreadsheet.png` = cValuesOf(
     0xAC676767.toInt(), 0xFF818181.toInt(), 0xFF818181.toInt(), 0xFF818181.toInt(), 0xFF818181.toInt(), 0xFF818181.toInt(), 0xFF818181.toInt(), 0xFF818181.toInt(), 0xFF818181.toInt(), 0xFF818181.toInt(), 0xFF818181.toInt(), 0xFF818181.toInt(), 0xFF818181.toInt(), 0x562B2B2B.toInt(), 0x00000000.toInt(), 0x00000000.toInt(),
     0xFF818181.toInt(), 0xFFFFFFFF.toInt(), 0xFFFFFFFF.toInt(), 0xFFFFFFFF.toInt(), 0xFFFFFFFF.toInt(), 0xFFFFFFFF.toInt(), 0xFFFFFFFF.toInt(), 0xFFFFFFFF.toInt(), 0xFFFFFFFF.toInt(), 0xFFFFFFFF.toInt(), 0xFFFFFFFF.toInt(), 0xFFFFFFFF.toInt(), 0xFFFFFFFF.toInt(), 0xFF818181.toInt(), 0x00000000.toInt(), 0x00000000.toInt(),
     0xFF818181.toInt(), 0xFFFFFFFF.toInt(), 0xFFB7B7B7.toInt(), 0xFFB7B7B7.toInt(), 0xFFB7B7B8.toInt(), 0xFF9E9E9F.toInt(), 0xFFB8B8B8.toInt(), 0xFFB8B8B8.toInt(), 0xFF9F9F9F.toInt(), 0xFFB8B8B9.toInt(), 0xFFB8B8B9.toInt(), 0xFF9F9F9F.toInt(), 0xFFFFFFFF.toInt(), 0xFF818181.toInt(), 0x00000000.toInt(), 0x00000000.toInt(),
@@ -105,7 +105,7 @@ val image1_16x16 = cValuesOf(
     0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x55351616.toInt(), 0xD37F1717.toInt(), 0xF99C0B0B.toInt(), 0xFFA30201.toInt(), 0xFFA20101.toInt(), 0xF99C0B0B.toInt(), 0xD3881E1E.toInt(), 0x55412222.toInt(), 0x00000000.toInt(), 0x00000000.toInt()
 )
 
-val image1_32x32 = cValuesOf(
+val `tango-icon-theme-0.8.90_32x32_x-office-spreadsheet.png` = cValuesOf(
     0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(),
     0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(),
     0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(),

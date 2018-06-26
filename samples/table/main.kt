@@ -10,12 +10,12 @@ fun main(args: Array<String>) = appWindow(
         var col2text = Array<String>(15) { "Part" }
         var checkStates = IntArray(15)
         val image0 = Image(16.0, 16.0) {
-            add(image0_16x16, 16, 16, 64)
-            add(image0_32x32, 32, 32, 128)
+            add(`andlabs_16x16test_24june2016.png`, 16, 16, 64)
+            add(`andlabs_32x32test_24june2016.png`, 32, 32, 128)
         }
         val image1 = Image(16.0, 16.0) {
-            add(image1_16x16, 16, 16, 64)
-            add(image1_32x32, 32, 32, 128)
+            add(`tango-icon-theme-0.8.90_16x16_x-office-spreadsheet.png`, 16, 16, 64)
+            add(`tango-icon-theme-0.8.90_32x32_x-office-spreadsheet.png`, 32, 32, 128)
         }
 
         numColumns { 9 }
