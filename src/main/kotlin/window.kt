@@ -1,7 +1,6 @@
 package libui
 
 import kotlinx.cinterop.*
-import platform.posix.tm
 
 /** Represents a top-level window.
  *  Contains one child control that occupies the entirety of the window. */

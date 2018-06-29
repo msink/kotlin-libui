@@ -48,36 +48,36 @@ open class Area internal constructor(
     internal var keyEvent: (Area.(event: uiAreaKeyEvent) -> Boolean)? = null
 
     init {
-        handler.pointed.ui.Draw = staticCFunction { uihandler, _, params ->
-            val handler: CPointer<ktAreaHandler> = uihandler!!.reinterpret()
+        handler.pointed.ui.Draw = staticCFunction { _handler, _, params ->
+            val handler: CPointer<ktAreaHandler> = _handler!!.reinterpret()
             with (handler.pointed.ref!!.asStableRef<Area>().get()) {
                 draw?.invoke(this, params!!.pointed)
             }
         }
 
-        handler.pointed.ui.MouseEvent = staticCFunction { uihandler, _, params ->
-            val handler: CPointer<ktAreaHandler> = uihandler!!.reinterpret()
+        handler.pointed.ui.MouseEvent = staticCFunction { _handler, _, params ->
+            val handler: CPointer<ktAreaHandler> = _handler!!.reinterpret()
             with (handler.pointed.ref!!.asStableRef<Area>().get()) {
                 mouseEvent?.invoke(this, params!!.pointed)
             }
         }
 
-        handler.pointed.ui.MouseCrossed = staticCFunction { uihandler, _, left ->
-            val handler: CPointer<ktAreaHandler> = uihandler!!.reinterpret()
+        handler.pointed.ui.MouseCrossed = staticCFunction { _handler, _, left ->
+            val handler: CPointer<ktAreaHandler> = _handler!!.reinterpret()
             with (handler.pointed.ref!!.asStableRef<Area>().get()) {
                 mouseCrossed?.invoke(this, left != 0)
             }
         }
 
-        handler.pointed.ui.DragBroken = staticCFunction { uihandler, _ ->
-            val handler: CPointer<ktAreaHandler> = uihandler!!.reinterpret()
+        handler.pointed.ui.DragBroken = staticCFunction { _handler, _ ->
+            val handler: CPointer<ktAreaHandler> = _handler!!.reinterpret()
             with (handler.pointed.ref!!.asStableRef<Area>().get()) {
                 dragBroken?.invoke(this)
             }
         }
 
-        handler.pointed.ui.KeyEvent = staticCFunction { uihandler, _, event ->
-            val handler: CPointer<ktAreaHandler> = uihandler!!.reinterpret()
+        handler.pointed.ui.KeyEvent = staticCFunction { _handler, _, event ->
+            val handler: CPointer<ktAreaHandler> = _handler!!.reinterpret()
             with (handler.pointed.ref!!.asStableRef<Area>().get()) {
                 if (keyEvent?.invoke(this, event!!.pointed) ?: false) 1 else 0
             }
