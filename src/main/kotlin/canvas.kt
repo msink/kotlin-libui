@@ -41,17 +41,48 @@ open class Area internal constructor(
     val handler: CPointer<ktAreaHandler>
 ) : Control<uiArea>(alloc) {
 
-    internal var draw: Area.(params: uiAreaDrawParams) -> Unit = {}
-    internal var mouseEvent: Area.(event: uiAreaMouseEvent) -> Unit = {}
-    internal var mouseCrossed: Area.(left: Boolean) -> Unit = {}
-    internal var dragBroken: Area.() -> Unit = {}
-    internal var keyEvent: Area.(event: uiAreaKeyEvent) -> Boolean = { false }
+    internal var draw: (DrawContext.(params: uiAreaDrawParams) -> Unit)? = null
+    internal var mouseEvent: (Area.(event: uiAreaMouseEvent) -> Unit)? = null
+    internal var mouseCrossed: (Area.(left: Boolean) -> Unit)? = null
+    internal var dragBroken: (Area.() -> Unit)? = null
+    internal var keyEvent: (Area.(event: uiAreaKeyEvent) -> Boolean)? = null
+
     init {
-        handler.pointed.ui.Draw = staticCFunction(::_Draw)
-        handler.pointed.ui.MouseEvent = staticCFunction(::_MouseEvent)
-        handler.pointed.ui.MouseCrossed = staticCFunction(::_MouseCrossed)
-        handler.pointed.ui.DragBroken = staticCFunction(::_DragBroken)
-        handler.pointed.ui.KeyEvent = staticCFunction(::_KeyEvent)
+        handler.pointed.ui.Draw = staticCFunction { _handler, _, params ->
+            val handler: CPointer<ktAreaHandler> = _handler!!.reinterpret()
+            with (handler.pointed.ref!!.asStableRef<Area>().get()) {
+                draw?.invoke(params!!.pointed.Context!!, params.pointed)
+            }
+        }
+
+        handler.pointed.ui.MouseEvent = staticCFunction { _handler, _, params ->
+            val handler: CPointer<ktAreaHandler> = _handler!!.reinterpret()
+            with (handler.pointed.ref!!.asStableRef<Area>().get()) {
+                mouseEvent?.invoke(this, params!!.pointed)
+            }
+        }
+
+        handler.pointed.ui.MouseCrossed = staticCFunction { _handler, _, left ->
+            val handler: CPointer<ktAreaHandler> = _handler!!.reinterpret()
+            with (handler.pointed.ref!!.asStableRef<Area>().get()) {
+                mouseCrossed?.invoke(this, left != 0)
+            }
+        }
+
+        handler.pointed.ui.DragBroken = staticCFunction { _handler, _ ->
+            val handler: CPointer<ktAreaHandler> = _handler!!.reinterpret()
+            with (handler.pointed.ref!!.asStableRef<Area>().get()) {
+                dragBroken?.invoke(this)
+            }
+        }
+
+        handler.pointed.ui.KeyEvent = staticCFunction { _handler, _, event ->
+            val handler: CPointer<ktAreaHandler> = _handler!!.reinterpret()
+            with (handler.pointed.ref!!.asStableRef<Area>().get()) {
+                if (keyEvent?.invoke(this, event!!.pointed) ?: false) 1 else 0
+            }
+        }
+
         handler.pointed.ref = ref.asCPointer()
     }
 
@@ -71,7 +102,7 @@ class ScrollingArea internal constructor(
 
 /** Queues the entire Area for redraw.
  *  The Area is not redrawn before this function returns; it is redrawn when next possible. */
-fun Area.queueRedrawAll() = uiAreaQueueRedrawAll(ptr)
+fun Area.redraw() = uiAreaQueueRedrawAll(ptr)
 
 /** Sets the size of a ScrollingArea to the given size, in points. */
 fun ScrollingArea.setSize(width: Int, height: Int) =
@@ -91,20 +122,8 @@ fun ScrollingArea.scrollTo(x: Double, y: Double, width: Double, height: Double) 
 
 /** Funcion to be run when the area was created or got resized with [uiAreaDrawParams] as parameter.
  *  Only one function can be registered at a time. */
-fun Area.draw(block: Area.(params: uiAreaDrawParams) -> Unit) {
+fun Area.draw(block: DrawContext.(params: uiAreaDrawParams) -> Unit) {
     draw = block
-}
-
-@Suppress("UNUSED_PARAMETER")
-private fun _Draw(
-    handler: CPointer<uiAreaHandler>?,
-    area: CPointer<uiArea>?,
-    params: CPointer<uiAreaDrawParams>?
-) {
-    val h: CPointer<ktAreaHandler> = handler!!.reinterpret()
-    with (h.pointed.ref!!.asStableRef<Area>().get()) {
-        draw.invoke(this, params!!.pointed)
-    }
 }
 
 /** Funcion to be run when the mouse was moved or clicked over the area with [uiAreaMouseEvent] as parameter.
@@ -113,30 +132,10 @@ fun Area.mouseEvent(block: Area.(event: uiAreaMouseEvent) -> Unit) {
     mouseEvent = block
 }
 
-@Suppress("UNUSED_PARAMETER")
-private fun _MouseEvent(
-    handler: CPointer<uiAreaHandler>?,
-    area: CPointer<uiArea>?,
-    params: CPointer<uiAreaMouseEvent>?
-) {
-    val h: CPointer<ktAreaHandler> = handler!!.reinterpret()
-    with (h.pointed.ref!!.asStableRef<Area>().get()) {
-        mouseEvent.invoke(this, params!!.pointed)
-    }
-}
-
 /** Funcion to be run when the mouse entered (`left == false`) or left the area.
  *  Only one function can be registered at a time. */
 fun Area.mouseCrossed(block: Area.(left: Boolean) -> Unit) {
     mouseCrossed = block
-}
-
-@Suppress("UNUSED_PARAMETER")
-private fun _MouseCrossed(handler: CPointer<uiAreaHandler>?, area: CPointer<uiArea>?, left: Int) {
-        val h: CPointer<ktAreaHandler> = handler!!.reinterpret()
-    with (h.pointed.ref!!.asStableRef<Area>().get()) {
-        mouseCrossed.invoke(this, left != 0)
-    }
 }
 
 /** Funcion to be run to indicate that a drag should be ended. Only implemented on Windows.
@@ -145,31 +144,11 @@ fun Area.dragBroken(block: Area.() -> Unit) {
     dragBroken = block
 }
 
-@Suppress("UNUSED_PARAMETER")
-private fun _DragBroken(handler: CPointer<uiAreaHandler>?, area: CPointer<uiArea>?) {
-    val h: CPointer<ktAreaHandler> = handler!!.reinterpret()
-    with (h.pointed.ref!!.asStableRef<Area>().get()) {
-        dragBroken.invoke(this)
-    }
-}
-
 /** Funcion to be run when a key was pressed. Return `true` to indicate that the key event was handled.
  *  (a menu item with that accelerator won't activate, no error sound on macOS). Event is an [uiAreaKeyEvent]
  *  Only one function can be registered at a time. */
 fun Area.keyEvent(block: Area.(event: uiAreaKeyEvent) -> Boolean) {
     keyEvent = block
-}
-
-@Suppress("UNUSED_PARAMETER")
-private fun _KeyEvent(
-    handler: CPointer<uiAreaHandler>?,
-    area: CPointer<uiArea>?,
-    event: CPointer<uiAreaKeyEvent>?
-): Int {
-    val h: CPointer<ktAreaHandler> = handler!!.reinterpret()
-    with (h.pointed.ref!!.asStableRef<Area>().get()) {
-        return if (keyEvent.invoke(this, event!!.pointed)) 1 else 0
-    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -645,6 +624,9 @@ fun DrawContext.fill(
     path.dispose()
 }
 
+fun DrawContext.fill(brush: Brush, block: Path.() -> Unit) =
+    fill(uiDrawFillModeWinding, brush, block)
+
 /** Draw a path in the context. */
 fun DrawContext.stroke(
     mode: uiDrawFillMode,
@@ -659,6 +641,9 @@ fun DrawContext.stroke(
     path.dispose()
 }
 
+fun DrawContext.stroke(brush: Brush, stroke: Stroke, block: Path.() -> Unit) =
+    stroke(uiDrawFillModeWinding, brush, stroke, block)
+
 /** Apply a different transform matrix to the context. */
 fun DrawContext.transform(block: Matrix.() -> Unit) {
     val matrix = Matrix()
@@ -669,7 +654,7 @@ fun DrawContext.transform(block: Matrix.() -> Unit) {
 }
 
 /** draws formatted text with the top-left point at ([x], [y]). */
-fun DrawContext.draw(
+fun DrawContext.text(
     string: AttributedString,
     defaultFont: Font,
     width: Double,

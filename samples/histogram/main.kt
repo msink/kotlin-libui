@@ -50,7 +50,6 @@ fun main(args: Array<String>) = appWindow(
             }
 
             draw {
-                val context = it.Context!!
                 val graphWidth = graphWidth(it.AreaWidth)
                 val graphHeight = graphHeight(it.AreaHeight)
                 val graphColor = colorButton.value
@@ -59,24 +58,24 @@ fun main(args: Array<String>) = appWindow(
                 pointLocations(graphWidth, graphHeight, xs, ys)
 
                 // fill the area with white
-                context.fill(uiDrawFillModeWinding, brush.solid(colorWhite)) {
+                fill(brush.solid(colorWhite)) {
                     rectangle(0.0, 0.0, it.AreaWidth, it.AreaHeight)
                 }
 
                 // draw the axes
-                context.stroke(uiDrawFillModeWinding, brush.solid(colorBlack), stroke) {
+                stroke(brush.solid(colorBlack), stroke) {
                     figure(xoffLeft, yoffTop)
                     lineTo(xoffLeft, yoffTop + graphHeight)
                     lineTo(xoffLeft + graphWidth, yoffTop + graphHeight)
                 }
 
-                // now transform the coordinate space so (0, 0) is the top-left corner of the graph
-                context.transform {
+                // transform the coordinate space so (0, 0) is the top-left corner of the graph
+                transform {
                     translate(xoffLeft, yoffTop)
                 }
 
-                // now create the fill for the graph below the graph line
-                context.fill(uiDrawFillModeWinding, brush.solid(graphColor, opacity = 0.5)) {
+                // create the fill for the graph below the graph line
+                fill(brush.solid(graphColor, opacity = 0.5)) {
                     figure(xs[0], ys[0])
                     for (i in 1 until 10)
                         lineTo(xs[i], ys[i])
@@ -85,16 +84,16 @@ fun main(args: Array<String>) = appWindow(
                     closeFigure()
                 }
 
-                // now draw the histogram line
-                context.stroke(uiDrawFillModeWinding, brush.solid(graphColor), stroke) {
+                // draw the histogram line
+                stroke(brush.solid(graphColor), stroke) {
                     figure(xs[0], ys[0])
                     for (i in 1 until 10)
                         lineTo(xs[i], ys[i])
                 }
 
-                // now draw the point being hovered over
+                // draw the point being hovered over
                 if (currentPoint != -1) {
-                    context.fill(uiDrawFillModeWinding, brush) {
+                    fill(brush) {
                         figureWithArc(xs[currentPoint], ys[currentPoint], pointRadius,
                                       startAngle = 0.0, sweep = 6.23)
                     }
@@ -121,17 +120,17 @@ fun main(args: Array<String>) = appWindow(
                     }
                 }
 
-                queueRedrawAll()
+                redraw()
             }
         }
 
         add(widget = VerticalBox {
             padded = true
             datapoints.forEach {
-                it.action { histogram.queueRedrawAll() }
+                it.action { histogram.redraw() }
                 add(widget = it)
             }
-            colorButton.action { histogram.queueRedrawAll() }
+            colorButton.action { histogram.redraw() }
             add(widget = colorButton)
         })
 
