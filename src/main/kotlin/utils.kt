@@ -51,17 +51,17 @@ private val actions = mutableListOf<StableRef<Any>>()
  *  @returns `true` when Quit will be called. */
 fun onShouldQuit(block: () -> Boolean) {
     val ref = StableRef.create(block).also { actions.add(it) }
-    uiOnShouldQuit(staticCFunction(::_onBoolHandler), ref.asCPointer())
+    uiOnShouldQuit(staticCFunction { _ref ->
+        val _block = _ref!!.asStableRef<() -> Boolean>().get()
+        if (_block()) 1 else 0 }, ref.asCPointer())
 }
 
 /** Function to be executed on a timer on the main thread.
  *  @returns `true` to continue and `false` to stop. */
 fun onTimer(milliseconds: Int, block: () -> Boolean) {
     val ref = StableRef.create(block).also { actions.add(it) }
-    uiTimer(milliseconds, staticCFunction(::_onBoolHandler), ref.asCPointer())
+    uiTimer(milliseconds, staticCFunction{ _ref ->
+        val _block = _ref!!.asStableRef<() -> Boolean>().get()
+        if (_block()) 1 else 0 }, ref.asCPointer())
 }
 
-private fun _onBoolHandler(ref: COpaquePointer?): Int {
-    val block = ref!!.asStableRef<() -> Boolean>().get()
-    return if (block()) 1 else 0
-}

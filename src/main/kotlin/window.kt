@@ -16,8 +16,6 @@ class Window(
     internal var onClose: (Window.() -> Boolean)? = null
     internal var onResize: (Window.() -> Unit)? = null
     init {
-        uiWindowOnClosing(ptr, staticCFunction(::_Close), ref.asCPointer())
-        uiWindowOnContentSizeChanged(ptr, staticCFunction(::_Resize), ref.asCPointer())
         apply(block)
         if (margined) this.margined = margined
     }
@@ -63,13 +61,8 @@ fun Window.add(widget: Control<*>) = uiWindowSetChild(ptr, widget.ctl)
 /** Function to be run when window content size change. */
 fun Window.onResize(block: Window.() -> Unit) {
     onResize = block
-}
-
-@Suppress("UNUSED_PARAMETER")
-private fun _Resize(ptr: CPointer<uiWindow>?, ref: COpaquePointer?) {
-    with (ref!!.asStableRef<Window>().get()) {
-        onResize?.invoke(this)
-	}
+    uiWindowOnContentSizeChanged(ptr, staticCFunction { _, ref ->
+        with (ref!!.asStableRef<Window>().get()) { onResize?.invoke(this) }}, ref.asCPointer())
 }
 
 /** Function to be run when the user clicks the Window's close button.
@@ -77,13 +70,9 @@ private fun _Resize(ptr: CPointer<uiWindow>?, ref: COpaquePointer?) {
  *  @returns [true] if window is disposed */
 fun Window.onClose(block: Window.() -> Boolean) {
     onClose = block
-}
-
-@Suppress("UNUSED_PARAMETER")
-private fun _Close(ptr: CPointer<uiWindow>?, ref: COpaquePointer?): Int {
-    with (ref!!.asStableRef<Window>().get()) {
-    	return if (onClose?.invoke(this) ?: true) 1 else 0
-	}
+    uiWindowOnClosing(ptr, staticCFunction { _, ref ->
+        with (ref!!.asStableRef<Window>().get()) { if (onClose?.invoke(this) ?: true) 1 else 0 }},
+        ref.asCPointer())
 }
 
 /** Displays a modal Open File Dialog. */

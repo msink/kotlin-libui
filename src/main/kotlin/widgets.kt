@@ -58,7 +58,7 @@ var Entry.value: String
     get() = uiEntryText(ptr)?.toKString() ?: ""
     set(value) = uiEntrySetText(ptr, value)
 
-/** Whether the user is allowed to change the entry text. Defaults to `true`. */
+/** Whether the text is read-only or not. Defaults to `false`. */
 var Entry.readonly: Boolean
     get() = uiEntryReadOnly(ptr) != 0
     set(readonly) = uiEntrySetReadOnly(ptr, if (readonly) 1 else 0)
@@ -67,14 +67,8 @@ var Entry.readonly: Boolean
  *  Only one function can be registered at a time. */
 fun Entry.action(block: Entry.() -> Unit) {
     action = block
-    uiEntryOnChanged(ptr, staticCFunction(::_Entry), ref.asCPointer())
-}
-
-@Suppress("UNUSED_PARAMETER")
-private fun _Entry(ptr: CPointer<uiEntry>?, ref: COpaquePointer?) {
-    with (ref!!.asStableRef<Entry>().get()) {
-        action?.invoke(this)
-    }
+    uiEntryOnChanged(ptr, staticCFunction { _, ref ->
+        with (ref!!.asStableRef<Entry>().get()) { action?.invoke(this) }}, ref.asCPointer())
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -97,7 +91,7 @@ var MultilineEntry.value: String
     get() = uiMultilineEntryText(ptr)?.toKString() ?: ""
     set(value) = uiMultilineEntrySetText(ptr, value)
 
-/** Whether the user is allowed to change the entry text. */
+/** Whether the text is read-only or not. Defaults to `false` */
 var MultilineEntry.readonly: Boolean
     get() = uiMultilineEntryReadOnly(ptr) != 0
     set(readonly) = uiMultilineEntrySetReadOnly(ptr, if (readonly) 1 else 0)
@@ -109,14 +103,8 @@ fun MultilineEntry.append(text: String) = uiMultilineEntryAppend(ptr, text)
  *  Only one function can be registered at a time. */
 fun MultilineEntry.action(block: MultilineEntry.() -> Unit) {
     action = block
-    uiMultilineEntryOnChanged(ptr, staticCFunction(::_MultilineEntry), ref.asCPointer())
-}
-
-@Suppress("UNUSED_PARAMETER")
-private fun _MultilineEntry(ptr: CPointer<uiMultilineEntry>?, ref: COpaquePointer?) {
-    with (ref!!.asStableRef<MultilineEntry>().get()) {
-        action?.invoke(this)
-    }
+    uiMultilineEntryOnChanged(ptr, staticCFunction { _, ref ->
+        with (ref!!.asStableRef<MultilineEntry>().get()) { action?.invoke(this) }}, ref.asCPointer())
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -142,14 +130,8 @@ var Checkbox.value: Boolean
  *  Only one function can be registered at a time. */
 fun Checkbox.action(block: Checkbox.() -> Unit) {
     action = block
-    uiCheckboxOnToggled(ptr, staticCFunction(::_Checkbox), ref.asCPointer())
-}
-
-@Suppress("UNUSED_PARAMETER")
-private fun _Checkbox(ptr: CPointer<uiCheckbox>?, ref: COpaquePointer?) {
-    with (ref!!.asStableRef<Checkbox>().get()) {
-        action?.invoke(this)
-    }
+    uiCheckboxOnToggled(ptr, staticCFunction { _, ref ->
+        with (ref!!.asStableRef<Checkbox>().get()) { action?.invoke(this) }}, ref.asCPointer())
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -174,14 +156,8 @@ var Combobox.value: Int
  *  Only one function can be registered at a time. */
 fun Combobox.action(block: Combobox.() -> Unit) {
     action = block
-    uiComboboxOnSelected(ptr, staticCFunction(::_Combobox), ref.asCPointer())
-}
-
-@Suppress("UNUSED_PARAMETER")
-private fun _Combobox(ptr: CPointer<uiCombobox>?, ref: COpaquePointer?) {
-    with (ref!!.asStableRef<Combobox>().get()) {
-        action?.invoke(this)
-    }
+    uiComboboxOnSelected(ptr, staticCFunction { _, ref ->
+        with (ref!!.asStableRef<Combobox>().get()) { action?.invoke(this) }}, ref.asCPointer())
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -206,14 +182,8 @@ var EditableCombobox.value: String
  *  Only one function can be registered at a time. */
 fun EditableCombobox.action(block: EditableCombobox.() -> Unit) {
     action = block
-    uiEditableComboboxOnChanged(ptr, staticCFunction(::_EditableCombobox), ref.asCPointer())
-}
-
-@Suppress("UNUSED_PARAMETER")
-private fun _EditableCombobox(ptr: CPointer<uiEditableCombobox>?, ref: COpaquePointer?) {
-    with (ref!!.asStableRef<EditableCombobox>().get()) {
-        action?.invoke(this)
-    }
+    uiEditableComboboxOnChanged(ptr, staticCFunction { _, ref ->
+        with (ref!!.asStableRef<EditableCombobox>().get()) { action?.invoke(this) }}, ref.asCPointer())
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -234,14 +204,8 @@ var Spinbox.value: Int
  *  Only one function can be registered at a time. */
 fun Spinbox.action(block: Spinbox.() -> Unit) {
     action = block
-    uiSpinboxOnChanged(ptr, staticCFunction(::_Spinbox), ref.asCPointer())
-}
-
-@Suppress("UNUSED_PARAMETER")
-private fun _Spinbox(ptr: CPointer<uiSpinbox>?, ref: COpaquePointer?) {
-    with (ref!!.asStableRef<Spinbox>().get()) {
-        action?.invoke(this)
-    }
+    uiSpinboxOnChanged(ptr, staticCFunction { _, ref ->
+        with (ref!!.asStableRef<Spinbox>().get()) { action?.invoke(this) }}, ref.asCPointer())
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -262,14 +226,8 @@ var Slider.value: Int
  *  Only one function can be registered at a time. */
 fun Slider.action(block: Slider.() -> Unit) {
     action = block
-    uiSliderOnChanged(ptr, staticCFunction(::_Slider), ref.asCPointer())
-}
-
-@Suppress("UNUSED_PARAMETER")
-private fun _Slider(ptr: CPointer<uiSlider>?, ref: COpaquePointer?) {
-    with (ref!!.asStableRef<Slider>().get()) {
-        action?.invoke(this)
-    }
+    uiSliderOnChanged(ptr, staticCFunction { _, ref ->
+        with (ref!!.asStableRef<Slider>().get()) { action?.invoke(this) }}, ref.asCPointer())
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -294,14 +252,8 @@ var RadioButtons.value: Int
  *  Only one function can be registered at a time. */
 fun RadioButtons.action(block: RadioButtons.() -> Unit) {
     action = block
-    uiRadioButtonsOnSelected(ptr, staticCFunction(::_RadioButtons), ref.asCPointer())
-}
-
-@Suppress("UNUSED_PARAMETER")
-private fun _RadioButtons(ptr: CPointer<uiRadioButtons>?, ref: COpaquePointer?) {
-    with (ref!!.asStableRef<RadioButtons>().get()) {
-        action?.invoke(this)
-    }
+    uiRadioButtonsOnSelected(ptr, staticCFunction { _, ref ->
+        with (ref!!.asStableRef<RadioButtons>().get()) { action?.invoke(this) }}, ref.asCPointer())
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -364,14 +316,8 @@ fun DateTimePicker.textValue(format: String = defaultFormat): String = memScoped
  *  Only one function can be registered at a time. */
 fun DateTimePicker.action(block: DateTimePicker.() -> Unit) {
     action = block
-    uiDateTimePickerOnChanged(ptr, staticCFunction(::_DateTimePicker), ref.asCPointer())
-}
-
-@Suppress("UNUSED_PARAMETER")
-private fun _DateTimePicker(ptr: CPointer<uiDateTimePicker>?, ref: COpaquePointer?) {
-    with (ref!!.asStableRef<DateTimePicker>().get()) {
-        action?.invoke(this)
-    }
+    uiDateTimePickerOnChanged(ptr, staticCFunction { _, ref ->
+        with (ref!!.asStableRef<DateTimePicker>().get()) { action?.invoke(this) }}, ref.asCPointer())
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -437,14 +383,8 @@ var Button.text: String
  *  Only one function can be registered at a time. */
 fun Button.action(block: Button.() -> Unit) {
     action = block
-    uiButtonOnClicked(ptr, staticCFunction(::_Button), ref.asCPointer())
-}
-
-@Suppress("UNUSED_PARAMETER")
-private fun _Button(ptr: CPointer<uiButton>?, ref: COpaquePointer?) {
-    with (ref!!.asStableRef<Button>().get()) {
-        action?.invoke(this)
-    }
+    uiButtonOnClicked(ptr, staticCFunction { _, ref ->
+        with (ref!!.asStableRef<Button>().get()) { action?.invoke(this) }}, ref.asCPointer())
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -474,14 +414,8 @@ var ColorButton.value: Color
  *  Only one function can be registered at a time. */
 fun ColorButton.action(block: ColorButton.() -> Unit) {
     action = block
-    uiColorButtonOnChanged(ptr, staticCFunction(::_ColorButton), ref.asCPointer())
-}
-
-@Suppress("UNUSED_PARAMETER")
-private fun _ColorButton(ptr: CPointer<uiColorButton>?, ref: COpaquePointer?) {
-    with (ref!!.asStableRef<ColorButton>().get()) {
-        action?.invoke(this)
-    }
+    uiColorButtonOnChanged(ptr, staticCFunction { _, ref ->
+        with (ref!!.asStableRef<ColorButton>().get()) { action?.invoke(this) }}, ref.asCPointer())
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -511,12 +445,6 @@ val FontButton.value: Font
  *  Only one function can be registered at a time. */
 fun FontButton.action(block: FontButton.() -> Unit) {
     action = block
-    uiFontButtonOnChanged(ptr, staticCFunction(::_FontButton), ref.asCPointer())
-}
-
-@Suppress("UNUSED_PARAMETER")
-private fun _FontButton(ptr: CPointer<uiFontButton>?, ref: COpaquePointer?) {
-    with (ref!!.asStableRef<FontButton>().get()) {
-        action?.invoke(this)
-    }
+    uiFontButtonOnChanged(ptr, staticCFunction { _, ref ->
+        with (ref!!.asStableRef<FontButton>().get()) { action?.invoke(this) }}, ref.asCPointer())
 }

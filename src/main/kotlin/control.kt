@@ -7,13 +7,20 @@ abstract class Control<T : CPointed>(alloc: CPointer<T>?) : Disposable<T>(alloc)
     internal val ctl: CPointer<uiControl> get() = ptr.reinterpret()
     internal val ctlDestroy = ctl.pointed.Destroy
     internal val ref = StableRef.create(this)
+
     init {
         controls[ctl] = this
-        ctl.pointed.Destroy = staticCFunction(::_Destroy)
+        ctl.pointed.Destroy = staticCFunction { ctl ->
+            with (controls[ctl!!] ?: throw Error("Control is disposed")) {
+                ctlDestroy?.invoke(ctl)
+                controls.remove(ctl)
+                free()
+            }
+        }
     }
 
     /** *INTERNAL* Free all allocated resources.
-     *  NOTE: Must be called *only* from libui callback [_Destroy] */
+     *  NOTE: Must be called *only* from libui callback Destroy */
     override fun free() {
         ref.dispose()
         _ptr = null
@@ -70,11 +77,3 @@ abstract class Control<T : CPointed>(alloc: CPointer<T>?) : Disposable<T>(alloc)
 }
 
 private var controls = mutableMapOf<CPointer<uiControl>, Control<*>>()
-
-private fun _Destroy(ctl: CPointer<uiControl>?) {
-    with (controls[ctl!!] ?: throw Error("Control is disposed")) {
-        ctlDestroy?.invoke(ctl)
-        controls.remove(ctl)
-        free()
-    }
-}

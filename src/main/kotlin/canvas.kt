@@ -41,17 +41,48 @@ open class Area internal constructor(
     val handler: CPointer<ktAreaHandler>
 ) : Control<uiArea>(alloc) {
 
-    internal var draw: Area.(params: uiAreaDrawParams) -> Unit = {}
-    internal var mouseEvent: Area.(event: uiAreaMouseEvent) -> Unit = {}
-    internal var mouseCrossed: Area.(left: Boolean) -> Unit = {}
-    internal var dragBroken: Area.() -> Unit = {}
-    internal var keyEvent: Area.(event: uiAreaKeyEvent) -> Boolean = { false }
+    internal var draw: (Area.(params: uiAreaDrawParams) -> Unit)? = null
+    internal var mouseEvent: (Area.(event: uiAreaMouseEvent) -> Unit)? = null
+    internal var mouseCrossed: (Area.(left: Boolean) -> Unit)? = null
+    internal var dragBroken: (Area.() -> Unit)? = null
+    internal var keyEvent: (Area.(event: uiAreaKeyEvent) -> Boolean)? = null
+
     init {
-        handler.pointed.ui.Draw = staticCFunction(::_Draw)
-        handler.pointed.ui.MouseEvent = staticCFunction(::_MouseEvent)
-        handler.pointed.ui.MouseCrossed = staticCFunction(::_MouseCrossed)
-        handler.pointed.ui.DragBroken = staticCFunction(::_DragBroken)
-        handler.pointed.ui.KeyEvent = staticCFunction(::_KeyEvent)
+        handler.pointed.ui.Draw = staticCFunction { uihandler, _, params ->
+            val handler: CPointer<ktAreaHandler> = uihandler!!.reinterpret()
+            with (handler.pointed.ref!!.asStableRef<Area>().get()) {
+                draw?.invoke(this, params!!.pointed)
+            }
+        }
+
+        handler.pointed.ui.MouseEvent = staticCFunction { uihandler, _, params ->
+            val handler: CPointer<ktAreaHandler> = uihandler!!.reinterpret()
+            with (handler.pointed.ref!!.asStableRef<Area>().get()) {
+                mouseEvent?.invoke(this, params!!.pointed)
+            }
+        }
+
+        handler.pointed.ui.MouseCrossed = staticCFunction { uihandler, _, left ->
+            val handler: CPointer<ktAreaHandler> = uihandler!!.reinterpret()
+            with (handler.pointed.ref!!.asStableRef<Area>().get()) {
+                mouseCrossed?.invoke(this, left != 0)
+            }
+        }
+
+        handler.pointed.ui.DragBroken = staticCFunction { uihandler, _ ->
+            val handler: CPointer<ktAreaHandler> = uihandler!!.reinterpret()
+            with (handler.pointed.ref!!.asStableRef<Area>().get()) {
+                dragBroken?.invoke(this)
+            }
+        }
+
+        handler.pointed.ui.KeyEvent = staticCFunction { uihandler, _, event ->
+            val handler: CPointer<ktAreaHandler> = uihandler!!.reinterpret()
+            with (handler.pointed.ref!!.asStableRef<Area>().get()) {
+                if (keyEvent?.invoke(this, event!!.pointed) ?: false) 1 else 0
+            }
+        }
+
         handler.pointed.ref = ref.asCPointer()
     }
 
@@ -95,34 +126,10 @@ fun Area.draw(block: Area.(params: uiAreaDrawParams) -> Unit) {
     draw = block
 }
 
-@Suppress("UNUSED_PARAMETER")
-private fun _Draw(
-    handler: CPointer<uiAreaHandler>?,
-    area: CPointer<uiArea>?,
-    params: CPointer<uiAreaDrawParams>?
-) {
-    val h: CPointer<ktAreaHandler> = handler!!.reinterpret()
-    with (h.pointed.ref!!.asStableRef<Area>().get()) {
-        draw.invoke(this, params!!.pointed)
-    }
-}
-
 /** Funcion to be run when the mouse was moved or clicked over the area with [uiAreaMouseEvent] as parameter.
  *  Only one function can be registered at a time. */
 fun Area.mouseEvent(block: Area.(event: uiAreaMouseEvent) -> Unit) {
     mouseEvent = block
-}
-
-@Suppress("UNUSED_PARAMETER")
-private fun _MouseEvent(
-    handler: CPointer<uiAreaHandler>?,
-    area: CPointer<uiArea>?,
-    params: CPointer<uiAreaMouseEvent>?
-) {
-    val h: CPointer<ktAreaHandler> = handler!!.reinterpret()
-    with (h.pointed.ref!!.asStableRef<Area>().get()) {
-        mouseEvent.invoke(this, params!!.pointed)
-    }
 }
 
 /** Funcion to be run when the mouse entered (`left == false`) or left the area.
@@ -131,26 +138,10 @@ fun Area.mouseCrossed(block: Area.(left: Boolean) -> Unit) {
     mouseCrossed = block
 }
 
-@Suppress("UNUSED_PARAMETER")
-private fun _MouseCrossed(handler: CPointer<uiAreaHandler>?, area: CPointer<uiArea>?, left: Int) {
-        val h: CPointer<ktAreaHandler> = handler!!.reinterpret()
-    with (h.pointed.ref!!.asStableRef<Area>().get()) {
-        mouseCrossed.invoke(this, left != 0)
-    }
-}
-
 /** Funcion to be run to indicate that a drag should be ended. Only implemented on Windows.
  *  Only one function can be registered at a time. */
 fun Area.dragBroken(block: Area.() -> Unit) {
     dragBroken = block
-}
-
-@Suppress("UNUSED_PARAMETER")
-private fun _DragBroken(handler: CPointer<uiAreaHandler>?, area: CPointer<uiArea>?) {
-    val h: CPointer<ktAreaHandler> = handler!!.reinterpret()
-    with (h.pointed.ref!!.asStableRef<Area>().get()) {
-        dragBroken.invoke(this)
-    }
 }
 
 /** Funcion to be run when a key was pressed. Return `true` to indicate that the key event was handled.
@@ -158,18 +149,6 @@ private fun _DragBroken(handler: CPointer<uiAreaHandler>?, area: CPointer<uiArea
  *  Only one function can be registered at a time. */
 fun Area.keyEvent(block: Area.(event: uiAreaKeyEvent) -> Boolean) {
     keyEvent = block
-}
-
-@Suppress("UNUSED_PARAMETER")
-private fun _KeyEvent(
-    handler: CPointer<uiAreaHandler>?,
-    area: CPointer<uiArea>?,
-    event: CPointer<uiAreaKeyEvent>?
-): Int {
-    val h: CPointer<ktAreaHandler> = handler!!.reinterpret()
-    with (h.pointed.ref!!.asStableRef<Area>().get()) {
-        return if (keyEvent.invoke(this, event!!.pointed)) 1 else 0
-    }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
