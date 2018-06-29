@@ -2,22 +2,6 @@ package libui
 
 import kotlinx.cinterop.*
 
-class Image(width: Double, height: Double) : Disposable<uiImage>(
-    alloc = uiNewImage(width, height)) {
-    override fun free() = uiFreeImage(ptr)
-}
-
-fun TableModel.Image(width: Double, height: Double, block: Image.() -> Unit = {}): Image =
-    libui.Image(width, height).also {
-        disposables.add(it)
-        block.invoke(it)
-    }
-
-fun Image.add(pixels: CValuesRef<IntVar>, width: Int, height: Int, stride: Int) =
-    uiImageAppend(ptr, pixels, width, height, stride)
-
-///////////////////////////////////////////////////////////////////////////////
-
 typealias TableValue = CPointer<uiTableValue>
 
 fun TableValue.dispose() = uiFreeTableValue(this)
