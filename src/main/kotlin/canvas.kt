@@ -41,7 +41,7 @@ open class Area internal constructor(
     val handler: CPointer<ktAreaHandler>
 ) : Control<uiArea>(alloc) {
 
-    internal var draw: (Area.(params: uiAreaDrawParams) -> Unit)? = null
+    internal var draw: (DrawContext.(params: uiAreaDrawParams) -> Unit)? = null
     internal var mouseEvent: (Area.(event: uiAreaMouseEvent) -> Unit)? = null
     internal var mouseCrossed: (Area.(left: Boolean) -> Unit)? = null
     internal var dragBroken: (Area.() -> Unit)? = null
@@ -51,7 +51,7 @@ open class Area internal constructor(
         handler.pointed.ui.Draw = staticCFunction { _handler, _, params ->
             val handler: CPointer<ktAreaHandler> = _handler!!.reinterpret()
             with (handler.pointed.ref!!.asStableRef<Area>().get()) {
-                draw?.invoke(this, params!!.pointed)
+                draw?.invoke(params!!.pointed.Context!!, params.pointed)
             }
         }
 
@@ -102,7 +102,7 @@ class ScrollingArea internal constructor(
 
 /** Queues the entire Area for redraw.
  *  The Area is not redrawn before this function returns; it is redrawn when next possible. */
-fun Area.queueRedrawAll() = uiAreaQueueRedrawAll(ptr)
+fun Area.redraw() = uiAreaQueueRedrawAll(ptr)
 
 /** Sets the size of a ScrollingArea to the given size, in points. */
 fun ScrollingArea.setSize(width: Int, height: Int) =
@@ -122,7 +122,7 @@ fun ScrollingArea.scrollTo(x: Double, y: Double, width: Double, height: Double) 
 
 /** Funcion to be run when the area was created or got resized with [uiAreaDrawParams] as parameter.
  *  Only one function can be registered at a time. */
-fun Area.draw(block: Area.(params: uiAreaDrawParams) -> Unit) {
+fun Area.draw(block: DrawContext.(params: uiAreaDrawParams) -> Unit) {
     draw = block
 }
 
@@ -624,6 +624,9 @@ fun DrawContext.fill(
     path.dispose()
 }
 
+fun DrawContext.fill(brush: Brush, block: Path.() -> Unit) =
+    fill(uiDrawFillModeWinding, brush, block)
+
 /** Draw a path in the context. */
 fun DrawContext.stroke(
     mode: uiDrawFillMode,
@@ -638,6 +641,9 @@ fun DrawContext.stroke(
     path.dispose()
 }
 
+fun DrawContext.stroke(brush: Brush, stroke: Stroke, block: Path.() -> Unit) =
+    stroke(uiDrawFillModeWinding, brush, stroke, block)
+
 /** Apply a different transform matrix to the context. */
 fun DrawContext.transform(block: Matrix.() -> Unit) {
     val matrix = Matrix()
@@ -648,7 +654,7 @@ fun DrawContext.transform(block: Matrix.() -> Unit) {
 }
 
 /** draws formatted text with the top-left point at ([x], [y]). */
-fun DrawContext.draw(
+fun DrawContext.text(
     string: AttributedString,
     defaultFont: Font,
     width: Double,

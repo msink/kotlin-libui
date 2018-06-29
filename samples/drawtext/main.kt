@@ -69,13 +69,12 @@ fun main(args: Array<String>) = appWindow(
     val area = Area {
         val astr = makeAttributedString()
         draw {
-            val context = it.Context!!
-            context.draw(astr, defaultFont.value, it.AreaWidth, alignment.value, 0.0, 0.0)
+            text(astr, defaultFont.value, it.AreaWidth, alignment.value, 0.0, 0.0)
         }
     }
 
-    defaultFont.action { area.queueRedrawAll() }
-    alignment.action { area.queueRedrawAll() }
+    defaultFont.action { area.redraw() }
+    alignment.action { area.redraw() }
 
     add(widget = HorizontalBox {
         padded = true
