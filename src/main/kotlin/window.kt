@@ -60,8 +60,9 @@ fun Window.add(widget: Control<*>) = uiWindowSetChild(ptr, widget.ctl)
 /** Function to be run when window content size change. */
 fun Window.onResize(block: Window.() -> Unit) {
     onResize = block
-    uiWindowOnContentSizeChanged(ptr, staticCFunction { _, ref ->
-        with (ref!!.asStableRef<Window>().get()) { onResize?.invoke(this) }}, ref.asCPointer())
+    uiWindowOnContentSizeChanged(ptr, staticCFunction { _, ref -> with(ref.to<Window>()) {
+        onResize?.invoke(this)
+    }}, ref.asCPointer())
 }
 
 /** Function to be run when the user clicks the Window's close button.
@@ -69,9 +70,9 @@ fun Window.onResize(block: Window.() -> Unit) {
  *  @returns [true] if window is disposed */
 fun Window.onClose(block: Window.() -> Boolean) {
     onClose = block
-    uiWindowOnClosing(ptr, staticCFunction { _, ref ->
-        with (ref!!.asStableRef<Window>().get()) { if (onClose?.invoke(this) ?: true) 1 else 0 }},
-        ref.asCPointer())
+    uiWindowOnClosing(ptr, staticCFunction { _, ref -> with(ref.to<Window>()) {
+        if (onClose?.invoke(this) ?: true) 1 else 0
+    }}, ref.asCPointer())
 }
 
 /** Displays a modal Open File Dialog. */

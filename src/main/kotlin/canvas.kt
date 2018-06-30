@@ -48,37 +48,32 @@ open class Area internal constructor(
     internal var keyEvent: (Area.(event: uiAreaKeyEvent) -> Boolean)? = null
 
     init {
-        handler.pointed.ui.Draw = staticCFunction { _handler, _, params ->
-            val handler: CPointer<ktAreaHandler> = _handler!!.reinterpret()
-            with (handler.pointed.ref!!.asStableRef<Area>().get()) {
+        handler.pointed.ui.Draw = staticCFunction { handler, _, params ->
+            with(handler!!.reinterpret<ktAreaHandler>().pointed.ref.to<Area>()) {
                 draw?.invoke(params!!.pointed.Context!!, params.pointed)
             }
         }
 
-        handler.pointed.ui.MouseEvent = staticCFunction { _handler, _, params ->
-            val handler: CPointer<ktAreaHandler> = _handler!!.reinterpret()
-            with (handler.pointed.ref!!.asStableRef<Area>().get()) {
+        handler.pointed.ui.MouseEvent = staticCFunction { handler, _, params ->
+            with(handler!!.reinterpret<ktAreaHandler>().pointed.ref.to<Area>()) {
                 mouseEvent?.invoke(this, params!!.pointed)
             }
         }
 
-        handler.pointed.ui.MouseCrossed = staticCFunction { _handler, _, left ->
-            val handler: CPointer<ktAreaHandler> = _handler!!.reinterpret()
-            with (handler.pointed.ref!!.asStableRef<Area>().get()) {
+        handler.pointed.ui.MouseCrossed = staticCFunction { handler, _, left ->
+            with(handler!!.reinterpret<ktAreaHandler>().pointed.ref.to<Area>()) {
                 mouseCrossed?.invoke(this, left != 0)
             }
         }
 
-        handler.pointed.ui.DragBroken = staticCFunction { _handler, _ ->
-            val handler: CPointer<ktAreaHandler> = _handler!!.reinterpret()
-            with (handler.pointed.ref!!.asStableRef<Area>().get()) {
+        handler.pointed.ui.DragBroken = staticCFunction { handler, _ ->
+            with(handler!!.reinterpret<ktAreaHandler>().pointed.ref.to<Area>()) {
                 dragBroken?.invoke(this)
             }
         }
 
-        handler.pointed.ui.KeyEvent = staticCFunction { _handler, _, event ->
-            val handler: CPointer<ktAreaHandler> = _handler!!.reinterpret()
-            with (handler.pointed.ref!!.asStableRef<Area>().get()) {
+        handler.pointed.ui.KeyEvent = staticCFunction { handler, _, event ->
+            with(handler!!.reinterpret<ktAreaHandler>().pointed.ref.to<Area>()) {
                 if (keyEvent?.invoke(this, event!!.pointed) ?: false) 1 else 0
             }
         }
@@ -172,7 +167,7 @@ fun Area.Brush() = libui.Brush().also { disposables.add(it) }
 /** Helper to quickly set a brush color */
 fun Brush.solid(color: Color, opacity: Double = 1.0): Brush {
     clear()
-    with (ptr.pointed) {
+    with(ptr.pointed) {
         Type = uiDrawBrushTypeSolid
         R = color.r
         G = color.g
@@ -186,7 +181,7 @@ fun Brush.solid(color: Color, opacity: Double = 1.0): Brush {
 fun Brush.solid(rgb: Int, alpha: Double = 1.0): Brush {
     clear()
     val color = Color(rgb, alpha)
-    with (ptr.pointed) {
+    with(ptr.pointed) {
         Type = uiDrawBrushTypeSolid
         R = color.r
         G = color.g
@@ -199,7 +194,7 @@ fun Brush.solid(rgb: Int, alpha: Double = 1.0): Brush {
 /** Helper to quickly create linear brush */
 fun Brush.linear(start: Point, end: Point, vararg stops: Pair<Double, Color>): Brush {
     clear()
-    with (ptr.pointed) {
+    with(ptr.pointed) {
         Type = uiDrawBrushTypeLinearGradient
         X0 = start.x
         Y0 = start.y
@@ -208,7 +203,7 @@ fun Brush.linear(start: Point, end: Point, vararg stops: Pair<Double, Color>): B
         NumStops = stops.size.signExtend()
         Stops = nativeHeap.allocArray<uiDrawBrushGradientStop>(stops.size)
         stops.forEachIndexed { i, (pos, color) ->
-            with (Stops!![i]) {
+            with(Stops!![i]) {
                 Pos = pos
                 R = color.r
                 G = color.g
@@ -223,7 +218,7 @@ fun Brush.linear(start: Point, end: Point, vararg stops: Pair<Double, Color>): B
 /** Helper to quickly create radial brush */
 fun Brush.radial(start: Point, center: Point, radius: Double, vararg stops: Pair<Double, Color>): Brush {
     clear()
-    with (ptr.pointed) {
+    with(ptr.pointed) {
         Type = uiDrawBrushTypeRadialGradient
         X0 = start.x
         Y0 = start.y
@@ -233,7 +228,7 @@ fun Brush.radial(start: Point, center: Point, radius: Double, vararg stops: Pair
         NumStops = stops.size.signExtend()
         Stops = nativeHeap.allocArray<uiDrawBrushGradientStop>(stops.size)
         stops.forEachIndexed { i, (pos, color) ->
-            with (Stops!![i]) {
+            with(Stops!![i]) {
                 Pos = pos
                 R = color.r
                 G = color.g

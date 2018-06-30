@@ -67,8 +67,9 @@ var Entry.readonly: Boolean
  *  Only one function can be registered at a time. */
 fun Entry.action(block: Entry.() -> Unit) {
     action = block
-    uiEntryOnChanged(ptr, staticCFunction { _, ref ->
-        with (ref!!.asStableRef<Entry>().get()) { action?.invoke(this) }}, ref.asCPointer())
+    uiEntryOnChanged(ptr, staticCFunction { _, ref -> with(ref.to<Entry>()) {
+        action?.invoke(this)
+    }}, ref.asCPointer())
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -103,8 +104,9 @@ fun MultilineEntry.append(text: String) = uiMultilineEntryAppend(ptr, text)
  *  Only one function can be registered at a time. */
 fun MultilineEntry.action(block: MultilineEntry.() -> Unit) {
     action = block
-    uiMultilineEntryOnChanged(ptr, staticCFunction { _, ref ->
-        with (ref!!.asStableRef<MultilineEntry>().get()) { action?.invoke(this) }}, ref.asCPointer())
+    uiMultilineEntryOnChanged(ptr, staticCFunction { _, ref -> with(ref.to<MultilineEntry>()) {
+        action?.invoke(this)
+    }}, ref.asCPointer())
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -130,8 +132,9 @@ var Checkbox.value: Boolean
  *  Only one function can be registered at a time. */
 fun Checkbox.action(block: Checkbox.() -> Unit) {
     action = block
-    uiCheckboxOnToggled(ptr, staticCFunction { _, ref ->
-        with (ref!!.asStableRef<Checkbox>().get()) { action?.invoke(this) }}, ref.asCPointer())
+    uiCheckboxOnToggled(ptr, staticCFunction { _, ref -> with(ref.to<Checkbox>()) {
+        action?.invoke(this)
+    }}, ref.asCPointer())
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -156,8 +159,9 @@ var Combobox.value: Int
  *  Only one function can be registered at a time. */
 fun Combobox.action(block: Combobox.() -> Unit) {
     action = block
-    uiComboboxOnSelected(ptr, staticCFunction { _, ref ->
-        with (ref!!.asStableRef<Combobox>().get()) { action?.invoke(this) }}, ref.asCPointer())
+    uiComboboxOnSelected(ptr, staticCFunction { _, ref -> with(ref.to<Combobox>()) {
+        action?.invoke(this)
+    }}, ref.asCPointer())
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -182,8 +186,9 @@ var EditableCombobox.value: String
  *  Only one function can be registered at a time. */
 fun EditableCombobox.action(block: EditableCombobox.() -> Unit) {
     action = block
-    uiEditableComboboxOnChanged(ptr, staticCFunction { _, ref ->
-        with (ref!!.asStableRef<EditableCombobox>().get()) { action?.invoke(this) }}, ref.asCPointer())
+    uiEditableComboboxOnChanged(ptr, staticCFunction { _, ref -> with(ref.to<EditableCombobox>()) {
+        action?.invoke(this)
+    }}, ref.asCPointer())
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -204,8 +209,9 @@ var Spinbox.value: Int
  *  Only one function can be registered at a time. */
 fun Spinbox.action(block: Spinbox.() -> Unit) {
     action = block
-    uiSpinboxOnChanged(ptr, staticCFunction { _, ref ->
-        with (ref!!.asStableRef<Spinbox>().get()) { action?.invoke(this) }}, ref.asCPointer())
+    uiSpinboxOnChanged(ptr, staticCFunction { _, ref -> with(ref.to<Spinbox>()) {
+        action?.invoke(this)
+    }}, ref.asCPointer())
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -226,8 +232,9 @@ var Slider.value: Int
  *  Only one function can be registered at a time. */
 fun Slider.action(block: Slider.() -> Unit) {
     action = block
-    uiSliderOnChanged(ptr, staticCFunction { _, ref ->
-        with (ref!!.asStableRef<Slider>().get()) { action?.invoke(this) }}, ref.asCPointer())
+    uiSliderOnChanged(ptr, staticCFunction { _, ref -> with(ref.to<Slider>()) {
+        action?.invoke(this)
+    }}, ref.asCPointer())
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -252,8 +259,9 @@ var RadioButtons.value: Int
  *  Only one function can be registered at a time. */
 fun RadioButtons.action(block: RadioButtons.() -> Unit) {
     action = block
-    uiRadioButtonsOnSelected(ptr, staticCFunction { _, ref ->
-        with (ref!!.asStableRef<RadioButtons>().get()) { action?.invoke(this) }}, ref.asCPointer())
+    uiRadioButtonsOnSelected(ptr, staticCFunction { _, ref -> with(ref.to<RadioButtons>()) {
+        action?.invoke(this)
+    }}, ref.asCPointer())
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -316,8 +324,9 @@ fun DateTimePicker.textValue(format: String = defaultFormat): String = memScoped
  *  Only one function can be registered at a time. */
 fun DateTimePicker.action(block: DateTimePicker.() -> Unit) {
     action = block
-    uiDateTimePickerOnChanged(ptr, staticCFunction { _, ref ->
-        with (ref!!.asStableRef<DateTimePicker>().get()) { action?.invoke(this) }}, ref.asCPointer())
+    uiDateTimePickerOnChanged(ptr, staticCFunction { _, ref -> with(ref.to<DateTimePicker>()) {
+        action?.invoke(this)
+    }}, ref.asCPointer())
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -383,8 +392,9 @@ var Button.text: String
  *  Only one function can be registered at a time. */
 fun Button.action(block: Button.() -> Unit) {
     action = block
-    uiButtonOnClicked(ptr, staticCFunction { _, ref ->
-        with (ref!!.asStableRef<Button>().get()) { action?.invoke(this) }}, ref.asCPointer())
+    uiButtonOnClicked(ptr, staticCFunction { _, ref -> with(ref.to<Button>()) {
+        action?.invoke(this)
+    }}, ref.asCPointer())
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -414,8 +424,9 @@ var ColorButton.value: Color
  *  Only one function can be registered at a time. */
 fun ColorButton.action(block: ColorButton.() -> Unit) {
     action = block
-    uiColorButtonOnChanged(ptr, staticCFunction { _, ref ->
-        with (ref!!.asStableRef<ColorButton>().get()) { action?.invoke(this) }}, ref.asCPointer())
+    uiColorButtonOnChanged(ptr, staticCFunction { _, ref -> with(ref.to<ColorButton>()) {
+        action?.invoke(this)
+    }}, ref.asCPointer())
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -445,6 +456,7 @@ val FontButton.value: Font
  *  Only one function can be registered at a time. */
 fun FontButton.action(block: FontButton.() -> Unit) {
     action = block
-    uiFontButtonOnChanged(ptr, staticCFunction { _, ref ->
-        with (ref!!.asStableRef<FontButton>().get()) { action?.invoke(this) }}, ref.asCPointer())
+    uiFontButtonOnChanged(ptr, staticCFunction { _, ref -> with(ref.to<FontButton>()) {
+        action?.invoke(this)
+    }}, ref.asCPointer())
 }

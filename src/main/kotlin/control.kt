@@ -11,7 +11,7 @@ abstract class Control<T : CPointed>(alloc: CPointer<T>?) : Disposable<T>(alloc)
     init {
         controls[ctl] = this
         ctl.pointed.Destroy = staticCFunction { ctl ->
-            with (controls[ctl!!] ?: throw Error("Control is disposed")) {
+            with(controls[ctl!!] ?: throw Error("Control is disposed")) {
                 ctlDestroy?.invoke(ctl)
                 controls.remove(ctl)
                 free()
