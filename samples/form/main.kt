@@ -5,22 +5,22 @@ fun main(args: Array<String>) = appWindow(
     width = 320,
     height = 200
 ) {
-    add(widget = VerticalBox {
+    vbox {
         padded = true
 
-        val username = TextField()
-        val password = PasswordField()
+        lateinit var username: TextField
+        lateinit var password: PasswordField
 
-        add(widget = Form {
+        form {
             padded = true
-            add(label = "Username", widget = username)
-            add(label = "Password", widget = password)
-        })
+            username = textfield("Username")
+            password = passwordfield("Password")
+        }
 
-        add(widget = Button(text = "Login") {
+        button("Login") {
             action {
                 MsgBox("${username.value}:${password.value}")
             }
-        })
-    })
+        }
+    }
 }

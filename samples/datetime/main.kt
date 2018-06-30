@@ -5,19 +5,19 @@ fun main(args: Array<String>) = appWindow(
     width = 320,
     height = 240
 ) {
-    add(widget = Grid {
+    add(widget = Grid().apply {
         padded = true
 
         val labelBoth = Label("")
         val labelDate = Label("")
         val labelTime = Label("")
 
-        val pickerBoth = DateTimePicker() { action { labelBoth.text = textValue() } }
-        val pickerDate = DatePicker() { action { labelDate.text = textValue() } }
-        val pickerTime = TimePicker() { action { labelTime.text = textValue() } }
+        val pickerBoth = DateTimePicker().apply { action { labelBoth.text = textValue() } }
+        val pickerDate = DatePicker().apply { action { labelDate.text = textValue() } }
+        val pickerTime = TimePicker().apply { action { labelTime.text = textValue() } }
 
-        val buttonUnix = Button("Unix epoch") { action { pickerBoth.value = 0 } }
-        val buttonNow = Button("Now") {
+        val buttonUnix = Button("Unix epoch").apply { action { pickerBoth.value = 0 } }
+        val buttonNow = Button("Now").apply {
             action {
                 val now = platform.posix.time(null)
                 pickerDate.value = now

@@ -17,7 +17,7 @@ fun appWindow(
     width: Int,
     height: Int,
     margined: Boolean = true,
-    block: Window.() -> Unit = {}
+    init: Window.() -> Unit = {}
 ) {
     platform.posix.srand(platform.posix.time(null).toInt())
 
@@ -31,11 +31,11 @@ fun appWindow(
         }
     }
 
-    Window(title, width, height, margined) {
+    Window(title, width, height, margined).apply {
         onClose { uiQuit(); true }
         onShouldQuit { dispose(); true }
 
-        block()
+        init()
 
         show()
     }

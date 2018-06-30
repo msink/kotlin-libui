@@ -1,43 +1,34 @@
 import libui.*
 
-fun Window.basicControlsPage() = VerticalBox() {
+fun Window.basicControlsPage() = VerticalBox().apply {
     padded = true
-
-    add(widget = HorizontalBox {
+    hbox {
         padded = true
-        add(widget = Button("Button"))
-        add(widget = Checkbox("Checkbox"))
-    })
-    add(widget = Label("This is a label. Right now, labels can only span one line."))
-    add(widget = HorizontalSeparator())
-    add(stretchy = true, widget = Group("Entries") {
-        add(widget = Form {
+        button("Button")
+        checkbox("Checkbox")
+    }
+    label("This is a label. Right now, labels can only span one line.")
+    separator()
+    group("Entries", stretchy = true) {
+        form {
             padded = true
-            add(label = "Text Field",
-                widget = TextField())
-            add(label = "Password Field",
-                widget = PasswordField())
-            add(label = "Search Field",
-                widget = SearchField())
-            add(stretchy = true,
-                label = "Multiline Field",
-                widget = MultilineField())
-            add(stretchy = true,
-                label = "Multiline Field No Wrap",
-                widget = NowrapMultilineField())
-        })
-    })
+            textfield("Text Field")
+            passwordfield("Password Field")
+            searchfield("Search Field")
+            multilinefield("Multiline Field", stretchy = true)
+            nowrapmultilinefield("Multiline Field No Wrap", stretchy = true)
+        }
+    }
 }
 
-fun Window.numbersPage() = HorizontalBox() {
+fun Window.numbersPage() = HorizontalBox().apply {
     padded = true
-
-    add(stretchy = true, widget = Group("Numbers") {
-        add(widget = VerticalBox {
+    group("Numbers", stretchy = true) {
+        vbox {
             padded = true
-            val spinbox = Spinbox(min = 0, max = 100)
-            val slider = Slider(min = 0, max = 100)
-            val pbar = ProgressBar()
+            val spinbox = spinbox(min = 0, max = 100)
+            val slider = slider(min = 0, max = 100)
+            val pbar = progressbar()
             spinbox.action {
                 slider.value = value
                 pbar.value = value
@@ -46,61 +37,49 @@ fun Window.numbersPage() = HorizontalBox() {
                 spinbox.value = value
                 pbar.value = value
             }
-            add(widget = spinbox)
-            add(widget = slider)
-            add(widget = pbar)
-            add(widget = ProgressBar {
-                value = -1
-            })
-        })
-    })
-
-    add(stretchy = true, widget = Group("Lists") {
-        add(widget = VerticalBox {
+            progressbar { value = -1 }
+        }
+    }
+    group("Lists", stretchy = true) {
+        vbox {
             padded = true
-            add(widget = Combobox {
+            combobox {
                 add("Combobox Item 1")
                 add("Combobox Item 2")
                 add("Combobox Item 3")
-            })
-            add(widget = EditableCombobox {
+            }
+            editablecombobox {
                 add("Editable Item 1")
                 add("Editable Item 2")
                 add("Editable Item 3")
-            })
-            add(widget = RadioButtons {
+            }
+            radiobuttons {
                 add("Radio Button 1")
                 add("Radio Button 2")
                 add("Radio Button 3")
-            })
-        })
-    })
+            }
+        }
+    }
 }
 
-fun Window.dataChoosersPage() = HorizontalBox() {
+fun Window.dataChoosersPage() = HorizontalBox().apply {
     padded = true
-
-    add(widget = VerticalBox {
+    vbox {
         padded = true
-
-        add(widget = DatePicker())
-        add(widget = TimePicker())
-        add(widget = DateTimePicker())
-
-        add(widget = FontButton())
-        add(widget = ColorButton())
-    })
-
-    add(widget = VerticalSeparator())
-
-    add(stretchy = true, widget = VerticalBox {
+        datepicker()
+        timepicker()
+        datetimepicker()
+        fontbutton()
+        colorbutton()
+    }
+    separator()
+    vbox(stretchy = true) {
         padded = true
-
-        add(widget = Grid {
+        add(widget = Grid().apply {
             padded = true
 
-            val entry1 = TextField() { readonly = true }
-            val button1 = Button("Open File") {
+            val entry1 = TextField().apply { readonly = true }
+            val button1 = Button("Open File").apply {
                 action {
                     entry1.value = OpenFileDialog() ?: "(cancelled)"
                 }
@@ -108,8 +87,8 @@ fun Window.dataChoosersPage() = HorizontalBox() {
             add(widget = button1, y = 0, x = 0)
             add(widget = entry1, y = 0, x = 1, hexpand = true)
 
-            val entry2 = TextField() { readonly = true }
-            val button2 = Button("Save File") {
+            val entry2 = TextField().apply { readonly = true }
+            val button2 = Button("Save File").apply {
                 action {
                     entry2.value = SaveFileDialog() ?: "(cancelled)"
                 }
@@ -117,15 +96,15 @@ fun Window.dataChoosersPage() = HorizontalBox() {
             add(widget = button2, y = 1, x = 0)
             add(widget = entry2, y = 1, x = 1, hexpand = true)
 
-            add(y = 2, xspan = 2, widget = Grid {
+            add(y = 2, xspan = 2, widget = Grid().apply {
                 padded = true
-                add(x = 0, widget = Button("Message Box") {
+                add(x = 0, widget = Button("Message Box").apply {
                     action {
                         MsgBox(text = "This is a normal message box.",
                             details = "More detailed information can be shown here.")
                     }
                 })
-                add(x = 1, widget = Button("Error Box") {
+                add(x = 1, widget = Button("Error Box").apply {
                     action {
                         MsgBoxError(text = "This message box describes an error.",
                             details = "More detailed information can be shown here.")
@@ -133,7 +112,7 @@ fun Window.dataChoosersPage() = HorizontalBox() {
                 })
             })
         })
-    })
+    }
 }
 
 fun main(args: Array<String>) = appWindow(
@@ -141,7 +120,7 @@ fun main(args: Array<String>) = appWindow(
     width = 640,
     height = 480
 ) {
-    add(widget = Tab {
+    add(widget = Tab().apply {
         add(label = "Basic Controls",
             widget = basicControlsPage())
 

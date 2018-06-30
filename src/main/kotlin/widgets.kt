@@ -35,23 +35,16 @@ import platform.posix.*
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A simple single line text entry widget. */
-open class TextField internal constructor(alloc: CPointer<uiEntry>?
-) : Control<uiEntry>(alloc) {
-    constructor(block: TextField.() -> Unit = {}): this(uiNewEntry()) { apply(block) }
+open class TextField internal constructor(alloc: CPointer<uiEntry>?) : Control<uiEntry>(alloc) {
+    constructor(): this(uiNewEntry())
     internal var action: (TextField.() -> Unit)? = null
 }
 
 /** Text entry widget that mask the input, useful to edit passwords or other sensible data. */
-class PasswordField(block: PasswordField.() -> Unit = {}
-) : TextField(uiNewPasswordEntry()) {
-    init { apply(block) }
-}
+class PasswordField : TextField(uiNewPasswordEntry())
 
 /** Text entry widget to search text. */
-class SearchField(block: SearchField.() -> Unit = {}
-) : TextField(uiNewSearchEntry()) {
-    init { apply(block) }
-}
+class SearchField : TextField(uiNewSearchEntry())
 
 /** The current text of the TextField. */
 var TextField.value: String
@@ -77,15 +70,12 @@ fun TextField.action(block: TextField.() -> Unit) {
 /** A multiline text entry widget. */
 open class MultilineField internal constructor(alloc: CPointer<uiMultilineEntry>?
 ) : Control<uiMultilineEntry>(alloc) {
-    constructor(block: MultilineField.() -> Unit = {}): this(uiNewMultilineEntry()) { apply(block) }
+    constructor(): this(uiNewMultilineEntry())
     internal var action: (MultilineField.() -> Unit)? = null
 }
 
 /** A non wrapping multiline text entry widget. */
-class NowrapMultilineField(block: NowrapMultilineField.() -> Unit = {}
-) : MultilineField(uiNewNonWrappingMultilineEntry()) {
-    init { apply(block) }
-}
+class NowrapMultilineField() : MultilineField(uiNewNonWrappingMultilineEntry())
 
 /** The current text of the multiline entry. */
 var MultilineField.value: String
@@ -112,10 +102,8 @@ fun MultilineField.action(block: MultilineField.() -> Unit) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A checkbox widget. */
-class Checkbox(label: String, block: Checkbox.() -> Unit = {}
-) : Control<uiCheckbox>(uiNewCheckbox(label)) {
+class Checkbox(label: String) : Control<uiCheckbox>(uiNewCheckbox(label)) {
     internal var action: (Checkbox.() -> Unit)? = null
-    init { apply(block) }
 }
 
 /** The static text of the checkbox. */
@@ -140,10 +128,8 @@ fun Checkbox.action(block: Checkbox.() -> Unit) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A drop down combo box that allow list selection only. */
-class Combobox(block: Combobox.() -> Unit = {}
-) : Control<uiCombobox>(uiNewCombobox()) {
+class Combobox : Control<uiCombobox>(uiNewCombobox()) {
     internal var action: (Combobox.() -> Unit)? = null
-    init { apply(block) }
 }
 
 /** Adds the named entry to the end of the combobox.
@@ -167,10 +153,8 @@ fun Combobox.action(block: Combobox.() -> Unit) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A drop down combo box that allow selection from list or free text entry. */
-class EditableCombobox(block: EditableCombobox.() -> Unit = {}
-) : Control<uiEditableCombobox>(uiNewEditableCombobox()) {
+class EditableCombobox : Control<uiEditableCombobox>(uiNewEditableCombobox()) {
     internal var action: (EditableCombobox.() -> Unit)? = null
-    init { apply(block) }
 }
 
 /** Adds the named entry to the end of the editable combobox.
@@ -194,10 +178,8 @@ fun EditableCombobox.action(block: EditableCombobox.() -> Unit) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** An entry widget for numerical values. */
-class Spinbox(min: Int, max: Int, block: Spinbox.() -> Unit = {}
-) : Control<uiSpinbox>(uiNewSpinbox(min, max)) {
+class Spinbox(min: Int, max: Int) : Control<uiSpinbox>(uiNewSpinbox(min, max)) {
     internal var action: (Spinbox.() -> Unit)? = null
-    init { apply(block) }
 }
 
 /** The current numeric value of the spinbox. */
@@ -217,10 +199,8 @@ fun Spinbox.action(block: Spinbox.() -> Unit) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Horizontal slide to set numerical values. */
-class Slider(min: Int, max: Int, block: Slider.() -> Unit = {}
-) : Control<uiSlider>(uiNewSlider(min, max)) {
+class Slider(min: Int, max: Int) : Control<uiSlider>(uiNewSlider(min, max)) {
     internal var action: (Slider.() -> Unit)? = null
-    init { apply(block) }
 }
 
 /** The current numeric value of the slider. */
@@ -240,10 +220,8 @@ fun Slider.action(block: Slider.() -> Unit) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A widget that represent a group of radio options. */
-class RadioButtons(block: RadioButtons.() -> Unit = {}
-) : Control<uiRadioButtons>(uiNewRadioButtons()) {
+class RadioButtons : Control<uiRadioButtons>(uiNewRadioButtons()) {
     internal var action: (RadioButtons.() -> Unit)? = null
-    init { apply(block) }
 }
 
 /** Adds the named button to the end of the radiobuttons.
@@ -269,27 +247,19 @@ fun RadioButtons.action(block: RadioButtons.() -> Unit) {
 /** A widget to edit date and time. */
 open class DateTimePicker internal constructor(alloc: CPointer<uiDateTimePicker>?
 ) : Control<uiDateTimePicker>(alloc) {
-    constructor(block: DateTimePicker.() -> Unit = {}): this(uiNewDateTimePicker()) { apply(block) }
+    constructor(): this(uiNewDateTimePicker())
     internal var action: (DateTimePicker.() -> Unit)? = null
-    internal var defaultFormat = "%c"
+    internal open var defaultFormat = "%c"
 }
 
 /** A widget to edit date. */
-class DatePicker(block: DateTimePicker.() -> Unit = {}
-) : DateTimePicker(uiNewDatePicker()) {
-    init {
-        defaultFormat = "%x"
-        apply(block)
-    }
+class DatePicker : DateTimePicker(uiNewDatePicker()) {
+    override var defaultFormat = "%x"
 }
 
 /** A widget to edit time. */
-class TimePicker(block: DateTimePicker.() -> Unit = {}
-) : DateTimePicker(uiNewTimePicker()) {
-    init {
-        defaultFormat = "%X"
-        apply(block)
-    }
+class TimePicker : DateTimePicker(uiNewTimePicker()) {
+    override var defaultFormat = "%X"
 }
 
 /** The current value as posix `struct tm` */
@@ -332,10 +302,7 @@ fun DateTimePicker.action(block: DateTimePicker.() -> Unit) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A static text label. */
-class Label(text: String, block: Label.() -> Unit = {}
-) : Control<uiLabel>(uiNewLabel(text)) {
-    init { apply(block) }
-}
+class Label(text: String) : Control<uiLabel>(uiNewLabel(text))
 
 /** The static text of the label. */
 var Label.text: String
@@ -349,24 +316,15 @@ abstract class Separator(alloc: CPointer<uiSeparator>?
 ) : Control<uiSeparator>(alloc)
 
 /** An horizontal line to visually separate widgets. */
-class HorizontalSeparator(block: HorizontalSeparator.() -> Unit = {}
-) : Separator(uiNewHorizontalSeparator()) {
-    init { apply(block) }
-}
+class HorizontalSeparator() : Separator(uiNewHorizontalSeparator())
 
 /** A vertical line to visually separate widgets. */
-class VerticalSeparator(block: VerticalSeparator.() -> Unit = {}
-) : Separator(uiNewVerticalSeparator()) {
-    init { apply(block) }
-}
+class VerticalSeparator() : Separator(uiNewVerticalSeparator())
 
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Progress bar widget. */
-class ProgressBar(block: ProgressBar.() -> Unit = {}
-) : Control<uiProgressBar>(uiNewProgressBar()) {
-    init { apply(block) }
-}
+class ProgressBar() : Control<uiProgressBar>(uiNewProgressBar())
 
 /** The current position of the progress bar.
  *  Could be setted to -1 to create an indeterminate progress bar. */
@@ -377,10 +335,8 @@ var ProgressBar.value: Int
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A simple button. */
-class Button(text: String, block: Button.() -> Unit = {}
-) : Control<uiButton>(uiNewButton(text)) {
+class Button(text: String) : Control<uiButton>(uiNewButton(text)) {
     internal var action: (Button.() -> Unit)? = null
-    init { apply(block) }
 }
 
 /** The static text of the button. */
@@ -400,10 +356,8 @@ fun Button.action(block: Button.() -> Unit) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A button that opens a color palette popup. */
-class ColorButton(block: ColorButton.() -> Unit = {}
-) : Control<uiColorButton>(uiNewColorButton()) {
+class ColorButton : Control<uiColorButton>(uiNewColorButton()) {
     internal var action: (ColorButton.() -> Unit)? = null
-    init { apply(block) }
 }
 
 /** Return or set the currently selected color */
@@ -432,11 +386,9 @@ fun ColorButton.action(block: ColorButton.() -> Unit) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A button that allows users to choose a font when they click on it. */
-class FontButton(block: FontButton.() -> Unit = {}
-) : Control<uiFontButton>(uiNewFontButton()) {
+class FontButton : Control<uiFontButton>(uiNewFontButton()) {
     internal var action: (FontButton.() -> Unit)? = null
     internal val font = Font()
-    init { apply(block) }
     override fun free() {
         font.dispose()
         super.free()

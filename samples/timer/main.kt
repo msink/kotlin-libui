@@ -7,11 +7,11 @@ fun main(args: Array<String>) = appWindow(
     width = 320,
     height = 240
 ) {
-    add(widget = VerticalBox {
+    add(widget = VerticalBox().apply {
         padded = true
 
-        val scroll = MultilineField { readonly = true }
-        val button = Button("Say Something") {
+        val scroll = MultilineField().apply { readonly = true }
+        val button = Button("Say Something").apply {
             action { scroll.append("Saying something\n") }
         }
 

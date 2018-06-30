@@ -20,11 +20,11 @@ fun main(args: Array<String>) = appWindow(
     width = 640,
     height = 480
 ) {
-    add(widget = HorizontalBox {
+    add(widget = HorizontalBox().apply {
         padded = true
 
-        val datapoints = Array(10) { Spinbox(0, 100) { value = random() % 101 } }
-        val colorButton = ColorButton() { value = Color(colorDodgerBlue) }
+        val datapoints = Array(10) { Spinbox(0, 100).apply { value = random() % 101 } }
+        val colorButton = ColorButton().apply { value = Color(colorDodgerBlue) }
         var currentPoint = -1
 
         fun pointLocations(width: Double, height: Double, xs: DoubleArray, ys: DoubleArray) {
@@ -38,7 +38,7 @@ fun main(args: Array<String>) = appWindow(
             }
         }
 
-        val histogram = Area {
+        val histogram = Area().apply {
             val brush = Brush()
 
             // make a stroke for both the axes and the histogram line
@@ -124,7 +124,7 @@ fun main(args: Array<String>) = appWindow(
             }
         }
 
-        add(widget = VerticalBox {
+        add(widget = VerticalBox().apply {
             padded = true
             datapoints.forEach {
                 it.action { histogram.redraw() }

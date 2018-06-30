@@ -25,15 +25,15 @@ data class Point(val x: Double, val y: Double)
 
 /** A canvas you can draw on. It also receives keyboard and mouse events,
  *  is DPI aware, and has several other useful features. */
-fun Area(block: Area.() -> Unit = {}): Area {
+fun Area(): Area {
     val handler = nativeHeap.alloc<ktAreaHandler>()
-    return Area(uiNewArea(handler.ui.ptr), handler.ptr).apply(block)
+    return Area(uiNewArea(handler.ui.ptr), handler.ptr)
 }
 
 /** [Area] with horziontal and vertical scrollbars. */
-fun ScrollingArea(width: Int, height: Int, block: ScrollingArea.() -> Unit = {}): ScrollingArea {
+fun ScrollingArea(width: Int, height: Int): ScrollingArea {
     val handler = nativeHeap.alloc<ktAreaHandler>()
-    return ScrollingArea(uiNewScrollingArea(handler.ui.ptr, width, height), handler.ptr).apply(block)
+    return ScrollingArea(uiNewScrollingArea(handler.ui.ptr, width, height), handler.ptr)
 }
 
 open class Area internal constructor(

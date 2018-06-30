@@ -9,13 +9,11 @@ class Window(
     width: Int,
     height: Int,
     margined: Boolean = true,
-    hasMenubar: Boolean = false,
-    block: Window.() -> Unit = {}
+    hasMenubar: Boolean = false
 ) : Control<uiWindow>(uiNewWindow(title, width, height, if (hasMenubar) 1 else 0)) {
     internal var onClose: (Window.() -> Boolean)? = null
     internal var onResize: (Window.() -> Unit)? = null
     init {
-        apply(block)
         if (margined) this.margined = margined
     }
 }
@@ -59,6 +57,9 @@ fun <T : Control<*>> Window.add(widget: T): T {
     uiWindowSetChild(ptr, widget.ctl)
     return widget
 }
+
+fun Window.hbox(init: HorizontalBox.() -> Unit = {}) = add(HorizontalBox().apply(init))
+fun Window.vbox(init: VerticalBox.() -> Unit = {}) = add(VerticalBox().apply(init))
 
 /** Function to be run when window content size change. */
 fun Window.onResize(block: Window.() -> Unit) {
