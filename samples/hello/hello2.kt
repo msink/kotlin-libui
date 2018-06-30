@@ -1,10 +1,7 @@
 import libui.*
 
 fun main(args: Array<String>) = appWindow(
-    title = "Hello",
-    width = 320,
-    height = 240
-) {
+    title = "Hello", width = 320, height = 240) {
     vbox {
         padded = true
         val button = button("libui говорит: click me!")

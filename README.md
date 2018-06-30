@@ -143,10 +143,10 @@ fun main(args: Array<String>) = appWindow(
     width = 320,
     height = 240
 ) {
-    add(widget = VerticalBox {
+    add(widget = VerticalBox().apply {
         padded = true
-        val scroll = MultilineEntry { readonly = true }
-        val button = Button("libui говорит: click me!") {
+        val scroll = MultilineField().apply { readonly = true }
+        val button = Button("libui говорит: click me!").apply {
             action {
                 scroll.append("Hello, World!  Ciao, mondo!\n" +
                               "Привет, мир!  你好，世界！\n\n")
@@ -159,7 +159,23 @@ fun main(args: Array<String>) = appWindow(
 ```
 </details><br/>
 
-It's still not real DSL, but much better.
+And now DSL, unfinished but working:
+
+``` kt
+import libui.*
+
+fun main(args: Array<String>) = appWindow(
+    title = "Hello", width = 320, height = 240) {
+    vbox {
+        padded = true
+        val button = button("libui говорит: click me!")
+        val scroll = multilinefield(stretchy = true) { readonly = true }
+        button.action {
+            scroll.append("Hello, World!  Ciao, mondo!\nПривет, мир!  你好，世界！\n\n")
+        }
+    }
+}
+```
 
 ## More samples
 

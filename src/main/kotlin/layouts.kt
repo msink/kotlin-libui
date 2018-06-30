@@ -9,8 +9,8 @@ import kotlinx.cinterop.*
 // - [HorizontalBox]
 // - [VerticalBox]
 // - [Form]
-// - [Grid]
 // - [Tab]
+// - [Grid]
 //
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -213,6 +213,7 @@ var Grid.padded: Boolean
 
 /** Adds the given Control to the end of the Grid.
  *
+ *  @param[widget] The Control to be added.
  *  @param[x] The x-coordinate of the Control's location.
  *  @param[y] The y-coordinate of the Control's location.
  *  @param[xspan] The width of the Control.
@@ -221,7 +222,6 @@ var Grid.padded: Boolean
  *  @param[halign] The horizontal alignment of Control.
  *  @param[vexpand] The vertical expand of Control.
  *  @param[valign] The vertical alignment of Control.
- *  @param[widget] The Control to be added.
  */
 fun <T : Control<*>> Grid.add(
     widget: T,
@@ -243,6 +243,7 @@ fun <T : Control<*>> Grid.add(
 
 /** Insert the given Control after existing Control.
  *
+ *  @param[widget] The Control to be added.
  *  @param[existing] The existing Control at which Control be inserted.
  *  @param[at] The relative placement of the Control to the existing one.
  *  @param[xspan] The width of the Control.
@@ -251,7 +252,6 @@ fun <T : Control<*>> Grid.add(
  *  @param[halign] The horizontal alignment of Control.
  *  @param[vexpand] The vertical expand of Control.
  *  @param[valign] The vertical alignment of Control.
- *  @param[widget] The Control to be added.
  */
 fun <T : Control<*>> Grid.insert(
     widget: T,
