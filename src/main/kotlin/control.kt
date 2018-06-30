@@ -4,7 +4,7 @@ import kotlinx.cinterop.*
 
 /** Base class for all GUI controls (widgets). */
 abstract class Control<T : CPointed>(alloc: CPointer<T>?) : Disposable<T>(alloc) {
-    internal val ctl: CPointer<uiControl> get() = ptr.reinterpret()
+    val ctl: CPointer<uiControl> get() = ptr.reinterpret()
     internal val ctlDestroy = ctl.pointed.Destroy
     internal val ref = StableRef.create(this)
 

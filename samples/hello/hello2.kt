@@ -7,14 +7,10 @@ fun main(args: Array<String>) = appWindow(
 ) {
     add(widget = VerticalBox {
         padded = true
-        val scroll = MultilineEntry { readonly = true }
-        val button = Button("libui говорит: click me!") {
-            action {
-                scroll.append("Hello, World!  Ciao, mondo!\n" +
-                              "Привет, мир!  你好，世界！\n\n")
-            }
+        val button = add(widget = Button("libui говорит: click me!"))
+        val scroll = add(stretchy = true, widget = MultilineEntry { readonly = true })
+        button.action {
+            scroll.append("Hello, World!  Ciao, mondo!\nПривет, мир!  你好，世界！\n\n")
         }
-        add(widget = button)
-        add(widget = scroll, stretchy = true)
     })
 }

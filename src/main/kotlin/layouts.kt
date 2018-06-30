@@ -42,7 +42,10 @@ var Group.margined: Boolean
     set(margined) = uiGroupSetMargined(ptr, if (margined) 1 else 0)
 
 /** Sets the group's child. If child is null, the group will not have a child. */
-fun Group.add(widget: Control<*>?) = uiGroupSetChild(ptr, widget?.ctl)
+fun <T : Control<*>?> Group.add(widget: T): T {
+    uiGroupSetChild(ptr, widget?.ctl)
+    return widget
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -67,8 +70,10 @@ var Box.padded: Boolean
     set(padded) = uiBoxSetPadded(ptr, if (padded) 1 else 0)
 
 /** Adds the given widget to the end of the Box. */
-fun Box.add(widget: Control<*>, stretchy: Boolean = false) =
+fun <T : Control<*>> Box.add(widget: T, stretchy: Boolean = false): T {
     uiBoxAppend(ptr, widget.ctl, if (stretchy) 1 else 0)
+    return widget
+}
 
 /** Deletes the nth control of the Box. */
 fun Box.delete(index: Int) = uiBoxDelete(ptr, index)
@@ -87,8 +92,10 @@ var Form.padded: Boolean
     set(padded) = uiFormSetPadded(ptr, if (padded) 1 else 0)
 
 /** Adds the given widget to the end of the form. */
-fun Form.add(label: String, widget: Control<*>, stretchy: Boolean = false) =
+fun <T : Control<*>> Form.add(label: String, widget: T, stretchy: Boolean = false): T {
     uiFormAppend(ptr, label, widget.ctl, if (stretchy) 1 else 0)
+    return widget
+}
 
 /** deletes the nth control of the form. */
 fun Form.delete(index: Int) = uiFormDelete(ptr, index)
@@ -106,9 +113,10 @@ fun Tab.getMargined(page: Int): Boolean = uiTabMargined(ptr, page) != 0
 fun Tab.setMargined(page: Int, margined: Boolean) = uiTabSetMargined(ptr, page, if (margined) 1 else 0)
 
 /** Adds the given page to the end of the Tab. */
-fun Tab.add(label: String, widget: Control<*>, margined: Boolean = true) {
+fun <T : Control<*>> Tab.add(label: String, widget: T, margined: Boolean = true): T {
     uiTabAppend(ptr, label, widget.ctl)
     if (margined) setMargined(numPages - 1, true)
+    return widget
 }
 
 /** Adds the given page to the Tab such that it is the nth page of the Tab (starting at 0). */
@@ -145,8 +153,8 @@ var Grid.padded: Boolean
  *  @param[valign] The vertical alignment of Control.
  *  @param[widget] The Control to be added.
  */
-fun Grid.add(
-    widget: Control<*>,
+fun <T : Control<*>> Grid.add(
+    widget: T,
     x: Int = 0,
     y: Int = 0,
     xspan: Int = 1,
@@ -155,10 +163,13 @@ fun Grid.add(
     halign: uiAlign = uiAlignFill,
     vexpand: Boolean = false,
     valign: uiAlign = uiAlignFill
-) = uiGridAppend(ptr, widget.ctl,
-    x, y, xspan, yspan,
-    if (hexpand) 1 else 0, halign,
-    if (vexpand) 1 else 0, valign)
+): T {
+    uiGridAppend(ptr, widget.ctl,
+        x, y, xspan, yspan,
+        if (hexpand) 1 else 0, halign,
+        if (vexpand) 1 else 0, valign)
+    return widget
+}
 
 /** Insert the given Control after existing Control.
  *
@@ -172,8 +183,8 @@ fun Grid.add(
  *  @param[valign] The vertical alignment of Control.
  *  @param[widget] The Control to be added.
  */
-fun Grid.insert(
-    widget: Control<*>,
+fun <T : Control<*>> Grid.insert(
+    widget: T,
     existing: Control<*>,
     at: uiAt,
     xspan: Int = 1,
@@ -182,7 +193,10 @@ fun Grid.insert(
     halign: uiAlign = uiAlignFill,
     vexpand: Boolean = false,
     valign: uiAlign = uiAlignFill
-) = uiGridInsertAt(ptr, widget.ctl, existing.ctl,
+): T {
+    uiGridInsertAt(ptr, widget.ctl, existing.ctl,
     at, xspan, yspan,
     if (hexpand) 1 else 0, halign,
     if (vexpand) 1 else 0, valign)
+    return widget
+}

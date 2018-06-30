@@ -55,7 +55,10 @@ var Window.contentSize: SizeInt
 
 /** Specify the control to show in window content area.
  *  Window instances can contain only one control. If you need more, you have to use Container */
-fun Window.add(widget: Control<*>) = uiWindowSetChild(ptr, widget.ctl)
+fun <T : Control<*>> Window.add(widget: T): T {
+    uiWindowSetChild(ptr, widget.ctl)
+    return widget
+}
 
 /** Function to be run when window content size change. */
 fun Window.onResize(block: Window.() -> Unit) {
