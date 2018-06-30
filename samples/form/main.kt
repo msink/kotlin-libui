@@ -8,8 +8,8 @@ fun main(args: Array<String>) = appWindow(
     add(widget = VerticalBox {
         padded = true
 
-        val username = Entry()
-        val password = PasswordEntry()
+        val username = TextField()
+        val password = PasswordField()
 
         add(widget = Form {
             padded = true

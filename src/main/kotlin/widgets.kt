@@ -6,11 +6,11 @@ import platform.posix.*
 ///////////////////////////////////////////////////////////////////////////////
 //
 // Data entry widgets:
-// - [Entry]
-// - [PasswordEntry]
-// - [SearchEntry]
-// - [MultilineEntry]
-// - [NonWrappingMultilineEntry]
+// - [TextField]
+// - [PasswordField]
+// - [SearchField]
+// - [MultilineField]
+// - [NowrapMultilineField]
 // - [Checkbox]
 // - [Combobox]
 // - [EditableCombobox]
@@ -35,39 +35,39 @@ import platform.posix.*
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A simple single line text entry widget. */
-open class Entry internal constructor(alloc: CPointer<uiEntry>?
+open class TextField internal constructor(alloc: CPointer<uiEntry>?
 ) : Control<uiEntry>(alloc) {
-    constructor(block: Entry.() -> Unit = {}): this(uiNewEntry()) { apply(block) }
-    internal var action: (Entry.() -> Unit)? = null
+    constructor(block: TextField.() -> Unit = {}): this(uiNewEntry()) { apply(block) }
+    internal var action: (TextField.() -> Unit)? = null
 }
 
 /** Text entry widget that mask the input, useful to edit passwords or other sensible data. */
-class PasswordEntry(block: PasswordEntry.() -> Unit = {}
-) : Entry(uiNewPasswordEntry()) {
+class PasswordField(block: PasswordField.() -> Unit = {}
+) : TextField(uiNewPasswordEntry()) {
     init { apply(block) }
 }
 
 /** Text entry widget to search text. */
-class SearchEntry(block: SearchEntry.() -> Unit = {}
-) : Entry(uiNewSearchEntry()) {
+class SearchField(block: SearchField.() -> Unit = {}
+) : TextField(uiNewSearchEntry()) {
     init { apply(block) }
 }
 
-/** The current text of the Entry. */
-var Entry.value: String
+/** The current text of the TextField. */
+var TextField.value: String
     get() = uiEntryText(ptr)?.toKString() ?: ""
     set(value) = uiEntrySetText(ptr, value)
 
 /** Whether the text is read-only or not. Defaults to `false`. */
-var Entry.readonly: Boolean
+var TextField.readonly: Boolean
     get() = uiEntryReadOnly(ptr) != 0
     set(readonly) = uiEntrySetReadOnly(ptr, if (readonly) 1 else 0)
 
-/** Funcion to be run when the user makes a change to the Entry.
+/** Funcion to be run when the user makes a change to the TextField.
  *  Only one function can be registered at a time. */
-fun Entry.action(block: Entry.() -> Unit) {
+fun TextField.action(block: TextField.() -> Unit) {
     action = block
-    uiEntryOnChanged(ptr, staticCFunction { _, ref -> with(ref.to<Entry>()) {
+    uiEntryOnChanged(ptr, staticCFunction { _, ref -> with(ref.to<TextField>()) {
         action?.invoke(this)
     }}, ref.asCPointer())
 }
@@ -75,36 +75,36 @@ fun Entry.action(block: Entry.() -> Unit) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A multiline text entry widget. */
-open class MultilineEntry internal constructor(alloc: CPointer<uiMultilineEntry>?
+open class MultilineField internal constructor(alloc: CPointer<uiMultilineEntry>?
 ) : Control<uiMultilineEntry>(alloc) {
-    constructor(block: MultilineEntry.() -> Unit = {}): this(uiNewMultilineEntry()) { apply(block) }
-    internal var action: (MultilineEntry.() -> Unit)? = null
+    constructor(block: MultilineField.() -> Unit = {}): this(uiNewMultilineEntry()) { apply(block) }
+    internal var action: (MultilineField.() -> Unit)? = null
 }
 
 /** A non wrapping multiline text entry widget. */
-class NonWrappingMultilineEntry(block: NonWrappingMultilineEntry.() -> Unit = {}
-) : MultilineEntry(uiNewNonWrappingMultilineEntry()) {
+class NowrapMultilineField(block: NowrapMultilineField.() -> Unit = {}
+) : MultilineField(uiNewNonWrappingMultilineEntry()) {
     init { apply(block) }
 }
 
 /** The current text of the multiline entry. */
-var MultilineEntry.value: String
+var MultilineField.value: String
     get() = uiMultilineEntryText(ptr)?.toKString() ?: ""
     set(value) = uiMultilineEntrySetText(ptr, value)
 
 /** Whether the text is read-only or not. Defaults to `false` */
-var MultilineEntry.readonly: Boolean
+var MultilineField.readonly: Boolean
     get() = uiMultilineEntryReadOnly(ptr) != 0
     set(readonly) = uiMultilineEntrySetReadOnly(ptr, if (readonly) 1 else 0)
 
 /** Adds the text to the end of the multiline entry. */
-fun MultilineEntry.append(text: String) = uiMultilineEntryAppend(ptr, text)
+fun MultilineField.append(text: String) = uiMultilineEntryAppend(ptr, text)
 
-/** Funcion to be run when the user makes a change to the MultilineEntry.
+/** Funcion to be run when the user makes a change to the MultilineField.
  *  Only one function can be registered at a time. */
-fun MultilineEntry.action(block: MultilineEntry.() -> Unit) {
+fun MultilineField.action(block: MultilineField.() -> Unit) {
     action = block
-    uiMultilineEntryOnChanged(ptr, staticCFunction { _, ref -> with(ref.to<MultilineEntry>()) {
+    uiMultilineEntryOnChanged(ptr, staticCFunction { _, ref -> with(ref.to<MultilineField>()) {
         action?.invoke(this)
     }}, ref.asCPointer())
 }

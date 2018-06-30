@@ -13,18 +13,18 @@ fun Window.basicControlsPage() = VerticalBox() {
     add(stretchy = true, widget = Group("Entries") {
         add(widget = Form {
             padded = true
-            add(label = "Text Entry",
-                widget = Entry())
-            add(label = "Password Entry",
-                widget = PasswordEntry())
-            add(label = "Search Entry",
-                widget = SearchEntry())
+            add(label = "Text Field",
+                widget = TextField())
+            add(label = "Password Field",
+                widget = PasswordField())
+            add(label = "Search Field",
+                widget = SearchField())
             add(stretchy = true,
-                label = "Multiline Entry",
-                widget = MultilineEntry())
+                label = "Multiline Field",
+                widget = MultilineField())
             add(stretchy = true,
-                label = "Multiline Entry No Wrap",
-                widget = NonWrappingMultilineEntry())
+                label = "Multiline Field No Wrap",
+                widget = NowrapMultilineField())
         })
     })
 }
@@ -99,7 +99,7 @@ fun Window.dataChoosersPage() = HorizontalBox() {
         add(widget = Grid {
             padded = true
 
-            val entry1 = Entry() { readonly = true }
+            val entry1 = TextField() { readonly = true }
             val button1 = Button("Open File") {
                 action {
                     entry1.value = OpenFileDialog() ?: "(cancelled)"
@@ -108,7 +108,7 @@ fun Window.dataChoosersPage() = HorizontalBox() {
             add(widget = button1, y = 0, x = 0)
             add(widget = entry1, y = 0, x = 1, hexpand = true)
 
-            val entry2 = Entry() { readonly = true }
+            val entry2 = TextField() { readonly = true }
             val button2 = Button("Save File") {
                 action {
                     entry2.value = SaveFileDialog() ?: "(cancelled)"
