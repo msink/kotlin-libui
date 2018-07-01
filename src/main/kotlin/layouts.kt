@@ -45,30 +45,6 @@ fun <T : Control<*>?> Group.add(widget: T): T {
     return widget
 }
 
-/** DSL builders */
-fun Group.textfield(init: TextField.() -> Unit = {}) = add(TextField().apply(init))
-fun Group.passwordfield(init: PasswordField.() -> Unit = {}) = add(PasswordField().apply(init))
-fun Group.searchfield(init: SearchField.() -> Unit = {}) = add(SearchField().apply(init))
-fun Group.multilinefield(init: MultilineField.() -> Unit = {}) = add(MultilineField().apply(init))
-fun Group.nowrapmultilinefield(init: NowrapMultilineField.() -> Unit = {}) = add(NowrapMultilineField().apply(init))
-fun Group.checkbox(label: String, init: Checkbox.() -> Unit = {}) = add(Checkbox(label).apply(init))
-fun Group.combobox(init: Combobox.() -> Unit = {}) = add(Combobox().apply(init))
-fun Group.editablecombobox(init: EditableCombobox.() -> Unit = {}) = add(EditableCombobox().apply(init))
-fun Group.spinbox(min: Int, max: Int, init: Spinbox.() -> Unit = {}) = add(Spinbox(min, max).apply(init))
-fun Group.slider(min: Int, max: Int, init: Slider.() -> Unit = {}) = add(Slider(min, max).apply(init))
-fun Group.radiobuttons(init: RadioButtons.() -> Unit = {}) = add(RadioButtons().apply(init))
-fun Group.datetimepicker(init: DateTimePicker.() -> Unit = {}) = add(DateTimePicker().apply(init))
-fun Group.datepicker(init: DatePicker.() -> Unit = {}) = add(DatePicker().apply(init))
-fun Group.timepicker(init: TimePicker.() -> Unit = {}) = add(TimePicker().apply(init))
-fun Group.label(text: String, init: Label.() -> Unit = {}) = add(Label(text).apply(init))
-fun Group.progressbar(init: ProgressBar.() -> Unit = {}) = add(ProgressBar().apply(init))
-fun Group.button(text: String, init: Button.() -> Unit = {}) = add(Button(text).apply(init))
-fun Group.colorbutton(init: ColorButton.() -> Unit = {}) = add(ColorButton().apply(init))
-fun Group.fontbutton(init: FontButton.() -> Unit = {}) = add(FontButton().apply(init))
-fun Group.hbox(init: HorizontalBox.() -> Unit = {}) = add(HorizontalBox().apply(init))
-fun Group.vbox(init: VerticalBox.() -> Unit = {}) = add(VerticalBox().apply(init))
-fun Group.form(init: Form.() -> Unit = {}) = add(Form().apply(init))
-
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A container that stack its chidren horizontally or vertically. */
@@ -91,58 +67,6 @@ fun <T : Control<*>> Box.add(widget: T, stretchy: Boolean = false): T {
     return widget
 }
 
-/** DSL builders */
-fun Box.textfield(stretchy: Boolean = false, init: TextField.() -> Unit = {}) =
-    add(TextField().apply(init), stretchy)
-fun Box.passwordfield(stretchy: Boolean = false, init: PasswordField.() -> Unit = {}) =
-    add(PasswordField().apply(init), stretchy)
-fun Box.searchfield(stretchy: Boolean = false, init: SearchField.() -> Unit = {}) =
-    add(SearchField().apply(init), stretchy)
-fun Box.multilinefield(stretchy: Boolean = false, init: MultilineField.() -> Unit = {}) =
-    add(MultilineField().apply(init), stretchy)
-fun Box.nowrapmultilinefield(stretchy: Boolean = false, init: NowrapMultilineField.() -> Unit = {}) =
-    add(NowrapMultilineField().apply(init), stretchy)
-fun Box.checkbox(label: String, stretchy: Boolean = false, init: Checkbox.() -> Unit = {}) =
-    add(Checkbox(label).apply(init), stretchy)
-fun Box.combobox(stretchy: Boolean = false, init: Combobox.() -> Unit = {}) =
-    add(Combobox().apply(init), stretchy)
-fun Box.editablecombobox(stretchy: Boolean = false, init: EditableCombobox.() -> Unit = {}) =
-    add(EditableCombobox().apply(init), stretchy)
-fun Box.spinbox(min: Int, max: Int, stretchy: Boolean = false, init: Spinbox.() -> Unit = {}) =
-    add(Spinbox(min, max).apply(init), stretchy)
-fun Box.slider(min: Int, max: Int, stretchy: Boolean = false, init: Slider.() -> Unit = {}) =
-    add(Slider(min, max).apply(init), stretchy)
-fun Box.radiobuttons(stretchy: Boolean = false, init: RadioButtons.() -> Unit = {}) =
-    add(RadioButtons().apply(init), stretchy)
-fun Box.datetimepicker(stretchy: Boolean = false, init: DateTimePicker.() -> Unit = {}) =
-    add(DateTimePicker().apply(init), stretchy)
-fun Box.datepicker(stretchy: Boolean = false, init: DatePicker.() -> Unit = {}) =
-    add(DatePicker().apply(init), stretchy)
-fun Box.timepicker(stretchy: Boolean = false, init: TimePicker.() -> Unit = {}) =
-    add(TimePicker().apply(init), stretchy)
-fun Box.label(text: String, stretchy: Boolean = false, init: Label.() -> Unit = {}) =
-    add(Label(text).apply(init), stretchy)
-fun HorizontalBox.separator(stretchy: Boolean = false, init: VerticalSeparator.() -> Unit = {}) =
-    add(VerticalSeparator().apply(init), stretchy)
-fun VerticalBox.separator(stretchy: Boolean = false, init: HorizontalSeparator.() -> Unit = {}) =
-    add(HorizontalSeparator().apply(init), stretchy)
-fun Box.progressbar(stretchy: Boolean = false, init: ProgressBar.() -> Unit = {}) =
-    add(ProgressBar().apply(init), stretchy)
-fun Box.button(text: String, stretchy: Boolean = false, init: Button.() -> Unit = {}) =
-    add(Button(text).apply(init), stretchy)
-fun Box.colorbutton(stretchy: Boolean = false, init: ColorButton.() -> Unit = {}) =
-    add(ColorButton().apply(init), stretchy)
-fun Box.fontbutton(stretchy: Boolean = false, init: FontButton.() -> Unit = {}) =
-    add(FontButton().apply(init), stretchy)
-fun Box.group(title: String, margined: Boolean = true, stretchy: Boolean = false, init: Group.() -> Unit = {}) =
-    add(Group(title, margined).apply(init), stretchy)
-fun HorizontalBox.vbox(stretchy: Boolean = false, init: VerticalBox.() -> Unit = {}) =
-    add(VerticalBox().apply(init), stretchy)
-fun VerticalBox.hbox(stretchy: Boolean = false, init: HorizontalBox.() -> Unit = {}) =
-    add(HorizontalBox().apply(init), stretchy)
-fun Box.form(stretchy: Boolean = false, init: Form.() -> Unit = {}) =
-    add(Form().apply(init), stretchy)
-
 /** Deletes the nth control of the Box. */
 fun Box.delete(index: Int) = uiBoxDelete(ptr, index)
 
@@ -161,17 +85,6 @@ fun <T : Control<*>> Form.add(label: String, widget: T, stretchy: Boolean = fals
     uiFormAppend(ptr, label, widget.ctl, if (stretchy) 1 else 0)
     return widget
 }
-
-fun Form.textfield(label: String, stretchy: Boolean = false, init: TextField.() -> Unit = {}) =
-    add(label, TextField().apply(init), stretchy)
-fun Form.passwordfield(label: String, stretchy: Boolean = false, init: PasswordField.() -> Unit = {}) =
-    add(label, PasswordField().apply(init), stretchy)
-fun Form.searchfield(label: String, stretchy: Boolean = false, init: SearchField.() -> Unit = {}) =
-    add(label, SearchField().apply(init), stretchy)
-fun Form.multilinefield(label: String, stretchy: Boolean = false, init: MultilineField.() -> Unit = {}) =
-    add(label, MultilineField().apply(init), stretchy)
-fun Form.nowrapmultilinefield(label: String, stretchy: Boolean = false, init: NowrapMultilineField.() -> Unit = {}) =
-    add(label, NowrapMultilineField().apply(init), stretchy)
 
 /** deletes the nth control of the form. */
 fun Form.delete(index: Int) = uiFormDelete(ptr, index)
