@@ -2,8 +2,6 @@ package libui
 
 import kotlinx.cinterop.*
 
-inline fun <reified T : Any> COpaquePointer?.to() = this!!.asStableRef<T>().get()
-
 fun random() = platform.posix.rand()
 
 /**

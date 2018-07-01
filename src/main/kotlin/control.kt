@@ -76,4 +76,7 @@ abstract class Control<T : CPointed>(alloc: CPointer<T>?) : Disposable<T>(alloc)
         set(visible) = if (visible) show() else hide()
 }
 
+//TODO: remove this intermediate map
 private var controls = mutableMapOf<CPointer<uiControl>, Control<*>>()
+
+inline fun <reified T : Control<*>> COpaquePointer?.to() = this!!.asStableRef<T>().get()

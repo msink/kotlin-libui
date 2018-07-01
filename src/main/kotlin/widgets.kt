@@ -10,16 +10,15 @@ import platform.posix.*
 // - [PasswordField]
 // - [SearchField]
 // - [TextArea]
-// - [NowrapMultilineField]
 // - [Checkbox]
 // - [Combobox]
 // - [EditableCombobox]
 // - [Spinbox]
 // - [Slider]
 // - [RadioButtons]
-// - [DateTimePicker]
 // - [DatePicker]
 // - [TimePicker]
+// - [DateTimePicker]
 //
 // Static widgets:
 // - [Label]
@@ -74,7 +73,7 @@ class TextArea(wrap: Boolean = true) : Control<uiMultilineEntry>(
     internal var action: (TextArea.() -> Unit)? = null
 }
 
-/** The current text of the multiline entry. */
+/** The current text of the area. */
 var TextArea.value: String
     get() = uiMultilineEntryText(ptr)?.toKString() ?: ""
     set(value) = uiMultilineEntrySetText(ptr, value)
@@ -84,7 +83,7 @@ var TextArea.readonly: Boolean
     get() = uiMultilineEntryReadOnly(ptr) != 0
     set(readonly) = uiMultilineEntrySetReadOnly(ptr, if (readonly) 1 else 0)
 
-/** Adds the text to the end of the multiline entry. */
+/** Adds the text to the end of the area. */
 fun TextArea.append(text: String) = uiMultilineEntryAppend(ptr, text)
 
 /** Funcion to be run when the user makes a change to the TextArea.
