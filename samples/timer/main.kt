@@ -10,7 +10,7 @@ fun main(args: Array<String>) = appWindow(
     add(widget = VerticalBox().apply {
         padded = true
 
-        val scroll = MultilineField().apply { readonly = true }
+        val scroll = TextArea().apply { readonly = true }
         val button = Button("Say Something").apply {
             action { scroll.append("Saying something\n") }
         }

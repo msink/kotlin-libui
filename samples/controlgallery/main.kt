@@ -15,8 +15,8 @@ fun Window.basicControlsPage() = VerticalBox().apply {
             textfield("Text Field")
             passwordfield("Password Field")
             searchfield("Search Field")
-            multilinefield("Multiline Field", stretchy = true)
-            nowrapmultilinefield("Multiline Field No Wrap", stretchy = true)
+            textarea("Multiline Field", stretchy = true)
+            textarea("Multiline Field No Wrap", wrap = false, stretchy = true)
         }
     }
 }

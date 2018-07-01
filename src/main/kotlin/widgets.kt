@@ -9,7 +9,7 @@ import platform.posix.*
 // - [TextField]
 // - [PasswordField]
 // - [SearchField]
-// - [MultilineField]
+// - [TextArea]
 // - [NowrapMultilineField]
 // - [Checkbox]
 // - [Combobox]
@@ -67,34 +67,31 @@ fun TextField.action(block: TextField.() -> Unit) {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A multiline text entry widget. */
-open class MultilineField internal constructor(alloc: CPointer<uiMultilineEntry>?
-) : Control<uiMultilineEntry>(alloc) {
-    constructor(): this(uiNewMultilineEntry())
-    internal var action: (MultilineField.() -> Unit)? = null
+/** A multiline plain text editing widget.
+ *  [wrap] enables the wrapping of the text when it reaches the edge of the area */
+class TextArea(wrap: Boolean = true) : Control<uiMultilineEntry>(
+    if (wrap) uiNewMultilineEntry() else uiNewNonWrappingMultilineEntry()) {
+    internal var action: (TextArea.() -> Unit)? = null
 }
 
-/** A non wrapping multiline text entry widget. */
-class NowrapMultilineField() : MultilineField(uiNewNonWrappingMultilineEntry())
-
 /** The current text of the multiline entry. */
-var MultilineField.value: String
+var TextArea.value: String
     get() = uiMultilineEntryText(ptr)?.toKString() ?: ""
     set(value) = uiMultilineEntrySetText(ptr, value)
 
 /** Whether the text is read-only or not. Defaults to `false` */
-var MultilineField.readonly: Boolean
+var TextArea.readonly: Boolean
     get() = uiMultilineEntryReadOnly(ptr) != 0
     set(readonly) = uiMultilineEntrySetReadOnly(ptr, if (readonly) 1 else 0)
 
 /** Adds the text to the end of the multiline entry. */
-fun MultilineField.append(text: String) = uiMultilineEntryAppend(ptr, text)
+fun TextArea.append(text: String) = uiMultilineEntryAppend(ptr, text)
 
-/** Funcion to be run when the user makes a change to the MultilineField.
+/** Funcion to be run when the user makes a change to the TextArea.
  *  Only one function can be registered at a time. */
-fun MultilineField.action(block: MultilineField.() -> Unit) {
+fun TextArea.action(block: TextArea.() -> Unit) {
     action = block
-    uiMultilineEntryOnChanged(ptr, staticCFunction { _, ref -> with(ref.to<MultilineField>()) {
+    uiMultilineEntryOnChanged(ptr, staticCFunction { _, ref -> with(ref.to<TextArea>()) {
         action?.invoke(this)
     }}, ref.asCPointer())
 }
