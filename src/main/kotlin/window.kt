@@ -10,11 +10,19 @@ class Window(
     height: Int,
     margined: Boolean = true,
     hasMenubar: Boolean = false
-) : Control<uiWindow>(uiNewWindow(title, width, height, if (hasMenubar) 1 else 0)) {
+) : Control<uiWindow>(uiNewWindow(title, width, height, if (hasMenubar) 1 else 0)),
+    Container {
     internal var onClose: (Window.() -> Boolean)? = null
     internal var onResize: (Window.() -> Unit)? = null
     init {
         if (margined) this.margined = margined
+    }
+
+    /** Specify the control to show in content area.
+     *  Window can contain only one control, if you need more use layouts like Box or Grid */
+    override fun <T : Control<*>> add(widget: T): T {
+        uiWindowSetChild(ptr, widget.ctl)
+        return widget
     }
 }
 
@@ -50,16 +58,6 @@ var Window.contentSize: SizeInt
         SizeInt(width.value, height.value)
     }
     set(size) = uiWindowSetContentSize(ptr, size.width, size.height)
-
-/** Specify the control to show in window content area.
- *  Window instances can contain only one control. If you need more, you have to use Container */
-fun <T : Control<*>> Window.add(widget: T): T {
-    uiWindowSetChild(ptr, widget.ctl)
-    return widget
-}
-
-fun Window.hbox(init: HorizontalBox.() -> Unit = {}) = add(HorizontalBox().apply(init))
-fun Window.vbox(init: VerticalBox.() -> Unit = {}) = add(VerticalBox().apply(init))
 
 /** Function to be run when window content size change. */
 fun Window.onResize(block: Window.() -> Unit) {

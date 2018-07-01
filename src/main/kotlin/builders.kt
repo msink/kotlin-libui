@@ -2,97 +2,99 @@ package libui
 
 import kotlinx.cinterop.*
 
-///////////////////////////////////////////////////////////////////////////////
+interface Container {
+    fun <T : Control<*>> add(widget: T): T
+}
 
-inline fun Group.textfield(
+inline fun Container.textfield(
     init: TextField.() -> Unit = {}
 ) = add(TextField().apply(init))
 
-inline fun Group.passwordfield(
+inline fun Container.passwordfield(
     init: PasswordField.() -> Unit = {}
 ) = add(PasswordField().apply(init))
 
-inline fun Group.searchfield(
+inline fun Container.searchfield(
     init: SearchField.() -> Unit = {}
 ) = add(SearchField().apply(init))
 
-inline fun Group.textarea(
+inline fun Container.textarea(
     wrap: Boolean = true,
     init: TextArea.() -> Unit = {}
 ) = add(TextArea(wrap).apply(init))
 
-inline fun Group.checkbox(
+inline fun Container.checkbox(
     label: String,
     init: Checkbox.() -> Unit = {}
 ) = add(Checkbox(label).apply(init))
 
-inline fun Group.combobox(
+inline fun Container.combobox(
     init: Combobox.() -> Unit = {}
 ) = add(Combobox().apply(init))
 
-inline fun Group.editablecombobox(
+inline fun Container.editablecombobox(
     init: EditableCombobox.() -> Unit = {}
 ) = add(EditableCombobox().apply(init))
 
-inline fun Group.spinbox(
+inline fun Container.spinbox(
     min: Int,
     max: Int,
     init: Spinbox.() -> Unit = {}
 ) = add(Spinbox(min, max).apply(init))
 
-inline fun Group.slider(
+inline fun Container.slider(
     min: Int,
     max: Int,
     init: Slider.() -> Unit = {}
 ) = add(Slider(min, max).apply(init))
 
-inline fun Group.radiobuttons(
+inline fun Container.radiobuttons(
     init: RadioButtons.() -> Unit = {}
 ) = add(RadioButtons().apply(init))
 
-inline fun Group.datetimepicker(
+inline fun Container.datetimepicker(
     init: DateTimePicker.() -> Unit = {}
 ) = add(DateTimePicker().apply(init))
 
-inline fun Group.datepicker(
+inline fun Container.datepicker(
     init: DatePicker.() -> Unit = {}
 ) = add(DatePicker().apply(init))
 
-inline fun Group.timepicker(
+inline fun Container.timepicker(
     init: TimePicker.() -> Unit = {}
 ) = add(TimePicker().apply(init))
 
-inline fun Group.label(
+inline fun Container.label(
     text: String,
     init: Label.() -> Unit = {}
 ) = add(Label(text).apply(init))
 
-inline fun Group.progressbar(
+inline fun Container.progressbar(
     init: ProgressBar.() -> Unit = {}
 ) = add(ProgressBar().apply(init))
 
-inline fun Group.button(
+inline fun Container.button(
     text: String,
     init: Button.() -> Unit = {}
 ) = add(Button(text).apply(init))
 
-inline fun Group.colorbutton(
+inline fun Container.colorbutton(
     init: ColorButton.() -> Unit = {}
 ) = add(ColorButton().apply(init))
 
-inline fun Group.fontbutton(
+inline fun Container.fontbutton(
     init: FontButton.() -> Unit = {}
 ) = add(FontButton().apply(init))
 
-inline fun Group.hbox(
+inline fun Container.hbox(
     init: HorizontalBox.() -> Unit = {}
 ) = add(HorizontalBox().apply(init))
 
-inline fun Group.vbox(
+inline fun Container.vbox(
     init: VerticalBox.() -> Unit = {}
 ) = add(VerticalBox().apply(init))
 
-inline fun Group.form(
+inline fun Container.form(
     init: Form.() -> Unit = {}
 ) = add(Form().apply(init))
 

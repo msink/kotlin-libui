@@ -23,9 +23,15 @@ abstract class Layout<T : CPointed>(alloc: CPointer<T>?) : Control<T>(alloc)
 class Group(
     title: String,
     margined: Boolean = true
-) : Layout<uiGroup>(uiNewGroup(title)) {
+) : Layout<uiGroup>(uiNewGroup(title)),
+    Container {
     init {
         if (margined) this.margined = margined
+    }
+
+    override fun <T : Control<*>> add(widget: T): T {
+        uiGroupSetChild(ptr, widget.ctl)
+        return widget
     }
 }
 
@@ -38,12 +44,6 @@ var Group.title: String
 var Group.margined: Boolean
     get() = uiGroupMargined(ptr) != 0
     set(margined) = uiGroupSetMargined(ptr, if (margined) 1 else 0)
-
-/** Sets the group's child. If child is null, the group will not have a child. */
-fun <T : Control<*>?> Group.add(widget: T): T {
-    uiGroupSetChild(ptr, widget?.ctl)
-    return widget
-}
 
 ///////////////////////////////////////////////////////////////////////////////
 
