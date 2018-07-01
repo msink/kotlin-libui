@@ -2,6 +2,11 @@ package libui
 
 import kotlinx.cinterop.*
 
+/** Container for child controls. */
+interface Container {
+    fun <T : Control<*>> add(widget: T): T
+}
+
 inline fun Container.textfield(
     readonly: Boolean = false,
     init: TextField.() -> Unit = {}
@@ -117,7 +122,18 @@ inline fun Container.form(
 
 ///////////////////////////////////////////////////////////////////////////////
 
-inline fun Box.textfield(
+/** Container for child controls that can stretch when container size change. */
+interface Stretchy {
+    fun <T : Control<*>> add(widget: T, stretchy: Boolean = false): T
+}
+
+/** Container that can stretch horizontally. */
+interface StretchyHorizontal : Stretchy
+
+/** Container that can stretch vertically. */
+interface StretchyVertical : Stretchy
+
+inline fun Stretchy.textfield(
     readonly: Boolean = false,
     stretchy: Boolean = false,
     init: TextField.() -> Unit = {}
@@ -125,7 +141,7 @@ inline fun Box.textfield(
         .apply { if (readonly) this.readonly = readonly }
         .apply(init), stretchy)
 
-inline fun Box.passwordfield(
+inline fun Stretchy.passwordfield(
     readonly: Boolean = false,
     stretchy: Boolean = false,
     init: PasswordField.() -> Unit = {}
@@ -133,7 +149,7 @@ inline fun Box.passwordfield(
         .apply { if (readonly) this.readonly = readonly }
         .apply(init), stretchy)
 
-inline fun Box.searchfield(
+inline fun Stretchy.searchfield(
     readonly: Boolean = false,
     stretchy: Boolean = false,
     init: SearchField.() -> Unit = {}
@@ -141,7 +157,7 @@ inline fun Box.searchfield(
         .apply { if (readonly) this.readonly = readonly }
         .apply(init), stretchy)
 
-inline fun Box.textarea(
+inline fun Stretchy.textarea(
     wrap: Boolean = true,
     readonly: Boolean = false,
     stretchy: Boolean = false,
@@ -150,94 +166,94 @@ inline fun Box.textarea(
         .apply { if (readonly) this.readonly = readonly }
         .apply(init), stretchy)
 
-inline fun Box.checkbox(
+inline fun Stretchy.checkbox(
     label: String,
     stretchy: Boolean = false,
     init: Checkbox.() -> Unit = {}
 ) = add(Checkbox(label).apply(init), stretchy)
 
-inline fun Box.combobox(
+inline fun Stretchy.combobox(
     stretchy: Boolean = false,
     init: Combobox.() -> Unit = {}
 ) = add(Combobox().apply(init), stretchy)
 
-inline fun Box.editablecombobox(
+inline fun Stretchy.editablecombobox(
     stretchy: Boolean = false,
     init: EditableCombobox.() -> Unit = {}
 ) = add(EditableCombobox().apply(init), stretchy)
 
-inline fun Box.spinbox(
+inline fun Stretchy.spinbox(
     min: Int,
     max: Int,
     stretchy: Boolean = false,
     init: Spinbox.() -> Unit = {}
 ) = add(Spinbox(min, max).apply(init), stretchy)
 
-inline fun Box.slider(
+inline fun Stretchy.slider(
     min: Int,
     max: Int,
     stretchy: Boolean = false,
     init: Slider.() -> Unit = {}
 ) = add(Slider(min, max).apply(init), stretchy)
 
-inline fun Box.radiobuttons(
+inline fun Stretchy.radiobuttons(
     stretchy: Boolean = false,
     init: RadioButtons.() -> Unit = {}
 ) = add(RadioButtons().apply(init), stretchy)
 
-inline fun Box.datetimepicker(
+inline fun Stretchy.datetimepicker(
     stretchy: Boolean = false,
     init: DateTimePicker.() -> Unit = {}
 ) = add(DateTimePicker().apply(init), stretchy)
 
-inline fun Box.datepicker(
+inline fun Stretchy.datepicker(
     stretchy: Boolean = false,
     init: DatePicker.() -> Unit = {}
 ) = add(DatePicker().apply(init), stretchy)
 
-inline fun Box.timepicker(
+inline fun Stretchy.timepicker(
     stretchy: Boolean = false,
     init: TimePicker.() -> Unit = {}
 ) = add(TimePicker().apply(init), stretchy)
 
-inline fun Box.label(
+inline fun Stretchy.label(
     text: String,
     stretchy: Boolean = false,
     init: Label.() -> Unit = {}
 ) = add(Label(text).apply(init), stretchy)
 
-inline fun HorizontalBox.separator(
+inline fun StretchyHorizontal.separator(
     stretchy: Boolean = false,
     init: VerticalSeparator.() -> Unit = {}
 ) = add(VerticalSeparator().apply(init), stretchy)
 
-inline fun VerticalBox.separator(
+inline fun StretchyVertical.separator(
     stretchy: Boolean = false,
     init: HorizontalSeparator.() -> Unit = {}
 ) = add(HorizontalSeparator().apply(init), stretchy)
 
-inline fun Box.progressbar(
+inline fun Stretchy.progressbar(
     stretchy: Boolean = false,
     init: ProgressBar.() -> Unit = {}
 ) = add(ProgressBar().apply(init), stretchy)
 
-inline fun Box.button(
+inline fun Stretchy.button(
     text: String,
     stretchy: Boolean = false,
     init: Button.() -> Unit = {}
 ) = add(Button(text).apply(init), stretchy)
 
-inline fun Box.colorbutton(
+inline fun Stretchy.colorbutton(
     stretchy: Boolean = false,
     init: ColorButton.() -> Unit = {}
 ) = add(ColorButton().apply(init), stretchy)
 
-inline fun Box.fontbutton(
+inline fun Stretchy.fontbutton(
     stretchy: Boolean = false,
     init: FontButton.() -> Unit = {}
 ) = add(FontButton().apply(init), stretchy)
 
-inline fun Box.group(
+inline fun Stretchy.group(
     title: String,
     margined: Boolean = true,
     stretchy: Boolean = false,
@@ -246,7 +262,7 @@ inline fun Box.group(
         .apply { if (margined) this.margined = margined }
         .apply(init), stretchy)
 
-inline fun HorizontalBox.vbox(
+inline fun Stretchy.vbox(
     padded: Boolean = true,
     stretchy: Boolean = false,
     init: VerticalBox.() -> Unit = {}
@@ -254,7 +270,7 @@ inline fun HorizontalBox.vbox(
         .apply { if (padded) this.padded = padded }
         .apply(init), stretchy)
 
-inline fun VerticalBox.hbox(
+inline fun Stretchy.hbox(
     padded: Boolean = true,
     stretchy: Boolean = false,
     init: HorizontalBox.() -> Unit = {}
@@ -262,7 +278,7 @@ inline fun VerticalBox.hbox(
         .apply { if (padded) this.padded = padded }
         .apply(init), stretchy)
 
-inline fun Box.form(
+inline fun Stretchy.form(
     padded: Boolean = true,
     stretchy: Boolean = false,
     init: Form.() -> Unit = {}

@@ -37,24 +37,25 @@ var Group.margined: Boolean
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A container that stack its chidren horizontally or vertically. */
-abstract class Box(alloc: CPointer<uiBox>?) : Control<uiBox>(alloc)
+abstract class Box(alloc: CPointer<uiBox>?) : Control<uiBox>(alloc), Stretchy {
+
+    /** Adds the given widget to the end of the Box. */
+    override fun <T : Control<*>> add(widget: T, stretchy: Boolean): T {
+        uiBoxAppend(ptr, widget.ctl, if (stretchy) 1 else 0)
+        return widget
+    }
+}
 
 /** A container that stack its chidren horizontally. */
-class HorizontalBox : Box(uiNewHorizontalBox())
+class HorizontalBox : Box(uiNewHorizontalBox()), StretchyHorizontal
 
 /** A container that stack its chidren vertically. */
-class VerticalBox : Box(uiNewVerticalBox())
+class VerticalBox : Box(uiNewVerticalBox()), StretchyVertical
 
 /** If `true`, the container insert some space between children. */
 var Box.padded: Boolean
     get() = uiBoxPadded(ptr) != 0
     set(padded) = uiBoxSetPadded(ptr, if (padded) 1 else 0)
-
-/** Adds the given widget to the end of the Box. */
-fun <T : Control<*>> Box.add(widget: T, stretchy: Boolean = false): T {
-    uiBoxAppend(ptr, widget.ctl, if (stretchy) 1 else 0)
-    return widget
-}
 
 /** Deletes the nth control of the Box. */
 fun Box.delete(index: Int) = uiBoxDelete(ptr, index)

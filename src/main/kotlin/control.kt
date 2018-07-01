@@ -2,11 +2,6 @@ package libui
 
 import kotlinx.cinterop.*
 
-/** Contains a container for child controls. */
-interface Container {
-    fun <T : Control<*>> add(widget: T): T
-}
-
 /** Base class for all GUI controls (widgets). */
 abstract class Control<T : CPointed>(alloc: CPointer<T>?) : Disposable<T>(alloc) {
     val ctl: CPointer<uiControl> get() = ptr.reinterpret()
