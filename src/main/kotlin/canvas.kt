@@ -25,55 +25,55 @@ data class Point(val x: Double, val y: Double)
 
 /** A canvas you can draw on. It also receives keyboard and mouse events,
  *  is DPI aware, and has several other useful features. */
-fun Area(): Area {
+fun DrawArea(): DrawArea {
     val handler = nativeHeap.alloc<ktAreaHandler>()
-    return Area(uiNewArea(handler.ui.ptr), handler.ptr)
+    return DrawArea(uiNewArea(handler.ui.ptr), handler.ptr)
 }
 
-/** [Area] with horziontal and vertical scrollbars. */
+/** [DrawArea] with horziontal and vertical scrollbars. */
 fun ScrollingArea(width: Int, height: Int): ScrollingArea {
     val handler = nativeHeap.alloc<ktAreaHandler>()
     return ScrollingArea(uiNewScrollingArea(handler.ui.ptr, width, height), handler.ptr)
 }
 
-open class Area internal constructor(
+open class DrawArea internal constructor(
     alloc: CPointer<uiArea>?,
     val handler: CPointer<ktAreaHandler>
 ) : Control<uiArea>(alloc) {
 
     internal var draw: (DrawContext.(params: uiAreaDrawParams) -> Unit)? = null
-    internal var mouseEvent: (Area.(event: uiAreaMouseEvent) -> Unit)? = null
-    internal var mouseCrossed: (Area.(left: Boolean) -> Unit)? = null
-    internal var dragBroken: (Area.() -> Unit)? = null
-    internal var keyEvent: (Area.(event: uiAreaKeyEvent) -> Boolean)? = null
+    internal var mouseEvent: (DrawArea.(event: uiAreaMouseEvent) -> Unit)? = null
+    internal var mouseCrossed: (DrawArea.(left: Boolean) -> Unit)? = null
+    internal var dragBroken: (DrawArea.() -> Unit)? = null
+    internal var keyEvent: (DrawArea.(event: uiAreaKeyEvent) -> Boolean)? = null
 
     init {
         handler.pointed.ui.Draw = staticCFunction { handler, _, params ->
-            with(handler!!.reinterpret<ktAreaHandler>().pointed.ref.to<Area>()) {
+            with(handler!!.reinterpret<ktAreaHandler>().pointed.ref.to<DrawArea>()) {
                 draw?.invoke(params!!.pointed.Context!!, params.pointed)
             }
         }
 
         handler.pointed.ui.MouseEvent = staticCFunction { handler, _, params ->
-            with(handler!!.reinterpret<ktAreaHandler>().pointed.ref.to<Area>()) {
+            with(handler!!.reinterpret<ktAreaHandler>().pointed.ref.to<DrawArea>()) {
                 mouseEvent?.invoke(this, params!!.pointed)
             }
         }
 
         handler.pointed.ui.MouseCrossed = staticCFunction { handler, _, left ->
-            with(handler!!.reinterpret<ktAreaHandler>().pointed.ref.to<Area>()) {
+            with(handler!!.reinterpret<ktAreaHandler>().pointed.ref.to<DrawArea>()) {
                 mouseCrossed?.invoke(this, left != 0)
             }
         }
 
         handler.pointed.ui.DragBroken = staticCFunction { handler, _ ->
-            with(handler!!.reinterpret<ktAreaHandler>().pointed.ref.to<Area>()) {
+            with(handler!!.reinterpret<ktAreaHandler>().pointed.ref.to<DrawArea>()) {
                 dragBroken?.invoke(this)
             }
         }
 
         handler.pointed.ui.KeyEvent = staticCFunction { handler, _, event ->
-            with(handler!!.reinterpret<ktAreaHandler>().pointed.ref.to<Area>()) {
+            with(handler!!.reinterpret<ktAreaHandler>().pointed.ref.to<DrawArea>()) {
                 if (keyEvent?.invoke(this, event!!.pointed) ?: false) 1 else 0
             }
         }
@@ -93,11 +93,11 @@ open class Area internal constructor(
 class ScrollingArea internal constructor(
     alloc: CPointer<uiArea>?,
     handler: CPointer<ktAreaHandler>
-) : Area(alloc, handler)
+) : DrawArea(alloc, handler)
 
-/** Queues the entire Area for redraw.
- *  The Area is not redrawn before this function returns; it is redrawn when next possible. */
-fun Area.redraw() = uiAreaQueueRedrawAll(ptr)
+/** Queues the entire DrawArea for redraw.
+ *  The DrawArea is not redrawn before this function returns; it is redrawn when next possible. */
+fun DrawArea.redraw() = uiAreaQueueRedrawAll(ptr)
 
 /** Sets the size of a ScrollingArea to the given size, in points. */
 fun ScrollingArea.setSize(width: Int, height: Int) =
@@ -117,32 +117,32 @@ fun ScrollingArea.scrollTo(x: Double, y: Double, width: Double, height: Double) 
 
 /** Funcion to be run when the area was created or got resized with [uiAreaDrawParams] as parameter.
  *  Only one function can be registered at a time. */
-fun Area.draw(block: DrawContext.(params: uiAreaDrawParams) -> Unit) {
+fun DrawArea.draw(block: DrawContext.(params: uiAreaDrawParams) -> Unit) {
     draw = block
 }
 
 /** Funcion to be run when the mouse was moved or clicked over the area with [uiAreaMouseEvent] as parameter.
  *  Only one function can be registered at a time. */
-fun Area.mouseEvent(block: Area.(event: uiAreaMouseEvent) -> Unit) {
+fun DrawArea.mouseEvent(block: DrawArea.(event: uiAreaMouseEvent) -> Unit) {
     mouseEvent = block
 }
 
 /** Funcion to be run when the mouse entered (`left == false`) or left the area.
  *  Only one function can be registered at a time. */
-fun Area.mouseCrossed(block: Area.(left: Boolean) -> Unit) {
+fun DrawArea.mouseCrossed(block: DrawArea.(left: Boolean) -> Unit) {
     mouseCrossed = block
 }
 
 /** Funcion to be run to indicate that a drag should be ended. Only implemented on Windows.
  *  Only one function can be registered at a time. */
-fun Area.dragBroken(block: Area.() -> Unit) {
+fun DrawArea.dragBroken(block: DrawArea.() -> Unit) {
     dragBroken = block
 }
 
 /** Funcion to be run when a key was pressed. Return `true` to indicate that the key event was handled.
  *  (a menu item with that accelerator won't activate, no error sound on macOS). Event is an [uiAreaKeyEvent]
  *  Only one function can be registered at a time. */
-fun Area.keyEvent(block: Area.(event: uiAreaKeyEvent) -> Boolean) {
+fun DrawArea.keyEvent(block: DrawArea.(event: uiAreaKeyEvent) -> Boolean) {
     keyEvent = block
 }
 
@@ -161,8 +161,8 @@ class Brush : Disposable<uiDrawBrush>(
     }
 }
 
-/** Creates a new Brush with lifecycle delegated to Area. */
-fun Area.Brush() = libui.Brush().also { disposables.add(it) }
+/** Creates a new Brush with lifecycle delegated to DrawArea. */
+fun DrawArea.Brush() = libui.Brush().also { disposables.add(it) }
 
 /** Helper to quickly set a brush color */
 fun Brush.solid(color: Color, opacity: Double = 1.0): Brush {
@@ -248,8 +248,8 @@ class Stroke : Disposable<uiDrawStrokeParams>(
     override fun free() = nativeHeap.free(ptr)
 }
 
-/** Creates a new Stroke with lifecycle delegated to Area. */
-fun Area.Stroke(block: uiDrawStrokeParams.() -> Unit = {}) =
+/** Creates a new Stroke with lifecycle delegated to DrawArea. */
+fun DrawArea.Stroke(block: uiDrawStrokeParams.() -> Unit = {}) =
     libui.Stroke().also {
         disposables.add(it)
         block.invoke(it.ptr.pointed)
@@ -508,7 +508,7 @@ class AttributedString(init: String) : Disposable<uiAttributedString>(
 }
 
 /** Creates a new AttributedString from initial String. The string will be entirely unattributed. */
-fun Area.AttributedString(init: String) = libui.AttributedString(init).also { disposables.add(it) }
+fun DrawArea.AttributedString(init: String) = libui.AttributedString(init).also { disposables.add(it) }
 
 /** Returns the textual content of AttributedString. */
 val AttributedString.string: String get() = uiAttributedStringString(ptr)?.toKString() ?: ""

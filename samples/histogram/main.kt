@@ -36,7 +36,7 @@ fun main(args: Array<String>) = appWindow(
             }
         }
 
-        val histogram = Area().apply {
+        val histogram = DrawArea().apply {
             val brush = Brush()
 
             // make a stroke for both the axes and the histogram line

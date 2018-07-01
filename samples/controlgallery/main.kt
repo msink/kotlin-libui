@@ -40,19 +40,19 @@ fun Window.numbersPage() = HorizontalBox().apply {
     group("Lists", stretchy = true) {
         vbox {
             combobox {
-                add("Combobox Item 1")
-                add("Combobox Item 2")
-                add("Combobox Item 3")
+                item("Combobox Item 1")
+                item("Combobox Item 2")
+                item("Combobox Item 3")
             }
             editablecombobox {
-                add("Editable Item 1")
-                add("Editable Item 2")
-                add("Editable Item 3")
+                item("Editable Item 1")
+                item("Editable Item 2")
+                item("Editable Item 3")
             }
             radiobuttons {
-                add("Radio Button 1")
-                add("Radio Button 2")
-                add("Radio Button 3")
+                item("Radio Button 1")
+                item("Radio Button 2")
+                item("Radio Button 3")
             }
         }
     }

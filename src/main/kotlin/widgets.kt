@@ -130,7 +130,7 @@ class Combobox : Control<uiCombobox>(uiNewCombobox()) {
 
 /** Adds the named entry to the end of the combobox.
  *  If it is the first entry, it is automatically selected. */
-fun Combobox.add(text: String) = uiComboboxAppend(ptr, text)
+fun Combobox.item(text: String) = uiComboboxAppend(ptr, text)
 
 /** Return or set the current choosed option by index. */
 var Combobox.value: Int
@@ -155,7 +155,7 @@ class EditableCombobox : Control<uiEditableCombobox>(uiNewEditableCombobox()) {
 
 /** Adds the named entry to the end of the editable combobox.
  *  If it is the first entry, it is automatically selected. */
-fun EditableCombobox.add(text: String) = uiEditableComboboxAppend(ptr, text)
+fun EditableCombobox.item(text: String) = uiEditableComboboxAppend(ptr, text)
 
 /** Return or set the current selected text or the text value of the selected item in the list. */
 var EditableCombobox.value: String
@@ -222,7 +222,7 @@ class RadioButtons : Control<uiRadioButtons>(uiNewRadioButtons()) {
 
 /** Adds the named button to the end of the radiobuttons.
  *  If it is the first button, it is automatically selected. */
-fun RadioButtons.add(text: String) = uiRadioButtonsAppend(ptr, text)
+fun RadioButtons.item(text: String) = uiRadioButtonsAppend(ptr, text)
 
 /** Return or set the current choosed option by index. */
 var RadioButtons.value: Int

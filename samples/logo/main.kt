@@ -10,7 +10,8 @@ fun main(args: Array<String>) = appWindow(
     add(/*WORKAROUND for Linux*/widget = Grid().apply {
     add(hexpand = true,
         vexpand = true,/*WORKAROUND end*/
-        widget = Area().apply {
+        widget = DrawArea().apply {
+
         val brush = Brush()
         var angle = 0.0
 
