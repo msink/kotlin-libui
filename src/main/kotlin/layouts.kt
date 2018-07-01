@@ -56,7 +56,7 @@ class HorizontalBox : Box(uiNewHorizontalBox())
 /** A container that stack its chidren vertically. */
 class VerticalBox : Box(uiNewVerticalBox())
 
-/** If `true`, the container insert some space between children. Defaults to `false`. */
+/** If `true`, the container insert some space between children. */
 var Box.padded: Boolean
     get() = uiBoxPadded(ptr) != 0
     set(padded) = uiBoxSetPadded(ptr, if (padded) 1 else 0)

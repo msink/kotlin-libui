@@ -76,16 +76,13 @@ fun main(args: Array<String>) = appWindow(
     defaultFont.action { area.redraw() }
     alignment.action { area.redraw() }
 
-    add(widget = HorizontalBox().apply {
-        padded = true
-        add(widget = VerticalBox().apply {
-            padded = true
-            add(widget = defaultFont)
-            add(widget = Form().apply {
-                padded = true
+    hbox {
+        vbox {
+            add(defaultFont)
+            form {
                 add(label = "Alignment", widget = alignment)
-            })
-        })
-        add(stretchy = true, widget = area)
-    })
+            }
+        }
+        add(area, stretchy = true)
+    }
 }

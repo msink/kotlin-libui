@@ -145,7 +145,7 @@ fun main(args: Array<String>) = appWindow(
 ) {
     add(widget = VerticalBox().apply {
         padded = true
-        val scroll = MultilineField().apply { readonly = true }
+        val scroll = TextArea().apply { readonly = true }
         val button = Button("libui говорит: click me!").apply {
             action {
                 scroll.append("Hello, World!  Ciao, mondo!\n" +
@@ -159,7 +159,7 @@ fun main(args: Array<String>) = appWindow(
 ```
 </details><br/>
 
-And now DSL, unfinished but working:
+And now DSL: easy to read, easy to write and no runtime overhead:
 
 ``` kt
 import libui.*
@@ -167,11 +167,11 @@ import libui.*
 fun main(args: Array<String>) = appWindow(
     title = "Hello", width = 320, height = 240) {
     vbox {
-        padded = true
         val button = button("libui говорит: click me!")
-        val scroll = multilinefield(stretchy = true) { readonly = true }
+        val scroll = textarea(readonly = true, stretchy = true)
         button.action {
-            scroll.append("Hello, World!  Ciao, mondo!\nПривет, мир!  你好，世界！\n\n")
+            scroll.append("Hello, World!  Ciao, mondo!\n" +
+                          "Привет, мир!  你好，世界！\n\n")
         }
     }
 }

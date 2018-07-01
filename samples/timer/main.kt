@@ -7,11 +7,10 @@ fun main(args: Array<String>) = appWindow(
     width = 320,
     height = 240
 ) {
-    add(widget = VerticalBox().apply {
-        padded = true
-
-        val scroll = TextArea().apply { readonly = true }
-        val button = Button("Say Something").apply {
+    vbox {
+        val button = button("Say Something")
+        val scroll = textarea(readonly = true, stretchy = true)
+        button.action {
             action { scroll.append("Saying something\n") }
         }
 
@@ -23,8 +22,5 @@ fun main(args: Array<String>) = appWindow(
             }
             true
         }
-
-        add(widget = button)
-        add(widget = scroll, stretchy = true)
-    })
+    }
 }

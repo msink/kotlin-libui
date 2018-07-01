@@ -7,21 +7,33 @@ interface Container {
 }
 
 inline fun Container.textfield(
+    readonly: Boolean = false,
     init: TextField.() -> Unit = {}
-) = add(TextField().apply(init))
+) = add(TextField()
+        .apply { if (readonly) this.readonly = readonly }
+        .apply(init))
 
 inline fun Container.passwordfield(
+    readonly: Boolean = false,
     init: PasswordField.() -> Unit = {}
-) = add(PasswordField().apply(init))
+) = add(PasswordField()
+        .apply { if (readonly) this.readonly = readonly }
+        .apply(init))
 
 inline fun Container.searchfield(
+    readonly: Boolean = false,
     init: SearchField.() -> Unit = {}
-) = add(SearchField().apply(init))
+) = add(SearchField()
+        .apply { if (readonly) this.readonly = readonly }
+        .apply(init))
 
 inline fun Container.textarea(
     wrap: Boolean = true,
+    readonly: Boolean = false,
     init: TextArea.() -> Unit = {}
-) = add(TextArea(wrap).apply(init))
+) = add(TextArea(wrap)
+        .apply { if (readonly) this.readonly = readonly }
+        .apply(init))
 
 inline fun Container.checkbox(
     label: String,
@@ -87,39 +99,60 @@ inline fun Container.fontbutton(
 ) = add(FontButton().apply(init))
 
 inline fun Container.hbox(
+    padded: Boolean = true,
     init: HorizontalBox.() -> Unit = {}
-) = add(HorizontalBox().apply(init))
+) = add(HorizontalBox()
+        .apply { if (padded) this.padded = padded }
+        .apply(init))
 
 inline fun Container.vbox(
+    padded: Boolean = true,
     init: VerticalBox.() -> Unit = {}
-) = add(VerticalBox().apply(init))
+) = add(VerticalBox()
+        .apply { if (padded) this.padded = padded }
+        .apply(init))
 
 inline fun Container.form(
+    padded: Boolean = true,
     init: Form.() -> Unit = {}
-) = add(Form().apply(init))
+) = add(Form()
+        .apply { if (padded) this.padded = padded }
+        .apply(init))
 
 ///////////////////////////////////////////////////////////////////////////////
 
 inline fun Box.textfield(
+    readonly: Boolean = false,
     stretchy: Boolean = false,
     init: TextField.() -> Unit = {}
-) = add(TextField().apply(init), stretchy)
+) = add(TextField()
+        .apply { if (readonly) this.readonly = readonly }
+        .apply(init), stretchy)
 
 inline fun Box.passwordfield(
+    readonly: Boolean = false,
     stretchy: Boolean = false,
     init: PasswordField.() -> Unit = {}
-) = add(PasswordField().apply(init), stretchy)
+) = add(PasswordField()
+        .apply { if (readonly) this.readonly = readonly }
+        .apply(init), stretchy)
 
 inline fun Box.searchfield(
+    readonly: Boolean = false,
     stretchy: Boolean = false,
     init: SearchField.() -> Unit = {}
-) = add(SearchField().apply(init), stretchy)
+) = add(SearchField()
+        .apply { if (readonly) this.readonly = readonly }
+        .apply(init), stretchy)
 
 inline fun Box.textarea(
     wrap: Boolean = true,
+    readonly: Boolean = false,
     stretchy: Boolean = false,
     init: TextArea.() -> Unit = {}
-) = add(TextArea(wrap).apply(init), stretchy)
+) = add(TextArea(wrap)
+        .apply { if (readonly) this.readonly = readonly }
+        .apply(init), stretchy)
 
 inline fun Box.checkbox(
     label: String,
@@ -216,43 +249,64 @@ inline fun Box.group(
 ) = add(Group(title, margined).apply(init), stretchy)
 
 inline fun HorizontalBox.vbox(
+    padded: Boolean = true,
     stretchy: Boolean = false,
     init: VerticalBox.() -> Unit = {}
-) = add(VerticalBox().apply(init), stretchy)
+) = add(VerticalBox()
+        .apply { if (padded) this.padded = padded }
+        .apply(init), stretchy)
 
 inline fun VerticalBox.hbox(
+    padded: Boolean = true,
     stretchy: Boolean = false,
     init: HorizontalBox.() -> Unit = {}
-) = add(HorizontalBox().apply(init), stretchy)
+) = add(HorizontalBox()
+        .apply { if (padded) this.padded = padded }
+        .apply(init), stretchy)
 
 inline fun Box.form(
+    padded: Boolean = true,
     stretchy: Boolean = false,
     init: Form.() -> Unit = {}
-) = add(Form().apply(init), stretchy)
+) = add(Form()
+        .apply { if (padded) this.padded = padded }
+        .apply(init), stretchy)
 
 ///////////////////////////////////////////////////////////////////////////////
 
 inline fun Form.textfield(
     label: String,
+    readonly: Boolean = false,
     stretchy: Boolean = false,
     init: TextField.() -> Unit = {}
-) = add(label, TextField().apply(init), stretchy)
+) = add(label, TextField()
+        .apply { if (readonly) this.readonly = readonly }
+        .apply(init), stretchy)
 
 inline fun Form.passwordfield(
     label: String,
+    readonly: Boolean = false,
     stretchy: Boolean = false,
     init: PasswordField.() -> Unit = {}
-) = add(label, PasswordField().apply(init), stretchy)
+) = add(label, PasswordField()
+        .apply { if (readonly) this.readonly = readonly }
+        .apply(init), stretchy)
 
 inline fun Form.searchfield(
     label: String,
+    readonly: Boolean = false,
     stretchy: Boolean = false,
     init: SearchField.() -> Unit = {}
-) = add(label, SearchField().apply(init), stretchy)
+) = add(label, SearchField()
+        .apply { if (readonly) this.readonly = readonly }
+        .apply(init), stretchy)
 
 inline fun Form.textarea(
     label: String,
     wrap: Boolean = true,
+    readonly: Boolean = false,
     stretchy: Boolean = false,
     init: TextArea.() -> Unit = {}
-) = add(label, TextArea(wrap).apply(init), stretchy)
+) = add(label, TextArea(wrap)
+        .apply { if (readonly) this.readonly = readonly }
+        .apply(init), stretchy)

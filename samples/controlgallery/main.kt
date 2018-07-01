@@ -3,7 +3,6 @@ import libui.*
 fun Window.basicControlsPage() = VerticalBox().apply {
     padded = true
     hbox {
-        padded = true
         button("Button")
         checkbox("Checkbox")
     }
@@ -11,7 +10,6 @@ fun Window.basicControlsPage() = VerticalBox().apply {
     separator()
     group("Entries", stretchy = true) {
         form {
-            padded = true
             textfield("Text Field")
             passwordfield("Password Field")
             searchfield("Search Field")
@@ -25,7 +23,6 @@ fun Window.numbersPage() = HorizontalBox().apply {
     padded = true
     group("Numbers", stretchy = true) {
         vbox {
-            padded = true
             val spinbox = spinbox(min = 0, max = 100)
             val slider = slider(min = 0, max = 100)
             val pbar = progressbar()
@@ -42,7 +39,6 @@ fun Window.numbersPage() = HorizontalBox().apply {
     }
     group("Lists", stretchy = true) {
         vbox {
-            padded = true
             combobox {
                 add("Combobox Item 1")
                 add("Combobox Item 2")
@@ -65,7 +61,6 @@ fun Window.numbersPage() = HorizontalBox().apply {
 fun Window.dataChoosersPage() = HorizontalBox().apply {
     padded = true
     vbox {
-        padded = true
         datepicker()
         timepicker()
         datetimepicker()
@@ -74,7 +69,6 @@ fun Window.dataChoosersPage() = HorizontalBox().apply {
     }
     separator()
     vbox(stretchy = true) {
-        padded = true
         add(widget = Grid().apply {
             padded = true
 

@@ -6,13 +6,10 @@ fun main(args: Array<String>) = appWindow(
     height = 200
 ) {
     vbox {
-        padded = true
-
         lateinit var username: TextField
         lateinit var password: PasswordField
 
         form {
-            padded = true
             username = textfield("Username")
             password = passwordfield("Password")
         }

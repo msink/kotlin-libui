@@ -20,9 +20,7 @@ fun main(args: Array<String>) = appWindow(
     width = 640,
     height = 480
 ) {
-    add(widget = HorizontalBox().apply {
-        padded = true
-
+    hbox {
         val datapoints = Array(10) { Spinbox(0, 100).apply { value = random() % 101 } }
         val colorButton = ColorButton().apply { value = Color(colorDodgerBlue) }
         var currentPoint = -1
@@ -124,16 +122,15 @@ fun main(args: Array<String>) = appWindow(
             }
         }
 
-        add(widget = VerticalBox().apply {
-            padded = true
+        vbox {
             datapoints.forEach {
                 it.action { histogram.redraw() }
                 add(widget = it)
             }
             colorButton.action { histogram.redraw() }
             add(widget = colorButton)
-        })
+        }
 
         add(widget = histogram, stretchy = true)
-    })
+    }
 }
