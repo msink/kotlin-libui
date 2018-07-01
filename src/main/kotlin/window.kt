@@ -8,15 +8,9 @@ class Window(
     title: String,
     width: Int,
     height: Int,
-    margined: Boolean = true,
     hasMenubar: Boolean = false
 ) : Control<uiWindow>(uiNewWindow(title, width, height, if (hasMenubar) 1 else 0)),
     Container {
-    internal var onClose: (Window.() -> Boolean)? = null
-    internal var onResize: (Window.() -> Unit)? = null
-    init {
-        if (margined) this.margined = margined
-    }
 
     /** Specify the control to show in content area.
      *  Window can contain only one control, if you need more use layouts like Box or Grid */
@@ -24,6 +18,9 @@ class Window(
         uiWindowSetChild(ptr, widget.ctl)
         return widget
     }
+
+    internal var onClose: (Window.() -> Boolean)? = null
+    internal var onResize: (Window.() -> Unit)? = null
 }
 
 /** Set or return the text to show in window title bar. */
@@ -37,7 +34,7 @@ var Window.borderless: Boolean
     get() = uiWindowBorderless(ptr) != 0
     set(borderless) = uiWindowSetBorderless(ptr, if (borderless) 1 else 0)
 
-/** Specify if the Window content should have a margin or not. Defaults to `false`. */
+/** Specify if the Window content should have a margin or not. */
 var Window.margined: Boolean
     get() = uiWindowMargined(ptr) != 0
     set(margined) = uiWindowSetMargined(ptr, if (margined) 1 else 0)

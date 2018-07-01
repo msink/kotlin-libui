@@ -29,12 +29,11 @@ fun appWindow(
         }
     }
 
-    Window(title, width, height, margined).apply {
+    Window(title, width, height).apply {
         onClose { uiQuit(); true }
         onShouldQuit { dispose(); true }
-
+        if (margined) this.margined = margined
         init()
-
         show()
     }
 

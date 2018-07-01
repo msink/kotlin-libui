@@ -14,21 +14,10 @@ import kotlinx.cinterop.*
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-/** Represents a Control that contains a container for child controls. */
-abstract class Layout<T : CPointed>(alloc: CPointer<T>?) : Control<T>(alloc)
-
-///////////////////////////////////////////////////////////////////////////////
-
 /** A container for a single widget that provide a caption and visually group it's children. */
-class Group(
-    title: String,
-    margined: Boolean = true
-) : Layout<uiGroup>(uiNewGroup(title)),
-    Container {
-    init {
-        if (margined) this.margined = margined
-    }
+class Group(title: String) : Control<uiGroup>(uiNewGroup(title)), Container {
 
+    /** Set the child widget of the Group. */
     override fun <T : Control<*>> add(widget: T): T {
         uiGroupSetChild(ptr, widget.ctl)
         return widget
@@ -48,7 +37,7 @@ var Group.margined: Boolean
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A container that stack its chidren horizontally or vertically. */
-abstract class Box(alloc: CPointer<uiBox>?) : Layout<uiBox>(alloc)
+abstract class Box(alloc: CPointer<uiBox>?) : Control<uiBox>(alloc)
 
 /** A container that stack its chidren horizontally. */
 class HorizontalBox : Box(uiNewHorizontalBox())
@@ -73,7 +62,7 @@ fun Box.delete(index: Int) = uiBoxDelete(ptr, index)
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A container that organize children as labeled fields. */
-class Form : Layout<uiForm>(uiNewForm())
+class Form : Control<uiForm>(uiNewForm())
 
 /** If true, the container insert some space between children. */
 var Form.padded: Boolean
@@ -92,7 +81,7 @@ fun Form.delete(index: Int) = uiFormDelete(ptr, index)
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A container that show each chidren in a separate tab. */
-class Tab : Layout<uiTab>(uiNewTab())
+class Tab : Control<uiTab>(uiNewTab())
 
 /** Whether page n (starting at 0) of the Tab has margins around its child. */
 fun Tab.getMargined(page: Int): Boolean = uiTabMargined(ptr, page) != 0
@@ -117,7 +106,7 @@ val Tab.numPages: Int get() = uiTabNumPages(ptr)
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A powerful container that allow to specify size and position of each children. */
-class Grid : Layout<uiGrid>(uiNewGrid())
+class Grid : Control<uiGrid>(uiNewGrid())
 
 /** If true, the container insert some space between children. */
 var Grid.padded: Boolean

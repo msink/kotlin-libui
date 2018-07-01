@@ -2,10 +2,6 @@ package libui
 
 import kotlinx.cinterop.*
 
-interface Container {
-    fun <T : Control<*>> add(widget: T): T
-}
-
 inline fun Container.textfield(
     readonly: Boolean = false,
     init: TextField.() -> Unit = {}
@@ -246,7 +242,9 @@ inline fun Box.group(
     margined: Boolean = true,
     stretchy: Boolean = false,
     init: Group.() -> Unit = {}
-) = add(Group(title, margined).apply(init), stretchy)
+) = add(Group(title)
+        .apply { if (margined) this.margined = margined }
+        .apply(init), stretchy)
 
 inline fun HorizontalBox.vbox(
     padded: Boolean = true,
