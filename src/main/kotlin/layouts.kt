@@ -26,7 +26,7 @@ class Group(title: String) : Control<uiGroup>(uiNewGroup(title)), Container {
 
 /** Specify the caption of the group. */
 var Group.title: String
-    get() = uiGroupTitle(ptr)?.toKString() ?: ""
+    get() = uiGroupTitle(ptr).uiText()
     set(title) = uiGroupSetTitle(ptr, title)
 
 /** Specify if the group content area should have a margin or not. */

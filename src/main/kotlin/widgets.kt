@@ -47,7 +47,7 @@ class SearchField : TextField(uiNewSearchEntry())
 
 /** The current text of the TextField. */
 var TextField.value: String
-    get() = uiEntryText(ptr)?.toKString() ?: ""
+    get() = uiEntryText(ptr).uiText()
     set(value) = uiEntrySetText(ptr, value)
 
 /** Whether the text is read-only or not. Defaults to `false`. */
@@ -75,7 +75,7 @@ class TextArea(wrap: Boolean = true) : Control<uiMultilineEntry>(
 
 /** The current text of the area. */
 var TextArea.value: String
-    get() = uiMultilineEntryText(ptr)?.toKString() ?: ""
+    get() = uiMultilineEntryText(ptr).uiText()
     set(value) = uiMultilineEntrySetText(ptr, value)
 
 /** Whether the text is read-only or not. Defaults to `false` */
@@ -104,7 +104,7 @@ class Checkbox(label: String) : Control<uiCheckbox>(uiNewCheckbox(label)) {
 
 /** The static text of the checkbox. */
 var Checkbox.label: String
-    get() = uiCheckboxText(ptr)?.toKString() ?: ""
+    get() = uiCheckboxText(ptr).uiText()
     set(label) = uiCheckboxSetText(ptr, label)
 
 /** Whether the checkbox is checked or unchecked. Defaults to `false`. */
@@ -159,7 +159,7 @@ fun EditableCombobox.item(text: String) = uiEditableComboboxAppend(ptr, text)
 
 /** Return or set the current selected text or the text value of the selected item in the list. */
 var EditableCombobox.value: String
-    get() = uiEditableComboboxText(ptr)?.toKString() ?: ""
+    get() = uiEditableComboboxText(ptr).uiText()
     set(value) = uiEditableComboboxSetText(ptr, value)
 
 /** Funcion to be run when the user makes a change to the EditableCombobox.
@@ -302,7 +302,7 @@ class Label(text: String) : Control<uiLabel>(uiNewLabel(text))
 
 /** The static text of the label. */
 var Label.text: String
-    get() = uiLabelText(ptr)?.toKString() ?: ""
+    get() = uiLabelText(ptr).uiText()
     set(value) = uiLabelSetText(ptr, value)
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -337,7 +337,7 @@ class Button(text: String) : Control<uiButton>(uiNewButton(text)) {
 
 /** The static text of the button. */
 var Button.text: String
-    get() = uiButtonText(ptr)?.toKString() ?: ""
+    get() = uiButtonText(ptr).uiText()
     set(text) = uiButtonSetText(ptr, text)
 
 /** Funcion to be run when the user clicks the Button.

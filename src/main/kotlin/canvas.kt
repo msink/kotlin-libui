@@ -511,7 +511,7 @@ class AttributedString(init: String) : Disposable<uiAttributedString>(
 fun DrawArea.AttributedString(init: String) = libui.AttributedString(init).also { disposables.add(it) }
 
 /** Returns the textual content of AttributedString. */
-val AttributedString.string: String get() = uiAttributedStringString(ptr)?.toKString() ?: ""
+val AttributedString.string: String get() = uiAttributedStringString(ptr).uiText()
 
 /** Returns the number of UTF-8 bytes in the textual content, excluding the terminating '\0'. */
 val AttributedString.length: Int get() = uiAttributedStringLen(ptr).narrow()

@@ -25,7 +25,7 @@ class Window(
 
 /** Set or return the text to show in window title bar. */
 var Window.title: String
-    get() = uiWindowTitle(ptr)?.toKString() ?: ""
+    get() = uiWindowTitle(ptr).uiText()
     set(title) = uiWindowSetTitle(ptr, title)
 
 /** Allow to specify that the window is a frameless one, without borders,

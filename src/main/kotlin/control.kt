@@ -79,4 +79,11 @@ abstract class Control<T : CPointed>(alloc: CPointer<T>?) : Disposable<T>(alloc)
 //TODO: remove this intermediate map
 private var controls = mutableMapOf<CPointer<uiControl>, Control<*>>()
 
-inline fun <reified T : Control<*>> COpaquePointer?.to() = this!!.asStableRef<T>().get()
+internal inline fun <reified T : Control<*>> COpaquePointer?.to() = this!!.asStableRef<T>().get()
+
+internal fun CPointer<ByteVar>?.uiText(): String {
+    if (this == null) return ""
+    val string = this.toKString()
+    uiFreeText(this)
+    return string
+}
