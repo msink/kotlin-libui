@@ -111,15 +111,15 @@ inline fun Container.scrollingarea(
 
 inline fun Container.hbox(
     padded: Boolean = true,
-    init: HorizontalBox.() -> Unit = {}
-) = add(HorizontalBox()
+    init: HBox.() -> Unit = {}
+) = add(HBox()
         .apply { if (padded) this.padded = padded }
         .apply(init))
 
 inline fun Container.vbox(
     padded: Boolean = true,
-    init: VerticalBox.() -> Unit = {}
-) = add(VerticalBox()
+    init: VBox.() -> Unit = {}
+) = add(VBox()
         .apply { if (padded) this.padded = padded }
         .apply(init))
 
@@ -298,16 +298,16 @@ inline fun Stretchy.group(
 inline fun Stretchy.vbox(
     padded: Boolean = true,
     stretchy: Boolean = false,
-    init: VerticalBox.() -> Unit = {}
-) = add(VerticalBox()
+    init: VBox.() -> Unit = {}
+) = add(VBox()
         .apply { if (padded) this.padded = padded }
         .apply(init), stretchy)
 
 inline fun Stretchy.hbox(
     padded: Boolean = true,
     stretchy: Boolean = false,
-    init: HorizontalBox.() -> Unit = {}
-) = add(HorizontalBox()
+    init: HBox.() -> Unit = {}
+) = add(HBox()
         .apply { if (padded) this.padded = padded }
         .apply(init), stretchy)
 

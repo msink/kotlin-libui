@@ -6,8 +6,8 @@ import kotlinx.cinterop.*
 //
 // Container widgets:
 // - [Group]
-// - [HorizontalBox]
-// - [VerticalBox]
+// - [HBox]
+// - [VBox]
 // - [Form]
 // - [TabPane]
 // - [GridPane]
@@ -47,10 +47,10 @@ abstract class Box(alloc: CPointer<uiBox>?) : Control<uiBox>(alloc), Stretchy {
 }
 
 /** A container that stack its chidren horizontally. */
-class HorizontalBox : Box(uiNewHorizontalBox()), StretchyHorizontal
+class HBox : Box(uiNewHorizontalBox()), StretchyHorizontal
 
 /** A container that stack its chidren vertically. */
-class VerticalBox : Box(uiNewVerticalBox()), StretchyVertical
+class VBox : Box(uiNewVerticalBox()), StretchyVertical
 
 /** If `true`, the container insert some space between children. */
 var Box.padded: Boolean
@@ -120,6 +120,17 @@ fun TabPane.delete(page: Int) = uiTabDelete(ptr, page)
 /** A powerful container that allow to specify size and position of each children. */
 class GridPane : Control<uiGrid>(uiNewGrid()) {
 
+    /** Adds new Control to the end of the GridPane.
+     *
+     *  @param[x] The x-coordinate of the Control.
+     *  @param[y] The y-coordinate of the Control.
+     *  @param[xspan] The width of the Control.
+     *  @param[yspan] The height of the Control.
+     *  @param[hexpand] The horizontal expand of Control.
+     *  @param[halign] The horizontal alignment of Control.
+     *  @param[vexpand] The vertical expand of Control.
+     *  @param[valign] The vertical alignment of Control.
+     */
     inner class Cell(
         val x: Int = 0,
         val y: Int = 0,
@@ -147,36 +158,6 @@ class GridPane : Control<uiGrid>(uiNewGrid()) {
 var GridPane.padded: Boolean
     get() = uiGridPadded(ptr) != 0
     set(padded) = uiGridSetPadded(ptr, if (padded) 1 else 0)
-
-/** Adds the given Control to the end of the GridPane.
- *
- *  @param[widget] The Control to be added.
- *  @param[x] The x-coordinate of the Control's location.
- *  @param[y] The y-coordinate of the Control's location.
- *  @param[xspan] The width of the Control.
- *  @param[yspan] The height of the Control.
- *  @param[hexpand] The horizontal expand of Control.
- *  @param[halign] The horizontal alignment of Control.
- *  @param[vexpand] The vertical expand of Control.
- *  @param[valign] The vertical alignment of Control.
- */
-fun <T : Control<*>> GridPane.add(
-    widget: T,
-    x: Int = 0,
-    y: Int = 0,
-    xspan: Int = 1,
-    yspan: Int = 1,
-    hexpand: Boolean = false,
-    halign: uiAlign = uiAlignFill,
-    vexpand: Boolean = false,
-    valign: uiAlign = uiAlignFill
-): T {
-    uiGridAppend(ptr, widget.ctl,
-        x, y, xspan, yspan,
-        if (hexpand) 1 else 0, halign,
-        if (vexpand) 1 else 0, valign)
-    return widget
-}
 
 /** Insert the given Control after existing Control.
  *
