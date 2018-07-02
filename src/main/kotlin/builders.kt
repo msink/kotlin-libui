@@ -368,4 +368,6 @@ inline fun TabPane.page(
     label: String,
     margined: Boolean = true,
     init: TabPane.Page.() -> Unit = {}
-) = Page(label, margined).apply(init)
+) = Page(label)
+        .apply(init)
+        .apply { if (margined) this.margined = true }

@@ -84,30 +84,31 @@ fun Form.delete(index: Int) = uiFormDelete(ptr, index)
 /** A container that show each chidren in a separate tab. */
 class TabPane : Control<uiTab>(uiNewTab()) {
 
-    inner class Page(val label: String, val margined: Boolean = true) : Container {
+    inner class Page(val label: String) : Container {
         val pane: TabPane get() = this@TabPane
+        val page = pane.numPages // last page
 
         /** Set the child widget of the Page. */
         override fun <T : Control<*>> add(widget: T): T {
             uiTabAppend(pane.ptr, label, widget.ctl)
-            if (margined) pane.setMargined(pane.numPages - 1, true)
             return widget
         }
     }
 }
 
-/** Whether page n (starting at 0) of the TabPane has margins around its child. */
-fun TabPane.getMargined(page: Int): Boolean = uiTabMargined(ptr, page) != 0
-fun TabPane.setMargined(page: Int, margined: Boolean) = uiTabSetMargined(ptr, page, if (margined) 1 else 0)
-
-/** Adds the given page to the TabPane such that it is the nth page of the TabPane (starting at 0). */
-fun TabPane.insert(index: Int, name: String, widget: Control<*>) = uiTabInsertAt(ptr, name, index, widget.ctl)
-
-/** Delete deletes the nth page of the TabPane. */
-fun TabPane.delete(index: Int) = uiTabDelete(ptr, index)
+/** Whether page of the TabPane has margins around its child. */
+var TabPane.Page.margined: Boolean
+    get() = uiTabMargined(pane.ptr, page) != 0
+    set(margined) = uiTabSetMargined(pane.ptr, page, if (margined) 1 else 0)
 
 /** Number of pages in the TabPane. */
 val TabPane.numPages: Int get() = uiTabNumPages(ptr)
+
+/** Adds the given page to the TabPane such that it is the nth page of the TabPane (starting at 0). */
+fun TabPane.insert(page: Int, name: String, widget: Control<*>) = uiTabInsertAt(ptr, name, page, widget.ctl)
+
+/** Delete deletes the nth page of the TabPane. */
+fun TabPane.delete(page: Int) = uiTabDelete(ptr, page)
 
 ///////////////////////////////////////////////////////////////////////////////
 
