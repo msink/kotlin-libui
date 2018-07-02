@@ -10,8 +10,12 @@ fun main(args: Array<String>) = appWindow(
         lateinit var password: PasswordField
 
         form {
-            username = textfield("Username")
-            password = passwordfield("Password")
+            field("Username") {
+                username = textfield()
+            }
+            field("Password") {
+                password = passwordfield()
+            }
         }
 
         button("Login") {

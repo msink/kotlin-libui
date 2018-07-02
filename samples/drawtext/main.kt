@@ -67,12 +67,14 @@ fun main(args: Array<String>) = appWindow(
                 action { area.redraw() }
             }
             form {
-                align = combobox("Alignment") {
-                    item("Left")
-                    item("Center")
-                    item("Right")
-                    value = 0
-                    action { area.redraw() }
+                field("Alignment") {
+                    align = combobox {
+                        item("Left")
+                        item("Center")
+                        item("Right")
+                        value = 0
+                        action { area.redraw() }
+                    }
                 }
             }
         }

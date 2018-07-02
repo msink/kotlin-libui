@@ -319,48 +319,11 @@ inline fun Stretchy.tabpane(
 
 ///////////////////////////////////////////////////////////////////////////////
 
-inline fun Form.textfield(
-    label: String,
-    readonly: Boolean = false,
-    stretchy: Boolean = false,
-    init: TextField.() -> Unit = {}
-) = add(label, TextField()
-        .apply { if (readonly) this.readonly = readonly }
-        .apply(init), stretchy)
-
-inline fun Form.passwordfield(
-    label: String,
-    readonly: Boolean = false,
-    stretchy: Boolean = false,
-    init: PasswordField.() -> Unit = {}
-) = add(label, PasswordField()
-        .apply { if (readonly) this.readonly = readonly }
-        .apply(init), stretchy)
-
-inline fun Form.searchfield(
-    label: String,
-    readonly: Boolean = false,
-    stretchy: Boolean = false,
-    init: SearchField.() -> Unit = {}
-) = add(label, SearchField()
-        .apply { if (readonly) this.readonly = readonly }
-        .apply(init), stretchy)
-
-inline fun Form.textarea(
-    label: String,
-    wrap: Boolean = true,
-    readonly: Boolean = false,
-    stretchy: Boolean = false,
-    init: TextArea.() -> Unit = {}
-) = add(label, TextArea(wrap)
-        .apply { if (readonly) this.readonly = readonly }
-        .apply(init), stretchy)
-
-inline fun Form.combobox(
+inline fun Form.field(
     label: String,
     stretchy: Boolean = false,
-    init: Combobox.() -> Unit = {}
-) = add(label, Combobox().apply(init), stretchy)
+    init: Form.Field.() -> Unit = {}
+) = Field(label, stretchy).apply(init)
 
 ///////////////////////////////////////////////////////////////////////////////
 

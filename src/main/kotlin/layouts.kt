@@ -63,18 +63,23 @@ fun Box.delete(index: Int) = uiBoxDelete(ptr, index)
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A container that organize children as labeled fields. */
-class Form : Control<uiForm>(uiNewForm())
+class Form : Control<uiForm>(uiNewForm()) {
+
+    inner class Field(val label: String, val stretchy: Boolean = false) : Container {
+        val form: Form get() = this@Form
+
+        /** Adds the given widget to the end of the form. */
+        override fun <T : Control<*>> add(widget: T): T {
+            uiFormAppend(ptr, label, widget.ctl, if (stretchy) 1 else 0)
+            return widget
+        }
+    }
+}
 
 /** If true, the container insert some space between children. */
 var Form.padded: Boolean
     get() = uiFormPadded(ptr) != 0
     set(padded) = uiFormSetPadded(ptr, if (padded) 1 else 0)
-
-/** Adds the given widget to the end of the form. */
-fun <T : Control<*>> Form.add(label: String, widget: T, stretchy: Boolean = false): T {
-    uiFormAppend(ptr, label, widget.ctl, if (stretchy) 1 else 0)
-    return widget
-}
 
 /** deletes the nth control of the form. */
 fun Form.delete(index: Int) = uiFormDelete(ptr, index)
