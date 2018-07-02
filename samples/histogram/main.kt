@@ -15,20 +15,23 @@ const val colorDodgerBlue   = 0x1E90FF
 fun graphWidth(clientWidth: Double): Double = clientWidth - xoffLeft - xoffRight
 fun graphHeight(clientHeight: Double): Double = clientHeight - yoffTop - yoffBottom
 
+const val numPoints         = 10
+
 fun main(args: Array<String>) = appWindow(
     title = "libui Histogram Example",
     width = 640,
     height = 480
 ) {
     hbox {
-        val datapoints = Array(10) { Spinbox(0, 100).apply { value = random() % 101 } }
-        val colorButton = ColorButton().apply { value = Color(colorDodgerBlue) }
+        lateinit var datapoints: Array<Spinbox>
+        lateinit var colorButton: ColorButton
+        lateinit var histogram: DrawArea
         var currentPoint = -1
 
         fun pointLocations(width: Double, height: Double, xs: DoubleArray, ys: DoubleArray) {
-            val xincr = width / 9  // 10 - 1 to make the last point be at the end
+            val xincr = width / (numPoints - 1)  // to make the last point be at the end
             val yincr = height / 100
-            for (i in 0 until 10) {
+            repeat(numPoints) { i ->
                 // because y=0 is the top but n=0 is the bottom, we need to flip
                 val n = 100 - datapoints[i].value
                 xs[i] = xincr * i
@@ -36,7 +39,24 @@ fun main(args: Array<String>) = appWindow(
             }
         }
 
-        val histogram = DrawArea().apply {
+        vbox {
+            datapoints = Array<Spinbox>(numPoints) {
+                spinbox(0, 100) {
+                    value = random() % 101
+                    action {
+                        histogram.redraw()
+                    }
+                }
+            }
+            colorButton = colorbutton {
+                value = Color(colorDodgerBlue)
+                action {
+                    histogram.redraw()
+                }
+            }
+        }
+
+        histogram = drawarea {
             val brush = Brush()
 
             // make a stroke for both the axes and the histogram line
@@ -51,8 +71,8 @@ fun main(args: Array<String>) = appWindow(
                 val graphWidth = graphWidth(it.AreaWidth)
                 val graphHeight = graphHeight(it.AreaHeight)
                 val graphColor = colorButton.value
-                val xs = DoubleArray(10)
-                val ys = DoubleArray(10)
+                val xs = DoubleArray(numPoints)
+                val ys = DoubleArray(numPoints)
                 pointLocations(graphWidth, graphHeight, xs, ys)
 
                 // fill the area with white
@@ -75,7 +95,7 @@ fun main(args: Array<String>) = appWindow(
                 // create the fill for the graph below the graph line
                 fill(brush.solid(graphColor, opacity = 0.5)) {
                     figure(xs[0], ys[0])
-                    for (i in 1 until 10)
+                    for (i in 1 until numPoints)
                         lineTo(xs[i], ys[i])
                     lineTo(graphWidth, graphHeight)
                     lineTo(0.0, graphHeight)
@@ -85,7 +105,7 @@ fun main(args: Array<String>) = appWindow(
                 // draw the histogram line
                 stroke(brush.solid(graphColor), stroke) {
                     figure(xs[0], ys[0])
-                    for (i in 1 until 10)
+                    for (i in 1 until numPoints)
                         lineTo(xs[i], ys[i])
                 }
 
@@ -103,18 +123,18 @@ fun main(args: Array<String>) = appWindow(
                 val graphHeight = graphHeight(it.AreaHeight)
                 val x = it.X - xoffLeft
                 val y = it.Y - yoffTop
-                val xs = DoubleArray(10)
-                val ys = DoubleArray(10)
+                val xs = DoubleArray(numPoints)
+                val ys = DoubleArray(numPoints)
                 pointLocations(graphWidth, graphHeight, xs, ys)
 
                 currentPoint = -1
-                for (i in 0 until 10) {
+                repeat(numPoints) { i ->
                     if ((x >= xs[i] - pointRadius) &&
                         (x <= xs[i] + pointRadius) &&
                         (y >= ys[i] - pointRadius) &&
                         (y <= ys[i] + pointRadius)) {
                         currentPoint = i
-                        break
+                        return@repeat
                     }
                 }
 
@@ -122,15 +142,5 @@ fun main(args: Array<String>) = appWindow(
             }
         }
 
-        vbox {
-            datapoints.forEach {
-                it.action { histogram.redraw() }
-                add(widget = it)
-            }
-            colorButton.action { histogram.redraw() }
-            add(widget = colorButton)
-        }
-
-        add(widget = histogram, stretchy = true)
     }
 }

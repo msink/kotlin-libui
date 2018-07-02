@@ -99,6 +99,16 @@ inline fun Container.fontbutton(
     init: FontButton.() -> Unit = {}
 ) = add(FontButton().apply(init))
 
+inline fun Container.drawarea(
+    init: DrawArea.() -> Unit = {}
+) = add(DrawArea().apply(init))
+
+inline fun Container.scrollingarea(
+    width: Int,
+    height: Int,
+    init: ScrollingArea.() -> Unit = {}
+) = add(ScrollingArea(width, height).apply(init))
+
 inline fun Container.hbox(
     padded: Boolean = true,
     init: HorizontalBox.() -> Unit = {}
@@ -253,6 +263,18 @@ inline fun Stretchy.fontbutton(
     init: FontButton.() -> Unit = {}
 ) = add(FontButton().apply(init), stretchy)
 
+inline fun Stretchy.drawarea(
+    stretchy: Boolean = true,
+    init: DrawArea.() -> Unit = {}
+) = add(DrawArea().apply(init), stretchy)
+
+inline fun Stretchy.scrollingarea(
+    width: Int,
+    height: Int,
+    stretchy: Boolean = false,
+    init: ScrollingArea.() -> Unit = {}
+) = add(ScrollingArea(width, height).apply(init), stretchy)
+
 inline fun Stretchy.group(
     title: String,
     margined: Boolean = true,
@@ -324,3 +346,9 @@ inline fun Form.textarea(
 ) = add(label, TextArea(wrap)
         .apply { if (readonly) this.readonly = readonly }
         .apply(init), stretchy)
+
+inline fun Form.combobox(
+    label: String,
+    stretchy: Boolean = false,
+    init: Combobox.() -> Unit = {}
+) = add(label, Combobox().apply(init), stretchy)

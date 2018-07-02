@@ -7,11 +7,8 @@ fun main(args: Array<String>) = appWindow(
     height = 500,
     margined = false
 ) {
-    add(/*WORKAROUND for Linux*/widget = Grid().apply {
-    add(hexpand = true,
-        vexpand = true,/*WORKAROUND end*/
-        widget = DrawArea().apply {
-
+  vbox { //WORKAROUND for Linux not filling Window by DrawArea
+    drawarea {
         val brush = Brush()
         var angle = 0.0
 
@@ -74,6 +71,6 @@ fun main(args: Array<String>) = appWindow(
                 closeFigure()
             }
         }
-    })
-    })
+    }
+  }
 }

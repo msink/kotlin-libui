@@ -57,32 +57,34 @@ fun main(args: Array<String>) = appWindow(
     width = 640,
     height = 480
 ) {
-    val defaultFont = FontButton()
-
-    val alignment = Combobox().apply {
-        item("Left")
-        item("Center")
-        item("Right")
-        value = 0
-    }
-
-    val area = DrawArea().apply {
-        val astr = makeAttributedString()
-        draw {
-            text(astr, defaultFont.value, it.AreaWidth, alignment.value, 0.0, 0.0)
-        }
-    }
-
-    defaultFont.action { area.redraw() }
-    alignment.action { area.redraw() }
+    lateinit var font: FontButton
+    lateinit var align: Combobox
+    lateinit var area: DrawArea
 
     hbox {
         vbox {
-            add(defaultFont)
+            font = fontbutton {
+                action {
+                    area.redraw()
+                }
+            }
             form {
-                add(label = "Alignment", widget = alignment)
+                align = combobox("Alignment") {
+                    item("Left")
+                    item("Center")
+                    item("Right")
+                    value = 0
+                    action {
+                        area.redraw()
+                    }
+                }
             }
         }
-        add(area, stretchy = true)
+        area = drawarea {
+            val str = makeAttributedString()
+            draw {
+                text(str, font.value, it.AreaWidth, align.value, 0.0, 0.0)
+            }
+        }
     }
 }
