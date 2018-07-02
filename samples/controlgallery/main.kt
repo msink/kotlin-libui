@@ -1,7 +1,6 @@
 import libui.*
 
-fun basicControlsPage() = VerticalBox().apply {
-    padded = true
+fun TabPane.Page.basicControls() = vbox {
     hbox {
         button("Button")
         checkbox("Checkbox")
@@ -19,8 +18,7 @@ fun basicControlsPage() = VerticalBox().apply {
     }
 }
 
-fun numbersPage() = HorizontalBox().apply {
-    padded = true
+fun TabPane.Page.numbers() = hbox {
     group("Numbers", stretchy = true) {
         vbox {
             val spinbox = spinbox(min = 0, max = 100)
@@ -58,8 +56,7 @@ fun numbersPage() = HorizontalBox().apply {
     }
 }
 
-fun dataChoosersPage() = HorizontalBox().apply {
-    padded = true
+fun TabPane.Page.dataChoosers() = hbox {
     vbox {
         datepicker()
         timepicker()
@@ -114,14 +111,15 @@ fun main(args: Array<String>) = appWindow(
     width = 640,
     height = 480
 ) {
-    add(widget = Tab().apply {
-        add(label = "Basic Controls",
-            widget = basicControlsPage())
-
-        add(label = "Numbers and Lists",
-            widget = numbersPage())
-
-        add(label = "Data Choosers",
-            widget = dataChoosersPage())
-    })
+    tabpane {
+        page("Basic Controls") {
+            basicControls()
+        }
+        page("Numbers and Lists") {
+            numbers()
+        }
+        page("Data Choosers") {
+            dataChoosers()
+        }
+    }
 }

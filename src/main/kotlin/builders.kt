@@ -130,6 +130,10 @@ inline fun Container.form(
         .apply { if (padded) this.padded = padded }
         .apply(init))
 
+inline fun Container.tabpane(
+    init: TabPane.() -> Unit = {}
+) = add(TabPane().apply(init))
+
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Container for child controls that can stretch when container size change. */
@@ -308,6 +312,11 @@ inline fun Stretchy.form(
         .apply { if (padded) this.padded = padded }
         .apply(init), stretchy)
 
+inline fun Stretchy.tabpane(
+    stretchy: Boolean = false,
+    init: TabPane.() -> Unit = {}
+) = add(TabPane().apply(init), stretchy)
+
 ///////////////////////////////////////////////////////////////////////////////
 
 inline fun Form.textfield(
@@ -352,3 +361,11 @@ inline fun Form.combobox(
     stretchy: Boolean = false,
     init: Combobox.() -> Unit = {}
 ) = add(label, Combobox().apply(init), stretchy)
+
+///////////////////////////////////////////////////////////////////////////////
+
+inline fun TabPane.page(
+    label: String,
+    margined: Boolean = true,
+    init: TabPane.Page.() -> Unit = {}
+) = Page(label, margined).apply(init)

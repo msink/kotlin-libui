@@ -9,7 +9,7 @@ import kotlinx.cinterop.*
 // - [HorizontalBox]
 // - [VerticalBox]
 // - [Form]
-// - [Tab]
+// - [TabPane]
 // - [Grid]
 //
 ///////////////////////////////////////////////////////////////////////////////
@@ -82,27 +82,32 @@ fun Form.delete(index: Int) = uiFormDelete(ptr, index)
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A container that show each chidren in a separate tab. */
-class Tab : Control<uiTab>(uiNewTab())
+class TabPane : Control<uiTab>(uiNewTab()) {
 
-/** Whether page n (starting at 0) of the Tab has margins around its child. */
-fun Tab.getMargined(page: Int): Boolean = uiTabMargined(ptr, page) != 0
-fun Tab.setMargined(page: Int, margined: Boolean) = uiTabSetMargined(ptr, page, if (margined) 1 else 0)
+    inner class Page(val label: String, val margined: Boolean = true) : Container {
+        val pane: TabPane get() = this@TabPane
 
-/** Adds the given page to the end of the Tab. */
-fun <T : Control<*>> Tab.add(label: String, widget: T, margined: Boolean = true): T {
-    uiTabAppend(ptr, label, widget.ctl)
-    if (margined) setMargined(numPages - 1, true)
-    return widget
+        /** Set the child widget of the Page. */
+        override fun <T : Control<*>> add(widget: T): T {
+            uiTabAppend(pane.ptr, label, widget.ctl)
+            if (margined) pane.setMargined(pane.numPages - 1, true)
+            return widget
+        }
+    }
 }
 
-/** Adds the given page to the Tab such that it is the nth page of the Tab (starting at 0). */
-fun Tab.insert(index: Int, name: String, widget: Control<*>) = uiTabInsertAt(ptr, name, index, widget.ctl)
+/** Whether page n (starting at 0) of the TabPane has margins around its child. */
+fun TabPane.getMargined(page: Int): Boolean = uiTabMargined(ptr, page) != 0
+fun TabPane.setMargined(page: Int, margined: Boolean) = uiTabSetMargined(ptr, page, if (margined) 1 else 0)
 
-/** Delete deletes the nth page of the Tab. */
-fun Tab.delete(index: Int) = uiTabDelete(ptr, index)
+/** Adds the given page to the TabPane such that it is the nth page of the TabPane (starting at 0). */
+fun TabPane.insert(index: Int, name: String, widget: Control<*>) = uiTabInsertAt(ptr, name, index, widget.ctl)
 
-/** Number of pages in the Tab. */
-val Tab.numPages: Int get() = uiTabNumPages(ptr)
+/** Delete deletes the nth page of the TabPane. */
+fun TabPane.delete(index: Int) = uiTabDelete(ptr, index)
+
+/** Number of pages in the TabPane. */
+val TabPane.numPages: Int get() = uiTabNumPages(ptr)
 
 ///////////////////////////////////////////////////////////////////////////////
 
