@@ -74,9 +74,11 @@ fun Window.onClose(block: Window.() -> Boolean) {
     }}, ref.asCPointer())
 }
 
+private lateinit var mainWindow: Window
+
 /** Displays a modal Open File Dialog. */
-fun Window.OpenFileDialog(): String? {
-    val rawName = uiOpenFile(ptr)
+fun OpenFileDialog(): String? {
+    val rawName = uiOpenFile(mainWindow.ptr)
     if (rawName == null) return null
     val strName = rawName.toKString()
     uiFreeText(rawName)
@@ -84,8 +86,8 @@ fun Window.OpenFileDialog(): String? {
 }
 
 /** Displays a modal Save File Dialog. */
-fun Window.SaveFileDialog(): String? {
-    val rawName = uiSaveFile(ptr)
+fun SaveFileDialog(): String? {
+    val rawName = uiSaveFile(mainWindow.ptr)
     if (rawName == null) return null
     val strName = rawName.toKString()
     uiFreeText(rawName)
@@ -93,12 +95,12 @@ fun Window.SaveFileDialog(): String? {
 }
 
 /** Displays a modal Message Box. */
-fun Window.MsgBox(text: String, details: String = "")
-    = uiMsgBox(ptr, text, details)
+fun MsgBox(text: String, details: String = "")
+    = uiMsgBox(mainWindow.ptr, text, details)
 
 /** Displays a modal Error Message Box. */
-fun Window.MsgBoxError(text: String, details: String = "")
-    = uiMsgBoxError(ptr, text, details)
+fun MsgBoxError(text: String, details: String = "")
+    = uiMsgBoxError(mainWindow.ptr, text, details)
 
 /**
  * Initializes package ui, runs [init] to set up the program,
@@ -125,7 +127,7 @@ fun appWindow(
         }
     }
 
-    Window(title, width, height).apply {
+     mainWindow = Window(title, width, height).apply {
         onClose { uiQuit(); true }
         onShouldQuit { dispose(); true }
         if (margined) this.margined = margined

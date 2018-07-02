@@ -57,16 +57,14 @@ fun main(args: Array<String>) = appWindow(
     width = 640,
     height = 480
 ) {
-    lateinit var font: FontButton
-    lateinit var align: Combobox
-    lateinit var area: DrawArea
-
     hbox {
+        lateinit var font: FontButton
+        lateinit var align: Combobox
+        lateinit var area: DrawArea
+
         vbox {
             font = fontbutton {
-                action {
-                    area.redraw()
-                }
+                action { area.redraw() }
             }
             form {
                 align = combobox("Alignment") {
@@ -74,9 +72,7 @@ fun main(args: Array<String>) = appWindow(
                     item("Center")
                     item("Right")
                     value = 0
-                    action {
-                        area.redraw()
-                    }
+                    action { area.redraw() }
                 }
             }
         }

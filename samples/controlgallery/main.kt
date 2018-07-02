@@ -1,6 +1,6 @@
 import libui.*
 
-fun Window.basicControlsPage() = VerticalBox().apply {
+fun basicControlsPage() = VerticalBox().apply {
     padded = true
     hbox {
         button("Button")
@@ -19,7 +19,7 @@ fun Window.basicControlsPage() = VerticalBox().apply {
     }
 }
 
-fun Window.numbersPage() = HorizontalBox().apply {
+fun numbersPage() = HorizontalBox().apply {
     padded = true
     group("Numbers", stretchy = true) {
         vbox {
@@ -58,7 +58,7 @@ fun Window.numbersPage() = HorizontalBox().apply {
     }
 }
 
-fun Window.dataChoosersPage() = HorizontalBox().apply {
+fun dataChoosersPage() = HorizontalBox().apply {
     padded = true
     vbox {
         datepicker()
