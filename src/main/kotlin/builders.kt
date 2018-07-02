@@ -134,6 +134,13 @@ inline fun Container.tabpane(
     init: TabPane.() -> Unit = {}
 ) = add(TabPane().apply(init))
 
+inline fun Container.gridpane(
+    padded: Boolean = true,
+    init: GridPane.() -> Unit = {}
+) = add(GridPane()
+        .apply { if (padded) this.padded = padded }
+        .apply(init))
+
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Container for child controls that can stretch when container size change. */
@@ -317,6 +324,14 @@ inline fun Stretchy.tabpane(
     init: TabPane.() -> Unit = {}
 ) = add(TabPane().apply(init), stretchy)
 
+inline fun Stretchy.gridpane(
+    padded: Boolean = true,
+    stretchy: Boolean = false,
+    init: GridPane.() -> Unit = {}
+) = add(GridPane()
+        .apply { if (padded) this.padded = padded }
+        .apply(init), stretchy)
+
 ///////////////////////////////////////////////////////////////////////////////
 
 inline fun Form.field(
@@ -334,3 +349,18 @@ inline fun TabPane.page(
 ) = Page(label)
         .apply(init)
         .apply { if (margined) this.margined = true }
+
+///////////////////////////////////////////////////////////////////////////////
+
+inline fun GridPane.cell(
+    x: Int = 0,
+    y: Int = 0,
+    xspan: Int = 1,
+    yspan: Int = 1,
+    hexpand: Boolean = false,
+    halign: uiAlign = uiAlignFill,
+    vexpand: Boolean = false,
+    valign: uiAlign = uiAlignFill,
+    init: GridPane.Cell.() -> Unit = {}
+) = Cell(x, y, xspan, yspan, hexpand, halign, vexpand, valign)
+        .apply(init)

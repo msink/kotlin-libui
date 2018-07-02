@@ -67,7 +67,7 @@ abstract class Control<T : CPointed>(alloc: CPointer<T>?) : Disposable<T>(alloc)
     fun show() = uiControlShow(ctl)
 
     /** Hides the Control. Hidden controls do not participate in layout
-     *  (that is, Box, Grid, etc. does not reserve space for hidden controls). */
+     *  (that is, Box, GridPane, etc. does not reserve space for hidden controls). */
     fun hide() = uiControlHide(ctl)
 
     /** Whether the Control should be visible or hidden. Defaults to `true`. */

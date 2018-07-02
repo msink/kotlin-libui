@@ -10,7 +10,7 @@ import kotlinx.cinterop.*
 // - [VerticalBox]
 // - [Form]
 // - [TabPane]
-// - [Grid]
+// - [GridPane]
 //
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -118,14 +118,37 @@ fun TabPane.delete(page: Int) = uiTabDelete(ptr, page)
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A powerful container that allow to specify size and position of each children. */
-class Grid : Control<uiGrid>(uiNewGrid())
+class GridPane : Control<uiGrid>(uiNewGrid()) {
+
+    inner class Cell(
+        val x: Int = 0,
+        val y: Int = 0,
+        val xspan: Int = 1,
+        val yspan: Int = 1,
+        val hexpand: Boolean = false,
+        val halign: uiAlign = uiAlignFill,
+        val vexpand: Boolean = false,
+        val valign: uiAlign = uiAlignFill
+    ) : Container {
+        val pane: GridPane get() = this@GridPane
+
+        /** Set the child widget of the Cell. */
+        override fun <T : Control<*>> add(widget: T): T {
+            uiGridAppend(pane.ptr, widget.ctl,
+                x, y, xspan, yspan,
+                if (hexpand) 1 else 0, halign,
+                if (vexpand) 1 else 0, valign)
+            return widget
+        }
+    }
+}
 
 /** If true, the container insert some space between children. */
-var Grid.padded: Boolean
+var GridPane.padded: Boolean
     get() = uiGridPadded(ptr) != 0
     set(padded) = uiGridSetPadded(ptr, if (padded) 1 else 0)
 
-/** Adds the given Control to the end of the Grid.
+/** Adds the given Control to the end of the GridPane.
  *
  *  @param[widget] The Control to be added.
  *  @param[x] The x-coordinate of the Control's location.
@@ -137,7 +160,7 @@ var Grid.padded: Boolean
  *  @param[vexpand] The vertical expand of Control.
  *  @param[valign] The vertical alignment of Control.
  */
-fun <T : Control<*>> Grid.add(
+fun <T : Control<*>> GridPane.add(
     widget: T,
     x: Int = 0,
     y: Int = 0,
@@ -167,7 +190,7 @@ fun <T : Control<*>> Grid.add(
  *  @param[vexpand] The vertical expand of Control.
  *  @param[valign] The vertical alignment of Control.
  */
-fun <T : Control<*>> Grid.insert(
+fun <T : Control<*>> GridPane.insert(
     widget: T,
     existing: Control<*>,
     at: uiAt,

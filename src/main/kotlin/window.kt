@@ -13,7 +13,7 @@ class Window(
     Container {
 
     /** Specify the control to show in content area.
-     *  Window can contain only one control, if you need more use layouts like Box or Grid */
+     *  Window can contain only one control, if you need more use layouts like Box or GridPane */
     override fun <T : Control<*>> add(widget: T): T {
         uiWindowSetChild(ptr, widget.ctl)
         return widget

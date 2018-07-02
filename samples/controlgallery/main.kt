@@ -76,43 +76,53 @@ fun TabPane.Page.dataChoosers() = hbox {
     }
     separator()
     vbox(stretchy = true) {
-        add(widget = Grid().apply {
-            padded = true
+        gridpane {
+            lateinit var entry1: TextField
+            lateinit var entry2: TextField
 
-            val entry1 = TextField().apply { readonly = true }
-            val button1 = Button("Open File").apply {
-                action {
-                    entry1.value = OpenFileDialog() ?: "(cancelled)"
+            cell(y = 0, x = 0) {
+                button("Open File") {
+                    action {
+                        entry1.value = OpenFileDialog() ?: "(cancelled)"
+                    }
                 }
             }
-            add(widget = button1, y = 0, x = 0)
-            add(widget = entry1, y = 0, x = 1, hexpand = true)
+            cell(y = 0, x = 1, hexpand = true) {
+                entry1 = textfield(readonly = true)
+            }
 
-            val entry2 = TextField().apply { readonly = true }
-            val button2 = Button("Save File").apply {
-                action {
-                    entry2.value = SaveFileDialog() ?: "(cancelled)"
+            cell(y = 1, x = 0) {
+                button("Save File") {
+                    action {
+                        entry2.value = SaveFileDialog() ?: "(cancelled)"
+                    }
                 }
             }
-            add(widget = button2, y = 1, x = 0)
-            add(widget = entry2, y = 1, x = 1, hexpand = true)
+            cell(y = 1, x = 1, hexpand = true) {
+                entry2 = textfield(readonly = true)
+            }
 
-            add(y = 2, xspan = 2, widget = Grid().apply {
-                padded = true
-                add(x = 0, widget = Button("Message Box").apply {
-                    action {
-                        MsgBox(text = "This is a normal message box.",
-                            details = "More detailed information can be shown here.")
+            cell(y = 2, xspan = 2) {
+                gridpane {
+                    cell(x = 0) {
+                        button("Message Box") {
+                            action {
+                                MsgBox(text = "This is a normal message box.",
+                                    details = "More detailed information can be shown here.")
+                            }
+                        }
                     }
-                })
-                add(x = 1, widget = Button("Error Box").apply {
-                    action {
-                        MsgBoxError(text = "This message box describes an error.",
-                            details = "More detailed information can be shown here.")
+                    cell(x = 1) {
+                        button("Error Box") {
+                            action {
+                                MsgBoxError(text = "This message box describes an error.",
+                                    details = "More detailed information can be shown here.")
+                            }
+                        }
                     }
-                })
-            })
-        })
+                }
+            }
+        }
     }
 }
 

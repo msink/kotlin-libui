@@ -5,60 +5,60 @@ fun main(args: Array<String>) = appWindow(
     width = 320,
     height = 240
 ) {
-    add(widget = Grid().apply {
-        padded = true
+    gridpane {
+        lateinit var labelBoth: Label
+        lateinit var labelDate: Label
+        lateinit var labelTime: Label
 
-        val labelBoth = Label("")
-        val labelDate = Label("")
-        val labelTime = Label("")
+        lateinit var pickerBoth: DateTimePicker
+        lateinit var pickerDate: DatePicker
+        lateinit var pickerTime: TimePicker
 
-        val pickerBoth = DateTimePicker().apply { action { labelBoth.text = textValue() } }
-        val pickerDate = DatePicker().apply { action { labelDate.text = textValue() } }
-        val pickerTime = TimePicker().apply { action { labelTime.text = textValue() } }
-
-        val buttonUnix = Button("Unix epoch").apply { action { pickerBoth.value = 0 } }
-        val buttonNow = Button("Now").apply {
-            action {
-                val now = platform.posix.time(null)
-                pickerDate.value = now
-                pickerTime.value = now
+        cell(xspan = 2, hexpand = true) {
+            pickerBoth = datetimepicker {
+                action {
+                    labelBoth.text = textValue()
+                }
             }
         }
-
-        add(xspan = 2,
-            hexpand = true,
-            widget = pickerBoth)
-        add(y = 1,
-            hexpand = true,
-            widget = pickerDate)
-        add(y = 1,
-            x = 1,
-            hexpand = true,
-            widget = pickerTime)
-        add(y = 2,
-            xspan = 2,
-            hexpand = true,
-            halign = uiAlignCenter,
-            widget = labelBoth)
-        add(y = 3,
-            hexpand = true,
-            halign = uiAlignCenter,
-            widget = labelDate)
-        add(y = 3,
-            x = 1,
-            hexpand = true,
-            halign = uiAlignCenter,
-            widget = labelTime)
-        add(y = 4,
-            hexpand = true,
-            vexpand = true,
-            valign = uiAlignEnd,
-            widget = buttonNow)
-        add(y = 4,
-            x = 1,
-            hexpand = true,
-            vexpand = true,
-            valign = uiAlignEnd,
-            widget = buttonUnix)
-    })
+        cell(y = 1, hexpand = true) {
+            pickerDate = datepicker {
+                action {
+                    labelDate.text = textValue()
+                }
+            }
+        }
+        cell(y = 1, x = 1, hexpand = true) {
+            pickerTime = timepicker {
+                action {
+                    labelTime.text = textValue()
+                }
+            }
+        }
+        cell(y = 2, xspan = 2, hexpand = true, halign = uiAlignCenter) {
+            labelBoth = label("")
+        }
+        cell(y = 3, hexpand = true, halign = uiAlignCenter) {
+            labelDate = label("")
+        }
+        cell(y = 3, x = 1, hexpand = true, halign = uiAlignCenter) {
+            labelTime = label("")
+        }
+        cell(y = 4, hexpand = true, vexpand = true, valign = uiAlignEnd) {
+            button("Now") {
+                action {
+                    val now = platform.posix.time(null)
+                    pickerDate.value = now
+                    pickerTime.value = now
+                }
+            }
+        }
+        cell(y = 4, x = 1, hexpand = true, vexpand = true, valign = uiAlignEnd) {
+            button("Unix epoch") {
+                action {
+                    pickerBoth.value = 0
+                }
+            }
+        }
+    }
 }
