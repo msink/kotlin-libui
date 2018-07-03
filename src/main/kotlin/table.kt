@@ -98,8 +98,7 @@ private fun _ColumnType(
     model: CPointer<uiTableModel>?,
     column: Int
 ): uiTableValueType {
-    val h: CPointer<ktTableModelHandler> = handler!!.reinterpret()
-    with (h.pointed.ref!!.asStableRef<TableModel>().get()) {
+    with (handler!!.reinterpret<ktTableModelHandler>().pointed.ref!!.asStableRef<TableModel>().get()) {
         return columnType.invoke(this, column)
     }
 }
@@ -113,8 +112,7 @@ private fun _NumRows(
     handler: CPointer<uiTableModelHandler>?,
     model: CPointer<uiTableModel>?
 ): Int {
-    val h: CPointer<ktTableModelHandler> = handler!!.reinterpret()
-    with (h.pointed.ref!!.asStableRef<TableModel>().get()) {
+    with (handler!!.reinterpret<ktTableModelHandler>().pointed.ref!!.asStableRef<TableModel>().get()) {
         return numRows.invoke(this)
     }
 }
@@ -130,8 +128,7 @@ private fun _CellValue(
     row: Int,
     column: Int
 ): TableValue? {
-    val h: CPointer<ktTableModelHandler> = handler!!.reinterpret()
-    with (h.pointed.ref!!.asStableRef<TableModel>().get()) {
+    with (handler!!.reinterpret<ktTableModelHandler>().pointed.ref!!.asStableRef<TableModel>().get()) {
         return getCellValue.invoke(this, row, column)
     }
 }
@@ -148,8 +145,7 @@ private fun _SetCellValue(
     column: Int,
     value: TableValue?
 ) {
-    val h: CPointer<ktTableModelHandler> = handler!!.reinterpret()
-    with (h.pointed.ref!!.asStableRef<TableModel>().get()) {
+    with (handler!!.reinterpret<ktTableModelHandler>().pointed.ref!!.asStableRef<TableModel>().get()) {
         setCellValue.invoke(this, row, column, value)
     }
 }

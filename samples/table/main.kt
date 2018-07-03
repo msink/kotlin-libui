@@ -61,8 +61,7 @@ fun main(args: Array<String>) = appWindow(
         }}
     }
 
-    add(widget = VerticalBox {
-        padded = true
+    vbox {
         add(stretchy = true, widget = Table(model, 3, {
             textColumn("Column 1", 0, uiTableModelColumnNeverEditable)
             imageTextColumn("Column 2", 5, 1, uiTableModelColumnNeverEditable, 4)
@@ -71,5 +70,5 @@ fun main(args: Array<String>) = appWindow(
             buttonColumn("Buttons", 6, uiTableModelColumnAlwaysEditable)
             progressBarColumn("Progress Bar", 8)
         }))
-    })
+    }
 }
