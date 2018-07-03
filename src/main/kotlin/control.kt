@@ -4,14 +4,14 @@ import kotlinx.cinterop.*
 
 /** Base class for all GUI controls (widgets). */
 abstract class Control<T : CPointed>(alloc: CPointer<T>?) : Disposable<T>(alloc) {
-    internal val ctl: CPointer<uiControl> get() = ptr.reinterpret()
+    val ctl: CPointer<uiControl> get() = ptr.reinterpret()
     internal val ctlDestroy = ctl.pointed.Destroy
     internal val ref = StableRef.create(this)
 
     init {
         controls[ctl] = this
         ctl.pointed.Destroy = staticCFunction { ctl ->
-            with (controls[ctl!!] ?: throw Error("Control is disposed")) {
+            with(controls[ctl!!] ?: throw Error("Control is disposed")) {
                 ctlDestroy?.invoke(ctl)
                 controls.remove(ctl)
                 free()
@@ -67,7 +67,7 @@ abstract class Control<T : CPointed>(alloc: CPointer<T>?) : Disposable<T>(alloc)
     fun show() = uiControlShow(ctl)
 
     /** Hides the Control. Hidden controls do not participate in layout
-     *  (that is, Box, Grid, etc. does not reserve space for hidden controls). */
+     *  (that is, Box, GridPane, etc. does not reserve space for hidden controls). */
     fun hide() = uiControlHide(ctl)
 
     /** Whether the Control should be visible or hidden. Defaults to `true`. */
@@ -76,4 +76,14 @@ abstract class Control<T : CPointed>(alloc: CPointer<T>?) : Disposable<T>(alloc)
         set(visible) = if (visible) show() else hide()
 }
 
+//TODO: remove this intermediate map
 private var controls = mutableMapOf<CPointer<uiControl>, Control<*>>()
+
+internal inline fun <reified T : Control<*>> COpaquePointer?.to() = this!!.asStableRef<T>().get()
+
+internal fun CPointer<ByteVar>?.uiText(): String {
+    if (this == null) return ""
+    val string = this.toKString()
+    uiFreeText(this)
+    return string
+}

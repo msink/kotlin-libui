@@ -9,7 +9,7 @@ fun AttributedString.append(what: String, attr: Attribute, attr2: Attribute? = n
         setAttribute(attr2, start, end)
 }
 
-fun Area.makeAttributedString() = AttributedString(
+fun DrawArea.makeAttributedString() = AttributedString(
     "Drawing strings with libui is done with the uiAttributedString and uiDrawTextLayout objects.\n" +
     "uiAttributedString lets you have a variety of attributes: ").apply {
     append("font family", FamilyAttribute("Courier New"))
@@ -57,35 +57,32 @@ fun main(args: Array<String>) = appWindow(
     width = 640,
     height = 480
 ) {
-    val defaultFont = FontButton()
+    hbox {
+        lateinit var font: FontButton
+        lateinit var align: Combobox
+        lateinit var area: DrawArea
 
-    val alignment = Combobox {
-        add("Left")
-        add("Center")
-        add("Right")
-        value = 0
-    }
-
-    val area = Area {
-        val astr = makeAttributedString()
-        draw {
-            text(astr, defaultFont.value, it.AreaWidth, alignment.value, 0.0, 0.0)
+        vbox {
+            font = fontbutton {
+                action { area.redraw() }
+            }
+            form {
+                field("Alignment") {
+                    align = combobox {
+                        item("Left")
+                        item("Center")
+                        item("Right")
+                        value = 0
+                        action { area.redraw() }
+                    }
+                }
+            }
+        }
+        area = drawarea {
+            val str = makeAttributedString()
+            draw {
+                text(str, font.value, it.AreaWidth, align.value, 0.0, 0.0)
+            }
         }
     }
-
-    defaultFont.action { area.redraw() }
-    alignment.action { area.redraw() }
-
-    add(widget = HorizontalBox {
-        padded = true
-        add(widget = VerticalBox {
-            padded = true
-            add(widget = defaultFont)
-            add(widget = Form {
-                padded = true
-                add(label = "Alignment", widget = alignment)
-            })
-        })
-        add(stretchy = true, widget = area)
-    })
 }

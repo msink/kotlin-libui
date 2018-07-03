@@ -8,21 +8,24 @@ class Window(
     title: String,
     width: Int,
     height: Int,
-    margined: Boolean = true,
-    hasMenubar: Boolean = false,
-    block: Window.() -> Unit = {}
-) : Control<uiWindow>(uiNewWindow(title, width, height, if (hasMenubar) 1 else 0)) {
+    hasMenubar: Boolean = false
+) : Control<uiWindow>(uiNewWindow(title, width, height, if (hasMenubar) 1 else 0)),
+    Container {
+
+    /** Specify the control to show in content area.
+     *  Window can contain only one control, if you need more use layouts like Box or GridPane */
+    override fun <T : Control<*>> add(widget: T): T {
+        uiWindowSetChild(ptr, widget.ctl)
+        return widget
+    }
+
     internal var onClose: (Window.() -> Boolean)? = null
     internal var onResize: (Window.() -> Unit)? = null
-    init {
-        apply(block)
-        if (margined) this.margined = margined
-    }
 }
 
 /** Set or return the text to show in window title bar. */
 var Window.title: String
-    get() = uiWindowTitle(ptr)?.toKString() ?: ""
+    get() = uiWindowTitle(ptr).uiText()
     set(title) = uiWindowSetTitle(ptr, title)
 
 /** Allow to specify that the window is a frameless one, without borders,
@@ -31,7 +34,7 @@ var Window.borderless: Boolean
     get() = uiWindowBorderless(ptr) != 0
     set(borderless) = uiWindowSetBorderless(ptr, if (borderless) 1 else 0)
 
-/** Specify if the Window content should have a margin or not. Defaults to `false`. */
+/** Specify if the Window content should have a margin or not. */
 var Window.margined: Boolean
     get() = uiWindowMargined(ptr) != 0
     set(margined) = uiWindowSetMargined(ptr, if (margined) 1 else 0)
@@ -53,15 +56,12 @@ var Window.contentSize: SizeInt
     }
     set(size) = uiWindowSetContentSize(ptr, size.width, size.height)
 
-/** Specify the control to show in window content area.
- *  Window instances can contain only one control. If you need more, you have to use Container */
-fun Window.add(widget: Control<*>) = uiWindowSetChild(ptr, widget.ctl)
-
 /** Function to be run when window content size change. */
 fun Window.onResize(block: Window.() -> Unit) {
     onResize = block
-    uiWindowOnContentSizeChanged(ptr, staticCFunction { _, ref ->
-        with (ref!!.asStableRef<Window>().get()) { onResize?.invoke(this) }}, ref.asCPointer())
+    uiWindowOnContentSizeChanged(ptr, staticCFunction { _, ref -> with(ref.to<Window>()) {
+        onResize?.invoke(this)
+    }}, ref.asCPointer())
 }
 
 /** Function to be run when the user clicks the Window's close button.
@@ -69,14 +69,16 @@ fun Window.onResize(block: Window.() -> Unit) {
  *  @returns [true] if window is disposed */
 fun Window.onClose(block: Window.() -> Boolean) {
     onClose = block
-    uiWindowOnClosing(ptr, staticCFunction { _, ref ->
-        with (ref!!.asStableRef<Window>().get()) { if (onClose?.invoke(this) ?: true) 1 else 0 }},
-        ref.asCPointer())
+    uiWindowOnClosing(ptr, staticCFunction { _, ref -> with(ref.to<Window>()) {
+        if (onClose?.invoke(this) ?: true) 1 else 0
+    }}, ref.asCPointer())
 }
 
+private lateinit var mainWindow: Window
+
 /** Displays a modal Open File Dialog. */
-fun Window.OpenFileDialog(): String? {
-    val rawName = uiOpenFile(ptr)
+fun OpenFileDialog(): String? {
+    val rawName = uiOpenFile(mainWindow.ptr)
     if (rawName == null) return null
     val strName = rawName.toKString()
     uiFreeText(rawName)
@@ -84,8 +86,8 @@ fun Window.OpenFileDialog(): String? {
 }
 
 /** Displays a modal Save File Dialog. */
-fun Window.SaveFileDialog(): String? {
-    val rawName = uiSaveFile(ptr)
+fun SaveFileDialog(): String? {
+    val rawName = uiSaveFile(mainWindow.ptr)
     if (rawName == null) return null
     val strName = rawName.toKString()
     uiFreeText(rawName)
@@ -93,9 +95,69 @@ fun Window.SaveFileDialog(): String? {
 }
 
 /** Displays a modal Message Box. */
-fun Window.MsgBox(text: String, details: String = "")
-    = uiMsgBox(ptr, text, details)
+fun MsgBox(text: String, details: String = "")
+    = uiMsgBox(mainWindow.ptr, text, details)
 
 /** Displays a modal Error Message Box. */
-fun Window.MsgBoxError(text: String, details: String = "")
-    = uiMsgBoxError(ptr, text, details)
+fun MsgBoxError(text: String, details: String = "")
+    = uiMsgBoxError(mainWindow.ptr, text, details)
+
+/**
+ * Initializes package ui, runs [init] to set up the program,
+ * and executes the GUI main loop. [init] should set up the program's
+ * initial state: open the main window, create controls, and set up
+ * events.
+ */
+fun appWindow(
+    title: String,
+    width: Int,
+    height: Int,
+    margined: Boolean = true,
+    init: Window.() -> Unit = {}
+) {
+    platform.posix.srand(platform.posix.time(null).toInt())
+
+    memScoped {
+        val options = alloc<uiInitOptions>()
+        val error = uiInit(options.ptr)
+        if (error != null) {
+            val errorString = error.toKString()
+            uiFreeInitError(error)
+            throw Error("error initializing ui: '$errorString'")
+        }
+    }
+
+     mainWindow = Window(title, width, height).apply {
+        onClose { uiQuit(); true }
+        onShouldQuit { dispose(); true }
+        if (margined) this.margined = margined
+        init()
+        show()
+    }
+
+    uiMain()
+    uiUninit()
+    actions.forEach { it.dispose() }
+}
+
+private val actions = mutableListOf<StableRef<Any>>()
+
+/** Function to be executed when the OS wants the program to quit
+ *  or when a Quit menu item has been clicked.
+ *  Only one function may be registered at a time.
+ *  @returns `true` when Quit will be called. */
+fun onShouldQuit(block: () -> Boolean) {
+    val ref = StableRef.create(block).also { actions.add(it) }
+    uiOnShouldQuit(staticCFunction { _ref ->
+        val _block = _ref!!.asStableRef<() -> Boolean>().get()
+        if (_block()) 1 else 0 }, ref.asCPointer())
+}
+
+/** Function to be executed on a timer on the main thread.
+ *  @returns `true` to continue and `false` to stop. */
+fun onTimer(milliseconds: Int, block: () -> Boolean) {
+    val ref = StableRef.create(block).also { actions.add(it) }
+    uiTimer(milliseconds, staticCFunction{ _ref ->
+        val _block = _ref!!.asStableRef<() -> Boolean>().get()
+        if (_block()) 1 else 0 }, ref.asCPointer())
+}
