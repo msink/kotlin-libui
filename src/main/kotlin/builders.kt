@@ -109,6 +109,14 @@ inline fun Container.scrollingarea(
     init: ScrollingArea.() -> Unit = {}
 ) = add(ScrollingArea(width, height).apply(init))
 
+inline fun Container.group(
+    title: String,
+    margined: Boolean = true,
+    init: Group.() -> Unit = {}
+) = add(Group(title)
+        .apply { if (margined) this.margined = margined }
+        .apply(init))
+
 inline fun Container.hbox(
     padded: Boolean = true,
     init: HBox.() -> Unit = {}
@@ -295,19 +303,19 @@ inline fun Stretchy.group(
         .apply { if (margined) this.margined = margined }
         .apply(init), stretchy)
 
-inline fun Stretchy.vbox(
-    padded: Boolean = true,
-    stretchy: Boolean = false,
-    init: VBox.() -> Unit = {}
-) = add(VBox()
-        .apply { if (padded) this.padded = padded }
-        .apply(init), stretchy)
-
 inline fun Stretchy.hbox(
     padded: Boolean = true,
     stretchy: Boolean = false,
     init: HBox.() -> Unit = {}
 ) = add(HBox()
+        .apply { if (padded) this.padded = padded }
+        .apply(init), stretchy)
+
+inline fun Stretchy.vbox(
+    padded: Boolean = true,
+    stretchy: Boolean = false,
+    init: VBox.() -> Unit = {}
+) = add(VBox()
         .apply { if (padded) this.padded = padded }
         .apply(init), stretchy)
 
