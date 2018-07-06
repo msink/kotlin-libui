@@ -32,212 +32,240 @@ val TableValue.color: Color get() = memScoped {
         Color(r.value, g.value, b.value, a.value)
     }
 
+internal sealed class Value
+
+internal class StringValue(
+    val get: (row: Int) -> String,
+    val set: ((row: Int, value: String?) -> Unit)? = null
+) : Value()
+
+internal class IntValue(
+    val get: (row: Int) -> Int,
+    val set: ((row: Int, value: Int) -> Unit)? = null
+) : Value()
+
+internal class ImageValue(
+    val get: (row: Int) -> Image?
+) : Value()
+
+internal class ColorValue(
+    val get: (row: Int) -> Color?
+) : Value()
+
 ///////////////////////////////////////////////////////////////////////////////
 
-class TableModel(block: TableModel.() -> Unit = {}) {
+class Table<T>(val data: List<T>) {
     internal val ptr: CPointer<uiTableModel>
     internal val ref = StableRef.create(this)
-    internal val handler = nativeHeap.alloc<ktTableModelHandler>().ptr
-
-    internal var numColumns: TableModel.() -> Int = { 0 }
-    internal var columnType: TableModel.(col: Int) -> uiTableValueType = { uiTableValueTypeString }
-    internal var numRows: TableModel.() -> Int = { 0 }
-    internal var getCellValue: TableModel.(row: Int, col: Int) -> TableValue? = { _, _ -> null }
-    internal var setCellValue: TableModel.(row: Int, col: Int, value: TableValue?) -> Unit = { _, _, _ -> }
-
-    internal val disposables = mutableListOf<Disposable<*>>()
-
-    init {
-        handler.pointed.ui.NumColumns = staticCFunction(::_NumColumns)
-        handler.pointed.ui.ColumnType = staticCFunction(::_ColumnType)
-        handler.pointed.ui.NumRows = staticCFunction(::_NumRows)
-        handler.pointed.ui.CellValue = staticCFunction(::_CellValue)
-        handler.pointed.ui.SetCellValue = staticCFunction(::_SetCellValue)
-        handler.pointed.ref = ref.asCPointer()
-        ptr = uiNewTableModel(handler.pointed.ui.ptr) ?: throw Error()
-        apply(block)
-    }
+    internal val handler = nativeHeap.alloc<ktTableHandler>().ptr
+    internal val disposable = mutableListOf<Disposable<*>>()
+    internal val values = mutableListOf<Value>()
+    internal val columns = mutableListOf<TablePane.() -> Unit>()
+    internal var background: Int = -1
 
     fun free() {
-        disposables.forEach { it.dispose() }
-        disposables.clear()
+        disposable.forEach { it.dispose() }
+        disposable.clear()
         uiFreeTableModel(ptr)
         nativeHeap.free(handler)
         ref.dispose()
     }
-}
 
-fun TableModel.rowInserted(newIndex: Int) = uiTableModelRowInserted(ptr, newIndex)
+    init {
+        handler.pointed.ui.NumColumns = staticCFunction { handler, _ ->
+            with (handler!!.reinterpret<ktTableHandler>().pointed.ref!!.asStableRef<Table<T>>().get()) {
+                values.size
+            }
+        }
 
-fun TableModel.rowChanged(index: Int) = uiTableModelRowChanged(ptr, index)
+        handler.pointed.ui.ColumnType = staticCFunction { handler, _, column ->
+            with (handler!!.reinterpret<ktTableHandler>().pointed.ref!!.asStableRef<Table<T>>().get()) {
+                if (column >= 0 && column < values.size) values[column].let {
+                    when (it) {
+                        is StringValue -> uiTableValueTypeString
+                        is IntValue -> uiTableValueTypeInt
+                        is ImageValue -> uiTableValueTypeImage
+                        is ColorValue -> uiTableValueTypeColor
+                    }
+                } else uiTableValueTypeString
+            }
+        }
 
-fun TableModel.rowDeleted(oldIndex: Int) = uiTableModelRowDeleted(ptr, oldIndex)
+        handler.pointed.ui.NumRows = staticCFunction { handler, _ ->
+            with (handler!!.reinterpret<ktTableHandler>().pointed.ref!!.asStableRef<Table<T>>().get()) {
+                data.size
+            }
+        }
 
-fun TableModel.numColumns(proc: TableModel.() -> Int) {
-    numColumns = proc
-}
+        handler.pointed.ui.CellValue = staticCFunction { handler, _, row, column ->
+            with (handler!!.reinterpret<ktTableHandler>().pointed.ref!!.asStableRef<Table<T>>().get()) {
+                if (column >= 0 && column < values.size) values[column].let {
+                    when (it) {
+                        is StringValue -> it.get(row).let { TableValueString(it) }
+                        is IntValue -> it.get(row).let { TableValueInt(it) }
+                        is ImageValue -> it.get(row)?.let { TableValueImage(it) }
+                        is ColorValue -> it.get(row)?.let { TableValueColor(it) }
+                    }
+                } else null
+            }
+        }
 
-@Suppress("UNUSED_PARAMETER")
-private fun _NumColumns(
-    handler: CPointer<uiTableModelHandler>?,
-    model: CPointer<uiTableModel>?
-): Int {
-    val h: CPointer<ktTableModelHandler> = handler!!.reinterpret()
-    with (h.pointed.ref!!.asStableRef<TableModel>().get()) {
-        return numColumns.invoke(this)
+        handler.pointed.ui.SetCellValue = staticCFunction { handler, _, row, column, value ->
+            with (handler!!.reinterpret<ktTableHandler>().pointed.ref!!.asStableRef<Table<T>>().get()) {
+                if (column >= 0 && column < values.size) values[column].let {
+                    when (it) {
+                        is StringValue -> it.set?.invoke(row, value?.string)
+                        is IntValue -> it.set?.invoke(row, value?.int ?: 0)
+                        else -> {}
+                    }
+                }
+            }
+        }
+
+        handler.pointed.ref = ref.asCPointer()
+        ptr = uiNewTableModel(handler.pointed.ui.ptr) ?: throw Error()
     }
-}
 
-fun TableModel.columnType(proc: TableModel.(column: Int) -> uiTableValueType) {
-    columnType = proc
-}
-
-@Suppress("UNUSED_PARAMETER")
-private fun _ColumnType(
-    handler: CPointer<uiTableModelHandler>?,
-    model: CPointer<uiTableModel>?,
-    column: Int
-): uiTableValueType {
-    with (handler!!.reinterpret<ktTableModelHandler>().pointed.ref!!.asStableRef<TableModel>().get()) {
-        return columnType.invoke(this, column)
+    internal fun StringValue(
+        get: (row: Int) -> String,
+        set: ((row: Int, value: String?) -> Unit)? = null
+    ): Int {
+        val id = values.size
+        values += libui.StringValue(get, set)
+        return id
     }
-}
 
-fun TableModel.numRows(proc: TableModel.() -> Int) {
-    numRows = proc
-}
-
-@Suppress("UNUSED_PARAMETER")
-private fun _NumRows(
-    handler: CPointer<uiTableModelHandler>?,
-    model: CPointer<uiTableModel>?
-): Int {
-    with (handler!!.reinterpret<ktTableModelHandler>().pointed.ref!!.asStableRef<TableModel>().get()) {
-        return numRows.invoke(this)
+    internal fun IntValue(
+        get: (row: Int) -> Int,
+        set: ((row: Int, value: Int) -> Unit)? = null
+    ): Int {
+        val id = values.size
+        values += libui.IntValue(get, set)
+        return id
     }
-}
 
-fun TableModel.getCellValue(proc: TableModel.(row: Int, column: Int) -> TableValue?) {
-    getCellValue = proc
-}
-
-@Suppress("UNUSED_PARAMETER")
-private fun _CellValue(
-    handler: CPointer<uiTableModelHandler>?,
-    model: CPointer<uiTableModel>?,
-    row: Int,
-    column: Int
-): TableValue? {
-    with (handler!!.reinterpret<ktTableModelHandler>().pointed.ref!!.asStableRef<TableModel>().get()) {
-        return getCellValue.invoke(this, row, column)
+    internal fun ImageValue(get: (row: Int) -> Image?): Int {
+        val id = values.size
+        values += libui.ImageValue(get)
+        return id
     }
-}
 
-fun TableModel.setCellValue(proc: TableModel.(row: Int, column: Int, value: TableValue?) -> Unit) {
-    setCellValue = proc
-}
-
-@Suppress("UNUSED_PARAMETER")
-private fun _SetCellValue(
-    handler: CPointer<uiTableModelHandler>?,
-    model: CPointer<uiTableModel>?,
-    row: Int,
-    column: Int,
-    value: TableValue?
-) {
-    with (handler!!.reinterpret<ktTableModelHandler>().pointed.ref!!.asStableRef<TableModel>().get()) {
-        setCellValue.invoke(this, row, column, value)
+    internal fun ColorValue(get: (row: Int) -> Color?): Int {
+        val id = values.size
+        values += libui.ColorValue(get)
+        return id
     }
+
+    fun textColumn(name: String, get: (row: Int) -> String, set: ((row: Int, value: String?) -> Unit)? = null) {
+        columns += TextColumn(name, StringValue(get, set),
+            if (set == null) uiTableModelColumnNeverEditable else uiTableModelColumnAlwaysEditable)
+    }
+
+    fun imageTextColumn(name: String, image: (row: Int) -> Image?, text: String, color: (row: Int) -> Color?) {
+        columns += ImageTextColumn(name, ImageValue(image),
+            StringValue({text}), uiTableModelColumnNeverEditable,
+            ColorValue(color))
+    }
+
+    fun checkboxColumn(name: String, get: (row: Int) -> Int, set: ((row: Int, value: Int) -> Unit)?) {
+        columns += CheckboxColumn(name, IntValue(get, set),
+            if (set == null) uiTableModelColumnNeverEditable else uiTableModelColumnAlwaysEditable)
+    }
+
+    fun progressBarColumn(name: String, get: (row: Int) -> Int) {
+        columns += ProgressBarColumn(name, IntValue(get))
+    }
+
+    fun buttonColumn(name: String, text: String, set: (row: Int, value: String?) -> Unit) {
+        columns += ButtonColumn(name, StringValue({ text }, set), uiTableModelColumnAlwaysEditable)
+    }
+
+    fun background(get: (row: Int) -> Color?) {
+        background = ColorValue(get)
+    }
+
+    fun rowInserted(newIndex: Int) = uiTableModelRowInserted(ptr, newIndex)
+
+    fun rowChanged(index: Int) = uiTableModelRowChanged(ptr, index)
+
+    fun rowDeleted(oldIndex: Int) = uiTableModelRowDeleted(ptr, oldIndex)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
-class Table(val model: TableModel, val bgModel: Int, block: Table.() -> Unit = {}) : Control<uiTable>(
+private fun TextColumn(name: String, textModel: Int, textEdit: Int,
+                       colorModel: Int = -1): TablePane.() -> Unit = {
+    if (colorModel >= 0) memScoped {
+        val params = alloc<uiTableTextColumnOptionalParams>().apply {
+            ColorModelColumn = colorModel
+        }
+        uiTableAppendTextColumn(ptr, name, textModel, textEdit, params.ptr)
+    } else {
+        uiTableAppendTextColumn(ptr, name, textModel, textEdit, null)
+    }
+}
+
+private fun ImageColumn(name: String, imageModel: Int): TablePane.() -> Unit = {
+    uiTableAppendImageColumn(ptr, name, imageModel)
+}
+
+private fun ImageTextColumn(name: String, imageModel: Int, textModel: Int, textEdit: Int,
+                            colorModel: Int = -1): TablePane.() -> Unit = {
+    if (colorModel >= 0) memScoped {
+        val params = alloc<uiTableTextColumnOptionalParams>().apply {
+            ColorModelColumn = colorModel
+        }
+        uiTableAppendImageTextColumn(ptr, name, imageModel, textModel, textEdit, params.ptr)
+    } else {
+        uiTableAppendImageTextColumn(ptr, name, imageModel, textModel, textEdit, null)
+    }
+}
+
+private fun CheckboxColumn(name: String, checkboxModel: Int, checkboxEdit: Int): TablePane.() -> Unit = {
+    uiTableAppendCheckboxColumn(ptr, name, checkboxModel, checkboxEdit)
+}
+
+private fun CheckboxTextColumn(name: String, checkboxModel: Int, checkboxEdit: Int,
+                               textModel: Int, textEdit: Int, colorModel: Int = -1): TablePane.() -> Unit = {
+    if (colorModel >= 0) memScoped {
+        val params = alloc<uiTableTextColumnOptionalParams>().apply {
+            ColorModelColumn = colorModel
+        }
+        uiTableAppendCheckboxTextColumn(ptr, name, checkboxModel, checkboxEdit, textModel, textEdit, params.ptr)
+    } else {
+        uiTableAppendCheckboxTextColumn(ptr, name, checkboxModel, checkboxEdit, textModel, textEdit, null)
+    }
+}
+
+private fun ProgressBarColumn(name: String, progressModel: Int): TablePane.() -> Unit = {
+    uiTableAppendProgressBarColumn(ptr, name, progressModel)
+}
+
+private fun ButtonColumn(name: String, buttonTextModel: Int, buttonClickable: Int): TablePane.() -> Unit = {
+    uiTableAppendButtonColumn(ptr, name, buttonTextModel, buttonClickable)
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
+class TablePane(val table: Table<*>) : Control<uiTable>(
     alloc = memScoped {
         val params = alloc<uiTableParams>().apply {
-            Model = model.ptr
-            RowBackgroundColorModelColumn = bgModel
+            Model = table.ptr
+            RowBackgroundColorModelColumn = table.background
         }
         uiNewTable(params.ptr)}) {
-    init { apply(block) }
     override fun free() {
-        model.free()
+        table.free()
         super.free()
     }
-}
-
-fun Table.textColumn(
-    name: String,
-    textModelColumn: Int,
-    textEditableModelColumn: Int,
-    colorModelColumn: Int = -1
-) = memScoped {
-    if (colorModelColumn >= 0) {
-        val params = alloc<uiTableTextColumnOptionalParams>()
-        params.ColorModelColumn = colorModelColumn
-        uiTableAppendTextColumn(ptr, name, textModelColumn, textEditableModelColumn, params.ptr)
-    } else {
-        uiTableAppendTextColumn(ptr, name, textModelColumn, textEditableModelColumn, null)
+    init {
+        table.columns.forEach { it() }
+        table.columns.clear()
     }
 }
 
-fun Table.imageColumn(
-    name: String,
-    imageModelColumn: Int
-) = uiTableAppendImageColumn(ptr, name, imageModelColumn)
-
-fun Table.imageTextColumn(
-    name: String,
-    imageModelColumn: Int,
-    textModelColumn: Int,
-    textEditableModelColumn: Int,
-    colorModelColumn: Int = -1
-) = memScoped {
-    if (colorModelColumn >= 0) {
-        val params = alloc<uiTableTextColumnOptionalParams>()
-        params.ColorModelColumn = colorModelColumn
-        uiTableAppendImageTextColumn(ptr, name,
-            imageModelColumn, textModelColumn, textEditableModelColumn, params.ptr)
-    } else {
-        uiTableAppendImageTextColumn(ptr, name,
-            imageModelColumn, textModelColumn, textEditableModelColumn, null)
-    }
-}
-
-fun Table.checkboxColumn(
-    name: String,
-    checkboxModelColumn: Int,
-    checkboxEditableModelColumn: Int
-) = uiTableAppendCheckboxColumn(ptr, name, checkboxModelColumn, checkboxEditableModelColumn)
-
-fun Table.checkboxTextColumn(
-    name: String,
-    checkboxModelColumn: Int,
-    checkboxEditableModelColumn: Int,
-    textModelColumn: Int,
-    textEditableModelColumn: Int,
-    colorModelColumn: Int = -1
-) = memScoped {
-    if (colorModelColumn >= 0) {
-        val params = alloc<uiTableTextColumnOptionalParams>()
-        params.ColorModelColumn = colorModelColumn
-        uiTableAppendCheckboxTextColumn(ptr, name,
-            checkboxModelColumn, checkboxEditableModelColumn,
-            textModelColumn, textEditableModelColumn, params.ptr)
-    } else {
-        uiTableAppendCheckboxTextColumn(ptr, name,
-            checkboxModelColumn, checkboxEditableModelColumn,
-            textModelColumn, textEditableModelColumn, null)
-    }
-}
-
-fun Table.progressBarColumn(
-    name: String,
-    progressModelColumn: Int
-) = uiTableAppendProgressBarColumn(ptr, name, progressModelColumn)
-
-fun Table.buttonColumn(
-    name: String,
-    buttonTextModelColumn: Int,
-    buttonClickableModelColumn: Int
-) = uiTableAppendButtonColumn(ptr, name, buttonTextModelColumn, buttonClickableModelColumn)
+inline fun <T> Stretchy.table(
+    data: List<T>,
+    stretchy: Boolean = false,
+    init: Table<T>.() -> Unit = {}
+) = add(TablePane(Table<T>(data).apply(init)), stretchy)

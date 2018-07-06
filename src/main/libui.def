@@ -21,8 +21,8 @@ struct ktAreaHandler {
     void *ref;
 };
 
-typedef struct ktTableModelHandler ktTableModelHandler;
-struct ktTableModelHandler {
+typedef struct ktTableHandler ktTableHandler;
+struct ktTableHandler {
     uiTableModelHandler ui;
     void *ref;
 };

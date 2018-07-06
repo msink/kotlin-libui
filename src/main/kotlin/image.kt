@@ -9,11 +9,11 @@ class Image(width: Double, height: Double) : Disposable<uiImage>(
     override fun free() = uiFreeImage(ptr)
 }
 
-fun TableModel.Image(width: Double, height: Double, block: Image.() -> Unit = {}): Image =
-    libui.Image(width, height).also {
-        disposables.add(it)
+fun Table<*>.Image(width: Int, height: Int, block: Image.() -> Unit = {}): Image =
+    libui.Image(width.toDouble(), height.toDouble()).also {
+        disposable.add(it)
         block.invoke(it)
     }
 
-fun Image.add(data: ImageData) =
+fun Image.bitmap(data: ImageData) =
     uiImageAppend(ptr, data.pixels, data.width, data.height, data.stride)
