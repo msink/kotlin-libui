@@ -1,6 +1,8 @@
 package libui
 
 import kotlinx.cinterop.*
+import kotlin.reflect.KMutableProperty1
+import kotlin.reflect.KProperty1
 
 typealias TableValue = CPointer<uiTableValue>
 
@@ -156,20 +158,34 @@ class Table<T>(val data: List<T>) {
         return id
     }
 
-    fun textColumn(name: String, get: (row: Int) -> String, set: ((row: Int, value: String?) -> Unit)? = null) {
-        columns += TextColumn(name, StringValue(get, set),
-            if (set == null) uiTableModelColumnNeverEditable else uiTableModelColumnAlwaysEditable)
+    fun textColumn(name: String, get: (row: Int) -> String) {
+        columns += TextColumn(name, StringValue(get), uiTableModelColumnNeverEditable)
     }
 
-    fun imageTextColumn(name: String, image: (row: Int) -> Image?, text: String, color: (row: Int) -> Color?) {
-        columns += ImageTextColumn(name, ImageValue(image),
-            StringValue({text}), uiTableModelColumnNeverEditable,
+    fun textColumn(name: String, property: KProperty1<T, String>) {
+        columns += TextColumn(name,
+            StringValue({ row -> property.get(data[row])}), uiTableModelColumnNeverEditable)
+    }
+
+    fun textColumn(name: String, property: KMutableProperty1<T, String>) {
+        columns += TextColumn(name, StringValue(
+            get = { row -> property.get(data[row]) },
+            set = { row, value -> property.set(data[row], value!!) }),
+            uiTableModelColumnAlwaysEditable)
+    }
+
+    fun imageTextColumn(name: String, image: (row: Int) -> Image?, text: (row: Int) -> String, color: (row: Int) -> Color?) {
+        columns += ImageTextColumn(name,
+            ImageValue(image),
+            StringValue(text), uiTableModelColumnNeverEditable,
             ColorValue(color))
     }
 
-    fun checkboxColumn(name: String, get: (row: Int) -> Int, set: ((row: Int, value: Int) -> Unit)?) {
-        columns += CheckboxColumn(name, IntValue(get, set),
-            if (set == null) uiTableModelColumnNeverEditable else uiTableModelColumnAlwaysEditable)
+    fun checkboxColumn(name: String, property: KMutableProperty1<T, Boolean>) {
+        columns += CheckboxColumn(name, IntValue(
+            get = { row -> if (property.get(data[row])) 1 else 0 },
+            set = { row, value -> property.set(data[row], (value != 0)) }),
+            uiTableModelColumnAlwaysEditable)
     }
 
     fun progressBarColumn(name: String, get: (row: Int) -> Int) {

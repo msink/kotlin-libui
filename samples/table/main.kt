@@ -5,7 +5,7 @@ class Data(
     var checkbox: Boolean
 )
 
-val myData = List<Data>(15) {
+val data = List<Data>(15) {
     Data("Part", false)
 }
 
@@ -15,7 +15,7 @@ fun main(args: Array<String>) = appWindow(
     height = 480
 ) {
     vbox {
-        table<Data>(myData, stretchy = true) {
+        table(data, stretchy = true) {
             val image0 = Image(width = 16, height = 16) {
                 bitmap(`andlabs_16x16test_24june2016.png`)
                 bitmap(`andlabs_32x32test_24june2016.png`)
@@ -26,18 +26,25 @@ fun main(args: Array<String>) = appWindow(
             }
             var yellowRow = -1
 
-            textColumn("Column 1",
-                get = { row -> "Row $row" })
+            background { row ->
+                when (row) {
+                    yellowRow -> Color(r=1.0, g=1.0, b=0.0)
+                    3         -> Color(r=1.0, g=0.0, b=0.0)
+                    11        -> Color(r=0.0, g=0.5, b=1.0, a=0.5)
+                    else      -> null
+                }
+            }
+
+            textColumn("Column 1")
+                { row -> "Row $row" }
             imageTextColumn("Column 2",
                 image = { row -> if (row < 8) image0 else image1 },
-                text = "Part",
+                text = { "Part" },
                 color = { row -> if ((row % 2) == 1) Color(r=0.5, g=0.0, b=0.75) else null })
             textColumn("Editable",
-                get = { row -> myData[row].editable },
-                set = { row, value -> myData[row].editable = value!! })
+                Data::editable)
             checkboxColumn("Checkboxes",
-                get = { row -> if (myData[row].checkbox) 1 else 0 },
-                set = { row, value -> myData[row].checkbox = (value != 0) })
+                Data::checkbox)
             buttonColumn("Buttons", "Make Yellow") { row, _ ->
                 val prevYellowRow = yellowRow
                 yellowRow = row
@@ -51,14 +58,6 @@ fun main(args: Array<String>) = appWindow(
                     13 -> 100
                     14 -> -1
                     else -> 50
-                }
-            }
-            background { row ->
-                when (row) {
-                    yellowRow -> Color(r=1.0, g=1.0, b=0.0)
-                    3         -> Color(r=1.0, g=0.0, b=0.0)
-                    11        -> Color(r=0.0, g=0.5, b=1.0, a=0.5)
-                    else      -> null
                 }
             }
         }
