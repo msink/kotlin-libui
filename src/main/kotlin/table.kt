@@ -4,54 +4,24 @@ import kotlinx.cinterop.*
 import kotlin.reflect.KMutableProperty1
 import kotlin.reflect.KProperty1
 
-typealias TableValue = CPointer<uiTableValue>
-
-fun TableValue.dispose() = uiFreeTableValue(this)
-
-val TableValue.type: uiTableValueType get() = uiTableValueGetType(this)
-
-fun TableValueString(value: String): TableValue = uiNewTableValueString(value) ?: throw Error()
-
-val TableValue.string: String get() = uiTableValueString(this)?.toKString() ?: throw Error()
-
-fun TableValueImage(value: Image): TableValue = uiNewTableValueImage(value.ptr) ?: throw Error()
-
-//TODO val TableValue.image: Image get() = uiTableValueImage(this) ?: throw Error()
-
-fun TableValueInt(value: Int): TableValue = uiNewTableValueInt(value) ?: throw Error()
-
-val TableValue.int: Int get() = uiTableValueInt(this)
-
-fun TableValueColor(value: Color): TableValue =
-    uiNewTableValueColor(value.r, value.g, value.b, value.a) ?: throw Error()
-
-val TableValue.color: Color get() = memScoped {
-        val r = alloc<DoubleVar>()
-        val g = alloc<DoubleVar>()
-        val b = alloc<DoubleVar>()
-        val a = alloc<DoubleVar>()
-        uiTableValueColor(this@color, r.ptr, g.ptr, b.ptr, a.ptr)
-        Color(r.value, g.value, b.value, a.value)
-    }
-
 internal sealed class TableControl
 
 internal class TableString(
-    val get: (row: Int) -> String,
-    val set: ((row: Int, value: String?) -> Unit)? = null
+    val getValue: (row: Int) -> String,
+    val setValue: ((row: Int, value: String?) -> Unit)? = null
 ) : TableControl()
 
 internal class TableInt(
-    val get: (row: Int) -> Int,
-    val set: ((row: Int, value: Int) -> Unit)? = null
+    val getValue: (row: Int) -> Int,
+    val setValue: ((row: Int, value: Int) -> Unit)? = null
 ) : TableControl()
 
 internal class TableImage(
-    val get: (row: Int) -> Image?
+    val getValue: (row: Int) -> Image?
 ) : TableControl()
 
 internal class TableColor(
-    val get: (row: Int) -> Color?
+    val getValue: (row: Int) -> Color?
 ) : TableControl()
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -79,56 +49,52 @@ class Table<T>(val data: List<T>) {
                 controls.size
             }
         }
-
         handler.pointed.ui.ColumnType = staticCFunction { handler, _, column ->
             with (handler!!.reinterpret<ktTableHandler>().pointed.ref!!.asStableRef<Table<T>>().get()) {
-                if (column >= 0 && column < controls.size) controls[column].let {
+                controls.getOrNull(column)?.let {
                     when (it) {
                         is TableString -> uiTableValueTypeString
                         is TableInt -> uiTableValueTypeInt
                         is TableImage -> uiTableValueTypeImage
                         is TableColor -> uiTableValueTypeColor
                     }
-                } else uiTableValueTypeString
+                } ?: uiTableValueTypeString
             }
         }
-
         handler.pointed.ui.NumRows = staticCFunction { handler, _ ->
             with (handler!!.reinterpret<ktTableHandler>().pointed.ref!!.asStableRef<Table<T>>().get()) {
                 data.size
             }
         }
-
         handler.pointed.ui.CellValue = staticCFunction { handler, _, row, column ->
             with (handler!!.reinterpret<ktTableHandler>().pointed.ref!!.asStableRef<Table<T>>().get()) {
-                if (column >= 0 && column < controls.size) controls[column].let {
+                controls.getOrNull(column)?.let {
                     when (it) {
-                        is TableString -> it.get(row).let { TableValueString(it) }
-                        is TableInt -> it.get(row).let { TableValueInt(it) }
-                        is TableImage -> it.get(row)?.let { TableValueImage(it) }
-                        is TableColor -> it.get(row)?.let { TableValueColor(it) }
-                    }
-                } else null
-            }
-        }
-
-        handler.pointed.ui.SetCellValue = staticCFunction { handler, _, row, column, value ->
-            with (handler!!.reinterpret<ktTableHandler>().pointed.ref!!.asStableRef<Table<T>>().get()) {
-                if (column >= 0 && column < controls.size) controls[column].let {
-                    when (it) {
-                        is TableString -> it.set?.invoke(row, value?.string)
-                        is TableInt -> it.set?.invoke(row, value?.int ?: 0)
-                        else -> {}
+                        is TableString -> it.getValue(row).let { uiNewTableValueString(it) }
+                        is TableInt -> it.getValue(row).let { uiNewTableValueInt(it) }
+                        is TableImage -> it.getValue(row)?.let { uiNewTableValueImage(it.ptr) }
+                        is TableColor -> it.getValue(row)?.let { uiNewTableValueColor(it.r, it.g, it.b, it.a) }
                     }
                 }
             }
         }
-
+        handler.pointed.ui.SetCellValue = staticCFunction { handler, _, row, column, value ->
+            with (handler!!.reinterpret<ktTableHandler>().pointed.ref!!.asStableRef<Table<T>>().get()) {
+                controls.getOrNull(column)?.let {
+                    when (it) {
+                        is TableString -> it.setValue?.invoke(row, value?.let { uiTableValueString(it)?.toKString() })
+                        is TableInt -> it.setValue?.invoke(row, uiTableValueInt(value))
+                        is TableImage -> {}
+                        is TableColor -> {}
+                    }
+                }
+            }
+        }
         handler.pointed.ref = ref.asCPointer()
         ptr = uiNewTableModel(handler.pointed.ui.ptr) ?: throw Error()
     }
 
-    internal fun TableString(
+    private fun TableString(
         get: (row: Int) -> String
     ): Int {
         val id = controls.size
@@ -136,7 +102,7 @@ class Table<T>(val data: List<T>) {
         return id
     }
 
-    internal fun TableString(
+    private fun TableString(
         get: (row: Int) -> String,
         set: (row: Int, value: String?) -> Unit
     ): Int {
@@ -145,7 +111,7 @@ class Table<T>(val data: List<T>) {
         return id
     }
 
-    internal fun TableInt(
+    private fun TableInt(
         get: (row: Int) -> Int
     ): Int {
         val id = controls.size
@@ -153,7 +119,7 @@ class Table<T>(val data: List<T>) {
         return id
     }
 
-    internal fun TableInt(
+    private fun TableInt(
         get: (row: Int) -> Int,
         set: (row: Int, value: Int) -> Unit
     ): Int {
@@ -162,13 +128,13 @@ class Table<T>(val data: List<T>) {
         return id
     }
 
-    internal fun TableImage(get: (row: Int) -> Image?): Int {
+    private fun TableImage(get: (row: Int) -> Image?): Int {
         val id = controls.size
         controls += libui.TableImage(get)
         return id
     }
 
-    internal fun TableColor(get: (row: Int) -> Color?): Int {
+    private fun TableColor(get: (row: Int) -> Color?): Int {
         val id = controls.size
         controls += libui.TableColor(get)
         return id
