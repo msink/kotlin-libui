@@ -197,10 +197,13 @@ class Table<T> internal constructor(
 
         internal inner class ColumnButton(
             val text: (row: Int) -> String,
-            val action: (row: Int, value: String?) -> Unit)
+            val action: (row: Int) -> Unit)
         internal var button: ColumnButton? = null
-        fun button(text: (row: Int) -> String, action: (row: Int, value: String?) -> Unit) {
+        fun button(text: (row: Int) -> String, action: (row: Int) -> Unit) {
             button = ColumnButton(text, action)
+        }
+        fun button(text: String, action: (row: Int) -> Unit) {
+            button = ColumnButton({ text }, action)
         }
     }
 
@@ -229,7 +232,7 @@ class Table<T> internal constructor(
                     TableInt(column.progressbar!!.get))
             column.button != null ->
                 TableColumnButton(name,
-                    TableString(column.button!!.text, column.button!!.action),
+                    TableString(column.button!!.text, { row, _-> column.button!!.action(row) }),
                     uiTableModelColumnAlwaysEditable)
             else -> throw Error()
         }

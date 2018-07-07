@@ -29,9 +29,9 @@ fun main(args: Array<String>) = appWindow(
             background { row ->
                 when (row) {
                     yellowRow -> Color(r = 1.0, g = 1.0, b = 0.0)
-                    3 -> Color(r = 1.0, g = 0.0, b = 0.0)
-                    11 -> Color(r = 0.0, g = 0.5, b = 1.0, a = 0.5)
-                    else -> null
+                    3         -> Color(r = 1.0, g = 0.0, b = 0.0)
+                    11        -> Color(r = 0.0, g = 0.5, b = 1.0, a = 0.5)
+                    else      -> null
                 }
             }
             column("Column 1") {
@@ -49,7 +49,7 @@ fun main(args: Array<String>) = appWindow(
                 checkbox(Data::checkbox)
             }
             column("Buttons") {
-                button({ "Make Yellow" }) { row, _ ->
+                button("Make Yellow") { row ->
                     val prevYellowRow = yellowRow
                     yellowRow = row
                     if (prevYellowRow != -1)
