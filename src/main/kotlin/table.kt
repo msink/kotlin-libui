@@ -7,21 +7,21 @@ import kotlin.reflect.KProperty1
 internal sealed class TableControl
 
 internal class TableString(
-    val getValue: (row: Int) -> String,
-    val setValue: ((row: Int, value: String?) -> Unit)? = null
+    val get: (row: Int) -> String,
+    val set: ((row: Int, value: String?) -> Unit)? = null
 ) : TableControl()
 
 internal class TableInt(
-    val getValue: (row: Int) -> Int,
-    val setValue: ((row: Int, value: Int) -> Unit)? = null
+    val get: (row: Int) -> Int,
+    val set: ((row: Int, value: Int) -> Unit)? = null
 ) : TableControl()
 
 internal class TableImage(
-    val getValue: (row: Int) -> Image?
+    val get: (row: Int) -> Image?
 ) : TableControl()
 
 internal class TableColor(
-    val getValue: (row: Int) -> Color?
+    val get: (row: Int) -> Color?
 ) : TableControl()
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -77,10 +77,10 @@ class Table<T> internal constructor(
             with (handler!!.reinterpret<ktTableHandler>().pointed.ref!!.asStableRef<Table<T>>().get()) {
                 controls.getOrNull(column)?.let {
                     when (it) {
-                        is TableString -> it.getValue(row).let { uiNewTableValueString(it) }
-                        is TableInt -> it.getValue(row).let { uiNewTableValueInt(it) }
-                        is TableImage -> it.getValue(row)?.let { uiNewTableValueImage(it.ptr) }
-                        is TableColor -> it.getValue(row)?.let { uiNewTableValueColor(it.r, it.g, it.b, it.a) }
+                        is TableString -> it.get(row).let { uiNewTableValueString(it) }
+                        is TableInt -> it.get(row).let { uiNewTableValueInt(it) }
+                        is TableImage -> it.get(row)?.let { uiNewTableValueImage(it.ptr) }
+                        is TableColor -> it.get(row)?.let { uiNewTableValueColor(it.r, it.g, it.b, it.a) }
                     }
                 }
             }
@@ -89,8 +89,8 @@ class Table<T> internal constructor(
             with (handler!!.reinterpret<ktTableHandler>().pointed.ref!!.asStableRef<Table<T>>().get()) {
                 controls.getOrNull(column)?.let {
                     when (it) {
-                        is TableString -> it.setValue?.invoke(row, value?.let { uiTableValueString(it)?.toKString() })
-                        is TableInt -> it.setValue?.invoke(row, uiTableValueInt(value))
+                        is TableString -> it.set?.invoke(row, value?.let { uiTableValueString(it)?.toKString() })
+                        is TableInt -> it.set?.invoke(row, uiTableValueInt(value))
                         is TableImage -> {}
                         is TableColor -> {}
                     }
@@ -146,7 +146,7 @@ class Table<T> internal constructor(
         return id
     }
 
-    inner class Column() {
+    inner class TableColumn() {
         internal inner class ColumnLabel(val get: (row: Int) -> String)
         internal var label: ColumnLabel? = null
         fun label(get: (row: Int) -> String) {
@@ -177,19 +177,22 @@ class Table<T> internal constructor(
                 set = { row, value -> property.set(data[row], value != 0) })
         }
 
-        internal inner class ColumnImage(val get: (row: Int) -> Image?)
+        internal inner class ColumnImage(
+            val get: (row: Int) -> Image?)
         internal var image: ColumnImage? = null
         fun image(get: (row: Int) -> Image?) {
             image = ColumnImage(get)
         }
 
-        internal inner class ColumnColor(val get: (row: Int) -> Color?)
+        internal inner class ColumnColor(
+            val get: (row: Int) -> Color?)
         internal var color: ColumnColor? = null
         fun color(get: (row: Int) -> Color?) {
             color = ColumnColor(get)
         }
 
-        internal inner class ColumnProgressBar(val get: (row: Int) -> Int)
+        internal inner class ColumnProgressBar(
+            val get: (row: Int) -> Int)
         internal var progressbar: ColumnProgressBar? = null
         fun progressbar(get: (row: Int) -> Int) {
             progressbar = ColumnProgressBar(get)
@@ -207,8 +210,8 @@ class Table<T> internal constructor(
         }
     }
 
-    fun column(name: String, init: Column.() -> Unit) {
-        val column = Column().apply(init)
+    fun column(name: String, init: TableColumn.() -> Unit) {
+        val column = TableColumn().apply(init)
         columns += when {
             column.image != null && column.label != null ->
                 TableColumnImageText(name,
