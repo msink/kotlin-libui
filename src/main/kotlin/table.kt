@@ -26,18 +26,25 @@ internal class TableColor(
 
 ///////////////////////////////////////////////////////////////////////////////
 
-class Table<T>(val data: List<T>) {
-    internal val ptr: CPointer<uiTableModel>
+fun <T> Table(data: List<T>): Table<T> {
+    val handler = nativeHeap.alloc<ktTableHandler>()
+    return Table(data, uiNewTableModel(handler.ui.ptr), handler.ptr)
+}
+
+class Table<T> internal constructor(
+    val data: List<T>,
+    alloc: CPointer<uiTableModel>?,
+    val handler: CPointer<ktTableHandler>
+) : Disposable<uiTableModel>(alloc) {
     internal val ref = StableRef.create(this)
-    internal val handler = nativeHeap.alloc<ktTableHandler>().ptr
-    internal val disposable = mutableListOf<Disposable<*>>()
+    internal val disposables = mutableListOf<Disposable<*>>()
     internal val controls = mutableListOf<TableControl>()
     internal val columns = mutableListOf<TablePane.() -> Unit>()
     internal var background: Int = -1
 
-    fun free() {
-        disposable.forEach { it.dispose() }
-        disposable.clear()
+    override fun free() {
+        disposables.forEach { it.dispose() }
+        disposables.clear()
         uiFreeTableModel(ptr)
         nativeHeap.free(handler)
         ref.dispose()
@@ -91,7 +98,6 @@ class Table<T>(val data: List<T>) {
             }
         }
         handler.pointed.ref = ref.asCPointer()
-        ptr = uiNewTableModel(handler.pointed.ui.ptr) ?: throw Error()
     }
 
     private fun TableString(
@@ -255,13 +261,13 @@ class TablePane(val table: Table<*>) : Control<uiTable>(
             RowBackgroundColorModelColumn = table.background
         }
         uiNewTable(params.ptr)}) {
-    override fun free() {
-        table.free()
-        super.free()
-    }
     init {
         table.columns.forEach { it() }
         table.columns.clear()
+    }
+    override fun free() {
+        table.dispose()
+        super.free()
     }
 }
 
