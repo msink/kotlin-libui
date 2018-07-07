@@ -146,45 +146,93 @@ class Table<T> internal constructor(
         return id
     }
 
-    fun textColumn(name: String, get: (row: Int) -> String) {
-        columns += TableColumnText(name,
-            TableString(get), uiTableModelColumnNeverEditable)
+    inner class Column() {
+        internal inner class ColumnLabel(val get: (row: Int) -> String)
+        internal var label: ColumnLabel? = null
+        fun label(get: (row: Int) -> String) {
+            label = ColumnLabel(get)
+        }
+        fun label(property: KProperty1<T, String>) {
+            label = ColumnLabel({ row -> property.get(data[row])})
+        }
+
+        internal inner class ColumnTextField(
+            val get: (row: Int) -> String,
+            val set: (row: Int, value: String?) -> Unit)
+        internal var textfield: ColumnTextField? = null
+        fun textfield(property: KMutableProperty1<T, String>) {
+            textfield = ColumnTextField(
+                get = { row -> property.get(data[row]) },
+                set = { row, value -> property.set(data[row], value!!) })
+        }
+
+        internal inner class ColumnCheckbox(
+            val get: (row: Int) -> Int,
+            val set: (row: Int, value: Int) -> Unit) {
+        }
+        internal var checkbox: ColumnCheckbox? = null
+        fun checkbox(property: KMutableProperty1<T, Boolean>) {
+            checkbox = ColumnCheckbox(
+                get = { row -> if (property.get(data[row])) 1 else 0 },
+                set = { row, value -> property.set(data[row], value != 0) })
+        }
+
+        internal inner class ColumnImage(val get: (row: Int) -> Image?)
+        internal var image: ColumnImage? = null
+        fun image(get: (row: Int) -> Image?) {
+            image = ColumnImage(get)
+        }
+
+        internal inner class ColumnColor(val get: (row: Int) -> Color?)
+        internal var color: ColumnColor? = null
+        fun color(get: (row: Int) -> Color?) {
+            color = ColumnColor(get)
+        }
+
+        internal inner class ColumnProgressBar(val get: (row: Int) -> Int)
+        internal var progressbar: ColumnProgressBar? = null
+        fun progressbar(get: (row: Int) -> Int) {
+            progressbar = ColumnProgressBar(get)
+        }
+
+        internal inner class ColumnButton(
+            val text: (row: Int) -> String,
+            val action: (row: Int, value: String?) -> Unit)
+        internal var button: ColumnButton? = null
+        fun button(text: (row: Int) -> String, action: (row: Int, value: String?) -> Unit) {
+            button = ColumnButton(text, action)
+        }
     }
 
-    fun textColumn(name: String, property: KProperty1<T, String>) {
-        columns += TableColumnText(name,
-            TableString({ row -> property.get(data[row])}), uiTableModelColumnNeverEditable)
-    }
-
-    fun textColumn(name: String, property: KMutableProperty1<T, String>) {
-        columns += TableColumnText(name, TableString(
-            get = { row -> property.get(data[row]) },
-            set = { row, value -> property.set(data[row], value!!) }),
-            uiTableModelColumnAlwaysEditable)
-    }
-
-    fun imageTextColumn(name: String, image: (row: Int) -> Image?, text: (row: Int) -> String, color: (row: Int) -> Color?) {
-        columns += TableColumnImageText(name,
-            TableImage(image),
-            TableString(text), uiTableModelColumnNeverEditable,
-            TableColor(color))
-    }
-
-    fun checkboxColumn(name: String, property: KMutableProperty1<T, Boolean>) {
-        columns += TableColumnCheckbox(name, TableInt(
-            get = { row -> if (property.get(data[row])) 1 else 0 },
-            set = { row, value -> property.set(data[row], (value != 0)) }),
-            uiTableModelColumnAlwaysEditable)
-    }
-
-    fun progressBarColumn(name: String, get: (row: Int) -> Int) {
-        columns += TableColumnProgressBar(name,
-            TableInt(get))
-    }
-
-    fun buttonColumn(name: String, text: String, set: (row: Int, value: String?) -> Unit) {
-        columns += TableColumnButton(name,
-            TableString({ text }, set), uiTableModelColumnAlwaysEditable)
+    fun column(name: String, init: Column.() -> Unit) {
+        val column = Column().apply(init)
+        columns += when {
+            column.image != null && column.label != null ->
+                TableColumnImageText(name,
+                    TableImage(column.image!!.get),
+                    TableString(column.label!!.get), uiTableModelColumnNeverEditable,
+                    column.color?.let { TableColor(it.get) } ?: -1
+                )
+            column.label != null ->
+                TableColumnText(name,
+                    TableString(column.label!!.get), uiTableModelColumnNeverEditable)
+            column.textfield != null ->
+                TableColumnText(name,
+                    TableString(column.textfield!!.get, column.textfield!!.set),
+                    uiTableModelColumnAlwaysEditable)
+            column.checkbox != null ->
+                TableColumnCheckbox(name,
+                    TableInt(column.checkbox!!.get, column.checkbox!!.set),
+                    uiTableModelColumnAlwaysEditable)
+            column.progressbar != null ->
+                TableColumnProgressBar(name,
+                    TableInt(column.progressbar!!.get))
+            column.button != null ->
+                TableColumnButton(name,
+                    TableString(column.button!!.text, column.button!!.action),
+                    uiTableModelColumnAlwaysEditable)
+            else -> throw Error()
+        }
     }
 
     fun background(get: (row: Int) -> Color?) {
