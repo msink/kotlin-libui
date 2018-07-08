@@ -1,2 +1,4 @@
-.gradle
 /build/
+.gradle
+.idea
+kotlin-libui.iml
