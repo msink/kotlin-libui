@@ -13,8 +13,10 @@ fun TabPane.Page.basicControls() = vbox {
                 field("Text Field") { textfield() }
                 field("Password Field") { passwordfield() }
                 field("Search Field") { searchfield() }
-                field("Multiline Field") { stretchy { textarea() }}
-                field("Multiline Field No Wrap") { stretchy { textarea(wrap = false) }}
+                stretchy {
+                    field("Multiline Field") { textarea() }
+                    field("Multiline Field No Wrap") { textarea(wrap = false) }
+                }
             }
         }
     }

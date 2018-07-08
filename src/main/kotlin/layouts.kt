@@ -101,7 +101,6 @@ fun Box.delete(index: Int) = uiBoxDelete(ptr, index)
 
 /** A container that organize children as labeled fields. */
 class Form : Control<uiForm>(uiNewForm()) {
-
     /** adapter for DSL builders */
     inner class Field(val label: String) : Container {
         val form: Form get() = this@Form
@@ -109,7 +108,11 @@ class Form : Control<uiForm>(uiNewForm()) {
             form.add(label, widget, false)
             return widget
         }
-        inner class Stretchy : Container {
+    }
+    /** adapter for DSL builders */
+    inner class Stretchy {
+        val form: Form get() = this@Form
+        inner class Field(val label: String) : Container {
             override fun <T : Control<*>> add(widget: T): T {
                 form.add(label, widget, true)
                 return widget
@@ -131,9 +134,14 @@ inline fun Form.field(
     init: Form.Field.() -> Unit = {}
 ) = Field(label).apply(init)
 
-inline fun Form.Field.stretchy(
-    init: Form.Field.Stretchy.() -> Unit = {}
+inline fun Form.stretchy(
+    init: Form.Stretchy.() -> Unit = {}
 ) = Stretchy().apply(init)
+
+inline fun Form.Stretchy.field(
+    label: String,
+    init: Form.Stretchy.Field.() -> Unit = {}
+) = Field(label).apply(init)
 
 /** If true, the container insert some space between children. */
 var Form.padded: Boolean
