@@ -39,7 +39,7 @@ class Table<T> internal constructor(
     internal val ref = StableRef.create(this)
     internal val disposables = mutableListOf<Disposable<*>>()
     internal val controls = mutableListOf<TableControl>()
-    internal val columns = mutableListOf<TablePane.() -> Unit>()
+    internal val columns = mutableListOf<TableView.() -> Unit>()
     internal var background: Int = -1
 
     override fun free() {
@@ -255,7 +255,7 @@ class Table<T> internal constructor(
 ///////////////////////////////////////////////////////////////////////////////
 
 private fun TableColumnText(name: String, textModel: Int, textEdit: Int,
-                            colorModel: Int = -1): TablePane.() -> Unit = {
+                            colorModel: Int = -1): TableView.() -> Unit = {
     if (colorModel >= 0) memScoped {
         val params = alloc<uiTableTextColumnOptionalParams>().apply {
             ColorModelColumn = colorModel
@@ -266,12 +266,12 @@ private fun TableColumnText(name: String, textModel: Int, textEdit: Int,
     }
 }
 
-private fun TableColumnImage(name: String, imageModel: Int): TablePane.() -> Unit = {
+private fun TableColumnImage(name: String, imageModel: Int): TableView.() -> Unit = {
     uiTableAppendImageColumn(ptr, name, imageModel)
 }
 
 private fun TableColumnImageText(name: String, imageModel: Int, textModel: Int, textEdit: Int,
-                                 colorModel: Int = -1): TablePane.() -> Unit = {
+                                 colorModel: Int = -1): TableView.() -> Unit = {
     if (colorModel >= 0) memScoped {
         val params = alloc<uiTableTextColumnOptionalParams>().apply {
             ColorModelColumn = colorModel
@@ -282,12 +282,12 @@ private fun TableColumnImageText(name: String, imageModel: Int, textModel: Int, 
     }
 }
 
-private fun TableColumnCheckbox(name: String, checkboxModel: Int, checkboxEdit: Int): TablePane.() -> Unit = {
+private fun TableColumnCheckbox(name: String, checkboxModel: Int, checkboxEdit: Int): TableView.() -> Unit = {
     uiTableAppendCheckboxColumn(ptr, name, checkboxModel, checkboxEdit)
 }
 
 private fun TableColumnCheckboxText(name: String, checkboxModel: Int, checkboxEdit: Int,
-                                    textModel: Int, textEdit: Int, colorModel: Int = -1): TablePane.() -> Unit = {
+                                    textModel: Int, textEdit: Int, colorModel: Int = -1): TableView.() -> Unit = {
     if (colorModel >= 0) memScoped {
         val params = alloc<uiTableTextColumnOptionalParams>().apply {
             ColorModelColumn = colorModel
@@ -298,17 +298,17 @@ private fun TableColumnCheckboxText(name: String, checkboxModel: Int, checkboxEd
     }
 }
 
-private fun TableColumnProgressBar(name: String, progressModel: Int): TablePane.() -> Unit = {
+private fun TableColumnProgressBar(name: String, progressModel: Int): TableView.() -> Unit = {
     uiTableAppendProgressBarColumn(ptr, name, progressModel)
 }
 
-private fun TableColumnButton(name: String, buttonTextModel: Int, buttonClickable: Int): TablePane.() -> Unit = {
+private fun TableColumnButton(name: String, buttonTextModel: Int, buttonClickable: Int): TableView.() -> Unit = {
     uiTableAppendButtonColumn(ptr, name, buttonTextModel, buttonClickable)
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
-class TablePane(val table: Table<*>) : Control<uiTable>(
+class TableView(val table: Table<*>) : Control<uiTable>(
     alloc = memScoped {
         val params = alloc<uiTableParams>().apply {
             Model = table.ptr
@@ -325,8 +325,7 @@ class TablePane(val table: Table<*>) : Control<uiTable>(
     }
 }
 
-inline fun <T> Stretchy.table(
+inline fun <T> Container.tableview(
     data: List<T>,
-    stretchy: Boolean = false,
     init: Table<T>.() -> Unit = {}
-) = add(TablePane(Table<T>(data).apply(init)), stretchy)
+) = add(TableView(Table<T>(data).apply(init)))

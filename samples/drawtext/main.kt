@@ -78,10 +78,12 @@ fun main(args: Array<String>) = appWindow(
                 }
             }
         }
-        area = drawarea {
-            val str = makeAttributedString()
-            draw {
-                text(str, font.value, it.AreaWidth, align.value, 0.0, 0.0)
+        stretchy {
+            area = drawarea {
+                val str = makeAttributedString()
+                draw {
+                    text(str, font.value, it.AreaWidth, align.value, 0.0, 0.0)
+                }
             }
         }
     }

@@ -30,11 +30,24 @@ fun DrawArea(): DrawArea {
     return DrawArea(uiNewArea(handler.ui.ptr), handler.ptr)
 }
 
+/** A canvas you can draw on. It also receives keyboard and mouse events,
+ *  is DPI aware, and has several other useful features. */
+inline fun Container.drawarea(
+    init: DrawArea.() -> Unit = {}
+) = add(DrawArea().apply(init))
+
 /** [DrawArea] with horziontal and vertical scrollbars. */
 fun ScrollingArea(width: Int, height: Int): ScrollingArea {
     val handler = nativeHeap.alloc<ktAreaHandler>()
     return ScrollingArea(uiNewScrollingArea(handler.ui.ptr, width, height), handler.ptr)
 }
+
+/** [DrawArea] with horziontal and vertical scrollbars. */
+inline fun Container.scrollingarea(
+    width: Int,
+    height: Int,
+    init: ScrollingArea.() -> Unit = {}
+) = add(ScrollingArea(width, height).apply(init))
 
 open class DrawArea internal constructor(
     alloc: CPointer<uiArea>?,

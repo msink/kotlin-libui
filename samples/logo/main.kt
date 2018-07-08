@@ -7,7 +7,7 @@ fun main(args: Array<String>) = appWindow(
     height = 500,
     margined = false
 ) {
-  vbox { //WORKAROUND for Linux not filling Window by DrawArea
+    vbox { stretchy { //WORKAROUND for Linux not filling Window by DrawArea
     drawarea {
         val brush = Brush()
         var angle = 0.0
@@ -71,6 +71,5 @@ fun main(args: Array<String>) = appWindow(
                 closeFigure()
             }
         }
-    }
-  }
+    }}}
 }
