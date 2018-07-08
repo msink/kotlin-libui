@@ -50,7 +50,7 @@ var Window.fullscreen: Boolean
 var Window.contentSize: SizeInt
     get() = memScoped {
         val width = alloc<IntVar>()
-        var height = alloc<IntVar>()
+        val height = alloc<IntVar>()
         uiWindowContentSize(ptr, width.ptr, height.ptr)
         SizeInt(width.value, height.value)
     }
@@ -66,7 +66,7 @@ fun Window.onResize(block: Window.() -> Unit) {
 
 /** Function to be run when the user clicks the Window's close button.
  *  Only one function can be registered at a time.
- *  @returns [true] if window is disposed */
+ *  @returns true if window is disposed */
 fun Window.onClose(block: Window.() -> Boolean) {
     onClose = block
     uiWindowOnClosing(ptr, staticCFunction { _, ref -> with(ref.to<Window>()) {

@@ -327,11 +327,11 @@ fun Matrix.translate(x: Double, y: Double) =
 fun Matrix.scale(xCenter: Double, yCenter: Double, x: Double, y: Double) =
     uiDrawMatrixScale(ptr, xCenter, yCenter, x, y)
 
-/** Rotates paths by [r] *radians* around ([x], [y]). */
+/** Rotates paths by [amount] *radians* around ([x], [y]). */
 fun Matrix.rotate(x: Double, y: Double, amount: Double) =
     uiDrawMatrixRotate(ptr, x, y, amount)
 
-/** Skews path by [xAmount] *radians* horizontally and by [yAmount] *radians* vertically around ([x], [y]) */
+/** Skews path by [xamount] *radians* horizontally and by [yamount] *radians* vertically around ([x], [y]) */
 fun Matrix.skew(x: Double, y: Double, xamount: Double, yamount: Double) =
     uiDrawMatrixSkew(ptr, x, y, xamount, yamount)
 
@@ -348,7 +348,7 @@ fun Matrix.invert() = uiDrawMatrixInvert(ptr)
 val Matrix.point: Point
     get() = memScoped {
         val x = alloc<DoubleVar>()
-        var y = alloc<DoubleVar>()
+        val y = alloc<DoubleVar>()
         uiDrawMatrixTransformPoint(ptr, x.ptr, y.ptr)
         Point(x.value, y.value)
     }
@@ -357,7 +357,7 @@ val Matrix.point: Point
 val Matrix.size: Size
     get() = memScoped {
         val width = alloc<DoubleVar>()
-        var height = alloc<DoubleVar>()
+        val height = alloc<DoubleVar>()
         uiDrawMatrixTransformSize(ptr, width.ptr, height.ptr)
         Size(width.value, height.value)
     }

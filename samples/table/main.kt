@@ -5,7 +5,7 @@ class Data(
     var checkbox: Boolean
 )
 
-val data = List<Data>(15) {
+val data = List(15) {
     Data("Part", false)
 }
 
@@ -17,11 +17,11 @@ fun main(args: Array<String>) = appWindow(
     vbox {
         stretchy {
             tableview(data) {
-                val image0 = Image(width = 16, height = 16) {
+                val image0 = image(width = 16, height = 16) {
                     bitmap(`andlabs_16x16test_24june2016.png`)
                     bitmap(`andlabs_32x32test_24june2016.png`)
                 }
-                val image1 = Image(width = 16, height = 16) {
+                val image1 = image(width = 16, height = 16) {
                     bitmap(`tango-icon-theme-0.8.90_16x16_x-office-spreadsheet.png`)
                     bitmap(`tango-icon-theme-0.8.90_32x32_x-office-spreadsheet.png`)
                 }

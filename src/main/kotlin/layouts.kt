@@ -45,7 +45,7 @@ var Group.margined: Boolean
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A container that stack its chidren horizontally or vertically. */
+/** A container that stack its children horizontally or vertically. */
 abstract class Box(alloc: CPointer<uiBox>?) : Control<uiBox>(alloc), Container {
 
     /** adapter for DSL builders */
@@ -63,7 +63,7 @@ abstract class Box(alloc: CPointer<uiBox>?) : Control<uiBox>(alloc), Container {
     }
 }
 
-/** A container that stack its chidren horizontally. */
+/** A container that stack its children horizontally. */
 inline fun Container.hbox(
     padded: Boolean = true,
     init: HBox.() -> Unit = {}
@@ -71,7 +71,7 @@ inline fun Container.hbox(
         .apply { if (padded) this.padded = padded }
         .apply(init))
 
-/** A container that stack its chidren vertically. */
+/** A container that stack its children vertically. */
 inline fun Container.vbox(
     padded: Boolean = true,
     init: VBox.() -> Unit = {}
@@ -83,10 +83,10 @@ inline fun Box.stretchy(
     init: Box.Stretchy.() -> Unit = {}
 ) = Stretchy().apply(init)
 
-/** A container that stack its chidren horizontally. */
+/** A container that stack its children horizontally. */
 class HBox : Box(uiNewHorizontalBox())
 
-/** A container that stack its chidren vertically. */
+/** A container that stack its children vertically. */
 class VBox : Box(uiNewVerticalBox())
 
 /** If `true`, the container insert some space between children. */
@@ -149,13 +149,13 @@ fun Form.delete(index: Int) = uiFormDelete(ptr, index)
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A container that show each chidren in a separate tab. */
+/** A container that show each children in a separate tab. */
 class TabPane : Control<uiTab>(uiNewTab()) {
 
     /** adapter for DSL builders */
     inner class Page(val label: String) : Container {
-        val pane: TabPane get() = this@TabPane
-        val page = pane.numPages // last page
+        private val pane: TabPane get() = this@TabPane
+        private val page = pane.numPages // last page
         override fun <T : Control<*>> add(widget: T): T {
             pane.add(label, widget)
             return widget
@@ -166,7 +166,7 @@ class TabPane : Control<uiTab>(uiNewTab()) {
     }
 }
 
-/** A container that show each chidren in a separate tab. */
+/** A container that show each children in a separate tab. */
 inline fun Container.tabpane(init: TabPane.() -> Unit = {}) =
     add(TabPane().apply(init))
 
@@ -203,16 +203,16 @@ class GridPane : Control<uiGrid>(uiNewGrid()) {
 
     /** adapter for DSL builders */
     inner class Cell(
-        val x: Int = 0,
-        val y: Int = 0,
-        val xspan: Int = 1,
-        val yspan: Int = 1,
-        val hexpand: Boolean = false,
-        val halign: uiAlign = uiAlignFill,
-        val vexpand: Boolean = false,
-        val valign: uiAlign = uiAlignFill
+        private val x: Int = 0,
+        private val y: Int = 0,
+        private val xspan: Int = 1,
+        private val yspan: Int = 1,
+        private val hexpand: Boolean = false,
+        private val halign: uiAlign = uiAlignFill,
+        private val vexpand: Boolean = false,
+        private val valign: uiAlign = uiAlignFill
     ) : Container {
-        val pane: GridPane get() = this@GridPane
+        private val pane: GridPane get() = this@GridPane
         override fun <T : Control<*>> add(widget: T): T {
             pane.add(widget, x, y, xspan, yspan, hexpand, halign, vexpand, valign)
             return widget

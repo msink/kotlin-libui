@@ -40,7 +40,7 @@ fun main(args: Array<String>) = appWindow(
         }
 
         vbox {
-            datapoints = Array<Spinbox>(numPoints) {
+            datapoints = Array(numPoints) {
                 spinbox(0, 100) {
                     value = random() % 101
                     action {

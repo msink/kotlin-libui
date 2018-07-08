@@ -72,7 +72,7 @@ fun TabPane.Page.dataChoosers() = hbox {
     }
     separator()
     stretchy {
-        vbox() {
+        vbox {
             gridpane {
                 lateinit var entry1: TextField
                 lateinit var entry2: TextField

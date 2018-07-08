@@ -9,8 +9,8 @@ class Image(width: Double, height: Double) : Disposable<uiImage>(
     override fun free() = uiFreeImage(ptr)
 }
 
-fun Table<*>.Image(width: Int, height: Int, block: Image.() -> Unit = {}): Image =
-    libui.Image(width.toDouble(), height.toDouble()).also {
+fun Table<*>.image(width: Int, height: Int, block: Image.() -> Unit = {}): Image =
+    Image(width.toDouble(), height.toDouble()).also {
         disposables.add(it)
         block.invoke(it)
     }

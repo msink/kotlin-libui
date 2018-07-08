@@ -78,7 +78,7 @@ var TextField.readonly: Boolean
     get() = uiEntryReadOnly(ptr) != 0
     set(readonly) = uiEntrySetReadOnly(ptr, if (readonly) 1 else 0)
 
-/** Funcion to be run when the user makes a change to the TextField.
+/** Function to be run when the user makes a change to the TextField.
  *  Only one function can be registered at a time. */
 fun TextField.action(block: TextField.() -> Unit) {
     action = block
@@ -90,7 +90,7 @@ fun TextField.action(block: TextField.() -> Unit) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A multiline plain text editing widget.
- *  [wrap] enables the wrapping of the text when it reaches the edge of the area */
+ *  @param[wrap] enables the wrapping of the text when it reaches the edge of the area */
 class TextArea(wrap: Boolean = true) : Control<uiMultilineEntry>(
     if (wrap) uiNewMultilineEntry() else uiNewNonWrappingMultilineEntry()) {
     internal var action: (TextArea.() -> Unit)? = null
@@ -119,7 +119,7 @@ var TextArea.readonly: Boolean
 /** Adds the text to the end of the area. */
 fun TextArea.append(text: String) = uiMultilineEntryAppend(ptr, text)
 
-/** Funcion to be run when the user makes a change to the TextArea.
+/** Function to be run when the user makes a change to the TextArea.
  *  Only one function can be registered at a time. */
 fun TextArea.action(block: TextArea.() -> Unit) {
     action = block
@@ -151,7 +151,7 @@ var Checkbox.value: Boolean
     get() = uiCheckboxChecked(ptr) != 0
     set(value) = uiCheckboxSetChecked(ptr, if (value) 1 else 0)
 
-/** Funcion to be run when the user clicks the Checkbox.
+/** Function to be run when the user clicks the Checkbox.
  *  Only one function can be registered at a time. */
 fun Checkbox.action(block: Checkbox.() -> Unit) {
     action = block
@@ -176,12 +176,12 @@ inline fun Container.combobox(
  *  If it is the first entry, it is automatically selected. */
 fun Combobox.item(text: String) = uiComboboxAppend(ptr, text)
 
-/** Return or set the current choosed option by index. */
+/** Return or set the current selected option by index. */
 var Combobox.value: Int
     get() = uiComboboxSelected(ptr)
     set(value) = uiComboboxSetSelected(ptr, value)
 
-/** Funcion to be run when the user makes a change to the Combobox.
+/** Function to be run when the user makes a change to the Combobox.
  *  Only one function can be registered at a time. */
 fun Combobox.action(block: Combobox.() -> Unit) {
     action = block
@@ -211,7 +211,7 @@ var EditableCombobox.value: String
     get() = uiEditableComboboxText(ptr).uiText()
     set(value) = uiEditableComboboxSetText(ptr, value)
 
-/** Funcion to be run when the user makes a change to the EditableCombobox.
+/** Function to be run when the user makes a change to the EditableCombobox.
  *  Only one function can be registered at a time. */
 fun EditableCombobox.action(block: EditableCombobox.() -> Unit) {
     action = block
@@ -236,7 +236,7 @@ var Spinbox.value: Int
     get() = uiSpinboxValue(ptr)
     set(value) = uiSpinboxSetValue(ptr, value)
 
-/** Funcion to be run when the user makes a change to the Spinbox.
+/** Function to be run when the user makes a change to the Spinbox.
  *  Only one function can be registered at a time. */
 fun Spinbox.action(block: Spinbox.() -> Unit) {
     action = block
@@ -261,7 +261,7 @@ var Slider.value: Int
     get() = uiSliderValue(ptr)
     set(value) = uiSliderSetValue(ptr, value)
 
-/** Funcion to be run when the user makes a change to the Slider.
+/** Function to be run when the user makes a change to the Slider.
  *  Only one function can be registered at a time. */
 fun Slider.action(block: Slider.() -> Unit) {
     action = block
@@ -285,12 +285,12 @@ inline fun Container.radiobuttons(init: RadioButtons.() -> Unit = {}) =
  *  If it is the first button, it is automatically selected. */
 fun RadioButtons.item(text: String) = uiRadioButtonsAppend(ptr, text)
 
-/** Return or set the current choosed option by index. */
+/** Return or set the current selected option by index. */
 var RadioButtons.value: Int
     get() = uiRadioButtonsSelected(ptr)
     set(value) = uiRadioButtonsSetSelected(ptr, value)
 
-/** Funcion to be run when the user makes a change to the RadioButtons.
+/** Function to be run when the user makes a change to the RadioButtons.
  *  Only one function can be registered at a time. */
 fun RadioButtons.action(block: RadioButtons.() -> Unit) {
     action = block
@@ -340,26 +340,26 @@ fun DateTimePicker.setValue(value: CPointer<tm>) = uiDateTimePickerSetTime(ptr, 
 /** The current value in Unix epoch */
 var DateTimePicker.value: Long
     get() = memScoped {
-       var tm = alloc<tm>()
+       val tm = alloc<tm>()
        getValue(tm.ptr)
        mktime(tm.ptr)
     }
     set(value) = memScoped {
-       var time = alloc<time_tVar>()
+       val time = alloc<time_tVar>()
        time.value = value
        setValue(localtime(time.ptr)!!)
     }
 
 /** The current value as String. */
 fun DateTimePicker.textValue(format: String = defaultFormat): String = memScoped {
-    var tm = alloc<tm>()
-    var buf = allocArray<ByteVar>(64)
+    val tm = alloc<tm>()
+    val buf = allocArray<ByteVar>(64)
     uiDateTimePickerTime(ptr, tm.ptr)
     strftime(buf, 64, format, tm.ptr)
     return buf.toKString()
 }
 
-/** Funcion to be run when the user makes a change to the Picker.
+/** Function to be run when the user makes a change to the Picker.
  *  Only one function can be registered at a time. */
 fun DateTimePicker.action(block: DateTimePicker.() -> Unit) {
     action = block
@@ -397,22 +397,22 @@ inline fun HBox.separator(init: VerticalSeparator.() -> Unit = {}) =
     add(VerticalSeparator().apply(init))
 
 /** An horizontal line to visually separate widgets. */
-class HorizontalSeparator() : Separator(uiNewHorizontalSeparator())
+class HorizontalSeparator : Separator(uiNewHorizontalSeparator())
 
 /** A vertical line to visually separate widgets. */
-class VerticalSeparator() : Separator(uiNewVerticalSeparator())
+class VerticalSeparator : Separator(uiNewVerticalSeparator())
 
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Progress bar widget. */
-class ProgressBar() : Control<uiProgressBar>(uiNewProgressBar())
+class ProgressBar : Control<uiProgressBar>(uiNewProgressBar())
 
 /** Progress bar widget. */
 inline fun Container.progressbar(init: ProgressBar.() -> Unit = {}) =
     add(ProgressBar().apply(init))
 
 /** The current position of the progress bar.
- *  Could be setted to -1 to create an indeterminate progress bar. */
+ *  Could be set to -1 to create an indeterminate progress bar. */
 var ProgressBar.value: Int
     get() = uiProgressBarValue(ptr)
     set(value) = uiProgressBarSetValue(ptr, value)
@@ -433,7 +433,7 @@ var Button.text: String
     get() = uiButtonText(ptr).uiText()
     set(text) = uiButtonSetText(ptr, text)
 
-/** Funcion to be run when the user clicks the Button.
+/** Function to be run when the user clicks the Button.
  *  Only one function can be registered at a time. */
 fun Button.action(block: Button.() -> Unit) {
     action = block
@@ -467,7 +467,7 @@ var ColorButton.value: Color
         uiColorButtonSetColor(ptr, value.r, value.g, value.b, value.a)
     }
 
-/** Funcion to be run when the user makes a change to the ColorButton.
+/** Function to be run when the user makes a change to the ColorButton.
  *  Only one function can be registered at a time. */
 fun ColorButton.action(block: ColorButton.() -> Unit) {
     action = block
@@ -501,7 +501,7 @@ val FontButton.value: Font
     }
 //TODO: set
 
-/** Funcion to be run when the font in the FontButton is changed.
+/** Function to be run when the font in the FontButton is changed.
  *  Only one function can be registered at a time. */
 fun FontButton.action(block: FontButton.() -> Unit) {
     action = block

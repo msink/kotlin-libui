@@ -328,4 +328,4 @@ class TableView(val table: Table<*>) : Control<uiTable>(
 inline fun <T> Container.tableview(
     data: List<T>,
     init: Table<T>.() -> Unit = {}
-) = add(TableView(Table<T>(data).apply(init)))
+) = add(TableView(Table(data).apply(init)))
