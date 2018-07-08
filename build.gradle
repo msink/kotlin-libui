@@ -137,7 +137,8 @@ konanArtifacts {
         }
     }
 
-    program('table') {
+    program('table', targets: ['linux', 'mingw']) {
+        //TODO: reenable macos when uiImage will be fixed
         srcDir 'samples/table'
         libraries {
             artifact 'libuiKt'
