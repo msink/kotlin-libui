@@ -25,13 +25,8 @@ class Group(title: String) : Control<uiGroup>(uiNewGroup(title)), Container {
 }
 
 /** A container for a single widget that provide a caption and visually group it's children. */
-inline fun Container.group(
-    title: String,
-    margined: Boolean = true,
-    init: Group.() -> Unit = {}
-) = add(Group(title)
-        .apply { if (margined) this.margined = margined }
-        .apply(init))
+fun Container.group(title: String, margined: Boolean = true) =
+    add(Group(title).apply { if (margined) this.margined = margined })
 
 /** Specify the caption of the group. */
 var Group.title: String
@@ -71,6 +66,8 @@ inline fun Container.hbox(
         .apply { if (padded) this.padded = padded }
         .apply(init))
 
+inline val Container.hbox: HBox get() = hbox()
+
 /** A container that stack its children vertically. */
 inline fun Container.vbox(
     padded: Boolean = true,
@@ -79,9 +76,13 @@ inline fun Container.vbox(
         .apply { if (padded) this.padded = padded }
         .apply(init))
 
+inline val Container.vbox: VBox get() = vbox()
+
 inline fun Box.stretchy(
     init: Box.Stretchy.() -> Unit = {}
 ) = Stretchy().apply(init)
+
+inline val Box.stretchy: Box.Stretchy get() = stretchy()
 
 /** A container that stack its children horizontally. */
 class HBox : Box(uiNewHorizontalBox())
@@ -129,19 +130,11 @@ inline fun Container.form(
         .apply { if (padded) this.padded = padded }
         .apply(init))
 
-inline fun Form.field(
-    label: String,
-    init: Form.Field.() -> Unit = {}
-) = Field(label).apply(init)
+fun Form.field(label: String) = Field(label)
 
-inline fun Form.stretchy(
-    init: Form.Stretchy.() -> Unit = {}
-) = Stretchy().apply(init)
+inline val Form.stretchy: Form.Stretchy get() = Stretchy()
 
-inline fun Form.Stretchy.field(
-    label: String,
-    init: Form.Stretchy.Field.() -> Unit = {}
-) = Field(label).apply(init)
+fun Form.Stretchy.field(label: String) = Field(label)
 
 /** If true, the container insert some space between children. */
 var Form.padded: Boolean
@@ -236,7 +229,7 @@ inline fun Container.gridpane(
         .apply { if (padded) this.padded = padded }
         .apply(init))
 
-inline fun GridPane.cell(
+fun GridPane.cell(
     x: Int = 0,
     y: Int = 0,
     xspan: Int = 1,
@@ -244,10 +237,8 @@ inline fun GridPane.cell(
     hexpand: Boolean = false,
     halign: uiAlign = uiAlignFill,
     vexpand: Boolean = false,
-    valign: uiAlign = uiAlignFill,
-    init: GridPane.Cell.() -> Unit = {}
+    valign: uiAlign = uiAlignFill
 ) = Cell(x, y, xspan, yspan, hexpand, halign, vexpand, valign)
-        .apply(init)
 
 /** If true, the container insert some space between children. */
 var GridPane.padded: Boolean

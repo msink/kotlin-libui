@@ -56,91 +56,89 @@ fun main(args: Array<String>) = appWindow(
             }
         }
 
-        stretchy {
-            histogram = drawarea {
-                val brush = Brush()
+        histogram = stretchy.drawarea {
+            val brush = Brush()
 
-                // make a stroke for both the axes and the histogram line
-                val stroke = Stroke {
-                    Cap = uiDrawLineCapFlat
-                    Join = uiDrawLineJoinMiter
-                    Thickness = 2.0
-                    MiterLimit = uiDrawDefaultMiterLimit
+            // make a stroke for both the axes and the histogram line
+            val stroke = Stroke {
+                Cap = uiDrawLineCapFlat
+                Join = uiDrawLineJoinMiter
+                Thickness = 2.0
+                MiterLimit = uiDrawDefaultMiterLimit
+            }
+
+            draw {
+                val graphWidth = graphWidth(it.AreaWidth)
+                val graphHeight = graphHeight(it.AreaHeight)
+                val graphColor = colorButton.value
+                val xs = DoubleArray(numPoints)
+                val ys = DoubleArray(numPoints)
+                pointLocations(graphWidth, graphHeight, xs, ys)
+
+                // fill the area with white
+                fill(brush.solid(colorWhite)) {
+                    rectangle(0.0, 0.0, it.AreaWidth, it.AreaHeight)
                 }
 
-                draw {
-                    val graphWidth = graphWidth(it.AreaWidth)
-                    val graphHeight = graphHeight(it.AreaHeight)
-                    val graphColor = colorButton.value
-                    val xs = DoubleArray(numPoints)
-                    val ys = DoubleArray(numPoints)
-                    pointLocations(graphWidth, graphHeight, xs, ys)
+                // draw the axes
+                stroke(brush.solid(colorBlack), stroke) {
+                    figure(xoffLeft, yoffTop)
+                    lineTo(xoffLeft, yoffTop + graphHeight)
+                    lineTo(xoffLeft + graphWidth, yoffTop + graphHeight)
+                }
 
-                    // fill the area with white
-                    fill(brush.solid(colorWhite)) {
-                        rectangle(0.0, 0.0, it.AreaWidth, it.AreaHeight)
+                // transform the coordinate space so (0, 0) is the top-left corner of the graph
+                transform {
+                    translate(xoffLeft, yoffTop)
+                }
+
+                // create the fill for the graph below the graph line
+                fill(brush.solid(graphColor, opacity = 0.5)) {
+                    figure(xs[0], ys[0])
+                    for (i in 1 until numPoints)
+                        lineTo(xs[i], ys[i])
+                    lineTo(graphWidth, graphHeight)
+                    lineTo(0.0, graphHeight)
+                    closeFigure()
+                }
+
+                // draw the histogram line
+                stroke(brush.solid(graphColor), stroke) {
+                    figure(xs[0], ys[0])
+                    for (i in 1 until numPoints)
+                        lineTo(xs[i], ys[i])
+                }
+
+                // draw the point being hovered over
+                if (currentPoint != -1) {
+                    fill(brush) {
+                        figureWithArc(xs[currentPoint], ys[currentPoint], pointRadius,
+                            startAngle = 0.0, sweep = 6.23)
                     }
+                }
+            }
 
-                    // draw the axes
-                    stroke(brush.solid(colorBlack), stroke) {
-                        figure(xoffLeft, yoffTop)
-                        lineTo(xoffLeft, yoffTop + graphHeight)
-                        lineTo(xoffLeft + graphWidth, yoffTop + graphHeight)
-                    }
+            mouseEvent {
+                val graphWidth = graphWidth(it.AreaWidth)
+                val graphHeight = graphHeight(it.AreaHeight)
+                val x = it.X - xoffLeft
+                val y = it.Y - yoffTop
+                val xs = DoubleArray(numPoints)
+                val ys = DoubleArray(numPoints)
+                pointLocations(graphWidth, graphHeight, xs, ys)
 
-                    // transform the coordinate space so (0, 0) is the top-left corner of the graph
-                    transform {
-                        translate(xoffLeft, yoffTop)
-                    }
-
-                    // create the fill for the graph below the graph line
-                    fill(brush.solid(graphColor, opacity = 0.5)) {
-                        figure(xs[0], ys[0])
-                        for (i in 1 until numPoints)
-                            lineTo(xs[i], ys[i])
-                        lineTo(graphWidth, graphHeight)
-                        lineTo(0.0, graphHeight)
-                        closeFigure()
-                    }
-
-                    // draw the histogram line
-                    stroke(brush.solid(graphColor), stroke) {
-                        figure(xs[0], ys[0])
-                        for (i in 1 until numPoints)
-                            lineTo(xs[i], ys[i])
-                    }
-
-                    // draw the point being hovered over
-                    if (currentPoint != -1) {
-                        fill(brush) {
-                            figureWithArc(xs[currentPoint], ys[currentPoint], pointRadius,
-                                          startAngle = 0.0, sweep = 6.23)
-                        }
+                currentPoint = -1
+                repeat(numPoints) { i ->
+                    if ((x >= xs[i] - pointRadius) &&
+                        (x <= xs[i] + pointRadius) &&
+                        (y >= ys[i] - pointRadius) &&
+                        (y <= ys[i] + pointRadius)) {
+                        currentPoint = i
+                        return@repeat
                     }
                 }
 
-                mouseEvent {
-                    val graphWidth = graphWidth(it.AreaWidth)
-                    val graphHeight = graphHeight(it.AreaHeight)
-                    val x = it.X - xoffLeft
-                    val y = it.Y - yoffTop
-                    val xs = DoubleArray(numPoints)
-                    val ys = DoubleArray(numPoints)
-                    pointLocations(graphWidth, graphHeight, xs, ys)
-
-                    currentPoint = -1
-                    repeat(numPoints) { i ->
-                        if ((x >= xs[i] - pointRadius) &&
-                            (x <= xs[i] + pointRadius) &&
-                            (y >= ys[i] - pointRadius) &&
-                            (y <= ys[i] + pointRadius)) {
-                            currentPoint = i
-                            return@repeat
-                        }
-                    }
-
-                    redraw()
-                }
+                redraw()
             }
         }
     }
