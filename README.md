@@ -132,7 +132,7 @@ fun main(args: Array<String>) = memScoped {
 
 While this works, it's far from ideomatic Kotlin.
 
-OK, let's wrap all that noisy function calls, with final goal to get something similar to [TornadoFX](https://github.com/edvin/tornadofx)
+OK, let's wrap all that noisy function calls, with final goal to get something similar to [TornadoFX](https://github.com/edvin/tornadofx):
 
 ``` kt
 import libui.*
@@ -172,7 +172,7 @@ fun main(args: Array<String>) = appWindow(
 
 ## Status
 
-**Warninig:** currently it is just a prototype - works in most cases, but not error prone.
+**Warninig:** currently it is just a prototype - works in most cases, but not error prone.<br/>
 And both libui and Kotlin/Native are currently in alpha stage, so anything can change.
 
 Well, I'm not sure this is final DSL syntax, but it works. And for now is good enough, let's leave it as is for a while.
