@@ -132,34 +132,7 @@ fun main(args: Array<String>) = memScoped {
 
 While this works, it's far from ideomatic Kotlin.
 
-<details>
- <summary>A little improved version, with thin wrappers around raw libui procedures:</summary>
-
-``` kt
-import libui.*
-
-fun main(args: Array<String>) = appWindow(
-    title = "Hello",
-    width = 320,
-    height = 240
-) {
-    add(widget = VerticalBox().apply {
-        padded = true
-        val scroll = TextArea().apply { readonly = true }
-        val button = Button("libui говорит: click me!").apply {
-            action {
-                scroll.append("Hello, World!  Ciao, mondo!\n" +
-                              "Привет, мир!  你好，世界！\n\n")
-            }
-        }
-        add(widget = button)
-        add(widget = scroll, stretchy = true)
-    })
-}
-```
-</details><br/>
-
-And now DSL: easy to read, easy to write and no runtime overhead:
+OK, let's wrap all that noisy function calls, with final goal to get something similar to [TornadoFX](https://github.com/edvin/tornadofx)
 
 ``` kt
 import libui.*
@@ -181,8 +154,7 @@ fun main(args: Array<String>) = appWindow(
                     |""".trimMargin())
             }
         }
-
-        scroll = textarea(readonly = true, stretchy = true)
+        scroll = stretchy.textarea(readonly = true)
     }
 }
 ```
@@ -198,8 +170,15 @@ fun main(args: Array<String>) = appWindow(
 - [logo](samples/logo)
 - [table](samples/table)
 
-## Work in progress!
+## Status
 
-There still is wide area for kotlinization.
+**Warninig:** currently it is just a prototype - works in most cases, but not error prone.
+And both libui and Kotlin/Native are currently in alpha stage, so anything can change.
 
-If anyone have ideas how to make this more ideomatic - Issues and PullRequests are welcome.
+Well, I'm not sure this is final DSL syntax, but it works. And for now is good enough, let's leave it as is for a while.
+
+If anyone have ideas - Issues and PullRequests are welcome.
+
+## Documentation
+
+Currently there are no documentation - see samples and comments in source code.
