@@ -9,7 +9,7 @@ fun AttributedString.append(what: String, attr: Attribute, attr2: Attribute? = n
         setAttribute(attr2, start, end)
 }
 
-fun DrawArea.makeAttributedString() = AttributedString(
+fun DrawArea.makeAttributedString() = string(
     "Drawing strings with libui is done with the uiAttributedString and uiDrawTextLayout objects.\n" +
     "uiAttributedString lets you have a variety of attributes: ").apply {
     append("font family", FamilyAttribute("Courier New"))

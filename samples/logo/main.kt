@@ -8,7 +8,7 @@ fun main(args: Array<String>) = appWindow(
     margined = false
 ) {
     vbox.stretchy.drawarea {
-        val brush = Brush()
+        val brush = brush()
         var angle = 0.0
 
         mouseEvent {

@@ -3,51 +3,26 @@ package libui
 import kotlinx.cinterop.*
 import platform.posix.*
 
-data class Color(
-    val r: Double,
-    val g: Double,
-    val b: Double,
-    val a: Double = 1.0
-)
-
-fun Color(rgb: Int, alpha: Double = 1.0) = Color(
-    r = ((rgb shr 16) and 255).toDouble() / 255,
-    g = ((rgb shr 8) and 255).toDouble() / 255,
-    b = ((rgb) and 255).toDouble() / 255,
-    a = alpha
-)
-
-data class SizeInt(val width: Int, val height: Int)
-
-data class Size(val width: Double, val height: Double)
-
-data class Point(val x: Double, val y: Double)
-
 /** A canvas you can draw on. It also receives keyboard and mouse events,
  *  is DPI aware, and has several other useful features. */
-fun DrawArea(): DrawArea {
-    val handler = nativeHeap.alloc<ktAreaHandler>()
-    return DrawArea(uiNewArea(handler.ui.ptr), handler.ptr)
-}
-
-/** A canvas you can draw on. It also receives keyboard and mouse events,
- *  is DPI aware, and has several other useful features. */
-inline fun Container.drawarea(
+fun Container.drawarea(
     init: DrawArea.() -> Unit = {}
-) = add(DrawArea().apply(init))
-
-/** [DrawArea] with horziontal and vertical scrollbars. */
-fun ScrollingArea(width: Int, height: Int): ScrollingArea {
+): DrawArea {
     val handler = nativeHeap.alloc<ktAreaHandler>()
-    return ScrollingArea(uiNewScrollingArea(handler.ui.ptr, width, height), handler.ptr)
+    val area = DrawArea(uiNewArea(handler.ui.ptr), handler.ptr)
+    return add(area.apply(init))
 }
 
 /** [DrawArea] with horziontal and vertical scrollbars. */
-inline fun Container.scrollingarea(
+fun Container.scrollingarea(
     width: Int,
     height: Int,
     init: ScrollingArea.() -> Unit = {}
-) = add(ScrollingArea(width, height).apply(init))
+): ScrollingArea {
+    val handler = nativeHeap.alloc<ktAreaHandler>()
+    val area = ScrollingArea(uiNewScrollingArea(handler.ui.ptr, width, height), handler.ptr)
+    return add(area.apply(init))
+}
 
 open class DrawArea internal constructor(
     alloc: CPointer<uiArea>?,
@@ -175,7 +150,7 @@ class Brush : Disposable<uiDrawBrush>(
 }
 
 /** Creates a new Brush with lifecycle delegated to DrawArea. */
-fun DrawArea.Brush() = libui.Brush().also { disposables.add(it) }
+fun DrawArea.brush() = Brush().also { disposables.add(it) }
 
 /** Helper to quickly set a brush color */
 fun Brush.solid(color: Color, opacity: Double = 1.0): Brush {
@@ -262,8 +237,8 @@ class Stroke : Disposable<uiDrawStrokeParams>(
 }
 
 /** Creates a new Stroke with lifecycle delegated to DrawArea. */
-fun DrawArea.Stroke(block: uiDrawStrokeParams.() -> Unit = {}) =
-    libui.Stroke().also {
+fun DrawArea.stroke(block: uiDrawStrokeParams.() -> Unit = {}) =
+    Stroke().also {
         disposables.add(it)
         block.invoke(it.ptr.pointed)
     }
@@ -364,11 +339,11 @@ val Matrix.size: Size
 
 ///////////////////////////////////////////////////////////
 
-/** Stores information about an attribute in a [AttributedString]. */
+/** Stores information about an attribute in a [string]. */
 abstract class Attribute(alloc: CPointer<uiAttribute>?) : Disposable<uiAttribute>(alloc) {
 
     /** Frees a [Attribute]. You generally do not need to call this yourself,
-     *  as [AttributedString] does this for you. */
+     *  as [string] does this for you. */
     override fun free() = uiFreeAttribute(ptr)
 
     /** Returns the type of [Attribute]. */
@@ -521,7 +496,7 @@ class AttributedString(init: String) : Disposable<uiAttributedString>(
 }
 
 /** Creates a new AttributedString from initial String. The string will be entirely unattributed. */
-fun DrawArea.AttributedString(init: String) = libui.AttributedString(init).also { disposables.add(it) }
+fun DrawArea.string(init: String) = AttributedString(init).also { disposables.add(it) }
 
 /** Returns the textual content of AttributedString. */
 val AttributedString.string: String get() = uiAttributedStringString(ptr).uiText()
@@ -585,7 +560,7 @@ class Font : Disposable<uiFontDescriptor>(
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** Representation of a [AttributedString] that can be displayed in a [DrawContext]. */
+/** Representation of a [string] that can be displayed in a [DrawContext]. */
 class TextLayout(
     string: AttributedString,
     defaultFont: Font,
@@ -603,7 +578,7 @@ class TextLayout(
     }
 ) {
 
-    /** Frees [TextLayout]. The underlying [AttributedString] is not freed. */
+    /** Frees [TextLayout]. The underlying [string] is not freed. */
     override fun free() = uiDrawFreeTextLayout(ptr)
 
     /** Returns the size of [TextLayout]. */
@@ -680,3 +655,24 @@ fun DrawContext.text(
 //TODO fun DrawContext.save() = uiDrawSave(this)
 
 //TODO fun DrawContext.restore() = uiDrawRestore(this)
+
+data class Color(
+    val r: Double,
+    val g: Double,
+    val b: Double,
+    val a: Double = 1.0
+)
+
+fun Color(rgb: Int, alpha: Double = 1.0) = Color(
+    r = ((rgb shr 16) and 255).toDouble() / 255,
+    g = ((rgb shr 8) and 255).toDouble() / 255,
+    b = ((rgb) and 255).toDouble() / 255,
+    a = alpha
+)
+
+data class SizeInt(val width: Int, val height: Int)
+
+data class Size(val width: Double, val height: Double)
+
+data class Point(val x: Double, val y: Double)
+

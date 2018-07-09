@@ -57,10 +57,10 @@ fun main(args: Array<String>) = appWindow(
         }
 
         histogram = stretchy.drawarea {
-            val brush = Brush()
+            val brush = brush()
 
             // make a stroke for both the axes and the histogram line
-            val stroke = Stroke {
+            val stroke = stroke {
                 Cap = uiDrawLineCapFlat
                 Join = uiDrawLineJoinMiter
                 Thickness = 2.0

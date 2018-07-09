@@ -6,37 +6,31 @@ import platform.posix.*
 ///////////////////////////////////////////////////////////////////////////////
 //
 // Data entry widgets:
-// - [TextField]
-// - [PasswordField]
-// - [SearchField]
-// - [TextArea]
-// - [Checkbox]
-// - [Combobox]
-// - [EditableCombobox]
-// - [Spinbox]
-// - [Slider]
-// - [RadioButtons]
-// - [DatePicker]
-// - [TimePicker]
-// - [DateTimePicker]
+// - [textfield]
+// - [passwordfield]
+// - [searchfield]
+// - [textarea]
+// - [checkbox]
+// - [combobox]
+// - [editablecombobox]
+// - [spinbox]
+// - [slider]
+// - [radiobuttons]
+// - [datepicker]
+// - [timepicker]
+// - [datetimepicker]
 //
 // Static widgets:
-// - [Label]
-// - [Separator]
-// - [ProgressBar]
+// - [label]
+// - [separator]
+// - [progressbar]
 //
 // Buttons:
-// - [Button]
-// - [ColorButton]
-// - [FontButton]
+// - [button]
+// - [colorbutton]
+// - [fontbutton]
 //
 ///////////////////////////////////////////////////////////////////////////////
-
-/** A simple single line text entry widget. */
-open class TextField internal constructor(alloc: CPointer<uiEntry>?) : Control<uiEntry>(alloc) {
-    constructor(): this(uiNewEntry())
-    internal var action: (TextField.() -> Unit)? = null
-}
 
 /** A simple single line text entry widget. */
 inline fun Container.textfield(
@@ -47,9 +41,6 @@ inline fun Container.textfield(
         .apply(init))
 
 /** Text entry widget that mask the input, useful to edit passwords or other sensible data. */
-class PasswordField : TextField(uiNewPasswordEntry())
-
-/** Text entry widget that mask the input, useful to edit passwords or other sensible data. */
 inline fun Container.passwordfield(
     readonly: Boolean = false,
     init: PasswordField.() -> Unit = {}
@@ -58,15 +49,21 @@ inline fun Container.passwordfield(
         .apply(init))
 
 /** Text entry widget to search text. */
-class SearchField : TextField(uiNewSearchEntry())
-
-/** Text entry widget to search text. */
 inline fun Container.searchfield(
     readonly: Boolean = false,
     init: SearchField.() -> Unit = {}
 ) = add(SearchField()
         .apply { if (readonly) this.readonly = readonly }
         .apply(init))
+
+open class TextField internal constructor(alloc: CPointer<uiEntry>?) : Control<uiEntry>(alloc) {
+    constructor(): this(uiNewEntry())
+    internal var action: (TextField.() -> Unit)? = null
+}
+
+class PasswordField : TextField(uiNewPasswordEntry())
+
+class SearchField : TextField(uiNewSearchEntry())
 
 /** The current text of the TextField. */
 var TextField.value: String
@@ -91,13 +88,6 @@ fun TextField.action(block: TextField.() -> Unit) {
 
 /** A multiline plain text editing widget.
  *  @param[wrap] enables the wrapping of the text when it reaches the edge of the area */
-class TextArea(wrap: Boolean = true) : Control<uiMultilineEntry>(
-    if (wrap) uiNewMultilineEntry() else uiNewNonWrappingMultilineEntry()) {
-    internal var action: (TextArea.() -> Unit)? = null
-}
-
-/** A multiline plain text editing widget.
- *  [wrap] enables the wrapping of the text when it reaches the edge of the area */
 inline fun Container.textarea(
     wrap: Boolean = true,
     readonly: Boolean = false,
@@ -105,6 +95,11 @@ inline fun Container.textarea(
 ) = add(TextArea(wrap)
         .apply { if (readonly) this.readonly = readonly }
         .apply(init))
+
+class TextArea(wrap: Boolean = true) : Control<uiMultilineEntry>(
+    if (wrap) uiNewMultilineEntry() else uiNewNonWrappingMultilineEntry()) {
+    internal var action: (TextArea.() -> Unit)? = null
+}
 
 /** The current text of the area. */
 var TextArea.value: String
@@ -131,15 +126,14 @@ fun TextArea.action(block: TextArea.() -> Unit) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A checkbox widget. */
-class Checkbox(label: String) : Control<uiCheckbox>(uiNewCheckbox(label)) {
-    internal var action: (Checkbox.() -> Unit)? = null
-}
-
-/** A checkbox widget. */
 inline fun Container.checkbox(
     label: String,
     init: Checkbox.() -> Unit = {}
 ) = add(Checkbox(label).apply(init))
+
+class Checkbox(label: String) : Control<uiCheckbox>(uiNewCheckbox(label)) {
+    internal var action: (Checkbox.() -> Unit)? = null
+}
 
 /** The static text of the checkbox. */
 var Checkbox.label: String
@@ -163,14 +157,13 @@ fun Checkbox.action(block: Checkbox.() -> Unit) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A drop down combo box that allow list selection only. */
-class Combobox : Control<uiCombobox>(uiNewCombobox()) {
-    internal var action: (Combobox.() -> Unit)? = null
-}
-
-/** A drop down combo box that allow list selection only. */
 inline fun Container.combobox(
     init: Combobox.() -> Unit = {}
 ) = add(Combobox().apply(init))
+
+class Combobox : Control<uiCombobox>(uiNewCombobox()) {
+    internal var action: (Combobox.() -> Unit)? = null
+}
 
 /** Adds the named entry to the end of the combobox.
  *  If it is the first entry, it is automatically selected. */
@@ -193,14 +186,13 @@ fun Combobox.action(block: Combobox.() -> Unit) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A drop down combo box that allow selection from list or free text entry. */
-class EditableCombobox : Control<uiEditableCombobox>(uiNewEditableCombobox()) {
-    internal var action: (EditableCombobox.() -> Unit)? = null
-}
-
-/** A drop down combo box that allow selection from list or free text entry. */
 inline fun Container.editablecombobox(
     init: EditableCombobox.() -> Unit = {}
 ) = add(EditableCombobox().apply(init))
+
+class EditableCombobox : Control<uiEditableCombobox>(uiNewEditableCombobox()) {
+    internal var action: (EditableCombobox.() -> Unit)? = null
+}
 
 /** Adds the named entry to the end of the editable combobox.
  *  If it is the first entry, it is automatically selected. */
@@ -223,13 +215,12 @@ fun EditableCombobox.action(block: EditableCombobox.() -> Unit) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** An entry widget for numerical values. */
+inline fun Container.spinbox(min: Int, max: Int, init: Spinbox.() -> Unit = {}) =
+    add(Spinbox(min, max).apply(init))
+
 class Spinbox(min: Int, max: Int) : Control<uiSpinbox>(uiNewSpinbox(min, max)) {
     internal var action: (Spinbox.() -> Unit)? = null
 }
-
-/** An entry widget for numerical values. */
-inline fun Container.spinbox(min: Int, max: Int, init: Spinbox.() -> Unit = {}) =
-    add(Spinbox(min, max).apply(init))
 
 /** The current numeric value of the spinbox. */
 var Spinbox.value: Int
@@ -248,13 +239,12 @@ fun Spinbox.action(block: Spinbox.() -> Unit) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Horizontal slide to set numerical values. */
+inline fun Container.slider(min: Int, max: Int, init: Slider.() -> Unit = {}) =
+    add(Slider(min, max).apply(init))
+
 class Slider(min: Int, max: Int) : Control<uiSlider>(uiNewSlider(min, max)) {
     internal var action: (Slider.() -> Unit)? = null
 }
-
-/** Horizontal slide to set numerical values. */
-inline fun Container.slider(min: Int, max: Int, init: Slider.() -> Unit = {}) =
-    add(Slider(min, max).apply(init))
 
 /** The current numeric value of the slider. */
 var Slider.value: Int
@@ -273,13 +263,12 @@ fun Slider.action(block: Slider.() -> Unit) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A widget that represent a group of radio options. */
+inline fun Container.radiobuttons(init: RadioButtons.() -> Unit = {}) =
+    add(RadioButtons().apply(init))
+
 class RadioButtons : Control<uiRadioButtons>(uiNewRadioButtons()) {
     internal var action: (RadioButtons.() -> Unit)? = null
 }
-
-/** A widget that represent a group of radio options. */
-inline fun Container.radiobuttons(init: RadioButtons.() -> Unit = {}) =
-    add(RadioButtons().apply(init))
 
 /** Adds the named button to the end of the radiobuttons.
  *  If it is the first button, it is automatically selected. */
@@ -302,6 +291,17 @@ fun RadioButtons.action(block: RadioButtons.() -> Unit) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A widget to edit date and time. */
+inline fun Container.datetimepicker(init: DateTimePicker.() -> Unit = {}) =
+    add(DateTimePicker().apply(init))
+
+/** A widget to edit date. */
+inline fun Container.datepicker(init: DatePicker.() -> Unit = {}) =
+    add(DatePicker().apply(init))
+
+/** A widget to edit time. */
+inline fun Container.timepicker(init: TimePicker.() -> Unit = {}) =
+    add(TimePicker().apply(init))
+
 open class DateTimePicker internal constructor(alloc: CPointer<uiDateTimePicker>?
 ) : Control<uiDateTimePicker>(alloc) {
     constructor(): this(uiNewDateTimePicker())
@@ -309,27 +309,13 @@ open class DateTimePicker internal constructor(alloc: CPointer<uiDateTimePicker>
     internal open var defaultFormat = "%c"
 }
 
-/** A widget to edit date and time. */
-inline fun Container.datetimepicker(init: DateTimePicker.() -> Unit = {}) =
-    add(DateTimePicker().apply(init))
-
-/** A widget to edit date. */
 class DatePicker : DateTimePicker(uiNewDatePicker()) {
     override var defaultFormat = "%x"
 }
 
-/** A widget to edit date. */
-inline fun Container.datepicker(init: DatePicker.() -> Unit = {}) =
-    add(DatePicker().apply(init))
-
-/** A widget to edit time. */
 class TimePicker : DateTimePicker(uiNewTimePicker()) {
     override var defaultFormat = "%X"
 }
-
-/** A widget to edit time. */
-inline fun Container.timepicker(init: TimePicker.() -> Unit = {}) =
-    add(TimePicker().apply(init))
 
 /** The current value as posix `struct tm` */
 fun DateTimePicker.getValue(value: CPointer<tm>) = uiDateTimePickerTime(ptr, value)
@@ -371,11 +357,10 @@ fun DateTimePicker.action(block: DateTimePicker.() -> Unit) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A static text label. */
-class Label(text: String) : Control<uiLabel>(uiNewLabel(text))
-
-/** A static text label. */
 inline fun Container.label(text: String, init: Label.() -> Unit = {}) =
     add(Label(text).apply(init))
+
+class Label(text: String) : Control<uiLabel>(uiNewLabel(text))
 
 /** The static text of the label. */
 var Label.text: String
@@ -383,10 +368,6 @@ var Label.text: String
     set(value) = uiLabelSetText(ptr, value)
 
 ///////////////////////////////////////////////////////////////////////////////
-
-/** A vertical or an horizontal line to visually separate widgets. */
-abstract class Separator(alloc: CPointer<uiSeparator>?
-) : Control<uiSeparator>(alloc)
 
 /** An horizontal line to visually separate widgets. */
 inline fun VBox.separator(init: HorizontalSeparator.() -> Unit = {}) =
@@ -396,20 +377,20 @@ inline fun VBox.separator(init: HorizontalSeparator.() -> Unit = {}) =
 inline fun HBox.separator(init: VerticalSeparator.() -> Unit = {}) =
     add(VerticalSeparator().apply(init))
 
-/** An horizontal line to visually separate widgets. */
+abstract class Separator(alloc: CPointer<uiSeparator>?
+) : Control<uiSeparator>(alloc)
+
 class HorizontalSeparator : Separator(uiNewHorizontalSeparator())
 
-/** A vertical line to visually separate widgets. */
 class VerticalSeparator : Separator(uiNewVerticalSeparator())
 
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Progress bar widget. */
-class ProgressBar : Control<uiProgressBar>(uiNewProgressBar())
-
-/** Progress bar widget. */
 inline fun Container.progressbar(init: ProgressBar.() -> Unit = {}) =
     add(ProgressBar().apply(init))
+
+class ProgressBar : Control<uiProgressBar>(uiNewProgressBar())
 
 /** The current position of the progress bar.
  *  Could be set to -1 to create an indeterminate progress bar. */
@@ -420,13 +401,12 @@ var ProgressBar.value: Int
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A simple button. */
+inline fun Container.button(text: String, init: Button.() -> Unit = {}) =
+    add(Button(text).apply(init))
+
 class Button(text: String) : Control<uiButton>(uiNewButton(text)) {
     internal var action: (Button.() -> Unit)? = null
 }
-
-/** A simple button. */
-inline fun Container.button(text: String, init: Button.() -> Unit = {}) =
-    add(Button(text).apply(init))
 
 /** The static text of the button. */
 var Button.text: String
@@ -445,13 +425,12 @@ fun Button.action(block: Button.() -> Unit) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A button that opens a color palette popup. */
+inline fun Container.colorbutton(init: ColorButton.() -> Unit = {}) =
+    add(ColorButton().apply(init))
+
 class ColorButton : Control<uiColorButton>(uiNewColorButton()) {
     internal var action: (ColorButton.() -> Unit)? = null
 }
-
-/** A button that opens a color palette popup. */
-inline fun Container.colorbutton(init: ColorButton.() -> Unit = {}) =
-    add(ColorButton().apply(init))
 
 /** Return or set the currently selected color */
 var ColorButton.value: Color
@@ -479,6 +458,9 @@ fun ColorButton.action(block: ColorButton.() -> Unit) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A button that allows users to choose a font when they click on it. */
+inline fun Container.fontbutton(init: FontButton.() -> Unit = {}) =
+    add(FontButton().apply(init))
+
 class FontButton : Control<uiFontButton>(uiNewFontButton()) {
     internal var action: (FontButton.() -> Unit)? = null
     internal val font = Font()
@@ -487,10 +469,6 @@ class FontButton : Control<uiFontButton>(uiNewFontButton()) {
         super.free()
     }
 }
-
-/** A button that allows users to choose a font when they click on it. */
-inline fun Container.fontbutton(init: FontButton.() -> Unit = {}) =
-    add(FontButton().apply(init))
 
 /** Returns the font currently selected in the FontButton. */
 val FontButton.value: Font

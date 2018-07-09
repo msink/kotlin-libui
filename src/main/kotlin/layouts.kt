@@ -5,16 +5,19 @@ import kotlinx.cinterop.*
 ///////////////////////////////////////////////////////////////////////////////
 //
 // Container widgets:
-// - [Group]
-// - [HBox]
-// - [VBox]
-// - [Form]
-// - [TabPane]
-// - [GridPane]
+// - [group]
+// - [hbox]
+// - [vbox]
+// - [form]
+// - [tabpane]
+// - [gridpane]
 //
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A container for a single widget that provide a caption and visually group it's children. */
+fun Container.group(title: String, margined: Boolean = true) =
+    add(Group(title).apply { if (margined) this.margined = margined })
+
 class Group(title: String) : Control<uiGroup>(uiNewGroup(title)), Container {
 
     /** Set the child widget of the Group. */
@@ -23,10 +26,6 @@ class Group(title: String) : Control<uiGroup>(uiNewGroup(title)), Container {
         return widget
     }
 }
-
-/** A container for a single widget that provide a caption and visually group it's children. */
-fun Container.group(title: String, margined: Boolean = true) =
-    add(Group(title).apply { if (margined) this.margined = margined })
 
 /** Specify the caption of the group. */
 var Group.title: String
@@ -40,7 +39,30 @@ var Group.margined: Boolean
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A container that stack its children horizontally or vertically. */
+/** A container that stack its children horizontally. */
+inline fun Container.hbox(
+    padded: Boolean = true,
+    init: HBox.() -> Unit = {}
+) = add(HBox()
+        .apply { if (padded) this.padded = padded }
+        .apply(init))
+
+/** A container that stack its children vertically. */
+inline fun Container.vbox(
+    padded: Boolean = true,
+    init: VBox.() -> Unit = {}
+) = add(VBox()
+        .apply { if (padded) this.padded = padded }
+        .apply(init))
+
+inline fun Box.stretchy(
+    init: Box.Stretchy.() -> Unit = {}
+) = Stretchy().apply(init)
+
+inline val Container.hbox: HBox get() = hbox()
+inline val Container.vbox: VBox get() = vbox()
+inline val Box.stretchy: Box.Stretchy get() = stretchy()
+
 abstract class Box(alloc: CPointer<uiBox>?) : Control<uiBox>(alloc), Container {
 
     /** adapter for DSL builders */
@@ -58,36 +80,8 @@ abstract class Box(alloc: CPointer<uiBox>?) : Control<uiBox>(alloc), Container {
     }
 }
 
-/** A container that stack its children horizontally. */
-inline fun Container.hbox(
-    padded: Boolean = true,
-    init: HBox.() -> Unit = {}
-) = add(HBox()
-        .apply { if (padded) this.padded = padded }
-        .apply(init))
-
-inline val Container.hbox: HBox get() = hbox()
-
-/** A container that stack its children vertically. */
-inline fun Container.vbox(
-    padded: Boolean = true,
-    init: VBox.() -> Unit = {}
-) = add(VBox()
-        .apply { if (padded) this.padded = padded }
-        .apply(init))
-
-inline val Container.vbox: VBox get() = vbox()
-
-inline fun Box.stretchy(
-    init: Box.Stretchy.() -> Unit = {}
-) = Stretchy().apply(init)
-
-inline val Box.stretchy: Box.Stretchy get() = stretchy()
-
-/** A container that stack its children horizontally. */
 class HBox : Box(uiNewHorizontalBox())
 
-/** A container that stack its children vertically. */
 class VBox : Box(uiNewVerticalBox())
 
 /** If `true`, the container insert some space between children. */
@@ -101,6 +95,19 @@ fun Box.delete(index: Int) = uiBoxDelete(ptr, index)
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A container that organize children as labeled fields. */
+inline fun Container.form(
+    padded: Boolean = true,
+    init: Form.() -> Unit = {}
+) = add(Form()
+        .apply { if (padded) this.padded = padded }
+        .apply(init))
+
+inline val Form.stretchy: Form.Stretchy get() = Stretchy()
+
+fun Form.field(label: String) = Field(label)
+
+fun Form.Stretchy.field(label: String) = Field(label)
+
 class Form : Control<uiForm>(uiNewForm()) {
     /** adapter for DSL builders */
     inner class Field(val label: String) : Container {
@@ -122,20 +129,6 @@ class Form : Control<uiForm>(uiNewForm()) {
     }
 }
 
-/** A container that organize children as labeled fields. */
-inline fun Container.form(
-    padded: Boolean = true,
-    init: Form.() -> Unit = {}
-) = add(Form()
-        .apply { if (padded) this.padded = padded }
-        .apply(init))
-
-fun Form.field(label: String) = Field(label)
-
-inline val Form.stretchy: Form.Stretchy get() = Stretchy()
-
-fun Form.Stretchy.field(label: String) = Field(label)
-
 /** If true, the container insert some space between children. */
 var Form.padded: Boolean
     get() = uiFormPadded(ptr) != 0
@@ -151,6 +144,17 @@ fun Form.delete(index: Int) = uiFormDelete(ptr, index)
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A container that show each children in a separate tab. */
+inline fun Container.tabpane(init: TabPane.() -> Unit = {}) =
+    add(TabPane().apply(init))
+
+inline fun TabPane.page(
+    label: String,
+    margined: Boolean = true,
+    init: TabPane.Page.() -> Unit = {}
+) = Page(label)
+        .apply(init)
+        .apply { if (margined) this.margined = true }
+
 class TabPane : Control<uiTab>(uiNewTab()) {
 
     /** adapter for DSL builders */
@@ -166,18 +170,6 @@ class TabPane : Control<uiTab>(uiNewTab()) {
             set(margined) = pane.setMargined(page, margined)
     }
 }
-
-/** A container that show each children in a separate tab. */
-inline fun Container.tabpane(init: TabPane.() -> Unit = {}) =
-    add(TabPane().apply(init))
-
-inline fun TabPane.page(
-    label: String,
-    margined: Boolean = true,
-    init: TabPane.Page.() -> Unit = {}
-) = Page(label)
-        .apply(init)
-        .apply { if (margined) this.margined = true }
 
 /** Whether page n (starting at 0) of the Tab has margins around its child. */
 fun TabPane.getMargined(page: Int): Boolean = uiTabMargined(ptr, page) != 0
@@ -200,6 +192,24 @@ fun TabPane.delete(page: Int) = uiTabDelete(ptr, page)
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A powerful container that allow to specify size and position of each children. */
+inline fun Container.gridpane(
+    padded: Boolean = true,
+    init: GridPane.() -> Unit = {}
+) = add(GridPane()
+        .apply { if (padded) this.padded = padded }
+        .apply(init))
+
+fun GridPane.cell(
+    x: Int = 0,
+    y: Int = 0,
+    xspan: Int = 1,
+    yspan: Int = 1,
+    hexpand: Boolean = false,
+    halign: uiAlign = uiAlignFill,
+    vexpand: Boolean = false,
+    valign: uiAlign = uiAlignFill
+) = Cell(x, y, xspan, yspan, hexpand, halign, vexpand, valign)
+
 class GridPane : Control<uiGrid>(uiNewGrid()) {
 
     /** adapter for DSL builders */
@@ -220,25 +230,6 @@ class GridPane : Control<uiGrid>(uiNewGrid()) {
         }
     }
 }
-
-/** A powerful container that allow to specify size and position of each children. */
-inline fun Container.gridpane(
-    padded: Boolean = true,
-    init: GridPane.() -> Unit = {}
-) = add(GridPane()
-        .apply { if (padded) this.padded = padded }
-        .apply(init))
-
-fun GridPane.cell(
-    x: Int = 0,
-    y: Int = 0,
-    xspan: Int = 1,
-    yspan: Int = 1,
-    hexpand: Boolean = false,
-    halign: uiAlign = uiAlignFill,
-    vexpand: Boolean = false,
-    valign: uiAlign = uiAlignFill
-) = Cell(x, y, xspan, yspan, hexpand, halign, vexpand, valign)
 
 /** If true, the container insert some space between children. */
 var GridPane.padded: Boolean

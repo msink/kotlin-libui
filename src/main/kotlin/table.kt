@@ -4,29 +4,31 @@ import kotlinx.cinterop.*
 import kotlin.reflect.KMutableProperty1
 import kotlin.reflect.KProperty1
 
-internal sealed class TableControl
+inline fun <T> Container.tableview(
+    data: List<T>,
+    init: Table<T>.() -> Unit = {}
+) = add(TableView(table(data).apply(init)))
 
-internal class TableString(
-    val get: (row: Int) -> String,
-    val set: ((row: Int, value: String?) -> Unit)? = null
-) : TableControl()
-
-internal class TableInt(
-    val get: (row: Int) -> Int,
-    val set: ((row: Int, value: Int) -> Unit)? = null
-) : TableControl()
-
-internal class TableImage(
-    val get: (row: Int) -> Image?
-) : TableControl()
-
-internal class TableColor(
-    val get: (row: Int) -> Color?
-) : TableControl()
+class TableView(val table: Table<*>) : Control<uiTable>(
+    alloc = memScoped {
+        val params = alloc<uiTableParams>().apply {
+            Model = table.ptr
+            RowBackgroundColorModelColumn = table.background
+        }
+        uiNewTable(params.ptr)}) {
+    init {
+        table.columns.forEach { it() }
+        table.columns.clear()
+    }
+    override fun free() {
+        table.dispose()
+        super.free()
+    }
+}
 
 ///////////////////////////////////////////////////////////////////////////////
 
-fun <T> Table(data: List<T>): Table<T> {
+fun <T> table(data: List<T>): Table<T> {
     val handler = nativeHeap.alloc<ktTableHandler>()
     return Table(data, uiNewTableModel(handler.ui.ptr), handler.ptr)
 }
@@ -100,49 +102,49 @@ class Table<T> internal constructor(
         handler.pointed.ref = ref.asCPointer()
     }
 
-    private fun TableString(
+    private fun tableString(
         get: (row: Int) -> String
     ): Int {
         val id = controls.size
-        controls += libui.TableString(get, null)
+        controls += TableString(get, null)
         return id
     }
 
-    private fun TableString(
+    private fun tableString(
         get: (row: Int) -> String,
         set: (row: Int, value: String?) -> Unit
     ): Int {
         val id = controls.size
-        controls += libui.TableString(get, set)
+        controls += TableString(get, set)
         return id
     }
 
-    private fun TableInt(
+    private fun tableInt(
         get: (row: Int) -> Int
     ): Int {
         val id = controls.size
-        controls += libui.TableInt(get, null)
+        controls += TableInt(get, null)
         return id
     }
 
-    private fun TableInt(
+    private fun tableInt(
         get: (row: Int) -> Int,
         set: (row: Int, value: Int) -> Unit
     ): Int {
         val id = controls.size
-        controls += libui.TableInt(get, set)
+        controls += TableInt(get, set)
         return id
     }
 
-    private fun TableImage(get: (row: Int) -> Image?): Int {
+    private fun tableImage(get: (row: Int) -> Image?): Int {
         val id = controls.size
-        controls += libui.TableImage(get)
+        controls += TableImage(get)
         return id
     }
 
-    private fun TableColor(get: (row: Int) -> Color?): Int {
+    private fun tableColor(get: (row: Int) -> Color?): Int {
         val id = controls.size
-        controls += libui.TableColor(get)
+        controls += TableColor(get)
         return id
     }
 
@@ -214,35 +216,35 @@ class Table<T> internal constructor(
         val column = TableColumn().apply(init)
         columns += when {
             column.image != null && column.label != null ->
-                TableColumnImageText(name,
-                    TableImage(column.image!!.get),
-                    TableString(column.label!!.get), uiTableModelColumnNeverEditable,
-                    column.color?.let { TableColor(it.get) } ?: -1
+                tableColumnImageText(name,
+                    tableImage(column.image!!.get),
+                    tableString(column.label!!.get), uiTableModelColumnNeverEditable,
+                    column.color?.let { tableColor(it.get) } ?: -1
                 )
             column.label != null ->
-                TableColumnText(name,
-                    TableString(column.label!!.get), uiTableModelColumnNeverEditable)
+                tableColumnText(name,
+                    tableString(column.label!!.get), uiTableModelColumnNeverEditable)
             column.textfield != null ->
-                TableColumnText(name,
-                    TableString(column.textfield!!.get, column.textfield!!.set),
+                tableColumnText(name,
+                    tableString(column.textfield!!.get, column.textfield!!.set),
                     uiTableModelColumnAlwaysEditable)
             column.checkbox != null ->
-                TableColumnCheckbox(name,
-                    TableInt(column.checkbox!!.get, column.checkbox!!.set),
+                tableColumnCheckbox(name,
+                    tableInt(column.checkbox!!.get, column.checkbox!!.set),
                     uiTableModelColumnAlwaysEditable)
             column.progressbar != null ->
-                TableColumnProgressBar(name,
-                    TableInt(column.progressbar!!.get))
+                tableColumnProgressBar(name,
+                    tableInt(column.progressbar!!.get))
             column.button != null ->
-                TableColumnButton(name,
-                    TableString(column.button!!.text, { row, _-> column.button!!.action(row) }),
+                tableColumnButton(name,
+                    tableString(column.button!!.text, { row, _-> column.button!!.action(row) }),
                     uiTableModelColumnAlwaysEditable)
             else -> throw Error()
         }
     }
 
     fun background(get: (row: Int) -> Color?) {
-        background = TableColor(get)
+        background = tableColor(get)
     }
 
     fun rowInserted(newIndex: Int) = uiTableModelRowInserted(ptr, newIndex)
@@ -254,7 +256,27 @@ class Table<T> internal constructor(
 
 ///////////////////////////////////////////////////////////////////////////////
 
-private fun TableColumnText(name: String, textModel: Int, textEdit: Int,
+internal sealed class TableControl
+
+internal class TableString(
+    val get: (row: Int) -> String,
+    val set: ((row: Int, value: String?) -> Unit)? = null
+) : TableControl()
+
+internal class TableInt(
+    val get: (row: Int) -> Int,
+    val set: ((row: Int, value: Int) -> Unit)? = null
+) : TableControl()
+
+internal class TableImage(
+    val get: (row: Int) -> Image?
+) : TableControl()
+
+internal class TableColor(
+    val get: (row: Int) -> Color?
+) : TableControl()
+
+private fun tableColumnText(name: String, textModel: Int, textEdit: Int,
                             colorModel: Int = -1): TableView.() -> Unit = {
     if (colorModel >= 0) memScoped {
         val params = alloc<uiTableTextColumnOptionalParams>().apply {
@@ -266,11 +288,11 @@ private fun TableColumnText(name: String, textModel: Int, textEdit: Int,
     }
 }
 
-private fun TableColumnImage(name: String, imageModel: Int): TableView.() -> Unit = {
+private fun tableColumnImage(name: String, imageModel: Int): TableView.() -> Unit = {
     uiTableAppendImageColumn(ptr, name, imageModel)
 }
 
-private fun TableColumnImageText(name: String, imageModel: Int, textModel: Int, textEdit: Int,
+private fun tableColumnImageText(name: String, imageModel: Int, textModel: Int, textEdit: Int,
                                  colorModel: Int = -1): TableView.() -> Unit = {
     if (colorModel >= 0) memScoped {
         val params = alloc<uiTableTextColumnOptionalParams>().apply {
@@ -282,11 +304,11 @@ private fun TableColumnImageText(name: String, imageModel: Int, textModel: Int, 
     }
 }
 
-private fun TableColumnCheckbox(name: String, checkboxModel: Int, checkboxEdit: Int): TableView.() -> Unit = {
+private fun tableColumnCheckbox(name: String, checkboxModel: Int, checkboxEdit: Int): TableView.() -> Unit = {
     uiTableAppendCheckboxColumn(ptr, name, checkboxModel, checkboxEdit)
 }
 
-private fun TableColumnCheckboxText(name: String, checkboxModel: Int, checkboxEdit: Int,
+private fun tableColumnCheckboxText(name: String, checkboxModel: Int, checkboxEdit: Int,
                                     textModel: Int, textEdit: Int, colorModel: Int = -1): TableView.() -> Unit = {
     if (colorModel >= 0) memScoped {
         val params = alloc<uiTableTextColumnOptionalParams>().apply {
@@ -298,34 +320,10 @@ private fun TableColumnCheckboxText(name: String, checkboxModel: Int, checkboxEd
     }
 }
 
-private fun TableColumnProgressBar(name: String, progressModel: Int): TableView.() -> Unit = {
+private fun tableColumnProgressBar(name: String, progressModel: Int): TableView.() -> Unit = {
     uiTableAppendProgressBarColumn(ptr, name, progressModel)
 }
 
-private fun TableColumnButton(name: String, buttonTextModel: Int, buttonClickable: Int): TableView.() -> Unit = {
+private fun tableColumnButton(name: String, buttonTextModel: Int, buttonClickable: Int): TableView.() -> Unit = {
     uiTableAppendButtonColumn(ptr, name, buttonTextModel, buttonClickable)
 }
-
-///////////////////////////////////////////////////////////////////////////////
-
-class TableView(val table: Table<*>) : Control<uiTable>(
-    alloc = memScoped {
-        val params = alloc<uiTableParams>().apply {
-            Model = table.ptr
-            RowBackgroundColorModelColumn = table.background
-        }
-        uiNewTable(params.ptr)}) {
-    init {
-        table.columns.forEach { it() }
-        table.columns.clear()
-    }
-    override fun free() {
-        table.dispose()
-        super.free()
-    }
-}
-
-inline fun <T> Container.tableview(
-    data: List<T>,
-    init: Table<T>.() -> Unit = {}
-) = add(TableView(Table(data).apply(init)))
