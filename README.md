@@ -196,6 +196,7 @@ fun main(args: Array<String>) = appWindow(
 - [datetime](samples/datetime)
 - [timer](samples/timer)
 - [logo](samples/logo)
+- [table](samples/table)
 
 ## Work in progress!
 
