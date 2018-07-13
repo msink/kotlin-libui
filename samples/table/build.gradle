@@ -16,7 +16,8 @@ task windowsResources(type: Exec) {
 }
 
 konanArtifacts {
-    program('table') {
+    program('table', targets: ['linux', 'mingw']) {
+        //TODO: reenable macos when uiImage will be fixed
         srcDir 'src/main/kotlin'
         srcDir 'src/main/resources'
         libraries {
