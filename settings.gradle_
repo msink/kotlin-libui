@@ -1,2 +1,0 @@
-enableFeaturePreview('GRADLE_METADATA')
-include ':samples:controlgallery'
