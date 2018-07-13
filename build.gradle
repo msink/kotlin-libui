@@ -30,7 +30,7 @@ konanArtifacts {
     }
 
     program('hello1') {
-        srcFiles 'samples/hello/hello.kt'
+        srcDir 'samples/hello/src/main/kotlin'
         libraries {
             artifact 'libui'
         }
@@ -42,7 +42,7 @@ konanArtifacts {
     }
 
     program('hello2') {
-        srcFiles 'samples/hello/hello2.kt'
+        srcDir 'samples/hello2/src/main/kotlin'
         libraries {
             artifact 'libuiKt'
         }
@@ -54,7 +54,7 @@ konanArtifacts {
     }
 
     program('sampleForm') {
-        srcDir 'samples/form'
+        srcDir 'samples/form/src/main/kotlin'
         libraries {
             artifact 'libuiKt'
         }
@@ -66,7 +66,7 @@ konanArtifacts {
     }
 
     program('controlgallery') {
-        srcDir 'samples/controlgallery'
+        srcDir 'samples/controlgallery/src/main/kotlin'
         libraries {
             artifact 'libuiKt'
         }
@@ -78,7 +78,7 @@ konanArtifacts {
     }
 
     program('histogram') {
-        srcDir 'samples/histogram'
+        srcDir 'samples/histogram/src/main/kotlin'
         libraries {
             artifact 'libuiKt'
         }
@@ -90,7 +90,7 @@ konanArtifacts {
     }
 
     program('drawtext') {
-        srcDir 'samples/drawtext'
+        srcDir 'samples/drawtext/src/main/kotlin'
         libraries {
             artifact 'libuiKt'
         }
@@ -102,7 +102,7 @@ konanArtifacts {
     }
 
     program('datetime') {
-        srcDir 'samples/datetime'
+        srcDir 'samples/datetime/src/main/kotlin'
         libraries {
             artifact 'libuiKt'
         }
@@ -114,7 +114,7 @@ konanArtifacts {
     }
 
     program('timer') {
-        srcDir 'samples/timer'
+        srcDir 'samples/timer/src/main/kotlin'
         libraries {
             artifact 'libuiKt'
         }
@@ -126,7 +126,7 @@ konanArtifacts {
     }
 
     program('logo') {
-        srcDir 'samples/logo'
+        srcDir 'samples/logo/src/main/kotlin'
         libraries {
             artifact 'libuiKt'
         }
@@ -139,7 +139,8 @@ konanArtifacts {
 
     program('table', targets: ['linux', 'mingw']) {
         //TODO: reenable macos when uiImage will be fixed
-        srcDir 'samples/table'
+        srcDir 'samples/table/src/main/kotlin'
+        srcDir 'samples/table/src/main/res'
         libraries {
             artifact 'libuiKt'
         }
