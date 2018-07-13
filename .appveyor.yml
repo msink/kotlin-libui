@@ -38,9 +38,9 @@ artifacts:
     name: interop
   - path: libui-ktx-windows.klib
     name: library
-  - path: libui-windows-samples-kotlin.zip
+  - path: libui-samples-kotlin-windows.zip
     name: samples-kotlin
-  - path: libui-windows-samples-c.zip
+  - path: libui-samples-c-windows.zip
     name: samples-c
 
 deploy:
