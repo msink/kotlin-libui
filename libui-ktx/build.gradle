@@ -1,0 +1,42 @@
+apply plugin: 'konan'
+
+def konanUserDir = System.getenv("KONAN_DATA_DIR") ?: "${System.getProperty("user.home")}/.konan"
+def resFile = file("$buildDir/konan/resources/test.res")
+
+task windowsResources(type: Exec) {
+    def rcFile = file('src/test/resources/test.rc')
+    def path = System.getenv("PATH")
+
+    def windresDir = "$konanUserDir/dependencies/msys2-mingw-w64-x86_64-gcc-7.2.0-clang-llvm-5.0.0-windows-x86-64/bin"
+
+    commandLine "$windresDir/windres", rcFile, '-O', 'coff', '-o', resFile
+    environment 'PATH', "$windresDir;$path"
+
+    inputs.file rcFile
+    outputs.file resFile
+}
+
+konanArtifacts {
+    interop('libui') {
+        includeDirs "${project.rootDir}/libui"
+    }
+
+    library('libui-ktx') {
+        libraries {
+            artifact 'libui'
+        }
+    }
+
+    program('test') {
+        srcDir 'src/test/kotlin'
+        libraries {
+            artifact 'libui'
+            artifact 'libui-ktx'
+        }
+        target 'mingw', {
+            linkerOpts "$resFile"
+            dependsOn 'windowsResources'
+            inputs.file resFile
+        }
+    }
+}

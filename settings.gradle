@@ -1,0 +1,12 @@
+enableFeaturePreview('GRADLE_METADATA')
+include ':libui-ktx'
+include ':samples:controlgallery'
+include ':samples:datetime'
+include ':samples:drawtext'
+include ':samples:form'
+include ':samples:hello'
+include ':samples:hello2'
+include ':samples:histogram'
+include ':samples:logo'
+include ':samples:table'
+include ':samples:timer'

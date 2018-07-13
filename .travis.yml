@@ -22,11 +22,19 @@ after_success:
       linux) export TARGET=linux ;;
       *)     exit 1 ;;
     esac
-  - cp build/konan/libs/${TARGET}_x64/libui.klib libui-${TARGET}.klib
-  - cp build/konan/libs/${TARGET}_x64/libuiKt.klib libuiKt-${TARGET}.klib
-  - pushd build/konan/bin/${TARGET}_x64
+  - cp libui-ktx/build/konan/libs/${TARGET}_x64/libui.klib libui-${TARGET}.klib
+  - cp libui-ktx/build/konan/libs/${TARGET}_x64/libuiKt.klib libui-ktx-${TARGET}.klib
+  - cp samples/controlgallery/build/konan/bin/${TARGET}_x64/controlgallery.kexe .
+  - cp samples/datetime/build/konan/bin/${TARGET}_x64/datetime.kexe .
+  - cp samples/drawtext/build/konan/bin/${TARGET}_x64/drawtext.kexe .
+  - cp samples/form/build/konan/bin/${TARGET}_x64/form.kexe .
+  - cp samples/hello/build/konan/bin/${TARGET}_x64/hello1.kexe .
+  - cp samples/hello2/build/konan/bin/${TARGET}_x64/hello2.kexe .
+  - cp samples/histogram/build/konan/bin/${TARGET}_x64/histogram.kexe .
+  - cp samples/logo/build/konan/bin/${TARGET}_x64/logo.kexe .
+  - cp samples/table/build/konan/bin/${TARGET}_x64/table.kexe .
+  - cp samples/timer/build/konan/bin/${TARGET}_x64/timer.kexe .
   - tar -czvf libui-${TARGET}-samples-kotlin.tgz *.kexe
-  - popd
   - pushd build/libui/out
   - tar -czvf libui-${TARGET}-samples-c.tgz `find . -type f ! -name "*.*"`
   - popd
@@ -37,9 +45,9 @@ deploy:
     secure: UBBD+8M/L5Aqyzti5JbbelugfXeKBY8UdwWEaGmy9Akf5ktw4mEfL3VjdoyPT2gD4bmSSwk/vIEXzNnjIMR479ps63fpVBylQY+bSLeBqJeV6D7nt+0Q2RZf70dClEHaNeewoZsFv7wdsHphIi8i3McnYmPRjzWyJ5lLSAo25VPcg6PWJGQBT6S6CWKJKngHwaLEy4e7QmKypoAKnBTar5An2hsIXaksm5wGGstAJN6PMxvR9dXA18MvTO6UB0zJ8hLV/WzSaVcZgFEFpbk+jcW4MCw0/a+Z3HULZ16vH9KCh14P6JEmPHjGa+pQ0LTBjyFYJIh32d9VCNSlbedT3LL9++hROPyZl7B2jqRAbtZBKY0pMhiDXiWKi42n4U8gFSS8T1KkyaTzW7rQGPLurSsnU4snrQF2z7X5E4mJI0UY68PatGXujjFmtCW/mS2iLnrxc/17KxZhqUkv/OSJkqTw+KWP5BB2QI6humhb6CaGQL99Y96jzNpXvgF+KU9cBGKdqODiAR5ytBFXmCdGz/Am1KSfR5ujuVw7GOESkz5TFJAT/+exV4brZL9/YmE8rYokluv5Y3M3f6y7Kf09DqcbQY5J4WFyUugDq8kIYDdNRbwFFJE5XUvboaeBQhQq4z4OA5QAWWZRYwmwlV6mfQsxwfSnFYls0ObYvia5pSw=
   file:
     - libui-*.klib
-    - libuiKt-*.klib
-    - build/konan/bin/**/*.tgz
-    - build/libui/out/*.tgz
+    - libui-ktx-*.klib
+    - *-samples-kotlin.tgz
+    - libui-ktx/build/libui/out/*.tgz
   file_glob: true
   skip_cleanup: true
   on:
