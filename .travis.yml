@@ -23,7 +23,7 @@ after_success:
       *)     exit 1 ;;
     esac
   - cp libui-ktx/build/konan/libs/${TARGET}_x64/libui.klib libui-${TARGET}.klib
-  - cp libui-ktx/build/konan/libs/${TARGET}_x64/libuiKt.klib libui-ktx-${TARGET}.klib
+  - cp libui-ktx/build/konan/libs/${TARGET}_x64/libui-ktx.klib libui-ktx-${TARGET}.klib
   - cp samples/controlgallery/build/konan/bin/${TARGET}_x64/controlgallery.kexe .
   - cp samples/datetime/build/konan/bin/${TARGET}_x64/datetime.kexe .
   - cp samples/drawtext/build/konan/bin/${TARGET}_x64/drawtext.kexe .
