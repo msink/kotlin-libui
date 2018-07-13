@@ -12,7 +12,7 @@ build_script:
 after_build:
   - copy libui-ktx\build\konan\libs\mingw_x64\libui.klib libui-windows.klib
   - copy libui-ktx\build\konan\libs\mingw_x64\libui-ktx.klib libui-ktx-windows.klib
-  - 7z a libui-windows-samples-kotlin.zip
+  - 7z a libui-samples-kotlin-windows.zip
          .\samples\controlgallery\build\konan\bin\mingw_x64\controlgallery.exe
          .\samples\datetime\build\konan\bin\mingw_x64\datetime.exe
          .\samples\drawtext\build\konan\bin\mingw_x64\drawtext.exe
@@ -23,15 +23,15 @@ after_build:
          .\samples\logo\build\konan\bin\mingw_x64\logo.exe
          .\samples\table\build\konan\bin\mingw_x64\table.exe
          .\samples\timer\build\konan\bin\mingw_x64\timer.exe
-  - 7z l libui-windows-samples-kotlin.zip
-  - 7z a libui-windows-samples-c.zip
+  - 7z l libui-samples-kotlin-windows.zip
+  - 7z a libui-samples-c-windows.zip
          .\libui-ktx\build\libui\out\controlgallery.exe
          .\libui-ktx\build\libui\out\cpp-multithread.exe
          .\libui-ktx\build\libui\out\datetime.exe
          .\libui-ktx\build\libui\out\drawtext.exe
          .\libui-ktx\build\libui\out\histogram.exe
          .\libui-ktx\build\libui\out\timer.exe
-  - 7z l libui-windows-samples-c.zip
+  - 7z l libui-samples-c-windows.zip
 
 artifacts:
   - path: libui-windows.klib
