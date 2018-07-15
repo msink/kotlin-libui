@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `HBox()`
+
+Wrapper class for [uiBox](#) that stack its children horizontally.
+

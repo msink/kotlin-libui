@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `EditableCombobox()`
+
+Wrapper class for [uiEditableCombobox](#)
+

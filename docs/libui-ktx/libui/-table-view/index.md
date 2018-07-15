@@ -4,11 +4,13 @@
 
 `class TableView : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
 
+Wrapper class for [uiTable](#)
+
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `TableView(table: `[`Table`](../-table/index.md)`<*>)` |
+| [&lt;init&gt;](-init-.md) | `TableView(table: `[`Table`](../-table/index.md)`<*>)`<br>Wrapper class for [uiTable](#) |
 
 ### Properties
 

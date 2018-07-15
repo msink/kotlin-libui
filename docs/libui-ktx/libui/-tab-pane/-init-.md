@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `TabPane()`
+
+Wrapper class for [uiTab](#)
+

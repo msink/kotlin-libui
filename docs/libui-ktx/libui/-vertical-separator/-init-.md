@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `VerticalSeparator()`
+
+Wrapper class for [uiSeparator](#) in HBox
+

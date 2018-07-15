@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `Box(alloc: <ERROR CLASS><<ERROR CLASS>>?)`
+
+Wrapper class for [uiBox](#)
+

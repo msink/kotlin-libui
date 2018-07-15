@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `GridPane()`
+
+Wrapper class for [uiGrid](#)
+

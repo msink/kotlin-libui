@@ -4,11 +4,20 @@
 
 `open class TextField : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
 
+Wrapper class for [uiEntry](#)
+
 ### Constructors
 
 | Name | Summary |
 |---|---|
 | [&lt;init&gt;](-init-.md) | `TextField()` |
+
+### Properties
+
+| Name | Summary |
+|---|---|
+| [readonly](readonly.md) | `var readonly: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the text is read-only or not. Defaults to `false`. |
+| [value](value.md) | `var value: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>The current text of the TextField. |
 
 ### Inherited Properties
 
@@ -19,6 +28,12 @@
 | [parent](../-control/parent.md) | `var parent: `[`Control`](../-control/index.md)`<*>?`<br>Returns parent of the control or `null` for detached. |
 | [toplevel](../-control/toplevel.md) | `val toplevel: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Returns whether the control is a top level one or not. |
 | [visible](../-control/visible.md) | `var visible: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control should be visible or hidden. Defaults to `true`. |
+
+### Functions
+
+| Name | Summary |
+|---|---|
+| [action](action.md) | `fun action(block: `[`TextField`](./index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Function to be run when the user makes a change to the TextField. Only one function can be registered at a time. |
 
 ### Inherited Functions
 
@@ -34,22 +49,9 @@
 | [isVisible](../-control/is-visible.md) | `fun isVisible(): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control is visible. |
 | [show](../-control/show.md) | `fun show(): <ERROR CLASS>`<br>Shows the Control. |
 
-### Extension Properties
-
-| Name | Summary |
-|---|---|
-| [readonly](../readonly.md) | `var `[`TextField`](./index.md)`.readonly: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the text is read-only or not. Defaults to `false`. |
-| [value](../value.md) | `var `[`TextField`](./index.md)`.value: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>The current text of the TextField. |
-
-### Extension Functions
-
-| Name | Summary |
-|---|---|
-| [action](../action.md) | `fun `[`TextField`](./index.md)`.action(block: `[`TextField`](./index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Function to be run when the user makes a change to the TextField. Only one function can be registered at a time. |
-
 ### Inheritors
 
 | Name | Summary |
 |---|---|
-| [PasswordField](../-password-field/index.md) | `class PasswordField : `[`TextField`](./index.md) |
-| [SearchField](../-search-field/index.md) | `class SearchField : `[`TextField`](./index.md) |
+| [PasswordField](../-password-field/index.md) | `class PasswordField : `[`TextField`](./index.md)<br>Wrapper class for [uiEntry](#) to edit passwords. |
+| [SearchField](../-search-field/index.md) | `class SearchField : `[`TextField`](./index.md)<br>Wrapper class for [uiEntry](#) to search text. |

@@ -4,11 +4,19 @@
 
 `class Slider : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
 
+Wrapper class for [uiSlider](#)
+
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Slider(min: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, max: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`)` |
+| [&lt;init&gt;](-init-.md) | `Slider(min: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, max: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`)`<br>Wrapper class for [uiSlider](#) |
+
+### Properties
+
+| Name | Summary |
+|---|---|
+| [value](value.md) | `var value: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)<br>The current numeric value of the slider. |
 
 ### Inherited Properties
 
@@ -19,6 +27,12 @@
 | [parent](../-control/parent.md) | `var parent: `[`Control`](../-control/index.md)`<*>?`<br>Returns parent of the control or `null` for detached. |
 | [toplevel](../-control/toplevel.md) | `val toplevel: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Returns whether the control is a top level one or not. |
 | [visible](../-control/visible.md) | `var visible: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control should be visible or hidden. Defaults to `true`. |
+
+### Functions
+
+| Name | Summary |
+|---|---|
+| [action](action.md) | `fun action(block: `[`Slider`](./index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Function to be run when the user makes a change to the Slider. Only one function can be registered at a time. |
 
 ### Inherited Functions
 
@@ -33,15 +47,3 @@
 | [isEnabledToUser](../-control/is-enabled-to-user.md) | `fun isEnabledToUser(): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control and all parents are enabled. |
 | [isVisible](../-control/is-visible.md) | `fun isVisible(): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control is visible. |
 | [show](../-control/show.md) | `fun show(): <ERROR CLASS>`<br>Shows the Control. |
-
-### Extension Properties
-
-| Name | Summary |
-|---|---|
-| [value](../value.md) | `var `[`Slider`](./index.md)`.value: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)<br>The current numeric value of the slider. |
-
-### Extension Functions
-
-| Name | Summary |
-|---|---|
-| [action](../action.md) | `fun `[`Slider`](./index.md)`.action(block: `[`Slider`](./index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Function to be run when the user makes a change to the Slider. Only one function can be registered at a time. |

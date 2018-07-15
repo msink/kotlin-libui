@@ -6,11 +6,3 @@
 
 draws formatted text with the top-left point at ([x](text.md#libui$text((()), libui.AttributedString, libui.Font, kotlin.Double, , kotlin.Double, kotlin.Double)/x), [y](text.md#libui$text((()), libui.AttributedString, libui.Font, kotlin.Double, , kotlin.Double, kotlin.Double)/y)).
 
-`var `[`Label`](-label/index.md)`.text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)
-
-The static text of the label.
-
-`var `[`Button`](-button/index.md)`.text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)
-
-The static text of the button.
-

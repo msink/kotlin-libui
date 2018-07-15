@@ -4,11 +4,19 @@
 
 `class RadioButtons : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
 
+Wrapper class for [uiRadioButtons](#)
+
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `RadioButtons()` |
+| [&lt;init&gt;](-init-.md) | `RadioButtons()`<br>Wrapper class for [uiRadioButtons](#) |
+
+### Properties
+
+| Name | Summary |
+|---|---|
+| [value](value.md) | `var value: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)<br>Return or set the current selected option by index. |
 
 ### Inherited Properties
 
@@ -19,6 +27,13 @@
 | [parent](../-control/parent.md) | `var parent: `[`Control`](../-control/index.md)`<*>?`<br>Returns parent of the control or `null` for detached. |
 | [toplevel](../-control/toplevel.md) | `val toplevel: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Returns whether the control is a top level one or not. |
 | [visible](../-control/visible.md) | `var visible: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control should be visible or hidden. Defaults to `true`. |
+
+### Functions
+
+| Name | Summary |
+|---|---|
+| [action](action.md) | `fun action(block: `[`RadioButtons`](./index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Function to be run when the user makes a change to the RadioButtons. Only one function can be registered at a time. |
+| [item](item.md) | `fun item(text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): <ERROR CLASS>`<br>Adds the named button to the end of the radiobuttons. If it is the first button, it is automatically selected. |
 
 ### Inherited Functions
 
@@ -33,16 +48,3 @@
 | [isEnabledToUser](../-control/is-enabled-to-user.md) | `fun isEnabledToUser(): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control and all parents are enabled. |
 | [isVisible](../-control/is-visible.md) | `fun isVisible(): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control is visible. |
 | [show](../-control/show.md) | `fun show(): <ERROR CLASS>`<br>Shows the Control. |
-
-### Extension Properties
-
-| Name | Summary |
-|---|---|
-| [value](../value.md) | `var `[`RadioButtons`](./index.md)`.value: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)<br>Return or set the current selected option by index. |
-
-### Extension Functions
-
-| Name | Summary |
-|---|---|
-| [action](../action.md) | `fun `[`RadioButtons`](./index.md)`.action(block: `[`RadioButtons`](./index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Function to be run when the user makes a change to the RadioButtons. Only one function can be registered at a time. |
-| [item](../item.md) | `fun `[`RadioButtons`](./index.md)`.item(text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): <ERROR CLASS>`<br>Adds the named button to the end of the radiobuttons. If it is the first button, it is automatically selected. |

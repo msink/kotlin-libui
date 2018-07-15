@@ -4,6 +4,8 @@
 
 `abstract class Box : `[`Control`](../-control/index.md)`<<ERROR CLASS>>, `[`Container`](../-container/index.md)
 
+Wrapper class for [uiBox](#)
+
 ### Types
 
 | Name | Summary |
@@ -14,7 +16,13 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Box(alloc: <ERROR CLASS><<ERROR CLASS>>?)` |
+| [&lt;init&gt;](-init-.md) | `Box(alloc: <ERROR CLASS><<ERROR CLASS>>?)`<br>Wrapper class for [uiBox](#) |
+
+### Properties
+
+| Name | Summary |
+|---|---|
+| [padded](padded.md) | `var padded: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>If `true`, the container insert some space between children. |
 
 ### Inherited Properties
 
@@ -31,6 +39,7 @@
 | Name | Summary |
 |---|---|
 | [add](add.md) | `open fun <T : `[`Control`](../-control/index.md)`<*>> add(widget: `[`T`](add.md#T)`): `[`T`](add.md#T)<br>Adds the given widget to the end of the Box. |
+| [delete](delete.md) | `fun delete(index: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): <ERROR CLASS>`<br>Deletes the nth control of the Box. |
 
 ### Inherited Functions
 
@@ -51,7 +60,6 @@
 | Name | Summary |
 |---|---|
 | [hbox](../hbox.md) | `val `[`Container`](../-container/index.md)`.hbox: `[`HBox`](../-h-box/index.md) |
-| [padded](../padded.md) | `var `[`Box`](./index.md)`.padded: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>If `true`, the container insert some space between children. |
 | [stretchy](../stretchy.md) | `val `[`Box`](./index.md)`.stretchy: `[`Stretchy`](-stretchy/index.md) |
 | [vbox](../vbox.md) | `val `[`Container`](../-container/index.md)`.vbox: `[`VBox`](../-v-box/index.md) |
 
@@ -65,7 +73,6 @@
 | [combobox](../combobox.md) | `fun `[`Container`](../-container/index.md)`.combobox(init: `[`Combobox`](../-combobox/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>A drop down combo box that allow list selection only. |
 | [datepicker](../datepicker.md) | `fun `[`Container`](../-container/index.md)`.datepicker(init: `[`DatePicker`](../-date-picker/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>A widget to edit date. |
 | [datetimepicker](../datetimepicker.md) | `fun `[`Container`](../-container/index.md)`.datetimepicker(init: `[`DateTimePicker`](../-date-time-picker/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>A widget to edit date and time. |
-| [delete](../delete.md) | `fun `[`Box`](./index.md)`.delete(index: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): <ERROR CLASS>`<br>Deletes the nth control of the Box. |
 | [drawarea](../drawarea.md) | `fun `[`Container`](../-container/index.md)`.drawarea(init: `[`DrawArea`](../-draw-area/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): `[`DrawArea`](../-draw-area/index.md)<br>A canvas you can draw on. It also receives keyboard and mouse events, is DPI aware, and has several other useful features. |
 | [editablecombobox](../editablecombobox.md) | `fun `[`Container`](../-container/index.md)`.editablecombobox(init: `[`EditableCombobox`](../-editable-combobox/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>A drop down combo box that allow selection from list or free text entry. |
 | [fontbutton](../fontbutton.md) | `fun `[`Container`](../-container/index.md)`.fontbutton(init: `[`FontButton`](../-font-button/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>A button that allows users to choose a font when they click on it. |
@@ -77,7 +84,7 @@
 | [passwordfield](../passwordfield.md) | `fun `[`Container`](../-container/index.md)`.passwordfield(readonly: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)` = false, init: `[`PasswordField`](../-password-field/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>Text entry widget that mask the input, useful to edit passwords or other sensible data. |
 | [progressbar](../progressbar.md) | `fun `[`Container`](../-container/index.md)`.progressbar(init: `[`ProgressBar`](../-progress-bar/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>Progress bar widget. |
 | [radiobuttons](../radiobuttons.md) | `fun `[`Container`](../-container/index.md)`.radiobuttons(init: `[`RadioButtons`](../-radio-buttons/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>A widget that represent a group of radio options. |
-| [scrollingarea](../scrollingarea.md) | `fun `[`Container`](../-container/index.md)`.scrollingarea(width: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, height: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, init: `[`ScrollingArea`](../-scrolling-area.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): `[`ScrollingArea`](../-scrolling-area.md)<br>[DrawArea](../-draw-area/index.md) with horziontal and vertical scrollbars. |
+| [scrollingarea](../scrollingarea.md) | `fun `[`Container`](../-container/index.md)`.scrollingarea(width: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, height: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, init: `[`ScrollingArea`](../-scrolling-area/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): `[`ScrollingArea`](../-scrolling-area/index.md)<br>[DrawArea](../-draw-area/index.md) with horziontal and vertical scrollbars. |
 | [searchfield](../searchfield.md) | `fun `[`Container`](../-container/index.md)`.searchfield(readonly: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)` = false, init: `[`SearchField`](../-search-field/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>Text entry widget to search text. |
 | [slider](../slider.md) | `fun `[`Container`](../-container/index.md)`.slider(min: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, max: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, init: `[`Slider`](../-slider/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>Horizontal slide to set numerical values. |
 | [spinbox](../spinbox.md) | `fun `[`Container`](../-container/index.md)`.spinbox(min: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, max: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, init: `[`Spinbox`](../-spinbox/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>An entry widget for numerical values. |
@@ -93,5 +100,5 @@
 
 | Name | Summary |
 |---|---|
-| [HBox](../-h-box/index.md) | `class HBox : `[`Box`](./index.md) |
-| [VBox](../-v-box/index.md) | `class VBox : `[`Box`](./index.md) |
+| [HBox](../-h-box/index.md) | `class HBox : `[`Box`](./index.md)<br>Wrapper class for [uiBox](#) that stack its children horizontally. |
+| [VBox](../-v-box/index.md) | `class VBox : `[`Box`](./index.md)<br>Wrapper class for [uiBox](#) that stack its children vertically. |

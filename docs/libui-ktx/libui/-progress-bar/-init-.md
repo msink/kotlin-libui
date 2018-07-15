@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `ProgressBar()`
+
+Wrapper class for [uiProgressBar](#)
+

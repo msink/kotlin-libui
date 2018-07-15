@@ -4,11 +4,20 @@
 
 `class TextArea : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
 
+Wrapper class for [uiMultilineEntry](#)
+
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `TextArea(wrap: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)` = true)` |
+| [&lt;init&gt;](-init-.md) | `TextArea(wrap: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)` = true)`<br>Wrapper class for [uiMultilineEntry](#) |
+
+### Properties
+
+| Name | Summary |
+|---|---|
+| [readonly](readonly.md) | `var readonly: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the text is read-only or not. Defaults to `false` |
+| [value](value.md) | `var value: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>The current text of the area. |
 
 ### Inherited Properties
 
@@ -19,6 +28,13 @@
 | [parent](../-control/parent.md) | `var parent: `[`Control`](../-control/index.md)`<*>?`<br>Returns parent of the control or `null` for detached. |
 | [toplevel](../-control/toplevel.md) | `val toplevel: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Returns whether the control is a top level one or not. |
 | [visible](../-control/visible.md) | `var visible: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control should be visible or hidden. Defaults to `true`. |
+
+### Functions
+
+| Name | Summary |
+|---|---|
+| [action](action.md) | `fun action(block: `[`TextArea`](./index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Function to be run when the user makes a change to the TextArea. Only one function can be registered at a time. |
+| [append](append.md) | `fun append(text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): <ERROR CLASS>`<br>Adds the text to the end of the area. |
 
 ### Inherited Functions
 
@@ -33,17 +49,3 @@
 | [isEnabledToUser](../-control/is-enabled-to-user.md) | `fun isEnabledToUser(): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control and all parents are enabled. |
 | [isVisible](../-control/is-visible.md) | `fun isVisible(): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control is visible. |
 | [show](../-control/show.md) | `fun show(): <ERROR CLASS>`<br>Shows the Control. |
-
-### Extension Properties
-
-| Name | Summary |
-|---|---|
-| [readonly](../readonly.md) | `var `[`TextArea`](./index.md)`.readonly: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the text is read-only or not. Defaults to `false` |
-| [value](../value.md) | `var `[`TextArea`](./index.md)`.value: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>The current text of the area. |
-
-### Extension Functions
-
-| Name | Summary |
-|---|---|
-| [action](../action.md) | `fun `[`TextArea`](./index.md)`.action(block: `[`TextArea`](./index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Function to be run when the user makes a change to the TextArea. Only one function can be registered at a time. |
-| [append](../append.md) | `fun `[`TextArea`](./index.md)`.append(text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): <ERROR CLASS>`<br>Adds the text to the end of the area. |

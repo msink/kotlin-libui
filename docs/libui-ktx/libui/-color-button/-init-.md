@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `ColorButton()`
+
+Wrapper class for [uiColorButton](#)
+

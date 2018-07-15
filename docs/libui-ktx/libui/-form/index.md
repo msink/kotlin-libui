@@ -4,6 +4,8 @@
 
 `class Form : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
 
+Wrapper class for [uiForm](#)
+
 ### Types
 
 | Name | Summary |
@@ -15,7 +17,13 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Form()` |
+| [&lt;init&gt;](-init-.md) | `Form()`<br>Wrapper class for [uiForm](#) |
+
+### Properties
+
+| Name | Summary |
+|---|---|
+| [padded](padded.md) | `var padded: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>If true, the container insert some space between children. |
 
 ### Inherited Properties
 
@@ -26,6 +34,13 @@
 | [parent](../-control/parent.md) | `var parent: `[`Control`](../-control/index.md)`<*>?`<br>Returns parent of the control or `null` for detached. |
 | [toplevel](../-control/toplevel.md) | `val toplevel: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Returns whether the control is a top level one or not. |
 | [visible](../-control/visible.md) | `var visible: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control should be visible or hidden. Defaults to `true`. |
+
+### Functions
+
+| Name | Summary |
+|---|---|
+| [add](add.md) | `fun add(label: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, widget: `[`Control`](../-control/index.md)`<*>, stretchy: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)` = false): <ERROR CLASS>`<br>Adds the given widget to the end of the form. |
+| [delete](delete.md) | `fun delete(index: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): <ERROR CLASS>`<br>deletes the nth control of the form. |
 
 ### Inherited Functions
 
@@ -45,13 +60,10 @@
 
 | Name | Summary |
 |---|---|
-| [padded](../padded.md) | `var `[`Form`](./index.md)`.padded: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>If true, the container insert some space between children. |
 | [stretchy](../stretchy.md) | `val `[`Form`](./index.md)`.stretchy: `[`Stretchy`](-stretchy/index.md) |
 
 ### Extension Functions
 
 | Name | Summary |
 |---|---|
-| [add](../add.md) | `fun `[`Form`](./index.md)`.add(label: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, widget: `[`Control`](../-control/index.md)`<*>, stretchy: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)` = false): <ERROR CLASS>`<br>Adds the given widget to the end of the form. |
-| [delete](../delete.md) | `fun `[`Form`](./index.md)`.delete(index: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): <ERROR CLASS>`<br>deletes the nth control of the form. |
 | [field](../field.md) | `fun `[`Form`](./index.md)`.field(label: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`Field`](-field/index.md) |

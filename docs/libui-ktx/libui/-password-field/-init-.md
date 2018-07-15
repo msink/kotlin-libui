@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `PasswordField()`
+
+Wrapper class for [uiEntry](#) to edit passwords.
+

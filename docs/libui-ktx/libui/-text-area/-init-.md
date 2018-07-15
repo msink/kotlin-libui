@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `TextArea(wrap: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)` = true)`
+
+Wrapper class for [uiMultilineEntry](#)
+

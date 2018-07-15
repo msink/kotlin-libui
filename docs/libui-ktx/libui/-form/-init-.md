@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `Form()`
+
+Wrapper class for [uiForm](#)
+

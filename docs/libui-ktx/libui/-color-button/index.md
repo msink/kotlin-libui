@@ -4,11 +4,19 @@
 
 `class ColorButton : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
 
+Wrapper class for [uiColorButton](#)
+
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `ColorButton()` |
+| [&lt;init&gt;](-init-.md) | `ColorButton()`<br>Wrapper class for [uiColorButton](#) |
+
+### Properties
+
+| Name | Summary |
+|---|---|
+| [value](value.md) | `var value: `[`Color`](../-color/index.md)<br>Return or set the currently selected color |
 
 ### Inherited Properties
 
@@ -19,6 +27,12 @@
 | [parent](../-control/parent.md) | `var parent: `[`Control`](../-control/index.md)`<*>?`<br>Returns parent of the control or `null` for detached. |
 | [toplevel](../-control/toplevel.md) | `val toplevel: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Returns whether the control is a top level one or not. |
 | [visible](../-control/visible.md) | `var visible: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control should be visible or hidden. Defaults to `true`. |
+
+### Functions
+
+| Name | Summary |
+|---|---|
+| [action](action.md) | `fun action(block: `[`ColorButton`](./index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Function to be run when the user makes a change to the ColorButton. Only one function can be registered at a time. |
 
 ### Inherited Functions
 
@@ -33,15 +47,3 @@
 | [isEnabledToUser](../-control/is-enabled-to-user.md) | `fun isEnabledToUser(): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control and all parents are enabled. |
 | [isVisible](../-control/is-visible.md) | `fun isVisible(): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control is visible. |
 | [show](../-control/show.md) | `fun show(): <ERROR CLASS>`<br>Shows the Control. |
-
-### Extension Properties
-
-| Name | Summary |
-|---|---|
-| [value](../value.md) | `var `[`ColorButton`](./index.md)`.value: `[`Color`](../-color/index.md)<br>Return or set the currently selected color |
-
-### Extension Functions
-
-| Name | Summary |
-|---|---|
-| [action](../action.md) | `fun `[`ColorButton`](./index.md)`.action(block: `[`ColorButton`](./index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Function to be run when the user makes a change to the ColorButton. Only one function can be registered at a time. |

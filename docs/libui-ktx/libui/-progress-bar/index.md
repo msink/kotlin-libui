@@ -4,11 +4,19 @@
 
 `class ProgressBar : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
 
+Wrapper class for [uiProgressBar](#)
+
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `ProgressBar()` |
+| [&lt;init&gt;](-init-.md) | `ProgressBar()`<br>Wrapper class for [uiProgressBar](#) |
+
+### Properties
+
+| Name | Summary |
+|---|---|
+| [value](value.md) | `var value: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)<br>The current position of the progress bar. Could be set to -1 to create an indeterminate progress bar. |
 
 ### Inherited Properties
 
@@ -33,9 +41,3 @@
 | [isEnabledToUser](../-control/is-enabled-to-user.md) | `fun isEnabledToUser(): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control and all parents are enabled. |
 | [isVisible](../-control/is-visible.md) | `fun isVisible(): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control is visible. |
 | [show](../-control/show.md) | `fun show(): <ERROR CLASS>`<br>Shows the Control. |
-
-### Extension Properties
-
-| Name | Summary |
-|---|---|
-| [value](../value.md) | `var `[`ProgressBar`](./index.md)`.value: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)<br>The current position of the progress bar. Could be set to -1 to create an indeterminate progress bar. |

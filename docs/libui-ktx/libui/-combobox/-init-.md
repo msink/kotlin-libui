@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `Combobox()`
+
+Wrapper class for [uiCombobox](#)
+

@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `Separator(alloc: <ERROR CLASS><<ERROR CLASS>>?)`
+
+Wrapper class for [uiSeparator](#)
+

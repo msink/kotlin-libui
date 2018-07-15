@@ -4,21 +4,23 @@
 
 `class SearchField : `[`TextField`](../-text-field/index.md)
 
+Wrapper class for [uiEntry](#) to search text.
+
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `SearchField()` |
+| [&lt;init&gt;](-init-.md) | `SearchField()`<br>Wrapper class for [uiEntry](#) to search text. |
 
-### Extension Properties
-
-| Name | Summary |
-|---|---|
-| [readonly](../readonly.md) | `var `[`TextField`](../-text-field/index.md)`.readonly: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the text is read-only or not. Defaults to `false`. |
-| [value](../value.md) | `var `[`TextField`](../-text-field/index.md)`.value: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>The current text of the TextField. |
-
-### Extension Functions
+### Inherited Properties
 
 | Name | Summary |
 |---|---|
-| [action](../action.md) | `fun `[`TextField`](../-text-field/index.md)`.action(block: `[`TextField`](../-text-field/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Function to be run when the user makes a change to the TextField. Only one function can be registered at a time. |
+| [readonly](../-text-field/readonly.md) | `var readonly: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the text is read-only or not. Defaults to `false`. |
+| [value](../-text-field/value.md) | `var value: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>The current text of the TextField. |
+
+### Inherited Functions
+
+| Name | Summary |
+|---|---|
+| [action](../-text-field/action.md) | `fun action(block: `[`TextField`](../-text-field/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Function to be run when the user makes a change to the TextField. Only one function can be registered at a time. |

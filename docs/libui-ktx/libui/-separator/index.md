@@ -4,11 +4,13 @@
 
 `abstract class Separator : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
 
+Wrapper class for [uiSeparator](#)
+
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Separator(alloc: <ERROR CLASS><<ERROR CLASS>>?)` |
+| [&lt;init&gt;](-init-.md) | `Separator(alloc: <ERROR CLASS><<ERROR CLASS>>?)`<br>Wrapper class for [uiSeparator](#) |
 
 ### Inherited Properties
 
@@ -38,5 +40,5 @@
 
 | Name | Summary |
 |---|---|
-| [HorizontalSeparator](../-horizontal-separator/index.md) | `class HorizontalSeparator : `[`Separator`](./index.md) |
-| [VerticalSeparator](../-vertical-separator/index.md) | `class VerticalSeparator : `[`Separator`](./index.md) |
+| [HorizontalSeparator](../-horizontal-separator/index.md) | `class HorizontalSeparator : `[`Separator`](./index.md)<br>Wrapper class for [uiSeparator](#) in VBox |
+| [VerticalSeparator](../-vertical-separator/index.md) | `class VerticalSeparator : `[`Separator`](./index.md)<br>Wrapper class for [uiSeparator](#) in HBox |

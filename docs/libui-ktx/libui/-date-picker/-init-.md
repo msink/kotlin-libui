@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `DatePicker()`
+
+Wrapper class for [uiDateTimePicker](#) to edit date.
+

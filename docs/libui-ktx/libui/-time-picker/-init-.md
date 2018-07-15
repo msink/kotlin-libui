@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `TimePicker()`
+
+Wrapper class for [uiDateTimePicker](#) to edit time.
+

@@ -4,6 +4,8 @@
 
 `class Table<T> : `[`Disposable`](../-disposable/index.md)`<<ERROR CLASS>>`
 
+Wrapper class for [uiTableModel](#)
+
 ### Types
 
 | Name | Summary |

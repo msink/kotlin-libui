@@ -45,5 +45,5 @@ Manages and owns all its native resources.
 | [OpenTypeFeatures](../-open-type-features/index.md) | `class OpenTypeFeatures : `[`Disposable`](./index.md)`<<ERROR CLASS>>`<br>Represents a set of OpenType feature tag-value pairs, for applying OpenType features to text. |
 | [Path](../-path/index.md) | `class Path : `[`Disposable`](./index.md)`<<ERROR CLASS>>`<br>Represent a path that could be drawed on a [DrawContext](../-draw-context.md) |
 | [Stroke](../-stroke/index.md) | `class Stroke : `[`Disposable`](./index.md)`<<ERROR CLASS>>`<br>Describes the stroke to draw with. |
-| [Table](../-table/index.md) | `class Table<T> : `[`Disposable`](./index.md)`<<ERROR CLASS>>` |
+| [Table](../-table/index.md) | `class Table<T> : `[`Disposable`](./index.md)`<<ERROR CLASS>>`<br>Wrapper class for [uiTableModel](#) |
 | [TextLayout](../-text-layout/index.md) | `class TextLayout : `[`Disposable`](./index.md)`<<ERROR CLASS>>`<br>Representation of a [string](../string.md) that can be displayed in a [DrawContext](../-draw-context.md). |

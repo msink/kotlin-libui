@@ -18,6 +18,7 @@ import kotlinx.cinterop.*
 fun Container.group(title: String, margined: Boolean = true) =
     add(Group(title).apply { if (margined) this.margined = margined })
 
+/** Wrapper class for [uiGroup] */
 class Group(title: String) : Control<uiGroup>(uiNewGroup(title)), Container {
 
     /** Set the child widget of the Group. */
@@ -25,17 +26,17 @@ class Group(title: String) : Control<uiGroup>(uiNewGroup(title)), Container {
         uiGroupSetChild(ptr, widget.ctl)
         return widget
     }
+
+    /** Specify the caption of the group. */
+    var title: String
+        get() = uiGroupTitle(ptr).uiText()
+        set(title) = uiGroupSetTitle(ptr, title)
+
+    /** Specify if the group content area should have a margin or not. */
+    var margined: Boolean
+        get() = uiGroupMargined(ptr) != 0
+        set(margined) = uiGroupSetMargined(ptr, if (margined) 1 else 0)
 }
-
-/** Specify the caption of the group. */
-var Group.title: String
-    get() = uiGroupTitle(ptr).uiText()
-    set(title) = uiGroupSetTitle(ptr, title)
-
-/** Specify if the group content area should have a margin or not. */
-var Group.margined: Boolean
-    get() = uiGroupMargined(ptr) != 0
-    set(margined) = uiGroupSetMargined(ptr, if (margined) 1 else 0)
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -63,6 +64,7 @@ inline val Container.hbox: HBox get() = hbox()
 inline val Container.vbox: VBox get() = vbox()
 inline val Box.stretchy: Box.Stretchy get() = stretchy()
 
+/** Wrapper class for [uiBox] */
 abstract class Box(alloc: CPointer<uiBox>?) : Control<uiBox>(alloc), Container {
 
     /** adapter for DSL builders */
@@ -78,19 +80,21 @@ abstract class Box(alloc: CPointer<uiBox>?) : Control<uiBox>(alloc), Container {
         uiBoxAppend(ptr, widget.ctl, 0)
         return widget
     }
+
+    /** If `true`, the container insert some space between children. */
+    var padded: Boolean
+        get() = uiBoxPadded(ptr) != 0
+        set(padded) = uiBoxSetPadded(ptr, if (padded) 1 else 0)
+
+    /** Deletes the nth control of the Box. */
+    fun delete(index: Int) = uiBoxDelete(ptr, index)
 }
 
+/** Wrapper class for [uiBox] that stack its children horizontally. */
 class HBox : Box(uiNewHorizontalBox())
 
+/** Wrapper class for [uiBox] that stack its children vertically. */
 class VBox : Box(uiNewVerticalBox())
-
-/** If `true`, the container insert some space between children. */
-var Box.padded: Boolean
-    get() = uiBoxPadded(ptr) != 0
-    set(padded) = uiBoxSetPadded(ptr, if (padded) 1 else 0)
-
-/** Deletes the nth control of the Box. */
-fun Box.delete(index: Int) = uiBoxDelete(ptr, index)
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -108,6 +112,7 @@ fun Form.field(label: String) = Field(label)
 
 fun Form.Stretchy.field(label: String) = Field(label)
 
+/** Wrapper class for [uiForm] */
 class Form : Control<uiForm>(uiNewForm()) {
     /** adapter for DSL builders */
     inner class Field(val label: String) : Container {
@@ -127,19 +132,19 @@ class Form : Control<uiForm>(uiNewForm()) {
             }
         }
     }
+
+    /** If true, the container insert some space between children. */
+    var padded: Boolean
+        get() = uiFormPadded(ptr) != 0
+        set(padded) = uiFormSetPadded(ptr, if (padded) 1 else 0)
+
+    /** Adds the given widget to the end of the form. */
+    fun add(label: String, widget: Control<*>, stretchy: Boolean = false) =
+        uiFormAppend(ptr, label, widget.ctl, if (stretchy) 1 else 0)
+
+    /** deletes the nth control of the form. */
+    fun delete(index: Int) = uiFormDelete(ptr, index)
 }
-
-/** If true, the container insert some space between children. */
-var Form.padded: Boolean
-    get() = uiFormPadded(ptr) != 0
-    set(padded) = uiFormSetPadded(ptr, if (padded) 1 else 0)
-
-/** Adds the given widget to the end of the form. */
-fun Form.add(label: String, widget: Control<*>, stretchy: Boolean = false) =
-    uiFormAppend(ptr, label, widget.ctl, if (stretchy) 1 else 0)
-
-/** deletes the nth control of the form. */
-fun Form.delete(index: Int) = uiFormDelete(ptr, index)
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -155,6 +160,7 @@ inline fun TabPane.page(
         .apply(init)
         .apply { if (margined) this.margined = true }
 
+/** Wrapper class for [uiTab] */
 class TabPane : Control<uiTab>(uiNewTab()) {
 
     /** adapter for DSL builders */
@@ -169,25 +175,25 @@ class TabPane : Control<uiTab>(uiNewTab()) {
             get() = pane.getMargined(page)
             set(margined) = pane.setMargined(page, margined)
     }
+
+    /** Whether page n (starting at 0) of the Tab has margins around its child. */
+    fun getMargined(page: Int): Boolean = uiTabMargined(ptr, page) != 0
+    fun setMargined(page: Int, margined: Boolean) = uiTabSetMargined(ptr, page, if (margined) 1 else 0)
+
+    /** Number of pages in the TabPane. */
+    val numPages: Int get() = uiTabNumPages(ptr)
+
+    /** Adds the given page to the end of the TabPane. */
+    fun add(label: String, widget: Control<*>) {
+        uiTabAppend(ptr, label, widget.ctl)
+    }
+
+    /** Adds the given page to the TabPane such that it is the nth page of the TabPane (starting at 0). */
+    fun insert(page: Int, name: String, widget: Control<*>) = uiTabInsertAt(ptr, name, page, widget.ctl)
+
+    /** Delete deletes the nth page of the TabPane. */
+    fun delete(page: Int) = uiTabDelete(ptr, page)
 }
-
-/** Whether page n (starting at 0) of the Tab has margins around its child. */
-fun TabPane.getMargined(page: Int): Boolean = uiTabMargined(ptr, page) != 0
-fun TabPane.setMargined(page: Int, margined: Boolean) = uiTabSetMargined(ptr, page, if (margined) 1 else 0)
-
-/** Number of pages in the TabPane. */
-val TabPane.numPages: Int get() = uiTabNumPages(ptr)
-
-/** Adds the given page to the end of the TabPane. */
-fun TabPane.add(label: String, widget: Control<*>) {
-    uiTabAppend(ptr, label, widget.ctl)
-}
-
-/** Adds the given page to the TabPane such that it is the nth page of the TabPane (starting at 0). */
-fun TabPane.insert(page: Int, name: String, widget: Control<*>) = uiTabInsertAt(ptr, name, page, widget.ctl)
-
-/** Delete deletes the nth page of the TabPane. */
-fun TabPane.delete(page: Int) = uiTabDelete(ptr, page)
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -210,6 +216,7 @@ fun GridPane.cell(
     valign: uiAlign = uiAlignFill
 ) = Cell(x, y, xspan, yspan, hexpand, halign, vexpand, valign)
 
+/** Wrapper class for [uiGrid] */
 class GridPane : Control<uiGrid>(uiNewGrid()) {
 
     /** adapter for DSL builders */
@@ -229,65 +236,65 @@ class GridPane : Control<uiGrid>(uiNewGrid()) {
             return widget
         }
     }
-}
 
-/** If true, the container insert some space between children. */
-var GridPane.padded: Boolean
-    get() = uiGridPadded(ptr) != 0
-    set(padded) = uiGridSetPadded(ptr, if (padded) 1 else 0)
+    /** If true, the container insert some space between children. */
+    var padded: Boolean
+        get() = uiGridPadded(ptr) != 0
+        set(padded) = uiGridSetPadded(ptr, if (padded) 1 else 0)
 
-/** Adds the given Control to the end of the GridPane.
- *
- *  @param[widget] The Control to be added.
- *  @param[x] The x-coordinate of the Control's location.
- *  @param[y] The y-coordinate of the Control's location.
- *  @param[xspan] The width of the Control.
- *  @param[yspan] The height of the Control.
- *  @param[hexpand] The horizontal expand of Control.
- *  @param[halign] The horizontal alignment of Control.
- *  @param[vexpand] The vertical expand of Control.
- *  @param[valign] The vertical alignment of Control.
- */
-fun GridPane.add(
-    widget: Control<*>,
-    x: Int = 0,
-    y: Int = 0,
-    xspan: Int = 1,
-    yspan: Int = 1,
-    hexpand: Boolean = false,
-    halign: uiAlign = uiAlignFill,
-    vexpand: Boolean = false,
-    valign: uiAlign = uiAlignFill
-) = uiGridAppend(ptr, widget.ctl,
-        x, y, xspan, yspan,
-        if (hexpand) 1 else 0, halign,
-        if (vexpand) 1 else 0, valign)
+    /** Adds the given Control to the end of the GridPane.
+     *
+     *  @param[widget] The Control to be added.
+     *  @param[x] The x-coordinate of the Control's location.
+     *  @param[y] The y-coordinate of the Control's location.
+     *  @param[xspan] The width of the Control.
+     *  @param[yspan] The height of the Control.
+     *  @param[hexpand] The horizontal expand of Control.
+     *  @param[halign] The horizontal alignment of Control.
+     *  @param[vexpand] The vertical expand of Control.
+     *  @param[valign] The vertical alignment of Control.
+     */
+    fun add(
+        widget: Control<*>,
+        x: Int = 0,
+        y: Int = 0,
+        xspan: Int = 1,
+        yspan: Int = 1,
+        hexpand: Boolean = false,
+        halign: uiAlign = uiAlignFill,
+        vexpand: Boolean = false,
+        valign: uiAlign = uiAlignFill
+    ) = uiGridAppend(ptr, widget.ctl,
+            x, y, xspan, yspan,
+            if (hexpand) 1 else 0, halign,
+            if (vexpand) 1 else 0, valign)
 
-/** Insert the given Control after existing Control.
- *
- *  @param[widget] The Control to be added.
- *  @param[existing] The existing Control at which Control be inserted.
- *  @param[at] The relative placement of the Control to the existing one.
- *  @param[xspan] The width of the Control.
- *  @param[yspan] The height of the Control.
- *  @param[hexpand] The horizontal expand of Control.
- *  @param[halign] The horizontal alignment of Control.
- *  @param[vexpand] The vertical expand of Control.
- *  @param[valign] The vertical alignment of Control.
- */
-fun GridPane.insert(
-    widget: Control<*>,
-    existing: Control<*>,
-    at: uiAt,
-    xspan: Int = 1,
-    yspan: Int = 1,
-    hexpand: Boolean = false,
-    halign: uiAlign = uiAlignFill,
-    vexpand: Boolean = false,
-    valign: uiAlign = uiAlignFill
-) {
-    uiGridInsertAt(ptr, widget.ctl, existing.ctl,
-        at, xspan, yspan,
-        if (hexpand) 1 else 0, halign,
-        if (vexpand) 1 else 0, valign)
+    /** Insert the given Control after existing Control.
+     *
+     *  @param[widget] The Control to be added.
+     *  @param[existing] The existing Control at which Control be inserted.
+     *  @param[at] The relative placement of the Control to the existing one.
+     *  @param[xspan] The width of the Control.
+     *  @param[yspan] The height of the Control.
+     *  @param[hexpand] The horizontal expand of Control.
+     *  @param[halign] The horizontal alignment of Control.
+     *  @param[vexpand] The vertical expand of Control.
+     *  @param[valign] The vertical alignment of Control.
+     */
+    fun insert(
+        widget: Control<*>,
+        existing: Control<*>,
+        at: uiAt,
+        xspan: Int = 1,
+        yspan: Int = 1,
+        hexpand: Boolean = false,
+        halign: uiAlign = uiAlignFill,
+        vexpand: Boolean = false,
+        valign: uiAlign = uiAlignFill
+    ) {
+        uiGridInsertAt(ptr, widget.ctl, existing.ctl,
+            at, xspan, yspan,
+            if (hexpand) 1 else 0, halign,
+            if (vexpand) 1 else 0, valign)
+    }
 }

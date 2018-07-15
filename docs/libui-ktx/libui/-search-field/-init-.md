@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `SearchField()`
+
+Wrapper class for [uiEntry](#) to search text.
+

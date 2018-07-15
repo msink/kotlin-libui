@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `HorizontalSeparator()`
+
+Wrapper class for [uiSeparator](#) in VBox
+

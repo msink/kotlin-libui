@@ -9,6 +9,7 @@ inline fun <T> Container.tableview(
     init: Table<T>.() -> Unit = {}
 ) = add(TableView(table(data).apply(init)))
 
+/** Wrapper class for [uiTable] */
 class TableView(val table: Table<*>) : Control<uiTable>(
     alloc = memScoped {
         val params = alloc<uiTableParams>().apply {
@@ -33,6 +34,7 @@ fun <T> table(data: List<T>): Table<T> {
     return Table(data, uiNewTableModel(handler.ui.ptr), handler.ptr)
 }
 
+/** Wrapper class for [uiTableModel] */
 class Table<T> internal constructor(
     val data: List<T>,
     alloc: CPointer<uiTableModel>?,

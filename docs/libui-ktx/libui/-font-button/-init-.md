@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `FontButton()`
+
+Wrapper class for [uiFontButton](#)
+

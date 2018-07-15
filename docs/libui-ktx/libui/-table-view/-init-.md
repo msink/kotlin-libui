@@ -3,3 +3,6 @@
 # &lt;init&gt;
 
 `TableView(table: `[`Table`](../-table/index.md)`<*>)`
+
+Wrapper class for [uiTable](#)
+
