@@ -1,0 +1,11 @@
+[libui-ktx](../../index.md) / [libui](../index.md) / [Window](index.md) / [add](./add.md)
+
+# add
+
+`fun <T : `[`Control`](../-control/index.md)`<*>> add(widget: `[`T`](add.md#T)`): `[`T`](add.md#T)
+
+Overrides [Container.add](../-container/add.md)
+
+Specify the control to show in content area.
+Window can contain only one control, if you need more use layouts like Box or GridPane
+
