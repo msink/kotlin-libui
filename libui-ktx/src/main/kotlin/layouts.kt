@@ -60,7 +60,7 @@ inline fun Container.vbox(
 
 inline fun Box.stretchy(
     init: Box.Stretchy.() -> Unit = {}
-) = Stretchy().apply(init)
+): Box.Stretchy = Stretchy().apply(init)
 
 inline val Container.hbox: HBox get() = hbox()
 inline val Container.vbox: VBox get() = vbox()
@@ -159,7 +159,7 @@ inline fun TabPane.page(
     label: String,
     margined: Boolean = true,
     init: TabPane.Page.() -> Unit = {}
-) = Page(label)
+): TabPane.Page = Page(label)
         .apply(init)
         .apply { if (margined) this.margined = true }
 

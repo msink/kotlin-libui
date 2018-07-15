@@ -20,7 +20,7 @@
 
 | Name | Summary |
 |---|---|
-| [Size](-size.md) | `var Size: <ERROR CLASS>` |
+| [Size](-size.md) | `var Size: `[`size_t`](../../platform.posix/size_t.md) |
 
 ### Extension Properties
 

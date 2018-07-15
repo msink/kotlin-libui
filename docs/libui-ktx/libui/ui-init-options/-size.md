@@ -2,4 +2,4 @@
 
 # Size
 
-`var Size: <ERROR CLASS>`
+`var Size: `[`size_t`](../../platform.posix/size_t.md)

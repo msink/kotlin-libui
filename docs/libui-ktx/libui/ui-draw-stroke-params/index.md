@@ -25,7 +25,7 @@
 | [Dashes](-dashes.md) | `var Dashes: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`DoubleVar`](../../kotlinx.cinterop/-double-var.md)`>?` |
 | [Join](-join.md) | `var Join: `[`uiDrawLineJoin`](../ui-draw-line-join.md) |
 | [MiterLimit](-miter-limit.md) | `var MiterLimit: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
-| [NumDashes](-num-dashes.md) | `var NumDashes: <ERROR CLASS>` |
+| [NumDashes](-num-dashes.md) | `var NumDashes: `[`size_t`](../../platform.posix/size_t.md) |
 | [Thickness](-thickness.md) | `var Thickness: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
 
 ### Extension Properties

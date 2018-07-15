@@ -23,7 +23,7 @@
 | [A](-a.md) | `var A: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
 | [B](-b.md) | `var B: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
 | [G](-g.md) | `var G: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
-| [NumStops](-num-stops.md) | `var NumStops: <ERROR CLASS>` |
+| [NumStops](-num-stops.md) | `var NumStops: `[`size_t`](../../platform.posix/size_t.md) |
 | [OuterRadius](-outer-radius.md) | `var OuterRadius: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
 | [R](-r.md) | `var R: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
 | [Stops](-stops.md) | `var Stops: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiDrawBrushGradientStop`](../ui-draw-brush-gradient-stop/index.md)`>?` |

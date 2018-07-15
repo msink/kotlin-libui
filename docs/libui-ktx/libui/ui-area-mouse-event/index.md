@@ -24,7 +24,7 @@
 | [AreaWidth](-area-width.md) | `var AreaWidth: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
 | [Count](-count.md) | `var Count: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
 | [Down](-down.md) | `var Down: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
-| [Held1To64](-held1-to64.md) | `var Held1To64: <ERROR CLASS>` |
+| [Held1To64](-held1-to64.md) | `var Held1To64: `[`uint64_t`](../../platform.posix/uint64_t.md) |
 | [Modifiers](-modifiers.md) | `var Modifiers: `[`uiModifiers`](../ui-modifiers.md) |
 | [Up](-up.md) | `var Up: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
 | [X](-x.md) | `var X: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |

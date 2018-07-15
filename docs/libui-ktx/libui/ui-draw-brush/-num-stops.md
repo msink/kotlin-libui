@@ -2,4 +2,4 @@
 
 # NumStops
 
-`var NumStops: <ERROR CLASS>`
+`var NumStops: `[`size_t`](../../platform.posix/size_t.md)

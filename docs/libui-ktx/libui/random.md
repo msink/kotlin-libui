@@ -2,4 +2,4 @@
 
 # random
 
-`fun random(): <ERROR CLASS>`
+`fun random(): `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)

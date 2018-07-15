@@ -2,4 +2,4 @@
 
 # TypeSignature
 
-`var TypeSignature: <ERROR CLASS>`
+`var TypeSignature: `[`uint32_t`](../../platform.posix/uint32_t.md)

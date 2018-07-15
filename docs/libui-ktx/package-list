@@ -27,3 +27,4 @@ $dokka.location:kotlinx.cinterop$toCValues(kotlin.collections.List((kotlinx.cint
 $dokka.location:kotlinx.cinterop$wcstr#kotlin.Stringkotlinx.cinterop/kotlin.-string/wcstr.md
 kotlinx.cinterop
 libui
+platform.posix
