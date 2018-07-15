@@ -28,8 +28,8 @@ after_success:
   - cp samples/datetime/build/konan/bin/${TARGET}_x64/datetime.kexe .
   - cp samples/drawtext/build/konan/bin/${TARGET}_x64/drawtext.kexe .
   - cp samples/form/build/konan/bin/${TARGET}_x64/form.kexe .
-  - cp samples/hello/build/konan/bin/${TARGET}_x64/hello1.kexe .
-  - cp samples/hello2/build/konan/bin/${TARGET}_x64/hello2.kexe .
+  - cp samples/hello/build/konan/bin/${TARGET}_x64/hello.kexe .
+  - cp samples/hello-ktx/build/konan/bin/${TARGET}_x64/hello-ktx.kexe .
   - cp samples/histogram/build/konan/bin/${TARGET}_x64/histogram.kexe .
   - cp samples/logo/build/konan/bin/${TARGET}_x64/logo.kexe .
   - cp samples/table/build/konan/bin/${TARGET}_x64/table.kexe .

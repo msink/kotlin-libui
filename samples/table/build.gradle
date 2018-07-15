@@ -2,17 +2,13 @@ apply plugin: 'konan'
 
 def konanUserDir = System.getenv("KONAN_DATA_DIR") ?: "${System.getProperty("user.home")}/.konan"
 def windresDir = "$konanUserDir/dependencies/msys2-mingw-w64-x86_64-gcc-7.2.0-clang-llvm-5.0.0-windows-x86-64/bin"
-def resFile = file("$buildDir/konan/resources/samples.res")
 def rcFile = file('src/main/resources/samples.rc')
-
+def resFile = file("$buildDir/konan/resources/samples.res")
 task windowsResources(type: Exec) {
-    def path = System.getenv("PATH")
-
-    commandLine "$windresDir/windres", rcFile, '-O', 'coff', '-o', resFile
-    environment 'PATH', "$windresDir;$path"
-
     inputs.file rcFile
     outputs.file resFile
+    commandLine "$windresDir/windres", rcFile, '-O', 'coff', '-o', resFile
+    environment 'PATH', "$windresDir;${System.getenv('PATH')}"
 }
 
 konanArtifacts {
@@ -23,10 +19,10 @@ konanArtifacts {
         libraries {
             artifact project(':libui-ktx'), 'libui-ktx'
         }
-        target 'mingw', {
-            linkerOpts "$resFile -mwindows"
+        target('mingw') {
             dependsOn 'windowsResources'
             inputs.file resFile
+            linkerOpts "$resFile -mwindows"
         }
     }
 }

@@ -17,8 +17,8 @@ after_build:
          .\samples\datetime\build\konan\bin\mingw_x64\datetime.exe
          .\samples\drawtext\build\konan\bin\mingw_x64\drawtext.exe
          .\samples\form\build\konan\bin\mingw_x64\form.exe
-         .\samples\hello\build\konan\bin\mingw_x64\hello1.exe
-         .\samples\hello2\build\konan\bin\mingw_x64\hello2.exe
+         .\samples\hello\build\konan\bin\mingw_x64\hello.exe
+         .\samples\hello-ktx\build\konan\bin\mingw_x64\hello-ktx.exe
          .\samples\histogram\build\konan\bin\mingw_x64\histogram.exe
          .\samples\logo\build\konan\bin\mingw_x64\logo.exe
          .\samples\table\build\konan\bin\mingw_x64\table.exe
