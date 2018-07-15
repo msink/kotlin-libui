@@ -10,16 +10,16 @@ Changes the weight of the text it is applied to.
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `WeightAttribute(weight: <ERROR CLASS>)`<br>Changes the weight of the text it is applied to. |
+| [&lt;init&gt;](-init-.md) | `WeightAttribute(weight: `[`uiTextWeight`](../ui-text-weight.md)`)`<br>Changes the weight of the text it is applied to. |
 
 ### Properties
 
 | Name | Summary |
 |---|---|
-| [value](value.md) | `val value: <ERROR CLASS>`<br>Returns the font weight stored. |
+| [value](value.md) | `val value: `[`uiTextWeight`](../ui-text-weight.md)<br>Returns the font weight stored. |
 
 ### Inherited Properties
 
 | Name | Summary |
 |---|---|
-| [type](../-attribute/type.md) | `val type: <ERROR CLASS>`<br>Returns the type of [Attribute](../-attribute/index.md). |
+| [type](../-attribute/type.md) | `val type: `[`uiAttributeType`](../ui-attribute-type.md)<br>Returns the type of [Attribute](../-attribute/index.md). |

@@ -2,7 +2,7 @@
 
 # &lt;init&gt;
 
-`Attribute(alloc: <ERROR CLASS><<ERROR CLASS>>?)`
+`Attribute(alloc: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?)`
 
 Stores information about an attribute in a [string](../string.md).
 

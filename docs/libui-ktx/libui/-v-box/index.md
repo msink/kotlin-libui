@@ -23,7 +23,7 @@ Wrapper class for [uiBox](#) that stack its children vertically.
 | Name | Summary |
 |---|---|
 | [add](../-box/add.md) | `open fun <T : `[`Control`](../-control/index.md)`<*>> add(widget: `[`T`](../-box/add.md#T)`): `[`T`](../-box/add.md#T)<br>Adds the given widget to the end of the Box. |
-| [delete](../-box/delete.md) | `fun delete(index: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): <ERROR CLASS>`<br>Deletes the nth control of the Box. |
+| [delete](../-box/delete.md) | `fun delete(index: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Deletes the nth control of the Box. |
 
 ### Extension Properties
 

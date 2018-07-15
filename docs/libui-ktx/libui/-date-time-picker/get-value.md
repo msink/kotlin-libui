@@ -2,7 +2,7 @@
 
 # getValue
 
-`fun getValue(value: <ERROR CLASS><<ERROR CLASS>>): <ERROR CLASS>`
+`fun getValue(value: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
 
 The current value as posix `struct tm`
 

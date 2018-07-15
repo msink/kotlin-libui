@@ -1,0 +1,5 @@
+[libui-ktx](../index.md) / [libui](index.md) / [uiWindowBorderless](./ui-window-borderless.md)
+
+# uiWindowBorderless
+
+`fun uiWindowBorderless(w: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<<ERROR CLASS>>?): `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)

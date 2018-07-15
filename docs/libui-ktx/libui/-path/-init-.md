@@ -2,7 +2,7 @@
 
 # &lt;init&gt;
 
-`Path(mode: <ERROR CLASS>)`
+`Path(mode: `[`uiDrawFillMode`](../ui-draw-fill-mode.md)`)`
 
 Represent a path that could be drawed on a [DrawContext](../-draw-context.md)
 

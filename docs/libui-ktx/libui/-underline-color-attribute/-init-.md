@@ -2,7 +2,7 @@
 
 # &lt;init&gt;
 
-`UnderlineColorAttribute(kind: <ERROR CLASS>, color: `[`Color`](../-color/index.md)`)`
+`UnderlineColorAttribute(kind: `[`uiUnderlineColor`](../ui-underline-color.md)`, color: `[`Color`](../-color/index.md)`)`
 
 Changes the color of the underline on the text it is applied to.
 

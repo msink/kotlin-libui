@@ -2,7 +2,7 @@
 
 # show
 
-`fun show(): <ERROR CLASS>`
+`fun show(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
 
 Shows the Control.
 

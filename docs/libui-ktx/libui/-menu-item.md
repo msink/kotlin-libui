@@ -2,4 +2,4 @@
 
 # MenuItem
 
-`typealias MenuItem = <ERROR CLASS><<ERROR CLASS>>`
+`typealias MenuItem = `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>`

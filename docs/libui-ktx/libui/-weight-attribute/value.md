@@ -2,7 +2,7 @@
 
 # value
 
-`val value: <ERROR CLASS>`
+`val value: `[`uiTextWeight`](../ui-text-weight.md)
 
 Returns the font weight stored.
 

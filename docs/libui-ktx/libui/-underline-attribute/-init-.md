@@ -2,7 +2,7 @@
 
 # &lt;init&gt;
 
-`UnderlineAttribute(u: <ERROR CLASS>)`
+`UnderlineAttribute(u: `[`uiUnderline`](../ui-underline.md)`)`
 
 Changes the type of underline on the text it is applied to.
 

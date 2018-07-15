@@ -2,7 +2,7 @@
 
 # value
 
-`val value: <ERROR CLASS>`
+`val value: `[`uiUnderline`](../ui-underline.md)
 
 Returns the underline type stored in [Attribute](../-attribute/index.md).
 

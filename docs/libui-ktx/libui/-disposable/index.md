@@ -2,7 +2,7 @@
 
 # Disposable
 
-`abstract class Disposable<T>`
+`abstract class Disposable<T : `[`CPointed`](../../kotlinx.cinterop/-c-pointed/index.md)`>`
 
 Manages and owns all its native resources.
 
@@ -16,14 +16,14 @@ Manages and owns all its native resources.
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Disposable(alloc: <ERROR CLASS><`[`T`](index.md#T)`>?)`<br>Manages and owns all its native resources. |
+| [&lt;init&gt;](-init-.md) | `Disposable(alloc: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`T`](index.md#T)`>?)`<br>Manages and owns all its native resources. |
 
 ### Properties
 
 | Name | Summary |
 |---|---|
 | [disposed](disposed.md) | `val disposed: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Returns `true` if object was disposed - in this case [disposed](disposed.md) will do nothing, all other operations are invalid and will `throw Error("Resource is disposed")`. |
-| [ptr](ptr.md) | `val ptr: <ERROR CLASS><`[`T`](index.md#T)`>` |
+| [ptr](ptr.md) | `val ptr: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`T`](index.md#T)`>` |
 
 ### Functions
 
@@ -37,13 +37,13 @@ Manages and owns all its native resources.
 |---|---|
 | [Attribute](../-attribute/index.md) | `abstract class Attribute : `[`Disposable`](./index.md)`<<ERROR CLASS>>`<br>Stores information about an attribute in a [string](../string.md). |
 | [AttributedString](../-attributed-string/index.md) | `class AttributedString : `[`Disposable`](./index.md)`<<ERROR CLASS>>`<br>Represents a string of UTF-8 text that can be embellished with formatting attributes. |
-| [Brush](../-brush/index.md) | `class Brush : `[`Disposable`](./index.md)`<<ERROR CLASS>>`<br>Defines the color(s) to draw a path with. |
-| [Control](../-control/index.md) | `abstract class Control<T> : `[`Disposable`](./index.md)`<`[`T`](../-control/index.md#T)`>`<br>Base class for all GUI controls (widgets). |
-| [Font](../-font/index.md) | `class Font : `[`Disposable`](./index.md)`<<ERROR CLASS>>`<br>Provides a complete description of a font where one is needed. |
+| [Brush](../-brush/index.md) | `class Brush : `[`Disposable`](./index.md)`<`[`uiDrawBrush`](../ui-draw-brush/index.md)`>`<br>Defines the color(s) to draw a path with. |
+| [Control](../-control/index.md) | `abstract class Control<T : `[`CPointed`](../../kotlinx.cinterop/-c-pointed/index.md)`> : `[`Disposable`](./index.md)`<`[`T`](../-control/index.md#T)`>`<br>Base class for all GUI controls (widgets). |
+| [Font](../-font/index.md) | `class Font : `[`Disposable`](./index.md)`<`[`uiFontDescriptor`](../ui-font-descriptor/index.md)`>`<br>Provides a complete description of a font where one is needed. |
 | [Image](../-image/index.md) | `class Image : `[`Disposable`](./index.md)`<<ERROR CLASS>>` |
-| [Matrix](../-matrix/index.md) | `class Matrix : `[`Disposable`](./index.md)`<<ERROR CLASS>>`<br>Defines a transformation (e.g. rotation, translation) |
+| [Matrix](../-matrix/index.md) | `class Matrix : `[`Disposable`](./index.md)`<`[`uiDrawMatrix`](../ui-draw-matrix/index.md)`>`<br>Defines a transformation (e.g. rotation, translation) |
 | [OpenTypeFeatures](../-open-type-features/index.md) | `class OpenTypeFeatures : `[`Disposable`](./index.md)`<<ERROR CLASS>>`<br>Represents a set of OpenType feature tag-value pairs, for applying OpenType features to text. |
 | [Path](../-path/index.md) | `class Path : `[`Disposable`](./index.md)`<<ERROR CLASS>>`<br>Represent a path that could be drawed on a [DrawContext](../-draw-context.md) |
-| [Stroke](../-stroke/index.md) | `class Stroke : `[`Disposable`](./index.md)`<<ERROR CLASS>>`<br>Describes the stroke to draw with. |
+| [Stroke](../-stroke/index.md) | `class Stroke : `[`Disposable`](./index.md)`<`[`uiDrawStrokeParams`](../ui-draw-stroke-params/index.md)`>`<br>Describes the stroke to draw with. |
 | [Table](../-table/index.md) | `class Table<T> : `[`Disposable`](./index.md)`<<ERROR CLASS>>`<br>Wrapper class for [uiTableModel](#) |
 | [TextLayout](../-text-layout/index.md) | `class TextLayout : `[`Disposable`](./index.md)`<<ERROR CLASS>>`<br>Representation of a [string](../string.md) that can be displayed in a [DrawContext](../-draw-context.md). |

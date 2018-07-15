@@ -10,20 +10,20 @@ Stores information about an attribute in a [string](../string.md).
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Attribute(alloc: <ERROR CLASS><<ERROR CLASS>>?)`<br>Stores information about an attribute in a [string](../string.md). |
+| [&lt;init&gt;](-init-.md) | `Attribute(alloc: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?)`<br>Stores information about an attribute in a [string](../string.md). |
 
 ### Properties
 
 | Name | Summary |
 |---|---|
-| [type](type.md) | `val type: <ERROR CLASS>`<br>Returns the type of [Attribute](./index.md). |
+| [type](type.md) | `val type: `[`uiAttributeType`](../ui-attribute-type.md)<br>Returns the type of [Attribute](./index.md). |
 
 ### Inherited Properties
 
 | Name | Summary |
 |---|---|
 | [disposed](../-disposable/disposed.md) | `val disposed: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Returns `true` if object was disposed - in this case [disposed](../-disposable/disposed.md) will do nothing, all other operations are invalid and will `throw Error("Resource is disposed")`. |
-| [ptr](../-disposable/ptr.md) | `val ptr: <ERROR CLASS><`[`T`](../-disposable/index.md#T)`>` |
+| [ptr](../-disposable/ptr.md) | `val ptr: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`T`](../-disposable/index.md#T)`>` |
 
 ### Inherited Functions
 

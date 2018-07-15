@@ -2,4 +2,4 @@
 
 # ctl
 
-`val ctl: <ERROR CLASS><<ERROR CLASS>>`
+`val ctl: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiControl`](../ui-control/index.md)`>`

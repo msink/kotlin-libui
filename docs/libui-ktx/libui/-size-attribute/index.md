@@ -22,4 +22,4 @@ Changes the size of the text it is applied to, in typographical points.
 
 | Name | Summary |
 |---|---|
-| [type](../-attribute/type.md) | `val type: <ERROR CLASS>`<br>Returns the type of [Attribute](../-attribute/index.md). |
+| [type](../-attribute/type.md) | `val type: `[`uiAttributeType`](../ui-attribute-type.md)<br>Returns the type of [Attribute](../-attribute/index.md). |

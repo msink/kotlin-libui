@@ -2,7 +2,7 @@
 
 # setValue
 
-`fun setValue(value: <ERROR CLASS><<ERROR CLASS>>): <ERROR CLASS>`
+`fun setValue(value: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
 
 Set current value from posix `struct tm`
 

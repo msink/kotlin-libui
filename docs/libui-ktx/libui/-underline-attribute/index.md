@@ -10,16 +10,16 @@ Changes the type of underline on the text it is applied to.
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `UnderlineAttribute(u: <ERROR CLASS>)`<br>Changes the type of underline on the text it is applied to. |
+| [&lt;init&gt;](-init-.md) | `UnderlineAttribute(u: `[`uiUnderline`](../ui-underline.md)`)`<br>Changes the type of underline on the text it is applied to. |
 
 ### Properties
 
 | Name | Summary |
 |---|---|
-| [value](value.md) | `val value: <ERROR CLASS>`<br>Returns the underline type stored in [Attribute](../-attribute/index.md). |
+| [value](value.md) | `val value: `[`uiUnderline`](../ui-underline.md)<br>Returns the underline type stored in [Attribute](../-attribute/index.md). |
 
 ### Inherited Properties
 
 | Name | Summary |
 |---|---|
-| [type](../-attribute/type.md) | `val type: <ERROR CLASS>`<br>Returns the type of [Attribute](../-attribute/index.md). |
+| [type](../-attribute/type.md) | `val type: `[`uiAttributeType`](../ui-attribute-type.md)<br>Returns the type of [Attribute](../-attribute/index.md). |

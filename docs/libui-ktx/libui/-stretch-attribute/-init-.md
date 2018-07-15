@@ -2,7 +2,7 @@
 
 # &lt;init&gt;
 
-`StretchAttribute(stretch: <ERROR CLASS>)`
+`StretchAttribute(stretch: `[`uiTextStretch`](../ui-text-stretch.md)`)`
 
 Changes the stretch of the text it is applied to.
 

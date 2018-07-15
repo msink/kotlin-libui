@@ -2,4 +2,4 @@
 
 # ptr
 
-`val ptr: <ERROR CLASS><`[`T`](index.md#T)`>`
+`val ptr: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`T`](index.md#T)`>`

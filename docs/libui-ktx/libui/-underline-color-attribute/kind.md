@@ -2,7 +2,7 @@
 
 # kind
 
-`val kind: <ERROR CLASS>`
+`val kind: `[`uiUnderlineColor`](../ui-underline-color.md)
 
 Returns the underline color kind stored.
 

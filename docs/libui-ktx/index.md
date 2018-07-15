@@ -4,6 +4,7 @@
 
 | Name | Summary |
 |---|---|
+| [kotlinx.cinterop](kotlinx.cinterop/index.md) |  |
 | [libui](libui/index.md) |  |
 
 ### Index

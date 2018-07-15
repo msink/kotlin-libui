@@ -2,7 +2,7 @@
 
 # disable
 
-`fun disable(): <ERROR CLASS>`
+`fun disable(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
 
 Disables the Control.
 

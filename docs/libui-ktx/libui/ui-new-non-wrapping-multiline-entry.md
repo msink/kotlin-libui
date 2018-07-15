@@ -1,0 +1,5 @@
+[libui-ktx](../index.md) / [libui](index.md) / [uiNewNonWrappingMultilineEntry](./ui-new-non-wrapping-multiline-entry.md)
+
+# uiNewNonWrappingMultilineEntry
+
+`fun uiNewNonWrappingMultilineEntry(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?`

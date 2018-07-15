@@ -2,7 +2,7 @@
 
 # &lt;init&gt;
 
-`Separator(alloc: <ERROR CLASS><<ERROR CLASS>>?)`
+`Separator(alloc: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?)`
 
 Wrapper class for [uiSeparator](#)
 

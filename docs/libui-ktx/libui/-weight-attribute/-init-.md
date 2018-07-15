@@ -2,7 +2,7 @@
 
 # &lt;init&gt;
 
-`WeightAttribute(weight: <ERROR CLASS>)`
+`WeightAttribute(weight: `[`uiTextWeight`](../ui-text-weight.md)`)`
 
 Changes the weight of the text it is applied to.
 

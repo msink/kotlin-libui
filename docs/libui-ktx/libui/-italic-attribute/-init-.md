@@ -2,7 +2,7 @@
 
 # &lt;init&gt;
 
-`ItalicAttribute(italic: <ERROR CLASS>)`
+`ItalicAttribute(italic: `[`uiTextItalic`](../ui-text-italic.md)`)`
 
 Changes the italic mode of the text it is applied to.
 

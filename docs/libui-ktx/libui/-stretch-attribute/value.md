@@ -2,7 +2,7 @@
 
 # value
 
-`val value: <ERROR CLASS>`
+`val value: `[`uiTextStretch`](../ui-text-stretch.md)
 
 Returns the font stretch stored in [Attribute](../-attribute/index.md).
 

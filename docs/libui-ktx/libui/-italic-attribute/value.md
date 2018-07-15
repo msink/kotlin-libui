@@ -2,7 +2,7 @@
 
 # value
 
-`val value: <ERROR CLASS>`
+`val value: `[`uiTextItalic`](../ui-text-italic.md)
 
 uiAttributeItalic() returns the font italic mode stored.
 

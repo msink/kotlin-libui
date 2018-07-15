@@ -12,7 +12,8 @@ apply plugin: 'org.jetbrains.dokka'
 dokka {
     outputFormat = 'gfm'
     outputDirectory = rootProject.file('docs').absolutePath
-    sourceDirs = files('src/main/kotlin')
+    sourceRoot { path = 'libui-ktx/src/main/kotlin' }
+    sourceRoot { path = 'libui-ktx/staging' }
     linkMapping {
         dir = "src/main/kotlin"
         url = "https://github.com/msink/kotlin-libui/blob/master/${project.name}/src/main/kotlin"

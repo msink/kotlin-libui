@@ -2,4 +2,4 @@
 
 # handler
 
-`val handler: <ERROR CLASS><<ERROR CLASS>>`
+`val handler: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`ktAreaHandler`](../kt-area-handler/index.md)`>`

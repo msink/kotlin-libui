@@ -2,7 +2,7 @@
 
 # type
 
-`val type: <ERROR CLASS>`
+`val type: `[`uiAttributeType`](../ui-attribute-type.md)
 
 Returns the type of [Attribute](index.md).
 

@@ -2,7 +2,7 @@
 
 # Brush
 
-`class Brush : `[`Disposable`](../-disposable/index.md)`<<ERROR CLASS>>`
+`class Brush : `[`Disposable`](../-disposable/index.md)`<`[`uiDrawBrush`](../ui-draw-brush/index.md)`>`
 
 Defines the color(s) to draw a path with.
 
@@ -17,7 +17,7 @@ Defines the color(s) to draw a path with.
 | Name | Summary |
 |---|---|
 | [disposed](../-disposable/disposed.md) | `val disposed: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Returns `true` if object was disposed - in this case [disposed](../-disposable/disposed.md) will do nothing, all other operations are invalid and will `throw Error("Resource is disposed")`. |
-| [ptr](../-disposable/ptr.md) | `val ptr: <ERROR CLASS><`[`T`](../-disposable/index.md#T)`>` |
+| [ptr](../-disposable/ptr.md) | `val ptr: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`T`](../-disposable/index.md#T)`>` |
 
 ### Inherited Functions
 

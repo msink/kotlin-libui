@@ -10,7 +10,7 @@ Representation of a [string](../string.md) that can be displayed in a [DrawConte
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `TextLayout(string: `[`AttributedString`](../-attributed-string/index.md)`, defaultFont: `[`Font`](../-font/index.md)`, width: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)`, align: <ERROR CLASS>)`<br>Representation of a [string](../string.md) that can be displayed in a [DrawContext](../-draw-context.md). |
+| [&lt;init&gt;](-init-.md) | `TextLayout(string: `[`AttributedString`](../-attributed-string/index.md)`, defaultFont: `[`Font`](../-font/index.md)`, width: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)`, align: `[`uiDrawTextAlign`](../ui-draw-text-align.md)`)`<br>Representation of a [string](../string.md) that can be displayed in a [DrawContext](../-draw-context.md). |
 
 ### Properties
 
@@ -23,7 +23,7 @@ Representation of a [string](../string.md) that can be displayed in a [DrawConte
 | Name | Summary |
 |---|---|
 | [disposed](../-disposable/disposed.md) | `val disposed: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Returns `true` if object was disposed - in this case [disposed](../-disposable/disposed.md) will do nothing, all other operations are invalid and will `throw Error("Resource is disposed")`. |
-| [ptr](../-disposable/ptr.md) | `val ptr: <ERROR CLASS><`[`T`](../-disposable/index.md#T)`>` |
+| [ptr](../-disposable/ptr.md) | `val ptr: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`T`](../-disposable/index.md#T)`>` |
 
 ### Inherited Functions
 
