@@ -2,4 +2,4 @@
 
 # uiNewTableValueString
 
-`fun uiNewTableValueString(str: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?`
+`fun uiNewTableValueString(str: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiTableValue`](ui-table-value.md)`>?`

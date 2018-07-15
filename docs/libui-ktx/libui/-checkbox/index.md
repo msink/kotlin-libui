@@ -2,15 +2,15 @@
 
 # Checkbox
 
-`class Checkbox : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
+`class Checkbox : `[`Control`](../-control/index.md)`<`[`uiCheckbox`](../ui-checkbox.md)`>`
 
-Wrapper class for [uiCheckbox](#)
+Wrapper class for [uiCheckbox](../ui-checkbox.md)
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Checkbox(label: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`)`<br>Wrapper class for [uiCheckbox](#) |
+| [&lt;init&gt;](-init-.md) | `Checkbox(label: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`)`<br>Wrapper class for [uiCheckbox](../ui-checkbox.md) |
 
 ### Properties
 

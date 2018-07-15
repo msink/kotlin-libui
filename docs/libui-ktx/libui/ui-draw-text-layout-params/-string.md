@@ -2,4 +2,4 @@
 
 # String
 
-`var String: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?`
+`var String: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiAttributedString`](../ui-attributed-string.md)`>?`

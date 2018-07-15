@@ -2,4 +2,4 @@
 
 # uiNewVerticalBox
 
-`fun uiNewVerticalBox(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?`
+`fun uiNewVerticalBox(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiBox`](ui-box.md)`>?`

@@ -2,4 +2,4 @@
 
 # uiNewFeaturesAttribute
 
-`fun uiNewFeaturesAttribute(otf: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<<ERROR CLASS>>?): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?`
+`fun uiNewFeaturesAttribute(otf: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiOpenTypeFeatures`](ui-open-type-features.md)`>?): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiAttribute`](ui-attribute.md)`>?`

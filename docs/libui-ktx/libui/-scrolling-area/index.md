@@ -4,7 +4,7 @@
 
 `class ScrollingArea : `[`DrawArea`](../-draw-area/index.md)
 
-Wrapper class for [uiArea](#) with scrollbars.
+Wrapper class for [uiArea](../ui-area.md) with scrollbars.
 
 ### Inherited Properties
 

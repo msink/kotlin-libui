@@ -4,5 +4,5 @@
 
 `FontButton()`
 
-Wrapper class for [uiFontButton](#)
+Wrapper class for [uiFontButton](../ui-font-button.md)
 

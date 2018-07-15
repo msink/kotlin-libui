@@ -4,5 +4,5 @@
 
 `VerticalSeparator()`
 
-Wrapper class for [uiSeparator](#) in HBox
+Wrapper class for [uiSeparator](../ui-separator.md) in HBox
 

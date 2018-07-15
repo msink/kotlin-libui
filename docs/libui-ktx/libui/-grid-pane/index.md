@@ -2,9 +2,9 @@
 
 # GridPane
 
-`class GridPane : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
+`class GridPane : `[`Control`](../-control/index.md)`<`[`uiGrid`](../ui-grid.md)`>`
 
-Wrapper class for [uiGrid](#)
+Wrapper class for [uiGrid](../ui-grid.md)
 
 ### Types
 
@@ -16,7 +16,7 @@ Wrapper class for [uiGrid](#)
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `GridPane()`<br>Wrapper class for [uiGrid](#) |
+| [&lt;init&gt;](-init-.md) | `GridPane()`<br>Wrapper class for [uiGrid](../ui-grid.md) |
 
 ### Properties
 

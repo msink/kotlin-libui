@@ -4,13 +4,13 @@
 
 `class PasswordField : `[`TextField`](../-text-field/index.md)
 
-Wrapper class for [uiEntry](#) to edit passwords.
+Wrapper class for [uiEntry](../ui-entry.md) to edit passwords.
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `PasswordField()`<br>Wrapper class for [uiEntry](#) to edit passwords. |
+| [&lt;init&gt;](-init-.md) | `PasswordField()`<br>Wrapper class for [uiEntry](../ui-entry.md) to edit passwords. |
 
 ### Inherited Properties
 

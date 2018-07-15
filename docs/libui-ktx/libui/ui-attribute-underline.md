@@ -2,4 +2,4 @@
 
 # uiAttributeUnderline
 
-`fun uiAttributeUnderline(a: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<<ERROR CLASS>>?): `[`uiUnderline`](ui-underline.md)
+`fun uiAttributeUnderline(a: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiAttribute`](ui-attribute.md)`>?): `[`uiUnderline`](ui-underline.md)

@@ -2,4 +2,4 @@
 
 # uiNewHorizontalBox
 
-`fun uiNewHorizontalBox(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?`
+`fun uiNewHorizontalBox(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiBox`](ui-box.md)`>?`

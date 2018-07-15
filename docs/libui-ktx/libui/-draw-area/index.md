@@ -2,9 +2,9 @@
 
 # DrawArea
 
-`open class DrawArea : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
+`open class DrawArea : `[`Control`](../-control/index.md)`<`[`uiArea`](../ui-area.md)`>`
 
-Wrapper class for [uiArea](#)
+Wrapper class for [uiArea](../ui-area.md)
 
 ### Properties
 
@@ -59,4 +59,4 @@ Wrapper class for [uiArea](#)
 
 | Name | Summary |
 |---|---|
-| [ScrollingArea](../-scrolling-area/index.md) | `class ScrollingArea : `[`DrawArea`](./index.md)<br>Wrapper class for [uiArea](#) with scrollbars. |
+| [ScrollingArea](../-scrolling-area/index.md) | `class ScrollingArea : `[`DrawArea`](./index.md)<br>Wrapper class for [uiArea](../ui-area.md) with scrollbars. |

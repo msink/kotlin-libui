@@ -2,4 +2,4 @@
 
 # uiDrawNewTextLayout
 
-`fun uiDrawNewTextLayout(params: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiDrawTextLayoutParams`](ui-draw-text-layout-params/index.md)`>?): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?`
+`fun uiDrawNewTextLayout(params: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiDrawTextLayoutParams`](ui-draw-text-layout-params/index.md)`>?): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiDrawTextLayout`](ui-draw-text-layout.md)`>?`

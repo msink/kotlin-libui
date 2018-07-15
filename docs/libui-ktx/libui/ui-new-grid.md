@@ -2,4 +2,4 @@
 
 # uiNewGrid
 
-`fun uiNewGrid(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?`
+`fun uiNewGrid(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiGrid`](ui-grid.md)`>?`

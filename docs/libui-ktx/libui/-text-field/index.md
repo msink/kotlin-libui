@@ -2,9 +2,9 @@
 
 # TextField
 
-`open class TextField : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
+`open class TextField : `[`Control`](../-control/index.md)`<`[`uiEntry`](../ui-entry.md)`>`
 
-Wrapper class for [uiEntry](#)
+Wrapper class for [uiEntry](../ui-entry.md)
 
 ### Constructors
 
@@ -53,5 +53,5 @@ Wrapper class for [uiEntry](#)
 
 | Name | Summary |
 |---|---|
-| [PasswordField](../-password-field/index.md) | `class PasswordField : `[`TextField`](./index.md)<br>Wrapper class for [uiEntry](#) to edit passwords. |
-| [SearchField](../-search-field/index.md) | `class SearchField : `[`TextField`](./index.md)<br>Wrapper class for [uiEntry](#) to search text. |
+| [PasswordField](../-password-field/index.md) | `class PasswordField : `[`TextField`](./index.md)<br>Wrapper class for [uiEntry](../ui-entry.md) to edit passwords. |
+| [SearchField](../-search-field/index.md) | `class SearchField : `[`TextField`](./index.md)<br>Wrapper class for [uiEntry](../ui-entry.md) to search text. |

@@ -4,13 +4,13 @@
 
 `class VBox : `[`Box`](../-box/index.md)
 
-Wrapper class for [uiBox](#) that stack its children vertically.
+Wrapper class for [uiBox](../ui-box.md) that stack its children vertically.
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `VBox()`<br>Wrapper class for [uiBox](#) that stack its children vertically. |
+| [&lt;init&gt;](-init-.md) | `VBox()`<br>Wrapper class for [uiBox](../ui-box.md) that stack its children vertically. |
 
 ### Inherited Properties
 

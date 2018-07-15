@@ -2,4 +2,4 @@
 
 # uiNewProgressBar
 
-`fun uiNewProgressBar(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?`
+`fun uiNewProgressBar(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiProgressBar`](ui-progress-bar.md)`>?`

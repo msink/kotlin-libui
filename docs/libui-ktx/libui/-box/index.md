@@ -2,9 +2,9 @@
 
 # Box
 
-`abstract class Box : `[`Control`](../-control/index.md)`<<ERROR CLASS>>, `[`Container`](../-container/index.md)
+`abstract class Box : `[`Control`](../-control/index.md)`<`[`uiBox`](../ui-box.md)`>, `[`Container`](../-container/index.md)
 
-Wrapper class for [uiBox](#)
+Wrapper class for [uiBox](../ui-box.md)
 
 ### Types
 
@@ -16,7 +16,7 @@ Wrapper class for [uiBox](#)
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Box(alloc: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?)`<br>Wrapper class for [uiBox](#) |
+| [&lt;init&gt;](-init-.md) | `Box(alloc: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiBox`](../ui-box.md)`>?)`<br>Wrapper class for [uiBox](../ui-box.md) |
 
 ### Properties
 
@@ -100,5 +100,5 @@ Wrapper class for [uiBox](#)
 
 | Name | Summary |
 |---|---|
-| [HBox](../-h-box/index.md) | `class HBox : `[`Box`](./index.md)<br>Wrapper class for [uiBox](#) that stack its children horizontally. |
-| [VBox](../-v-box/index.md) | `class VBox : `[`Box`](./index.md)<br>Wrapper class for [uiBox](#) that stack its children vertically. |
+| [HBox](../-h-box/index.md) | `class HBox : `[`Box`](./index.md)<br>Wrapper class for [uiBox](../ui-box.md) that stack its children horizontally. |
+| [VBox](../-v-box/index.md) | `class VBox : `[`Box`](./index.md)<br>Wrapper class for [uiBox](../ui-box.md) that stack its children vertically. |

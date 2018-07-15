@@ -2,4 +2,4 @@
 
 # uiSliderValue
 
-`fun uiSliderValue(s: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<<ERROR CLASS>>?): `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`fun uiSliderValue(s: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiSlider`](ui-slider.md)`>?): `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)

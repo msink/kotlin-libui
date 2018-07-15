@@ -2,15 +2,15 @@
 
 # Label
 
-`class Label : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
+`class Label : `[`Control`](../-control/index.md)`<`[`uiLabel`](../ui-label.md)`>`
 
-Wrapper class for [uiLabel](#)
+Wrapper class for [uiLabel](../ui-label.md)
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Label(text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`)`<br>Wrapper class for [uiLabel](#) |
+| [&lt;init&gt;](-init-.md) | `Label(text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`)`<br>Wrapper class for [uiLabel](../ui-label.md) |
 
 ### Properties
 

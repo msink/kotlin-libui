@@ -2,4 +2,4 @@
 
 # uiNewRadioButtons
 
-`fun uiNewRadioButtons(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?`
+`fun uiNewRadioButtons(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiRadioButtons`](ui-radio-buttons.md)`>?`

@@ -22,7 +22,7 @@
 |---|---|
 | [Align](-align.md) | `var Align: `[`uiDrawTextAlign`](../ui-draw-text-align.md) |
 | [DefaultFont](-default-font.md) | `var DefaultFont: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiFontDescriptor`](../ui-font-descriptor/index.md)`>?` |
-| [String](-string.md) | `var String: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?` |
+| [String](-string.md) | `var String: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiAttributedString`](../ui-attributed-string.md)`>?` |
 | [Width](-width.md) | `var Width: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
 
 ### Extension Properties

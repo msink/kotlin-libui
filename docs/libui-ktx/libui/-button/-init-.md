@@ -4,5 +4,5 @@
 
 `Button(text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`)`
 
-Wrapper class for [uiButton](#)
+Wrapper class for [uiButton](../ui-button.md)
 

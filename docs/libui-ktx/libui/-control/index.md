@@ -47,26 +47,26 @@ Base class for all GUI controls (widgets).
 
 | Name | Summary |
 |---|---|
-| [Box](../-box/index.md) | `abstract class Box : `[`Control`](./index.md)`<<ERROR CLASS>>, `[`Container`](../-container/index.md)<br>Wrapper class for [uiBox](#) |
-| [Button](../-button/index.md) | `class Button : `[`Control`](./index.md)`<<ERROR CLASS>>`<br>Wrapper class for [uiButton](#) |
-| [Checkbox](../-checkbox/index.md) | `class Checkbox : `[`Control`](./index.md)`<<ERROR CLASS>>`<br>Wrapper class for [uiCheckbox](#) |
-| [ColorButton](../-color-button/index.md) | `class ColorButton : `[`Control`](./index.md)`<<ERROR CLASS>>`<br>Wrapper class for [uiColorButton](#) |
-| [Combobox](../-combobox/index.md) | `class Combobox : `[`Control`](./index.md)`<<ERROR CLASS>>`<br>Wrapper class for [uiCombobox](#) |
-| [DateTimePicker](../-date-time-picker/index.md) | `open class DateTimePicker : `[`Control`](./index.md)`<<ERROR CLASS>>`<br>Wrapper class for [uiDateTimePicker](#) to edit date and time. |
-| [DrawArea](../-draw-area/index.md) | `open class DrawArea : `[`Control`](./index.md)`<<ERROR CLASS>>`<br>Wrapper class for [uiArea](#) |
-| [EditableCombobox](../-editable-combobox/index.md) | `class EditableCombobox : `[`Control`](./index.md)`<<ERROR CLASS>>`<br>Wrapper class for [uiEditableCombobox](#) |
-| [FontButton](../-font-button/index.md) | `class FontButton : `[`Control`](./index.md)`<<ERROR CLASS>>`<br>Wrapper class for [uiFontButton](#) |
-| [Form](../-form/index.md) | `class Form : `[`Control`](./index.md)`<<ERROR CLASS>>`<br>Wrapper class for [uiForm](#) |
-| [GridPane](../-grid-pane/index.md) | `class GridPane : `[`Control`](./index.md)`<<ERROR CLASS>>`<br>Wrapper class for [uiGrid](#) |
-| [Group](../-group/index.md) | `class Group : `[`Control`](./index.md)`<<ERROR CLASS>>, `[`Container`](../-container/index.md)<br>Wrapper class for [uiGroup](#) |
-| [Label](../-label/index.md) | `class Label : `[`Control`](./index.md)`<<ERROR CLASS>>`<br>Wrapper class for [uiLabel](#) |
-| [ProgressBar](../-progress-bar/index.md) | `class ProgressBar : `[`Control`](./index.md)`<<ERROR CLASS>>`<br>Wrapper class for [uiProgressBar](#) |
-| [RadioButtons](../-radio-buttons/index.md) | `class RadioButtons : `[`Control`](./index.md)`<<ERROR CLASS>>`<br>Wrapper class for [uiRadioButtons](#) |
-| [Separator](../-separator/index.md) | `abstract class Separator : `[`Control`](./index.md)`<<ERROR CLASS>>`<br>Wrapper class for [uiSeparator](#) |
-| [Slider](../-slider/index.md) | `class Slider : `[`Control`](./index.md)`<<ERROR CLASS>>`<br>Wrapper class for [uiSlider](#) |
-| [Spinbox](../-spinbox/index.md) | `class Spinbox : `[`Control`](./index.md)`<<ERROR CLASS>>`<br>Wrapper class for [uiSpinbox](#) |
-| [TabPane](../-tab-pane/index.md) | `class TabPane : `[`Control`](./index.md)`<<ERROR CLASS>>`<br>Wrapper class for [uiTab](#) |
-| [TableView](../-table-view/index.md) | `class TableView : `[`Control`](./index.md)`<<ERROR CLASS>>`<br>Wrapper class for [uiTable](#) |
-| [TextArea](../-text-area/index.md) | `class TextArea : `[`Control`](./index.md)`<<ERROR CLASS>>`<br>Wrapper class for [uiMultilineEntry](#) |
-| [TextField](../-text-field/index.md) | `open class TextField : `[`Control`](./index.md)`<<ERROR CLASS>>`<br>Wrapper class for [uiEntry](#) |
-| [Window](../-window/index.md) | `class Window : `[`Control`](./index.md)`<<ERROR CLASS>>, `[`Container`](../-container/index.md)<br>Represents a top-level window. Contains one child control that occupies the entirety of the window. |
+| [Box](../-box/index.md) | `abstract class Box : `[`Control`](./index.md)`<`[`uiBox`](../ui-box.md)`>, `[`Container`](../-container/index.md)<br>Wrapper class for [uiBox](../ui-box.md) |
+| [Button](../-button/index.md) | `class Button : `[`Control`](./index.md)`<`[`uiButton`](../ui-button.md)`>`<br>Wrapper class for [uiButton](../ui-button.md) |
+| [Checkbox](../-checkbox/index.md) | `class Checkbox : `[`Control`](./index.md)`<`[`uiCheckbox`](../ui-checkbox.md)`>`<br>Wrapper class for [uiCheckbox](../ui-checkbox.md) |
+| [ColorButton](../-color-button/index.md) | `class ColorButton : `[`Control`](./index.md)`<`[`uiColorButton`](../ui-color-button.md)`>`<br>Wrapper class for [uiColorButton](../ui-color-button.md) |
+| [Combobox](../-combobox/index.md) | `class Combobox : `[`Control`](./index.md)`<`[`uiCombobox`](../ui-combobox.md)`>`<br>Wrapper class for [uiCombobox](../ui-combobox.md) |
+| [DateTimePicker](../-date-time-picker/index.md) | `open class DateTimePicker : `[`Control`](./index.md)`<`[`uiDateTimePicker`](../ui-date-time-picker.md)`>`<br>Wrapper class for [uiDateTimePicker](../ui-date-time-picker.md) to edit date and time. |
+| [DrawArea](../-draw-area/index.md) | `open class DrawArea : `[`Control`](./index.md)`<`[`uiArea`](../ui-area.md)`>`<br>Wrapper class for [uiArea](../ui-area.md) |
+| [EditableCombobox](../-editable-combobox/index.md) | `class EditableCombobox : `[`Control`](./index.md)`<`[`uiEditableCombobox`](../ui-editable-combobox.md)`>`<br>Wrapper class for [uiEditableCombobox](../ui-editable-combobox.md) |
+| [FontButton](../-font-button/index.md) | `class FontButton : `[`Control`](./index.md)`<`[`uiFontButton`](../ui-font-button.md)`>`<br>Wrapper class for [uiFontButton](../ui-font-button.md) |
+| [Form](../-form/index.md) | `class Form : `[`Control`](./index.md)`<`[`uiForm`](../ui-form.md)`>`<br>Wrapper class for [uiForm](../ui-form.md) |
+| [GridPane](../-grid-pane/index.md) | `class GridPane : `[`Control`](./index.md)`<`[`uiGrid`](../ui-grid.md)`>`<br>Wrapper class for [uiGrid](../ui-grid.md) |
+| [Group](../-group/index.md) | `class Group : `[`Control`](./index.md)`<`[`uiGroup`](../ui-group.md)`>, `[`Container`](../-container/index.md)<br>Wrapper class for [uiGroup](../ui-group.md) |
+| [Label](../-label/index.md) | `class Label : `[`Control`](./index.md)`<`[`uiLabel`](../ui-label.md)`>`<br>Wrapper class for [uiLabel](../ui-label.md) |
+| [ProgressBar](../-progress-bar/index.md) | `class ProgressBar : `[`Control`](./index.md)`<`[`uiProgressBar`](../ui-progress-bar.md)`>`<br>Wrapper class for [uiProgressBar](../ui-progress-bar.md) |
+| [RadioButtons](../-radio-buttons/index.md) | `class RadioButtons : `[`Control`](./index.md)`<`[`uiRadioButtons`](../ui-radio-buttons.md)`>`<br>Wrapper class for [uiRadioButtons](../ui-radio-buttons.md) |
+| [Separator](../-separator/index.md) | `abstract class Separator : `[`Control`](./index.md)`<`[`uiSeparator`](../ui-separator.md)`>`<br>Wrapper class for [uiSeparator](../ui-separator.md) |
+| [Slider](../-slider/index.md) | `class Slider : `[`Control`](./index.md)`<`[`uiSlider`](../ui-slider.md)`>`<br>Wrapper class for [uiSlider](../ui-slider.md) |
+| [Spinbox](../-spinbox/index.md) | `class Spinbox : `[`Control`](./index.md)`<`[`uiSpinbox`](../ui-spinbox.md)`>`<br>Wrapper class for [uiSpinbox](../ui-spinbox.md) |
+| [TabPane](../-tab-pane/index.md) | `class TabPane : `[`Control`](./index.md)`<`[`uiTab`](../ui-tab.md)`>`<br>Wrapper class for [uiTab](../ui-tab.md) |
+| [TableView](../-table-view/index.md) | `class TableView : `[`Control`](./index.md)`<`[`uiTable`](../ui-table.md)`>`<br>Wrapper class for [uiTable](../ui-table.md) |
+| [TextArea](../-text-area/index.md) | `class TextArea : `[`Control`](./index.md)`<`[`uiMultilineEntry`](../ui-multiline-entry.md)`>`<br>Wrapper class for [uiMultilineEntry](../ui-multiline-entry.md) |
+| [TextField](../-text-field/index.md) | `open class TextField : `[`Control`](./index.md)`<`[`uiEntry`](../ui-entry.md)`>`<br>Wrapper class for [uiEntry](../ui-entry.md) |
+| [Window](../-window/index.md) | `class Window : `[`Control`](./index.md)`<`[`uiWindow`](../ui-window.md)`>, `[`Container`](../-container/index.md)<br>Represents a top-level window. Contains one child control that occupies the entirety of the window. |

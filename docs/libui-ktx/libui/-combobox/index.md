@@ -2,15 +2,15 @@
 
 # Combobox
 
-`class Combobox : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
+`class Combobox : `[`Control`](../-control/index.md)`<`[`uiCombobox`](../ui-combobox.md)`>`
 
-Wrapper class for [uiCombobox](#)
+Wrapper class for [uiCombobox](../ui-combobox.md)
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Combobox()`<br>Wrapper class for [uiCombobox](#) |
+| [&lt;init&gt;](-init-.md) | `Combobox()`<br>Wrapper class for [uiCombobox](../ui-combobox.md) |
 
 ### Properties
 

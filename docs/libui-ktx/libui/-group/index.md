@@ -2,15 +2,15 @@
 
 # Group
 
-`class Group : `[`Control`](../-control/index.md)`<<ERROR CLASS>>, `[`Container`](../-container/index.md)
+`class Group : `[`Control`](../-control/index.md)`<`[`uiGroup`](../ui-group.md)`>, `[`Container`](../-container/index.md)
 
-Wrapper class for [uiGroup](#)
+Wrapper class for [uiGroup](../ui-group.md)
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Group(title: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`)`<br>Wrapper class for [uiGroup](#) |
+| [&lt;init&gt;](-init-.md) | `Group(title: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`)`<br>Wrapper class for [uiGroup](../ui-group.md) |
 
 ### Properties
 

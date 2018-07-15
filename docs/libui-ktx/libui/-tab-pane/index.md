@@ -2,9 +2,9 @@
 
 # TabPane
 
-`class TabPane : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
+`class TabPane : `[`Control`](../-control/index.md)`<`[`uiTab`](../ui-tab.md)`>`
 
-Wrapper class for [uiTab](#)
+Wrapper class for [uiTab](../ui-tab.md)
 
 ### Types
 
@@ -16,7 +16,7 @@ Wrapper class for [uiTab](#)
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `TabPane()`<br>Wrapper class for [uiTab](#) |
+| [&lt;init&gt;](-init-.md) | `TabPane()`<br>Wrapper class for [uiTab](../ui-tab.md) |
 
 ### Properties
 

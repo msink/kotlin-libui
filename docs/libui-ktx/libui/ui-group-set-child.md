@@ -2,4 +2,4 @@
 
 # uiGroupSetChild
 
-`fun uiGroupSetChild(g: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<<ERROR CLASS>>?, c: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiControl`](ui-control/index.md)`>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiGroupSetChild(g: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiGroup`](ui-group.md)`>?, c: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiControl`](ui-control/index.md)`>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)

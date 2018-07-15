@@ -2,4 +2,4 @@
 
 # Menu
 
-`typealias Menu = `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>`
+`typealias Menu = `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiMenu`](ui-menu.md)`>`

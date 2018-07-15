@@ -2,15 +2,15 @@
 
 # ProgressBar
 
-`class ProgressBar : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
+`class ProgressBar : `[`Control`](../-control/index.md)`<`[`uiProgressBar`](../ui-progress-bar.md)`>`
 
-Wrapper class for [uiProgressBar](#)
+Wrapper class for [uiProgressBar](../ui-progress-bar.md)
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `ProgressBar()`<br>Wrapper class for [uiProgressBar](#) |
+| [&lt;init&gt;](-init-.md) | `ProgressBar()`<br>Wrapper class for [uiProgressBar](../ui-progress-bar.md) |
 
 ### Properties
 

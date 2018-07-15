@@ -2,15 +2,15 @@
 
 # EditableCombobox
 
-`class EditableCombobox : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
+`class EditableCombobox : `[`Control`](../-control/index.md)`<`[`uiEditableCombobox`](../ui-editable-combobox.md)`>`
 
-Wrapper class for [uiEditableCombobox](#)
+Wrapper class for [uiEditableCombobox](../ui-editable-combobox.md)
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `EditableCombobox()`<br>Wrapper class for [uiEditableCombobox](#) |
+| [&lt;init&gt;](-init-.md) | `EditableCombobox()`<br>Wrapper class for [uiEditableCombobox](../ui-editable-combobox.md) |
 
 ### Properties
 

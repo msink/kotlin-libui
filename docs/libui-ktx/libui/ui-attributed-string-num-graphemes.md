@@ -2,4 +2,4 @@
 
 # uiAttributedStringNumGraphemes
 
-`fun uiAttributedStringNumGraphemes(s: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<<ERROR CLASS>>?): <ERROR CLASS>`
+`fun uiAttributedStringNumGraphemes(s: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiAttributedString`](ui-attributed-string.md)`>?): <ERROR CLASS>`

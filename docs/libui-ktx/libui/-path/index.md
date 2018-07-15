@@ -2,7 +2,7 @@
 
 # Path
 
-`class Path : `[`Disposable`](../-disposable/index.md)`<<ERROR CLASS>>`
+`class Path : `[`Disposable`](../-disposable/index.md)`<`[`uiDrawPath`](../ui-draw-path.md)`>`
 
 Represent a path that could be drawed on a [DrawContext](../-draw-context.md)
 

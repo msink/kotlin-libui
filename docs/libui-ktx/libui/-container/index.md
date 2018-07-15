@@ -55,11 +55,11 @@ Container for child controls.
 
 | Name | Summary |
 |---|---|
-| [Box](../-box/index.md) | `abstract class Box : `[`Control`](../-control/index.md)`<<ERROR CLASS>>, `[`Container`](./index.md)<br>Wrapper class for [uiBox](#) |
+| [Box](../-box/index.md) | `abstract class Box : `[`Control`](../-control/index.md)`<`[`uiBox`](../ui-box.md)`>, `[`Container`](./index.md)<br>Wrapper class for [uiBox](../ui-box.md) |
 | [Cell](../-grid-pane/-cell/index.md) | `inner class Cell : `[`Container`](./index.md)<br>adapter for DSL builders |
 | [Field](../-form/-field/index.md) | `inner class Field : `[`Container`](./index.md)<br>adapter for DSL builders |
 | [Field](../-form/-stretchy/-field/index.md) | `inner class Field : `[`Container`](./index.md) |
-| [Group](../-group/index.md) | `class Group : `[`Control`](../-control/index.md)`<<ERROR CLASS>>, `[`Container`](./index.md)<br>Wrapper class for [uiGroup](#) |
+| [Group](../-group/index.md) | `class Group : `[`Control`](../-control/index.md)`<`[`uiGroup`](../ui-group.md)`>, `[`Container`](./index.md)<br>Wrapper class for [uiGroup](../ui-group.md) |
 | [Page](../-tab-pane/-page/index.md) | `inner class Page : `[`Container`](./index.md)<br>adapter for DSL builders |
 | [Stretchy](../-box/-stretchy/index.md) | `inner class Stretchy : `[`Container`](./index.md)<br>adapter for DSL builders |
-| [Window](../-window/index.md) | `class Window : `[`Control`](../-control/index.md)`<<ERROR CLASS>>, `[`Container`](./index.md)<br>Represents a top-level window. Contains one child control that occupies the entirety of the window. |
+| [Window](../-window/index.md) | `class Window : `[`Control`](../-control/index.md)`<`[`uiWindow`](../ui-window.md)`>, `[`Container`](./index.md)<br>Represents a top-level window. Contains one child control that occupies the entirety of the window. |

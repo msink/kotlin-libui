@@ -2,15 +2,15 @@
 
 # RadioButtons
 
-`class RadioButtons : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
+`class RadioButtons : `[`Control`](../-control/index.md)`<`[`uiRadioButtons`](../ui-radio-buttons.md)`>`
 
-Wrapper class for [uiRadioButtons](#)
+Wrapper class for [uiRadioButtons](../ui-radio-buttons.md)
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `RadioButtons()`<br>Wrapper class for [uiRadioButtons](#) |
+| [&lt;init&gt;](-init-.md) | `RadioButtons()`<br>Wrapper class for [uiRadioButtons](../ui-radio-buttons.md) |
 
 ### Properties
 

@@ -4,5 +4,5 @@
 
 `ProgressBar()`
 
-Wrapper class for [uiProgressBar](#)
+Wrapper class for [uiProgressBar](../ui-progress-bar.md)
 

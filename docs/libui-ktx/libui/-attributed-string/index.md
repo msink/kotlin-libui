@@ -2,7 +2,7 @@
 
 # AttributedString
 
-`class AttributedString : `[`Disposable`](../-disposable/index.md)`<<ERROR CLASS>>`
+`class AttributedString : `[`Disposable`](../-disposable/index.md)`<`[`uiAttributedString`](../ui-attributed-string.md)`>`
 
 Represents a string of UTF-8 text that can be embellished with formatting attributes.
 

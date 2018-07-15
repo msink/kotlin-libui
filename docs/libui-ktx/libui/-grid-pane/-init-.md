@@ -4,5 +4,5 @@
 
 `GridPane()`
 
-Wrapper class for [uiGrid](#)
+Wrapper class for [uiGrid](../ui-grid.md)
 

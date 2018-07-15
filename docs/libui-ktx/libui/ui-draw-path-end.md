@@ -2,4 +2,4 @@
 
 # uiDrawPathEnd
 
-`fun uiDrawPathEnd(p: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<<ERROR CLASS>>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiDrawPathEnd(p: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiDrawPath`](ui-draw-path.md)`>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)

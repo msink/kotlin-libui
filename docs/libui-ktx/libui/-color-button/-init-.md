@@ -4,5 +4,5 @@
 
 `ColorButton()`
 
-Wrapper class for [uiColorButton](#)
+Wrapper class for [uiColorButton](../ui-color-button.md)
 

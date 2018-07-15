@@ -2,4 +2,4 @@
 
 # uiNewHorizontalSeparator
 
-`fun uiNewHorizontalSeparator(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?`
+`fun uiNewHorizontalSeparator(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiSeparator`](ui-separator.md)`>?`

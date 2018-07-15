@@ -4,5 +4,5 @@
 
 `TabPane()`
 
-Wrapper class for [uiTab](#)
+Wrapper class for [uiTab](../ui-tab.md)
 

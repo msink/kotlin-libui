@@ -2,4 +2,4 @@
 
 # uiNewItalicAttribute
 
-`fun uiNewItalicAttribute(italic: `[`uiTextItalic`](ui-text-italic.md)`): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?`
+`fun uiNewItalicAttribute(italic: `[`uiTextItalic`](ui-text-italic.md)`): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiAttribute`](ui-attribute.md)`>?`

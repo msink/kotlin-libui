@@ -2,4 +2,4 @@
 
 # uiAttributedStringAppendUnattributed
 
-`fun uiAttributedStringAppendUnattributed(s: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<<ERROR CLASS>>?, str: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiAttributedStringAppendUnattributed(s: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiAttributedString`](ui-attributed-string.md)`>?, str: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)

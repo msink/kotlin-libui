@@ -2,15 +2,15 @@
 
 # TableView
 
-`class TableView : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
+`class TableView : `[`Control`](../-control/index.md)`<`[`uiTable`](../ui-table.md)`>`
 
-Wrapper class for [uiTable](#)
+Wrapper class for [uiTable](../ui-table.md)
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `TableView(table: `[`Table`](../-table/index.md)`<*>)`<br>Wrapper class for [uiTable](#) |
+| [&lt;init&gt;](-init-.md) | `TableView(table: `[`Table`](../-table/index.md)`<*>)`<br>Wrapper class for [uiTable](../ui-table.md) |
 
 ### Properties
 

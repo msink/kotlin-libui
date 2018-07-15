@@ -2,4 +2,4 @@
 
 # uiNewSearchEntry
 
-`fun uiNewSearchEntry(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?`
+`fun uiNewSearchEntry(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiEntry`](ui-entry.md)`>?`

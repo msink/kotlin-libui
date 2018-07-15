@@ -4,5 +4,5 @@
 
 `Checkbox(label: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`)`
 
-Wrapper class for [uiCheckbox](#)
+Wrapper class for [uiCheckbox](../ui-checkbox.md)
 

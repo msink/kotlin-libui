@@ -4,5 +4,5 @@
 
 `VBox()`
 
-Wrapper class for [uiBox](#) that stack its children vertically.
+Wrapper class for [uiBox](../ui-box.md) that stack its children vertically.
 

@@ -2,4 +2,4 @@
 
 # Model
 
-`var Model: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?`
+`var Model: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiTableModel`](../ui-table-model.md)`>?`

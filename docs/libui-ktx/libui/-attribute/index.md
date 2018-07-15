@@ -2,7 +2,7 @@
 
 # Attribute
 
-`abstract class Attribute : `[`Disposable`](../-disposable/index.md)`<<ERROR CLASS>>`
+`abstract class Attribute : `[`Disposable`](../-disposable/index.md)`<`[`uiAttribute`](../ui-attribute.md)`>`
 
 Stores information about an attribute in a [string](../string.md).
 
@@ -10,7 +10,7 @@ Stores information about an attribute in a [string](../string.md).
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Attribute(alloc: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?)`<br>Stores information about an attribute in a [string](../string.md). |
+| [&lt;init&gt;](-init-.md) | `Attribute(alloc: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiAttribute`](../ui-attribute.md)`>?)`<br>Stores information about an attribute in a [string](../string.md). |
 
 ### Properties
 

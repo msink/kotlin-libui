@@ -2,4 +2,4 @@
 
 # uiMenuAppendQuitItem
 
-`fun uiMenuAppendQuitItem(m: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<<ERROR CLASS>>?): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?`
+`fun uiMenuAppendQuitItem(m: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiMenu`](ui-menu.md)`>?): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiMenuItem`](ui-menu-item.md)`>?`

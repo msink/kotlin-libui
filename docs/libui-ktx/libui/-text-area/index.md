@@ -2,15 +2,15 @@
 
 # TextArea
 
-`class TextArea : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
+`class TextArea : `[`Control`](../-control/index.md)`<`[`uiMultilineEntry`](../ui-multiline-entry.md)`>`
 
-Wrapper class for [uiMultilineEntry](#)
+Wrapper class for [uiMultilineEntry](../ui-multiline-entry.md)
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `TextArea(wrap: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)` = true)`<br>Wrapper class for [uiMultilineEntry](#) |
+| [&lt;init&gt;](-init-.md) | `TextArea(wrap: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)` = true)`<br>Wrapper class for [uiMultilineEntry](../ui-multiline-entry.md) |
 
 ### Properties
 

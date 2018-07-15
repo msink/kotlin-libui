@@ -2,4 +2,4 @@
 
 # uiNewMultilineEntry
 
-`fun uiNewMultilineEntry(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?`
+`fun uiNewMultilineEntry(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiMultilineEntry`](ui-multiline-entry.md)`>?`

@@ -2,15 +2,15 @@
 
 # ColorButton
 
-`class ColorButton : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
+`class ColorButton : `[`Control`](../-control/index.md)`<`[`uiColorButton`](../ui-color-button.md)`>`
 
-Wrapper class for [uiColorButton](#)
+Wrapper class for [uiColorButton](../ui-color-button.md)
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `ColorButton()`<br>Wrapper class for [uiColorButton](#) |
+| [&lt;init&gt;](-init-.md) | `ColorButton()`<br>Wrapper class for [uiColorButton](../ui-color-button.md) |
 
 ### Properties
 

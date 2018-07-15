@@ -2,15 +2,15 @@
 
 # Slider
 
-`class Slider : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
+`class Slider : `[`Control`](../-control/index.md)`<`[`uiSlider`](../ui-slider.md)`>`
 
-Wrapper class for [uiSlider](#)
+Wrapper class for [uiSlider](../ui-slider.md)
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Slider(min: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, max: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`)`<br>Wrapper class for [uiSlider](#) |
+| [&lt;init&gt;](-init-.md) | `Slider(min: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, max: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`)`<br>Wrapper class for [uiSlider](../ui-slider.md) |
 
 ### Properties
 

@@ -2,4 +2,4 @@
 
 # uiNewStretchAttribute
 
-`fun uiNewStretchAttribute(stretch: `[`uiTextStretch`](ui-text-stretch.md)`): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?`
+`fun uiNewStretchAttribute(stretch: `[`uiTextStretch`](ui-text-stretch.md)`): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiAttribute`](ui-attribute.md)`>?`

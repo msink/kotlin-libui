@@ -2,9 +2,9 @@
 
 # Table
 
-`class Table<T> : `[`Disposable`](../-disposable/index.md)`<<ERROR CLASS>>`
+`class Table<T> : `[`Disposable`](../-disposable/index.md)`<`[`uiTableModel`](../ui-table-model.md)`>`
 
-Wrapper class for [uiTableModel](#)
+Wrapper class for [uiTableModel](../ui-table-model.md)
 
 ### Types
 

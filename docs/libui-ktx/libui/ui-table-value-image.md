@@ -2,4 +2,4 @@
 
 # uiTableValueImage
 
-`fun uiTableValueImage(v: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<<ERROR CLASS>>?): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?`
+`fun uiTableValueImage(v: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiTableValue`](ui-table-value.md)`>?): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiImage`](ui-image.md)`>?`

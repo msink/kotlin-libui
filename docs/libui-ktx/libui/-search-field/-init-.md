@@ -4,5 +4,5 @@
 
 `SearchField()`
 
-Wrapper class for [uiEntry](#) to search text.
+Wrapper class for [uiEntry](../ui-entry.md) to search text.
 

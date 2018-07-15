@@ -2,4 +2,4 @@
 
 # uiNewNonWrappingMultilineEntry
 
-`fun uiNewNonWrappingMultilineEntry(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?`
+`fun uiNewNonWrappingMultilineEntry(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiMultilineEntry`](ui-multiline-entry.md)`>?`

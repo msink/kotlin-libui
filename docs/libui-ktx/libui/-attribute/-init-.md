@@ -2,7 +2,7 @@
 
 # &lt;init&gt;
 
-`Attribute(alloc: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?)`
+`Attribute(alloc: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiAttribute`](../ui-attribute.md)`>?)`
 
 Stores information about an attribute in a [string](../string.md).
 

@@ -2,15 +2,15 @@
 
 # Spinbox
 
-`class Spinbox : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
+`class Spinbox : `[`Control`](../-control/index.md)`<`[`uiSpinbox`](../ui-spinbox.md)`>`
 
-Wrapper class for [uiSpinbox](#)
+Wrapper class for [uiSpinbox](../ui-spinbox.md)
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Spinbox(min: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, max: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`)`<br>Wrapper class for [uiSpinbox](#) |
+| [&lt;init&gt;](-init-.md) | `Spinbox(min: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, max: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`)`<br>Wrapper class for [uiSpinbox](../ui-spinbox.md) |
 
 ### Properties
 

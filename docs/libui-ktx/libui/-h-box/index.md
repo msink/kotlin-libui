@@ -4,13 +4,13 @@
 
 `class HBox : `[`Box`](../-box/index.md)
 
-Wrapper class for [uiBox](#) that stack its children horizontally.
+Wrapper class for [uiBox](../ui-box.md) that stack its children horizontally.
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `HBox()`<br>Wrapper class for [uiBox](#) that stack its children horizontally. |
+| [&lt;init&gt;](-init-.md) | `HBox()`<br>Wrapper class for [uiBox](../ui-box.md) that stack its children horizontally. |
 
 ### Inherited Properties
 

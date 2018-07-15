@@ -4,5 +4,5 @@
 
 `Slider(min: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, max: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`)`
 
-Wrapper class for [uiSlider](#)
+Wrapper class for [uiSlider](../ui-slider.md)
 

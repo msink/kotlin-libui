@@ -2,4 +2,4 @@
 
 # DrawContext
 
-`typealias DrawContext = `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>`
+`typealias DrawContext = `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiDrawContext`](ui-draw-context.md)`>`

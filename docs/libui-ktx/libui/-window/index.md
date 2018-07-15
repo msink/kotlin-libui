@@ -2,7 +2,7 @@
 
 # Window
 
-`class Window : `[`Control`](../-control/index.md)`<<ERROR CLASS>>, `[`Container`](../-container/index.md)
+`class Window : `[`Control`](../-control/index.md)`<`[`uiWindow`](../ui-window.md)`>, `[`Container`](../-container/index.md)
 
 Represents a top-level window.
 Contains one child control that occupies the entirety of the window.

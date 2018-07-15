@@ -2,4 +2,4 @@
 
 # uiDrawFreeTextLayout
 
-`fun uiDrawFreeTextLayout(tl: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<<ERROR CLASS>>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiDrawFreeTextLayout(tl: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiDrawTextLayout`](ui-draw-text-layout.md)`>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)

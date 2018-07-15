@@ -4,5 +4,5 @@
 
 `HBox()`
 
-Wrapper class for [uiBox](#) that stack its children horizontally.
+Wrapper class for [uiBox](../ui-box.md) that stack its children horizontally.
 

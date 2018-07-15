@@ -4,10 +4,10 @@
 
 `class HorizontalSeparator : `[`Separator`](../-separator/index.md)
 
-Wrapper class for [uiSeparator](#) in VBox
+Wrapper class for [uiSeparator](../ui-separator.md) in VBox
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `HorizontalSeparator()`<br>Wrapper class for [uiSeparator](#) in VBox |
+| [&lt;init&gt;](-init-.md) | `HorizontalSeparator()`<br>Wrapper class for [uiSeparator](../ui-separator.md) in VBox |

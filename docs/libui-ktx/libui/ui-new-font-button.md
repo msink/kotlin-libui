@@ -2,4 +2,4 @@
 
 # uiNewFontButton
 
-`fun uiNewFontButton(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?`
+`fun uiNewFontButton(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiFontButton`](ui-font-button.md)`>?`

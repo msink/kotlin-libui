@@ -4,5 +4,5 @@
 
 `TableView(table: `[`Table`](../-table/index.md)`<*>)`
 
-Wrapper class for [uiTable](#)
+Wrapper class for [uiTable](../ui-table.md)
 

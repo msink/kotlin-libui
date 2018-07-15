@@ -2,15 +2,15 @@
 
 # FontButton
 
-`class FontButton : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
+`class FontButton : `[`Control`](../-control/index.md)`<`[`uiFontButton`](../ui-font-button.md)`>`
 
-Wrapper class for [uiFontButton](#)
+Wrapper class for [uiFontButton](../ui-font-button.md)
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `FontButton()`<br>Wrapper class for [uiFontButton](#) |
+| [&lt;init&gt;](-init-.md) | `FontButton()`<br>Wrapper class for [uiFontButton](../ui-font-button.md) |
 
 ### Properties
 

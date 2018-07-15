@@ -2,4 +2,4 @@
 
 # uiMultilineEntrySetReadOnly
 
-`fun uiMultilineEntrySetReadOnly(e: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<<ERROR CLASS>>?, readonly: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiMultilineEntrySetReadOnly(e: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiMultilineEntry`](ui-multiline-entry.md)`>?, readonly: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)

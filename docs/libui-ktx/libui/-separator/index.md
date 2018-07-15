@@ -2,15 +2,15 @@
 
 # Separator
 
-`abstract class Separator : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
+`abstract class Separator : `[`Control`](../-control/index.md)`<`[`uiSeparator`](../ui-separator.md)`>`
 
-Wrapper class for [uiSeparator](#)
+Wrapper class for [uiSeparator](../ui-separator.md)
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Separator(alloc: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?)`<br>Wrapper class for [uiSeparator](#) |
+| [&lt;init&gt;](-init-.md) | `Separator(alloc: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiSeparator`](../ui-separator.md)`>?)`<br>Wrapper class for [uiSeparator](../ui-separator.md) |
 
 ### Inherited Properties
 
@@ -40,5 +40,5 @@ Wrapper class for [uiSeparator](#)
 
 | Name | Summary |
 |---|---|
-| [HorizontalSeparator](../-horizontal-separator/index.md) | `class HorizontalSeparator : `[`Separator`](./index.md)<br>Wrapper class for [uiSeparator](#) in VBox |
-| [VerticalSeparator](../-vertical-separator/index.md) | `class VerticalSeparator : `[`Separator`](./index.md)<br>Wrapper class for [uiSeparator](#) in HBox |
+| [HorizontalSeparator](../-horizontal-separator/index.md) | `class HorizontalSeparator : `[`Separator`](./index.md)<br>Wrapper class for [uiSeparator](../ui-separator.md) in VBox |
+| [VerticalSeparator](../-vertical-separator/index.md) | `class VerticalSeparator : `[`Separator`](./index.md)<br>Wrapper class for [uiSeparator](../ui-separator.md) in HBox |

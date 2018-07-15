@@ -2,4 +2,4 @@
 
 # uiNewLabel
 
-`fun uiNewLabel(text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?`
+`fun uiNewLabel(text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiLabel`](ui-label.md)`>?`

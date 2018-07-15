@@ -4,5 +4,5 @@
 
 `EditableCombobox()`
 
-Wrapper class for [uiEditableCombobox](#)
+Wrapper class for [uiEditableCombobox](../ui-editable-combobox.md)
 

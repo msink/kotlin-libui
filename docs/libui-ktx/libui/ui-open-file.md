@@ -2,4 +2,4 @@
 
 # uiOpenFile
 
-`fun uiOpenFile(parent: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<<ERROR CLASS>>?): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`ByteVar`](../kotlinx.cinterop/-byte-var.md)`>?`
+`fun uiOpenFile(parent: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiWindow`](ui-window.md)`>?): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`ByteVar`](../kotlinx.cinterop/-byte-var.md)`>?`

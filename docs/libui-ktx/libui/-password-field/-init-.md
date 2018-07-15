@@ -4,5 +4,5 @@
 
 `PasswordField()`
 
-Wrapper class for [uiEntry](#) to edit passwords.
+Wrapper class for [uiEntry](../ui-entry.md) to edit passwords.
 

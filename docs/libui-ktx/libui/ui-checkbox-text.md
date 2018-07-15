@@ -2,4 +2,4 @@
 
 # uiCheckboxText
 
-`fun uiCheckboxText(c: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<<ERROR CLASS>>?): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`ByteVar`](../kotlinx.cinterop/-byte-var.md)`>?`
+`fun uiCheckboxText(c: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiCheckbox`](ui-checkbox.md)`>?): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`ByteVar`](../kotlinx.cinterop/-byte-var.md)`>?`

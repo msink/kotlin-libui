@@ -2,9 +2,9 @@
 
 # Form
 
-`class Form : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
+`class Form : `[`Control`](../-control/index.md)`<`[`uiForm`](../ui-form.md)`>`
 
-Wrapper class for [uiForm](#)
+Wrapper class for [uiForm](../ui-form.md)
 
 ### Types
 
@@ -17,7 +17,7 @@ Wrapper class for [uiForm](#)
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Form()`<br>Wrapper class for [uiForm](#) |
+| [&lt;init&gt;](-init-.md) | `Form()`<br>Wrapper class for [uiForm](../ui-form.md) |
 
 ### Properties
 

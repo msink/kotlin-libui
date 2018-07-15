@@ -4,5 +4,5 @@
 
 `Label(text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`)`
 
-Wrapper class for [uiLabel](#)
+Wrapper class for [uiLabel](../ui-label.md)
 

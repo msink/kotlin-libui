@@ -2,15 +2,15 @@
 
 # Button
 
-`class Button : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
+`class Button : `[`Control`](../-control/index.md)`<`[`uiButton`](../ui-button.md)`>`
 
-Wrapper class for [uiButton](#)
+Wrapper class for [uiButton](../ui-button.md)
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Button(text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`)`<br>Wrapper class for [uiButton](#) |
+| [&lt;init&gt;](-init-.md) | `Button(text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`)`<br>Wrapper class for [uiButton](../ui-button.md) |
 
 ### Properties
 

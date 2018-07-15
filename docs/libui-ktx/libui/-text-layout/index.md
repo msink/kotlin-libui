@@ -2,7 +2,7 @@
 
 # TextLayout
 
-`class TextLayout : `[`Disposable`](../-disposable/index.md)`<<ERROR CLASS>>`
+`class TextLayout : `[`Disposable`](../-disposable/index.md)`<`[`uiDrawTextLayout`](../ui-draw-text-layout.md)`>`
 
 Representation of a [string](../string.md) that can be displayed in a [DrawContext](../-draw-context.md).
 

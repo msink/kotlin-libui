@@ -4,5 +4,5 @@
 
 `TimePicker()`
 
-Wrapper class for [uiDateTimePicker](#) to edit time.
+Wrapper class for [uiDateTimePicker](../ui-date-time-picker.md) to edit time.
 

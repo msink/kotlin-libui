@@ -2,4 +2,4 @@
 
 # uiAreaBeginUserWindowResize
 
-`fun uiAreaBeginUserWindowResize(a: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<<ERROR CLASS>>?, edge: `[`uiWindowResizeEdge`](ui-window-resize-edge.md)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiAreaBeginUserWindowResize(a: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiArea`](ui-area.md)`>?, edge: `[`uiWindowResizeEdge`](ui-window-resize-edge.md)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)

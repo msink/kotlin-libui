@@ -4,5 +4,5 @@
 
 `HorizontalSeparator()`
 
-Wrapper class for [uiSeparator](#) in VBox
+Wrapper class for [uiSeparator](../ui-separator.md) in VBox
 

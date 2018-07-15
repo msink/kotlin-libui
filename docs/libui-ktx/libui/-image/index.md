@@ -2,7 +2,7 @@
 
 # Image
 
-`class Image : `[`Disposable`](../-disposable/index.md)`<<ERROR CLASS>>`
+`class Image : `[`Disposable`](../-disposable/index.md)`<`[`uiImage`](../ui-image.md)`>`
 
 ### Constructors
 

@@ -2,4 +2,4 @@
 
 # uiComboboxSelected
 
-`fun uiComboboxSelected(c: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<<ERROR CLASS>>?): `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`fun uiComboboxSelected(c: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiCombobox`](ui-combobox.md)`>?): `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)

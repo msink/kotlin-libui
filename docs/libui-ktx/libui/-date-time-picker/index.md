@@ -2,9 +2,9 @@
 
 # DateTimePicker
 
-`open class DateTimePicker : `[`Control`](../-control/index.md)`<<ERROR CLASS>>`
+`open class DateTimePicker : `[`Control`](../-control/index.md)`<`[`uiDateTimePicker`](../ui-date-time-picker.md)`>`
 
-Wrapper class for [uiDateTimePicker](#) to edit date and time.
+Wrapper class for [uiDateTimePicker](../ui-date-time-picker.md) to edit date and time.
 
 ### Constructors
 
@@ -33,8 +33,8 @@ Wrapper class for [uiDateTimePicker](#) to edit date and time.
 | Name | Summary |
 |---|---|
 | [action](action.md) | `fun action(block: `[`DateTimePicker`](./index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Function to be run when the user makes a change to the Picker. Only one function can be registered at a time. |
-| [getValue](get-value.md) | `fun getValue(value: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>The current value as posix `struct tm` |
-| [setValue](set-value.md) | `fun setValue(value: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Set current value from posix `struct tm` |
+| [getValue](get-value.md) | `fun getValue(value: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`tm`](../tm.md)`>): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>The current value as posix `struct tm` |
+| [setValue](set-value.md) | `fun setValue(value: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`tm`](../tm.md)`>): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Set current value from posix `struct tm` |
 | [textValue](text-value.md) | `fun textValue(format: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)` = defaultFormat): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>The current value as String. |
 
 ### Inherited Functions
@@ -55,5 +55,5 @@ Wrapper class for [uiDateTimePicker](#) to edit date and time.
 
 | Name | Summary |
 |---|---|
-| [DatePicker](../-date-picker/index.md) | `class DatePicker : `[`DateTimePicker`](./index.md)<br>Wrapper class for [uiDateTimePicker](#) to edit date. |
-| [TimePicker](../-time-picker/index.md) | `class TimePicker : `[`DateTimePicker`](./index.md)<br>Wrapper class for [uiDateTimePicker](#) to edit time. |
+| [DatePicker](../-date-picker/index.md) | `class DatePicker : `[`DateTimePicker`](./index.md)<br>Wrapper class for [uiDateTimePicker](../ui-date-time-picker.md) to edit date. |
+| [TimePicker](../-time-picker/index.md) | `class TimePicker : `[`DateTimePicker`](./index.md)<br>Wrapper class for [uiDateTimePicker](../ui-date-time-picker.md) to edit time. |

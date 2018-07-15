@@ -2,4 +2,4 @@
 
 # uiNewOpenTypeFeatures
 
-`fun uiNewOpenTypeFeatures(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?`
+`fun uiNewOpenTypeFeatures(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiOpenTypeFeatures`](ui-open-type-features.md)`>?`

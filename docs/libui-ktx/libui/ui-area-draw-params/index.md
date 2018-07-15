@@ -26,7 +26,7 @@
 | [ClipWidth](-clip-width.md) | `var ClipWidth: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
 | [ClipX](-clip-x.md) | `var ClipX: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
 | [ClipY](-clip-y.md) | `var ClipY: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
-| [Context](-context.md) | `var Context: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?` |
+| [Context](-context.md) | `var Context: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiDrawContext`](../ui-draw-context.md)`>?` |
 
 ### Extension Properties
 

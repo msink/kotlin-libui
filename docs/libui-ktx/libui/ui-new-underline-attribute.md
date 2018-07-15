@@ -2,4 +2,4 @@
 
 # uiNewUnderlineAttribute
 
-`fun uiNewUnderlineAttribute(u: `[`uiUnderline`](ui-underline.md)`): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?`
+`fun uiNewUnderlineAttribute(u: `[`uiUnderline`](ui-underline.md)`): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiAttribute`](ui-attribute.md)`>?`

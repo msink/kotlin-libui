@@ -2,4 +2,4 @@
 
 # uiNewDatePicker
 
-`fun uiNewDatePicker(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?`
+`fun uiNewDatePicker(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiDateTimePicker`](ui-date-time-picker.md)`>?`

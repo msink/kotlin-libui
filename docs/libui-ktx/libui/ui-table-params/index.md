@@ -20,7 +20,7 @@
 
 | Name | Summary |
 |---|---|
-| [Model](-model.md) | `var Model: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<<ERROR CLASS>>?` |
+| [Model](-model.md) | `var Model: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiTableModel`](../ui-table-model.md)`>?` |
 | [RowBackgroundColorModelColumn](-row-background-color-model-column.md) | `var RowBackgroundColorModelColumn: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
 
 ### Extension Properties
