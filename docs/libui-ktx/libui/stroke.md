@@ -2,7 +2,7 @@
 
 # stroke
 
-`fun `[`DrawArea`](-draw-area/index.md)`.stroke(block: `[`uiDrawStrokeParams`](ui-draw-stroke-params/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`
+`fun `[`DrawArea`](-draw-area/index.md)`.stroke(block: `[`uiDrawStrokeParams`](ui-draw-stroke-params/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): `[`Stroke`](-stroke/index.md)
 
 Creates a new Stroke with lifecycle delegated to DrawArea.
 

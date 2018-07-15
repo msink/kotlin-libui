@@ -141,6 +141,9 @@ class ScrollingArea internal constructor(
 
 ///////////////////////////////////////////////////////////////////////////////
 
+/** Creates a new Brush with lifecycle delegated to DrawArea. */
+fun DrawArea.brush(): Brush = Brush().also { disposables.add(it) }
+
 /** Defines the color(s) to draw a path with. */
 class Brush : Disposable<uiDrawBrush>(
     alloc = nativeHeap.alloc<uiDrawBrush>().ptr) {
@@ -152,88 +155,92 @@ class Brush : Disposable<uiDrawBrush>(
         clear()
         nativeHeap.free(ptr)
     }
-}
 
-/** Creates a new Brush with lifecycle delegated to DrawArea. */
-fun DrawArea.brush() = Brush().also { disposables.add(it) }
-
-/** Helper to quickly set a brush color */
-fun Brush.solid(color: Color, opacity: Double = 1.0): Brush {
-    clear()
-    with(ptr.pointed) {
-        Type = uiDrawBrushTypeSolid
-        R = color.r
-        G = color.g
-        B = color.b
-        A = color.a * opacity
+    /** Helper to quickly set a brush color */
+    fun solid(color: Color, opacity: Double = 1.0): Brush {
+        clear()
+        with(ptr.pointed) {
+            Type = uiDrawBrushTypeSolid
+            R = color.r
+            G = color.g
+            B = color.b
+            A = color.a * opacity
+        }
+        return this
     }
-    return this
-}
 
-/** Helper to quickly set a brush color */
-fun Brush.solid(rgb: Int, alpha: Double = 1.0): Brush {
-    clear()
-    val color = Color(rgb, alpha)
-    with(ptr.pointed) {
-        Type = uiDrawBrushTypeSolid
-        R = color.r
-        G = color.g
-        B = color.b
-        A = alpha
+    /** Helper to quickly set a brush color */
+    fun solid(rgb: Int, alpha: Double = 1.0): Brush {
+        clear()
+        val color = Color(rgb, alpha)
+        with(ptr.pointed) {
+            Type = uiDrawBrushTypeSolid
+            R = color.r
+            G = color.g
+            B = color.b
+            A = alpha
+        }
+        return this
     }
-    return this
-}
 
-/** Helper to quickly create linear brush */
-fun Brush.linear(start: Point, end: Point, vararg stops: Pair<Double, Color>): Brush {
-    clear()
-    with(ptr.pointed) {
-        Type = uiDrawBrushTypeLinearGradient
-        X0 = start.x
-        Y0 = start.y
-        X1 = end.x
-        Y1 = end.y
-        NumStops = stops.size.signExtend()
-        Stops = nativeHeap.allocArray<uiDrawBrushGradientStop>(stops.size)
-        stops.forEachIndexed { i, (pos, color) ->
-            with(Stops!![i]) {
-                Pos = pos
-                R = color.r
-                G = color.g
-                B = color.b
-                A = color.a
+    /** Helper to quickly create linear brush */
+    fun linear(start: Point, end: Point, vararg stops: Pair<Double, Color>): Brush {
+        clear()
+        with(ptr.pointed) {
+            Type = uiDrawBrushTypeLinearGradient
+            X0 = start.x
+            Y0 = start.y
+            X1 = end.x
+            Y1 = end.y
+            NumStops = stops.size.signExtend()
+            Stops = nativeHeap.allocArray<uiDrawBrushGradientStop>(stops.size)
+            stops.forEachIndexed { i, (pos, color) ->
+                with(Stops!![i]) {
+                    Pos = pos
+                    R = color.r
+                    G = color.g
+                    B = color.b
+                    A = color.a
+                }
             }
         }
+        return this
     }
-    return this
-}
 
-/** Helper to quickly create radial brush */
-fun Brush.radial(start: Point, center: Point, radius: Double, vararg stops: Pair<Double, Color>): Brush {
-    clear()
-    with(ptr.pointed) {
-        Type = uiDrawBrushTypeRadialGradient
-        X0 = start.x
-        Y0 = start.y
-        X1 = center.x
-        Y1 = center.y
-        OuterRadius = radius
-        NumStops = stops.size.signExtend()
-        Stops = nativeHeap.allocArray<uiDrawBrushGradientStop>(stops.size)
-        stops.forEachIndexed { i, (pos, color) ->
-            with(Stops!![i]) {
-                Pos = pos
-                R = color.r
-                G = color.g
-                B = color.b
-                A = color.a
+    /** Helper to quickly create radial brush */
+    fun radial(start: Point, center: Point, radius: Double, vararg stops: Pair<Double, Color>): Brush {
+        clear()
+        with(ptr.pointed) {
+            Type = uiDrawBrushTypeRadialGradient
+            X0 = start.x
+            Y0 = start.y
+            X1 = center.x
+            Y1 = center.y
+            OuterRadius = radius
+            NumStops = stops.size.signExtend()
+            Stops = nativeHeap.allocArray<uiDrawBrushGradientStop>(stops.size)
+            stops.forEachIndexed { i, (pos, color) ->
+                with(Stops!![i]) {
+                    Pos = pos
+                    R = color.r
+                    G = color.g
+                    B = color.b
+                    A = color.a
+                }
             }
         }
+        return this
     }
-    return this
 }
 
 ///////////////////////////////////////////////////////////////////////////////
+
+/** Creates a new Stroke with lifecycle delegated to DrawArea. */
+fun DrawArea.stroke(block: uiDrawStrokeParams.() -> Unit = {}): Stroke =
+    Stroke().also {
+        disposables.add(it)
+        block.invoke(it.ptr.pointed)
+    }
 
 /** Describes the stroke to draw with. */
 class Stroke : Disposable<uiDrawStrokeParams>(
@@ -241,55 +248,48 @@ class Stroke : Disposable<uiDrawStrokeParams>(
     override fun free() = nativeHeap.free(ptr)
 }
 
-/** Creates a new Stroke with lifecycle delegated to DrawArea. */
-fun DrawArea.stroke(block: uiDrawStrokeParams.() -> Unit = {}) =
-    Stroke().also {
-        disposables.add(it)
-        block.invoke(it.ptr.pointed)
-    }
-
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Represent a path that could be drawed on a [DrawContext] */
 class Path(mode: uiDrawFillMode) : Disposable<uiDrawPath>(
     alloc = uiDrawNewPath(mode)) {
     override fun free() = uiDrawFreePath(ptr)
+
+    /** Starts a new figure at the specified point. Call this method when you want to create a new path. */
+    fun figure(x: Double, y: Double) = uiDrawPathNewFigure(ptr, x, y)
+
+    /** Starts a new figure and adds an arc to the path which is centered at ([xCenter], [yCenter]) position
+     *  with radius [radius] starting at [startAngle] and with sweep angle [sweep] going in the given direction
+     *  by anticlockwise (defaulting to clockwise) as specified by [negative]. */
+    fun figureWithArc(xCenter: Double, yCenter: Double, radius: Double,
+                           startAngle: Double, sweep: Double, negative: Boolean = false) =
+        uiDrawPathNewFigureWithArc(ptr, xCenter, yCenter, radius, startAngle, sweep, if (negative) 1 else 0)
+
+    /** Connects the last point in the subpath to the x, y coordinates with a straight line. */
+    fun lineTo(x: Double, y: Double) = uiDrawPathLineTo(ptr, x, y)
+
+    /** Adds an arc to the path which is centered at ([xCenter], [yCenter]) position with radius [radius]
+     *  starting at [startAngle] and with sweep angle [sweep] going in the given direction by
+     *  anticlockwise (defaulting to clockwise) as specified by [negative]. */
+    fun arcTo(xCenter: Double, yCenter: Double, radius: Double,
+                   startAngle: Double, sweep: Double, negative: Boolean = false) =
+        uiDrawPathArcTo(ptr, xCenter, yCenter, radius, startAngle, sweep, if (negative) 1 else 0)
+
+    /** Adds a cubic Bézier curve to the path. It requires three points. The first two points are control
+     *  points and the third one is the end point. The starting point is the last point in the current path. */
+    fun bezierTo(c1x: Double, c1y: Double, c2x: Double, c2y: Double, endX: Double, endY: Double) =
+        uiDrawPathBezierTo(ptr, c1x, c1y, c2x, c2y, endX, endY)
+
+    /** Creates a path for a rectangle at position (x, y) with a size that is determined by width and height. */
+    fun rectangle(x: Double, y: Double, width: Double, height: Double) =
+        uiDrawPathAddRectangle(ptr, x, y, width, height)
+
+    /** Causes the point of the pen to move back to the start of the current sub-path. It tries to draw
+     *  a straight line from the current point to the start. If the shape has already been closed or has
+     *  only one point, this function does nothing.
+     *  It end the path. */
+    fun closeFigure() = uiDrawPathCloseFigure(ptr)
 }
-
-/** Starts a new figure at the specified point. Call this method when you want to create a new path. */
-fun Path.figure(x: Double, y: Double) = uiDrawPathNewFigure(ptr, x, y)
-
-/** Starts a new figure and adds an arc to the path which is centered at ([xCenter], [yCenter]) position
- *  with radius [radius] starting at [startAngle] and with sweep angle [sweep] going in the given direction
- *  by anticlockwise (defaulting to clockwise) as specified by [negative]. */
-fun Path.figureWithArc(xCenter: Double, yCenter: Double, radius: Double,
-                       startAngle: Double, sweep: Double, negative: Boolean = false) =
-    uiDrawPathNewFigureWithArc(ptr, xCenter, yCenter, radius, startAngle, sweep, if (negative) 1 else 0)
-
-/** Connects the last point in the subpath to the x, y coordinates with a straight line. */
-fun Path.lineTo(x: Double, y: Double) = uiDrawPathLineTo(ptr, x, y)
-
-/** Adds an arc to the path which is centered at ([xCenter], [yCenter]) position with radius [radius]
- *  starting at [startAngle] and with sweep angle [sweep] going in the given direction by
- *  anticlockwise (defaulting to clockwise) as specified by [negative]. */
-fun Path.arcTo(xCenter: Double, yCenter: Double, radius: Double,
-               startAngle: Double, sweep: Double, negative: Boolean = false) =
-    uiDrawPathArcTo(ptr, xCenter, yCenter, radius, startAngle, sweep, if (negative) 1 else 0)
-
-/** Adds a cubic Bézier curve to the path. It requires three points. The first two points are control
- *  points and the third one is the end point. The starting point is the last point in the current path. */
-fun Path.bezierTo(c1x: Double, c1y: Double, c2x: Double, c2y: Double, endX: Double, endY: Double) =
-    uiDrawPathBezierTo(ptr, c1x, c1y, c2x, c2y, endX, endY)
-
-/** Creates a path for a rectangle at position (x, y) with a size that is determined by width and height. */
-fun Path.rectangle(x: Double, y: Double, width: Double, height: Double) =
-    uiDrawPathAddRectangle(ptr, x, y, width, height)
-
-/** Causes the point of the pen to move back to the start of the current sub-path. It tries to draw
- *  a straight line from the current point to the start. If the shape has already been closed or has
- *  only one point, this function does nothing.
- *  It end the path. */
-fun Path.closeFigure() = uiDrawPathCloseFigure(ptr)
 
 ///////////////////////////////////////////////////////////////////////////////
 
@@ -297,50 +297,50 @@ fun Path.closeFigure() = uiDrawPathCloseFigure(ptr)
 class Matrix : Disposable<uiDrawMatrix>(
     alloc = nativeHeap.alloc<uiDrawMatrix>().ptr) {
     override fun free() = nativeHeap.free(ptr)
+
+    /** Moves paths over by [x] to the right and [y] down. */
+    fun translate(x: Double, y: Double) =
+        uiDrawMatrixTranslate(ptr, x, y)
+
+    /** Scales pathes by a factor of [x] and [y] with ([xCenter], [yCenter]) as the scale center. */
+    fun scale(xCenter: Double, yCenter: Double, x: Double, y: Double) =
+        uiDrawMatrixScale(ptr, xCenter, yCenter, x, y)
+
+    /** Rotates paths by [amount] *radians* around ([x], [y]). */
+    fun rotate(x: Double, y: Double, amount: Double) =
+        uiDrawMatrixRotate(ptr, x, y, amount)
+
+    /** Skews path by [xamount] *radians* horizontally and by [yamount] *radians* vertically around ([x], [y]) */
+    fun skew(x: Double, y: Double, xamount: Double, yamount: Double) =
+        uiDrawMatrixSkew(ptr, x, y, xamount, yamount)
+
+    /** Sets the matrix to the product of itself with [other] matrix. */
+    fun multiply(other: Matrix) = uiDrawMatrixMultiply(ptr, other.ptr)
+
+    /** Returns `true` if the matrix is invertible. */
+    val invertible: Boolean get() = uiDrawMatrixInvertible(ptr) != 0
+
+    /** Inverts the matrix. */
+    fun invert() = uiDrawMatrixInvert(ptr)
+
+    /** Returns the transformed point. */
+    val point: Point
+        get() = memScoped {
+            val x = alloc<DoubleVar>()
+            val y = alloc<DoubleVar>()
+            uiDrawMatrixTransformPoint(ptr, x.ptr, y.ptr)
+            Point(x.value, y.value)
+        }
+
+    /** Returns the transformed size. */
+    val size: Size
+        get() = memScoped {
+            val width = alloc<DoubleVar>()
+            val height = alloc<DoubleVar>()
+            uiDrawMatrixTransformSize(ptr, width.ptr, height.ptr)
+            Size(width.value, height.value)
+        }
 }
-
-/** Moves paths over by [x] to the right and [y] down. */
-fun Matrix.translate(x: Double, y: Double) =
-    uiDrawMatrixTranslate(ptr, x, y)
-
-/** Scales pathes by a factor of [x] and [y] with ([xCenter], [yCenter]) as the scale center. */
-fun Matrix.scale(xCenter: Double, yCenter: Double, x: Double, y: Double) =
-    uiDrawMatrixScale(ptr, xCenter, yCenter, x, y)
-
-/** Rotates paths by [amount] *radians* around ([x], [y]). */
-fun Matrix.rotate(x: Double, y: Double, amount: Double) =
-    uiDrawMatrixRotate(ptr, x, y, amount)
-
-/** Skews path by [xamount] *radians* horizontally and by [yamount] *radians* vertically around ([x], [y]) */
-fun Matrix.skew(x: Double, y: Double, xamount: Double, yamount: Double) =
-    uiDrawMatrixSkew(ptr, x, y, xamount, yamount)
-
-/** Sets the matrix to the product of itself with [other] matrix. */
-fun Matrix.multiply(other: Matrix) = uiDrawMatrixMultiply(ptr, other.ptr)
-
-/** Returns `true` if the matrix is invertible. */
-val Matrix.invertible: Boolean get() = uiDrawMatrixInvertible(ptr) != 0
-
-/** Inverts the matrix. */
-fun Matrix.invert() = uiDrawMatrixInvert(ptr)
-
-/** Returns the transformed point. */
-val Matrix.point: Point
-    get() = memScoped {
-        val x = alloc<DoubleVar>()
-        val y = alloc<DoubleVar>()
-        uiDrawMatrixTransformPoint(ptr, x.ptr, y.ptr)
-        Point(x.value, y.value)
-    }
-
-/** Returns the transformed size. */
-val Matrix.size: Size
-    get() = memScoped {
-        val width = alloc<DoubleVar>()
-        val height = alloc<DoubleVar>()
-        uiDrawMatrixTransformSize(ptr, width.ptr, height.ptr)
-        Size(width.value, height.value)
-    }
 
 ///////////////////////////////////////////////////////////
 
@@ -459,26 +459,26 @@ class FeaturesAttribute(otf: OpenTypeFeatures) : Attribute(uiNewFeaturesAttribut
 class OpenTypeFeatures(copy: CPointer<uiOpenTypeFeatures>? = null) : Disposable<uiOpenTypeFeatures>(
     alloc = copy ?: uiNewOpenTypeFeatures()) {
     override fun free() = uiFreeOpenTypeFeatures(ptr)
-}
 
-/** Makes a copy of otf and returns it. Changing one will not affect the other. */
-fun OpenTypeFeatures.copy() = OpenTypeFeatures(uiOpenTypeFeaturesClone(ptr))
+    /** Makes a copy of otf and returns it. Changing one will not affect the other. */
+    fun copy() = OpenTypeFeatures(uiOpenTypeFeaturesClone(ptr))
 
-/** Adds the given feature tag and value to OpenTypeFeatures. If there is already a value
- *  associated with the specified tag in otf, the old value is removed. */
-fun OpenTypeFeatures.add(tag: String, value: Int) =
-    uiOpenTypeFeaturesAdd(ptr, tag[0].toByte(), tag[1].toByte(), tag[2].toByte(), tag[3].toByte(), value)
+    /** Adds the given feature tag and value to OpenTypeFeatures. If there is already a value
+     *  associated with the specified tag in otf, the old value is removed. */
+    fun add(tag: String, value: Int) =
+        uiOpenTypeFeaturesAdd(ptr, tag[0].toByte(), tag[1].toByte(), tag[2].toByte(), tag[3].toByte(), value)
 
-/** Removes the given feature tag and value from OpenTypeFeatures. If the tag is not present
- *  in OpenTypeFeatures, it does nothing. */
-fun OpenTypeFeatures.remove(tag: String) =
-    uiOpenTypeFeaturesRemove(ptr, tag[0].toByte(), tag[1].toByte(), tag[2].toByte(), tag[3].toByte())
+    /** Removes the given feature tag and value from OpenTypeFeatures. If the tag is not present
+     *  in OpenTypeFeatures, it does nothing. */
+    fun remove(tag: String) =
+        uiOpenTypeFeaturesRemove(ptr, tag[0].toByte(), tag[1].toByte(), tag[2].toByte(), tag[3].toByte())
 
-/** Determines whether the given feature tag is present in OpenTypeFeatures. */
-fun OpenTypeFeatures.get(tag: String): Int = memScoped {
-    val value = alloc<IntVar>()
-    uiOpenTypeFeaturesGet(ptr, tag[0].toByte(), tag[1].toByte(), tag[2].toByte(), tag[3].toByte(), value.ptr)
-    value.value
+    /** Determines whether the given feature tag is present in OpenTypeFeatures. */
+    fun get(tag: String): Int = memScoped {
+        val value = alloc<IntVar>()
+        uiOpenTypeFeaturesGet(ptr, tag[0].toByte(), tag[1].toByte(), tag[2].toByte(), tag[3].toByte(), value.ptr)
+        value.value
+    }
 }
 
 //// uiOpenTypeFeaturesForEachFunc is the type of the function
@@ -494,37 +494,38 @@ fun OpenTypeFeatures.get(tag: String): Int = memScoped {
 
 ///////////////////////////////////////////////////////////////////////////////
 
+/** Creates a new AttributedString from initial String. The string will be entirely unattributed. */
+fun DrawArea.string(init: String): AttributedString =
+    AttributedString(init).also { disposables.add(it) }
+
 /** Represents a string of UTF-8 text that can be embellished with formatting attributes. */
 class AttributedString(init: String) : Disposable<uiAttributedString>(
     alloc = uiNewAttributedString(init)) {
     override fun free() = uiFreeAttributedString(ptr)
+
+    /** Returns the textual content of AttributedString. */
+    val string: String get() = uiAttributedStringString(ptr).uiText()
+
+    /** Returns the number of UTF-8 bytes in the textual content, excluding the terminating '\0'. */
+    val length: Int get() = uiAttributedStringLen(ptr).narrow()
+
+    /** Adds the '\0'-terminated UTF-8 string str to the end. The new substring will be unattributed. */
+    fun append(str: String) = uiAttributedStringAppendUnattributed(ptr, str)
+
+    /** Adds the '\0'-terminated UTF-8 string str to s at the byte position specified by [at].
+     *  The new substring will be unattributed existing attributes will be moved along with their text. */
+    fun insert(str: String, at: Int) =
+        uiAttributedStringInsertAtUnattributed(ptr, str, at.signExtend())
+
+    /** Deletes the characters and attributes in the byte range [start, end). */
+    fun delete(start: Int, end: Int) =
+        uiAttributedStringDelete(ptr, start.signExtend(), end.signExtend())
+
+    /** Sets a in the byte range [start, end). Any existing attributes in that byte range of the same type are
+     *  removed. Takes ownership of [a] you should not use it after uiAttributedStringSetAttribute() returns. */
+    fun setAttribute(a: Attribute, start: Int, end: Int) =
+        uiAttributedStringSetAttribute(ptr, a.ptr, start.signExtend(), end.signExtend())
 }
-
-/** Creates a new AttributedString from initial String. The string will be entirely unattributed. */
-fun DrawArea.string(init: String) = AttributedString(init).also { disposables.add(it) }
-
-/** Returns the textual content of AttributedString. */
-val AttributedString.string: String get() = uiAttributedStringString(ptr).uiText()
-
-/** Returns the number of UTF-8 bytes in the textual content, excluding the terminating '\0'. */
-val AttributedString.length: Int get() = uiAttributedStringLen(ptr).narrow()
-
-/** Adds the '\0'-terminated UTF-8 string str to the end. The new substring will be unattributed. */
-fun AttributedString.append(str: String) = uiAttributedStringAppendUnattributed(ptr, str)
-
-/** Adds the '\0'-terminated UTF-8 string str to s at the byte position specified by [at].
- *  The new substring will be unattributed existing attributes will be moved along with their text. */
-fun AttributedString.insert(str: String, at: Int) =
-    uiAttributedStringInsertAtUnattributed(ptr, str, at.signExtend())
-
-/** Deletes the characters and attributes in the byte range [start, end). */
-fun AttributedString.delete(start: Int, end: Int) =
-    uiAttributedStringDelete(ptr, start.signExtend(), end.signExtend())
-
-/** Sets a in the byte range [start, end). Any existing attributes in that byte range of the same type are
- *  removed. Takes ownership of [a] you should not use it after uiAttributedStringSetAttribute() returns. */
-fun AttributedString.setAttribute(a: Attribute, start: Int, end: Int) =
-    uiAttributedStringSetAttribute(ptr, a.ptr, start.signExtend(), end.signExtend())
 
 //// uiAttributedStringForEachAttributeFunc is the type of the function
 //// invoked by uiAttributedStringForEachAttribute() for every

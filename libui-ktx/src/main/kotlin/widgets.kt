@@ -397,12 +397,14 @@ class Label(text: String) : Control<uiLabel>(uiNewLabel(text)) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** An horizontal line to visually separate widgets. */
-inline fun VBox.separator(init: HorizontalSeparator.() -> Unit = {}) =
-    add(HorizontalSeparator().apply(init))
+inline fun VBox.separator(
+    init: HorizontalSeparator.() -> Unit = {}
+): HorizontalSeparator = add(HorizontalSeparator().apply(init))
 
 /** A vertical line to visually separate widgets. */
-inline fun HBox.separator(init: VerticalSeparator.() -> Unit = {}) =
-    add(VerticalSeparator().apply(init))
+inline fun HBox.separator(
+    init: VerticalSeparator.() -> Unit = {}
+): VerticalSeparator = add(VerticalSeparator().apply(init))
 
 /** Wrapper class for [uiSeparator] */
 abstract class Separator(alloc: CPointer<uiSeparator>?

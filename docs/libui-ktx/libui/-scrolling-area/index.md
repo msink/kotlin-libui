@@ -34,6 +34,6 @@ Wrapper class for [uiArea](../ui-area.md) with scrollbars.
 
 | Name | Summary |
 |---|---|
-| [brush](../brush.md) | `fun `[`DrawArea`](../-draw-area/index.md)`.brush(): <ERROR CLASS>`<br>Creates a new Brush with lifecycle delegated to DrawArea. |
-| [string](../string.md) | `fun `[`DrawArea`](../-draw-area/index.md)`.string(init: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): <ERROR CLASS>`<br>Creates a new AttributedString from initial String. The string will be entirely unattributed. |
-| [stroke](../stroke.md) | `fun `[`DrawArea`](../-draw-area/index.md)`.stroke(block: `[`uiDrawStrokeParams`](../ui-draw-stroke-params/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>Creates a new Stroke with lifecycle delegated to DrawArea. |
+| [brush](../brush.md) | `fun `[`DrawArea`](../-draw-area/index.md)`.brush(): `[`Brush`](../-brush/index.md)<br>Creates a new Brush with lifecycle delegated to DrawArea. |
+| [string](../string.md) | `fun `[`DrawArea`](../-draw-area/index.md)`.string(init: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`AttributedString`](../-attributed-string/index.md)<br>Creates a new AttributedString from initial String. The string will be entirely unattributed. |
+| [stroke](../stroke.md) | `fun `[`DrawArea`](../-draw-area/index.md)`.stroke(block: `[`uiDrawStrokeParams`](../ui-draw-stroke-params/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): `[`Stroke`](../-stroke/index.md)<br>Creates a new Stroke with lifecycle delegated to DrawArea. |

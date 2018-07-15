@@ -14,6 +14,7 @@ dokka {
     outputDirectory = rootProject.file('docs').absolutePath
     sourceRoot { path = 'libui-ktx/src/main/kotlin' }
     sourceRoot { path = 'libui-ktx/staging' }
+    reportUndocumented = false
     linkMapping {
         dir = "src/main/kotlin"
         url = "https://github.com/msink/kotlin-libui/blob/master/${project.name}/src/main/kotlin"
