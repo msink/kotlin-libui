@@ -36,7 +36,7 @@ import platform.posix.*
 inline fun Container.textfield(
     readonly: Boolean = false,
     init: TextField.() -> Unit = {}
-) = add(TextField()
+): TextField = add(TextField()
         .apply { if (readonly) this.readonly = readonly }
         .apply(init))
 
@@ -44,7 +44,7 @@ inline fun Container.textfield(
 inline fun Container.passwordfield(
     readonly: Boolean = false,
     init: PasswordField.() -> Unit = {}
-) = add(PasswordField()
+): PasswordField = add(PasswordField()
         .apply { if (readonly) this.readonly = readonly }
         .apply(init))
 
@@ -52,7 +52,7 @@ inline fun Container.passwordfield(
 inline fun Container.searchfield(
     readonly: Boolean = false,
     init: SearchField.() -> Unit = {}
-) = add(SearchField()
+): SearchField = add(SearchField()
         .apply { if (readonly) this.readonly = readonly }
         .apply(init))
 
@@ -95,7 +95,7 @@ inline fun Container.textarea(
     wrap: Boolean = true,
     readonly: Boolean = false,
     init: TextArea.() -> Unit = {}
-) = add(TextArea(wrap)
+): TextArea = add(TextArea(wrap)
         .apply { if (readonly) this.readonly = readonly }
         .apply(init))
 
@@ -133,7 +133,7 @@ class TextArea(wrap: Boolean = true) : Control<uiMultilineEntry>(
 inline fun Container.checkbox(
     label: String,
     init: Checkbox.() -> Unit = {}
-) = add(Checkbox(label).apply(init))
+): Checkbox = add(Checkbox(label).apply(init))
 
 /** Wrapper class for [uiCheckbox] */
 class Checkbox(label: String) : Control<uiCheckbox>(uiNewCheckbox(label)) {
@@ -164,7 +164,7 @@ class Checkbox(label: String) : Control<uiCheckbox>(uiNewCheckbox(label)) {
 /** A drop down combo box that allow list selection only. */
 inline fun Container.combobox(
     init: Combobox.() -> Unit = {}
-) = add(Combobox().apply(init))
+): Combobox = add(Combobox().apply(init))
 
 /** Wrapper class for [uiCombobox] */
 class Combobox : Control<uiCombobox>(uiNewCombobox()) {
@@ -194,7 +194,7 @@ class Combobox : Control<uiCombobox>(uiNewCombobox()) {
 /** A drop down combo box that allow selection from list or free text entry. */
 inline fun Container.editablecombobox(
     init: EditableCombobox.() -> Unit = {}
-) = add(EditableCombobox().apply(init))
+): EditableCombobox = add(EditableCombobox().apply(init))
 
 /** Wrapper class for [uiEditableCombobox] */
 class EditableCombobox : Control<uiEditableCombobox>(uiNewEditableCombobox()) {
@@ -222,8 +222,11 @@ class EditableCombobox : Control<uiEditableCombobox>(uiNewEditableCombobox()) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** An entry widget for numerical values. */
-inline fun Container.spinbox(min: Int, max: Int, init: Spinbox.() -> Unit = {}) =
-    add(Spinbox(min, max).apply(init))
+inline fun Container.spinbox(
+    min: Int,
+    max: Int,
+    init: Spinbox.() -> Unit = {}
+): Spinbox = add(Spinbox(min, max).apply(init))
 
 /** Wrapper class for [uiSpinbox] */
 class Spinbox(min: Int, max: Int) : Control<uiSpinbox>(uiNewSpinbox(min, max)) {
@@ -247,8 +250,11 @@ class Spinbox(min: Int, max: Int) : Control<uiSpinbox>(uiNewSpinbox(min, max)) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Horizontal slide to set numerical values. */
-inline fun Container.slider(min: Int, max: Int, init: Slider.() -> Unit = {}) =
-    add(Slider(min, max).apply(init))
+inline fun Container.slider(
+    min: Int,
+    max: Int,
+    init: Slider.() -> Unit = {}
+): Slider = add(Slider(min, max).apply(init))
 
 /** Wrapper class for [uiSlider] */
 class Slider(min: Int, max: Int) : Control<uiSlider>(uiNewSlider(min, max)) {
@@ -272,8 +278,9 @@ class Slider(min: Int, max: Int) : Control<uiSlider>(uiNewSlider(min, max)) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A widget that represent a group of radio options. */
-inline fun Container.radiobuttons(init: RadioButtons.() -> Unit = {}) =
-    add(RadioButtons().apply(init))
+inline fun Container.radiobuttons(
+   init: RadioButtons.() -> Unit = {}
+): RadioButtons = add(RadioButtons().apply(init))
 
 /** Wrapper class for [uiRadioButtons] */
 class RadioButtons : Control<uiRadioButtons>(uiNewRadioButtons()) {
@@ -301,16 +308,19 @@ class RadioButtons : Control<uiRadioButtons>(uiNewRadioButtons()) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A widget to edit date and time. */
-inline fun Container.datetimepicker(init: DateTimePicker.() -> Unit = {}) =
-    add(DateTimePicker().apply(init))
+inline fun Container.datetimepicker(
+    init: DateTimePicker.() -> Unit = {}
+): DateTimePicker = add(DateTimePicker().apply(init))
 
 /** A widget to edit date. */
-inline fun Container.datepicker(init: DatePicker.() -> Unit = {}) =
-    add(DatePicker().apply(init))
+inline fun Container.datepicker(
+    init: DatePicker.() -> Unit = {}
+): DatePicker = add(DatePicker().apply(init))
 
 /** A widget to edit time. */
-inline fun Container.timepicker(init: TimePicker.() -> Unit = {}) =
-    add(TimePicker().apply(init))
+inline fun Container.timepicker(
+    init: TimePicker.() -> Unit = {}
+): TimePicker = add(TimePicker().apply(init))
 
 /** Wrapper class for [uiDateTimePicker] to edit date and time. */
 open class DateTimePicker internal constructor(alloc: CPointer<uiDateTimePicker>?
@@ -370,8 +380,10 @@ class TimePicker : DateTimePicker(uiNewTimePicker()) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A static text label. */
-inline fun Container.label(text: String, init: Label.() -> Unit = {}) =
-    add(Label(text).apply(init))
+inline fun Container.label(
+    text: String,
+    init: Label.() -> Unit = {}
+): Label = add(Label(text).apply(init))
 
 /** Wrapper class for [uiLabel] */
 class Label(text: String) : Control<uiLabel>(uiNewLabel(text)) {
@@ -405,8 +417,9 @@ class VerticalSeparator : Separator(uiNewVerticalSeparator())
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Progress bar widget. */
-inline fun Container.progressbar(init: ProgressBar.() -> Unit = {}) =
-    add(ProgressBar().apply(init))
+inline fun Container.progressbar(
+    init: ProgressBar.() -> Unit = {}
+): ProgressBar = add(ProgressBar().apply(init))
 
 /** Wrapper class for [uiProgressBar] */
 class ProgressBar : Control<uiProgressBar>(uiNewProgressBar()) {
@@ -421,8 +434,10 @@ class ProgressBar : Control<uiProgressBar>(uiNewProgressBar()) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A simple button. */
-inline fun Container.button(text: String, init: Button.() -> Unit = {}) =
-    add(Button(text).apply(init))
+inline fun Container.button(
+    text: String,
+    init: Button.() -> Unit = {}
+): Button = add(Button(text).apply(init))
 
 /** Wrapper class for [uiButton] */
 class Button(text: String) : Control<uiButton>(uiNewButton(text)) {
@@ -446,8 +461,9 @@ class Button(text: String) : Control<uiButton>(uiNewButton(text)) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A button that opens a color palette popup. */
-inline fun Container.colorbutton(init: ColorButton.() -> Unit = {}) =
-    add(ColorButton().apply(init))
+inline fun Container.colorbutton(
+    init: ColorButton.() -> Unit = {}
+): ColorButton = add(ColorButton().apply(init))
 
 /** Wrapper class for [uiColorButton] */
 class ColorButton : Control<uiColorButton>(uiNewColorButton()) {
@@ -480,8 +496,9 @@ class ColorButton : Control<uiColorButton>(uiNewColorButton()) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A button that allows users to choose a font when they click on it. */
-inline fun Container.fontbutton(init: FontButton.() -> Unit = {}) =
-    add(FontButton().apply(init))
+inline fun Container.fontbutton(
+    init: FontButton.() -> Unit = {}
+): FontButton = add(FontButton().apply(init))
 
 /** Wrapper class for [uiFontButton] */
 class FontButton : Control<uiFontButton>(uiNewFontButton()) {

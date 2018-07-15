@@ -15,8 +15,10 @@ import kotlinx.cinterop.*
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A container for a single widget that provide a caption and visually group it's children. */
-fun Container.group(title: String, margined: Boolean = true) =
-    add(Group(title).apply { if (margined) this.margined = margined })
+fun Container.group(
+    title: String,
+    margined: Boolean = true
+): Group = add(Group(title).apply { if (margined) this.margined = margined })
 
 /** Wrapper class for [uiGroup] */
 class Group(title: String) : Control<uiGroup>(uiNewGroup(title)), Container {
@@ -44,7 +46,7 @@ class Group(title: String) : Control<uiGroup>(uiNewGroup(title)), Container {
 inline fun Container.hbox(
     padded: Boolean = true,
     init: HBox.() -> Unit = {}
-) = add(HBox()
+): HBox = add(HBox()
         .apply { if (padded) this.padded = padded }
         .apply(init))
 
@@ -52,7 +54,7 @@ inline fun Container.hbox(
 inline fun Container.vbox(
     padded: Boolean = true,
     init: VBox.() -> Unit = {}
-) = add(VBox()
+): VBox = add(VBox()
         .apply { if (padded) this.padded = padded }
         .apply(init))
 
@@ -102,7 +104,7 @@ class VBox : Box(uiNewVerticalBox())
 inline fun Container.form(
     padded: Boolean = true,
     init: Form.() -> Unit = {}
-) = add(Form()
+): Form = add(Form()
         .apply { if (padded) this.padded = padded }
         .apply(init))
 
@@ -149,8 +151,9 @@ class Form : Control<uiForm>(uiNewForm()) {
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A container that show each children in a separate tab. */
-inline fun Container.tabpane(init: TabPane.() -> Unit = {}) =
-    add(TabPane().apply(init))
+inline fun Container.tabpane(
+    init: TabPane.() -> Unit = {}
+): TabPane = add(TabPane().apply(init))
 
 inline fun TabPane.page(
     label: String,
@@ -201,7 +204,7 @@ class TabPane : Control<uiTab>(uiNewTab()) {
 inline fun Container.gridpane(
     padded: Boolean = true,
     init: GridPane.() -> Unit = {}
-) = add(GridPane()
+): GridPane = add(GridPane()
         .apply { if (padded) this.padded = padded }
         .apply(init))
 

@@ -7,7 +7,7 @@ import kotlin.reflect.KProperty1
 inline fun <T> Container.tableview(
     data: List<T>,
     init: Table<T>.() -> Unit = {}
-) = add(TableView(table(data).apply(init)))
+): TableView = add(TableView(table(data).apply(init)))
 
 /** Wrapper class for [uiTable] */
 class TableView(val table: Table<*>) : Control<uiTable>(

@@ -2,7 +2,7 @@
 
 # radiobuttons
 
-`inline fun `[`Container`](-container/index.md)`.radiobuttons(init: `[`RadioButtons`](-radio-buttons/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`
+`inline fun `[`Container`](-container/index.md)`.radiobuttons(init: `[`RadioButtons`](-radio-buttons/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): `[`RadioButtons`](-radio-buttons/index.md)
 
 A widget that represent a group of radio options.
 
