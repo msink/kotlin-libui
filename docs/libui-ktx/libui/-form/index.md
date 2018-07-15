@@ -6,15 +6,21 @@
 
 ### Types
 
+| Name | Summary |
+|---|---|
 | [Field](-field/index.md) | `inner class Field : `[`Container`](../-container/index.md)<br>adapter for DSL builders |
 | [Stretchy](-stretchy/index.md) | `inner class Stretchy`<br>adapter for DSL builders |
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | `Form()` |
 
 ### Inherited Properties
 
+| Name | Summary |
+|---|---|
 | [ctl](../-control/ctl.md) | `val ctl: <ERROR CLASS><<ERROR CLASS>>` |
 | [enabled](../-control/enabled.md) | `var enabled: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control should be enabled or disabled. Defaults to `true`. |
 | [parent](../-control/parent.md) | `var parent: `[`Control`](../-control/index.md)`<*>?`<br>Returns parent of the control or `null` for detached. |
@@ -23,6 +29,8 @@
 
 ### Inherited Functions
 
+| Name | Summary |
+|---|---|
 | [disable](../-control/disable.md) | `fun disable(): <ERROR CLASS>`<br>Disables the Control. |
 | [dispose](../-control/dispose.md) | `open fun dispose(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Dispose and free all allocated resources. |
 | [enable](../-control/enable.md) | `fun enable(): <ERROR CLASS>`<br>Enables the Control. |
@@ -35,12 +43,15 @@
 
 ### Extension Properties
 
+| Name | Summary |
+|---|---|
 | [padded](../padded.md) | `var `[`Form`](./index.md)`.padded: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>If true, the container insert some space between children. |
 | [stretchy](../stretchy.md) | `val `[`Form`](./index.md)`.stretchy: `[`Stretchy`](-stretchy/index.md) |
 
 ### Extension Functions
 
+| Name | Summary |
+|---|---|
 | [add](../add.md) | `fun `[`Form`](./index.md)`.add(label: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, widget: `[`Control`](../-control/index.md)`<*>, stretchy: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)` = false): <ERROR CLASS>`<br>Adds the given widget to the end of the form. |
 | [delete](../delete.md) | `fun `[`Form`](./index.md)`.delete(index: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): <ERROR CLASS>`<br>deletes the nth control of the form. |
 | [field](../field.md) | `fun `[`Form`](./index.md)`.field(label: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`Field`](-field/index.md) |
-

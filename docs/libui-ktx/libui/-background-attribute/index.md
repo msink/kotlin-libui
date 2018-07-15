@@ -8,9 +8,12 @@ Changes the background color of the text it is applied to.
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | `BackgroundAttribute(color: `[`Color`](../-color/index.md)`)`<br>Changes the background color of the text it is applied to. |
 
 ### Inherited Properties
 
+| Name | Summary |
+|---|---|
 | [type](../-attribute/type.md) | `val type: <ERROR CLASS>`<br>Returns the type of [Attribute](../-attribute/index.md). |
-

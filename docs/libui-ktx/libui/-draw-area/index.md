@@ -6,10 +6,14 @@
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [handler](handler.md) | `val handler: <ERROR CLASS><<ERROR CLASS>>` |
 
 ### Inherited Properties
 
+| Name | Summary |
+|---|---|
 | [ctl](../-control/ctl.md) | `val ctl: <ERROR CLASS><<ERROR CLASS>>` |
 | [enabled](../-control/enabled.md) | `var enabled: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control should be enabled or disabled. Defaults to `true`. |
 | [parent](../-control/parent.md) | `var parent: `[`Control`](../-control/index.md)`<*>?`<br>Returns parent of the control or `null` for detached. |
@@ -18,6 +22,8 @@
 
 ### Inherited Functions
 
+| Name | Summary |
+|---|---|
 | [disable](../-control/disable.md) | `fun disable(): <ERROR CLASS>`<br>Disables the Control. |
 | [dispose](../-control/dispose.md) | `open fun dispose(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Dispose and free all allocated resources. |
 | [enable](../-control/enable.md) | `fun enable(): <ERROR CLASS>`<br>Enables the Control. |
@@ -30,6 +36,8 @@
 
 ### Extension Functions
 
+| Name | Summary |
+|---|---|
 | [brush](../brush.md) | `fun `[`DrawArea`](./index.md)`.brush(): <ERROR CLASS>`<br>Creates a new Brush with lifecycle delegated to DrawArea. |
 | [dragBroken](../drag-broken.md) | `fun `[`DrawArea`](./index.md)`.dragBroken(block: `[`DrawArea`](./index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Funcion to be run to indicate that a drag should be ended. Only implemented on Windows. Only one function can be registered at a time. |
 | [draw](../draw.md) | `fun `[`DrawArea`](./index.md)`.draw(block: <ERROR CLASS><<ERROR CLASS>>.(<ERROR CLASS>) -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Funcion to be run when the area was created or got resized with [uiAreaDrawParams](#) as parameter. Only one function can be registered at a time. |
@@ -42,5 +50,6 @@
 
 ### Inheritors
 
+| Name | Summary |
+|---|---|
 | [ScrollingArea](../-scrolling-area.md) | `class ScrollingArea : `[`DrawArea`](./index.md) |
-

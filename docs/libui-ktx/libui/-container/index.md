@@ -8,15 +8,21 @@ Container for child controls.
 
 ### Functions
 
+| Name | Summary |
+|---|---|
 | [add](add.md) | `abstract fun <T : `[`Control`](../-control/index.md)`<*>> add(widget: `[`T`](add.md#T)`): `[`T`](add.md#T) |
 
 ### Extension Properties
 
+| Name | Summary |
+|---|---|
 | [hbox](../hbox.md) | `val `[`Container`](./index.md)`.hbox: `[`HBox`](../-h-box/index.md) |
 | [vbox](../vbox.md) | `val `[`Container`](./index.md)`.vbox: `[`VBox`](../-v-box/index.md) |
 
 ### Extension Functions
 
+| Name | Summary |
+|---|---|
 | [button](../button.md) | `fun `[`Container`](./index.md)`.button(text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, init: `[`Button`](../-button/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>A simple button. |
 | [checkbox](../checkbox.md) | `fun `[`Container`](./index.md)`.checkbox(label: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, init: `[`Checkbox`](../-checkbox/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>A checkbox widget. |
 | [colorbutton](../colorbutton.md) | `fun `[`Container`](./index.md)`.colorbutton(init: `[`ColorButton`](../-color-button/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>A button that opens a color palette popup. |
@@ -47,6 +53,8 @@ Container for child controls.
 
 ### Inheritors
 
+| Name | Summary |
+|---|---|
 | [Box](../-box/index.md) | `abstract class Box : `[`Control`](../-control/index.md)`<<ERROR CLASS>>, `[`Container`](./index.md) |
 | [Cell](../-grid-pane/-cell/index.md) | `inner class Cell : `[`Container`](./index.md)<br>adapter for DSL builders |
 | [Field](../-form/-field/index.md) | `inner class Field : `[`Container`](./index.md)<br>adapter for DSL builders |
@@ -55,4 +63,3 @@ Container for child controls.
 | [Page](../-tab-pane/-page/index.md) | `inner class Page : `[`Container`](./index.md)<br>adapter for DSL builders |
 | [Stretchy](../-box/-stretchy/index.md) | `inner class Stretchy : `[`Container`](./index.md)<br>adapter for DSL builders |
 | [Window](../-window/index.md) | `class Window : `[`Control`](../-control/index.md)`<<ERROR CLASS>>, `[`Container`](./index.md)<br>Represents a top-level window. Contains one child control that occupies the entirety of the window. |
-

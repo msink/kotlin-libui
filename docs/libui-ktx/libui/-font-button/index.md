@@ -6,10 +6,14 @@
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | `FontButton()` |
 
 ### Inherited Properties
 
+| Name | Summary |
+|---|---|
 | [ctl](../-control/ctl.md) | `val ctl: <ERROR CLASS><<ERROR CLASS>>` |
 | [enabled](../-control/enabled.md) | `var enabled: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control should be enabled or disabled. Defaults to `true`. |
 | [parent](../-control/parent.md) | `var parent: `[`Control`](../-control/index.md)`<*>?`<br>Returns parent of the control or `null` for detached. |
@@ -18,6 +22,8 @@
 
 ### Inherited Functions
 
+| Name | Summary |
+|---|---|
 | [disable](../-control/disable.md) | `fun disable(): <ERROR CLASS>`<br>Disables the Control. |
 | [dispose](../-control/dispose.md) | `open fun dispose(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Dispose and free all allocated resources. |
 | [enable](../-control/enable.md) | `fun enable(): <ERROR CLASS>`<br>Enables the Control. |
@@ -30,9 +36,12 @@
 
 ### Extension Properties
 
+| Name | Summary |
+|---|---|
 | [value](../value.md) | `val `[`FontButton`](./index.md)`.value: `[`Font`](../-font/index.md)<br>Returns the font currently selected in the FontButton. |
 
 ### Extension Functions
 
+| Name | Summary |
+|---|---|
 | [action](../action.md) | `fun `[`FontButton`](./index.md)`.action(block: `[`FontButton`](./index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Function to be run when the font in the FontButton is changed. Only one function can be registered at a time. |
-

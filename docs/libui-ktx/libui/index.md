@@ -4,6 +4,8 @@
 
 ### Types
 
+| Name | Summary |
+|---|---|
 | [Attribute](-attribute/index.md) | `abstract class Attribute : `[`Disposable`](-disposable/index.md)`<<ERROR CLASS>>`<br>Stores information about an attribute in a [string](string.md). |
 | [AttributedString](-attributed-string/index.md) | `class AttributedString : `[`Disposable`](-disposable/index.md)`<<ERROR CLASS>>`<br>Represents a string of UTF-8 text that can be embellished with formatting attributes. |
 | [BackgroundAttribute](-background-attribute/index.md) | `class BackgroundAttribute : `[`Attribute`](-attribute/index.md)<br>Changes the background color of the text it is applied to. |
@@ -68,12 +70,16 @@
 
 ### Type Aliases
 
+| Name | Summary |
+|---|---|
 | [DrawContext](-draw-context.md) | `typealias DrawContext = <ERROR CLASS><<ERROR CLASS>>` |
 | [Menu](-menu.md) | `typealias Menu = <ERROR CLASS><<ERROR CLASS>>` |
 | [MenuItem](-menu-item.md) | `typealias MenuItem = <ERROR CLASS><<ERROR CLASS>>` |
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [borderless](borderless.md) | `var `[`Window`](-window/index.md)`.borderless: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Allow to specify that the window is a frameless one, without borders, title bar and OS window control widgets. |
 | [contentSize](content-size.md) | `var `[`Window`](-window/index.md)`.contentSize: `[`SizeInt`](-size-int/index.md)<br>Size in pixel of the content area of the window. Window decoration size are excluded. This mean that if you set window size to 0,0 you still see title bar and OS window buttons. |
 | [fullscreen](fullscreen.md) | `var `[`Window`](-window/index.md)`.fullscreen: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the window should show in fullscreen or not. |
@@ -96,6 +102,8 @@
 
 ### Functions
 
+| Name | Summary |
+|---|---|
 | [Color](-color.md) | `fun Color(rgb: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, alpha: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)` = 1.0): `[`Color`](-color/index.md) |
 | [MsgBox](-msg-box.md) | `fun MsgBox(text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, details: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)` = ""): <ERROR CLASS>`<br>Displays a modal Message Box. |
 | [MsgBoxError](-msg-box-error.md) | `fun MsgBoxError(text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, details: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)` = ""): <ERROR CLASS>`<br>Displays a modal Error Message Box. |
@@ -187,4 +195,3 @@
 | [transform](transform.md) | `fun <ERROR CLASS><<ERROR CLASS>>.transform(block: `[`Matrix`](-matrix/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Apply a different transform matrix to the context. |
 | [translate](translate.md) | `fun `[`Matrix`](-matrix/index.md)`.translate(x: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)`, y: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)`): <ERROR CLASS>`<br>Moves paths over by [x](translate.md#libui$translate(libui.Matrix, kotlin.Double, kotlin.Double)/x) to the right and [y](translate.md#libui$translate(libui.Matrix, kotlin.Double, kotlin.Double)/y) down. |
 | [vbox](vbox.md) | `fun `[`Container`](-container/index.md)`.vbox(padded: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)` = true, init: `[`VBox`](-v-box/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>A container that stack its children vertically. |
-

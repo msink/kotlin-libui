@@ -9,10 +9,14 @@ Contains one child control that occupies the entirety of the window.
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | `Window(title: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, width: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, height: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, hasMenubar: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)` = false)`<br>Represents a top-level window. Contains one child control that occupies the entirety of the window. |
 
 ### Inherited Properties
 
+| Name | Summary |
+|---|---|
 | [ctl](../-control/ctl.md) | `val ctl: <ERROR CLASS><<ERROR CLASS>>` |
 | [enabled](../-control/enabled.md) | `var enabled: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control should be enabled or disabled. Defaults to `true`. |
 | [parent](../-control/parent.md) | `var parent: `[`Control`](../-control/index.md)`<*>?`<br>Returns parent of the control or `null` for detached. |
@@ -21,10 +25,14 @@ Contains one child control that occupies the entirety of the window.
 
 ### Functions
 
+| Name | Summary |
+|---|---|
 | [add](add.md) | `fun <T : `[`Control`](../-control/index.md)`<*>> add(widget: `[`T`](add.md#T)`): `[`T`](add.md#T)<br>Specify the control to show in content area. Window can contain only one control, if you need more use layouts like Box or GridPane |
 
 ### Inherited Functions
 
+| Name | Summary |
+|---|---|
 | [disable](../-control/disable.md) | `fun disable(): <ERROR CLASS>`<br>Disables the Control. |
 | [dispose](../-control/dispose.md) | `open fun dispose(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Dispose and free all allocated resources. |
 | [enable](../-control/enable.md) | `fun enable(): <ERROR CLASS>`<br>Enables the Control. |
@@ -37,6 +45,8 @@ Contains one child control that occupies the entirety of the window.
 
 ### Extension Properties
 
+| Name | Summary |
+|---|---|
 | [borderless](../borderless.md) | `var `[`Window`](./index.md)`.borderless: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Allow to specify that the window is a frameless one, without borders, title bar and OS window control widgets. |
 | [contentSize](../content-size.md) | `var `[`Window`](./index.md)`.contentSize: `[`SizeInt`](../-size-int/index.md)<br>Size in pixel of the content area of the window. Window decoration size are excluded. This mean that if you set window size to 0,0 you still see title bar and OS window buttons. |
 | [fullscreen](../fullscreen.md) | `var `[`Window`](./index.md)`.fullscreen: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the window should show in fullscreen or not. |
@@ -47,6 +57,8 @@ Contains one child control that occupies the entirety of the window.
 
 ### Extension Functions
 
+| Name | Summary |
+|---|---|
 | [button](../button.md) | `fun `[`Container`](../-container/index.md)`.button(text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, init: `[`Button`](../-button/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>A simple button. |
 | [checkbox](../checkbox.md) | `fun `[`Container`](../-container/index.md)`.checkbox(label: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, init: `[`Checkbox`](../-checkbox/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>A checkbox widget. |
 | [colorbutton](../colorbutton.md) | `fun `[`Container`](../-container/index.md)`.colorbutton(init: `[`ColorButton`](../-color-button/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>A button that opens a color palette popup. |
@@ -76,4 +88,3 @@ Contains one child control that occupies the entirety of the window.
 | [textfield](../textfield.md) | `fun `[`Container`](../-container/index.md)`.textfield(readonly: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)` = false, init: `[`TextField`](../-text-field/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>A simple single line text entry widget. |
 | [timepicker](../timepicker.md) | `fun `[`Container`](../-container/index.md)`.timepicker(init: `[`TimePicker`](../-time-picker/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>A widget to edit time. |
 | [vbox](../vbox.md) | `fun `[`Container`](../-container/index.md)`.vbox(padded: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)` = true, init: `[`VBox`](../-v-box/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>A container that stack its children vertically. |
-

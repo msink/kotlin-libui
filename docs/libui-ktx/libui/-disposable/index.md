@@ -14,19 +14,27 @@ Manages and owns all its native resources.
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | `Disposable(alloc: <ERROR CLASS><`[`T`](index.md#T)`>?)`<br>Manages and owns all its native resources. |
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [disposed](disposed.md) | `val disposed: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Returns `true` if object was disposed - in this case [disposed](disposed.md) will do nothing, all other operations are invalid and will `throw Error("Resource is disposed")`. |
 | [ptr](ptr.md) | `val ptr: <ERROR CLASS><`[`T`](index.md#T)`>` |
 
 ### Functions
 
+| Name | Summary |
+|---|---|
 | [dispose](dispose.md) | `open fun dispose(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Dispose and free all allocated native resources. |
 
 ### Inheritors
 
+| Name | Summary |
+|---|---|
 | [Attribute](../-attribute/index.md) | `abstract class Attribute : `[`Disposable`](./index.md)`<<ERROR CLASS>>`<br>Stores information about an attribute in a [string](../string.md). |
 | [AttributedString](../-attributed-string/index.md) | `class AttributedString : `[`Disposable`](./index.md)`<<ERROR CLASS>>`<br>Represents a string of UTF-8 text that can be embellished with formatting attributes. |
 | [Brush](../-brush/index.md) | `class Brush : `[`Disposable`](./index.md)`<<ERROR CLASS>>`<br>Defines the color(s) to draw a path with. |
@@ -39,4 +47,3 @@ Manages and owns all its native resources.
 | [Stroke](../-stroke/index.md) | `class Stroke : `[`Disposable`](./index.md)`<<ERROR CLASS>>`<br>Describes the stroke to draw with. |
 | [Table](../-table/index.md) | `class Table<T> : `[`Disposable`](./index.md)`<<ERROR CLASS>>` |
 | [TextLayout](../-text-layout/index.md) | `class TextLayout : `[`Disposable`](./index.md)`<<ERROR CLASS>>`<br>Representation of a [string](../string.md) that can be displayed in a [DrawContext](../-draw-context.md). |
-

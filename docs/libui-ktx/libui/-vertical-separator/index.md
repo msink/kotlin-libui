@@ -6,5 +6,6 @@
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | `VerticalSeparator()` |
-

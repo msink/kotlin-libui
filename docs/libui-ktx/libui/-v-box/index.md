@@ -6,14 +6,20 @@
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | `VBox()` |
 
 ### Inherited Functions
 
+| Name | Summary |
+|---|---|
 | [add](../-box/add.md) | `open fun <T : `[`Control`](../-control/index.md)`<*>> add(widget: `[`T`](../-box/add.md#T)`): `[`T`](../-box/add.md#T)<br>Adds the given widget to the end of the Box. |
 
 ### Extension Properties
 
+| Name | Summary |
+|---|---|
 | [hbox](../hbox.md) | `val `[`Container`](../-container/index.md)`.hbox: `[`HBox`](../-h-box/index.md) |
 | [padded](../padded.md) | `var `[`Box`](../-box/index.md)`.padded: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>If `true`, the container insert some space between children. |
 | [stretchy](../stretchy.md) | `val `[`Box`](../-box/index.md)`.stretchy: `[`Stretchy`](../-box/-stretchy/index.md) |
@@ -21,6 +27,8 @@
 
 ### Extension Functions
 
+| Name | Summary |
+|---|---|
 | [button](../button.md) | `fun `[`Container`](../-container/index.md)`.button(text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, init: `[`Button`](../-button/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>A simple button. |
 | [checkbox](../checkbox.md) | `fun `[`Container`](../-container/index.md)`.checkbox(label: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, init: `[`Checkbox`](../-checkbox/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>A checkbox widget. |
 | [colorbutton](../colorbutton.md) | `fun `[`Container`](../-container/index.md)`.colorbutton(init: `[`ColorButton`](../-color-button/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>A button that opens a color palette popup. |
@@ -51,4 +59,3 @@
 | [textfield](../textfield.md) | `fun `[`Container`](../-container/index.md)`.textfield(readonly: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)` = false, init: `[`TextField`](../-text-field/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>A simple single line text entry widget. |
 | [timepicker](../timepicker.md) | `fun `[`Container`](../-container/index.md)`.timepicker(init: `[`TimePicker`](../-time-picker/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>A widget to edit time. |
 | [vbox](../vbox.md) | `fun `[`Container`](../-container/index.md)`.vbox(padded: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)` = true, init: `[`VBox`](./index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>A container that stack its children vertically. |
-

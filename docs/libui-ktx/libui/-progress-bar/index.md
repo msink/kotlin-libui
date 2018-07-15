@@ -6,10 +6,14 @@
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | `ProgressBar()` |
 
 ### Inherited Properties
 
+| Name | Summary |
+|---|---|
 | [ctl](../-control/ctl.md) | `val ctl: <ERROR CLASS><<ERROR CLASS>>` |
 | [enabled](../-control/enabled.md) | `var enabled: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control should be enabled or disabled. Defaults to `true`. |
 | [parent](../-control/parent.md) | `var parent: `[`Control`](../-control/index.md)`<*>?`<br>Returns parent of the control or `null` for detached. |
@@ -18,6 +22,8 @@
 
 ### Inherited Functions
 
+| Name | Summary |
+|---|---|
 | [disable](../-control/disable.md) | `fun disable(): <ERROR CLASS>`<br>Disables the Control. |
 | [dispose](../-control/dispose.md) | `open fun dispose(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Dispose and free all allocated resources. |
 | [enable](../-control/enable.md) | `fun enable(): <ERROR CLASS>`<br>Enables the Control. |
@@ -30,5 +36,6 @@
 
 ### Extension Properties
 
+| Name | Summary |
+|---|---|
 | [value](../value.md) | `var `[`ProgressBar`](./index.md)`.value: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)<br>The current position of the progress bar. Could be set to -1 to create an indeterminate progress bar. |
-

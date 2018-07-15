@@ -8,10 +8,14 @@ Base class for all GUI controls (widgets).
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | `Control(alloc: <ERROR CLASS><`[`T`](index.md#T)`>?)`<br>Base class for all GUI controls (widgets). |
 
 ### Properties
 
+| Name | Summary |
+|---|---|
 | [ctl](ctl.md) | `val ctl: <ERROR CLASS><<ERROR CLASS>>` |
 | [enabled](enabled.md) | `var enabled: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control should be enabled or disabled. Defaults to `true`. |
 | [parent](parent.md) | `var parent: `[`Control`](./index.md)`<*>?`<br>Returns parent of the control or `null` for detached. |
@@ -20,11 +24,15 @@ Base class for all GUI controls (widgets).
 
 ### Inherited Properties
 
+| Name | Summary |
+|---|---|
 | [disposed](../-disposable/disposed.md) | `val disposed: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Returns `true` if object was disposed - in this case [disposed](../-disposable/disposed.md) will do nothing, all other operations are invalid and will `throw Error("Resource is disposed")`. |
 | [ptr](../-disposable/ptr.md) | `val ptr: <ERROR CLASS><`[`T`](../-disposable/index.md#T)`>` |
 
 ### Functions
 
+| Name | Summary |
+|---|---|
 | [disable](disable.md) | `fun disable(): <ERROR CLASS>`<br>Disables the Control. |
 | [dispose](dispose.md) | `open fun dispose(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Dispose and free all allocated resources. |
 | [enable](enable.md) | `fun enable(): <ERROR CLASS>`<br>Enables the Control. |
@@ -37,6 +45,8 @@ Base class for all GUI controls (widgets).
 
 ### Inheritors
 
+| Name | Summary |
+|---|---|
 | [Box](../-box/index.md) | `abstract class Box : `[`Control`](./index.md)`<<ERROR CLASS>>, `[`Container`](../-container/index.md) |
 | [Button](../-button/index.md) | `class Button : `[`Control`](./index.md)`<<ERROR CLASS>>` |
 | [Checkbox](../-checkbox/index.md) | `class Checkbox : `[`Control`](./index.md)`<<ERROR CLASS>>` |
@@ -60,4 +70,3 @@ Base class for all GUI controls (widgets).
 | [TextArea](../-text-area/index.md) | `class TextArea : `[`Control`](./index.md)`<<ERROR CLASS>>` |
 | [TextField](../-text-field/index.md) | `open class TextField : `[`Control`](./index.md)`<<ERROR CLASS>>` |
 | [Window](../-window/index.md) | `class Window : `[`Control`](./index.md)`<<ERROR CLASS>>, `[`Container`](../-container/index.md)<br>Represents a top-level window. Contains one child control that occupies the entirety of the window. |
-

@@ -6,14 +6,20 @@
 
 ### Types
 
+| Name | Summary |
+|---|---|
 | [Page](-page/index.md) | `inner class Page : `[`Container`](../-container/index.md)<br>adapter for DSL builders |
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | `TabPane()` |
 
 ### Inherited Properties
 
+| Name | Summary |
+|---|---|
 | [ctl](../-control/ctl.md) | `val ctl: <ERROR CLASS><<ERROR CLASS>>` |
 | [enabled](../-control/enabled.md) | `var enabled: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control should be enabled or disabled. Defaults to `true`. |
 | [parent](../-control/parent.md) | `var parent: `[`Control`](../-control/index.md)`<*>?`<br>Returns parent of the control or `null` for detached. |
@@ -22,6 +28,8 @@
 
 ### Inherited Functions
 
+| Name | Summary |
+|---|---|
 | [disable](../-control/disable.md) | `fun disable(): <ERROR CLASS>`<br>Disables the Control. |
 | [dispose](../-control/dispose.md) | `open fun dispose(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Dispose and free all allocated resources. |
 | [enable](../-control/enable.md) | `fun enable(): <ERROR CLASS>`<br>Enables the Control. |
@@ -34,14 +42,17 @@
 
 ### Extension Properties
 
+| Name | Summary |
+|---|---|
 | [numPages](../num-pages.md) | `val `[`TabPane`](./index.md)`.numPages: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)<br>Number of pages in the TabPane. |
 
 ### Extension Functions
 
+| Name | Summary |
+|---|---|
 | [add](../add.md) | `fun `[`TabPane`](./index.md)`.add(label: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, widget: `[`Control`](../-control/index.md)`<*>): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Adds the given page to the end of the TabPane. |
 | [delete](../delete.md) | `fun `[`TabPane`](./index.md)`.delete(page: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): <ERROR CLASS>`<br>Delete deletes the nth page of the TabPane. |
 | [getMargined](../get-margined.md) | `fun `[`TabPane`](./index.md)`.getMargined(page: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether page n (starting at 0) of the Tab has margins around its child. |
 | [insert](../insert.md) | `fun `[`TabPane`](./index.md)`.insert(page: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, name: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, widget: `[`Control`](../-control/index.md)`<*>): <ERROR CLASS>`<br>Adds the given page to the TabPane such that it is the nth page of the TabPane (starting at 0). |
 | [page](../page.md) | `fun `[`TabPane`](./index.md)`.page(label: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, margined: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)` = true, init: `[`Page`](-page/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>` |
 | [setMargined](../set-margined.md) | `fun `[`TabPane`](./index.md)`.setMargined(page: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, margined: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`): <ERROR CLASS>` |
-

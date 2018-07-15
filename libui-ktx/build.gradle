@@ -10,7 +10,7 @@ buildscript {
 apply plugin: 'org.jetbrains.dokka'
 
 dokka {
-    outputFormat = 'markdown'
+    outputFormat = 'gfm'
     outputDirectory = rootProject.file('docs').absolutePath
     sourceDirs = files('src/main/kotlin')
     linkMapping {

@@ -2,6 +2,8 @@
 
 ### All Types
 
+| Name | Summary |
+|---|---|
 | [libui.Attribute](../libui/-attribute/index.md) | Stores information about an attribute in a [string](../libui/string.md). |
 | [libui.AttributedString](../libui/-attributed-string/index.md) | Represents a string of UTF-8 text that can be embellished with formatting attributes. |
 | [libui.BackgroundAttribute](../libui/-background-attribute/index.md) | Changes the background color of the text it is applied to. |
@@ -66,4 +68,3 @@
 | [libui.VerticalSeparator](../libui/-vertical-separator/index.md) |  |
 | [libui.WeightAttribute](../libui/-weight-attribute/index.md) | Changes the weight of the text it is applied to. |
 | [libui.Window](../libui/-window/index.md) | Represents a top-level window. Contains one child control that occupies the entirety of the window. |
-

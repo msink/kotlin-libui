@@ -1,4 +1,4 @@
-$dokka.format:markdown
+$dokka.format:gfm
 $dokka.linkExtension:md
 
 libui

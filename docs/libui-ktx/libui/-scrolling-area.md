@@ -6,10 +6,14 @@
 
 ### Inherited Properties
 
+| Name | Summary |
+|---|---|
 | [handler](-draw-area/handler.md) | `val handler: <ERROR CLASS><<ERROR CLASS>>` |
 
 ### Extension Functions
 
+| Name | Summary |
+|---|---|
 | [brush](brush.md) | `fun `[`DrawArea`](-draw-area/index.md)`.brush(): <ERROR CLASS>`<br>Creates a new Brush with lifecycle delegated to DrawArea. |
 | [dragBroken](drag-broken.md) | `fun `[`DrawArea`](-draw-area/index.md)`.dragBroken(block: `[`DrawArea`](-draw-area/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Funcion to be run to indicate that a drag should be ended. Only implemented on Windows. Only one function can be registered at a time. |
 | [draw](draw.md) | `fun `[`DrawArea`](-draw-area/index.md)`.draw(block: <ERROR CLASS><<ERROR CLASS>>.(<ERROR CLASS>) -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Funcion to be run when the area was created or got resized with [uiAreaDrawParams](#) as parameter. Only one function can be registered at a time. |
@@ -21,4 +25,3 @@
 | [setSize](set-size.md) | `fun `[`ScrollingArea`](./-scrolling-area.md)`.setSize(width: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, height: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): <ERROR CLASS>`<br>Sets the size of a ScrollingArea to the given size, in points. |
 | [string](string.md) | `fun `[`DrawArea`](-draw-area/index.md)`.string(init: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): <ERROR CLASS>`<br>Creates a new AttributedString from initial String. The string will be entirely unattributed. |
 | [stroke](stroke.md) | `fun `[`DrawArea`](-draw-area/index.md)`.stroke(block: <ERROR CLASS>.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>Creates a new Stroke with lifecycle delegated to DrawArea. |
-

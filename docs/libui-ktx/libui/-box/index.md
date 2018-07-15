@@ -6,14 +6,20 @@
 
 ### Types
 
+| Name | Summary |
+|---|---|
 | [Stretchy](-stretchy/index.md) | `inner class Stretchy : `[`Container`](../-container/index.md)<br>adapter for DSL builders |
 
 ### Constructors
 
+| Name | Summary |
+|---|---|
 | [&lt;init&gt;](-init-.md) | `Box(alloc: <ERROR CLASS><<ERROR CLASS>>?)` |
 
 ### Inherited Properties
 
+| Name | Summary |
+|---|---|
 | [ctl](../-control/ctl.md) | `val ctl: <ERROR CLASS><<ERROR CLASS>>` |
 | [enabled](../-control/enabled.md) | `var enabled: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control should be enabled or disabled. Defaults to `true`. |
 | [parent](../-control/parent.md) | `var parent: `[`Control`](../-control/index.md)`<*>?`<br>Returns parent of the control or `null` for detached. |
@@ -22,10 +28,14 @@
 
 ### Functions
 
+| Name | Summary |
+|---|---|
 | [add](add.md) | `open fun <T : `[`Control`](../-control/index.md)`<*>> add(widget: `[`T`](add.md#T)`): `[`T`](add.md#T)<br>Adds the given widget to the end of the Box. |
 
 ### Inherited Functions
 
+| Name | Summary |
+|---|---|
 | [disable](../-control/disable.md) | `fun disable(): <ERROR CLASS>`<br>Disables the Control. |
 | [dispose](../-control/dispose.md) | `open fun dispose(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Dispose and free all allocated resources. |
 | [enable](../-control/enable.md) | `fun enable(): <ERROR CLASS>`<br>Enables the Control. |
@@ -38,6 +48,8 @@
 
 ### Extension Properties
 
+| Name | Summary |
+|---|---|
 | [hbox](../hbox.md) | `val `[`Container`](../-container/index.md)`.hbox: `[`HBox`](../-h-box/index.md) |
 | [padded](../padded.md) | `var `[`Box`](./index.md)`.padded: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>If `true`, the container insert some space between children. |
 | [stretchy](../stretchy.md) | `val `[`Box`](./index.md)`.stretchy: `[`Stretchy`](-stretchy/index.md) |
@@ -45,6 +57,8 @@
 
 ### Extension Functions
 
+| Name | Summary |
+|---|---|
 | [button](../button.md) | `fun `[`Container`](../-container/index.md)`.button(text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, init: `[`Button`](../-button/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>A simple button. |
 | [checkbox](../checkbox.md) | `fun `[`Container`](../-container/index.md)`.checkbox(label: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, init: `[`Checkbox`](../-checkbox/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>A checkbox widget. |
 | [colorbutton](../colorbutton.md) | `fun `[`Container`](../-container/index.md)`.colorbutton(init: `[`ColorButton`](../-color-button/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): <ERROR CLASS>`<br>A button that opens a color palette popup. |
@@ -77,6 +91,7 @@
 
 ### Inheritors
 
+| Name | Summary |
+|---|---|
 | [HBox](../-h-box/index.md) | `class HBox : `[`Box`](./index.md) |
 | [VBox](../-v-box/index.md) | `class VBox : `[`Box`](./index.md) |
-
