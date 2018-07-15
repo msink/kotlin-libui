@@ -1,3 +1,25 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:${rootProject.dokkaVersion}"
+    }
+}
+
+apply plugin: 'org.jetbrains.dokka'
+
+dokka {
+    outputFormat = 'markdown'
+    outputDirectory = rootProject.file('docs').absolutePath
+    sourceDirs = files('src/main/kotlin')
+    linkMapping {
+        dir = "src/main/kotlin"
+        url = "https://github.com/msink/kotlin-libui/blob/master/${project.name}/src/main/kotlin"
+        suffix = "#L"
+    }
+}
+
 apply plugin: 'konan'
 
 def konanUserDir = System.getenv("KONAN_DATA_DIR") ?: "${System.getProperty("user.home")}/.konan"
