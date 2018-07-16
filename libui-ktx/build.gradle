@@ -36,13 +36,9 @@ task windowsResources(type: Exec) {
 }
 
 konanArtifacts {
-    interop('libui') {
-        includeDirs "${project.rootDir}/libui/src"
-    }
-
     library('libui-ktx') {
         libraries {
-            artifact 'libui'
+            artifact project(':libui'), 'libui'
         }
     }
 

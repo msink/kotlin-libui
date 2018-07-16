@@ -1,5 +1,8 @@
 enableFeaturePreview('GRADLE_METADATA')
+
+include ':libui'
 include ':libui-ktx'
+
 include ':samples:controlgallery'
 include ':samples:datetime'
 include ':samples:drawtext'

@@ -1,0 +1,8 @@
+apply plugin: 'konan'
+
+konanArtifacts {
+    interop('libui') {
+        defFile 'libui.def'
+        includeDirs "${project.rootDir}/libui/src"
+    }
+}
