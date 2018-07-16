@@ -2,7 +2,7 @@
 
 # Control
 
-`abstract class Control<T : `[`CPointed`](../../kotlinx.cinterop/-c-pointed/index.md)`> : `[`Disposable`](../-disposable/index.md)`<`[`T`](index.md#T)`>`
+`abstract class Control<T : CPointed> : `[`Disposable`](../-disposable/index.md)`<`[`T`](index.md#T)`>`
 
 Base class for all GUI controls (widgets).
 
@@ -10,13 +10,13 @@ Base class for all GUI controls (widgets).
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Control(alloc: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`T`](index.md#T)`>?)`<br>Base class for all GUI controls (widgets). |
+| [&lt;init&gt;](-init-.md) | `Control(alloc: CPointer<`[`T`](index.md#T)`>?)`<br>Base class for all GUI controls (widgets). |
 
 ### Properties
 
 | Name | Summary |
 |---|---|
-| [ctl](ctl.md) | `val ctl: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiControl`](../../libui/ui-control/index.md)`>` |
+| [ctl](ctl.md) | `val ctl: CPointer<`[`uiControl`](../../libui/ui-control/index.md)`>` |
 | [enabled](enabled.md) | `var enabled: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control should be enabled or disabled. Defaults to `true`. |
 | [parent](parent.md) | `var parent: `[`Control`](./index.md)`<*>?`<br>Returns parent of the control or `null` for detached. |
 | [toplevel](toplevel.md) | `val toplevel: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Returns whether the control is a top level one or not. |
@@ -27,7 +27,7 @@ Base class for all GUI controls (widgets).
 | Name | Summary |
 |---|---|
 | [disposed](../-disposable/disposed.md) | `val disposed: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Returns `true` if object was disposed - in this case [disposed](../-disposable/disposed.md) will do nothing, all other operations are invalid and will `throw Error("Resource is disposed")`. |
-| [ptr](../-disposable/ptr.md) | `val ptr: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`T`](../-disposable/index.md#T)`>` |
+| [ptr](../-disposable/ptr.md) | `val ptr: CPointer<`[`T`](../-disposable/index.md#T)`>` |
 
 ### Functions
 

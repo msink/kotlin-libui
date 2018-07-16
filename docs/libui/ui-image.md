@@ -2,4 +2,4 @@
 
 # uiImage
 
-`typealias uiImage = `[`CPointed`](../kotlinx.cinterop/-c-pointed/index.md)
+`typealias uiImage = CPointed`

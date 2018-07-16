@@ -2,4 +2,4 @@
 
 # uiNewEntry
 
-`fun uiNewEntry(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiEntry`](ui-entry.md)`>?`
+`fun uiNewEntry(): CPointer<`[`uiEntry`](ui-entry.md)`>?`

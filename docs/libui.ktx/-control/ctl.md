@@ -2,4 +2,4 @@
 
 # ctl
 
-`val ctl: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiControl`](../../libui/ui-control/index.md)`>`
+`val ctl: CPointer<`[`uiControl`](../../libui/ui-control/index.md)`>`

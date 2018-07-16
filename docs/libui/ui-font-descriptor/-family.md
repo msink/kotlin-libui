@@ -2,4 +2,4 @@
 
 # Family
 
-`var Family: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`ByteVar`](../../kotlinx.cinterop/-byte-var.md)`>?`
+`var Family: CPointer<ByteVar>?`

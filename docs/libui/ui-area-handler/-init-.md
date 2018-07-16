@@ -2,4 +2,4 @@
 
 # &lt;init&gt;
 
-`uiAreaHandler(rawPtr: `[`NativePtr`](../../kotlinx.cinterop/-native-ptr.md)`)`
+`uiAreaHandler(rawPtr: NativePtr)`

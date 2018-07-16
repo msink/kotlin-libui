@@ -2,4 +2,4 @@
 
 # OSSignature
 
-`var OSSignature: `[`uint32_t`](../../platform.posix/uint32_t.md)
+`var OSSignature: uint32_t`

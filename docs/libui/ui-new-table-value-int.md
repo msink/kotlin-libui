@@ -2,4 +2,4 @@
 
 # uiNewTableValueInt
 
-`fun uiNewTableValueInt(i: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiTableValue`](ui-table-value.md)`>?`
+`fun uiNewTableValueInt(i: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): CPointer<`[`uiTableValue`](ui-table-value.md)`>?`

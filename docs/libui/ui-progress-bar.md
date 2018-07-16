@@ -2,4 +2,4 @@
 
 # uiProgressBar
 
-`typealias uiProgressBar = `[`CPointed`](../kotlinx.cinterop/-c-pointed/index.md)
+`typealias uiProgressBar = CPointed`

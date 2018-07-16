@@ -2,4 +2,4 @@
 
 # &lt;init&gt;
 
-`uiDrawBrush(rawPtr: `[`NativePtr`](../../kotlinx.cinterop/-native-ptr.md)`)`
+`uiDrawBrush(rawPtr: NativePtr)`

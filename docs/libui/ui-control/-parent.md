@@ -2,4 +2,4 @@
 
 # Parent
 
-`var Parent: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`CFunction`](../../kotlinx.cinterop/-c-function/index.md)`<(`[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiControl`](index.md)`>?) -> `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiControl`](index.md)`>?>>?`
+`var Parent: CPointer<CFunction<(CPointer<`[`uiControl`](index.md)`>?) -> CPointer<`[`uiControl`](index.md)`>?>>?`

@@ -2,4 +2,4 @@
 
 # uiAttributeStretch
 
-`fun uiAttributeStretch(a: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiAttribute`](ui-attribute.md)`>?): `[`uiTextStretch`](ui-text-stretch.md)
+`fun uiAttributeStretch(a: CValuesRef<`[`uiAttribute`](ui-attribute.md)`>?): `[`uiTextStretch`](ui-text-stretch.md)

@@ -2,4 +2,4 @@
 
 # &lt;init&gt;
 
-`uiInitOptions(rawPtr: `[`NativePtr`](../../kotlinx.cinterop/-native-ptr.md)`)`
+`uiInitOptions(rawPtr: NativePtr)`

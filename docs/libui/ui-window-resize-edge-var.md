@@ -2,4 +2,4 @@
 
 # uiWindowResizeEdgeVar
 
-`typealias uiWindowResizeEdgeVar = `[`IntVarOf`](../kotlinx.cinterop/-int-var-of/index.md)`<`[`uiWindowResizeEdge`](ui-window-resize-edge.md)`>`
+`typealias uiWindowResizeEdgeVar = IntVarOf<`[`uiWindowResizeEdge`](ui-window-resize-edge.md)`>`

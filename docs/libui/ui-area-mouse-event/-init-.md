@@ -2,4 +2,4 @@
 
 # &lt;init&gt;
 
-`uiAreaMouseEvent(rawPtr: `[`NativePtr`](../../kotlinx.cinterop/-native-ptr.md)`)`
+`uiAreaMouseEvent(rawPtr: NativePtr)`

@@ -2,4 +2,4 @@
 
 # uiMenuItem
 
-`typealias uiMenuItem = `[`CPointed`](../kotlinx.cinterop/-c-pointed/index.md)
+`typealias uiMenuItem = CPointed`

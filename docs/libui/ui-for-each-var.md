@@ -2,4 +2,4 @@
 
 # uiForEachVar
 
-`typealias uiForEachVar = `[`IntVarOf`](../kotlinx.cinterop/-int-var-of/index.md)`<`[`uiForEach`](ui-for-each.md)`>`
+`typealias uiForEachVar = IntVarOf<`[`uiForEach`](ui-for-each.md)`>`

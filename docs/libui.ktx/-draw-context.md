@@ -2,4 +2,4 @@
 
 # DrawContext
 
-`typealias DrawContext = `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiDrawContext`](../libui/ui-draw-context.md)`>`
+`typealias DrawContext = CPointer<`[`uiDrawContext`](../libui/ui-draw-context.md)`>`

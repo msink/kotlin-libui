@@ -2,4 +2,4 @@
 
 # uiControlParent
 
-`fun uiControlParent(arg0: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiControl`](ui-control/index.md)`>?): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiControl`](ui-control/index.md)`>?`
+`fun uiControlParent(arg0: CValuesRef<`[`uiControl`](ui-control/index.md)`>?): CPointer<`[`uiControl`](ui-control/index.md)`>?`

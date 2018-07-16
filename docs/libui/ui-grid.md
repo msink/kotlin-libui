@@ -2,4 +2,4 @@
 
 # uiGrid
 
-`typealias uiGrid = `[`CPointed`](../kotlinx.cinterop/-c-pointed/index.md)
+`typealias uiGrid = CPointed`

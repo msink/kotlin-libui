@@ -2,4 +2,4 @@
 
 # Menu
 
-`typealias Menu = `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiMenu`](../libui/ui-menu.md)`>`
+`typealias Menu = CPointer<`[`uiMenu`](../libui/ui-menu.md)`>`

@@ -2,4 +2,4 @@
 
 # uiDrawMatrixInvert
 
-`fun uiDrawMatrixInvert(m: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiDrawMatrix`](ui-draw-matrix/index.md)`>?): `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`fun uiDrawMatrixInvert(m: CValuesRef<`[`uiDrawMatrix`](ui-draw-matrix/index.md)`>?): `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)

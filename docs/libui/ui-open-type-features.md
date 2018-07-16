@@ -2,4 +2,4 @@
 
 # uiOpenTypeFeatures
 
-`typealias uiOpenTypeFeatures = `[`CPointed`](../kotlinx.cinterop/-c-pointed/index.md)
+`typealias uiOpenTypeFeatures = CPointed`

@@ -2,4 +2,4 @@
 
 # handler
 
-`val handler: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`ktAreaHandler`](../../libui/kt-area-handler/index.md)`>`
+`val handler: CPointer<`[`ktAreaHandler`](../../libui/kt-area-handler/index.md)`>`

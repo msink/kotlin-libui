@@ -2,4 +2,4 @@
 
 # uiNewColorButton
 
-`fun uiNewColorButton(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiColorButton`](ui-color-button.md)`>?`
+`fun uiNewColorButton(): CPointer<`[`uiColorButton`](ui-color-button.md)`>?`

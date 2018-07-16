@@ -2,4 +2,4 @@
 
 # uiSlider
 
-`typealias uiSlider = `[`CPointed`](../kotlinx.cinterop/-c-pointed/index.md)
+`typealias uiSlider = CPointed`

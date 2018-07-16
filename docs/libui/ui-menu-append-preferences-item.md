@@ -2,4 +2,4 @@
 
 # uiMenuAppendPreferencesItem
 
-`fun uiMenuAppendPreferencesItem(m: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiMenu`](ui-menu.md)`>?): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiMenuItem`](ui-menu-item.md)`>?`
+`fun uiMenuAppendPreferencesItem(m: CValuesRef<`[`uiMenu`](ui-menu.md)`>?): CPointer<`[`uiMenuItem`](ui-menu-item.md)`>?`

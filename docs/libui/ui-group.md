@@ -2,4 +2,4 @@
 
 # uiGroup
 
-`typealias uiGroup = `[`CPointed`](../kotlinx.cinterop/-c-pointed/index.md)
+`typealias uiGroup = CPointed`

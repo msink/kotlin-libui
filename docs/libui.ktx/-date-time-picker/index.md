@@ -22,7 +22,7 @@ Wrapper class for [uiDateTimePicker](../../libui/ui-date-time-picker.md) to edit
 
 | Name | Summary |
 |---|---|
-| [ctl](../-control/ctl.md) | `val ctl: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiControl`](../../libui/ui-control/index.md)`>` |
+| [ctl](../-control/ctl.md) | `val ctl: CPointer<`[`uiControl`](../../libui/ui-control/index.md)`>` |
 | [enabled](../-control/enabled.md) | `var enabled: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control should be enabled or disabled. Defaults to `true`. |
 | [parent](../-control/parent.md) | `var parent: `[`Control`](../-control/index.md)`<*>?`<br>Returns parent of the control or `null` for detached. |
 | [toplevel](../-control/toplevel.md) | `val toplevel: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Returns whether the control is a top level one or not. |
@@ -33,8 +33,8 @@ Wrapper class for [uiDateTimePicker](../../libui/ui-date-time-picker.md) to edit
 | Name | Summary |
 |---|---|
 | [action](action.md) | `fun action(block: `[`DateTimePicker`](./index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Function to be run when the user makes a change to the Picker. Only one function can be registered at a time. |
-| [getValue](get-value.md) | `fun getValue(value: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`tm`](../../libui/tm.md)`>): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>The current value as posix `struct tm` |
-| [setValue](set-value.md) | `fun setValue(value: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`tm`](../../libui/tm.md)`>): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Set current value from posix `struct tm` |
+| [getValue](get-value.md) | `fun getValue(value: CPointer<`[`tm`](../../libui/tm.md)`>): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>The current value as posix `struct tm` |
+| [setValue](set-value.md) | `fun setValue(value: CPointer<`[`tm`](../../libui/tm.md)`>): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Set current value from posix `struct tm` |
 | [textValue](text-value.md) | `fun textValue(format: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)` = defaultFormat): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)<br>The current value as String. |
 
 ### Inherited Functions

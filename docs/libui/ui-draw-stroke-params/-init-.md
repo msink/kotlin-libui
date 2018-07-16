@@ -2,4 +2,4 @@
 
 # &lt;init&gt;
 
-`uiDrawStrokeParams(rawPtr: `[`NativePtr`](../../kotlinx.cinterop/-native-ptr.md)`)`
+`uiDrawStrokeParams(rawPtr: NativePtr)`

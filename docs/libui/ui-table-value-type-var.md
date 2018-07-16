@@ -2,4 +2,4 @@
 
 # uiTableValueTypeVar
 
-`typealias uiTableValueTypeVar = `[`IntVarOf`](../kotlinx.cinterop/-int-var-of/index.md)`<`[`uiTableValueType`](ui-table-value-type.md)`>`
+`typealias uiTableValueTypeVar = IntVarOf<`[`uiTableValueType`](ui-table-value-type.md)`>`

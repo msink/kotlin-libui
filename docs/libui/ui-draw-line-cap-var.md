@@ -2,4 +2,4 @@
 
 # uiDrawLineCapVar
 
-`typealias uiDrawLineCapVar = `[`IntVarOf`](../kotlinx.cinterop/-int-var-of/index.md)`<`[`uiDrawLineCap`](ui-draw-line-cap.md)`>`
+`typealias uiDrawLineCapVar = IntVarOf<`[`uiDrawLineCap`](ui-draw-line-cap.md)`>`

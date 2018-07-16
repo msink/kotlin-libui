@@ -2,4 +2,4 @@
 
 # uiInit
 
-`fun uiInit(options: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiInitOptions`](ui-init-options/index.md)`>?): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`ByteVar`](../kotlinx.cinterop/-byte-var.md)`>?`
+`fun uiInit(options: CValuesRef<`[`uiInitOptions`](ui-init-options/index.md)`>?): CPointer<ByteVar>?`

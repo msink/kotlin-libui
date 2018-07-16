@@ -2,4 +2,4 @@
 
 # uiFreeOpenTypeFeatures
 
-`fun uiFreeOpenTypeFeatures(otf: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiOpenTypeFeatures`](ui-open-type-features.md)`>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiFreeOpenTypeFeatures(otf: CValuesRef<`[`uiOpenTypeFeatures`](ui-open-type-features.md)`>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)

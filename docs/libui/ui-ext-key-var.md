@@ -2,4 +2,4 @@
 
 # uiExtKeyVar
 
-`typealias uiExtKeyVar = `[`IntVarOf`](../kotlinx.cinterop/-int-var-of/index.md)`<`[`uiExtKey`](ui-ext-key.md)`>`
+`typealias uiExtKeyVar = IntVarOf<`[`uiExtKey`](ui-ext-key.md)`>`

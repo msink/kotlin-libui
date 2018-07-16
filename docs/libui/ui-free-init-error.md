@@ -2,4 +2,4 @@
 
 # uiFreeInitError
 
-`fun uiFreeInitError(err: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`ByteVar`](../kotlinx.cinterop/-byte-var.md)`>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiFreeInitError(err: CValuesRef<ByteVar>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)

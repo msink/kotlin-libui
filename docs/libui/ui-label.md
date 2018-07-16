@@ -2,4 +2,4 @@
 
 # uiLabel
 
-`typealias uiLabel = `[`CPointed`](../kotlinx.cinterop/-c-pointed/index.md)
+`typealias uiLabel = CPointed`

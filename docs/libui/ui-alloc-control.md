@@ -2,4 +2,4 @@
 
 # uiAllocControl
 
-`fun uiAllocControl(n: `[`size_t`](../platform.posix/size_t.md)`, OSsig: `[`uint32_t`](../platform.posix/uint32_t.md)`, typesig: `[`uint32_t`](../platform.posix/uint32_t.md)`, typenamestr: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiControl`](ui-control/index.md)`>?`
+`fun uiAllocControl(n: size_t, OSsig: uint32_t, typesig: uint32_t, typenamestr: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?): CPointer<`[`uiControl`](ui-control/index.md)`>?`

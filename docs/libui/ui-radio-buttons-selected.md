@@ -2,4 +2,4 @@
 
 # uiRadioButtonsSelected
 
-`fun uiRadioButtonsSelected(r: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiRadioButtons`](ui-radio-buttons.md)`>?): `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`fun uiRadioButtonsSelected(r: CValuesRef<`[`uiRadioButtons`](ui-radio-buttons.md)`>?): `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)

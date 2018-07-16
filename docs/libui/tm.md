@@ -2,4 +2,4 @@
 
 # tm
 
-`typealias tm = `[`CPointed`](../kotlinx.cinterop/-c-pointed/index.md)
+`typealias tm = CPointed`

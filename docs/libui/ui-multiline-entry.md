@@ -2,4 +2,4 @@
 
 # uiMultilineEntry
 
-`typealias uiMultilineEntry = `[`CPointed`](../kotlinx.cinterop/-c-pointed/index.md)
+`typealias uiMultilineEntry = CPointed`

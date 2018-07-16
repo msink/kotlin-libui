@@ -2,4 +2,4 @@
 
 # uiSpinbox
 
-`typealias uiSpinbox = `[`CPointed`](../kotlinx.cinterop/-c-pointed/index.md)
+`typealias uiSpinbox = CPointed`

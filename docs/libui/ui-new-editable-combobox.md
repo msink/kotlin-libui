@@ -2,4 +2,4 @@
 
 # uiNewEditableCombobox
 
-`fun uiNewEditableCombobox(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiEditableCombobox`](ui-editable-combobox.md)`>?`
+`fun uiNewEditableCombobox(): CPointer<`[`uiEditableCombobox`](ui-editable-combobox.md)`>?`

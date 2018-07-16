@@ -2,4 +2,4 @@
 
 # uiNewForm
 
-`fun uiNewForm(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiForm`](ui-form.md)`>?`
+`fun uiNewForm(): CPointer<`[`uiForm`](ui-form.md)`>?`

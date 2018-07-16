@@ -2,4 +2,4 @@
 
 # &lt;init&gt;
 
-`uiTableTextColumnOptionalParams(rawPtr: `[`NativePtr`](../../kotlinx.cinterop/-native-ptr.md)`)`
+`uiTableTextColumnOptionalParams(rawPtr: NativePtr)`

@@ -4,39 +4,12 @@
 
 | Name | Summary |
 |---|---|
-| [kotlinx.cinterop.Arena](../kotlinx.cinterop/-arena/index.md) |  |
-| [kotlinx.cinterop.ArenaBase](../kotlinx.cinterop/-arena-base/index.md) |  |
 | [libui.ktx.Attribute](../libui.ktx/-attribute/index.md) | Stores information about an attribute in a [string](../libui.ktx/string.md). |
 | [libui.ktx.AttributedString](../libui.ktx/-attributed-string/index.md) | Represents a string of UTF-8 text that can be embellished with formatting attributes. |
-| [kotlinx.cinterop.AutofreeScope](../kotlinx.cinterop/-autofree-scope/index.md) |  |
 | [libui.ktx.BackgroundAttribute](../libui.ktx/-background-attribute/index.md) | Changes the background color of the text it is applied to. |
-| [kotlinx.cinterop.BooleanVar](../kotlinx.cinterop/-boolean-var.md) |  |
-| [kotlinx.cinterop.BooleanVarOf](../kotlinx.cinterop/-boolean-var-of/index.md) |  |
 | [libui.ktx.Box](../libui.ktx/-box/index.md) | Wrapper class for [uiBox](../libui/ui-box.md) |
 | [libui.ktx.Brush](../libui.ktx/-brush/index.md) | Defines the color(s) to draw a path with. |
 | [libui.ktx.Button](../libui.ktx/-button/index.md) | Wrapper class for [uiButton](../libui/ui-button.md) |
-| [kotlinx.cinterop.ByteVar](../kotlinx.cinterop/-byte-var.md) |  |
-| [kotlinx.cinterop.ByteVarOf](../kotlinx.cinterop/-byte-var-of/index.md) |  |
-| [kotlinx.cinterop.CArrayPointer](../kotlinx.cinterop/-c-array-pointer.md) |  |
-| [kotlinx.cinterop.CArrayPointerVar](../kotlinx.cinterop/-c-array-pointer-var.md) |  |
-| [kotlinx.cinterop.CEnum](../kotlinx.cinterop/-c-enum/index.md) |  |
-| [kotlinx.cinterop.CEnumVar](../kotlinx.cinterop/-c-enum-var/index.md) |  |
-| [kotlinx.cinterop.CFunction](../kotlinx.cinterop/-c-function/index.md) | The C function. |
-| [kotlinx.cinterop.CLength](../kotlinx.cinterop/-c-length/index.md) |  |
-| [kotlinx.cinterop.CNaturalStruct](../kotlinx.cinterop/-c-natural-struct/index.md) |  |
-| [kotlinx.cinterop.COpaque](../kotlinx.cinterop/-c-opaque/index.md) | The [CPointed](../kotlinx.cinterop/-c-pointed/index.md) without any specified interpretation. |
-| [kotlinx.cinterop.COpaquePointer](../kotlinx.cinterop/-c-opaque-pointer.md) | The pointer with an opaque type. |
-| [kotlinx.cinterop.COpaquePointerVar](../kotlinx.cinterop/-c-opaque-pointer-var.md) | The variable containing a [COpaquePointer](../kotlinx.cinterop/-c-opaque-pointer.md). |
-| [kotlinx.cinterop.CPointed](../kotlinx.cinterop/-c-pointed/index.md) | C data or code. |
-| [kotlinx.cinterop.CPointer](../kotlinx.cinterop/-c-pointer/index.md) | C pointer. |
-| [kotlinx.cinterop.CPointerVar](../kotlinx.cinterop/-c-pointer-var.md) | The C data variable containing the pointer to `T`. |
-| [kotlinx.cinterop.CPointerVarOf](../kotlinx.cinterop/-c-pointer-var-of/index.md) |  |
-| [kotlinx.cinterop.CPrimitiveVar](../kotlinx.cinterop/-c-primitive-var/index.md) | The C primitive-typed variable located in memory. |
-| [kotlinx.cinterop.CStructVar](../kotlinx.cinterop/-c-struct-var/index.md) | The C struct-typed variable located in memory. |
-| [kotlinx.cinterop.CValue](../kotlinx.cinterop/-c-value/index.md) | The single immutable C value. It is self-contained and doesn't depend on native memory. |
-| [kotlinx.cinterop.CValues](../kotlinx.cinterop/-c-values/index.md) | The (possibly empty) sequence of immutable C values. It is self-contained and doesn't depend on native memory. |
-| [kotlinx.cinterop.CValuesRef](../kotlinx.cinterop/-c-values-ref/index.md) | Represents a reference to (possibly empty) sequence of C values. It can be either a stable pointer [CPointer](../kotlinx.cinterop/-c-pointer/index.md) or a sequence of immutable values [CValues](../kotlinx.cinterop/-c-values/index.md). |
-| [kotlinx.cinterop.CVariable](../kotlinx.cinterop/-c-variable/index.md) | The C data variable located in memory. |
 | [libui.ktx.Checkbox](../libui.ktx/-checkbox/index.md) | Wrapper class for [uiCheckbox](../libui/ui-checkbox.md) |
 | [libui.ktx.Color](../libui.ktx/-color/index.md) |  |
 | [libui.ktx.ColorAttribute](../libui.ktx/-color-attribute/index.md) | Changes the color of the text it is applied to. |
@@ -46,17 +19,12 @@
 | [libui.ktx.Control](../libui.ktx/-control/index.md) | Base class for all GUI controls (widgets). |
 | [libui.ktx.DatePicker](../libui.ktx/-date-picker/index.md) | Wrapper class for [uiDateTimePicker](../libui/ui-date-time-picker.md) to edit date. |
 | [libui.ktx.DateTimePicker](../libui.ktx/-date-time-picker/index.md) | Wrapper class for [uiDateTimePicker](../libui/ui-date-time-picker.md) to edit date and time. |
-| [kotlinx.cinterop.DeferScope](../kotlinx.cinterop/-defer-scope/index.md) |  |
 | [libui.ktx.Disposable](../libui.ktx/-disposable/index.md) | Manages and owns all its native resources. |
-| [kotlinx.cinterop.DoubleVar](../kotlinx.cinterop/-double-var.md) |  |
-| [kotlinx.cinterop.DoubleVarOf](../kotlinx.cinterop/-double-var-of/index.md) |  |
 | [libui.ktx.DrawArea](../libui.ktx/-draw-area/index.md) | Wrapper class for [uiArea](../libui/ui-area.md) |
 | [libui.ktx.DrawContext](../libui.ktx/-draw-context.md) |  |
 | [libui.ktx.EditableCombobox](../libui.ktx/-editable-combobox/index.md) | Wrapper class for [uiEditableCombobox](../libui/ui-editable-combobox.md) |
 | [libui.ktx.FamilyAttribute](../libui.ktx/-family-attribute/index.md) | Changes the font family of the text it is applied to. |
 | [libui.ktx.FeaturesAttribute](../libui.ktx/-features-attribute/index.md) | Creates a new Attribute that changes the font family of the text it is applied to. otf is copied you may free it after uiNewFeaturesAttribute() returns. |
-| [kotlinx.cinterop.FloatVar](../kotlinx.cinterop/-float-var.md) |  |
-| [kotlinx.cinterop.FloatVarOf](../kotlinx.cinterop/-float-var-of/index.md) |  |
 | [libui.ktx.Font](../libui.ktx/-font/index.md) | Provides a complete description of a font where one is needed. |
 | [libui.ktx.FontButton](../libui.ktx/-font-button/index.md) | Wrapper class for [uiFontButton](../libui/ui-font-button.md) |
 | [libui.ktx.Form](../libui.ktx/-form/index.md) | Wrapper class for [uiForm](../libui/ui-form.md) |
@@ -66,23 +34,12 @@
 | [libui.ktx.HorizontalSeparator](../libui.ktx/-horizontal-separator/index.md) | Wrapper class for [uiSeparator](../libui/ui-separator.md) in VBox |
 | [libui.ktx.Image](../libui.ktx/-image/index.md) |  |
 | [libui.ktx.ImageData](../libui.ktx/-image-data/index.md) |  |
-| [kotlinx.cinterop.IntVar](../kotlinx.cinterop/-int-var.md) |  |
-| [kotlinx.cinterop.IntVarOf](../kotlinx.cinterop/-int-var-of/index.md) |  |
 | [libui.ktx.ItalicAttribute](../libui.ktx/-italic-attribute/index.md) | Changes the italic mode of the text it is applied to. |
 | [libui.ktx.Label](../libui.ktx/-label/index.md) | Wrapper class for [uiLabel](../libui/ui-label.md) |
-| [kotlin.collections.List](../kotlinx.cinterop/kotlin.collections.-list/index.md) (extensions in package kotlinx.cinterop) |  |
-| [kotlinx.cinterop.LongVar](../kotlinx.cinterop/-long-var.md) |  |
-| [kotlinx.cinterop.LongVarOf](../kotlinx.cinterop/-long-var-of/index.md) |  |
 | [libui.ktx.Matrix](../libui.ktx/-matrix/index.md) | Defines a transformation (e.g. rotation, translation) |
-| [kotlinx.cinterop.MemScope](../kotlinx.cinterop/-mem-scope/index.md) |  |
 | [libui.ktx.Menu](../libui.ktx/-menu.md) |  |
 | [libui.ktx.MenuItem](../libui.ktx/-menu-item.md) |  |
-| [kotlinx.cinterop.NativeFreeablePlacement](../kotlinx.cinterop/-native-freeable-placement/index.md) |  |
-| [kotlinx.cinterop.NativePlacement](../kotlinx.cinterop/-native-placement/index.md) |  |
-| [kotlinx.cinterop.NativePointed](../kotlinx.cinterop/-native-pointed/index.md) | The entity which has an associated native pointer. Subtypes are supposed to represent interpretations of the pointed data or code. |
-| [kotlinx.cinterop.NativePtr](../kotlinx.cinterop/-native-ptr.md) |  |
 | [libui.ktx.OpenTypeFeatures](../libui.ktx/-open-type-features/index.md) | Represents a set of OpenType feature tag-value pairs, for applying OpenType features to text. |
-| [kotlin.Pair](../kotlin/-pair/index.md) | Represents a generic pair of two values. |
 | [libui.ktx.PasswordField](../libui.ktx/-password-field/index.md) | Wrapper class for [uiEntry](../libui/ui-entry.md) to edit passwords. |
 | [libui.ktx.Path](../libui.ktx/-path/index.md) | Represent a path that could be drawed on a [DrawContext](../libui.ktx/-draw-context.md) |
 | [libui.ktx.Point](../libui.ktx/-point/index.md) |  |
@@ -91,15 +48,11 @@
 | [libui.ktx.ScrollingArea](../libui.ktx/-scrolling-area/index.md) | Wrapper class for [uiArea](../libui/ui-area.md) with scrollbars. |
 | [libui.ktx.SearchField](../libui.ktx/-search-field/index.md) | Wrapper class for [uiEntry](../libui/ui-entry.md) to search text. |
 | [libui.ktx.Separator](../libui.ktx/-separator/index.md) | Wrapper class for [uiSeparator](../libui/ui-separator.md) |
-| [kotlinx.cinterop.ShortVar](../kotlinx.cinterop/-short-var.md) |  |
-| [kotlinx.cinterop.ShortVarOf](../kotlinx.cinterop/-short-var-of/index.md) |  |
 | [libui.ktx.Size](../libui.ktx/-size/index.md) |  |
 | [libui.ktx.SizeAttribute](../libui.ktx/-size-attribute/index.md) | Changes the size of the text it is applied to, in typographical points. |
 | [libui.ktx.SizeInt](../libui.ktx/-size-int/index.md) |  |
 | [libui.ktx.Slider](../libui.ktx/-slider/index.md) | Wrapper class for [uiSlider](../libui/ui-slider.md) |
 | [libui.ktx.Spinbox](../libui.ktx/-spinbox/index.md) | Wrapper class for [uiSpinbox](../libui/ui-spinbox.md) |
-| [kotlinx.cinterop.StableObjPtr](../kotlinx.cinterop/-stable-obj-ptr.md) |  |
-| [kotlinx.cinterop.StableRef](../kotlinx.cinterop/-stable-ref/index.md) | This class provides a way to create a stable handle to any Kotlin object. After [converting to CPointer](../kotlinx.cinterop/-stable-ref/as-c-pointer.md) it can be safely passed to native code e.g. to be received in a Kotlin callback. |
 | [libui.ktx.StretchAttribute](../libui.ktx/-stretch-attribute/index.md) | Changes the stretch of the text it is applied to. |
 | [libui.ktx.Stroke](../libui.ktx/-stroke/index.md) | Describes the stroke to draw with. |
 | [libui.ktx.TabPane](../libui.ktx/-tab-pane/index.md) | Wrapper class for [uiTab](../libui/ui-tab.md) |
@@ -117,9 +70,6 @@
 | [libui.ktx.Window](../libui.ktx/-window/index.md) | Represents a top-level window. Contains one child control that occupies the entirety of the window. |
 | [libui.ktAreaHandler](../libui/kt-area-handler/index.md) |  |
 | [libui.ktTableHandler](../libui/kt-table-handler/index.md) |  |
-| [kotlinx.cinterop.nativeHeap](../kotlinx.cinterop/native-heap/index.md) |  |
-| [platform.posix.size_t](../platform.posix/size_t.md) |  |
-| [platform.posix.size_tVar](../platform.posix/size_t-var.md) |  |
 | [libui.tm](../libui/tm.md) |  |
 | [libui.uiAlign](../libui/ui-align.md) |  |
 | [libui.uiAlignVar](../libui/ui-align-var.md) |  |
@@ -210,8 +160,3 @@
 | [libui.uiWindow](../libui/ui-window.md) |  |
 | [libui.uiWindowResizeEdge](../libui/ui-window-resize-edge.md) |  |
 | [libui.uiWindowResizeEdgeVar](../libui/ui-window-resize-edge-var.md) |  |
-| [platform.posix.uint32_t](../platform.posix/uint32_t.md) |  |
-| [platform.posix.uint32_tVar](../platform.posix/uint32_t-var.md) |  |
-| [platform.posix.uint64_t](../platform.posix/uint64_t.md) |  |
-| [platform.posix.uint64_tVar](../platform.posix/uint64_t-var.md) |  |
-| [platform.posix.uintptr_t](../platform.posix/uintptr_t.md) |  |

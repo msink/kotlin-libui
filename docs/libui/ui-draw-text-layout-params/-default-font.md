@@ -2,4 +2,4 @@
 
 # DefaultFont
 
-`var DefaultFont: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiFontDescriptor`](../ui-font-descriptor/index.md)`>?`
+`var DefaultFont: CPointer<`[`uiFontDescriptor`](../ui-font-descriptor/index.md)`>?`

@@ -2,7 +2,7 @@
 
 # &lt;init&gt;
 
-`Attribute(alloc: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiAttribute`](../../libui/ui-attribute.md)`>?)`
+`Attribute(alloc: CPointer<`[`uiAttribute`](../../libui/ui-attribute.md)`>?)`
 
 Stores information about an attribute in a [string](../string.md).
 

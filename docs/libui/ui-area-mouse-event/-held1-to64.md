@@ -2,4 +2,4 @@
 
 # Held1To64
 
-`var Held1To64: `[`uint64_t`](../../platform.posix/uint64_t.md)
+`var Held1To64: uint64_t`

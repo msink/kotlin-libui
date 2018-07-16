@@ -2,4 +2,4 @@
 
 # uiEditableCombobox
 
-`typealias uiEditableCombobox = `[`CPointed`](../kotlinx.cinterop/-c-pointed/index.md)
+`typealias uiEditableCombobox = CPointed`

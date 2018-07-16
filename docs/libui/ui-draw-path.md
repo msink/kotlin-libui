@@ -2,4 +2,4 @@
 
 # uiDrawPath
 
-`typealias uiDrawPath = `[`CPointed`](../kotlinx.cinterop/-c-pointed/index.md)
+`typealias uiDrawPath = CPointed`

@@ -2,4 +2,4 @@
 
 # uiMultilineEntryText
 
-`fun uiMultilineEntryText(e: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiMultilineEntry`](ui-multiline-entry.md)`>?): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`ByteVar`](../kotlinx.cinterop/-byte-var.md)`>?`
+`fun uiMultilineEntryText(e: CValuesRef<`[`uiMultilineEntry`](ui-multiline-entry.md)`>?): CPointer<ByteVar>?`

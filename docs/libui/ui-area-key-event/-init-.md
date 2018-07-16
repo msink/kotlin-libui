@@ -2,4 +2,4 @@
 
 # &lt;init&gt;
 
-`uiAreaKeyEvent(rawPtr: `[`NativePtr`](../../kotlinx.cinterop/-native-ptr.md)`)`
+`uiAreaKeyEvent(rawPtr: NativePtr)`

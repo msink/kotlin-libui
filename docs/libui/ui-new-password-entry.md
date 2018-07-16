@@ -2,4 +2,4 @@
 
 # uiNewPasswordEntry
 
-`fun uiNewPasswordEntry(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiEntry`](ui-entry.md)`>?`
+`fun uiNewPasswordEntry(): CPointer<`[`uiEntry`](ui-entry.md)`>?`

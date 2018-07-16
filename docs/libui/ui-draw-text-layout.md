@@ -2,4 +2,4 @@
 
 # uiDrawTextLayout
 
-`typealias uiDrawTextLayout = `[`CPointed`](../kotlinx.cinterop/-c-pointed/index.md)
+`typealias uiDrawTextLayout = CPointed`

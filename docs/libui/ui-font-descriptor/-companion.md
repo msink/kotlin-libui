@@ -2,4 +2,4 @@
 
 # Companion
 
-`companion object Companion : `[`Type`](../../kotlinx.cinterop/-c-struct-var/-type/index.md)
+`companion object Companion : Type`

@@ -2,4 +2,4 @@
 
 # uiButton
 
-`typealias uiButton = `[`CPointed`](../kotlinx.cinterop/-c-pointed/index.md)
+`typealias uiButton = CPointed`

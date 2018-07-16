@@ -2,4 +2,4 @@
 
 # uiDrawBrushTypeVar
 
-`typealias uiDrawBrushTypeVar = `[`IntVarOf`](../kotlinx.cinterop/-int-var-of/index.md)`<`[`uiDrawBrushType`](ui-draw-brush-type.md)`>`
+`typealias uiDrawBrushTypeVar = IntVarOf<`[`uiDrawBrushType`](ui-draw-brush-type.md)`>`

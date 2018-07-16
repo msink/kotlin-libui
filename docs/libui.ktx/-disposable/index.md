@@ -2,7 +2,7 @@
 
 # Disposable
 
-`abstract class Disposable<T : `[`CPointed`](../../kotlinx.cinterop/-c-pointed/index.md)`>`
+`abstract class Disposable<T : CPointed>`
 
 Manages and owns all its native resources.
 
@@ -16,14 +16,14 @@ Manages and owns all its native resources.
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Disposable(alloc: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`T`](index.md#T)`>?)`<br>Manages and owns all its native resources. |
+| [&lt;init&gt;](-init-.md) | `Disposable(alloc: CPointer<`[`T`](index.md#T)`>?)`<br>Manages and owns all its native resources. |
 
 ### Properties
 
 | Name | Summary |
 |---|---|
 | [disposed](disposed.md) | `val disposed: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Returns `true` if object was disposed - in this case [disposed](disposed.md) will do nothing, all other operations are invalid and will `throw Error("Resource is disposed")`. |
-| [ptr](ptr.md) | `val ptr: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`T`](index.md#T)`>` |
+| [ptr](ptr.md) | `val ptr: CPointer<`[`T`](index.md#T)`>` |
 
 ### Functions
 
@@ -38,7 +38,7 @@ Manages and owns all its native resources.
 | [Attribute](../-attribute/index.md) | `abstract class Attribute : `[`Disposable`](./index.md)`<`[`uiAttribute`](../../libui/ui-attribute.md)`>`<br>Stores information about an attribute in a [string](../string.md). |
 | [AttributedString](../-attributed-string/index.md) | `class AttributedString : `[`Disposable`](./index.md)`<`[`uiAttributedString`](../../libui/ui-attributed-string.md)`>`<br>Represents a string of UTF-8 text that can be embellished with formatting attributes. |
 | [Brush](../-brush/index.md) | `class Brush : `[`Disposable`](./index.md)`<`[`uiDrawBrush`](../../libui/ui-draw-brush/index.md)`>`<br>Defines the color(s) to draw a path with. |
-| [Control](../-control/index.md) | `abstract class Control<T : `[`CPointed`](../../kotlinx.cinterop/-c-pointed/index.md)`> : `[`Disposable`](./index.md)`<`[`T`](../-control/index.md#T)`>`<br>Base class for all GUI controls (widgets). |
+| [Control](../-control/index.md) | `abstract class Control<T : CPointed> : `[`Disposable`](./index.md)`<`[`T`](../-control/index.md#T)`>`<br>Base class for all GUI controls (widgets). |
 | [Font](../-font/index.md) | `class Font : `[`Disposable`](./index.md)`<`[`uiFontDescriptor`](../../libui/ui-font-descriptor/index.md)`>`<br>Provides a complete description of a font where one is needed. |
 | [Image](../-image/index.md) | `class Image : `[`Disposable`](./index.md)`<`[`uiImage`](../../libui/ui-image.md)`>` |
 | [Matrix](../-matrix/index.md) | `class Matrix : `[`Disposable`](./index.md)`<`[`uiDrawMatrix`](../../libui/ui-draw-matrix/index.md)`>`<br>Defines a transformation (e.g. rotation, translation) |

@@ -2,4 +2,4 @@
 
 # uiAttributedStringGraphemeToByteIndex
 
-`fun uiAttributedStringGraphemeToByteIndex(s: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiAttributedString`](ui-attributed-string.md)`>?, pos: `[`size_t`](../platform.posix/size_t.md)`): `[`size_t`](../platform.posix/size_t.md)
+`fun uiAttributedStringGraphemeToByteIndex(s: CValuesRef<`[`uiAttributedString`](ui-attributed-string.md)`>?, pos: size_t): size_t`

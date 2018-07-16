@@ -2,4 +2,4 @@
 
 # uiTextStretchVar
 
-`typealias uiTextStretchVar = `[`IntVarOf`](../kotlinx.cinterop/-int-var-of/index.md)`<`[`uiTextStretch`](ui-text-stretch.md)`>`
+`typealias uiTextStretchVar = IntVarOf<`[`uiTextStretch`](ui-text-stretch.md)`>`

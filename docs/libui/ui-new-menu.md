@@ -2,4 +2,4 @@
 
 # uiNewMenu
 
-`fun uiNewMenu(name: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiMenu`](ui-menu.md)`>?`
+`fun uiNewMenu(name: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?): CPointer<`[`uiMenu`](ui-menu.md)`>?`

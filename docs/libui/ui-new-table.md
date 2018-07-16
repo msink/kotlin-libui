@@ -2,4 +2,4 @@
 
 # uiNewTable
 
-`fun uiNewTable(params: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiTableParams`](ui-table-params/index.md)`>?): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiTable`](ui-table.md)`>?`
+`fun uiNewTable(params: CValuesRef<`[`uiTableParams`](ui-table-params/index.md)`>?): CPointer<`[`uiTable`](ui-table.md)`>?`

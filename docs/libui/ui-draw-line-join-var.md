@@ -2,4 +2,4 @@
 
 # uiDrawLineJoinVar
 
-`typealias uiDrawLineJoinVar = `[`IntVarOf`](../kotlinx.cinterop/-int-var-of/index.md)`<`[`uiDrawLineJoin`](ui-draw-line-join.md)`>`
+`typealias uiDrawLineJoinVar = IntVarOf<`[`uiDrawLineJoin`](ui-draw-line-join.md)`>`

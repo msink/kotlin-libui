@@ -2,4 +2,4 @@
 
 # &lt;init&gt;
 
-`ktTableHandler(rawPtr: `[`NativePtr`](../../kotlinx.cinterop/-native-ptr.md)`)`
+`ktTableHandler(rawPtr: NativePtr)`

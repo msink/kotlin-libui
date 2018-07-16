@@ -2,4 +2,4 @@
 
 # uiNewHorizontalBox
 
-`fun uiNewHorizontalBox(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiBox`](ui-box.md)`>?`
+`fun uiNewHorizontalBox(): CPointer<`[`uiBox`](ui-box.md)`>?`

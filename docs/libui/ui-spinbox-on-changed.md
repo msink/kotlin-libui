@@ -2,4 +2,4 @@
 
 # uiSpinboxOnChanged
 
-`fun uiSpinboxOnChanged(s: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiSpinbox`](ui-spinbox.md)`>?, f: `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`CFunction`](../kotlinx.cinterop/-c-function/index.md)`<(`[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiSpinbox`](ui-spinbox.md)`>?, `[`COpaquePointer`](../kotlinx.cinterop/-c-opaque-pointer.md)`?) -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`>>?, data: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<*>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiSpinboxOnChanged(s: CValuesRef<`[`uiSpinbox`](ui-spinbox.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiSpinbox`](ui-spinbox.md)`>?, COpaquePointer?) -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`>>?, data: CValuesRef<*>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)

@@ -2,4 +2,4 @@
 
 # ref
 
-`var ref: `[`COpaquePointer`](../../kotlinx.cinterop/-c-opaque-pointer.md)`?`
+`var ref: COpaquePointer?`

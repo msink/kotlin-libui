@@ -2,4 +2,4 @@
 
 # uiNewVerticalSeparator
 
-`fun uiNewVerticalSeparator(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiSeparator`](ui-separator.md)`>?`
+`fun uiNewVerticalSeparator(): CPointer<`[`uiSeparator`](ui-separator.md)`>?`

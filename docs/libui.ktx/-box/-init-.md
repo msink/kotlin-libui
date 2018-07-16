@@ -2,7 +2,7 @@
 
 # &lt;init&gt;
 
-`Box(alloc: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiBox`](../../libui/ui-box.md)`>?)`
+`Box(alloc: CPointer<`[`uiBox`](../../libui/ui-box.md)`>?)`
 
 Wrapper class for [uiBox](../../libui/ui-box.md)
 

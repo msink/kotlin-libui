@@ -2,4 +2,4 @@
 
 # NumDashes
 
-`var NumDashes: `[`size_t`](../../platform.posix/size_t.md)
+`var NumDashes: size_t`

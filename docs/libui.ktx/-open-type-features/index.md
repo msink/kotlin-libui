@@ -10,14 +10,14 @@ Represents a set of OpenType feature tag-value pairs, for applying OpenType feat
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `OpenTypeFeatures(copy: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiOpenTypeFeatures`](../../libui/ui-open-type-features.md)`>? = null)`<br>Represents a set of OpenType feature tag-value pairs, for applying OpenType features to text. |
+| [&lt;init&gt;](-init-.md) | `OpenTypeFeatures(copy: CPointer<`[`uiOpenTypeFeatures`](../../libui/ui-open-type-features.md)`>? = null)`<br>Represents a set of OpenType feature tag-value pairs, for applying OpenType features to text. |
 
 ### Inherited Properties
 
 | Name | Summary |
 |---|---|
 | [disposed](../-disposable/disposed.md) | `val disposed: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Returns `true` if object was disposed - in this case [disposed](../-disposable/disposed.md) will do nothing, all other operations are invalid and will `throw Error("Resource is disposed")`. |
-| [ptr](../-disposable/ptr.md) | `val ptr: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`T`](../-disposable/index.md#T)`>` |
+| [ptr](../-disposable/ptr.md) | `val ptr: CPointer<`[`T`](../-disposable/index.md#T)`>` |
 
 ### Functions
 

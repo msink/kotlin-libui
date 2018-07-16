@@ -2,4 +2,4 @@
 
 # uiAttributeFeatures
 
-`fun uiAttributeFeatures(a: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiAttribute`](ui-attribute.md)`>?): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiOpenTypeFeatures`](ui-open-type-features.md)`>?`
+`fun uiAttributeFeatures(a: CValuesRef<`[`uiAttribute`](ui-attribute.md)`>?): CPointer<`[`uiOpenTypeFeatures`](ui-open-type-features.md)`>?`

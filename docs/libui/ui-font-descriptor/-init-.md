@@ -2,4 +2,4 @@
 
 # &lt;init&gt;
 
-`uiFontDescriptor(rawPtr: `[`NativePtr`](../../kotlinx.cinterop/-native-ptr.md)`)`
+`uiFontDescriptor(rawPtr: NativePtr)`

@@ -2,4 +2,4 @@
 
 # uiSeparator
 
-`typealias uiSeparator = `[`CPointed`](../kotlinx.cinterop/-c-pointed/index.md)
+`typealias uiSeparator = CPointed`

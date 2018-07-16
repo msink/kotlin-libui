@@ -2,4 +2,4 @@
 
 # uiNewProgressBar
 
-`fun uiNewProgressBar(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiProgressBar`](ui-progress-bar.md)`>?`
+`fun uiNewProgressBar(): CPointer<`[`uiProgressBar`](ui-progress-bar.md)`>?`

@@ -2,4 +2,4 @@
 
 # uiOpenTypeFeaturesClone
 
-`fun uiOpenTypeFeaturesClone(otf: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiOpenTypeFeatures`](ui-open-type-features.md)`>?): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiOpenTypeFeatures`](ui-open-type-features.md)`>?`
+`fun uiOpenTypeFeaturesClone(otf: CValuesRef<`[`uiOpenTypeFeatures`](ui-open-type-features.md)`>?): CPointer<`[`uiOpenTypeFeatures`](ui-open-type-features.md)`>?`

@@ -18,10 +18,10 @@
 | [ColorButton](-color-button/index.md) | `class ColorButton : `[`Control`](-control/index.md)`<`[`uiColorButton`](../libui/ui-color-button.md)`>`<br>Wrapper class for [uiColorButton](../libui/ui-color-button.md) |
 | [Combobox](-combobox/index.md) | `class Combobox : `[`Control`](-control/index.md)`<`[`uiCombobox`](../libui/ui-combobox.md)`>`<br>Wrapper class for [uiCombobox](../libui/ui-combobox.md) |
 | [Container](-container/index.md) | `interface Container`<br>Container for child controls. |
-| [Control](-control/index.md) | `abstract class Control<T : `[`CPointed`](../kotlinx.cinterop/-c-pointed/index.md)`> : `[`Disposable`](-disposable/index.md)`<`[`T`](-control/index.md#T)`>`<br>Base class for all GUI controls (widgets). |
+| [Control](-control/index.md) | `abstract class Control<T : CPointed> : `[`Disposable`](-disposable/index.md)`<`[`T`](-control/index.md#T)`>`<br>Base class for all GUI controls (widgets). |
 | [DatePicker](-date-picker/index.md) | `class DatePicker : `[`DateTimePicker`](-date-time-picker/index.md)<br>Wrapper class for [uiDateTimePicker](../libui/ui-date-time-picker.md) to edit date. |
 | [DateTimePicker](-date-time-picker/index.md) | `open class DateTimePicker : `[`Control`](-control/index.md)`<`[`uiDateTimePicker`](../libui/ui-date-time-picker.md)`>`<br>Wrapper class for [uiDateTimePicker](../libui/ui-date-time-picker.md) to edit date and time. |
-| [Disposable](-disposable/index.md) | `abstract class Disposable<T : `[`CPointed`](../kotlinx.cinterop/-c-pointed/index.md)`>`<br>Manages and owns all its native resources. |
+| [Disposable](-disposable/index.md) | `abstract class Disposable<T : CPointed>`<br>Manages and owns all its native resources. |
 | [DrawArea](-draw-area/index.md) | `open class DrawArea : `[`Control`](-control/index.md)`<`[`uiArea`](../libui/ui-area.md)`>`<br>Wrapper class for [uiArea](../libui/ui-area.md) |
 | [EditableCombobox](-editable-combobox/index.md) | `class EditableCombobox : `[`Control`](-control/index.md)`<`[`uiEditableCombobox`](../libui/ui-editable-combobox.md)`>`<br>Wrapper class for [uiEditableCombobox](../libui/ui-editable-combobox.md) |
 | [FamilyAttribute](-family-attribute/index.md) | `class FamilyAttribute : `[`Attribute`](-attribute/index.md)<br>Changes the font family of the text it is applied to. |
@@ -72,9 +72,9 @@
 
 | Name | Summary |
 |---|---|
-| [DrawContext](-draw-context.md) | `typealias DrawContext = `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiDrawContext`](../libui/ui-draw-context.md)`>` |
-| [Menu](-menu.md) | `typealias Menu = `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiMenu`](../libui/ui-menu.md)`>` |
-| [MenuItem](-menu-item.md) | `typealias MenuItem = `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiMenuItem`](../libui/ui-menu-item.md)`>` |
+| [DrawContext](-draw-context.md) | `typealias DrawContext = CPointer<`[`uiDrawContext`](../libui/ui-draw-context.md)`>` |
+| [Menu](-menu.md) | `typealias Menu = CPointer<`[`uiMenu`](../libui/ui-menu.md)`>` |
+| [MenuItem](-menu-item.md) | `typealias MenuItem = CPointer<`[`uiMenuItem`](../libui/ui-menu-item.md)`>` |
 
 ### Properties
 

@@ -2,4 +2,4 @@
 
 # uiAlignVar
 
-`typealias uiAlignVar = `[`IntVarOf`](../kotlinx.cinterop/-int-var-of/index.md)`<`[`uiAlign`](ui-align.md)`>`
+`typealias uiAlignVar = IntVarOf<`[`uiAlign`](ui-align.md)`>`

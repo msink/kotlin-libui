@@ -2,4 +2,4 @@
 
 # uiUnderlineVar
 
-`typealias uiUnderlineVar = `[`IntVarOf`](../kotlinx.cinterop/-int-var-of/index.md)`<`[`uiUnderline`](ui-underline.md)`>`
+`typealias uiUnderlineVar = IntVarOf<`[`uiUnderline`](ui-underline.md)`>`

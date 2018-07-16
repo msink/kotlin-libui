@@ -1,9 +1,5 @@
 $dokka.format:gfm
 $dokka.linkExtension:md
-$dokka.location:kotlinx.cinterop$toCStringArray(kotlin.collections.List((kotlin.String)), kotlinx.cinterop.AutofreeScope)kotlinx.cinterop/kotlin.collections.-list/to-c-string-array.md
-$dokka.location:kotlinx.cinterop$toCValues(kotlin.collections.List((kotlinx.cinterop.CPointer((kotlinx.cinterop.toCValues.T)))))kotlinx.cinterop/kotlin.collections.-list/to-c-values.md
-kotlin
-kotlinx.cinterop
+
 libui
 libui.ktx
-platform.posix

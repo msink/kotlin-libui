@@ -2,4 +2,4 @@
 
 # uiWindowContentSize
 
-`fun uiWindowContentSize(w: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiWindow`](ui-window.md)`>?, width: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`IntVar`](../kotlinx.cinterop/-int-var.md)`>?, height: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`IntVar`](../kotlinx.cinterop/-int-var.md)`>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiWindowContentSize(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, width: CValuesRef<IntVar>?, height: CValuesRef<IntVar>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)

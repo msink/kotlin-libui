@@ -2,4 +2,4 @@
 
 # uiTab
 
-`typealias uiTab = `[`CPointed`](../kotlinx.cinterop/-c-pointed/index.md)
+`typealias uiTab = CPointed`

@@ -2,7 +2,7 @@
 
 # &lt;init&gt;
 
-`Disposable(alloc: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`T`](index.md#T)`>?)`
+`Disposable(alloc: CPointer<`[`T`](index.md#T)`>?)`
 
 Manages and owns all its native resources.
 

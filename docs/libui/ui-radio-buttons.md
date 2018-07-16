@@ -2,4 +2,4 @@
 
 # uiRadioButtons
 
-`typealias uiRadioButtons = `[`CPointed`](../kotlinx.cinterop/-c-pointed/index.md)
+`typealias uiRadioButtons = CPointed`

@@ -2,4 +2,4 @@
 
 # uiCheckbox
 
-`typealias uiCheckbox = `[`CPointed`](../kotlinx.cinterop/-c-pointed/index.md)
+`typealias uiCheckbox = CPointed`

@@ -2,4 +2,4 @@
 
 # uiTabNumPages
 
-`fun uiTabNumPages(t: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiTab`](ui-tab.md)`>?): `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`fun uiTabNumPages(t: CValuesRef<`[`uiTab`](ui-tab.md)`>?): `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)

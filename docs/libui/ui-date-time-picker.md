@@ -2,4 +2,4 @@
 
 # uiDateTimePicker
 
-`typealias uiDateTimePicker = `[`CPointed`](../kotlinx.cinterop/-c-pointed/index.md)
+`typealias uiDateTimePicker = CPointed`

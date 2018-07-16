@@ -2,4 +2,4 @@
 
 # &lt;init&gt;
 
-`uiTableModelHandler(rawPtr: `[`NativePtr`](../../kotlinx.cinterop/-native-ptr.md)`)`
+`uiTableModelHandler(rawPtr: NativePtr)`

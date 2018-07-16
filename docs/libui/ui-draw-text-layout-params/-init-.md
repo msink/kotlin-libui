@@ -2,4 +2,4 @@
 
 # &lt;init&gt;
 
-`uiDrawTextLayoutParams(rawPtr: `[`NativePtr`](../../kotlinx.cinterop/-native-ptr.md)`)`
+`uiDrawTextLayoutParams(rawPtr: NativePtr)`

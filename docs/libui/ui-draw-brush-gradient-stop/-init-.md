@@ -2,4 +2,4 @@
 
 # &lt;init&gt;
 
-`uiDrawBrushGradientStop(rawPtr: `[`NativePtr`](../../kotlinx.cinterop/-native-ptr.md)`)`
+`uiDrawBrushGradientStop(rawPtr: NativePtr)`

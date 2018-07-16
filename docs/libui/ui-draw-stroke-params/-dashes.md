@@ -2,4 +2,4 @@
 
 # Dashes
 
-`var Dashes: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`DoubleVar`](../../kotlinx.cinterop/-double-var.md)`>?`
+`var Dashes: CPointer<DoubleVar>?`

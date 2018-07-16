@@ -2,4 +2,4 @@
 
 # uiFreeTableValue
 
-`fun uiFreeTableValue(v: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiTableValue`](ui-table-value.md)`>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiFreeTableValue(v: CValuesRef<`[`uiTableValue`](ui-table-value.md)`>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)

@@ -2,4 +2,4 @@
 
 # uiNewArea
 
-`fun uiNewArea(ah: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiAreaHandler`](ui-area-handler/index.md)`>?): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiArea`](ui-area.md)`>?`
+`fun uiNewArea(ah: CValuesRef<`[`uiAreaHandler`](ui-area-handler/index.md)`>?): CPointer<`[`uiArea`](ui-area.md)`>?`

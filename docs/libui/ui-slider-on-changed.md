@@ -2,4 +2,4 @@
 
 # uiSliderOnChanged
 
-`fun uiSliderOnChanged(s: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiSlider`](ui-slider.md)`>?, f: `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`CFunction`](../kotlinx.cinterop/-c-function/index.md)`<(`[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiSlider`](ui-slider.md)`>?, `[`COpaquePointer`](../kotlinx.cinterop/-c-opaque-pointer.md)`?) -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`>>?, data: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<*>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiSliderOnChanged(s: CValuesRef<`[`uiSlider`](ui-slider.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiSlider`](ui-slider.md)`>?, COpaquePointer?) -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`>>?, data: CValuesRef<*>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)

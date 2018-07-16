@@ -2,4 +2,4 @@
 
 # uiDrawTextAlignVar
 
-`typealias uiDrawTextAlignVar = `[`IntVarOf`](../kotlinx.cinterop/-int-var-of/index.md)`<`[`uiDrawTextAlign`](ui-draw-text-align.md)`>`
+`typealias uiDrawTextAlignVar = IntVarOf<`[`uiDrawTextAlign`](ui-draw-text-align.md)`>`

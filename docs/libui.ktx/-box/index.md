@@ -16,7 +16,7 @@ Wrapper class for [uiBox](../../libui/ui-box.md)
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Box(alloc: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiBox`](../../libui/ui-box.md)`>?)`<br>Wrapper class for [uiBox](../../libui/ui-box.md) |
+| [&lt;init&gt;](-init-.md) | `Box(alloc: CPointer<`[`uiBox`](../../libui/ui-box.md)`>?)`<br>Wrapper class for [uiBox](../../libui/ui-box.md) |
 
 ### Properties
 
@@ -28,7 +28,7 @@ Wrapper class for [uiBox](../../libui/ui-box.md)
 
 | Name | Summary |
 |---|---|
-| [ctl](../-control/ctl.md) | `val ctl: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiControl`](../../libui/ui-control/index.md)`>` |
+| [ctl](../-control/ctl.md) | `val ctl: CPointer<`[`uiControl`](../../libui/ui-control/index.md)`>` |
 | [enabled](../-control/enabled.md) | `var enabled: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Whether the Control should be enabled or disabled. Defaults to `true`. |
 | [parent](../-control/parent.md) | `var parent: `[`Control`](../-control/index.md)`<*>?`<br>Returns parent of the control or `null` for detached. |
 | [toplevel](../-control/toplevel.md) | `val toplevel: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Returns whether the control is a top level one or not. |

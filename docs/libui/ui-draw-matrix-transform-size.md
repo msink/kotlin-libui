@@ -2,4 +2,4 @@
 
 # uiDrawMatrixTransformSize
 
-`fun uiDrawMatrixTransformSize(m: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiDrawMatrix`](ui-draw-matrix/index.md)`>?, x: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`DoubleVar`](../kotlinx.cinterop/-double-var.md)`>?, y: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`DoubleVar`](../kotlinx.cinterop/-double-var.md)`>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiDrawMatrixTransformSize(m: CValuesRef<`[`uiDrawMatrix`](ui-draw-matrix/index.md)`>?, x: CValuesRef<DoubleVar>?, y: CValuesRef<DoubleVar>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)

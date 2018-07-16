@@ -2,4 +2,4 @@
 
 # uiEntryOnChanged
 
-`fun uiEntryOnChanged(e: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiEntry`](ui-entry.md)`>?, f: `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`CFunction`](../kotlinx.cinterop/-c-function/index.md)`<(`[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiEntry`](ui-entry.md)`>?, `[`COpaquePointer`](../kotlinx.cinterop/-c-opaque-pointer.md)`?) -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`>>?, data: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<*>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiEntryOnChanged(e: CValuesRef<`[`uiEntry`](ui-entry.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiEntry`](ui-entry.md)`>?, COpaquePointer?) -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`>>?, data: CValuesRef<*>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)

@@ -2,4 +2,4 @@
 
 # uiNewCombobox
 
-`fun uiNewCombobox(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiCombobox`](ui-combobox.md)`>?`
+`fun uiNewCombobox(): CPointer<`[`uiCombobox`](ui-combobox.md)`>?`

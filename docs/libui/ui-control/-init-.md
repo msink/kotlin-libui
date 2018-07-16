@@ -2,4 +2,4 @@
 
 # &lt;init&gt;
 
-`uiControl(rawPtr: `[`NativePtr`](../../kotlinx.cinterop/-native-ptr.md)`)`
+`uiControl(rawPtr: NativePtr)`

@@ -2,4 +2,4 @@
 
 # uiDrawContext
 
-`typealias uiDrawContext = `[`CPointed`](../kotlinx.cinterop/-c-pointed/index.md)
+`typealias uiDrawContext = CPointed`

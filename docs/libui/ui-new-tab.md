@@ -2,4 +2,4 @@
 
 # uiNewTab
 
-`fun uiNewTab(): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiTab`](ui-tab.md)`>?`
+`fun uiNewTab(): CPointer<`[`uiTab`](ui-tab.md)`>?`

@@ -2,4 +2,4 @@
 
 # Size
 
-`var Size: `[`size_t`](../../platform.posix/size_t.md)
+`var Size: size_t`

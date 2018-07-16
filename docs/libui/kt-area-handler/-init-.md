@@ -2,4 +2,4 @@
 
 # &lt;init&gt;
 
-`ktAreaHandler(rawPtr: `[`NativePtr`](../../kotlinx.cinterop/-native-ptr.md)`)`
+`ktAreaHandler(rawPtr: NativePtr)`

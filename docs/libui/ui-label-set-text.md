@@ -2,4 +2,4 @@
 
 # uiLabelSetText
 
-`fun uiLabelSetText(l: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiLabel`](ui-label.md)`>?, text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiLabelSetText(l: CValuesRef<`[`uiLabel`](ui-label.md)`>?, text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)

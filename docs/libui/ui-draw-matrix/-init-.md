@@ -2,4 +2,4 @@
 
 # &lt;init&gt;
 
-`uiDrawMatrix(rawPtr: `[`NativePtr`](../../kotlinx.cinterop/-native-ptr.md)`)`
+`uiDrawMatrix(rawPtr: NativePtr)`

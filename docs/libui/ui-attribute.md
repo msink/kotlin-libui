@@ -2,4 +2,4 @@
 
 # uiAttribute
 
-`typealias uiAttribute = `[`CPointed`](../kotlinx.cinterop/-c-pointed/index.md)
+`typealias uiAttribute = CPointed`

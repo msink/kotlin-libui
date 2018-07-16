@@ -2,4 +2,4 @@
 
 # uiWindowBorderless
 
-`fun uiWindowBorderless(w: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiWindow`](ui-window.md)`>?): `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`fun uiWindowBorderless(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?): `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)

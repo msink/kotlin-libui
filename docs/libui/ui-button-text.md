@@ -2,4 +2,4 @@
 
 # uiButtonText
 
-`fun uiButtonText(b: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiButton`](ui-button.md)`>?): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`ByteVar`](../kotlinx.cinterop/-byte-var.md)`>?`
+`fun uiButtonText(b: CValuesRef<`[`uiButton`](ui-button.md)`>?): CPointer<ByteVar>?`

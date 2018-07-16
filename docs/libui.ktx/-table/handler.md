@@ -2,4 +2,4 @@
 
 # handler
 
-`val handler: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`ktTableHandler`](../../libui/kt-table-handler/index.md)`>`
+`val handler: CPointer<`[`ktTableHandler`](../../libui/kt-table-handler/index.md)`>`

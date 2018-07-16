@@ -2,4 +2,4 @@
 
 # uiDrawNewPath
 
-`fun uiDrawNewPath(fillMode: `[`uiDrawFillMode`](ui-draw-fill-mode.md)`): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiDrawPath`](ui-draw-path.md)`>?`
+`fun uiDrawNewPath(fillMode: `[`uiDrawFillMode`](ui-draw-fill-mode.md)`): CPointer<`[`uiDrawPath`](ui-draw-path.md)`>?`

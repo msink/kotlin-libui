@@ -2,4 +2,4 @@
 
 # uiTextWeightVar
 
-`typealias uiTextWeightVar = `[`IntVarOf`](../kotlinx.cinterop/-int-var-of/index.md)`<`[`uiTextWeight`](ui-text-weight.md)`>`
+`typealias uiTextWeightVar = IntVarOf<`[`uiTextWeight`](ui-text-weight.md)`>`

@@ -2,4 +2,4 @@
 
 # uiColorButton
 
-`typealias uiColorButton = `[`CPointed`](../kotlinx.cinterop/-c-pointed/index.md)
+`typealias uiColorButton = CPointed`

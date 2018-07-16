@@ -2,4 +2,4 @@
 
 # Hide
 
-`var Hide: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`CFunction`](../../kotlinx.cinterop/-c-function/index.md)`<(`[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiControl`](index.md)`>?) -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`>>?`
+`var Hide: CPointer<CFunction<(CPointer<`[`uiControl`](index.md)`>?) -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`>>?`

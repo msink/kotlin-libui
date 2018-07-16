@@ -2,4 +2,4 @@
 
 # uiAttributeTypeVar
 
-`typealias uiAttributeTypeVar = `[`IntVarOf`](../kotlinx.cinterop/-int-var-of/index.md)`<`[`uiAttributeType`](ui-attribute-type.md)`>`
+`typealias uiAttributeTypeVar = IntVarOf<`[`uiAttributeType`](ui-attribute-type.md)`>`

@@ -2,4 +2,4 @@
 
 # uiNewSpinbox
 
-`fun uiNewSpinbox(min: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, max: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiSpinbox`](ui-spinbox.md)`>?`
+`fun uiNewSpinbox(min: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, max: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): CPointer<`[`uiSpinbox`](ui-spinbox.md)`>?`

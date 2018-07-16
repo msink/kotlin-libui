@@ -10,7 +10,7 @@ Wrapper class for [uiArea](../../libui/ui-area.md) with scrollbars.
 
 | Name | Summary |
 |---|---|
-| [handler](../-draw-area/handler.md) | `val handler: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`ktAreaHandler`](../../libui/kt-area-handler/index.md)`>` |
+| [handler](../-draw-area/handler.md) | `val handler: CPointer<`[`ktAreaHandler`](../../libui/kt-area-handler/index.md)`>` |
 
 ### Functions
 

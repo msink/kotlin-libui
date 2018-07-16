@@ -2,4 +2,4 @@
 
 # Stops
 
-`var Stops: `[`CPointer`](../../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiDrawBrushGradientStop`](../ui-draw-brush-gradient-stop/index.md)`>?`
+`var Stops: CPointer<`[`uiDrawBrushGradientStop`](../ui-draw-brush-gradient-stop/index.md)`>?`

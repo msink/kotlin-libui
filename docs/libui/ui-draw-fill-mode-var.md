@@ -2,4 +2,4 @@
 
 # uiDrawFillModeVar
 
-`typealias uiDrawFillModeVar = `[`IntVarOf`](../kotlinx.cinterop/-int-var-of/index.md)`<`[`uiDrawFillMode`](ui-draw-fill-mode.md)`>`
+`typealias uiDrawFillModeVar = IntVarOf<`[`uiDrawFillMode`](ui-draw-fill-mode.md)`>`

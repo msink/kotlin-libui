@@ -2,4 +2,4 @@
 
 # uiFormPadded
 
-`fun uiFormPadded(f: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiForm`](ui-form.md)`>?): `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`fun uiFormPadded(f: CValuesRef<`[`uiForm`](ui-form.md)`>?): `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
