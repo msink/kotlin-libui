@@ -1,6 +1,0 @@
-
-
-### All Types
-
-| Name | Summary |
-|---|---|

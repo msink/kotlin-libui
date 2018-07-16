@@ -1,8 +1,0 @@
-[libui-ktx](../../../index.md) / [libui](../../index.md) / [Stroke](../index.md) / [AttributedString](index.md) / [&lt;init&gt;](./-init-.md)
-
-# &lt;init&gt;
-
-`AttributedString(init: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`)`
-
-Represents a string of UTF-8 text that can be embellished with formatting attributes.
-
