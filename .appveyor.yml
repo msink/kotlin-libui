@@ -25,12 +25,12 @@ after_build:
          .\samples\timer\build\konan\bin\mingw_x64\timer.exe
   - 7z l libui-samples-kotlin-windows.zip
   - 7z a libui-samples-c-windows.zip
-         .\libui-ktx\build\libui\out\controlgallery.exe
-         .\libui-ktx\build\libui\out\cpp-multithread.exe
-         .\libui-ktx\build\libui\out\datetime.exe
-         .\libui-ktx\build\libui\out\drawtext.exe
-         .\libui-ktx\build\libui\out\histogram.exe
-         .\libui-ktx\build\libui\out\timer.exe
+         .\libui\build\out\controlgallery.exe
+         .\libui\build\out\cpp-multithread.exe
+         .\libui\build\out\datetime.exe
+         .\libui\build\out\drawtext.exe
+         .\libui\build\out\histogram.exe
+         .\libui\build\out\timer.exe
   - 7z l libui-samples-c-windows.zip
 
 artifacts:

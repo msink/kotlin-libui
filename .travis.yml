@@ -35,7 +35,7 @@ after_success:
   - cp samples/table/build/konan/bin/${TARGET}_x64/table.kexe .
   - cp samples/timer/build/konan/bin/${TARGET}_x64/timer.kexe .
   - tar -czvf libui-samples-kotlin-${TARGET}.tgz *.kexe
-  - pushd libui-ktx/build/libui/out
+  - pushd libui/build/out
   - tar -czvf libui-samples-c-${TARGET}.tgz controlgallery cpp-multithread datetime drawtext histogram timer
   - popd
 
