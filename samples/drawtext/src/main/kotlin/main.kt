@@ -1,4 +1,5 @@
 import libui.*
+import libui.ktx.*
 
 fun AttributedString.append(what: String, attr: Attribute, attr2: Attribute? = null) {
     val start = length

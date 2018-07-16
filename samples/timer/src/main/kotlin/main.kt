@@ -1,6 +1,6 @@
 import kotlinx.cinterop.*
 import platform.posix.*
-import libui.*
+import libui.ktx.*
 
 fun main(args: Array<String>) = appWindow(
     title = "Hello",

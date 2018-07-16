@@ -1,5 +1,6 @@
-package libui
+package libui.ktx
 
+import libui.*
 import kotlinx.cinterop.*
 
 /** Represents a top-level window.

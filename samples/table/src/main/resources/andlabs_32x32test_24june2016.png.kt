@@ -1,5 +1,5 @@
 import kotlinx.cinterop.*
-import libui.*
+import libui.ktx.*
 
 val `andlabs_32x32test_24june2016.png` = ImageData(32, 32, 128, cValuesOf(
     0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(), 0xFF89C57C.toInt(),

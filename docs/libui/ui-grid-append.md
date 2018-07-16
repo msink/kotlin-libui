@@ -1,0 +1,5 @@
+[libui](index.md) / [uiGridAppend](./ui-grid-append.md)
+
+# uiGridAppend
+
+`fun uiGridAppend(g: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiGrid`](ui-grid.md)`>?, c: `[`CValuesRef`](../kotlinx.cinterop/-c-values-ref/index.md)`<`[`uiControl`](ui-control/index.md)`>?, left: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, top: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, xspan: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, yspan: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, hexpand: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, halign: `[`uiAlign`](ui-align.md)`, vexpand: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, valign: `[`uiAlign`](ui-align.md)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)

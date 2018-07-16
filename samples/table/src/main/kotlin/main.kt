@@ -1,4 +1,4 @@
-import libui.*
+import libui.ktx.*
 
 class Data(
     var editable: String,

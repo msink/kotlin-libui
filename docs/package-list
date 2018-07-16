@@ -1,0 +1,31 @@
+$dokka.format:gfm
+$dokka.linkExtension:md
+$dokka.location:kotlinx.cinterop$cstr#kotlin.Stringkotlinx.cinterop/kotlin.-string/cstr.md
+$dokka.location:kotlinx.cinterop$invalidNarrowing(kotlin.Number)kotlinx.cinterop/kotlin.-number/invalid-narrowing.md
+$dokka.location:kotlinx.cinterop$invalidSignExtension(kotlin.Number)kotlinx.cinterop/kotlin.-number/invalid-sign-extension.md
+$dokka.location:kotlinx.cinterop$narrow(kotlin.Byte)kotlinx.cinterop/kotlin.-byte/narrow.md
+$dokka.location:kotlinx.cinterop$narrow(kotlin.Int)kotlinx.cinterop/kotlin.-int/narrow.md
+$dokka.location:kotlinx.cinterop$narrow(kotlin.Long)kotlinx.cinterop/kotlin.-long/narrow.md
+$dokka.location:kotlinx.cinterop$narrow(kotlin.Short)kotlinx.cinterop/kotlin.-short/narrow.md
+$dokka.location:kotlinx.cinterop$signExtend(kotlin.Byte)kotlinx.cinterop/kotlin.-byte/sign-extend.md
+$dokka.location:kotlinx.cinterop$signExtend(kotlin.Int)kotlinx.cinterop/kotlin.-int/sign-extend.md
+$dokka.location:kotlinx.cinterop$signExtend(kotlin.Long)kotlinx.cinterop/kotlin.-long/sign-extend.md
+$dokka.location:kotlinx.cinterop$signExtend(kotlin.Short)kotlinx.cinterop/kotlin.-short/sign-extend.md
+$dokka.location:kotlinx.cinterop$toBoolean(kotlin.Byte)kotlinx.cinterop/kotlin.-byte/to-boolean.md
+$dokka.location:kotlinx.cinterop$toByte(kotlin.Boolean)kotlinx.cinterop/kotlin.-boolean/to-byte.md
+$dokka.location:kotlinx.cinterop$toCPointer(kotlin.Long)kotlinx.cinterop/kotlin.-long/to-c-pointer.md
+$dokka.location:kotlinx.cinterop$toCStringArray(kotlin.Array((kotlin.String)), kotlinx.cinterop.AutofreeScope)kotlinx.cinterop/kotlin.-array/to-c-string-array.md
+$dokka.location:kotlinx.cinterop$toCStringArray(kotlin.collections.List((kotlin.String)), kotlinx.cinterop.AutofreeScope)kotlinx.cinterop/kotlin.collections.-list/to-c-string-array.md
+$dokka.location:kotlinx.cinterop$toCValues(kotlin.Array((kotlinx.cinterop.CPointer((kotlinx.cinterop.toCValues.T)))))kotlinx.cinterop/kotlin.-array/to-c-values.md
+$dokka.location:kotlinx.cinterop$toCValues(kotlin.ByteArray)kotlinx.cinterop/kotlin.-byte-array/to-c-values.md
+$dokka.location:kotlinx.cinterop$toCValues(kotlin.DoubleArray)kotlinx.cinterop/kotlin.-double-array/to-c-values.md
+$dokka.location:kotlinx.cinterop$toCValues(kotlin.FloatArray)kotlinx.cinterop/kotlin.-float-array/to-c-values.md
+$dokka.location:kotlinx.cinterop$toCValues(kotlin.IntArray)kotlinx.cinterop/kotlin.-int-array/to-c-values.md
+$dokka.location:kotlinx.cinterop$toCValues(kotlin.LongArray)kotlinx.cinterop/kotlin.-long-array/to-c-values.md
+$dokka.location:kotlinx.cinterop$toCValues(kotlin.ShortArray)kotlinx.cinterop/kotlin.-short-array/to-c-values.md
+$dokka.location:kotlinx.cinterop$toCValues(kotlin.collections.List((kotlinx.cinterop.CPointer((kotlinx.cinterop.toCValues.T)))))kotlinx.cinterop/kotlin.collections.-list/to-c-values.md
+$dokka.location:kotlinx.cinterop$wcstr#kotlin.Stringkotlinx.cinterop/kotlin.-string/wcstr.md
+kotlinx.cinterop
+libui
+libui.ktx
+platform.posix

@@ -1,8 +1,0 @@
-[libui-ktx](../../index.md) / [libui](../index.md) / [Button](index.md) / [text](./text.md)
-
-# text
-
-`var text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)
-
-The static text of the button.
-

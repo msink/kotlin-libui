@@ -1,5 +1,0 @@
-[libui-ktx](../index.md) / [libui](index.md) / [uiOpenTypeFeaturesForEachFunc](./ui-open-type-features-for-each-func.md)
-
-# uiOpenTypeFeaturesForEachFunc
-
-`typealias uiOpenTypeFeaturesForEachFunc = `[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`CFunction`](../kotlinx.cinterop/-c-function/index.md)`<(`[`CPointer`](../kotlinx.cinterop/-c-pointer/index.md)`<`[`uiOpenTypeFeatures`](ui-open-type-features.md)`>?, `[`Byte`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html)`, `[`Byte`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html)`, `[`Byte`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html)`, `[`Byte`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html)`, `[`uint32_t`](../platform.posix/uint32_t.md)`, `[`COpaquePointer`](../kotlinx.cinterop/-c-opaque-pointer.md)`?) -> `[`uiForEach`](ui-for-each.md)`>>`

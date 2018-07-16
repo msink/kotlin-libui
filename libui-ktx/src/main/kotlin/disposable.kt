@@ -1,5 +1,6 @@
-package libui
+package libui.ktx
 
+import libui.*
 import kotlinx.cinterop.*
 
 /** Manages and owns all its native resources.

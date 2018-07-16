@@ -1,5 +1,6 @@
-package libui
+package libui.ktx
 
+import libui.*
 import kotlinx.cinterop.*
 import kotlin.reflect.KMutableProperty1
 import kotlin.reflect.KProperty1

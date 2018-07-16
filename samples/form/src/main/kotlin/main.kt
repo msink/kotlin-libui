@@ -1,4 +1,4 @@
-import libui.*
+import libui.ktx.*
 
 fun main(args: Array<String>) = appWindow(
     title = "Authentication required",

@@ -1,5 +1,6 @@
-package libui
+package libui.ktx
 
+import libui.*
 import kotlinx.cinterop.*
 
 class ImageData(val width: Int, val height: Int, val stride: Int, val pixels: CValuesRef<IntVar>)

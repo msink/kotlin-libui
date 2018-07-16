@@ -1,5 +1,5 @@
 import kotlinx.cinterop.*
-import libui.*
+import libui.ktx.*
 
 val `tango-icon-theme-0.8.90_32x32_x-office-spreadsheet.png` = ImageData(32, 32, 128, cValuesOf(
     0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(), 0x00000000.toInt(),

@@ -1,4 +1,4 @@
-import libui.*
+import libui.ktx.*
 
 fun TabPane.Page.basicControls() = vbox {
     hbox {

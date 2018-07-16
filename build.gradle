@@ -10,5 +10,17 @@ buildscript {
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:${konanVersion}"
+        classpath "org.jetbrains.dokka:dokka-gradle-plugin:${dokkaVersion}"
     }
+}
+
+apply plugin: 'org.jetbrains.dokka'
+
+dokka {
+    outputFormat = 'gfm'
+    outputDirectory = 'docs'
+    moduleName = ''
+    sourceRoot { path = 'libui-ktx/src/main/kotlin' }
+    sourceRoot { path = 'libui-ktx/staging' }
+    reportUndocumented = false
 }
