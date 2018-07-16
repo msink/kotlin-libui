@@ -10,7 +10,7 @@ build_script:
   - build.bat
 
 after_build:
-  - copy libui-ktx\build\konan\libs\mingw_x64\libui.klib libui-windows.klib
+  - copy libui\build\konan\libs\mingw_x64\libui.klib libui-windows.klib
   - copy libui-ktx\build\konan\libs\mingw_x64\libui-ktx.klib libui-ktx-windows.klib
   - 7z a libui-samples-kotlin-windows.zip
          .\samples\controlgallery\build\konan\bin\mingw_x64\controlgallery.exe
