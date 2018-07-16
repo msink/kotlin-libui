@@ -4,6 +4,7 @@
 
 | Name | Summary |
 |---|---|
+| [kotlin](kotlin/index.md) |  |
 | [kotlinx.cinterop](kotlinx.cinterop/index.md) |  |
 | [libui](libui/index.md) |  |
 | [libui.ktx](libui.ktx/index.md) |  |
