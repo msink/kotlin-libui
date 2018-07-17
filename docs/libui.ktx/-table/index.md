@@ -24,7 +24,6 @@ Wrapper class for [uiTableModel](../../libui/ui-table-model.md)
 | Name | Summary |
 |---|---|
 | [disposed](../-disposable/disposed.md) | `val disposed: Boolean`<br>Returns `true` if object was disposed - in this case [disposed](../-disposable/disposed.md) will do nothing, all other operations are invalid and will `throw Error("Resource is disposed")`. |
-| [ptr](../-disposable/ptr.md) | `val ptr: CPointer<`[`T`](../-disposable/index.md#T)`>` |
 
 ### Functions
 
