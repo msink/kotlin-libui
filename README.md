@@ -192,8 +192,7 @@ not recomended in most cases.
 
 Disposable objects must be disposed by calling [dispose](docs/libui.ktx/-disposable/dispose.md)() method,
 before program ends. Most objects are attached as a child to some other object, in this case parent is
-responsible to dispose all its children, recursively.
-
-As DSL builders automatically add created object to some container - in most cases you do not have to worry
-about lifecicle management. But if you want to do something not supportsd by DSL builders - you can create
-Disposable object directly, and in this case *you* are responsible to dispose or attach it at some point.
+responsible to dispose all its children, recursively. As DSL builders automatically add created object to
+some container - in most cases you do not have to worry about lifecicle management. But if you want to do
+something not supportsd by DSL builders - you can create Disposable object directly, and in this case
+*you* are responsible to dispose or attach it at some point.
