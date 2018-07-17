@@ -4,5 +4,5 @@
 
 `fun translate(x: Double, y: Double): Unit`
 
-Moves paths over by [x](translate.md#libui.ktx.Matrix$translate(kotlin.Double, kotlin.Double)/x) to the right and [y](translate.md#libui.ktx.Matrix$translate(kotlin.Double, kotlin.Double)/y) down.
+Moves paths over by `x` to the right and `y` down.
 

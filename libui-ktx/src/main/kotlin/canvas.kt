@@ -259,19 +259,19 @@ class Path(mode: uiDrawFillMode) : Disposable<uiDrawPath>(
     /** Starts a new figure at the specified point. Call this method when you want to create a new path. */
     fun figure(x: Double, y: Double) = uiDrawPathNewFigure(ptr, x, y)
 
-    /** Starts a new figure and adds an arc to the path which is centered at ([xCenter], [yCenter]) position
-     *  with radius [radius] starting at [startAngle] and with sweep angle [sweep] going in the given direction
-     *  by anticlockwise (defaulting to clockwise) as specified by [negative]. */
+    /** Starts a new figure and adds an arc to the path which is centered at (`xCenter`, `yCenter`) position
+     *  with radius `radius` starting at `startAngle` and with sweep angle `sweep` going in the given direction
+     *  by anticlockwise (defaulting to clockwise) as specified by `negative`. */
     fun figureWithArc(xCenter: Double, yCenter: Double, radius: Double,
                       startAngle: Double, sweep: Double, negative: Boolean = false) =
         uiDrawPathNewFigureWithArc(ptr, xCenter, yCenter, radius, startAngle, sweep, if (negative) 1 else 0)
 
-    /** Connects the last point in the subpath to the x, y coordinates with a straight line. */
+    /** Connects the last point in the subpath to the `x`, `y` coordinates with a straight line. */
     fun lineTo(x: Double, y: Double) = uiDrawPathLineTo(ptr, x, y)
 
-    /** Adds an arc to the path which is centered at ([xCenter], [yCenter]) position with radius [radius]
-     *  starting at [startAngle] and with sweep angle [sweep] going in the given direction by
-     *  anticlockwise (defaulting to clockwise) as specified by [negative]. */
+    /** Adds an arc to the path which is centered at (`xCenter`, `yCenter`) position with radius `radius`
+     *  starting at `startAngle` and with sweep angle `sweep` going in the given direction by
+     *  anticlockwise (defaulting to clockwise) as specified by `negative`. */
     fun arcTo(xCenter: Double, yCenter: Double, radius: Double,
               startAngle: Double, sweep: Double, negative: Boolean = false) =
         uiDrawPathArcTo(ptr, xCenter, yCenter, radius, startAngle, sweep, if (negative) 1 else 0)
@@ -281,7 +281,7 @@ class Path(mode: uiDrawFillMode) : Disposable<uiDrawPath>(
     fun bezierTo(c1x: Double, c1y: Double, c2x: Double, c2y: Double, endX: Double, endY: Double) =
         uiDrawPathBezierTo(ptr, c1x, c1y, c2x, c2y, endX, endY)
 
-    /** Creates a path for a rectangle at position (x, y) with a size that is determined by width and height. */
+    /** Creates a path for a rectangle at position (`x`, `y`) with a size that is determined by `width` and `height`. */
     fun rectangle(x: Double, y: Double, width: Double, height: Double) =
         uiDrawPathAddRectangle(ptr, x, y, width, height)
 
@@ -299,23 +299,23 @@ class Matrix : Disposable<uiDrawMatrix>(
     alloc = nativeHeap.alloc<uiDrawMatrix>().ptr) {
     override fun free() = nativeHeap.free(ptr)
 
-    /** Moves paths over by [x] to the right and [y] down. */
+    /** Moves paths over by `x` to the right and `y` down. */
     fun translate(x: Double, y: Double) =
         uiDrawMatrixTranslate(ptr, x, y)
 
-    /** Scales pathes by a factor of [x] and [y] with ([xCenter], [yCenter]) as the scale center. */
+    /** Scales pathes by a factor of `x` and `y` with (`xCenter`, `yCenter`) as the scale center. */
     fun scale(xCenter: Double, yCenter: Double, x: Double, y: Double) =
         uiDrawMatrixScale(ptr, xCenter, yCenter, x, y)
 
-    /** Rotates paths by [amount] *radians* around ([x], [y]). */
+    /** Rotates paths by `amount` **radians** around (`x`, `y`). */
     fun rotate(x: Double, y: Double, amount: Double) =
         uiDrawMatrixRotate(ptr, x, y, amount)
 
-    /** Skews path by [xamount] *radians* horizontally and by [yamount] *radians* vertically around ([x], [y]) */
+    /** Skews path by `xamount` **radians** horizontally and by `yamount` **radians** vertically around (`x`, `y`) */
     fun skew(x: Double, y: Double, xamount: Double, yamount: Double) =
         uiDrawMatrixSkew(ptr, x, y, xamount, yamount)
 
-    /** Sets the matrix to the product of itself with [other] matrix. */
+    /** Sets the matrix to the product of itself with `other` matrix. */
     fun multiply(other: Matrix) = uiDrawMatrixMultiply(ptr, other.ptr)
 
     /** Returns `true` if the matrix is invertible. */
@@ -449,7 +449,7 @@ class UnderlineColorAttribute(kind: uiUnderlineColor, color: Color) : Attribute(
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Creates a new Attribute that changes the font family of the text it is applied to.
- *  otf is copied you may free it after uiNewFeaturesAttribute() returns. */
+ *  otf is copied you may free it. */
 class FeaturesAttribute(otf: OpenTypeFeatures) : Attribute(uiNewFeaturesAttribute(otf.ptr)) {
 
     /** Returns the OpenType features stored. */
@@ -507,23 +507,23 @@ class AttributedString(init: String) : Disposable<uiAttributedString>(
     /** Returns the textual content of AttributedString. */
     val string: String get() = uiAttributedStringString(ptr).uiText()
 
-    /** Returns the number of UTF-8 bytes in the textual content, excluding the terminating '\0'. */
+    /** Returns the number of UTF-8 bytes in the textual content, excluding the terminating '\\0'. */
     val length: Int get() = uiAttributedStringLen(ptr).narrow()
 
-    /** Adds the '\0'-terminated UTF-8 string str to the end. The new substring will be unattributed. */
+    /** Adds the '\\0'-terminated UTF-8 string `str` to the end. The new substring will be unattributed. */
     fun append(str: String) = uiAttributedStringAppendUnattributed(ptr, str)
 
-    /** Adds the '\0'-terminated UTF-8 string str to s at the byte position specified by [at].
+    /** Adds the '\\0'-terminated UTF-8 string `str` at the byte position specified by `at`.
      *  The new substring will be unattributed existing attributes will be moved along with their text. */
     fun insert(str: String, at: Int) =
         uiAttributedStringInsertAtUnattributed(ptr, str, at.signExtend())
 
-    /** Deletes the characters and attributes in the byte range [[start], [end]). */
+    /** Deletes the characters and attributes in the byte range \[`start`, `end`). */
     fun delete(start: Int, end: Int) =
         uiAttributedStringDelete(ptr, start.signExtend(), end.signExtend())
 
-    /** Sets a in the byte range [[start], [end]). Any existing attributes in that byte range of the same type are
-     *  removed. Takes ownership of [a] you should not use it after uiAttributedStringSetAttribute() returns. */
+    /** Sets a in the byte range \[`start`, `end`). Any existing attributes in that byte range of the same type are
+     *  removed. Takes ownership of `a` you should not use it after `setAttribute()` returns. */
     fun setAttribute(a: Attribute, start: Int, end: Int) =
         uiAttributedStringSetAttribute(ptr, a.ptr, start.signExtend(), end.signExtend())
 }
@@ -643,7 +643,7 @@ fun DrawContext.transform(block: Matrix.() -> Unit) {
     matrix.dispose()
 }
 
-/** draws formatted text with the top-left point at ([x], [y]). */
+/** draws formatted text with the top-left point at (`x`, `y`). */
 fun DrawContext.text(
     string: AttributedString,
     defaultFont: Font,

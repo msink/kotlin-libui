@@ -5,13 +5,13 @@
 `class FeaturesAttribute : `[`Attribute`](../-attribute/index.md)
 
 Creates a new Attribute that changes the font family of the text it is applied to.
-otf is copied you may free it after uiNewFeaturesAttribute() returns.
+otf is copied you may free it.
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `FeaturesAttribute(otf: `[`OpenTypeFeatures`](../-open-type-features/index.md)`)`<br>Creates a new Attribute that changes the font family of the text it is applied to. otf is copied you may free it after uiNewFeaturesAttribute() returns. |
+| [&lt;init&gt;](-init-.md) | `FeaturesAttribute(otf: `[`OpenTypeFeatures`](../-open-type-features/index.md)`)`<br>Creates a new Attribute that changes the font family of the text it is applied to. otf is copied you may free it. |
 
 ### Properties
 

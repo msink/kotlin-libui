@@ -4,5 +4,5 @@
 
 `fun multiply(other: `[`Matrix`](index.md)`): Unit`
 
-Sets the matrix to the product of itself with [other](multiply.md#libui.ktx.Matrix$multiply(libui.ktx.Matrix)/other) matrix.
+Sets the matrix to the product of itself with `other` matrix.
 

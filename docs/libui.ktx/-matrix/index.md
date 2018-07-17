@@ -31,11 +31,11 @@ Defines a transformation (e.g. rotation, translation)
 | Name | Summary |
 |---|---|
 | [invert](invert.md) | `fun invert(): Int`<br>Inverts the matrix. |
-| [multiply](multiply.md) | `fun multiply(other: `[`Matrix`](./index.md)`): Unit`<br>Sets the matrix to the product of itself with [other](multiply.md#libui.ktx.Matrix$multiply(libui.ktx.Matrix)/other) matrix. |
-| [rotate](rotate.md) | `fun rotate(x: Double, y: Double, amount: Double): Unit`<br>Rotates paths by [amount](rotate.md#libui.ktx.Matrix$rotate(kotlin.Double, kotlin.Double, kotlin.Double)/amount) *radians* around ([x](rotate.md#libui.ktx.Matrix$rotate(kotlin.Double, kotlin.Double, kotlin.Double)/x), [y](rotate.md#libui.ktx.Matrix$rotate(kotlin.Double, kotlin.Double, kotlin.Double)/y)). |
-| [scale](scale.md) | `fun scale(xCenter: Double, yCenter: Double, x: Double, y: Double): Unit`<br>Scales pathes by a factor of [x](scale.md#libui.ktx.Matrix$scale(kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double)/x) and [y](scale.md#libui.ktx.Matrix$scale(kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double)/y) with ([xCenter](scale.md#libui.ktx.Matrix$scale(kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double)/xCenter), [yCenter](scale.md#libui.ktx.Matrix$scale(kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double)/yCenter)) as the scale center. |
-| [skew](skew.md) | `fun skew(x: Double, y: Double, xamount: Double, yamount: Double): Unit`<br>Skews path by [xamount](skew.md#libui.ktx.Matrix$skew(kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double)/xamount) *radians* horizontally and by [yamount](skew.md#libui.ktx.Matrix$skew(kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double)/yamount) *radians* vertically around ([x](skew.md#libui.ktx.Matrix$skew(kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double)/x), [y](skew.md#libui.ktx.Matrix$skew(kotlin.Double, kotlin.Double, kotlin.Double, kotlin.Double)/y)) |
-| [translate](translate.md) | `fun translate(x: Double, y: Double): Unit`<br>Moves paths over by [x](translate.md#libui.ktx.Matrix$translate(kotlin.Double, kotlin.Double)/x) to the right and [y](translate.md#libui.ktx.Matrix$translate(kotlin.Double, kotlin.Double)/y) down. |
+| [multiply](multiply.md) | `fun multiply(other: `[`Matrix`](./index.md)`): Unit`<br>Sets the matrix to the product of itself with `other` matrix. |
+| [rotate](rotate.md) | `fun rotate(x: Double, y: Double, amount: Double): Unit`<br>Rotates paths by `amount` **radians** around (`x`, `y`). |
+| [scale](scale.md) | `fun scale(xCenter: Double, yCenter: Double, x: Double, y: Double): Unit`<br>Scales pathes by a factor of `x` and `y` with (`xCenter`, `yCenter`) as the scale center. |
+| [skew](skew.md) | `fun skew(x: Double, y: Double, xamount: Double, yamount: Double): Unit`<br>Skews path by `xamount` **radians** horizontally and by `yamount` **radians** vertically around (`x`, `y`) |
+| [translate](translate.md) | `fun translate(x: Double, y: Double): Unit`<br>Moves paths over by `x` to the right and `y` down. |
 
 ### Inherited Functions
 

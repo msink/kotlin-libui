@@ -37,7 +37,7 @@ Stores information about an attribute in a [AttributedString](../-attributed-str
 | [BackgroundAttribute](../-background-attribute/index.md) | `class BackgroundAttribute : `[`Attribute`](./index.md)<br>Changes the background color of the text it is applied to. |
 | [ColorAttribute](../-color-attribute/index.md) | `class ColorAttribute : `[`Attribute`](./index.md)<br>Changes the color of the text it is applied to. |
 | [FamilyAttribute](../-family-attribute/index.md) | `class FamilyAttribute : `[`Attribute`](./index.md)<br>Changes the font family of the text it is applied to. |
-| [FeaturesAttribute](../-features-attribute/index.md) | `class FeaturesAttribute : `[`Attribute`](./index.md)<br>Creates a new Attribute that changes the font family of the text it is applied to. otf is copied you may free it after uiNewFeaturesAttribute() returns. |
+| [FeaturesAttribute](../-features-attribute/index.md) | `class FeaturesAttribute : `[`Attribute`](./index.md)<br>Creates a new Attribute that changes the font family of the text it is applied to. otf is copied you may free it. |
 | [ItalicAttribute](../-italic-attribute/index.md) | `class ItalicAttribute : `[`Attribute`](./index.md)<br>Changes the italic mode of the text it is applied to. |
 | [SizeAttribute](../-size-attribute/index.md) | `class SizeAttribute : `[`Attribute`](./index.md)<br>Changes the size of the text it is applied to, in typographical points. |
 | [StretchAttribute](../-stretch-attribute/index.md) | `class StretchAttribute : `[`Attribute`](./index.md)<br>Changes the stretch of the text it is applied to. |

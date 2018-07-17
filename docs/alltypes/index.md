@@ -24,7 +24,7 @@
 | [libui.ktx.DrawContext](../libui.ktx/-draw-context.md) |  |
 | [libui.ktx.EditableCombobox](../libui.ktx/-editable-combobox/index.md) | Wrapper class for [uiEditableCombobox](../libui/ui-editable-combobox.md) |
 | [libui.ktx.FamilyAttribute](../libui.ktx/-family-attribute/index.md) | Changes the font family of the text it is applied to. |
-| [libui.ktx.FeaturesAttribute](../libui.ktx/-features-attribute/index.md) | Creates a new Attribute that changes the font family of the text it is applied to. otf is copied you may free it after uiNewFeaturesAttribute() returns. |
+| [libui.ktx.FeaturesAttribute](../libui.ktx/-features-attribute/index.md) | Creates a new Attribute that changes the font family of the text it is applied to. otf is copied you may free it. |
 | [libui.ktx.Font](../libui.ktx/-font/index.md) | Provides a complete description of a font where one is needed. |
 | [libui.ktx.FontButton](../libui.ktx/-font-button/index.md) | Wrapper class for [uiFontButton](../libui/ui-font-button.md) |
 | [libui.ktx.Form](../libui.ktx/-form/index.md) | Wrapper class for [uiForm](../libui/ui-form.md) |
