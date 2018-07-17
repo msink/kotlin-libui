@@ -4,13 +4,13 @@
 
 `class DatePicker : `[`DateTimePicker`](../-date-time-picker/index.md)
 
-Wrapper class for [uiDateTimePicker](../../libui/ui-date-time-picker.md) to edit date.
+Wrapper class for [uiDateTimePicker](../../libui/ui-date-time-picker.md) - a widget to edit date.
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `DatePicker()`<br>Wrapper class for [uiDateTimePicker](../../libui/ui-date-time-picker.md) to edit date. |
+| [&lt;init&gt;](-init-.md) | `DatePicker()`<br>Wrapper class for [uiDateTimePicker](../../libui/ui-date-time-picker.md) - a widget to edit date. |
 
 ### Inherited Properties
 

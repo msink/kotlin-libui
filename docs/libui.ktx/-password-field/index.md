@@ -4,13 +4,14 @@
 
 `class PasswordField : `[`TextField`](../-text-field/index.md)
 
-Wrapper class for [uiEntry](../../libui/ui-entry.md) for passwords.
+Wrapper class for [uiEntry](../../libui/ui-entry.md) - a text entry widget that mask the input,
+useful to edit passwords or other sensible data.
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `PasswordField()`<br>Wrapper class for [uiEntry](../../libui/ui-entry.md) for passwords. |
+| [&lt;init&gt;](-init-.md) | `PasswordField()`<br>Wrapper class for [uiEntry](../../libui/ui-entry.md) - a text entry widget that mask the input, useful to edit passwords or other sensible data. |
 
 ### Inherited Properties
 

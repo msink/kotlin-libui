@@ -4,7 +4,7 @@
 
 `open class TextField : `[`Control`](../-control/index.md)`<`[`uiEntry`](../../libui/ui-entry.md)`>`
 
-Wrapper class for [uiEntry](../../libui/ui-entry.md)
+Wrapper class for [uiEntry](../../libui/ui-entry.md) - a simple single line text entry widget
 
 ### Constructors
 
@@ -52,5 +52,5 @@ Wrapper class for [uiEntry](../../libui/ui-entry.md)
 
 | Name | Summary |
 |---|---|
-| [PasswordField](../-password-field/index.md) | `class PasswordField : `[`TextField`](./index.md)<br>Wrapper class for [uiEntry](../../libui/ui-entry.md) for passwords. |
-| [SearchField](../-search-field/index.md) | `class SearchField : `[`TextField`](./index.md)<br>Wrapper class for [uiEntry](../../libui/ui-entry.md) for search text. |
+| [PasswordField](../-password-field/index.md) | `class PasswordField : `[`TextField`](./index.md)<br>Wrapper class for [uiEntry](../../libui/ui-entry.md) - a text entry widget that mask the input, useful to edit passwords or other sensible data. |
+| [SearchField](../-search-field/index.md) | `class SearchField : `[`TextField`](./index.md)<br>Wrapper class for [uiEntry](../../libui/ui-entry.md) - a text entry widget to search text. |

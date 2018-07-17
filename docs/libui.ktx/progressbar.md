@@ -4,5 +4,5 @@
 
 `inline fun `[`Container`](-container/index.md)`.progressbar(init: `[`ProgressBar`](-progress-bar/index.md)`.() -> Unit = {}): `[`ProgressBar`](-progress-bar/index.md)
 
-Progress bar widget.
+DSL builder for a progress bar widget.
 

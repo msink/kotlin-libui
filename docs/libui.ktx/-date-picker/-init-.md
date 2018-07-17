@@ -4,5 +4,5 @@
 
 `DatePicker()`
 
-Wrapper class for [uiDateTimePicker](../../libui/ui-date-time-picker.md) to edit date.
+Wrapper class for [uiDateTimePicker](../../libui/ui-date-time-picker.md) - a widget to edit date.
 

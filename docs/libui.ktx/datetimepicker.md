@@ -4,5 +4,5 @@
 
 `inline fun `[`Container`](-container/index.md)`.datetimepicker(init: `[`DateTimePicker`](-date-time-picker/index.md)`.() -> Unit = {}): `[`DateTimePicker`](-date-time-picker/index.md)
 
-A widget to edit date and time.
+DSL builder for a widget to edit date and time.
 

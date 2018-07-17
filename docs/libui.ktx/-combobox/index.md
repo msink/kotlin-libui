@@ -4,13 +4,13 @@
 
 `class Combobox : `[`Control`](../-control/index.md)`<`[`uiCombobox`](../../libui/ui-combobox.md)`>`
 
-Wrapper class for [uiCombobox](../../libui/ui-combobox.md)
+Wrapper class for [uiCombobox](../../libui/ui-combobox.md) - a drop down combo box that allow list selection only.
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Combobox()`<br>Wrapper class for [uiCombobox](../../libui/ui-combobox.md) |
+| [&lt;init&gt;](-init-.md) | `Combobox()`<br>Wrapper class for [uiCombobox](../../libui/ui-combobox.md) - a drop down combo box that allow list selection only. |
 
 ### Properties
 

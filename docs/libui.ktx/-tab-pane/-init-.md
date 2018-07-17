@@ -4,5 +4,5 @@
 
 `TabPane()`
 
-Wrapper class for [uiTab](../../libui/ui-tab.md)
+Wrapper class for [uiTab](../../libui/ui-tab.md) - a container that show each children in a separate tab.
 

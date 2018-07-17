@@ -4,13 +4,13 @@
 
 `class Label : `[`Control`](../-control/index.md)`<`[`uiLabel`](../../libui/ui-label.md)`>`
 
-Wrapper class for [uiLabel](../../libui/ui-label.md)
+Wrapper class for [uiLabel](../../libui/ui-label.md) - a static text label.
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Label(text: String)`<br>Wrapper class for [uiLabel](../../libui/ui-label.md) |
+| [&lt;init&gt;](-init-.md) | `Label(text: String)`<br>Wrapper class for [uiLabel](../../libui/ui-label.md) - a static text label. |
 
 ### Properties
 

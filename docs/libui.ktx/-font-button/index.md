@@ -4,13 +4,13 @@
 
 `class FontButton : `[`Control`](../-control/index.md)`<`[`uiFontButton`](../../libui/ui-font-button.md)`>`
 
-Wrapper class for [uiFontButton](../../libui/ui-font-button.md)
+Wrapper class for [uiFontButton](../../libui/ui-font-button.md) - a button that allows users to choose a font.
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `FontButton()`<br>Wrapper class for [uiFontButton](../../libui/ui-font-button.md) |
+| [&lt;init&gt;](-init-.md) | `FontButton()`<br>Wrapper class for [uiFontButton](../../libui/ui-font-button.md) - a button that allows users to choose a font. |
 
 ### Properties
 

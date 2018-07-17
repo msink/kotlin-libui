@@ -4,7 +4,7 @@
 
 `class ScrollingArea : `[`DrawArea`](../-draw-area/index.md)
 
-Wrapper class for [uiArea](../../libui/ui-area.md) with scrollbars.
+Wrapper class for [uiArea](../../libui/ui-area.md) - a canvas with horziontal and vertical scrollbars.
 
 ### Inherited Properties
 

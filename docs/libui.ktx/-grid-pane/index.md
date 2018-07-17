@@ -4,7 +4,8 @@
 
 `class GridPane : `[`Control`](../-control/index.md)`<`[`uiGrid`](../../libui/ui-grid.md)`>`
 
-Wrapper class for [uiGrid](../../libui/ui-grid.md)
+Wrapper class for [uiGrid](../../libui/ui-grid.md) - a powerful container that allow to specify
+size and position of each children.
 
 ### Types
 
@@ -16,7 +17,7 @@ Wrapper class for [uiGrid](../../libui/ui-grid.md)
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `GridPane()`<br>Wrapper class for [uiGrid](../../libui/ui-grid.md) |
+| [&lt;init&gt;](-init-.md) | `GridPane()`<br>Wrapper class for [uiGrid](../../libui/ui-grid.md) - a powerful container that allow to specify size and position of each children. |
 
 ### Properties
 

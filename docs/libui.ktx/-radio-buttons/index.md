@@ -4,13 +4,13 @@
 
 `class RadioButtons : `[`Control`](../-control/index.md)`<`[`uiRadioButtons`](../../libui/ui-radio-buttons.md)`>`
 
-Wrapper class for [uiRadioButtons](../../libui/ui-radio-buttons.md)
+Wrapper class for [uiRadioButtons](../../libui/ui-radio-buttons.md) - a widget that represent a group of radio options.
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `RadioButtons()`<br>Wrapper class for [uiRadioButtons](../../libui/ui-radio-buttons.md) |
+| [&lt;init&gt;](-init-.md) | `RadioButtons()`<br>Wrapper class for [uiRadioButtons](../../libui/ui-radio-buttons.md) - a widget that represent a group of radio options. |
 
 ### Properties
 

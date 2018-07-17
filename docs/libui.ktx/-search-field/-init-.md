@@ -4,5 +4,5 @@
 
 `SearchField()`
 
-Wrapper class for [uiEntry](../../libui/ui-entry.md) for search text.
+Wrapper class for [uiEntry](../../libui/ui-entry.md) - a text entry widget to search text.
 

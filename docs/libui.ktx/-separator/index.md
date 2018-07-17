@@ -39,5 +39,5 @@ Wrapper class for [uiSeparator](../../libui/ui-separator.md)
 
 | Name | Summary |
 |---|---|
-| [HorizontalSeparator](../-horizontal-separator/index.md) | `class HorizontalSeparator : `[`Separator`](./index.md)<br>Wrapper class for [uiSeparator](../../libui/ui-separator.md) in VBox |
-| [VerticalSeparator](../-vertical-separator/index.md) | `class VerticalSeparator : `[`Separator`](./index.md)<br>Wrapper class for [uiSeparator](../../libui/ui-separator.md) in HBox |
+| [HorizontalSeparator](../-horizontal-separator/index.md) | `class HorizontalSeparator : `[`Separator`](./index.md)<br>Wrapper class for [uiSeparator](../../libui/ui-separator.md) - an horizontal line to visually separate widgets. |
+| [VerticalSeparator](../-vertical-separator/index.md) | `class VerticalSeparator : `[`Separator`](./index.md)<br>Wrapper class for [uiSeparator](../../libui/ui-separator.md) - a vertical line to visually separate widgets. |

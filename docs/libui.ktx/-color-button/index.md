@@ -4,13 +4,13 @@
 
 `class ColorButton : `[`Control`](../-control/index.md)`<`[`uiColorButton`](../../libui/ui-color-button.md)`>`
 
-Wrapper class for [uiColorButton](../../libui/ui-color-button.md)
+Wrapper class for [uiColorButton](../../libui/ui-color-button.md) - a button that opens a color palette popup.
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `ColorButton()`<br>Wrapper class for [uiColorButton](../../libui/ui-color-button.md) |
+| [&lt;init&gt;](-init-.md) | `ColorButton()`<br>Wrapper class for [uiColorButton](../../libui/ui-color-button.md) - a button that opens a color palette popup. |
 
 ### Properties
 

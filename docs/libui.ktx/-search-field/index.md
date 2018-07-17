@@ -4,13 +4,13 @@
 
 `class SearchField : `[`TextField`](../-text-field/index.md)
 
-Wrapper class for [uiEntry](../../libui/ui-entry.md) for search text.
+Wrapper class for [uiEntry](../../libui/ui-entry.md) - a text entry widget to search text.
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `SearchField()`<br>Wrapper class for [uiEntry](../../libui/ui-entry.md) for search text. |
+| [&lt;init&gt;](-init-.md) | `SearchField()`<br>Wrapper class for [uiEntry](../../libui/ui-entry.md) - a text entry widget to search text. |
 
 ### Inherited Properties
 

@@ -4,7 +4,7 @@ import libui.*
 import kotlinx.cinterop.*
 import platform.posix.*
 
-/** A canvas you can draw on. It also receives keyboard and mouse events,
+/** DSL builder for a canvas you can draw on. It also receives keyboard and mouse events,
  *  is DPI aware, and has several other useful features. */
 fun Container.drawarea(
     init: DrawArea.() -> Unit = {}
@@ -14,7 +14,7 @@ fun Container.drawarea(
     return add(area.apply(init))
 }
 
-/** [DrawArea] with horziontal and vertical scrollbars. */
+/** DSL builder for a canvas with horziontal and vertical scrollbars. */
 fun Container.scrollingarea(
     width: Int,
     height: Int,
@@ -25,7 +25,7 @@ fun Container.scrollingarea(
     return add(area.apply(init))
 }
 
-/** Wrapper class for [uiArea] */
+/** Wrapper class for [uiArea] - a canvas you can draw on. */
 open class DrawArea internal constructor(
     alloc: CPointer<uiArea>?,
     val handler: CPointer<ktAreaHandler>
@@ -117,7 +117,7 @@ open class DrawArea internal constructor(
     fun redraw() = uiAreaQueueRedrawAll(ptr)
 }
 
-/** Wrapper class for [uiArea] with scrollbars. */
+/** Wrapper class for [uiArea] - a canvas with horziontal and vertical scrollbars. */
 class ScrollingArea internal constructor(
     alloc: CPointer<uiArea>?,
     handler: CPointer<ktAreaHandler>

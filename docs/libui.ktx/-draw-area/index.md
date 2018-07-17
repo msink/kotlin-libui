@@ -4,7 +4,7 @@
 
 `open class DrawArea : `[`Control`](../-control/index.md)`<`[`uiArea`](../../libui/ui-area.md)`>`
 
-Wrapper class for [uiArea](../../libui/ui-area.md)
+Wrapper class for [uiArea](../../libui/ui-area.md) - a canvas you can draw on.
 
 ### Properties
 
@@ -58,4 +58,4 @@ Wrapper class for [uiArea](../../libui/ui-area.md)
 
 | Name | Summary |
 |---|---|
-| [ScrollingArea](../-scrolling-area/index.md) | `class ScrollingArea : `[`DrawArea`](./index.md)<br>Wrapper class for [uiArea](../../libui/ui-area.md) with scrollbars. |
+| [ScrollingArea](../-scrolling-area/index.md) | `class ScrollingArea : `[`DrawArea`](./index.md)<br>Wrapper class for [uiArea](../../libui/ui-area.md) - a canvas with horziontal and vertical scrollbars. |

@@ -4,5 +4,5 @@
 
 `inline fun `[`Container`](-container/index.md)`.radiobuttons(init: `[`RadioButtons`](-radio-buttons/index.md)`.() -> Unit = {}): `[`RadioButtons`](-radio-buttons/index.md)
 
-A widget that represent a group of radio options.
+DSL builder for a widget that represent a group of radio options.
 

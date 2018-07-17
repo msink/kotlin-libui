@@ -4,13 +4,13 @@
 
 `class Checkbox : `[`Control`](../-control/index.md)`<`[`uiCheckbox`](../../libui/ui-checkbox.md)`>`
 
-Wrapper class for [uiCheckbox](../../libui/ui-checkbox.md)
+Wrapper class for [uiCheckbox](../../libui/ui-checkbox.md) - a checkbox widget.
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Checkbox(label: String)`<br>Wrapper class for [uiCheckbox](../../libui/ui-checkbox.md) |
+| [&lt;init&gt;](-init-.md) | `Checkbox(label: String)`<br>Wrapper class for [uiCheckbox](../../libui/ui-checkbox.md) - a checkbox widget. |
 
 ### Properties
 

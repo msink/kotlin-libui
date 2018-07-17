@@ -4,7 +4,7 @@
 
 `open class DateTimePicker : `[`Control`](../-control/index.md)`<`[`uiDateTimePicker`](../../libui/ui-date-time-picker.md)`>`
 
-Wrapper class for [uiDateTimePicker](../../libui/ui-date-time-picker.md) to edit date and time.
+Wrapper class for [uiDateTimePicker](../../libui/ui-date-time-picker.md) - a widget to edit date and time.
 
 ### Constructors
 
@@ -54,5 +54,5 @@ Wrapper class for [uiDateTimePicker](../../libui/ui-date-time-picker.md) to edit
 
 | Name | Summary |
 |---|---|
-| [DatePicker](../-date-picker/index.md) | `class DatePicker : `[`DateTimePicker`](./index.md)<br>Wrapper class for [uiDateTimePicker](../../libui/ui-date-time-picker.md) to edit date. |
-| [TimePicker](../-time-picker/index.md) | `class TimePicker : `[`DateTimePicker`](./index.md)<br>Wrapper class for [uiDateTimePicker](../../libui/ui-date-time-picker.md) to edit time. |
+| [DatePicker](../-date-picker/index.md) | `class DatePicker : `[`DateTimePicker`](./index.md)<br>Wrapper class for [uiDateTimePicker](../../libui/ui-date-time-picker.md) - a widget to edit date. |
+| [TimePicker](../-time-picker/index.md) | `class TimePicker : `[`DateTimePicker`](./index.md)<br>Wrapper class for [uiDateTimePicker](../../libui/ui-date-time-picker.md) - a widget to edit time. |

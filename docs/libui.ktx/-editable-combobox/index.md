@@ -4,13 +4,14 @@
 
 `class EditableCombobox : `[`Control`](../-control/index.md)`<`[`uiEditableCombobox`](../../libui/ui-editable-combobox.md)`>`
 
-Wrapper class for [uiEditableCombobox](../../libui/ui-editable-combobox.md)
+Wrapper class for [uiEditableCombobox](../../libui/ui-editable-combobox.md) -
+a drop down combo box that allow selection from list or free text entry.
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `EditableCombobox()`<br>Wrapper class for [uiEditableCombobox](../../libui/ui-editable-combobox.md) |
+| [&lt;init&gt;](-init-.md) | `EditableCombobox()`<br>Wrapper class for [uiEditableCombobox](../../libui/ui-editable-combobox.md) - a drop down combo box that allow selection from list or free text entry. |
 
 ### Properties
 

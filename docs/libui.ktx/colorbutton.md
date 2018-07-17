@@ -4,5 +4,5 @@
 
 `inline fun `[`Container`](-container/index.md)`.colorbutton(init: `[`ColorButton`](-color-button/index.md)`.() -> Unit = {}): `[`ColorButton`](-color-button/index.md)
 
-A button that opens a color palette popup.
+DSL builder for a button that opens a color palette popup.
 

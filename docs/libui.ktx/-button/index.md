@@ -4,13 +4,13 @@
 
 `class Button : `[`Control`](../-control/index.md)`<`[`uiButton`](../../libui/ui-button.md)`>`
 
-Wrapper class for [uiButton](../../libui/ui-button.md)
+Wrapper class for [uiButton](../../libui/ui-button.md) - a simple button.
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Button(text: String)`<br>Wrapper class for [uiButton](../../libui/ui-button.md) |
+| [&lt;init&gt;](-init-.md) | `Button(text: String)`<br>Wrapper class for [uiButton](../../libui/ui-button.md) - a simple button. |
 
 ### Properties
 

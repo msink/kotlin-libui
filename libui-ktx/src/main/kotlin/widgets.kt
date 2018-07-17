@@ -33,7 +33,7 @@ import platform.posix.*
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A simple single line text entry widget. */
+/** DSL builder for a simple single line text entry widget. */
 inline fun Container.textfield(
     readonly: Boolean = false,
     init: TextField.() -> Unit = {}
@@ -41,7 +41,8 @@ inline fun Container.textfield(
         .apply { if (readonly) this.readonly = readonly }
         .apply(init))
 
-/** Text entry widget that mask the input, useful to edit passwords or other sensible data. */
+/** DSL builder for a text entry widget that mask the input,
+ *  useful to edit passwords or other sensible data. */
 inline fun Container.passwordfield(
     readonly: Boolean = false,
     init: PasswordField.() -> Unit = {}
@@ -49,7 +50,7 @@ inline fun Container.passwordfield(
         .apply { if (readonly) this.readonly = readonly }
         .apply(init))
 
-/** Text entry widget to search text. */
+/** DSL builder for a text entry widget to search text. */
 inline fun Container.searchfield(
     readonly: Boolean = false,
     init: SearchField.() -> Unit = {}
@@ -57,7 +58,7 @@ inline fun Container.searchfield(
         .apply { if (readonly) this.readonly = readonly }
         .apply(init))
 
-/** Wrapper class for [uiEntry] */
+/** Wrapper class for [uiEntry] - a simple single line text entry widget */
 open class TextField internal constructor(alloc: CPointer<uiEntry>?) : Control<uiEntry>(alloc) {
     constructor(): this(uiNewEntry())
 
@@ -82,15 +83,16 @@ open class TextField internal constructor(alloc: CPointer<uiEntry>?) : Control<u
     internal var action: (TextField.() -> Unit)? = null
 }
 
-/** Wrapper class for [uiEntry] for passwords. */
+/** Wrapper class for [uiEntry] - a text entry widget that mask the input,
+ *  useful to edit passwords or other sensible data. */
 class PasswordField : TextField(uiNewPasswordEntry())
 
-/** Wrapper class for [uiEntry] for search text. */
+/** Wrapper class for [uiEntry] - a text entry widget to search text. */
 class SearchField : TextField(uiNewSearchEntry())
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A multiline plain text editing widget.
+/** DSL builder for a multiline plain text editing widget.
  *  @param[wrap] enables the wrapping of the text when it reaches the edge of the area
  *  @param[readonly] specifies that a text should be read-only */
 inline fun Container.textarea(
@@ -101,11 +103,11 @@ inline fun Container.textarea(
         .apply { if (readonly) this.readonly = readonly }
         .apply(init))
 
-/** Wrapper class for [uiMultilineEntry] */
+/** Wrapper class for [uiMultilineEntry] - a multiline plain text editing widget */
 class TextArea(wrap: Boolean = true) : Control<uiMultilineEntry>(
     if (wrap) uiNewMultilineEntry() else uiNewNonWrappingMultilineEntry()) {
 
-    /** The current text of the area. */
+    /** The current text in the area. */
     var value: String
         get() = uiMultilineEntryText(ptr).uiText()
         set(value) = uiMultilineEntrySetText(ptr, value)
@@ -131,13 +133,13 @@ class TextArea(wrap: Boolean = true) : Control<uiMultilineEntry>(
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A checkbox widget. */
+/** DSL builder for a checkbox widget. */
 inline fun Container.checkbox(
     label: String,
     init: Checkbox.() -> Unit = {}
 ): Checkbox = add(Checkbox(label).apply(init))
 
-/** Wrapper class for [uiCheckbox] */
+/** Wrapper class for [uiCheckbox] - a checkbox widget. */
 class Checkbox(label: String) : Control<uiCheckbox>(uiNewCheckbox(label)) {
 
     /** The static text of the checkbox. */
@@ -163,12 +165,12 @@ class Checkbox(label: String) : Control<uiCheckbox>(uiNewCheckbox(label)) {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A drop down combo box that allow list selection only. */
+/** DSL builder for a drop down combo box that allow list selection only. */
 inline fun Container.combobox(
     init: Combobox.() -> Unit = {}
 ): Combobox = add(Combobox().apply(init))
 
-/** Wrapper class for [uiCombobox] */
+/** Wrapper class for [uiCombobox] - a drop down combo box that allow list selection only. */
 class Combobox : Control<uiCombobox>(uiNewCombobox()) {
 
     /** Adds the named entry to the end of the combobox.
@@ -193,12 +195,13 @@ class Combobox : Control<uiCombobox>(uiNewCombobox()) {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A drop down combo box that allow selection from list or free text entry. */
+/** DSL builder for a drop down combo box that allow selection from list or free text entry. */
 inline fun Container.editablecombobox(
     init: EditableCombobox.() -> Unit = {}
 ): EditableCombobox = add(EditableCombobox().apply(init))
 
-/** Wrapper class for [uiEditableCombobox] */
+/** Wrapper class for [uiEditableCombobox] - 
+ *  a drop down combo box that allow selection from list or free text entry. */
 class EditableCombobox : Control<uiEditableCombobox>(uiNewEditableCombobox()) {
 
     /** Adds the named entry to the end of the editable combobox.
@@ -223,14 +226,14 @@ class EditableCombobox : Control<uiEditableCombobox>(uiNewEditableCombobox()) {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** An entry widget for numerical values. */
+/** DSL builder for an entry widget for numerical values. */
 inline fun Container.spinbox(
     min: Int,
     max: Int,
     init: Spinbox.() -> Unit = {}
 ): Spinbox = add(Spinbox(min, max).apply(init))
 
-/** Wrapper class for [uiSpinbox] */
+/** Wrapper class for [uiSpinbox] - an entry widget for numerical values. */
 class Spinbox(min: Int, max: Int) : Control<uiSpinbox>(uiNewSpinbox(min, max)) {
 
     /** The current numeric value of the spinbox. */
@@ -251,14 +254,14 @@ class Spinbox(min: Int, max: Int) : Control<uiSpinbox>(uiNewSpinbox(min, max)) {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** Horizontal slide to set numerical values. */
+/** DSL builder for an horizontal slide to set numerical values. */
 inline fun Container.slider(
     min: Int,
     max: Int,
     init: Slider.() -> Unit = {}
 ): Slider = add(Slider(min, max).apply(init))
 
-/** Wrapper class for [uiSlider] */
+/** Wrapper class for [uiSlider] - an horizontal slide to set numerical values. */
 class Slider(min: Int, max: Int) : Control<uiSlider>(uiNewSlider(min, max)) {
 
     /** The current numeric value of the slider. */
@@ -279,12 +282,12 @@ class Slider(min: Int, max: Int) : Control<uiSlider>(uiNewSlider(min, max)) {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A widget that represent a group of radio options. */
+/** DSL builder for a widget that represent a group of radio options. */
 inline fun Container.radiobuttons(
    init: RadioButtons.() -> Unit = {}
 ): RadioButtons = add(RadioButtons().apply(init))
 
-/** Wrapper class for [uiRadioButtons] */
+/** Wrapper class for [uiRadioButtons] - a widget that represent a group of radio options. */
 class RadioButtons : Control<uiRadioButtons>(uiNewRadioButtons()) {
 
     /** Adds the named button to the end of the radiobuttons.
@@ -309,22 +312,22 @@ class RadioButtons : Control<uiRadioButtons>(uiNewRadioButtons()) {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A widget to edit date and time. */
+/** DSL builder for a widget to edit date and time. */
 inline fun Container.datetimepicker(
     init: DateTimePicker.() -> Unit = {}
 ): DateTimePicker = add(DateTimePicker().apply(init))
 
-/** A widget to edit date. */
+/** DSL builder for a widget to edit date. */
 inline fun Container.datepicker(
     init: DatePicker.() -> Unit = {}
 ): DatePicker = add(DatePicker().apply(init))
 
-/** A widget to edit time. */
+/** DSL builder for a widget to edit time. */
 inline fun Container.timepicker(
     init: TimePicker.() -> Unit = {}
 ): TimePicker = add(TimePicker().apply(init))
 
-/** Wrapper class for [uiDateTimePicker] to edit date and time. */
+/** Wrapper class for [uiDateTimePicker] - a widget to edit date and time. */
 open class DateTimePicker internal constructor(alloc: CPointer<uiDateTimePicker>?
 ) : Control<uiDateTimePicker>(alloc) {
     constructor(): this(uiNewDateTimePicker())
@@ -369,25 +372,25 @@ open class DateTimePicker internal constructor(alloc: CPointer<uiDateTimePicker>
     }
 }
 
-/** Wrapper class for [uiDateTimePicker] to edit date. */
+/** Wrapper class for [uiDateTimePicker] - a widget to edit date. */
 class DatePicker : DateTimePicker(uiNewDatePicker()) {
     override var defaultFormat = "%x"
 }
 
-/** Wrapper class for [uiDateTimePicker] to edit time. */
+/** Wrapper class for [uiDateTimePicker] - a widget to edit time. */
 class TimePicker : DateTimePicker(uiNewTimePicker()) {
     override var defaultFormat = "%X"
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A static text label. */
+/** DSL builder for a static text label. */
 inline fun Container.label(
     text: String,
     init: Label.() -> Unit = {}
 ): Label = add(Label(text).apply(init))
 
-/** Wrapper class for [uiLabel] */
+/** Wrapper class for [uiLabel] - a static text label. */
 class Label(text: String) : Control<uiLabel>(uiNewLabel(text)) {
 
     /** The static text of the label. */
@@ -398,12 +401,12 @@ class Label(text: String) : Control<uiLabel>(uiNewLabel(text)) {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** An horizontal line to visually separate widgets. */
+/** DSL builder for an horizontal line to visually separate widgets. */
 inline fun VBox.separator(
     init: HorizontalSeparator.() -> Unit = {}
 ): HorizontalSeparator = add(HorizontalSeparator().apply(init))
 
-/** A vertical line to visually separate widgets. */
+/** DSL builder for a vertical line to visually separate widgets. */
 inline fun HBox.separator(
     init: VerticalSeparator.() -> Unit = {}
 ): VerticalSeparator = add(VerticalSeparator().apply(init))
@@ -412,20 +415,20 @@ inline fun HBox.separator(
 abstract class Separator(alloc: CPointer<uiSeparator>?
 ) : Control<uiSeparator>(alloc)
 
-/** Wrapper class for [uiSeparator] in VBox */
+/** Wrapper class for [uiSeparator] - an horizontal line to visually separate widgets. */
 class HorizontalSeparator : Separator(uiNewHorizontalSeparator())
 
-/** Wrapper class for [uiSeparator] in HBox */
+/** Wrapper class for [uiSeparator] - a vertical line to visually separate widgets. */
 class VerticalSeparator : Separator(uiNewVerticalSeparator())
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** Progress bar widget. */
+/** DSL builder for a progress bar widget. */
 inline fun Container.progressbar(
     init: ProgressBar.() -> Unit = {}
 ): ProgressBar = add(ProgressBar().apply(init))
 
-/** Wrapper class for [uiProgressBar] */
+/** Wrapper class for [uiProgressBar] - a progress bar widget. */
 class ProgressBar : Control<uiProgressBar>(uiNewProgressBar()) {
 
     /** The current position of the progress bar.
@@ -437,13 +440,13 @@ class ProgressBar : Control<uiProgressBar>(uiNewProgressBar()) {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A simple button. */
+/** DSL builder for a simple button. */
 inline fun Container.button(
     text: String,
     init: Button.() -> Unit = {}
 ): Button = add(Button(text).apply(init))
 
-/** Wrapper class for [uiButton] */
+/** Wrapper class for [uiButton] - a simple button. */
 class Button(text: String) : Control<uiButton>(uiNewButton(text)) {
 
     /** The static text of the button. */
@@ -464,12 +467,12 @@ class Button(text: String) : Control<uiButton>(uiNewButton(text)) {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A button that opens a color palette popup. */
+/** DSL builder for a button that opens a color palette popup. */
 inline fun Container.colorbutton(
     init: ColorButton.() -> Unit = {}
 ): ColorButton = add(ColorButton().apply(init))
 
-/** Wrapper class for [uiColorButton] */
+/** Wrapper class for [uiColorButton] - a button that opens a color palette popup. */
 class ColorButton : Control<uiColorButton>(uiNewColorButton()) {
 
     /** Return or set the currently selected color */
@@ -499,12 +502,12 @@ class ColorButton : Control<uiColorButton>(uiNewColorButton()) {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A button that allows users to choose a font when they click on it. */
+/** DSL builder for a button that allows users to choose a font when they click on it. */
 inline fun Container.fontbutton(
     init: FontButton.() -> Unit = {}
 ): FontButton = add(FontButton().apply(init))
 
-/** Wrapper class for [uiFontButton] */
+/** Wrapper class for [uiFontButton] - a button that allows users to choose a font. */
 class FontButton : Control<uiFontButton>(uiNewFontButton()) {
     internal val font = Font()
     override fun free() {

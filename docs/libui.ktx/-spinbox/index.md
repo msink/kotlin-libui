@@ -4,13 +4,13 @@
 
 `class Spinbox : `[`Control`](../-control/index.md)`<`[`uiSpinbox`](../../libui/ui-spinbox.md)`>`
 
-Wrapper class for [uiSpinbox](../../libui/ui-spinbox.md)
+Wrapper class for [uiSpinbox](../../libui/ui-spinbox.md) - an entry widget for numerical values.
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Spinbox(min: Int, max: Int)`<br>Wrapper class for [uiSpinbox](../../libui/ui-spinbox.md) |
+| [&lt;init&gt;](-init-.md) | `Spinbox(min: Int, max: Int)`<br>Wrapper class for [uiSpinbox](../../libui/ui-spinbox.md) - an entry widget for numerical values. |
 
 ### Properties
 

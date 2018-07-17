@@ -15,13 +15,15 @@ import kotlinx.cinterop.*
 //
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A container for a single widget that provide a caption and visually group it's children. */
+/** DSL builder for a container for a single widget that provide
+ *  a caption and visually group it's children. */
 fun Container.group(
     title: String,
     margined: Boolean = true
 ): Group = add(Group(title).apply { if (margined) this.margined = margined })
 
-/** Wrapper class for [uiGroup] */
+/** Wrapper class for [uiGroup] - a container for a single widget that provide
+ *  a caption and visually group it's children. */
 class Group(title: String) : Control<uiGroup>(uiNewGroup(title)), Container {
 
     /** Set the child widget of the Group. */
@@ -43,7 +45,7 @@ class Group(title: String) : Control<uiGroup>(uiNewGroup(title)), Container {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A container that stack its children horizontally. */
+/** DSL builder for a container that stack its children horizontally. */
 inline fun Container.hbox(
     padded: Boolean = true,
     init: HBox.() -> Unit = {}
@@ -51,7 +53,7 @@ inline fun Container.hbox(
         .apply { if (padded) this.padded = padded }
         .apply(init))
 
-/** A container that stack its children vertically. */
+/** DSL builder for a container that stack its children vertically. */
 inline fun Container.vbox(
     padded: Boolean = true,
     init: VBox.() -> Unit = {}
@@ -63,11 +65,15 @@ inline fun Box.stretchy(
     init: Box.Stretchy.() -> Unit = {}
 ): Box.Stretchy = Stretchy().apply(init)
 
+/** DSL builder for a container that stack its children horizontally. */
 inline val Container.hbox: HBox get() = hbox()
+
+/** DSL builder for a container that stack its children vertically. */
 inline val Container.vbox: VBox get() = vbox()
+
 inline val Box.stretchy: Box.Stretchy get() = stretchy()
 
-/** Wrapper class for [uiBox] */
+/** Wrapper class for [uiBox] - a container that stack its children horizontally or vertically. */
 abstract class Box(alloc: CPointer<uiBox>?) : Control<uiBox>(alloc), Container {
 
     /** adapter for DSL builders */
@@ -93,15 +99,15 @@ abstract class Box(alloc: CPointer<uiBox>?) : Control<uiBox>(alloc), Container {
     fun delete(index: Int) = uiBoxDelete(ptr, index)
 }
 
-/** Wrapper class for [uiBox] that stack its children horizontally. */
+/** Wrapper class for [uiBox] - a container that stack its children horizontally. */
 class HBox : Box(uiNewHorizontalBox())
 
-/** Wrapper class for [uiBox] that stack its children vertically. */
+/** Wrapper class for [uiBox] - a container that stack its children vertically. */
 class VBox : Box(uiNewVerticalBox())
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A container that organize children as labeled fields. */
+/** DSL builder for a container that organize children as labeled fields. */
 inline fun Container.form(
     padded: Boolean = true,
     init: Form.() -> Unit = {}
@@ -115,7 +121,7 @@ fun Form.field(label: String) = Field(label)
 
 fun Form.Stretchy.field(label: String) = Field(label)
 
-/** Wrapper class for [uiForm] */
+/** Wrapper class for [uiForm] - a container that organize children as labeled fields. */
 class Form : Control<uiForm>(uiNewForm()) {
     /** adapter for DSL builders */
     inner class Field(val label: String) : Container {
@@ -151,7 +157,7 @@ class Form : Control<uiForm>(uiNewForm()) {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A container that show each children in a separate tab. */
+/** DSL builder for a container that show each children in a separate tab. */
 inline fun Container.tabpane(
     init: TabPane.() -> Unit = {}
 ): TabPane = add(TabPane().apply(init))
@@ -164,7 +170,7 @@ inline fun TabPane.page(
         .apply(init)
         .apply { if (margined) this.margined = true }
 
-/** Wrapper class for [uiTab] */
+/** Wrapper class for [uiTab] - a container that show each children in a separate tab. */
 class TabPane : Control<uiTab>(uiNewTab()) {
 
     /** adapter for DSL builders */
@@ -201,7 +207,8 @@ class TabPane : Control<uiTab>(uiNewTab()) {
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** A powerful container that allow to specify size and position of each children. */
+/** DSL builder for a powerful container that allow to specify
+ *  size and position of each children. */
 inline fun Container.gridpane(
     padded: Boolean = true,
     init: GridPane.() -> Unit = {}
@@ -220,7 +227,8 @@ fun GridPane.cell(
     valign: uiAlign = uiAlignFill
 ) = Cell(x, y, xspan, yspan, hexpand, halign, vexpand, valign)
 
-/** Wrapper class for [uiGrid] */
+/** Wrapper class for [uiGrid] - a powerful container that allow to specify
+ *  size and position of each children. */
 class GridPane : Control<uiGrid>(uiNewGrid()) {
 
     /** adapter for DSL builders */

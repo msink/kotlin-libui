@@ -4,7 +4,7 @@
 
 `class Form : `[`Control`](../-control/index.md)`<`[`uiForm`](../../libui/ui-form.md)`>`
 
-Wrapper class for [uiForm](../../libui/ui-form.md)
+Wrapper class for [uiForm](../../libui/ui-form.md) - a container that organize children as labeled fields.
 
 ### Types
 
@@ -17,7 +17,7 @@ Wrapper class for [uiForm](../../libui/ui-form.md)
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Form()`<br>Wrapper class for [uiForm](../../libui/ui-form.md) |
+| [&lt;init&gt;](-init-.md) | `Form()`<br>Wrapper class for [uiForm](../../libui/ui-form.md) - a container that organize children as labeled fields. |
 
 ### Properties
 

@@ -4,13 +4,13 @@
 
 `class Slider : `[`Control`](../-control/index.md)`<`[`uiSlider`](../../libui/ui-slider.md)`>`
 
-Wrapper class for [uiSlider](../../libui/ui-slider.md)
+Wrapper class for [uiSlider](../../libui/ui-slider.md) - an horizontal slide to set numerical values.
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Slider(min: Int, max: Int)`<br>Wrapper class for [uiSlider](../../libui/ui-slider.md) |
+| [&lt;init&gt;](-init-.md) | `Slider(min: Int, max: Int)`<br>Wrapper class for [uiSlider](../../libui/ui-slider.md) - an horizontal slide to set numerical values. |
 
 ### Properties
 

@@ -4,20 +4,20 @@
 
 `class TextArea : `[`Control`](../-control/index.md)`<`[`uiMultilineEntry`](../../libui/ui-multiline-entry.md)`>`
 
-Wrapper class for [uiMultilineEntry](../../libui/ui-multiline-entry.md)
+Wrapper class for [uiMultilineEntry](../../libui/ui-multiline-entry.md) - a multiline plain text editing widget
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `TextArea(wrap: Boolean = true)`<br>Wrapper class for [uiMultilineEntry](../../libui/ui-multiline-entry.md) |
+| [&lt;init&gt;](-init-.md) | `TextArea(wrap: Boolean = true)`<br>Wrapper class for [uiMultilineEntry](../../libui/ui-multiline-entry.md) - a multiline plain text editing widget |
 
 ### Properties
 
 | Name | Summary |
 |---|---|
 | [readonly](readonly.md) | `var readonly: Boolean`<br>Whether the text is read-only or not. Defaults to `false` |
-| [value](value.md) | `var value: String`<br>The current text of the area. |
+| [value](value.md) | `var value: String`<br>The current text in the area. |
 
 ### Inherited Properties
 

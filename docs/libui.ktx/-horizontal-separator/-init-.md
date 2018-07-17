@@ -4,5 +4,5 @@
 
 `HorizontalSeparator()`
 
-Wrapper class for [uiSeparator](../../libui/ui-separator.md) in VBox
+Wrapper class for [uiSeparator](../../libui/ui-separator.md) - an horizontal line to visually separate widgets.
 

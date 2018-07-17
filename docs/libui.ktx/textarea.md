@@ -4,7 +4,7 @@
 
 `inline fun `[`Container`](-container/index.md)`.textarea(wrap: Boolean = true, readonly: Boolean = false, init: `[`TextArea`](-text-area/index.md)`.() -> Unit = {}): `[`TextArea`](-text-area/index.md)
 
-A multiline plain text editing widget.
+DSL builder for a multiline plain text editing widget.
 
 ### Parameters
 

@@ -4,5 +4,5 @@
 
 `var value: String`
 
-The current text of the area.
+The current text in the area.
 

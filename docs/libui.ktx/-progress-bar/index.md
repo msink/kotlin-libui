@@ -4,13 +4,13 @@
 
 `class ProgressBar : `[`Control`](../-control/index.md)`<`[`uiProgressBar`](../../libui/ui-progress-bar.md)`>`
 
-Wrapper class for [uiProgressBar](../../libui/ui-progress-bar.md)
+Wrapper class for [uiProgressBar](../../libui/ui-progress-bar.md) - a progress bar widget.
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `ProgressBar()`<br>Wrapper class for [uiProgressBar](../../libui/ui-progress-bar.md) |
+| [&lt;init&gt;](-init-.md) | `ProgressBar()`<br>Wrapper class for [uiProgressBar](../../libui/ui-progress-bar.md) - a progress bar widget. |
 
 ### Properties
 

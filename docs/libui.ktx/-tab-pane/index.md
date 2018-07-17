@@ -4,7 +4,7 @@
 
 `class TabPane : `[`Control`](../-control/index.md)`<`[`uiTab`](../../libui/ui-tab.md)`>`
 
-Wrapper class for [uiTab](../../libui/ui-tab.md)
+Wrapper class for [uiTab](../../libui/ui-tab.md) - a container that show each children in a separate tab.
 
 ### Types
 
@@ -16,7 +16,7 @@ Wrapper class for [uiTab](../../libui/ui-tab.md)
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `TabPane()`<br>Wrapper class for [uiTab](../../libui/ui-tab.md) |
+| [&lt;init&gt;](-init-.md) | `TabPane()`<br>Wrapper class for [uiTab](../../libui/ui-tab.md) - a container that show each children in a separate tab. |
 
 ### Properties
 
