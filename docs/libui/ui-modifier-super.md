@@ -2,4 +2,4 @@
 
 # uiModifierSuper
 
-`val uiModifierSuper: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`val uiModifierSuper: Int`

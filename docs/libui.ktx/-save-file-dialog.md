@@ -2,7 +2,7 @@
 
 # SaveFileDialog
 
-`fun SaveFileDialog(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?`
+`fun SaveFileDialog(): String?`
 
 Displays a modal Save File Dialog.
 

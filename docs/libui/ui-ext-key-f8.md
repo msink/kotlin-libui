@@ -2,4 +2,4 @@
 
 # uiExtKeyF8
 
-`val uiExtKeyF8: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`val uiExtKeyF8: Int`

@@ -2,4 +2,4 @@
 
 # uiMain
 
-`fun uiMain(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiMain(): Unit`

@@ -2,7 +2,7 @@
 
 # invert
 
-`fun invert(): `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`fun invert(): Int`
 
 Inverts the matrix.
 

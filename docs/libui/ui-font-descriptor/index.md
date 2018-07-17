@@ -22,6 +22,6 @@
 |---|---|
 | [Family](-family.md) | `var Family: CPointer<ByteVar>?` |
 | [Italic](-italic.md) | `var Italic: `[`uiTextItalic`](../ui-text-italic.md) |
-| [Size](-size.md) | `var Size: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
+| [Size](-size.md) | `var Size: Double` |
 | [Stretch](-stretch.md) | `var Stretch: `[`uiTextStretch`](../ui-text-stretch.md) |
 | [Weight](-weight.md) | `var Weight: `[`uiTextWeight`](../ui-text-weight.md) |

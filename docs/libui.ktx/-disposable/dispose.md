@@ -2,7 +2,7 @@
 
 # dispose
 
-`open fun dispose(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`open fun dispose(): Unit`
 
 Dispose and free all allocated native resources.
 

@@ -2,7 +2,7 @@
 
 # numPages
 
-`val numPages: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`val numPages: Int`
 
 Number of pages in the TabPane.
 

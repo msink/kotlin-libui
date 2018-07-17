@@ -2,4 +2,4 @@
 
 # AreaHeight
 
-`var AreaHeight: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)
+`var AreaHeight: Double`

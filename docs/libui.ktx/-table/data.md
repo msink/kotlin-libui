@@ -2,4 +2,4 @@
 
 # data
 
-`val data: `[`List`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html)`<`[`T`](-table-column/index.md#T)`>`
+`val data: List<`[`T`](-table-column/index.md#T)`>`

@@ -2,7 +2,7 @@
 
 # isVisible
 
-`fun isVisible(): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+`fun isVisible(): Boolean`
 
 Whether the Control is visible.
 

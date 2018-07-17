@@ -2,4 +2,4 @@
 
 # AreaWidth
 
-`var AreaWidth: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)
+`var AreaWidth: Double`

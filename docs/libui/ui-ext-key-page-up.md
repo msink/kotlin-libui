@@ -2,4 +2,4 @@
 
 # uiExtKeyPageUp
 
-`val uiExtKeyPageUp: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`val uiExtKeyPageUp: Int`

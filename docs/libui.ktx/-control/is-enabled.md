@@ -2,7 +2,7 @@
 
 # isEnabled
 
-`fun isEnabled(): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+`fun isEnabled(): Boolean`
 
 Whether the Control is enabled.
 

@@ -2,7 +2,7 @@
 
 # value
 
-`var value: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)
+`var value: String`
 
 The current text of the area.
 

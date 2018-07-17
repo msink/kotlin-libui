@@ -2,4 +2,4 @@
 
 # uiAttributedStringInsertAtUnattributed
 
-`fun uiAttributedStringInsertAtUnattributed(s: CValuesRef<`[`uiAttributedString`](ui-attributed-string.md)`>?, str: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?, at: size_t): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiAttributedStringInsertAtUnattributed(s: CValuesRef<`[`uiAttributedString`](ui-attributed-string.md)`>?, str: String?, at: size_t): Unit`

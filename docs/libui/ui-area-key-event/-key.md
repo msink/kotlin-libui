@@ -2,4 +2,4 @@
 
 # Key
 
-`var Key: `[`Byte`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-byte/index.html)
+`var Key: Byte`

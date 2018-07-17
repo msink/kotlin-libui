@@ -2,4 +2,4 @@
 
 # uiQueueMain
 
-`fun uiQueueMain(f: CPointer<CFunction<(COpaquePointer?) -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`>>?, data: CValuesRef<*>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiQueueMain(f: CPointer<CFunction<(COpaquePointer?) -> Unit>>?, data: CValuesRef<*>?): Unit`

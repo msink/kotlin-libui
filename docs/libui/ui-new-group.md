@@ -2,4 +2,4 @@
 
 # uiNewGroup
 
-`fun uiNewGroup(title: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?): CPointer<`[`uiGroup`](ui-group.md)`>?`
+`fun uiNewGroup(title: String?): CPointer<`[`uiGroup`](ui-group.md)`>?`

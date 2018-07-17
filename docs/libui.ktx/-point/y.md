@@ -2,4 +2,4 @@
 
 # y
 
-`val y: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)
+`val y: Double`

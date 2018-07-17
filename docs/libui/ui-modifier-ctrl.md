@@ -2,4 +2,4 @@
 
 # uiModifierCtrl
 
-`val uiModifierCtrl: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`val uiModifierCtrl: Int`

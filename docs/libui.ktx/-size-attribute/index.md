@@ -10,13 +10,13 @@ Changes the size of the text it is applied to, in typographical points.
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `SizeAttribute(size: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)`)`<br>Changes the size of the text it is applied to, in typographical points. |
+| [&lt;init&gt;](-init-.md) | `SizeAttribute(size: Double)`<br>Changes the size of the text it is applied to, in typographical points. |
 
 ### Properties
 
 | Name | Summary |
 |---|---|
-| [value](value.md) | `val value: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)<br>Returns the font size stored. |
+| [value](value.md) | `val value: Double`<br>Returns the font size stored. |
 
 ### Inherited Properties
 

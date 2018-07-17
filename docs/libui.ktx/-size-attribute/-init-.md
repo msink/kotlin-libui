@@ -2,7 +2,7 @@
 
 # &lt;init&gt;
 
-`SizeAttribute(size: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)`)`
+`SizeAttribute(size: Double)`
 
 Changes the size of the text it is applied to, in typographical points.
 

@@ -2,4 +2,4 @@
 
 # uiFreeTableModel
 
-`fun uiFreeTableModel(m: CValuesRef<`[`uiTableModel`](ui-table-model.md)`>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiFreeTableModel(m: CValuesRef<`[`uiTableModel`](ui-table-model.md)`>?): Unit`

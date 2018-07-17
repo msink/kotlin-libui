@@ -2,7 +2,7 @@
 
 # readonly
 
-`var readonly: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+`var readonly: Boolean`
 
 Whether the text is read-only or not. Defaults to `false`.
 

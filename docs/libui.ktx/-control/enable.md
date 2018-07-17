@@ -2,7 +2,7 @@
 
 # enable
 
-`fun enable(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun enable(): Unit`
 
 Enables the Control.
 

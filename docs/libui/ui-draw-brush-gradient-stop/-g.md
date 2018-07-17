@@ -2,4 +2,4 @@
 
 # G
 
-`var G: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)
+`var G: Double`

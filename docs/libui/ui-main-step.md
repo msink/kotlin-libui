@@ -2,4 +2,4 @@
 
 # uiMainStep
 
-`fun uiMainStep(wait: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`fun uiMainStep(wait: Int): Int`

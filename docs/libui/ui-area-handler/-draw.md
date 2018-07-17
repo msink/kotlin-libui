@@ -2,4 +2,4 @@
 
 # Draw
 
-`var Draw: CPointer<CFunction<(CPointer<`[`uiAreaHandler`](index.md)`>?, CPointer<`[`uiArea`](../ui-area.md)`>?, CPointer<`[`uiAreaDrawParams`](../ui-area-draw-params/index.md)`>?) -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`>>?`
+`var Draw: CPointer<CFunction<(CPointer<`[`uiAreaHandler`](index.md)`>?, CPointer<`[`uiArea`](../ui-area.md)`>?, CPointer<`[`uiAreaDrawParams`](../ui-area-draw-params/index.md)`>?) -> Unit>>?`

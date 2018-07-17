@@ -2,4 +2,4 @@
 
 # &lt;init&gt;
 
-`Field(label: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`)`
+`Field(label: String)`

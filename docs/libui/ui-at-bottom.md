@@ -2,4 +2,4 @@
 
 # uiAtBottom
 
-`val uiAtBottom: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`val uiAtBottom: Int`

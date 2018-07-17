@@ -2,4 +2,4 @@
 
 # progressbar
 
-`fun progressbar(get: (row: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`) -> `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun progressbar(get: (row: Int) -> Int): Unit`

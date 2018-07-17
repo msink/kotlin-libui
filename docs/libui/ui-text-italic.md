@@ -2,4 +2,4 @@
 
 # uiTextItalic
 
-`typealias uiTextItalic = `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`typealias uiTextItalic = Int`

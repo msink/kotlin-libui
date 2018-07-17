@@ -2,7 +2,7 @@
 
 # onShouldQuit
 
-`fun onShouldQuit(block: () -> `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun onShouldQuit(block: () -> Boolean): Unit`
 
 Function to be executed when the OS wants the program to quit
 or when a Quit menu item has been clicked.

@@ -2,4 +2,4 @@
 
 # margined
 
-`var margined: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+`var margined: Boolean`

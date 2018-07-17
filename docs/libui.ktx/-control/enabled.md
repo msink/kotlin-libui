@@ -2,7 +2,7 @@
 
 # enabled
 
-`var enabled: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+`var enabled: Boolean`
 
 Whether the Control should be enabled or disabled. Defaults to `true`.
 

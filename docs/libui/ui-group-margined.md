@@ -2,4 +2,4 @@
 
 # uiGroupMargined
 
-`fun uiGroupMargined(g: CValuesRef<`[`uiGroup`](ui-group.md)`>?): `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`fun uiGroupMargined(g: CValuesRef<`[`uiGroup`](ui-group.md)`>?): Int`

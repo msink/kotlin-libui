@@ -2,4 +2,4 @@
 
 # uiRadioButtonsOnSelected
 
-`fun uiRadioButtonsOnSelected(r: CValuesRef<`[`uiRadioButtons`](ui-radio-buttons.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiRadioButtons`](ui-radio-buttons.md)`>?, COpaquePointer?) -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`>>?, data: CValuesRef<*>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiRadioButtonsOnSelected(r: CValuesRef<`[`uiRadioButtons`](ui-radio-buttons.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiRadioButtons`](ui-radio-buttons.md)`>?, COpaquePointer?) -> Unit>>?, data: CValuesRef<*>?): Unit`

@@ -2,7 +2,7 @@
 
 # &lt;init&gt;
 
-`Page(label: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`)`
+`Page(label: String)`
 
 adapter for DSL builders
 

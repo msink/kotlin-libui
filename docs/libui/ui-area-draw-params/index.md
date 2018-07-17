@@ -20,10 +20,10 @@
 
 | Name | Summary |
 |---|---|
-| [AreaHeight](-area-height.md) | `var AreaHeight: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
-| [AreaWidth](-area-width.md) | `var AreaWidth: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
-| [ClipHeight](-clip-height.md) | `var ClipHeight: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
-| [ClipWidth](-clip-width.md) | `var ClipWidth: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
-| [ClipX](-clip-x.md) | `var ClipX: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
-| [ClipY](-clip-y.md) | `var ClipY: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
+| [AreaHeight](-area-height.md) | `var AreaHeight: Double` |
+| [AreaWidth](-area-width.md) | `var AreaWidth: Double` |
+| [ClipHeight](-clip-height.md) | `var ClipHeight: Double` |
+| [ClipWidth](-clip-width.md) | `var ClipWidth: Double` |
+| [ClipX](-clip-x.md) | `var ClipX: Double` |
+| [ClipY](-clip-y.md) | `var ClipY: Double` |
 | [Context](-context.md) | `var Context: CPointer<`[`uiDrawContext`](../ui-draw-context.md)`>?` |

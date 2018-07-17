@@ -2,7 +2,7 @@
 
 # setSize
 
-`fun setSize(width: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, height: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun setSize(width: Int, height: Int): Unit`
 
 Sets the size of a ScrollingArea to the given size, in points.
 

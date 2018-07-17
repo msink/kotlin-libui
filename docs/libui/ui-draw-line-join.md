@@ -2,4 +2,4 @@
 
 # uiDrawLineJoin
 
-`typealias uiDrawLineJoin = `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`typealias uiDrawLineJoin = Int`

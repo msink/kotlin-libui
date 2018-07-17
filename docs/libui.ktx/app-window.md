@@ -2,7 +2,7 @@
 
 # appWindow
 
-`fun appWindow(title: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, width: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, height: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, margined: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)` = true, init: `[`Window`](-window/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun appWindow(title: String, width: Int, height: Int, margined: Boolean = true, init: `[`Window`](-window/index.md)`.() -> Unit = {}): Unit`
 
 Initializes package ui, runs [init](app-window.md#libui.ktx$appWindow(kotlin.String, kotlin.Int, kotlin.Int, kotlin.Boolean, kotlin.Function1((libui.ktx.Window, kotlin.Unit)))/init) to set up the program,
 and executes the GUI main loop. [init](app-window.md#libui.ktx$appWindow(kotlin.String, kotlin.Int, kotlin.Int, kotlin.Boolean, kotlin.Function1((libui.ktx.Window, kotlin.Unit)))/init) should set up the program's

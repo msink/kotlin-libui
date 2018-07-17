@@ -2,4 +2,4 @@
 
 # uiModifiers
 
-`typealias uiModifiers = `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`typealias uiModifiers = Int`

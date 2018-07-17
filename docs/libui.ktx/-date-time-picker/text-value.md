@@ -2,7 +2,7 @@
 
 # textValue
 
-`fun textValue(format: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)` = defaultFormat): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)
+`fun textValue(format: String = defaultFormat): String`
 
 The current value as String.
 

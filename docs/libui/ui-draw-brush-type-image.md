@@ -2,4 +2,4 @@
 
 # uiDrawBrushTypeImage
 
-`val uiDrawBrushTypeImage: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`val uiDrawBrushTypeImage: Int`

@@ -2,7 +2,7 @@
 
 # value
 
-`val value: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)
+`val value: Double`
 
 Returns the font size stored.
 

@@ -2,7 +2,7 @@
 
 # label
 
-`var label: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)
+`var label: String`
 
 The static text of the checkbox.
 

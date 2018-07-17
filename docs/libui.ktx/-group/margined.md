@@ -2,7 +2,7 @@
 
 # margined
 
-`var margined: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+`var margined: Boolean`
 
 Specify if the group content area should have a margin or not.
 

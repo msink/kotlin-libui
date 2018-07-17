@@ -8,11 +8,11 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Size(width: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)`, height: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)`)` |
+| [&lt;init&gt;](-init-.md) | `Size(width: Double, height: Double)` |
 
 ### Properties
 
 | Name | Summary |
 |---|---|
-| [height](height.md) | `val height: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
-| [width](width.md) | `val width: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
+| [height](height.md) | `val height: Double` |
+| [width](width.md) | `val width: Double` |

@@ -20,4 +20,4 @@
 
 | Name | Summary |
 |---|---|
-| [ColorModelColumn](-color-model-column.md) | `var ColorModelColumn: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
+| [ColorModelColumn](-color-model-column.md) | `var ColorModelColumn: Int` |

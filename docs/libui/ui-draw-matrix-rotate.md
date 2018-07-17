@@ -2,4 +2,4 @@
 
 # uiDrawMatrixRotate
 
-`fun uiDrawMatrixRotate(m: CValuesRef<`[`uiDrawMatrix`](ui-draw-matrix/index.md)`>?, x: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)`, y: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)`, amount: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiDrawMatrixRotate(m: CValuesRef<`[`uiDrawMatrix`](ui-draw-matrix/index.md)`>?, x: Double, y: Double, amount: Double): Unit`

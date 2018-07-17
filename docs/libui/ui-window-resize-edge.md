@@ -2,4 +2,4 @@
 
 # uiWindowResizeEdge
 
-`typealias uiWindowResizeEdge = `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`typealias uiWindowResizeEdge = Int`

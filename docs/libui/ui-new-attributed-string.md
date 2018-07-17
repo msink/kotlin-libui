@@ -2,4 +2,4 @@
 
 # uiNewAttributedString
 
-`fun uiNewAttributedString(initialString: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?): CPointer<`[`uiAttributedString`](ui-attributed-string.md)`>?`
+`fun uiNewAttributedString(initialString: String?): CPointer<`[`uiAttributedString`](ui-attributed-string.md)`>?`

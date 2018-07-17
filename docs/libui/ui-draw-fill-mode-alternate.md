@@ -2,4 +2,4 @@
 
 # uiDrawFillModeAlternate
 
-`val uiDrawFillModeAlternate: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`val uiDrawFillModeAlternate: Int`

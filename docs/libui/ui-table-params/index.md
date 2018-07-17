@@ -21,4 +21,4 @@
 | Name | Summary |
 |---|---|
 | [Model](-model.md) | `var Model: CPointer<`[`uiTableModel`](../ui-table-model.md)`>?` |
-| [RowBackgroundColorModelColumn](-row-background-color-model-column.md) | `var RowBackgroundColorModelColumn: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
+| [RowBackgroundColorModelColumn](-row-background-color-model-column.md) | `var RowBackgroundColorModelColumn: Int` |

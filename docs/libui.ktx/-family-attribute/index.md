@@ -10,13 +10,13 @@ Changes the font family of the text it is applied to.
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `FamilyAttribute(family: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`)`<br>Changes the font family of the text it is applied to. |
+| [&lt;init&gt;](-init-.md) | `FamilyAttribute(family: String)`<br>Changes the font family of the text it is applied to. |
 
 ### Properties
 
 | Name | Summary |
 |---|---|
-| [value](value.md) | `val value: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?`<br>Returns the font family stored. |
+| [value](value.md) | `val value: String?`<br>Returns the font family stored. |
 
 ### Inherited Properties
 

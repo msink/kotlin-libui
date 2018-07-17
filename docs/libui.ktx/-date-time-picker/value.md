@@ -2,7 +2,7 @@
 
 # value
 
-`var value: `[`Long`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html)
+`var value: Long`
 
 The current value in Unix epoch
 

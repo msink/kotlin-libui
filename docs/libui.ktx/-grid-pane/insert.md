@@ -2,7 +2,7 @@
 
 # insert
 
-`fun insert(widget: `[`Control`](../-control/index.md)`<*>, existing: `[`Control`](../-control/index.md)`<*>, at: `[`uiAt`](../../libui/ui-at.md)`, xspan: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)` = 1, yspan: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)` = 1, hexpand: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)` = false, halign: `[`uiAlign`](../../libui/ui-align.md)` = uiAlignFill, vexpand: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)` = false, valign: `[`uiAlign`](../../libui/ui-align.md)` = uiAlignFill): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun insert(widget: `[`Control`](../-control/index.md)`<*>, existing: `[`Control`](../-control/index.md)`<*>, at: `[`uiAt`](../../libui/ui-at.md)`, xspan: Int = 1, yspan: Int = 1, hexpand: Boolean = false, halign: `[`uiAlign`](../../libui/ui-align.md)` = uiAlignFill, vexpand: Boolean = false, valign: `[`uiAlign`](../../libui/ui-align.md)` = uiAlignFill): Unit`
 
 Insert the given Control after existing Control.
 

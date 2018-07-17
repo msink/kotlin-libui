@@ -24,6 +24,7 @@ dokka {
     sourceRoot { path = 'libui-ktx/src/main/kotlin' }
     sourceRoot { path = 'staging' }
     reportUndocumented = false
+    noStdlibLink = true
     packageOptions {
         prefix = "kotlin"
         suppress = true

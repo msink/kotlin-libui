@@ -2,7 +2,7 @@
 
 # &lt;init&gt;
 
-`Spinbox(min: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, max: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`)`
+`Spinbox(min: Int, max: Int)`
 
 Wrapper class for [uiSpinbox](../../libui/ui-spinbox.md)
 

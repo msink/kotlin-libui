@@ -2,4 +2,4 @@
 
 # uiNewCheckbox
 
-`fun uiNewCheckbox(text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?): CPointer<`[`uiCheckbox`](ui-checkbox.md)`>?`
+`fun uiNewCheckbox(text: String?): CPointer<`[`uiCheckbox`](ui-checkbox.md)`>?`

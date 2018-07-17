@@ -2,4 +2,4 @@
 
 # uiDrawTextAlign
 
-`typealias uiDrawTextAlign = `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`typealias uiDrawTextAlign = Int`

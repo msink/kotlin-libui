@@ -2,4 +2,4 @@
 
 # &lt;init&gt;
 
-`SizeInt(width: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, height: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`)`
+`SizeInt(width: Int, height: Int)`

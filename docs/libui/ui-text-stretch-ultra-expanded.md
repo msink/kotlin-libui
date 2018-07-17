@@ -2,4 +2,4 @@
 
 # uiTextStretchUltraExpanded
 
-`val uiTextStretchUltraExpanded: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`val uiTextStretchUltraExpanded: Int`

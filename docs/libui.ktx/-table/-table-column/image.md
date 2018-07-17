@@ -2,4 +2,4 @@
 
 # image
 
-`fun image(get: (row: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`) -> `[`Image`](../../-image/index.md)`?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun image(get: (row: Int) -> `[`Image`](../../-image/index.md)`?): Unit`

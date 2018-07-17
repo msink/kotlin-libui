@@ -2,4 +2,4 @@
 
 # uiUnderlineSuggestion
 
-`val uiUnderlineSuggestion: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`val uiUnderlineSuggestion: Int`

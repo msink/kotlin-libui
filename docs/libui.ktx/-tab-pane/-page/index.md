@@ -10,14 +10,14 @@ adapter for DSL builders
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Page(label: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`)`<br>adapter for DSL builders |
+| [&lt;init&gt;](-init-.md) | `Page(label: String)`<br>adapter for DSL builders |
 
 ### Properties
 
 | Name | Summary |
 |---|---|
-| [label](label.md) | `val label: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
-| [margined](margined.md) | `var margined: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html) |
+| [label](label.md) | `val label: String` |
+| [margined](margined.md) | `var margined: Boolean` |
 
 ### Functions
 

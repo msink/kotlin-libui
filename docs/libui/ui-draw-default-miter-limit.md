@@ -2,4 +2,4 @@
 
 # uiDrawDefaultMiterLimit
 
-`val uiDrawDefaultMiterLimit: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)
+`val uiDrawDefaultMiterLimit: Double`

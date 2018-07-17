@@ -2,4 +2,4 @@
 
 # uiMsgBox
 
-`fun uiMsgBox(parent: CValuesRef<`[`uiWindow`](ui-window.md)`>?, title: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?, description: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiMsgBox(parent: CValuesRef<`[`uiWindow`](ui-window.md)`>?, title: String?, description: String?): Unit`

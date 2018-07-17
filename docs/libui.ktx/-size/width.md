@@ -2,4 +2,4 @@
 
 # width
 
-`val width: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)
+`val width: Double`

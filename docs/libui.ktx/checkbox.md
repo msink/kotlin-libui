@@ -2,7 +2,7 @@
 
 # checkbox
 
-`inline fun `[`Container`](-container/index.md)`.checkbox(label: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, init: `[`Checkbox`](-checkbox/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): `[`Checkbox`](-checkbox/index.md)
+`inline fun `[`Container`](-container/index.md)`.checkbox(label: String, init: `[`Checkbox`](-checkbox/index.md)`.() -> Unit = {}): `[`Checkbox`](-checkbox/index.md)
 
 A checkbox widget.
 

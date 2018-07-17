@@ -2,7 +2,7 @@
 
 # text
 
-`var text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)
+`var text: String`
 
 The static text of the label.
 

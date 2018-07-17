@@ -2,7 +2,7 @@
 
 # &lt;init&gt;
 
-`Checkbox(label: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`)`
+`Checkbox(label: String)`
 
 Wrapper class for [uiCheckbox](../../libui/ui-checkbox.md)
 

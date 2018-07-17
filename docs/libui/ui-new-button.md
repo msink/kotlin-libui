@@ -2,4 +2,4 @@
 
 # uiNewButton
 
-`fun uiNewButton(text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?): CPointer<`[`uiButton`](ui-button.md)`>?`
+`fun uiNewButton(text: String?): CPointer<`[`uiButton`](ui-button.md)`>?`

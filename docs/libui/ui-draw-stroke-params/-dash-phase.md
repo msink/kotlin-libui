@@ -2,4 +2,4 @@
 
 # DashPhase
 
-`var DashPhase: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)
+`var DashPhase: Double`

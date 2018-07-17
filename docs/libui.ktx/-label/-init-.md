@@ -2,7 +2,7 @@
 
 # &lt;init&gt;
 
-`Label(text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`)`
+`Label(text: String)`
 
 Wrapper class for [uiLabel](../../libui/ui-label.md)
 

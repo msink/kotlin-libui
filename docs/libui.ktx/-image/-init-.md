@@ -2,4 +2,4 @@
 
 # &lt;init&gt;
 
-`Image(width: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)`, height: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)`)`
+`Image(width: Double, height: Double)`

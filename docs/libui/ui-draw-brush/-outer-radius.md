@@ -2,4 +2,4 @@
 
 # OuterRadius
 
-`var OuterRadius: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)
+`var OuterRadius: Double`

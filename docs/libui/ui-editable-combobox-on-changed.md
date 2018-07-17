@@ -2,4 +2,4 @@
 
 # uiEditableComboboxOnChanged
 
-`fun uiEditableComboboxOnChanged(c: CValuesRef<`[`uiEditableCombobox`](ui-editable-combobox.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiEditableCombobox`](ui-editable-combobox.md)`>?, COpaquePointer?) -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`>>?, data: CValuesRef<*>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiEditableComboboxOnChanged(c: CValuesRef<`[`uiEditableCombobox`](ui-editable-combobox.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiEditableCombobox`](ui-editable-combobox.md)`>?, COpaquePointer?) -> Unit>>?, data: CValuesRef<*>?): Unit`

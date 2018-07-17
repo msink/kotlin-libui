@@ -2,7 +2,7 @@
 
 # get
 
-`fun get(tag: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`fun get(tag: String): Int`
 
 Determines whether the given feature tag is present in OpenTypeFeatures.
 

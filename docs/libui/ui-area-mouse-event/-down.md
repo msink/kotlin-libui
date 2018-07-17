@@ -2,4 +2,4 @@
 
 # Down
 
-`var Down: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`var Down: Int`

@@ -2,7 +2,7 @@
 
 # visible
 
-`var visible: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+`var visible: Boolean`
 
 Whether the Control should be visible or hidden. Defaults to `true`.
 

@@ -2,4 +2,4 @@
 
 # uiWindowResizeEdgeTopRight
 
-`val uiWindowResizeEdgeTopRight: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`val uiWindowResizeEdgeTopRight: Int`

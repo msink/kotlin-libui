@@ -8,13 +8,13 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Color(r: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)`, g: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)`, b: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)`, a: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)` = 1.0)` |
+| [&lt;init&gt;](-init-.md) | `Color(r: Double, g: Double, b: Double, a: Double = 1.0)` |
 
 ### Properties
 
 | Name | Summary |
 |---|---|
-| [a](a.md) | `val a: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
-| [b](b.md) | `val b: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
-| [g](g.md) | `val g: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
-| [r](r.md) | `val r: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
+| [a](a.md) | `val a: Double` |
+| [b](b.md) | `val b: Double` |
+| [g](g.md) | `val g: Double` |
+| [r](r.md) | `val r: Double` |

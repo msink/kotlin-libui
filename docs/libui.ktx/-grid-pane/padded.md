@@ -2,7 +2,7 @@
 
 # padded
 
-`var padded: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+`var padded: Boolean`
 
 If true, the container insert some space between children.
 

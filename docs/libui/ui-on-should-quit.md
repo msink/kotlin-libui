@@ -2,4 +2,4 @@
 
 # uiOnShouldQuit
 
-`fun uiOnShouldQuit(f: CPointer<CFunction<(COpaquePointer?) -> `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`>>?, data: CValuesRef<*>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiOnShouldQuit(f: CPointer<CFunction<(COpaquePointer?) -> Int>>?, data: CValuesRef<*>?): Unit`

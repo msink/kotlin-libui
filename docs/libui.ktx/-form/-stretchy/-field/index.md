@@ -8,13 +8,13 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Field(label: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`)` |
+| [&lt;init&gt;](-init-.md) | `Field(label: String)` |
 
 ### Properties
 
 | Name | Summary |
 |---|---|
-| [label](label.md) | `val label: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
+| [label](label.md) | `val label: String` |
 
 ### Functions
 

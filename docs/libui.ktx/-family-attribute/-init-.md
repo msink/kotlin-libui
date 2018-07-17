@@ -2,7 +2,7 @@
 
 # &lt;init&gt;
 
-`FamilyAttribute(family: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`)`
+`FamilyAttribute(family: String)`
 
 Changes the font family of the text it is applied to.
 

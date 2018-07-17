@@ -8,11 +8,11 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `SizeInt(width: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, height: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`)` |
+| [&lt;init&gt;](-init-.md) | `SizeInt(width: Int, height: Int)` |
 
 ### Properties
 
 | Name | Summary |
 |---|---|
-| [height](height.md) | `val height: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
-| [width](width.md) | `val width: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html) |
+| [height](height.md) | `val height: Int` |
+| [width](width.md) | `val width: Int` |

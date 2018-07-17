@@ -2,4 +2,4 @@
 
 # uiTableValueTypeImage
 
-`val uiTableValueTypeImage: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`val uiTableValueTypeImage: Int`

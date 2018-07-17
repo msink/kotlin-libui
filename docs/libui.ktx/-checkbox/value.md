@@ -2,7 +2,7 @@
 
 # value
 
-`var value: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+`var value: Boolean`
 
 Whether the checkbox is checked or unchecked. Defaults to `false`.
 

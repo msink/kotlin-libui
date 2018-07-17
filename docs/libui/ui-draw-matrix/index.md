@@ -20,9 +20,9 @@
 
 | Name | Summary |
 |---|---|
-| [M11](-m11.md) | `var M11: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
-| [M12](-m12.md) | `var M12: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
-| [M21](-m21.md) | `var M21: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
-| [M22](-m22.md) | `var M22: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
-| [M31](-m31.md) | `var M31: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
-| [M32](-m32.md) | `var M32: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
+| [M11](-m11.md) | `var M11: Double` |
+| [M12](-m12.md) | `var M12: Double` |
+| [M21](-m21.md) | `var M21: Double` |
+| [M22](-m22.md) | `var M22: Double` |
+| [M31](-m31.md) | `var M31: Double` |
+| [M32](-m32.md) | `var M32: Double` |

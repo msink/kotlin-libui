@@ -2,4 +2,4 @@
 
 # Toplevel
 
-`var Toplevel: CPointer<CFunction<(CPointer<`[`uiControl`](index.md)`>?) -> `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`>>?`
+`var Toplevel: CPointer<CFunction<(CPointer<`[`uiControl`](index.md)`>?) -> Int>>?`

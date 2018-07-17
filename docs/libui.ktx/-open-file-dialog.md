@@ -2,7 +2,7 @@
 
 # OpenFileDialog
 
-`fun OpenFileDialog(): `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?`
+`fun OpenFileDialog(): String?`
 
 Displays a modal Open File Dialog.
 

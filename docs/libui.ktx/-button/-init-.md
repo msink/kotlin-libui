@@ -2,7 +2,7 @@
 
 # &lt;init&gt;
 
-`Button(text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`)`
+`Button(text: String)`
 
 Wrapper class for [uiButton](../../libui/ui-button.md)
 

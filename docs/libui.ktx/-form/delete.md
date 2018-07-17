@@ -2,7 +2,7 @@
 
 # delete
 
-`fun delete(index: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun delete(index: Int): Unit`
 
 deletes the nth control of the form.
 

@@ -2,4 +2,4 @@
 
 # uiWindowContentSize
 
-`fun uiWindowContentSize(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, width: CValuesRef<IntVar>?, height: CValuesRef<IntVar>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiWindowContentSize(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, width: CValuesRef<IntVar>?, height: CValuesRef<IntVar>?): Unit`

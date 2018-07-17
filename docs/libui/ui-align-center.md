@@ -2,4 +2,4 @@
 
 # uiAlignCenter
 
-`val uiAlignCenter: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`val uiAlignCenter: Int`

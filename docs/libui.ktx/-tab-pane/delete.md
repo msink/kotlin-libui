@@ -2,7 +2,7 @@
 
 # delete
 
-`fun delete(page: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun delete(page: Int): Unit`
 
 Delete deletes the nth page of the TabPane.
 

@@ -2,4 +2,4 @@
 
 # MouseCrossed
 
-`var MouseCrossed: CPointer<CFunction<(CPointer<`[`uiAreaHandler`](index.md)`>?, CPointer<`[`uiArea`](../ui-area.md)`>?, `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`) -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`>>?`
+`var MouseCrossed: CPointer<CFunction<(CPointer<`[`uiAreaHandler`](index.md)`>?, CPointer<`[`uiArea`](../ui-area.md)`>?, Int) -> Unit>>?`

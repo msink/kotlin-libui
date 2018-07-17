@@ -10,14 +10,14 @@ adapter for DSL builders
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Field(label: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`)`<br>adapter for DSL builders |
+| [&lt;init&gt;](-init-.md) | `Field(label: String)`<br>adapter for DSL builders |
 
 ### Properties
 
 | Name | Summary |
 |---|---|
 | [form](form.md) | `val form: `[`Form`](../index.md) |
-| [label](label.md) | `val label: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html) |
+| [label](label.md) | `val label: String` |
 
 ### Functions
 

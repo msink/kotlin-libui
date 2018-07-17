@@ -2,7 +2,7 @@
 
 # scrollingarea
 
-`fun `[`Container`](-container/index.md)`.scrollingarea(width: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, height: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, init: `[`ScrollingArea`](-scrolling-area/index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)` = {}): `[`ScrollingArea`](-scrolling-area/index.md)
+`fun `[`Container`](-container/index.md)`.scrollingarea(width: Int, height: Int, init: `[`ScrollingArea`](-scrolling-area/index.md)`.() -> Unit = {}): `[`ScrollingArea`](-scrolling-area/index.md)
 
 [DrawArea](-draw-area/index.md) with horziontal and vertical scrollbars.
 

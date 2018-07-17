@@ -2,4 +2,4 @@
 
 # uiAreaBeginUserWindowMove
 
-`fun uiAreaBeginUserWindowMove(a: CValuesRef<`[`uiArea`](ui-area.md)`>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiAreaBeginUserWindowMove(a: CValuesRef<`[`uiArea`](ui-area.md)`>?): Unit`

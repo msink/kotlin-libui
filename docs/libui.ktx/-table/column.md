@@ -2,4 +2,4 @@
 
 # column
 
-`fun column(name: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, init: `[`TableColumn`](-table-column/index.md)`<`[`T`](-table-column/index.md#T)`>.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun column(name: String, init: `[`TableColumn`](-table-column/index.md)`<`[`T`](-table-column/index.md#T)`>.() -> Unit): Unit`

@@ -2,7 +2,7 @@
 
 # onResize
 
-`fun onResize(block: `[`Window`](index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun onResize(block: `[`Window`](index.md)`.() -> Unit): Unit`
 
 Function to be run when window content size change.
 

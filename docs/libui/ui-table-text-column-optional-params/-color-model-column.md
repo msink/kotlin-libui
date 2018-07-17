@@ -2,4 +2,4 @@
 
 # ColorModelColumn
 
-`var ColorModelColumn: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`var ColorModelColumn: Int`

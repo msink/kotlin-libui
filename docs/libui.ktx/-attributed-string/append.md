@@ -2,7 +2,7 @@
 
 # append
 
-`fun append(str: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun append(str: String): Unit`
 
 Adds the '\0'-terminated UTF-8 string str to the end. The new substring will be unattributed.
 

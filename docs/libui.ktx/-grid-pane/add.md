@@ -2,7 +2,7 @@
 
 # add
 
-`fun add(widget: `[`Control`](../-control/index.md)`<*>, x: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)` = 0, y: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)` = 0, xspan: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)` = 1, yspan: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)` = 1, hexpand: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)` = false, halign: `[`uiAlign`](../../libui/ui-align.md)` = uiAlignFill, vexpand: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)` = false, valign: `[`uiAlign`](../../libui/ui-align.md)` = uiAlignFill): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun add(widget: `[`Control`](../-control/index.md)`<*>, x: Int = 0, y: Int = 0, xspan: Int = 1, yspan: Int = 1, hexpand: Boolean = false, halign: `[`uiAlign`](../../libui/ui-align.md)` = uiAlignFill, vexpand: Boolean = false, valign: `[`uiAlign`](../../libui/ui-align.md)` = uiAlignFill): Unit`
 
 Adds the given Control to the end of the GridPane.
 

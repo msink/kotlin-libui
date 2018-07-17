@@ -22,14 +22,14 @@ Manages and owns all its native resources.
 
 | Name | Summary |
 |---|---|
-| [disposed](disposed.md) | `val disposed: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)<br>Returns `true` if object was disposed - in this case [disposed](disposed.md) will do nothing, all other operations are invalid and will `throw Error("Resource is disposed")`. |
+| [disposed](disposed.md) | `val disposed: Boolean`<br>Returns `true` if object was disposed - in this case [disposed](disposed.md) will do nothing, all other operations are invalid and will `throw Error("Resource is disposed")`. |
 | [ptr](ptr.md) | `val ptr: CPointer<`[`T`](index.md#T)`>` |
 
 ### Functions
 
 | Name | Summary |
 |---|---|
-| [dispose](dispose.md) | `open fun dispose(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)<br>Dispose and free all allocated native resources. |
+| [dispose](dispose.md) | `open fun dispose(): Unit`<br>Dispose and free all allocated native resources. |
 
 ### Inheritors
 

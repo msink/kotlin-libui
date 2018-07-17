@@ -2,4 +2,4 @@
 
 # uiExtKeyN3
 
-`val uiExtKeyN3: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`val uiExtKeyN3: Int`

@@ -2,7 +2,7 @@
 
 # getHandle
 
-`fun getHandle(): `[`Long`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-long/index.html)
+`fun getHandle(): Long`
 
 Returns the OS-level handle associated with this Control.
 

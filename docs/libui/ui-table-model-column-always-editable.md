@@ -2,4 +2,4 @@
 
 # uiTableModelColumnAlwaysEditable
 
-`val uiTableModelColumnAlwaysEditable: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`val uiTableModelColumnAlwaysEditable: Int`

@@ -2,7 +2,7 @@
 
 # MsgBox
 
-`fun MsgBox(text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, details: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)` = ""): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun MsgBox(text: String, details: String = ""): Unit`
 
 Displays a modal Message Box.
 

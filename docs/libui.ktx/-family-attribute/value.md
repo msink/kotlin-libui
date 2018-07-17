@@ -2,7 +2,7 @@
 
 # value
 
-`val value: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?`
+`val value: String?`
 
 Returns the font family stored.
 

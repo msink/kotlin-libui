@@ -2,4 +2,4 @@
 
 # uiTableAppendCheckboxTextColumn
 
-`fun uiTableAppendCheckboxTextColumn(t: CValuesRef<`[`uiTable`](ui-table.md)`>?, name: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?, checkboxModelColumn: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, checkboxEditableModelColumn: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, textModelColumn: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, textEditableModelColumn: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, textParams: CValuesRef<`[`uiTableTextColumnOptionalParams`](ui-table-text-column-optional-params/index.md)`>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiTableAppendCheckboxTextColumn(t: CValuesRef<`[`uiTable`](ui-table.md)`>?, name: String?, checkboxModelColumn: Int, checkboxEditableModelColumn: Int, textModelColumn: Int, textEditableModelColumn: Int, textParams: CValuesRef<`[`uiTableTextColumnOptionalParams`](ui-table-text-column-optional-params/index.md)`>?): Unit`

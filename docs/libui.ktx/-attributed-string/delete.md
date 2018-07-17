@@ -2,7 +2,7 @@
 
 # delete
 
-`fun delete(start: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, end: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun delete(start: Int, end: Int): Unit`
 
 Deletes the characters and attributes in the byte range [start, end).
 

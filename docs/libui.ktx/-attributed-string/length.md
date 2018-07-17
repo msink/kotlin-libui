@@ -2,7 +2,7 @@
 
 # length
 
-`val length: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`val length: Int`
 
 Returns the number of UTF-8 bytes in the textual content, excluding the terminating '\0'.
 

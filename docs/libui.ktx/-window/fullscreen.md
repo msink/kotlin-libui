@@ -2,7 +2,7 @@
 
 # fullscreen
 
-`var fullscreen: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+`var fullscreen: Boolean`
 
 Whether the window should show in fullscreen or not.
 

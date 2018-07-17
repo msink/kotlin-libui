@@ -2,7 +2,7 @@
 
 # setValue
 
-`fun setValue(value: CPointer<`[`tm`](../../libui/tm.md)`>): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun setValue(value: CPointer<`[`tm`](../../libui/tm.md)`>): Unit`
 
 Set current value from posix `struct tm`
 

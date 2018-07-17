@@ -20,8 +20,8 @@
 
 | Name | Summary |
 |---|---|
-| [A](-a.md) | `var A: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
-| [B](-b.md) | `var B: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
-| [G](-g.md) | `var G: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
-| [Pos](-pos.md) | `var Pos: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
-| [R](-r.md) | `var R: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html) |
+| [A](-a.md) | `var A: Double` |
+| [B](-b.md) | `var B: Double` |
+| [G](-g.md) | `var G: Double` |
+| [Pos](-pos.md) | `var Pos: Double` |
+| [R](-r.md) | `var R: Double` |

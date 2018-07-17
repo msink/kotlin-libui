@@ -2,4 +2,4 @@
 
 # uiAttributeTypeBackground
 
-`val uiAttributeTypeBackground: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`val uiAttributeTypeBackground: Int`

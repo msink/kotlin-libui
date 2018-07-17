@@ -2,4 +2,4 @@
 
 # uiAttributeSize
 
-`fun uiAttributeSize(a: CValuesRef<`[`uiAttribute`](ui-attribute.md)`>?): `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)
+`fun uiAttributeSize(a: CValuesRef<`[`uiAttribute`](ui-attribute.md)`>?): Double`

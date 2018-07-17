@@ -2,4 +2,4 @@
 
 # Count
 
-`var Count: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`var Count: Int`

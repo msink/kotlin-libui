@@ -2,4 +2,4 @@
 
 # uiEntryReadOnly
 
-`fun uiEntryReadOnly(e: CValuesRef<`[`uiEntry`](ui-entry.md)`>?): `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`fun uiEntryReadOnly(e: CValuesRef<`[`uiEntry`](ui-entry.md)`>?): Int`

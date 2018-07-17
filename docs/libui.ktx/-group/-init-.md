@@ -2,7 +2,7 @@
 
 # &lt;init&gt;
 
-`Group(title: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`)`
+`Group(title: String)`
 
 Wrapper class for [uiGroup](../../libui/ui-group.md)
 

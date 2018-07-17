@@ -2,7 +2,7 @@
 
 # figure
 
-`fun figure(x: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)`, y: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun figure(x: Double, y: Double): Unit`
 
 Starts a new figure at the specified point. Call this method when you want to create a new path.
 

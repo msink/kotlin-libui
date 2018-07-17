@@ -2,7 +2,7 @@
 
 # invertible
 
-`val invertible: `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+`val invertible: Boolean`
 
 Returns `true` if the matrix is invertible.
 

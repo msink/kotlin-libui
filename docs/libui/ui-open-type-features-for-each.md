@@ -2,4 +2,4 @@
 
 # uiOpenTypeFeaturesForEach
 
-`fun uiOpenTypeFeaturesForEach(otf: CValuesRef<`[`uiOpenTypeFeatures`](ui-open-type-features.md)`>?, f: `[`uiOpenTypeFeaturesForEachFunc`](ui-open-type-features-for-each-func.md)`?, data: CValuesRef<*>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiOpenTypeFeaturesForEach(otf: CValuesRef<`[`uiOpenTypeFeatures`](ui-open-type-features.md)`>?, f: `[`uiOpenTypeFeaturesForEachFunc`](ui-open-type-features-for-each-func.md)`?, data: CValuesRef<*>?): Unit`

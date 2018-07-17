@@ -2,4 +2,4 @@
 
 # uiDrawMatrixTransformPoint
 
-`fun uiDrawMatrixTransformPoint(m: CValuesRef<`[`uiDrawMatrix`](ui-draw-matrix/index.md)`>?, x: CValuesRef<DoubleVar>?, y: CValuesRef<DoubleVar>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiDrawMatrixTransformPoint(m: CValuesRef<`[`uiDrawMatrix`](ui-draw-matrix/index.md)`>?, x: CValuesRef<DoubleVar>?, y: CValuesRef<DoubleVar>?): Unit`

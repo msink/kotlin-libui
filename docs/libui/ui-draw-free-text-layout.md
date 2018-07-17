@@ -2,4 +2,4 @@
 
 # uiDrawFreeTextLayout
 
-`fun uiDrawFreeTextLayout(tl: CValuesRef<`[`uiDrawTextLayout`](ui-draw-text-layout.md)`>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiDrawFreeTextLayout(tl: CValuesRef<`[`uiDrawTextLayout`](ui-draw-text-layout.md)`>?): Unit`

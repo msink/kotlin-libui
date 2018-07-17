@@ -2,7 +2,7 @@
 
 # onTimer
 
-`fun onTimer(milliseconds: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, block: () -> `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun onTimer(milliseconds: Int, block: () -> Boolean): Unit`
 
 Function to be executed on a timer on the main thread.
 

@@ -2,4 +2,4 @@
 
 # uiTableValueTypeColor
 
-`val uiTableValueTypeColor: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`val uiTableValueTypeColor: Int`

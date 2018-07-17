@@ -2,4 +2,4 @@
 
 # uiGridAppend
 
-`fun uiGridAppend(g: CValuesRef<`[`uiGrid`](ui-grid.md)`>?, c: CValuesRef<`[`uiControl`](ui-control/index.md)`>?, left: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, top: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, xspan: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, yspan: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, hexpand: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, halign: `[`uiAlign`](ui-align.md)`, vexpand: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, valign: `[`uiAlign`](ui-align.md)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiGridAppend(g: CValuesRef<`[`uiGrid`](ui-grid.md)`>?, c: CValuesRef<`[`uiControl`](ui-control/index.md)`>?, left: Int, top: Int, xspan: Int, yspan: Int, hexpand: Int, halign: `[`uiAlign`](ui-align.md)`, vexpand: Int, valign: `[`uiAlign`](ui-align.md)`): Unit`

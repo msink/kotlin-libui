@@ -2,7 +2,7 @@
 
 # add
 
-`fun add(label: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`, widget: `[`Control`](../-control/index.md)`<*>): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun add(label: String, widget: `[`Control`](../-control/index.md)`<*>): Unit`
 
 Adds the given page to the end of the TabPane.
 

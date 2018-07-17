@@ -2,4 +2,4 @@
 
 # uiAreaBeginUserWindowResize
 
-`fun uiAreaBeginUserWindowResize(a: CValuesRef<`[`uiArea`](ui-area.md)`>?, edge: `[`uiWindowResizeEdge`](ui-window-resize-edge.md)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiAreaBeginUserWindowResize(a: CValuesRef<`[`uiArea`](ui-area.md)`>?, edge: `[`uiWindowResizeEdge`](ui-window-resize-edge.md)`): Unit`

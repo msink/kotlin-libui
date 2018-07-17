@@ -2,7 +2,7 @@
 
 # getValue
 
-`fun getValue(value: CPointer<`[`tm`](../../libui/tm.md)`>): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun getValue(value: CPointer<`[`tm`](../../libui/tm.md)`>): Unit`
 
 The current value as posix `struct tm`
 

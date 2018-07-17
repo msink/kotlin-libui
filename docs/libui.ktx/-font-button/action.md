@@ -2,7 +2,7 @@
 
 # action
 
-`fun action(block: `[`FontButton`](index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun action(block: `[`FontButton`](index.md)`.() -> Unit): Unit`
 
 Function to be run when the font in the FontButton is changed.
 Only one function can be registered at a time.

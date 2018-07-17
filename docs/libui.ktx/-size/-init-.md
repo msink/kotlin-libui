@@ -2,4 +2,4 @@
 
 # &lt;init&gt;
 
-`Size(width: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)`, height: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)`)`
+`Size(width: Double, height: Double)`

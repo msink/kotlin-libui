@@ -2,4 +2,4 @@
 
 # uiTableValueInt
 
-`fun uiTableValueInt(v: CValuesRef<`[`uiTableValue`](ui-table-value.md)`>?): `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`fun uiTableValueInt(v: CValuesRef<`[`uiTableValue`](ui-table-value.md)`>?): Int`

@@ -2,4 +2,4 @@
 
 # uiNewWindow
 
-`fun uiNewWindow(title: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?, width: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, height: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`, hasMenubar: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): CPointer<`[`uiWindow`](ui-window.md)`>?`
+`fun uiNewWindow(title: String?, width: Int, height: Int, hasMenubar: Int): CPointer<`[`uiWindow`](ui-window.md)`>?`

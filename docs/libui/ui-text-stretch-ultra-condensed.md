@@ -2,4 +2,4 @@
 
 # uiTextStretchUltraCondensed
 
-`val uiTextStretchUltraCondensed: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`val uiTextStretchUltraCondensed: Int`

@@ -2,4 +2,4 @@
 
 # uiNewLabel
 
-`fun uiNewLabel(text: `[`String`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-string/index.html)`?): CPointer<`[`uiLabel`](ui-label.md)`>?`
+`fun uiNewLabel(text: String?): CPointer<`[`uiLabel`](ui-label.md)`>?`

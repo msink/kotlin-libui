@@ -2,7 +2,7 @@
 
 # action
 
-`fun action(block: `[`DateTimePicker`](index.md)`.() -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun action(block: `[`DateTimePicker`](index.md)`.() -> Unit): Unit`
 
 Function to be run when the user makes a change to the Picker.
 Only one function can be registered at a time.

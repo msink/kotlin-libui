@@ -2,7 +2,7 @@
 
 # disable
 
-`fun disable(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun disable(): Unit`
 
 Disables the Control.
 

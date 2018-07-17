@@ -2,4 +2,4 @@
 
 # ClipY
 
-`var ClipY: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)
+`var ClipY: Double`

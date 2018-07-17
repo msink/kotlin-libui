@@ -2,7 +2,7 @@
 
 # redraw
 
-`fun redraw(): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun redraw(): Unit`
 
 Queues the entire DrawArea for redraw.
 The DrawArea is not redrawn before this function returns; it is redrawn when next possible.

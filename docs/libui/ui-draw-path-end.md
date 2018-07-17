@@ -2,4 +2,4 @@
 
 # uiDrawPathEnd
 
-`fun uiDrawPathEnd(p: CValuesRef<`[`uiDrawPath`](ui-draw-path.md)`>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiDrawPathEnd(p: CValuesRef<`[`uiDrawPath`](ui-draw-path.md)`>?): Unit`

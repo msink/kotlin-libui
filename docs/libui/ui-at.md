@@ -2,4 +2,4 @@
 
 # uiAt
 
-`typealias uiAt = `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`typealias uiAt = Int`

@@ -2,4 +2,4 @@
 
 # Thickness
 
-`var Thickness: `[`Double`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-double/index.html)
+`var Thickness: Double`

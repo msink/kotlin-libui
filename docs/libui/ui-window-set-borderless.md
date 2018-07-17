@@ -2,4 +2,4 @@
 
 # uiWindowSetBorderless
 
-`fun uiWindowSetBorderless(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, borderless: `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)`): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiWindowSetBorderless(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, borderless: Int): Unit`

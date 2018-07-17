@@ -2,4 +2,4 @@
 
 # uiDrawBrushType
 
-`typealias uiDrawBrushType = `[`Int`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-int/index.html)
+`typealias uiDrawBrushType = Int`

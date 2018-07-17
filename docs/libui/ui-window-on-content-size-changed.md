@@ -2,4 +2,4 @@
 
 # uiWindowOnContentSizeChanged
 
-`fun uiWindowOnContentSizeChanged(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiWindow`](ui-window.md)`>?, COpaquePointer?) -> `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)`>>?, data: CValuesRef<*>?): `[`Unit`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html)
+`fun uiWindowOnContentSizeChanged(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiWindow`](ui-window.md)`>?, COpaquePointer?) -> Unit>>?, data: CValuesRef<*>?): Unit`

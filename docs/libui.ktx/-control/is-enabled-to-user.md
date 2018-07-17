@@ -2,7 +2,7 @@
 
 # isEnabledToUser
 
-`fun isEnabledToUser(): `[`Boolean`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-boolean/index.html)
+`fun isEnabledToUser(): Boolean`
 
 Whether the Control and all parents are enabled.
 
