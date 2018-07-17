@@ -4,13 +4,13 @@
 
 `abstract class Attribute : `[`Disposable`](../-disposable/index.md)`<`[`uiAttribute`](../../libui/ui-attribute.md)`>`
 
-Stores information about an attribute in a [string](../string.md).
+Stores information about an attribute in a [AttributedString](../-attributed-string/index.md).
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Attribute(alloc: CPointer<`[`uiAttribute`](../../libui/ui-attribute.md)`>?)`<br>Stores information about an attribute in a [string](../string.md). |
+| [&lt;init&gt;](-init-.md) | `Attribute(alloc: CPointer<`[`uiAttribute`](../../libui/ui-attribute.md)`>?)`<br>Stores information about an attribute in a [AttributedString](../-attributed-string/index.md). |
 
 ### Properties
 

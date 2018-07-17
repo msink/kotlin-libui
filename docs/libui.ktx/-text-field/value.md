@@ -4,5 +4,5 @@
 
 `var value: String`
 
-The current text of the TextField.
+The current text of the [TextField](index.md).
 

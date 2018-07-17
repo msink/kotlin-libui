@@ -61,7 +61,7 @@ inline fun Container.searchfield(
 open class TextField internal constructor(alloc: CPointer<uiEntry>?) : Control<uiEntry>(alloc) {
     constructor(): this(uiNewEntry())
 
-    /** The current text of the TextField. */
+    /** The current text of the [TextField]. */
     var value: String
         get() = uiEntryText(ptr).uiText()
         set(value) = uiEntrySetText(ptr, value)
@@ -71,7 +71,7 @@ open class TextField internal constructor(alloc: CPointer<uiEntry>?) : Control<u
         get() = uiEntryReadOnly(ptr) != 0
         set(readonly) = uiEntrySetReadOnly(ptr, if (readonly) 1 else 0)
 
-    /** Function to be run when the user makes a change to the TextField.
+    /** Function to be run when the user makes a change to the [TextField].
      *  Only one function can be registered at a time. */
     fun action(block: TextField.() -> Unit) {
         action = block
@@ -82,16 +82,17 @@ open class TextField internal constructor(alloc: CPointer<uiEntry>?) : Control<u
     internal var action: (TextField.() -> Unit)? = null
 }
 
-/** Wrapper class for [uiEntry] to edit passwords. */
+/** Wrapper class for [uiEntry] for passwords. */
 class PasswordField : TextField(uiNewPasswordEntry())
 
-/** Wrapper class for [uiEntry] to search text. */
+/** Wrapper class for [uiEntry] for search text. */
 class SearchField : TextField(uiNewSearchEntry())
 
 ///////////////////////////////////////////////////////////////////////////////
 
 /** A multiline plain text editing widget.
- *  @param[wrap] enables the wrapping of the text when it reaches the edge of the area */
+ *  @param[wrap] enables the wrapping of the text when it reaches the edge of the area
+ *  @param[readonly] specifies that a text should be read-only */
 inline fun Container.textarea(
     wrap: Boolean = true,
     readonly: Boolean = false,

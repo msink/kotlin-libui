@@ -4,5 +4,5 @@
 
 `val string: String`
 
-Returns the textual content of AttributedString.
+Returns the textual content of [AttributedString](index.md).
 

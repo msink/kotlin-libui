@@ -9,3 +9,5 @@ A multiline plain text editing widget.
 ### Parameters
 
 `wrap` - enables the wrapping of the text when it reaches the edge of the area
+
+`readonly` - specifies that a text should be read-only

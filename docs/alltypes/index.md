@@ -4,7 +4,7 @@
 
 | Name | Summary |
 |---|---|
-| [libui.ktx.Attribute](../libui.ktx/-attribute/index.md) | Stores information about an attribute in a [string](../libui.ktx/string.md). |
+| [libui.ktx.Attribute](../libui.ktx/-attribute/index.md) | Stores information about an attribute in a [AttributedString](../libui.ktx/-attributed-string/index.md). |
 | [libui.ktx.AttributedString](../libui.ktx/-attributed-string/index.md) | Represents a string of UTF-8 text that can be embellished with formatting attributes. |
 | [libui.ktx.BackgroundAttribute](../libui.ktx/-background-attribute/index.md) | Changes the background color of the text it is applied to. |
 | [libui.ktx.Box](../libui.ktx/-box/index.md) | Wrapper class for [uiBox](../libui/ui-box.md) |
@@ -40,13 +40,13 @@
 | [libui.ktx.Menu](../libui.ktx/-menu.md) |  |
 | [libui.ktx.MenuItem](../libui.ktx/-menu-item.md) |  |
 | [libui.ktx.OpenTypeFeatures](../libui.ktx/-open-type-features/index.md) | Represents a set of OpenType feature tag-value pairs, for applying OpenType features to text. |
-| [libui.ktx.PasswordField](../libui.ktx/-password-field/index.md) | Wrapper class for [uiEntry](../libui/ui-entry.md) to edit passwords. |
+| [libui.ktx.PasswordField](../libui.ktx/-password-field/index.md) | Wrapper class for [uiEntry](../libui/ui-entry.md) for passwords. |
 | [libui.ktx.Path](../libui.ktx/-path/index.md) | Represent a path that could be drawed on a [DrawContext](../libui.ktx/-draw-context.md) |
 | [libui.ktx.Point](../libui.ktx/-point/index.md) |  |
 | [libui.ktx.ProgressBar](../libui.ktx/-progress-bar/index.md) | Wrapper class for [uiProgressBar](../libui/ui-progress-bar.md) |
 | [libui.ktx.RadioButtons](../libui.ktx/-radio-buttons/index.md) | Wrapper class for [uiRadioButtons](../libui/ui-radio-buttons.md) |
 | [libui.ktx.ScrollingArea](../libui.ktx/-scrolling-area/index.md) | Wrapper class for [uiArea](../libui/ui-area.md) with scrollbars. |
-| [libui.ktx.SearchField](../libui.ktx/-search-field/index.md) | Wrapper class for [uiEntry](../libui/ui-entry.md) to search text. |
+| [libui.ktx.SearchField](../libui.ktx/-search-field/index.md) | Wrapper class for [uiEntry](../libui/ui-entry.md) for search text. |
 | [libui.ktx.Separator](../libui.ktx/-separator/index.md) | Wrapper class for [uiSeparator](../libui/ui-separator.md) |
 | [libui.ktx.Size](../libui.ktx/-size/index.md) |  |
 | [libui.ktx.SizeAttribute](../libui.ktx/-size-attribute/index.md) | Changes the size of the text it is applied to, in typographical points. |
@@ -60,7 +60,7 @@
 | [libui.ktx.TableView](../libui.ktx/-table-view/index.md) | Wrapper class for [uiTable](../libui/ui-table.md) |
 | [libui.ktx.TextArea](../libui.ktx/-text-area/index.md) | Wrapper class for [uiMultilineEntry](../libui/ui-multiline-entry.md) |
 | [libui.ktx.TextField](../libui.ktx/-text-field/index.md) | Wrapper class for [uiEntry](../libui/ui-entry.md) |
-| [libui.ktx.TextLayout](../libui.ktx/-text-layout/index.md) | Representation of a [string](../libui.ktx/string.md) that can be displayed in a [DrawContext](../libui.ktx/-draw-context.md). |
+| [libui.ktx.TextLayout](../libui.ktx/-text-layout/index.md) | Representation of a [AttributedString](../libui.ktx/-attributed-string/index.md) that can be displayed in a [DrawContext](../libui.ktx/-draw-context.md). |
 | [libui.ktx.TimePicker](../libui.ktx/-time-picker/index.md) | Wrapper class for [uiDateTimePicker](../libui/ui-date-time-picker.md) to edit time. |
 | [libui.ktx.UnderlineAttribute](../libui.ktx/-underline-attribute/index.md) | Changes the type of underline on the text it is applied to. |
 | [libui.ktx.UnderlineColorAttribute](../libui.ktx/-underline-color-attribute/index.md) | Changes the color of the underline on the text it is applied to. |

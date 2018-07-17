@@ -35,7 +35,7 @@ Manages and owns all its native resources.
 
 | Name | Summary |
 |---|---|
-| [Attribute](../-attribute/index.md) | `abstract class Attribute : `[`Disposable`](./index.md)`<`[`uiAttribute`](../../libui/ui-attribute.md)`>`<br>Stores information about an attribute in a [string](../string.md). |
+| [Attribute](../-attribute/index.md) | `abstract class Attribute : `[`Disposable`](./index.md)`<`[`uiAttribute`](../../libui/ui-attribute.md)`>`<br>Stores information about an attribute in a [AttributedString](../-attributed-string/index.md). |
 | [AttributedString](../-attributed-string/index.md) | `class AttributedString : `[`Disposable`](./index.md)`<`[`uiAttributedString`](../../libui/ui-attributed-string.md)`>`<br>Represents a string of UTF-8 text that can be embellished with formatting attributes. |
 | [Brush](../-brush/index.md) | `class Brush : `[`Disposable`](./index.md)`<`[`uiDrawBrush`](../../libui/ui-draw-brush/index.md)`>`<br>Defines the color(s) to draw a path with. |
 | [Control](../-control/index.md) | `abstract class Control<T : CPointed> : `[`Disposable`](./index.md)`<`[`T`](../-control/index.md#T)`>`<br>Base class for all GUI controls (widgets). |
@@ -46,4 +46,4 @@ Manages and owns all its native resources.
 | [Path](../-path/index.md) | `class Path : `[`Disposable`](./index.md)`<`[`uiDrawPath`](../../libui/ui-draw-path.md)`>`<br>Represent a path that could be drawed on a [DrawContext](../-draw-context.md) |
 | [Stroke](../-stroke/index.md) | `class Stroke : `[`Disposable`](./index.md)`<`[`uiDrawStrokeParams`](../../libui/ui-draw-stroke-params/index.md)`>`<br>Describes the stroke to draw with. |
 | [Table](../-table/index.md) | `class Table<T> : `[`Disposable`](./index.md)`<`[`uiTableModel`](../../libui/ui-table-model.md)`>`<br>Wrapper class for [uiTableModel](../../libui/ui-table-model.md) |
-| [TextLayout](../-text-layout/index.md) | `class TextLayout : `[`Disposable`](./index.md)`<`[`uiDrawTextLayout`](../../libui/ui-draw-text-layout.md)`>`<br>Representation of a [string](../string.md) that can be displayed in a [DrawContext](../-draw-context.md). |
+| [TextLayout](../-text-layout/index.md) | `class TextLayout : `[`Disposable`](./index.md)`<`[`uiDrawTextLayout`](../../libui/ui-draw-text-layout.md)`>`<br>Representation of a [AttributedString](../-attributed-string/index.md) that can be displayed in a [DrawContext](../-draw-context.md). |

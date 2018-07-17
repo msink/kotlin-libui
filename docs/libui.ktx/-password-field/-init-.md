@@ -4,5 +4,5 @@
 
 `PasswordField()`
 
-Wrapper class for [uiEntry](../../libui/ui-entry.md) to edit passwords.
+Wrapper class for [uiEntry](../../libui/ui-entry.md) for passwords.
 

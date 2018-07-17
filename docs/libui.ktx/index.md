@@ -6,7 +6,7 @@
 
 | Name | Summary |
 |---|---|
-| [Attribute](-attribute/index.md) | `abstract class Attribute : `[`Disposable`](-disposable/index.md)`<`[`uiAttribute`](../libui/ui-attribute.md)`>`<br>Stores information about an attribute in a [string](string.md). |
+| [Attribute](-attribute/index.md) | `abstract class Attribute : `[`Disposable`](-disposable/index.md)`<`[`uiAttribute`](../libui/ui-attribute.md)`>`<br>Stores information about an attribute in a [AttributedString](-attributed-string/index.md). |
 | [AttributedString](-attributed-string/index.md) | `class AttributedString : `[`Disposable`](-disposable/index.md)`<`[`uiAttributedString`](../libui/ui-attributed-string.md)`>`<br>Represents a string of UTF-8 text that can be embellished with formatting attributes. |
 | [BackgroundAttribute](-background-attribute/index.md) | `class BackgroundAttribute : `[`Attribute`](-attribute/index.md)<br>Changes the background color of the text it is applied to. |
 | [Box](-box/index.md) | `abstract class Box : `[`Control`](-control/index.md)`<`[`uiBox`](../libui/ui-box.md)`>, `[`Container`](-container/index.md)<br>Wrapper class for [uiBox](../libui/ui-box.md) |
@@ -39,13 +39,13 @@
 | [Label](-label/index.md) | `class Label : `[`Control`](-control/index.md)`<`[`uiLabel`](../libui/ui-label.md)`>`<br>Wrapper class for [uiLabel](../libui/ui-label.md) |
 | [Matrix](-matrix/index.md) | `class Matrix : `[`Disposable`](-disposable/index.md)`<`[`uiDrawMatrix`](../libui/ui-draw-matrix/index.md)`>`<br>Defines a transformation (e.g. rotation, translation) |
 | [OpenTypeFeatures](-open-type-features/index.md) | `class OpenTypeFeatures : `[`Disposable`](-disposable/index.md)`<`[`uiOpenTypeFeatures`](../libui/ui-open-type-features.md)`>`<br>Represents a set of OpenType feature tag-value pairs, for applying OpenType features to text. |
-| [PasswordField](-password-field/index.md) | `class PasswordField : `[`TextField`](-text-field/index.md)<br>Wrapper class for [uiEntry](../libui/ui-entry.md) to edit passwords. |
+| [PasswordField](-password-field/index.md) | `class PasswordField : `[`TextField`](-text-field/index.md)<br>Wrapper class for [uiEntry](../libui/ui-entry.md) for passwords. |
 | [Path](-path/index.md) | `class Path : `[`Disposable`](-disposable/index.md)`<`[`uiDrawPath`](../libui/ui-draw-path.md)`>`<br>Represent a path that could be drawed on a [DrawContext](-draw-context.md) |
 | [Point](-point/index.md) | `data class Point` |
 | [ProgressBar](-progress-bar/index.md) | `class ProgressBar : `[`Control`](-control/index.md)`<`[`uiProgressBar`](../libui/ui-progress-bar.md)`>`<br>Wrapper class for [uiProgressBar](../libui/ui-progress-bar.md) |
 | [RadioButtons](-radio-buttons/index.md) | `class RadioButtons : `[`Control`](-control/index.md)`<`[`uiRadioButtons`](../libui/ui-radio-buttons.md)`>`<br>Wrapper class for [uiRadioButtons](../libui/ui-radio-buttons.md) |
 | [ScrollingArea](-scrolling-area/index.md) | `class ScrollingArea : `[`DrawArea`](-draw-area/index.md)<br>Wrapper class for [uiArea](../libui/ui-area.md) with scrollbars. |
-| [SearchField](-search-field/index.md) | `class SearchField : `[`TextField`](-text-field/index.md)<br>Wrapper class for [uiEntry](../libui/ui-entry.md) to search text. |
+| [SearchField](-search-field/index.md) | `class SearchField : `[`TextField`](-text-field/index.md)<br>Wrapper class for [uiEntry](../libui/ui-entry.md) for search text. |
 | [Separator](-separator/index.md) | `abstract class Separator : `[`Control`](-control/index.md)`<`[`uiSeparator`](../libui/ui-separator.md)`>`<br>Wrapper class for [uiSeparator](../libui/ui-separator.md) |
 | [Size](-size/index.md) | `data class Size` |
 | [SizeAttribute](-size-attribute/index.md) | `class SizeAttribute : `[`Attribute`](-attribute/index.md)<br>Changes the size of the text it is applied to, in typographical points. |
@@ -59,7 +59,7 @@
 | [TableView](-table-view/index.md) | `class TableView : `[`Control`](-control/index.md)`<`[`uiTable`](../libui/ui-table.md)`>`<br>Wrapper class for [uiTable](../libui/ui-table.md) |
 | [TextArea](-text-area/index.md) | `class TextArea : `[`Control`](-control/index.md)`<`[`uiMultilineEntry`](../libui/ui-multiline-entry.md)`>`<br>Wrapper class for [uiMultilineEntry](../libui/ui-multiline-entry.md) |
 | [TextField](-text-field/index.md) | `open class TextField : `[`Control`](-control/index.md)`<`[`uiEntry`](../libui/ui-entry.md)`>`<br>Wrapper class for [uiEntry](../libui/ui-entry.md) |
-| [TextLayout](-text-layout/index.md) | `class TextLayout : `[`Disposable`](-disposable/index.md)`<`[`uiDrawTextLayout`](../libui/ui-draw-text-layout.md)`>`<br>Representation of a [string](string.md) that can be displayed in a [DrawContext](-draw-context.md). |
+| [TextLayout](-text-layout/index.md) | `class TextLayout : `[`Disposable`](-disposable/index.md)`<`[`uiDrawTextLayout`](../libui/ui-draw-text-layout.md)`>`<br>Representation of a [AttributedString](-attributed-string/index.md) that can be displayed in a [DrawContext](-draw-context.md). |
 | [TimePicker](-time-picker/index.md) | `class TimePicker : `[`DateTimePicker`](-date-time-picker/index.md)<br>Wrapper class for [uiDateTimePicker](../libui/ui-date-time-picker.md) to edit time. |
 | [UnderlineAttribute](-underline-attribute/index.md) | `class UnderlineAttribute : `[`Attribute`](-attribute/index.md)<br>Changes the type of underline on the text it is applied to. |
 | [UnderlineColorAttribute](-underline-color-attribute/index.md) | `class UnderlineColorAttribute : `[`Attribute`](-attribute/index.md)<br>Changes the color of the underline on the text it is applied to. |
@@ -127,7 +127,7 @@
 | [slider](slider.md) | `fun `[`Container`](-container/index.md)`.slider(min: Int, max: Int, init: `[`Slider`](-slider/index.md)`.() -> Unit = {}): `[`Slider`](-slider/index.md)<br>Horizontal slide to set numerical values. |
 | [spinbox](spinbox.md) | `fun `[`Container`](-container/index.md)`.spinbox(min: Int, max: Int, init: `[`Spinbox`](-spinbox/index.md)`.() -> Unit = {}): `[`Spinbox`](-spinbox/index.md)<br>An entry widget for numerical values. |
 | [stretchy](stretchy.md) | `fun `[`Box`](-box/index.md)`.stretchy(init: `[`Stretchy`](-box/-stretchy/index.md)`.() -> Unit = {}): `[`Stretchy`](-box/-stretchy/index.md) |
-| [string](string.md) | `fun `[`DrawArea`](-draw-area/index.md)`.string(init: String): `[`AttributedString`](-attributed-string/index.md)<br>Creates a new AttributedString from initial String. The string will be entirely unattributed. |
+| [string](string.md) | `fun `[`DrawArea`](-draw-area/index.md)`.string(init: String): `[`AttributedString`](-attributed-string/index.md)<br>Creates a new [AttributedString](-attributed-string/index.md) from initial String. The string will be entirely unattributed. |
 | [stroke](stroke.md) | `fun `[`DrawArea`](-draw-area/index.md)`.stroke(block: `[`uiDrawStrokeParams`](../libui/ui-draw-stroke-params/index.md)`.() -> Unit = {}): `[`Stroke`](-stroke/index.md)<br>Creates a new Stroke with lifecycle delegated to DrawArea.`fun `[`DrawContext`](-draw-context.md)`.stroke(mode: `[`uiDrawFillMode`](../libui/ui-draw-fill-mode.md)`, brush: `[`Brush`](-brush/index.md)`, stroke: `[`Stroke`](-stroke/index.md)`, block: `[`Path`](-path/index.md)`.() -> Unit): Unit`<br>Draw a path in the context.`fun `[`DrawContext`](-draw-context.md)`.stroke(brush: `[`Brush`](-brush/index.md)`, stroke: `[`Stroke`](-stroke/index.md)`, block: `[`Path`](-path/index.md)`.() -> Unit): Unit` |
 | [table](table.md) | `fun <T> table(data: List<`[`T`](table.md#T)`>): `[`Table`](-table/index.md)`<`[`T`](table.md#T)`>` |
 | [tableview](tableview.md) | `fun <T> `[`Container`](-container/index.md)`.tableview(data: List<`[`T`](tableview.md#T)`>, init: `[`Table`](-table/index.md)`<`[`T`](tableview.md#T)`>.() -> Unit = {}): `[`TableView`](-table-view/index.md) |

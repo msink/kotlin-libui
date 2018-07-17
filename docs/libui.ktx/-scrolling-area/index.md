@@ -35,5 +35,5 @@ Wrapper class for [uiArea](../../libui/ui-area.md) with scrollbars.
 | Name | Summary |
 |---|---|
 | [brush](../brush.md) | `fun `[`DrawArea`](../-draw-area/index.md)`.brush(): `[`Brush`](../-brush/index.md)<br>Creates a new Brush with lifecycle delegated to DrawArea. |
-| [string](../string.md) | `fun `[`DrawArea`](../-draw-area/index.md)`.string(init: String): `[`AttributedString`](../-attributed-string/index.md)<br>Creates a new AttributedString from initial String. The string will be entirely unattributed. |
+| [string](../string.md) | `fun `[`DrawArea`](../-draw-area/index.md)`.string(init: String): `[`AttributedString`](../-attributed-string/index.md)<br>Creates a new [AttributedString](../-attributed-string/index.md) from initial String. The string will be entirely unattributed. |
 | [stroke](../stroke.md) | `fun `[`DrawArea`](../-draw-area/index.md)`.stroke(block: `[`uiDrawStrokeParams`](../../libui/ui-draw-stroke-params/index.md)`.() -> Unit = {}): `[`Stroke`](../-stroke/index.md)<br>Creates a new Stroke with lifecycle delegated to DrawArea. |

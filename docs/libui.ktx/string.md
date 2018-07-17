@@ -4,5 +4,5 @@
 
 `fun `[`DrawArea`](-draw-area/index.md)`.string(init: String): `[`AttributedString`](-attributed-string/index.md)
 
-Creates a new AttributedString from initial String. The string will be entirely unattributed.
+Creates a new [AttributedString](-attributed-string/index.md) from initial String. The string will be entirely unattributed.
 

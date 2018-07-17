@@ -17,7 +17,7 @@ Represents a string of UTF-8 text that can be embellished with formatting attrib
 | Name | Summary |
 |---|---|
 | [length](length.md) | `val length: Int`<br>Returns the number of UTF-8 bytes in the textual content, excluding the terminating '\0'. |
-| [string](string.md) | `val string: String`<br>Returns the textual content of AttributedString. |
+| [string](string.md) | `val string: String`<br>Returns the textual content of [AttributedString](./index.md). |
 
 ### Inherited Properties
 

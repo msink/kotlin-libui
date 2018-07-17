@@ -4,6 +4,6 @@
 
 `fun action(block: `[`TextField`](index.md)`.() -> Unit): Unit`
 
-Function to be run when the user makes a change to the TextField.
+Function to be run when the user makes a change to the [TextField](index.md).
 Only one function can be registered at a time.
 

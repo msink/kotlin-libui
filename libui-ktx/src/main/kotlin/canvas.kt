@@ -345,11 +345,11 @@ class Matrix : Disposable<uiDrawMatrix>(
 
 ///////////////////////////////////////////////////////////
 
-/** Stores information about an attribute in a [string]. */
+/** Stores information about an attribute in a [AttributedString]. */
 abstract class Attribute(alloc: CPointer<uiAttribute>?) : Disposable<uiAttribute>(alloc) {
 
     /** Frees a [Attribute]. You generally do not need to call this yourself,
-     *  as [string] does this for you. */
+     *  as [AttributedString] does this for you. */
     override fun free() = uiFreeAttribute(ptr)
 
     /** Returns the type of [Attribute]. */
@@ -495,7 +495,7 @@ class OpenTypeFeatures(copy: CPointer<uiOpenTypeFeatures>? = null) : Disposable<
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** Creates a new AttributedString from initial String. The string will be entirely unattributed. */
+/** Creates a new [AttributedString] from initial String. The string will be entirely unattributed. */
 fun DrawArea.string(init: String): AttributedString =
     AttributedString(init).also { disposables.add(it) }
 
@@ -504,7 +504,7 @@ class AttributedString(init: String) : Disposable<uiAttributedString>(
     alloc = uiNewAttributedString(init)) {
     override fun free() = uiFreeAttributedString(ptr)
 
-    /** Returns the textual content of AttributedString. */
+    /** Returns the textual content of [AttributedString]. */
     val string: String get() = uiAttributedStringString(ptr).uiText()
 
     /** Returns the number of UTF-8 bytes in the textual content, excluding the terminating '\0'. */
@@ -567,7 +567,7 @@ class Font : Disposable<uiFontDescriptor>(
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** Representation of a [string] that can be displayed in a [DrawContext]. */
+/** Representation of a [AttributedString] that can be displayed in a [DrawContext]. */
 class TextLayout(
     string: AttributedString,
     defaultFont: Font,
@@ -585,7 +585,7 @@ class TextLayout(
     }
 ) {
 
-    /** Frees [TextLayout]. The underlying [string] is not freed. */
+    /** Frees [TextLayout]. The underlying [AttributedString] is not freed. */
     override fun free() = uiDrawFreeTextLayout(ptr)
 
     /** Returns the size of [TextLayout]. */

@@ -17,7 +17,7 @@ Wrapper class for [uiEntry](../../libui/ui-entry.md)
 | Name | Summary |
 |---|---|
 | [readonly](readonly.md) | `var readonly: Boolean`<br>Whether the text is read-only or not. Defaults to `false`. |
-| [value](value.md) | `var value: String`<br>The current text of the TextField. |
+| [value](value.md) | `var value: String`<br>The current text of the [TextField](./index.md). |
 
 ### Inherited Properties
 
@@ -33,7 +33,7 @@ Wrapper class for [uiEntry](../../libui/ui-entry.md)
 
 | Name | Summary |
 |---|---|
-| [action](action.md) | `fun action(block: `[`TextField`](./index.md)`.() -> Unit): Unit`<br>Function to be run when the user makes a change to the TextField. Only one function can be registered at a time. |
+| [action](action.md) | `fun action(block: `[`TextField`](./index.md)`.() -> Unit): Unit`<br>Function to be run when the user makes a change to the [TextField](./index.md). Only one function can be registered at a time. |
 
 ### Inherited Functions
 
@@ -53,5 +53,5 @@ Wrapper class for [uiEntry](../../libui/ui-entry.md)
 
 | Name | Summary |
 |---|---|
-| [PasswordField](../-password-field/index.md) | `class PasswordField : `[`TextField`](./index.md)<br>Wrapper class for [uiEntry](../../libui/ui-entry.md) to edit passwords. |
-| [SearchField](../-search-field/index.md) | `class SearchField : `[`TextField`](./index.md)<br>Wrapper class for [uiEntry](../../libui/ui-entry.md) to search text. |
+| [PasswordField](../-password-field/index.md) | `class PasswordField : `[`TextField`](./index.md)<br>Wrapper class for [uiEntry](../../libui/ui-entry.md) for passwords. |
+| [SearchField](../-search-field/index.md) | `class SearchField : `[`TextField`](./index.md)<br>Wrapper class for [uiEntry](../../libui/ui-entry.md) for search text. |
