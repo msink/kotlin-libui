@@ -22,7 +22,7 @@ Manages and owns all its native resources.
 
 | Name | Summary |
 |---|---|
-| [disposed](disposed.md) | `val disposed: Boolean`<br>Returns `true` if object was disposed - in this case [disposed](disposed.md) will do nothing, all other operations are invalid and will `throw Error("Resource is disposed")`. |
+| [disposed](disposed.md) | `val disposed: Boolean`<br>Returns `true` if object was disposed - in this case [dispose](dispose.md) will do nothing, all other operations are invalid and will `throw Error("Resource is disposed")`. |
 
 ### Functions
 

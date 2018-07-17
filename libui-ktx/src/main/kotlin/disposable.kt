@@ -20,7 +20,7 @@ abstract class Disposable<T : CPointed>(alloc: CPointer<T>?) {
     /** Frees all additional native resources, except one allocated during construction. */
     internal open fun clear() {}
 
-    /** Returns `true` if object was disposed - in this case [disposed] will do nothing,
+    /** Returns `true` if object was disposed - in this case [dispose] will do nothing,
      *  all other operations are invalid and will `throw Error("Resource is disposed")`. */
     val disposed: Boolean get() = _ptr == null
 
