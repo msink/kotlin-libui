@@ -142,7 +142,7 @@ class ScrollingArea internal constructor(
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** Creates a new Brush with lifecycle delegated to DrawArea. */
+/** Creates a new [Brush] with lifecycle delegated to [DrawArea]. */
 fun DrawArea.brush(): Brush = Brush().also { disposables.add(it) }
 
 /** Defines the color(s) to draw a path with. */
@@ -236,7 +236,7 @@ class Brush : Disposable<uiDrawBrush>(
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** Creates a new Stroke with lifecycle delegated to DrawArea. */
+/** Creates a new [Stroke] with lifecycle delegated to [DrawArea]. */
 fun DrawArea.stroke(block: uiDrawStrokeParams.() -> Unit = {}): Stroke =
     Stroke().also {
         disposables.add(it)
@@ -263,7 +263,7 @@ class Path(mode: uiDrawFillMode) : Disposable<uiDrawPath>(
      *  with radius [radius] starting at [startAngle] and with sweep angle [sweep] going in the given direction
      *  by anticlockwise (defaulting to clockwise) as specified by [negative]. */
     fun figureWithArc(xCenter: Double, yCenter: Double, radius: Double,
-                           startAngle: Double, sweep: Double, negative: Boolean = false) =
+                      startAngle: Double, sweep: Double, negative: Boolean = false) =
         uiDrawPathNewFigureWithArc(ptr, xCenter, yCenter, radius, startAngle, sweep, if (negative) 1 else 0)
 
     /** Connects the last point in the subpath to the x, y coordinates with a straight line. */
@@ -273,7 +273,7 @@ class Path(mode: uiDrawFillMode) : Disposable<uiDrawPath>(
      *  starting at [startAngle] and with sweep angle [sweep] going in the given direction by
      *  anticlockwise (defaulting to clockwise) as specified by [negative]. */
     fun arcTo(xCenter: Double, yCenter: Double, radius: Double,
-                   startAngle: Double, sweep: Double, negative: Boolean = false) =
+              startAngle: Double, sweep: Double, negative: Boolean = false) =
         uiDrawPathArcTo(ptr, xCenter, yCenter, radius, startAngle, sweep, if (negative) 1 else 0)
 
     /** Adds a cubic Bézier curve to the path. It requires three points. The first two points are control
@@ -348,11 +348,11 @@ class Matrix : Disposable<uiDrawMatrix>(
 /** Stores information about an attribute in a [AttributedString]. */
 abstract class Attribute(alloc: CPointer<uiAttribute>?) : Disposable<uiAttribute>(alloc) {
 
-    /** Frees a [Attribute]. You generally do not need to call this yourself,
+    /** Frees a Attribute. You generally do not need to call this yourself,
      *  as [AttributedString] does this for you. */
     override fun free() = uiFreeAttribute(ptr)
 
-    /** Returns the type of [Attribute]. */
+    /** Returns the type of Attribute. */
     val type: uiAttributeType get() = uiAttributeGetType(ptr)
 }
 
@@ -504,7 +504,7 @@ class AttributedString(init: String) : Disposable<uiAttributedString>(
     alloc = uiNewAttributedString(init)) {
     override fun free() = uiFreeAttributedString(ptr)
 
-    /** Returns the textual content of [AttributedString]. */
+    /** Returns the textual content of AttributedString. */
     val string: String get() = uiAttributedStringString(ptr).uiText()
 
     /** Returns the number of UTF-8 bytes in the textual content, excluding the terminating '\0'. */
@@ -518,11 +518,11 @@ class AttributedString(init: String) : Disposable<uiAttributedString>(
     fun insert(str: String, at: Int) =
         uiAttributedStringInsertAtUnattributed(ptr, str, at.signExtend())
 
-    /** Deletes the characters and attributes in the byte range [start, end). */
+    /** Deletes the characters and attributes in the byte range [[start], [end]). */
     fun delete(start: Int, end: Int) =
         uiAttributedStringDelete(ptr, start.signExtend(), end.signExtend())
 
-    /** Sets a in the byte range [start, end). Any existing attributes in that byte range of the same type are
+    /** Sets a in the byte range [[start], [end]). Any existing attributes in that byte range of the same type are
      *  removed. Takes ownership of [a] you should not use it after uiAttributedStringSetAttribute() returns. */
     fun setAttribute(a: Attribute, start: Int, end: Int) =
         uiAttributedStringSetAttribute(ptr, a.ptr, start.signExtend(), end.signExtend())
@@ -585,10 +585,10 @@ class TextLayout(
     }
 ) {
 
-    /** Frees [TextLayout]. The underlying [AttributedString] is not freed. */
+    /** Frees TextLayout. The underlying [AttributedString] is not freed. */
     override fun free() = uiDrawFreeTextLayout(ptr)
 
-    /** Returns the size of [TextLayout]. */
+    /** Returns the size of TextLayout. */
     val size: Size get() = memScoped {
         val width = alloc<DoubleVar>()
         val height = alloc<DoubleVar>()

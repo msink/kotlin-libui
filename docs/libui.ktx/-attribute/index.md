@@ -16,7 +16,7 @@ Stores information about an attribute in a [AttributedString](../-attributed-str
 
 | Name | Summary |
 |---|---|
-| [type](type.md) | `val type: `[`uiAttributeType`](../../libui/ui-attribute-type.md)<br>Returns the type of [Attribute](./index.md). |
+| [type](type.md) | `val type: `[`uiAttributeType`](../../libui/ui-attribute-type.md)<br>Returns the type of Attribute. |
 
 ### Inherited Properties
 

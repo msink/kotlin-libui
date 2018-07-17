@@ -23,4 +23,4 @@ otf is copied you may free it after uiNewFeaturesAttribute() returns.
 
 | Name | Summary |
 |---|---|
-| [type](../-attribute/type.md) | `val type: `[`uiAttributeType`](../../libui/ui-attribute-type.md)<br>Returns the type of [Attribute](../-attribute/index.md). |
+| [type](../-attribute/type.md) | `val type: `[`uiAttributeType`](../../libui/ui-attribute-type.md)<br>Returns the type of Attribute. |

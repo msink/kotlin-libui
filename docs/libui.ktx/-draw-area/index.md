@@ -50,9 +50,9 @@ Wrapper class for [uiArea](../../libui/ui-area.md)
 
 | Name | Summary |
 |---|---|
-| [brush](../brush.md) | `fun `[`DrawArea`](./index.md)`.brush(): `[`Brush`](../-brush/index.md)<br>Creates a new Brush with lifecycle delegated to DrawArea. |
+| [brush](../brush.md) | `fun `[`DrawArea`](./index.md)`.brush(): `[`Brush`](../-brush/index.md)<br>Creates a new [Brush](../-brush/index.md) with lifecycle delegated to [DrawArea](./index.md). |
 | [string](../string.md) | `fun `[`DrawArea`](./index.md)`.string(init: String): `[`AttributedString`](../-attributed-string/index.md)<br>Creates a new [AttributedString](../-attributed-string/index.md) from initial String. The string will be entirely unattributed. |
-| [stroke](../stroke.md) | `fun `[`DrawArea`](./index.md)`.stroke(block: `[`uiDrawStrokeParams`](../../libui/ui-draw-stroke-params/index.md)`.() -> Unit = {}): `[`Stroke`](../-stroke/index.md)<br>Creates a new Stroke with lifecycle delegated to DrawArea. |
+| [stroke](../stroke.md) | `fun `[`DrawArea`](./index.md)`.stroke(block: `[`uiDrawStrokeParams`](../../libui/ui-draw-stroke-params/index.md)`.() -> Unit = {}): `[`Stroke`](../-stroke/index.md)<br>Creates a new [Stroke](../-stroke/index.md) with lifecycle delegated to [DrawArea](./index.md). |
 
 ### Inheritors
 

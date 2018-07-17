@@ -16,7 +16,7 @@ Representation of a [AttributedString](../-attributed-string/index.md) that can 
 
 | Name | Summary |
 |---|---|
-| [size](size.md) | `val size: `[`Size`](../-size/index.md)<br>Returns the size of [TextLayout](./index.md). |
+| [size](size.md) | `val size: `[`Size`](../-size/index.md)<br>Returns the size of TextLayout. |
 
 ### Inherited Properties
 

@@ -17,7 +17,7 @@ Wrapper class for [uiEntry](../../libui/ui-entry.md)
 | Name | Summary |
 |---|---|
 | [readonly](readonly.md) | `var readonly: Boolean`<br>Whether the text is read-only or not. Defaults to `false`. |
-| [value](value.md) | `var value: String`<br>The current text of the [TextField](./index.md). |
+| [value](value.md) | `var value: String`<br>The current text of the TextField. |
 
 ### Inherited Properties
 
@@ -32,7 +32,7 @@ Wrapper class for [uiEntry](../../libui/ui-entry.md)
 
 | Name | Summary |
 |---|---|
-| [action](action.md) | `fun action(block: `[`TextField`](./index.md)`.() -> Unit): Unit`<br>Function to be run when the user makes a change to the [TextField](./index.md). Only one function can be registered at a time. |
+| [action](action.md) | `fun action(block: `[`TextField`](./index.md)`.() -> Unit): Unit`<br>Function to be run when the user makes a change to the TextField. Only one function can be registered at a time. |
 
 ### Inherited Functions
 

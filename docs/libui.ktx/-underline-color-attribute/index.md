@@ -23,4 +23,4 @@ Changes the color of the underline on the text it is applied to.
 
 | Name | Summary |
 |---|---|
-| [type](../-attribute/type.md) | `val type: `[`uiAttributeType`](../../libui/ui-attribute-type.md)<br>Returns the type of [Attribute](../-attribute/index.md). |
+| [type](../-attribute/type.md) | `val type: `[`uiAttributeType`](../../libui/ui-attribute-type.md)<br>Returns the type of Attribute. |

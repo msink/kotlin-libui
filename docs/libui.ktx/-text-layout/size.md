@@ -4,5 +4,5 @@
 
 `val size: `[`Size`](../-size/index.md)
 
-Returns the size of [TextLayout](index.md).
+Returns the size of TextLayout.
 

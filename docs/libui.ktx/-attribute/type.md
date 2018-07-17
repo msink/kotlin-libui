@@ -4,5 +4,5 @@
 
 `val type: `[`uiAttributeType`](../../libui/ui-attribute-type.md)
 
-Returns the type of [Attribute](index.md).
+Returns the type of Attribute.
 

@@ -61,7 +61,7 @@ inline fun Container.searchfield(
 open class TextField internal constructor(alloc: CPointer<uiEntry>?) : Control<uiEntry>(alloc) {
     constructor(): this(uiNewEntry())
 
-    /** The current text of the [TextField]. */
+    /** The current text of the TextField. */
     var value: String
         get() = uiEntryText(ptr).uiText()
         set(value) = uiEntrySetText(ptr, value)
@@ -71,7 +71,7 @@ open class TextField internal constructor(alloc: CPointer<uiEntry>?) : Control<u
         get() = uiEntryReadOnly(ptr) != 0
         set(readonly) = uiEntrySetReadOnly(ptr, if (readonly) 1 else 0)
 
-    /** Function to be run when the user makes a change to the [TextField].
+    /** Function to be run when the user makes a change to the TextField.
      *  Only one function can be registered at a time. */
     fun action(block: TextField.() -> Unit) {
         action = block
