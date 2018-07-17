@@ -4,7 +4,7 @@
 
 `abstract class Disposable<T : CPointed>`
 
-Manages and owns all its native resources.
+Base class for all objects that have a holder reference to the native C resource(s).
 
 * Allocates one resource during construction,
     and may allocate some additional resources during operation.
@@ -16,7 +16,7 @@ Manages and owns all its native resources.
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Disposable(alloc: CPointer<`[`T`](index.md#T)`>?)`<br>Manages and owns all its native resources. |
+| [&lt;init&gt;](-init-.md) | `Disposable(alloc: CPointer<`[`T`](index.md#T)`>?)`<br>Base class for all objects that have a holder reference to the native C resource(s). |
 
 ### Properties
 

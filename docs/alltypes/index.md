@@ -19,7 +19,7 @@
 | [libui.ktx.Control](../libui.ktx/-control/index.md) | Base class for all GUI controls (widgets). |
 | [libui.ktx.DatePicker](../libui.ktx/-date-picker/index.md) | Wrapper class for [uiDateTimePicker](../libui/ui-date-time-picker.md) - a widget to edit date. |
 | [libui.ktx.DateTimePicker](../libui.ktx/-date-time-picker/index.md) | Wrapper class for [uiDateTimePicker](../libui/ui-date-time-picker.md) - a widget to edit date and time. |
-| [libui.ktx.Disposable](../libui.ktx/-disposable/index.md) | Manages and owns all its native resources. |
+| [libui.ktx.Disposable](../libui.ktx/-disposable/index.md) | Base class for all objects that have a holder reference to the native C resource(s). |
 | [libui.ktx.DrawArea](../libui.ktx/-draw-area/index.md) | Wrapper class for [uiArea](../libui/ui-area.md) - a canvas you can draw on. |
 | [libui.ktx.DrawContext](../libui.ktx/-draw-context.md) |  |
 | [libui.ktx.EditableCombobox](../libui.ktx/-editable-combobox/index.md) | Wrapper class for [uiEditableCombobox](../libui/ui-editable-combobox.md) - a drop down combo box that allow selection from list or free text entry. |

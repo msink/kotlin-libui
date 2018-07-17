@@ -21,7 +21,7 @@
 | [Control](-control/index.md) | `abstract class Control<T : CPointed> : `[`Disposable`](-disposable/index.md)`<`[`T`](-control/index.md#T)`>`<br>Base class for all GUI controls (widgets). |
 | [DatePicker](-date-picker/index.md) | `class DatePicker : `[`DateTimePicker`](-date-time-picker/index.md)<br>Wrapper class for [uiDateTimePicker](../libui/ui-date-time-picker.md) - a widget to edit date. |
 | [DateTimePicker](-date-time-picker/index.md) | `open class DateTimePicker : `[`Control`](-control/index.md)`<`[`uiDateTimePicker`](../libui/ui-date-time-picker.md)`>`<br>Wrapper class for [uiDateTimePicker](../libui/ui-date-time-picker.md) - a widget to edit date and time. |
-| [Disposable](-disposable/index.md) | `abstract class Disposable<T : CPointed>`<br>Manages and owns all its native resources. |
+| [Disposable](-disposable/index.md) | `abstract class Disposable<T : CPointed>`<br>Base class for all objects that have a holder reference to the native C resource(s). |
 | [DrawArea](-draw-area/index.md) | `open class DrawArea : `[`Control`](-control/index.md)`<`[`uiArea`](../libui/ui-area.md)`>`<br>Wrapper class for [uiArea](../libui/ui-area.md) - a canvas you can draw on. |
 | [EditableCombobox](-editable-combobox/index.md) | `class EditableCombobox : `[`Control`](-control/index.md)`<`[`uiEditableCombobox`](../libui/ui-editable-combobox.md)`>`<br>Wrapper class for [uiEditableCombobox](../libui/ui-editable-combobox.md) - a drop down combo box that allow selection from list or free text entry. |
 | [FamilyAttribute](-family-attribute/index.md) | `class FamilyAttribute : `[`Attribute`](-attribute/index.md)<br>Changes the font family of the text it is applied to. |

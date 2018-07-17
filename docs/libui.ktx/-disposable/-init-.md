@@ -4,7 +4,7 @@
 
 `Disposable(alloc: CPointer<`[`T`](index.md#T)`>?)`
 
-Manages and owns all its native resources.
+Base class for all objects that have a holder reference to the native C resource(s).
 
 * Allocates one resource during construction,
     and may allocate some additional resources during operation.
