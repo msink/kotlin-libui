@@ -8,7 +8,7 @@ import kotlin.reflect.KProperty1
 inline fun <T> Container.tableview(
     data: List<T>,
     init: Table<T>.() -> Unit = {}
-): TableView = add(TableView(table(data).apply(init)))
+): TableView = add(TableView(Table(data).apply(init)))
 
 /** Wrapper class for [uiTable] */
 class TableView(val table: Table<*>) : Control<uiTable>(
@@ -30,17 +30,11 @@ class TableView(val table: Table<*>) : Control<uiTable>(
 
 ///////////////////////////////////////////////////////////////////////////////
 
-fun <T> table(data: List<T>): Table<T> {
-    val handler = nativeHeap.alloc<ktTableHandler>()
-    return Table(data, uiNewTableModel(handler.ui.ptr), handler.ptr)
-}
-
 /** Wrapper class for [uiTableModel] */
-class Table<T> internal constructor(
+class Table<T>(
     val data: List<T>,
-    alloc: CPointer<uiTableModel>?,
-    val handler: CPointer<ktTableHandler>
-) : Disposable<uiTableModel>(alloc) {
+    internal val handler: CPointer<ktTableHandler> = nativeHeap.alloc<ktTableHandler>().ptr
+) : Disposable<uiTableModel>(uiNewTableModel(handler.pointed.ui.ptr)) {
     internal val ref = StableRef.create(this)
     internal val disposables = mutableListOf<Disposable<*>>()
     internal val controls = mutableListOf<TableControl>()

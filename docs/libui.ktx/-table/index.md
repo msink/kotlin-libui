@@ -12,12 +12,17 @@ Wrapper class for [uiTableModel](../../libui/ui-table-model.md)
 |---|---|
 | [TableColumn](-table-column/index.md) | `inner class TableColumn<T>` |
 
+### Constructors
+
+| Name | Summary |
+|---|---|
+| [&lt;init&gt;](-init-.md) | `Table(data: List<`[`T`](-table-column/index.md#T)`>, handler: CPointer<`[`ktTableHandler`](../../libui/kt-table-handler/index.md)`> = nativeHeap.alloc<ktTableHandler>().ptr)`<br>Wrapper class for [uiTableModel](../../libui/ui-table-model.md) |
+
 ### Properties
 
 | Name | Summary |
 |---|---|
 | [data](data.md) | `val data: List<`[`T`](-table-column/index.md#T)`>` |
-| [handler](handler.md) | `val handler: CPointer<`[`ktTableHandler`](../../libui/kt-table-handler/index.md)`>` |
 
 ### Inherited Properties
 

@@ -8,27 +8,19 @@ import platform.posix.*
  *  is DPI aware, and has several other useful features. */
 fun Container.drawarea(
     init: DrawArea.() -> Unit = {}
-): DrawArea {
-    val handler = nativeHeap.alloc<ktAreaHandler>()
-    val area = DrawArea(uiNewArea(handler.ui.ptr), handler.ptr)
-    return add(area.apply(init))
-}
+): DrawArea = add(DrawArea().apply(init))
 
 /** DSL builder for a canvas with horziontal and vertical scrollbars. */
 fun Container.scrollingarea(
     width: Int,
     height: Int,
     init: ScrollingArea.() -> Unit = {}
-): ScrollingArea {
-    val handler = nativeHeap.alloc<ktAreaHandler>()
-    val area = ScrollingArea(uiNewScrollingArea(handler.ui.ptr, width, height), handler.ptr)
-    return add(area.apply(init))
-}
+): ScrollingArea = add(ScrollingArea(width, height).apply(init))
 
 /** Wrapper class for [uiArea] - a canvas you can draw on. */
-open class DrawArea internal constructor(
-    alloc: CPointer<uiArea>?,
-    val handler: CPointer<ktAreaHandler>
+open class DrawArea(
+    internal val handler: CPointer<ktAreaHandler> = nativeHeap.alloc<ktAreaHandler>().ptr,
+    alloc: CPointer<uiArea>? = uiNewArea(handler.pointed.ui.ptr)
 ) : Control<uiArea>(alloc) {
     init {
         handler.pointed.ref = ref.asCPointer()
@@ -118,10 +110,12 @@ open class DrawArea internal constructor(
 }
 
 /** Wrapper class for [uiArea] - a canvas with horziontal and vertical scrollbars. */
-class ScrollingArea internal constructor(
-    alloc: CPointer<uiArea>?,
-    handler: CPointer<ktAreaHandler>
-) : DrawArea(alloc, handler) {
+class ScrollingArea(
+    width: Int,
+    height: Int,
+    handler: CPointer<ktAreaHandler> = nativeHeap.alloc<ktAreaHandler>().ptr,
+    alloc: CPointer<uiArea>? = uiNewScrollingArea(handler.pointed.ui.ptr, width, height)
+) : DrawArea(handler, alloc) {
 
     /** Sets the size of a ScrollingArea to the given size, in points. */
     fun setSize(width: Int, height: Int) =

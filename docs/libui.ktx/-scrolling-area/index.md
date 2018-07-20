@@ -6,11 +6,11 @@
 
 Wrapper class for [uiArea](../../libui/ui-area.md) - a canvas with horziontal and vertical scrollbars.
 
-### Inherited Properties
+### Constructors
 
 | Name | Summary |
 |---|---|
-| [handler](../-draw-area/handler.md) | `val handler: CPointer<`[`ktAreaHandler`](../../libui/kt-area-handler/index.md)`>` |
+| [&lt;init&gt;](-init-.md) | `ScrollingArea(width: Int, height: Int, handler: CPointer<`[`ktAreaHandler`](../../libui/kt-area-handler/index.md)`> = nativeHeap.alloc<ktAreaHandler>().ptr, alloc: CPointer<`[`uiArea`](../../libui/ui-area.md)`>? = uiNewScrollingArea(handler.pointed.ui.ptr, width, height))`<br>Wrapper class for [uiArea](../../libui/ui-area.md) - a canvas with horziontal and vertical scrollbars. |
 
 ### Functions
 
