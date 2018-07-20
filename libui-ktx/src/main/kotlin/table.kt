@@ -5,6 +5,7 @@ import kotlinx.cinterop.*
 import kotlin.reflect.KMutableProperty1
 import kotlin.reflect.KProperty1
 
+/** DSL builder to visualize data in a tabular form. */
 inline fun <T> Container.tableview(
     data: List<T>,
     init: Table<T>.() -> Unit = {}
@@ -27,8 +28,6 @@ class TableView(val table: Table<*>) : Control<uiTable>(
         super.free()
     }
 }
-
-///////////////////////////////////////////////////////////////////////////////
 
 /** Wrapper class for [uiTableModel] */
 class Table<T>(
