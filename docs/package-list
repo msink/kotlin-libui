@@ -3,3 +3,4 @@ $dokka.linkExtension:md
 
 libui
 libui.ktx
+libui.ktx.draw

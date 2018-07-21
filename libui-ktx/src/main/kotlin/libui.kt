@@ -1,7 +1,7 @@
 package libui.ktx
 
-import libui.*
 import kotlinx.cinterop.*
+import libui.*
 
 //void uiMain(void)
 //void uiMainSteps(void)

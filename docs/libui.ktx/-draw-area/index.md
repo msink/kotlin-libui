@@ -26,7 +26,7 @@ Wrapper class for [uiArea](../../libui/ui-area.md) - a canvas you can draw on.
 | Name | Summary |
 |---|---|
 | [dragBroken](drag-broken.md) | `fun dragBroken(block: `[`DrawArea`](./index.md)`.() -> Unit): Unit`<br>Funcion to be run to indicate that a drag should be ended. Only implemented on Windows. Only one function can be registered at a time. |
-| [draw](draw.md) | `fun draw(block: `[`DrawContext`](../-draw-context.md)`.(params: `[`uiAreaDrawParams`](../../libui/ui-area-draw-params/index.md)`) -> Unit): Unit`<br>Funcion to be run when the area was created or got resized with [uiAreaDrawParams](../../libui/ui-area-draw-params/index.md) as parameter. Only one function can be registered at a time. |
+| [draw](draw.md) | `fun draw(block: `[`uiDrawContext`](../../libui/ui-draw-context.md)`.(params: `[`uiAreaDrawParams`](../../libui/ui-area-draw-params/index.md)`) -> Unit): Unit`<br>Funcion to be run when the area was created or got resized with [uiAreaDrawParams](../../libui/ui-area-draw-params/index.md) as parameter. Only one function can be registered at a time. |
 | [keyEvent](key-event.md) | `fun keyEvent(block: `[`DrawArea`](./index.md)`.(event: `[`uiAreaKeyEvent`](../../libui/ui-area-key-event/index.md)`) -> Boolean): Unit`<br>Funcion to be run when a key was pressed. Return `true` to indicate that the key event was handled. (a menu item with that accelerator won't activate, no error sound on macOS). Event is an [uiAreaKeyEvent](../../libui/ui-area-key-event/index.md) Only one function can be registered at a time. |
 | [mouseCrossed](mouse-crossed.md) | `fun mouseCrossed(block: `[`DrawArea`](./index.md)`.(left: Boolean) -> Unit): Unit`<br>Funcion to be run when the mouse entered (`left == false`) or left the area. Only one function can be registered at a time. |
 | [mouseEvent](mouse-event.md) | `fun mouseEvent(block: `[`DrawArea`](./index.md)`.(event: `[`uiAreaMouseEvent`](../../libui/ui-area-mouse-event/index.md)`) -> Unit): Unit`<br>Funcion to be run when the mouse was moved or clicked over the area with [uiAreaMouseEvent](../../libui/ui-area-mouse-event/index.md) as parameter. Only one function can be registered at a time. |
@@ -50,9 +50,9 @@ Wrapper class for [uiArea](../../libui/ui-area.md) - a canvas you can draw on.
 
 | Name | Summary |
 |---|---|
-| [brush](../brush.md) | `fun `[`DrawArea`](./index.md)`.brush(): `[`Brush`](../-brush/index.md)<br>Creates a new [Brush](../-brush/index.md) with lifecycle delegated to [DrawArea](./index.md). |
-| [string](../string.md) | `fun `[`DrawArea`](./index.md)`.string(init: String): `[`AttributedString`](../-attributed-string/index.md)<br>Creates a new [AttributedString](../-attributed-string/index.md) from initial String. The string will be entirely unattributed. |
-| [stroke](../stroke.md) | `fun `[`DrawArea`](./index.md)`.stroke(block: `[`uiDrawStrokeParams`](../../libui/ui-draw-stroke-params/index.md)`.() -> Unit = {}): `[`Stroke`](../-stroke/index.md)<br>Creates a new [Stroke](../-stroke/index.md) with lifecycle delegated to [DrawArea](./index.md). |
+| [brush](../../libui.ktx.draw/brush.md) | `fun `[`DrawArea`](./index.md)`.brush(): `[`Brush`](../../libui.ktx.draw/-brush/index.md)<br>Creates a new [Brush](../../libui.ktx.draw/-brush/index.md) with lifecycle delegated to [DrawArea](./index.md). |
+| [string](../../libui.ktx.draw/string.md) | `fun `[`DrawArea`](./index.md)`.string(init: String): `[`AttributedString`](../../libui.ktx.draw/-attributed-string/index.md)<br>Creates a new [AttributedString](../../libui.ktx.draw/-attributed-string/index.md) from initial String. The string will be entirely unattributed. |
+| [stroke](../../libui.ktx.draw/stroke.md) | `fun `[`DrawArea`](./index.md)`.stroke(block: `[`uiDrawStrokeParams`](../../libui/ui-draw-stroke-params/index.md)`.() -> Unit = {}): `[`Stroke`](../../libui.ktx.draw/-stroke/index.md)<br>Creates a new [Stroke](../../libui.ktx.draw/-stroke/index.md) with lifecycle delegated to [DrawArea](./index.md). |
 
 ### Inheritors
 

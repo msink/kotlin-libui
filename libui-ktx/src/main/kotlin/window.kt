@@ -1,7 +1,8 @@
 package libui.ktx
 
-import libui.*
 import kotlinx.cinterop.*
+import libui.*
+import libui.ktx.draw.SizeInt
 
 /** Represents a top-level window.
  *  Contains one child control that occupies the entirety of the window. */

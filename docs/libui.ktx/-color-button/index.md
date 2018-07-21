@@ -16,7 +16,7 @@ Wrapper class for [uiColorButton](../../libui/ui-color-button.md) - a button tha
 
 | Name | Summary |
 |---|---|
-| [value](value.md) | `var value: `[`Color`](../-color/index.md)<br>Return or set the currently selected color |
+| [value](value.md) | `var value: `[`Color`](../../libui.ktx.draw/-color/index.md)<br>Return or set the currently selected color |
 
 ### Inherited Properties
 

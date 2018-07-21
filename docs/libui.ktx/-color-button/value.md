@@ -2,7 +2,7 @@
 
 # value
 
-`var value: `[`Color`](../-color/index.md)
+`var value: `[`Color`](../../libui.ktx.draw/-color/index.md)
 
 Return or set the currently selected color
 

@@ -18,7 +18,7 @@ Contains one child control that occupies the entirety of the window.
 | Name | Summary |
 |---|---|
 | [borderless](borderless.md) | `var borderless: Boolean`<br>Allow to specify that the window is a frameless one, without borders, title bar and OS window control widgets. |
-| [contentSize](content-size.md) | `var contentSize: `[`SizeInt`](../-size-int/index.md)<br>Size in pixel of the content area of the window. Window decoration size are excluded. This mean that if you set window size to 0,0 you still see title bar and OS window buttons. |
+| [contentSize](content-size.md) | `var contentSize: `[`SizeInt`](../../libui.ktx.draw/-size-int/index.md)<br>Size in pixel of the content area of the window. Window decoration size are excluded. This mean that if you set window size to 0,0 you still see title bar and OS window buttons. |
 | [fullscreen](fullscreen.md) | `var fullscreen: Boolean`<br>Whether the window should show in fullscreen or not. |
 | [margined](margined.md) | `var margined: Boolean`<br>Specify if the Window content should have a margin or not. |
 | [title](title.md) | `var title: String`<br>Set or return the text to show in window title bar. |

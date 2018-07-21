@@ -34,7 +34,7 @@ Wrapper class for [uiTableModel](../../libui/ui-table-model.md)
 
 | Name | Summary |
 |---|---|
-| [background](background.md) | `fun background(get: (row: Int) -> `[`Color`](../-color/index.md)`?): Unit` |
+| [background](background.md) | `fun background(get: (row: Int) -> `[`Color`](../../libui.ktx.draw/-color/index.md)`?): Unit` |
 | [column](column.md) | `fun column(name: String, init: `[`TableColumn`](-table-column/index.md)`<`[`T`](-table-column/index.md#T)`>.() -> Unit): Unit` |
 | [rowChanged](row-changed.md) | `fun rowChanged(index: Int): Unit` |
 | [rowDeleted](row-deleted.md) | `fun rowDeleted(oldIndex: Int): Unit` |
@@ -50,4 +50,4 @@ Wrapper class for [uiTableModel](../../libui/ui-table-model.md)
 
 | Name | Summary |
 |---|---|
-| [image](../image.md) | `fun `[`Table`](./index.md)`<*>.image(width: Int, height: Int, block: `[`Image`](../-image/index.md)`.() -> Unit = {}): `[`Image`](../-image/index.md) |
+| [image](../../libui.ktx.draw/image.md) | `fun `[`Table`](./index.md)`<*>.image(width: Int, height: Int, block: `[`Image`](../../libui.ktx.draw/-image/index.md)`.() -> Unit = {}): `[`Image`](../../libui.ktx.draw/-image/index.md) |

@@ -2,7 +2,7 @@
 
 # contentSize
 
-`var contentSize: `[`SizeInt`](../-size-int/index.md)
+`var contentSize: `[`SizeInt`](../../libui.ktx.draw/-size-int/index.md)
 
 Size in pixel of the content area of the window.
 Window decoration size are excluded. This mean that if you set window size to 0,0

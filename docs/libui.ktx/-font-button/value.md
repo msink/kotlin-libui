@@ -2,7 +2,7 @@
 
 # value
 
-`val value: `[`Font`](../-font/index.md)
+`val value: `[`Font`](../../libui.ktx.draw/-font/index.md)
 
 Returns the font currently selected in the FontButton.
 

@@ -1,5 +1,6 @@
 import libui.*
 import libui.ktx.*
+import libui.ktx.draw.*
 
 // histogram margins
 const val xoffLeft          = 20.0

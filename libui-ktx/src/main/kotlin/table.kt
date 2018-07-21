@@ -1,9 +1,10 @@
 package libui.ktx
 
-import libui.*
-import kotlinx.cinterop.*
 import kotlin.reflect.KMutableProperty1
 import kotlin.reflect.KProperty1
+import kotlinx.cinterop.*
+import libui.*
+import libui.ktx.draw.*
 
 /** DSL builder to visualize data in a tabular form. */
 inline fun <T> Container.tableview(

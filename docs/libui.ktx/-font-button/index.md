@@ -16,7 +16,7 @@ Wrapper class for [uiFontButton](../../libui/ui-font-button.md) - a button that 
 
 | Name | Summary |
 |---|---|
-| [value](value.md) | `val value: `[`Font`](../-font/index.md)<br>Returns the font currently selected in the FontButton. |
+| [value](value.md) | `val value: `[`Font`](../../libui.ktx.draw/-font/index.md)<br>Returns the font currently selected in the FontButton. |
 
 ### Inherited Properties
 
