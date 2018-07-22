@@ -18,6 +18,7 @@ fun DrawContext.fill(
     path.dispose()
 }
 
+/** Draw a path filled with a color. */
 fun DrawContext.fill(brush: Brush, block: Path.() -> Unit) =
     fill(uiDrawFillModeWinding, brush, block)
 
@@ -35,6 +36,7 @@ fun DrawContext.stroke(
     path.dispose()
 }
 
+/** Draw a path in the context. */
 fun DrawContext.stroke(brush: Brush, stroke: Stroke, block: Path.() -> Unit) =
     stroke(uiDrawFillModeWinding, brush, stroke, block)
 
