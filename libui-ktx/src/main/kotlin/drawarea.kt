@@ -3,6 +3,10 @@ package libui.ktx
 import kotlinx.cinterop.*
 import libui.*
 
+typealias DrawContext = uiDrawContext
+typealias AreaDrawParams = uiAreaDrawParams
+typealias AreaMouseEvent = uiAreaMouseEvent
+
 /** DSL builder for a canvas you can draw on. It also receives keyboard and mouse events,
  *  is DPI aware, and has several other useful features. */
 fun Container.drawarea(
@@ -32,12 +36,12 @@ open class DrawArea(
         super.free()
     }
 
-    /** Funcion to be run when the area was created or got resized with [uiAreaDrawParams] as parameter.
+    /** Funcion to be run when the area was created or got resized with [AreaDrawParams] as parameter.
      *  Only one function can be registered at a time. */
-    fun draw(block: uiDrawContext.(params: uiAreaDrawParams) -> Unit) {
+    fun draw(block: DrawContext.(params: AreaDrawParams) -> Unit) {
         draw = block
     }
-    internal var draw: (uiDrawContext.(params: uiAreaDrawParams) -> Unit)? = null
+    internal var draw: (DrawContext.(params: AreaDrawParams) -> Unit)? = null
     init {
         handler.pointed.ui.Draw = staticCFunction { handler, _, params ->
             with(handler!!.reinterpret<ktAreaHandler>().pointed.ref.to<DrawArea>()) {
@@ -46,12 +50,12 @@ open class DrawArea(
         }
     }
 
-    /** Funcion to be run when the mouse was moved or clicked over the area with [uiAreaMouseEvent] as parameter.
+    /** Funcion to be run when the mouse was moved or clicked over the area with [AreaMouseEvent] as parameter.
      *  Only one function can be registered at a time. */
-    fun mouseEvent(block: DrawArea.(event: uiAreaMouseEvent) -> Unit) {
+    fun mouseEvent(block: DrawArea.(event: AreaMouseEvent) -> Unit) {
         mouseEvent = block
     }
-    internal var mouseEvent: (DrawArea.(event: uiAreaMouseEvent) -> Unit)? = null
+    internal var mouseEvent: (DrawArea.(event: AreaMouseEvent) -> Unit)? = null
     init {
         handler.pointed.ui.MouseEvent = staticCFunction { handler, _, params ->
             with(handler!!.reinterpret<ktAreaHandler>().pointed.ref.to<DrawArea>()) {

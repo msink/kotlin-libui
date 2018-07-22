@@ -4,6 +4,8 @@
 
 | Name | Summary |
 |---|---|
+| [libui.ktx.AreaDrawParams](../libui.ktx/-area-draw-params.md) |  |
+| [libui.ktx.AreaMouseEvent](../libui.ktx/-area-mouse-event.md) |  |
 | [libui.ktx.draw.Attribute](../libui.ktx.draw/-attribute/index.md) | Stores information about an attribute in a [AttributedString](../libui.ktx.draw/-attributed-string/index.md). |
 | [libui.ktx.draw.AttributedString](../libui.ktx.draw/-attributed-string/index.md) | Represents a string of UTF-8 text that can be embellished with formatting attributes. |
 | [libui.ktx.draw.BackgroundAttribute](../libui.ktx.draw/-background-attribute/index.md) | Changes the background color of the text it is applied to. |
@@ -21,6 +23,7 @@
 | [libui.ktx.DateTimePicker](../libui.ktx/-date-time-picker/index.md) | Wrapper class for [uiDateTimePicker](../libui/ui-date-time-picker.md) - a widget to edit date and time. |
 | [libui.ktx.Disposable](../libui.ktx/-disposable/index.md) | Base class for all objects that have a holder reference to the native C resource(s). |
 | [libui.ktx.DrawArea](../libui.ktx/-draw-area/index.md) | Wrapper class for [uiArea](../libui/ui-area.md) - a canvas you can draw on. |
+| [libui.ktx.DrawContext](../libui.ktx/-draw-context.md) |  |
 | [libui.ktx.EditableCombobox](../libui.ktx/-editable-combobox/index.md) | Wrapper class for [uiEditableCombobox](../libui/ui-editable-combobox.md) - a drop down combo box that allow selection from list or free text entry. |
 | [libui.ktx.draw.FamilyAttribute](../libui.ktx.draw/-family-attribute/index.md) | Changes the font family of the text it is applied to. |
 | [libui.ktx.draw.FeaturesAttribute](../libui.ktx.draw/-features-attribute/index.md) | Creates a new Attribute that changes the font family of the text it is applied to. otf is copied you may free it. |
@@ -40,7 +43,7 @@
 | [libui.ktx.MenuItem](../libui.ktx/-menu-item.md) |  |
 | [libui.ktx.draw.OpenTypeFeatures](../libui.ktx.draw/-open-type-features/index.md) | Represents a set of OpenType feature tag-value pairs, for applying OpenType features to text. |
 | [libui.ktx.PasswordField](../libui.ktx/-password-field/index.md) | Wrapper class for [uiEntry](../libui/ui-entry.md) - a text entry widget that mask the input, useful to edit passwords or other sensible data. |
-| [libui.ktx.draw.Path](../libui.ktx.draw/-path/index.md) | Represent a path that could be drawed on a [uiDrawContext](../libui/ui-draw-context.md) |
+| [libui.ktx.draw.Path](../libui.ktx.draw/-path/index.md) | Represent a path that could be drawed on a [DrawContext](../libui.ktx/-draw-context.md) |
 | [libui.ktx.draw.Point](../libui.ktx.draw/-point/index.md) |  |
 | [libui.ktx.ProgressBar](../libui.ktx/-progress-bar/index.md) | Wrapper class for [uiProgressBar](../libui/ui-progress-bar.md) - a progress bar widget. |
 | [libui.ktx.RadioButtons](../libui.ktx/-radio-buttons/index.md) | Wrapper class for [uiRadioButtons](../libui/ui-radio-buttons.md) - a widget that represent a group of radio options. |
@@ -59,7 +62,7 @@
 | [libui.ktx.TableView](../libui.ktx/-table-view/index.md) | Wrapper class for [uiTable](../libui/ui-table.md) |
 | [libui.ktx.TextArea](../libui.ktx/-text-area/index.md) | Wrapper class for [uiMultilineEntry](../libui/ui-multiline-entry.md) - a multiline plain text editing widget |
 | [libui.ktx.TextField](../libui.ktx/-text-field/index.md) | Wrapper class for [uiEntry](../libui/ui-entry.md) - a simple single line text entry widget |
-| [libui.ktx.draw.TextLayout](../libui.ktx.draw/-text-layout/index.md) | Representation of a [AttributedString](../libui.ktx.draw/-attributed-string/index.md) that can be displayed in a [uiDrawContext](../libui/ui-draw-context.md). |
+| [libui.ktx.draw.TextLayout](../libui.ktx.draw/-text-layout/index.md) | Representation of a [AttributedString](../libui.ktx.draw/-attributed-string/index.md) that can be displayed in a [DrawContext](../libui.ktx/-draw-context.md). |
 | [libui.ktx.TimePicker](../libui.ktx/-time-picker/index.md) | Wrapper class for [uiDateTimePicker](../libui/ui-date-time-picker.md) - a widget to edit time. |
 | [libui.ktx.draw.UnderlineAttribute](../libui.ktx.draw/-underline-attribute/index.md) | Changes the type of underline on the text it is applied to. |
 | [libui.ktx.draw.UnderlineColorAttribute](../libui.ktx.draw/-underline-color-attribute/index.md) | Changes the color of the underline on the text it is applied to. |

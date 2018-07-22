@@ -47,6 +47,9 @@
 
 | Name | Summary |
 |---|---|
+| [AreaDrawParams](-area-draw-params.md) | `typealias AreaDrawParams = `[`uiAreaDrawParams`](../libui/ui-area-draw-params/index.md) |
+| [AreaMouseEvent](-area-mouse-event.md) | `typealias AreaMouseEvent = `[`uiAreaMouseEvent`](../libui/ui-area-mouse-event/index.md) |
+| [DrawContext](-draw-context.md) | `typealias DrawContext = `[`uiDrawContext`](../libui/ui-draw-context.md) |
 | [Menu](-menu.md) | `typealias Menu = CPointer<`[`uiMenu`](../libui/ui-menu.md)`>` |
 | [MenuItem](-menu-item.md) | `typealias MenuItem = CPointer<`[`uiMenuItem`](../libui/ui-menu-item.md)`>` |
 

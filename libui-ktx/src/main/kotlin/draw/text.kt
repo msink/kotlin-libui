@@ -5,7 +5,7 @@ import libui.ktx.*
 import kotlinx.cinterop.*
 
 /** draws formatted text with the top-left point at (`x`, `y`). */
-fun uiDrawContext.text(
+fun DrawContext.text(
     string: AttributedString,
     defaultFont: Font,
     width: Double,
@@ -18,7 +18,7 @@ fun uiDrawContext.text(
     layout.dispose()
 }
 
-/** Representation of a [AttributedString] that can be displayed in a [uiDrawContext]. */
+/** Representation of a [AttributedString] that can be displayed in a [DrawContext]. */
 class TextLayout(
     string: AttributedString,
     defaultFont: Font,

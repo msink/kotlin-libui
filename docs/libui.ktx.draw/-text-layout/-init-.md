@@ -4,5 +4,5 @@
 
 `TextLayout(string: `[`AttributedString`](../-attributed-string/index.md)`, defaultFont: `[`Font`](../-font/index.md)`, width: Double, align: `[`uiDrawTextAlign`](../../libui/ui-draw-text-align.md)`)`
 
-Representation of a [AttributedString](../-attributed-string/index.md) that can be displayed in a [uiDrawContext](../../libui/ui-draw-context.md).
+Representation of a [AttributedString](../-attributed-string/index.md) that can be displayed in a [DrawContext](../../libui.ktx/-draw-context.md).
 

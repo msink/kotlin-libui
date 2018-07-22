@@ -4,13 +4,13 @@
 
 `class Path : `[`Disposable`](../../libui.ktx/-disposable/index.md)`<`[`uiDrawPath`](../../libui/ui-draw-path.md)`>`
 
-Represent a path that could be drawed on a [uiDrawContext](../../libui/ui-draw-context.md)
+Represent a path that could be drawed on a [DrawContext](../../libui.ktx/-draw-context.md)
 
 ### Constructors
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Path(mode: `[`uiDrawFillMode`](../../libui/ui-draw-fill-mode.md)`)`<br>Represent a path that could be drawed on a [uiDrawContext](../../libui/ui-draw-context.md) |
+| [&lt;init&gt;](-init-.md) | `Path(mode: `[`uiDrawFillMode`](../../libui/ui-draw-fill-mode.md)`)`<br>Represent a path that could be drawed on a [DrawContext](../../libui.ktx/-draw-context.md) |
 
 ### Inherited Properties
 

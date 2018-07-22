@@ -5,6 +5,56 @@ import libui.ktx.*
 import kotlinx.cinterop.*
 import platform.posix.*
 
+/** Draw a path filled with a color. */
+fun DrawContext.fill(
+    mode: uiDrawFillMode,
+    brush: Brush,
+    block: Path.() -> Unit
+) {
+    val path = Path(mode)
+    path.block()
+    uiDrawPathEnd(path.ptr)
+    uiDrawFill(ptr, path.ptr, brush.ptr)
+    path.dispose()
+}
+
+fun DrawContext.fill(brush: Brush, block: Path.() -> Unit) =
+    fill(uiDrawFillModeWinding, brush, block)
+
+/** Draw a path in the context. */
+fun DrawContext.stroke(
+    mode: uiDrawFillMode,
+    brush: Brush,
+    stroke: Stroke,
+    block: Path.() -> Unit
+) {
+    val path = Path(mode)
+    path.block()
+    uiDrawPathEnd(path.ptr)
+    uiDrawStroke(ptr, path.ptr, brush.ptr, stroke.ptr)
+    path.dispose()
+}
+
+fun DrawContext.stroke(brush: Brush, stroke: Stroke, block: Path.() -> Unit) =
+    stroke(uiDrawFillModeWinding, brush, stroke, block)
+
+/** Apply a different transform matrix to the context. */
+fun DrawContext.transform(block: Matrix.() -> Unit) {
+    val matrix = Matrix()
+    uiDrawMatrixSetIdentity(matrix.ptr)
+    matrix.block()
+    uiDrawTransform(ptr, matrix.ptr)
+    matrix.dispose()
+}
+
+//TODO fun DrawContext.clip(path: Path) = uiDrawClip(this, path)
+
+//TODO fun DrawContext.save() = uiDrawSave(this)
+
+//TODO fun DrawContext.restore() = uiDrawRestore(this)
+
+///////////////////////////////////////////////////////////////////////////////
+
 /** Creates a new [Brush] with lifecycle delegated to [DrawArea]. */
 fun DrawArea.brush(): Brush = Brush().also { disposables.add(it) }
 
@@ -114,7 +164,7 @@ class Stroke : Disposable<uiDrawStrokeParams>(
 
 ///////////////////////////////////////////////////////////////////////////////
 
-/** Represent a path that could be drawed on a [uiDrawContext] */
+/** Represent a path that could be drawed on a [DrawContext] */
 class Path(mode: uiDrawFillMode) : Disposable<uiDrawPath>(
     alloc = uiDrawNewPath(mode)) {
     override fun free() = uiDrawFreePath(ptr)
@@ -205,53 +255,3 @@ class Matrix : Disposable<uiDrawMatrix>(
             Size(width.value, height.value)
         }
 }
-
-///////////////////////////////////////////////////////////////////////////////
-
-/** Draw a path filled with a color. */
-fun uiDrawContext.fill(
-    mode: uiDrawFillMode,
-    brush: Brush,
-    block: Path.() -> Unit
-) {
-    val path = Path(mode)
-    path.block()
-    uiDrawPathEnd(path.ptr)
-    uiDrawFill(ptr, path.ptr, brush.ptr)
-    path.dispose()
-}
-
-fun uiDrawContext.fill(brush: Brush, block: Path.() -> Unit) =
-    fill(uiDrawFillModeWinding, brush, block)
-
-/** Draw a path in the context. */
-fun uiDrawContext.stroke(
-    mode: uiDrawFillMode,
-    brush: Brush,
-    stroke: Stroke,
-    block: Path.() -> Unit
-) {
-    val path = Path(mode)
-    path.block()
-    uiDrawPathEnd(path.ptr)
-    uiDrawStroke(ptr, path.ptr, brush.ptr, stroke.ptr)
-    path.dispose()
-}
-
-fun uiDrawContext.stroke(brush: Brush, stroke: Stroke, block: Path.() -> Unit) =
-    stroke(uiDrawFillModeWinding, brush, stroke, block)
-
-/** Apply a different transform matrix to the context. */
-fun uiDrawContext.transform(block: Matrix.() -> Unit) {
-    val matrix = Matrix()
-    uiDrawMatrixSetIdentity(matrix.ptr)
-    matrix.block()
-    uiDrawTransform(ptr, matrix.ptr)
-    matrix.dispose()
-}
-
-//TODO fun DrawContext.clip(path: Path) = uiDrawClip(this, path)
-
-//TODO fun DrawContext.save() = uiDrawSave(this)
-
-//TODO fun DrawContext.restore() = uiDrawRestore(this)

@@ -2,8 +2,8 @@
 
 # mouseEvent
 
-`fun mouseEvent(block: `[`DrawArea`](index.md)`.(event: `[`uiAreaMouseEvent`](../../libui/ui-area-mouse-event/index.md)`) -> Unit): Unit`
+`fun mouseEvent(block: `[`DrawArea`](index.md)`.(`[`AreaMouseEvent`](../-area-mouse-event.md)`) -> Unit): Unit`
 
-Funcion to be run when the mouse was moved or clicked over the area with [uiAreaMouseEvent](../../libui/ui-area-mouse-event/index.md) as parameter.
+Funcion to be run when the mouse was moved or clicked over the area with [AreaMouseEvent](../-area-mouse-event.md) as parameter.
 Only one function can be registered at a time.
 
