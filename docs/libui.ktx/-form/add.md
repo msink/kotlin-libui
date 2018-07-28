@@ -2,7 +2,9 @@
 
 # add
 
-`fun add(label: String, widget: `[`Control`](../-control/index.md)`<*>, stretchy: Boolean = false): Unit`
+`fun <T : `[`Control`](../-control/index.md)`<*>> add(widget: `[`T`](add.md#T)`): `[`T`](add.md#T)
+
+Overrides [Container.add](../-container/add.md)
 
 Adds the given widget to the end of the form.
 

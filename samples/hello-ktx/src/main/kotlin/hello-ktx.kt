@@ -17,6 +17,9 @@ fun main(args: Array<String>) = appWindow(
                     |""".trimMargin())
             }
         }
-        scroll = stretchy.textarea(readonly = true)
+        scroll = textarea {
+            readonly = true
+            stretchy = true
+        }
     }
 }

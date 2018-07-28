@@ -17,6 +17,7 @@ Wrapper class for [uiBox](../../libui/ui-box.md) - a container that stack its ch
 | Name | Summary |
 |---|---|
 | [padded](../-box/padded.md) | `var padded: Boolean`<br>If `true`, the container insert some space between children. |
+| [stretchy](../-box/stretchy.md) | `var stretchy: Boolean`<br>Next added child should expand to use all available size. |
 
 ### Inherited Functions
 
@@ -30,7 +31,6 @@ Wrapper class for [uiBox](../../libui/ui-box.md) - a container that stack its ch
 | Name | Summary |
 |---|---|
 | [hbox](../hbox.md) | `val `[`Container`](../-container/index.md)`.hbox: `[`HBox`](../-h-box/index.md)<br>DSL builder for a container that stack its children horizontally. |
-| [stretchy](../stretchy.md) | `val `[`Box`](../-box/index.md)`.stretchy: `[`Stretchy`](../-box/-stretchy/index.md) |
 | [vbox](../vbox.md) | `val `[`Container`](../-container/index.md)`.vbox: `[`VBox`](./index.md)<br>DSL builder for a container that stack its children vertically. |
 
 ### Extension Functions
@@ -48,7 +48,7 @@ Wrapper class for [uiBox](../../libui/ui-box.md) - a container that stack its ch
 | [fontbutton](../fontbutton.md) | `fun `[`Container`](../-container/index.md)`.fontbutton(init: `[`FontButton`](../-font-button/index.md)`.() -> Unit = {}): `[`FontButton`](../-font-button/index.md)<br>DSL builder for a button that allows users to choose a font when they click on it. |
 | [form](../form.md) | `fun `[`Container`](../-container/index.md)`.form(padded: Boolean = true, init: `[`Form`](../-form/index.md)`.() -> Unit = {}): `[`Form`](../-form/index.md)<br>DSL builder for a container that organize children as labeled fields. |
 | [gridpane](../gridpane.md) | `fun `[`Container`](../-container/index.md)`.gridpane(padded: Boolean = true, init: `[`GridPane`](../-grid-pane/index.md)`.() -> Unit = {}): `[`GridPane`](../-grid-pane/index.md)<br>DSL builder for a powerful container that allow to specify size and position of each children. |
-| [group](../group.md) | `fun `[`Container`](../-container/index.md)`.group(title: String, margined: Boolean = true): `[`Group`](../-group/index.md)<br>DSL builder for a container for a single widget that provide a caption and visually group it's children. |
+| [group](../group.md) | `fun `[`Container`](../-container/index.md)`.group(title: String, margined: Boolean = true, init: `[`Group`](../-group/index.md)`.() -> Unit = {}): `[`Group`](../-group/index.md)<br>DSL builder for a container for a single widget that provide a caption and visually group it's children. |
 | [hbox](../hbox.md) | `fun `[`Container`](../-container/index.md)`.hbox(padded: Boolean = true, init: `[`HBox`](../-h-box/index.md)`.() -> Unit = {}): `[`HBox`](../-h-box/index.md)<br>DSL builder for a container that stack its children horizontally. |
 | [label](../label.md) | `fun `[`Container`](../-container/index.md)`.label(text: String, init: `[`Label`](../-label/index.md)`.() -> Unit = {}): `[`Label`](../-label/index.md)<br>DSL builder for a static text label. |
 | [passwordfield](../passwordfield.md) | `fun `[`Container`](../-container/index.md)`.passwordfield(readonly: Boolean = false, init: `[`PasswordField`](../-password-field/index.md)`.() -> Unit = {}): `[`PasswordField`](../-password-field/index.md)<br>DSL builder for a text entry widget that mask the input, useful to edit passwords or other sensible data. |
@@ -59,10 +59,9 @@ Wrapper class for [uiBox](../../libui/ui-box.md) - a container that stack its ch
 | [separator](../separator.md) | `fun `[`VBox`](./index.md)`.separator(init: `[`HorizontalSeparator`](../-horizontal-separator/index.md)`.() -> Unit = {}): `[`HorizontalSeparator`](../-horizontal-separator/index.md)<br>DSL builder for an horizontal line to visually separate widgets. |
 | [slider](../slider.md) | `fun `[`Container`](../-container/index.md)`.slider(min: Int, max: Int, init: `[`Slider`](../-slider/index.md)`.() -> Unit = {}): `[`Slider`](../-slider/index.md)<br>DSL builder for an horizontal slide to set numerical values. |
 | [spinbox](../spinbox.md) | `fun `[`Container`](../-container/index.md)`.spinbox(min: Int, max: Int, init: `[`Spinbox`](../-spinbox/index.md)`.() -> Unit = {}): `[`Spinbox`](../-spinbox/index.md)<br>DSL builder for an entry widget for numerical values. |
-| [stretchy](../stretchy.md) | `fun `[`Box`](../-box/index.md)`.stretchy(init: `[`Stretchy`](../-box/-stretchy/index.md)`.() -> Unit = {}): `[`Stretchy`](../-box/-stretchy/index.md) |
 | [tableview](../tableview.md) | `fun <T> `[`Container`](../-container/index.md)`.tableview(data: List<`[`T`](../tableview.md#T)`>, init: `[`Table`](../-table/index.md)`<`[`T`](../tableview.md#T)`>.() -> Unit = {}): `[`TableView`](../-table-view/index.md)<br>DSL builder to visualize data in a tabular form. |
 | [tabpane](../tabpane.md) | `fun `[`Container`](../-container/index.md)`.tabpane(init: `[`TabPane`](../-tab-pane/index.md)`.() -> Unit = {}): `[`TabPane`](../-tab-pane/index.md)<br>DSL builder for a container that show each children in a separate tab. |
-| [textarea](../textarea.md) | `fun `[`Container`](../-container/index.md)`.textarea(wrap: Boolean = true, readonly: Boolean = false, init: `[`TextArea`](../-text-area/index.md)`.() -> Unit = {}): `[`TextArea`](../-text-area/index.md)<br>DSL builder for a multiline plain text editing widget. |
+| [textarea](../textarea.md) | `fun `[`Container`](../-container/index.md)`.textarea(wrap: Boolean = true, init: `[`TextArea`](../-text-area/index.md)`.() -> Unit = {}): `[`TextArea`](../-text-area/index.md)<br>DSL builder for a multiline plain text editing widget. |
 | [textfield](../textfield.md) | `fun `[`Container`](../-container/index.md)`.textfield(readonly: Boolean = false, init: `[`TextField`](../-text-field/index.md)`.() -> Unit = {}): `[`TextField`](../-text-field/index.md)<br>DSL builder for a simple single line text entry widget. |
 | [timepicker](../timepicker.md) | `fun `[`Container`](../-container/index.md)`.timepicker(init: `[`TimePicker`](../-time-picker/index.md)`.() -> Unit = {}): `[`TimePicker`](../-time-picker/index.md)<br>DSL builder for a widget to edit time. |
 | [vbox](../vbox.md) | `fun `[`Container`](../-container/index.md)`.vbox(padded: Boolean = true, init: `[`VBox`](./index.md)`.() -> Unit = {}): `[`VBox`](./index.md)<br>DSL builder for a container that stack its children vertically. |

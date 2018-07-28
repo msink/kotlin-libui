@@ -15,7 +15,10 @@ fun main(args: Array<String>) = appWindow(
                 scroll.append("Saying something\n")
             }
         }
-        scroll = stretchy.textarea(readonly = true)
+        scroll = textarea {
+            readonly = true
+            stretchy = true
+        }
         onTimer(1000) {
             memScoped {
                 val now = alloc<time_tVar>().apply { value = time(null) }

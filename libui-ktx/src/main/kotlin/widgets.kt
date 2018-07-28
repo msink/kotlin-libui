@@ -99,10 +99,8 @@ class SearchField : TextField(uiNewSearchEntry())
  *  @param[readonly] specifies that a text should be read-only */
 inline fun Container.textarea(
     wrap: Boolean = true,
-    readonly: Boolean = false,
     init: TextArea.() -> Unit = {}
 ): TextArea = add(TextArea(wrap)
-        .apply { if (readonly) this.readonly = readonly }
         .apply(init))
 
 /** Wrapper class for [uiMultilineEntry] - a multiline plain text editing widget */

@@ -69,7 +69,8 @@ fun main(args: Array<String>) = appWindow(
                 action { area.redraw() }
             }
             form {
-                align = field("Alignment").combobox {
+                align = combobox {
+                    label = "Alignment"
                     item("Left")
                     item("Center")
                     item("Right")
@@ -78,11 +79,12 @@ fun main(args: Array<String>) = appWindow(
                 }
             }
         }
-        area = stretchy.drawarea {
+        area = drawarea {
             val str = makeAttributedString()
             draw {
                 text(str, font.value, it.AreaWidth, align.value, 0.0, 0.0)
             }
+            stretchy = true
         }
     }
 }

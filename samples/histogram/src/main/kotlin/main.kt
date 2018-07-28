@@ -58,7 +58,9 @@ fun main(args: Array<String>) = appWindow(
             }
         }
 
-        histogram = stretchy.drawarea {
+        histogram = drawarea {
+            stretchy = true
+
             val brush = brush()
 
             // make a stroke for both the axes and the histogram line

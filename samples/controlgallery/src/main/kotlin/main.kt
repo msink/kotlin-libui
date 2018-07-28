@@ -7,17 +7,29 @@ fun TabPane.Page.basicControls() = vbox {
     }
     label("This is a label. Right now, labels can only span one line.")
     separator()
-    stretchy.group("Entries").form {
-        field("Text Field").textfield()
-        field("Password Field").passwordfield()
-        field("Search Field").searchfield()
-        stretchy.field("Multiline Field").textarea()
-        stretchy.field("Multiline Field No Wrap").textarea(wrap = false)
+    group("Entries") { stretchy = true }.form {
+        textfield {
+            label = "Text Field"
+        }
+        passwordfield {
+            label = "Password Field"
+        }
+        searchfield {
+            label = "Search Field"
+        }
+        textarea {
+            label = "Multiline Field"
+            stretchy = true
+        }
+        textarea(wrap = false) {
+            label = "Multiline Field No Wrap"
+            stretchy = true
+        }
     }
 }
 
 fun TabPane.Page.numbers() = hbox {
-    stretchy.group("Numbers").vbox {
+    group("Numbers") { stretchy = true }.vbox {
         val spinbox = spinbox(min = 0, max = 100)
         val slider = slider(min = 0, max = 100)
         val pbar = progressbar()
@@ -31,7 +43,7 @@ fun TabPane.Page.numbers() = hbox {
         }
         progressbar { value = -1 }
     }
-    stretchy.group("Lists").vbox {
+    group("Lists") { stretchy = true }.vbox {
         combobox {
             item("Combobox Item 1")
             item("Combobox Item 2")
@@ -59,7 +71,7 @@ fun TabPane.Page.dataChoosers() = hbox {
         colorbutton()
     }
     separator()
-    stretchy.vbox.gridpane {
+    vbox { stretchy = true }.gridpane {
         lateinit var entry1: TextField
         lateinit var entry2: TextField
 

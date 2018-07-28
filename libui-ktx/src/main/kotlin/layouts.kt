@@ -19,8 +19,11 @@ import libui.*
  *  a caption and visually group it's children. */
 fun Container.group(
     title: String,
-    margined: Boolean = true
-): Group = add(Group(title).apply { if (margined) this.margined = margined })
+    margined: Boolean = true,
+    init: Group.() -> Unit = {}
+): Group = add(Group(title)
+    .apply { if (margined) this.margined = margined }
+    .apply(init))
 
 /** Wrapper class for [uiGroup] - a container for a single widget that provide
  *  a caption and visually group it's children. */
@@ -50,20 +53,16 @@ inline fun Container.hbox(
     padded: Boolean = true,
     init: HBox.() -> Unit = {}
 ): HBox = add(HBox()
-        .apply { if (padded) this.padded = padded }
-        .apply(init))
+    .apply { if (padded) this.padded = padded }
+    .apply(init))
 
 /** DSL builder for a container that stack its children vertically. */
 inline fun Container.vbox(
     padded: Boolean = true,
     init: VBox.() -> Unit = {}
 ): VBox = add(VBox()
-        .apply { if (padded) this.padded = padded }
-        .apply(init))
-
-inline fun Box.stretchy(
-    init: Box.Stretchy.() -> Unit = {}
-): Box.Stretchy = Stretchy().apply(init)
+    .apply { if (padded) this.padded = padded }
+    .apply(init))
 
 /** DSL builder for a container that stack its children horizontally. */
 inline val Container.hbox: HBox get() = hbox()
@@ -71,22 +70,15 @@ inline val Container.hbox: HBox get() = hbox()
 /** DSL builder for a container that stack its children vertically. */
 inline val Container.vbox: VBox get() = vbox()
 
-inline val Box.stretchy: Box.Stretchy get() = stretchy()
-
 /** Wrapper class for [uiBox] - a container that stack its children horizontally or vertically. */
 abstract class Box(alloc: CPointer<uiBox>?) : Control<uiBox>(alloc), Container {
-
-    /** adapter for DSL builders */
-    inner class Stretchy : Container {
-        override fun <T : Control<*>> add(widget: T): T {
-            uiBoxAppend(ptr, widget.ctl, 1)
-            return widget
-        }
-    }
+    /** Next added child should expand to use all available size. */
+    var stretchy = false
 
     /** Adds the given widget to the end of the Box. */
     override fun <T : Control<*>> add(widget: T): T {
-        uiBoxAppend(ptr, widget.ctl, 0)
+        uiBoxAppend(ptr, widget.ctl, if (stretchy) 1 else 0)
+        stretchy = false
         return widget
     }
 
@@ -112,44 +104,29 @@ inline fun Container.form(
     padded: Boolean = true,
     init: Form.() -> Unit = {}
 ): Form = add(Form()
-        .apply { if (padded) this.padded = padded }
-        .apply(init))
-
-inline val Form.stretchy: Form.Stretchy get() = Stretchy()
-
-fun Form.field(label: String) = Field(label)
-
-fun Form.Stretchy.field(label: String) = Field(label)
+    .apply { if (padded) this.padded = padded }
+    .apply(init))
 
 /** Wrapper class for [uiForm] - a container that organize children as labeled fields. */
-class Form : Control<uiForm>(uiNewForm()) {
-    /** adapter for DSL builders */
-    inner class Field(val label: String) : Container {
-        val form: Form get() = this@Form
-        override fun <T : Control<*>> add(widget: T): T {
-            form.add(label, widget, false)
-            return widget
-        }
-    }
-    /** adapter for DSL builders */
-    inner class Stretchy {
-        val form: Form get() = this@Form
-        inner class Field(val label: String) : Container {
-            override fun <T : Control<*>> add(widget: T): T {
-                form.add(label, widget, true)
-                return widget
-            }
-        }
+class Form : Control<uiForm>(uiNewForm()), Container  {
+    /** Label for next added child */
+    var label = ""
+
+    /** Next added child should expand to use all available size. */
+    var stretchy = false
+
+    /** Adds the given widget to the end of the form. */
+    override fun <T : Control<*>> add(widget: T): T {
+        uiFormAppend(ptr, label, widget.ctl, if (stretchy) 1 else 0)
+        label = ""
+        stretchy = false
+        return widget
     }
 
     /** If true, the container insert some space between children. */
     var padded: Boolean
         get() = uiFormPadded(ptr) != 0
         set(padded) = uiFormSetPadded(ptr, if (padded) 1 else 0)
-
-    /** Adds the given widget to the end of the form. */
-    fun add(label: String, widget: Control<*>, stretchy: Boolean = false) =
-        uiFormAppend(ptr, label, widget.ctl, if (stretchy) 1 else 0)
 
     /** deletes the nth control of the form. */
     fun delete(index: Int) = uiFormDelete(ptr, index)
@@ -167,8 +144,8 @@ inline fun TabPane.page(
     margined: Boolean = true,
     init: TabPane.Page.() -> Unit = {}
 ): TabPane.Page = Page(label)
-        .apply(init)
-        .apply { if (margined) this.margined = true }
+    .apply(init)
+    .apply { if (margined) this.margined = true }
 
 /** Wrapper class for [uiTab] - a container that show each children in a separate tab. */
 class TabPane : Control<uiTab>(uiNewTab()) {
@@ -213,8 +190,8 @@ inline fun Container.gridpane(
     padded: Boolean = true,
     init: GridPane.() -> Unit = {}
 ): GridPane = add(GridPane()
-        .apply { if (padded) this.padded = padded }
-        .apply(init))
+    .apply { if (padded) this.padded = padded }
+    .apply(init))
 
 fun GridPane.cell(
     x: Int = 0,
