@@ -71,7 +71,8 @@ fun TabPane.Page.dataChoosers() = hbox {
         colorbutton()
     }
     separator()
-    vbox { stretchy = true }.gridpane {
+    stretchy = true
+    vbox.gridpane {
         lateinit var open: TextField
         lateinit var save: TextField
 
@@ -82,6 +83,7 @@ fun TabPane.Page.dataChoosers() = hbox {
         }
         open = textfield {
             readonly = true
+            hexpand = true
         }
 
         row()
@@ -97,6 +99,9 @@ fun TabPane.Page.dataChoosers() = hbox {
 
         row()
         xspan = 2
+        halign = libui.uiAlignCenter
+        valign = libui.uiAlignStart
+
         gridpane {
             button("Message Box") {
                 action {
@@ -104,7 +109,6 @@ fun TabPane.Page.dataChoosers() = hbox {
                         details = "More detailed information can be shown here.")
                 }
             }
-            row()
             button("Error Box") {
                 action {
                     MsgBoxError(text = "This message box describes an error.",
