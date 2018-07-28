@@ -11,34 +11,60 @@ fun main(args: Array<String>) = appWindow(
         lateinit var labelDate: Label
         lateinit var labelTime: Label
 
-        val pickerBoth = cell(y = 0, xspan = 2, hexpand = true).datetimepicker {
+        val pickerBoth = datetimepicker {
+            xspan = 2
+            hexpand = true
             action {
                 labelBoth.text = textValue()
             }
         }
-        val pickerDate = cell(y = 1, hexpand = true).datepicker {
+
+        row()
+        val pickerDate = datepicker {
+            hexpand = true
             action {
                 labelDate.text = textValue()
             }
         }
-        val pickerTime = cell(y = 1, x = 1, hexpand = true).timepicker {
+        val pickerTime = timepicker {
+            hexpand = true
             action {
                 labelTime.text = textValue()
             }
         }
 
-        labelBoth = cell(y = 2, xspan = 2, hexpand = true, halign = uiAlignCenter).label("")
-        labelDate = cell(y = 3, x = 0, hexpand = true, halign = uiAlignCenter).label("")
-        labelTime = cell(y = 3, x = 1, hexpand = true, halign = uiAlignCenter).label("")
+        row()
+        labelBoth = label("") {
+            xspan = 2
+            hexpand = true
+            halign = uiAlignCenter
+        }
 
-        cell(y = 4, hexpand = true, vexpand = true, valign = uiAlignEnd).button("Now") {
+        row()
+        labelDate = label("") {
+            hexpand = true
+            halign = uiAlignCenter
+        }
+        labelTime = label("") {
+            hexpand = true
+            halign = uiAlignCenter
+        }
+
+        row()
+        button("Now") {
+            hexpand = true
+            vexpand = true
+            valign = uiAlignEnd
             action {
                 val now = platform.posix.time(null)
                 pickerDate.value = now
                 pickerTime.value = now
             }
         }
-        cell(y = 4, x = 1, hexpand = true, vexpand = true, valign = uiAlignEnd).button("Unix epoch") {
+        button("Unix epoch") {
+            hexpand = true
+            vexpand = true
+            valign = uiAlignEnd
             action {
                 pickerBoth.value = 0
             }

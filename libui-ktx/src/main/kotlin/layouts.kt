@@ -193,97 +193,79 @@ inline fun Container.gridpane(
     .apply { if (padded) this.padded = padded }
     .apply(init))
 
-fun GridPane.cell(
-    x: Int = 0,
-    y: Int = 0,
-    xspan: Int = 1,
-    yspan: Int = 1,
-    hexpand: Boolean = false,
-    halign: uiAlign = uiAlignFill,
-    vexpand: Boolean = false,
-    valign: uiAlign = uiAlignFill
-) = Cell(x, y, xspan, yspan, hexpand, halign, vexpand, valign)
-
 /** Wrapper class for [uiGrid] - a powerful container that allow to specify
  *  size and position of each children. */
-class GridPane : Control<uiGrid>(uiNewGrid()) {
+class GridPane : Control<uiGrid>(uiNewGrid()), Container {
 
-    /** adapter for DSL builders */
-    inner class Cell(
-        private val x: Int = 0,
-        private val y: Int = 0,
-        private val xspan: Int = 1,
-        private val yspan: Int = 1,
-        private val hexpand: Boolean = false,
-        private val halign: uiAlign = uiAlignFill,
-        private val vexpand: Boolean = false,
-        private val valign: uiAlign = uiAlignFill
-    ) : Container {
-        private val pane: GridPane get() = this@GridPane
-        override fun <T : Control<*>> add(widget: T): T {
-            pane.add(widget, x, y, xspan, yspan, hexpand, halign, vexpand, valign)
-            return widget
-        }
-    }
+    /** The x-coordinate of the Control's location. */
+    var x = 0
+
+    /** The y-coordinate of the Control's location. */
+    var y = 0
+
+    /** The width of the Control. */
+    var xspan = 1
+
+    /** The height of the Control. */
+    var yspan = 1
+
+    /** The horizontal expand of Control. */
+    var hexpand = false
+
+    /** The horizontal alignment of Control. */
+    var halign: uiAlign = uiAlignFill
+
+    /** The vertical expand of Control. */
+    var vexpand = false
+
+    /** The vertical alignment of Control. */
+    var valign: uiAlign = uiAlignFill
 
     /** If true, the container insert some space between children. */
     var padded: Boolean
         get() = uiGridPadded(ptr) != 0
         set(padded) = uiGridSetPadded(ptr, if (padded) 1 else 0)
 
-    /** Adds the given Control to the end of the GridPane.
-     *
-     *  @param[widget] The Control to be added.
-     *  @param[x] The x-coordinate of the Control's location.
-     *  @param[y] The y-coordinate of the Control's location.
-     *  @param[xspan] The width of the Control.
-     *  @param[yspan] The height of the Control.
-     *  @param[hexpand] The horizontal expand of Control.
-     *  @param[halign] The horizontal alignment of Control.
-     *  @param[vexpand] The vertical expand of Control.
-     *  @param[valign] The vertical alignment of Control.
-     */
-    fun add(
-        widget: Control<*>,
-        x: Int = 0,
-        y: Int = 0,
-        xspan: Int = 1,
-        yspan: Int = 1,
-        hexpand: Boolean = false,
-        halign: uiAlign = uiAlignFill,
-        vexpand: Boolean = false,
-        valign: uiAlign = uiAlignFill
-    ) = uiGridAppend(ptr, widget.ctl,
+    private fun nextCell() {
+        x++
+        xspan = 1
+        yspan = 1
+        hexpand = false
+        halign = uiAlignFill
+        vexpand = false
+        valign = uiAlignFill
+    }
+
+    fun row() {
+        y++
+        x = 0
+    }
+
+    /** Adds the given widget to the end of the form. */
+    override fun <T : Control<*>> add(widget: T): T {
+        uiGridAppend(ptr, widget.ctl,
             x, y, xspan, yspan,
             if (hexpand) 1 else 0, halign,
             if (vexpand) 1 else 0, valign)
+        nextCell()
+        return widget
+    }
 
     /** Insert the given Control after existing Control.
      *
      *  @param[widget] The Control to be added.
      *  @param[existing] The existing Control at which Control be inserted.
      *  @param[at] The relative placement of the Control to the existing one.
-     *  @param[xspan] The width of the Control.
-     *  @param[yspan] The height of the Control.
-     *  @param[hexpand] The horizontal expand of Control.
-     *  @param[halign] The horizontal alignment of Control.
-     *  @param[vexpand] The vertical expand of Control.
-     *  @param[valign] The vertical alignment of Control.
      */
     fun insert(
         widget: Control<*>,
         existing: Control<*>,
-        at: uiAt,
-        xspan: Int = 1,
-        yspan: Int = 1,
-        hexpand: Boolean = false,
-        halign: uiAlign = uiAlignFill,
-        vexpand: Boolean = false,
-        valign: uiAlign = uiAlignFill
+        at: uiAt
     ) {
         uiGridInsertAt(ptr, widget.ctl, existing.ctl,
             at, xspan, yspan,
             if (hexpand) 1 else 0, halign,
             if (vexpand) 1 else 0, valign)
+        nextCell()
     }
 }

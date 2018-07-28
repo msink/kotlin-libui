@@ -56,8 +56,8 @@ Container for child controls.
 | Name | Summary |
 |---|---|
 | [Box](../-box/index.md) | `abstract class Box : `[`Control`](../-control/index.md)`<`[`uiBox`](../../libui/ui-box.md)`>, `[`Container`](./index.md)<br>Wrapper class for [uiBox](../../libui/ui-box.md) - a container that stack its children horizontally or vertically. |
-| [Cell](../-grid-pane/-cell/index.md) | `inner class Cell : `[`Container`](./index.md)<br>adapter for DSL builders |
 | [Form](../-form/index.md) | `class Form : `[`Control`](../-control/index.md)`<`[`uiForm`](../../libui/ui-form.md)`>, `[`Container`](./index.md)<br>Wrapper class for [uiForm](../../libui/ui-form.md) - a container that organize children as labeled fields. |
+| [GridPane](../-grid-pane/index.md) | `class GridPane : `[`Control`](../-control/index.md)`<`[`uiGrid`](../../libui/ui-grid.md)`>, `[`Container`](./index.md)<br>Wrapper class for [uiGrid](../../libui/ui-grid.md) - a powerful container that allow to specify size and position of each children. |
 | [Group](../-group/index.md) | `class Group : `[`Control`](../-control/index.md)`<`[`uiGroup`](../../libui/ui-group.md)`>, `[`Container`](./index.md)<br>Wrapper class for [uiGroup](../../libui/ui-group.md) - a container for a single widget that provide a caption and visually group it's children. |
 | [Page](../-tab-pane/-page/index.md) | `inner class Page : `[`Container`](./index.md)<br>adapter for DSL builders |
 | [Window](../-window/index.md) | `class Window : `[`Control`](../-control/index.md)`<`[`uiWindow`](../../libui/ui-window.md)`>, `[`Container`](./index.md)<br>Represents a top-level window. Contains one child control that occupies the entirety of the window. |

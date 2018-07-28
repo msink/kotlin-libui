@@ -72,31 +72,40 @@ fun TabPane.Page.dataChoosers() = hbox {
     }
     separator()
     vbox { stretchy = true }.gridpane {
-        lateinit var entry1: TextField
-        lateinit var entry2: TextField
+        lateinit var open: TextField
+        lateinit var save: TextField
 
-        cell(y = 0, x = 0).button("Open File") {
+        button("Open File") {
             action {
-                entry1.value = OpenFileDialog() ?: "(cancelled)"
+                open.value = OpenFileDialog() ?: "(cancelled)"
             }
         }
-        entry1 = cell(y = 0, x = 1, hexpand = true).textfield(readonly = true)
+        open = textfield {
+            readonly = true
+        }
 
-        cell(y = 1, x = 0).button("Save File") {
+        row()
+        button("Save File") {
             action {
-                entry2.value = SaveFileDialog() ?: "(cancelled)"
+                save.value = SaveFileDialog() ?: "(cancelled)"
             }
         }
-        entry2 = cell(y = 1, x = 1, hexpand = true).textfield(readonly = true)
+        save = textfield {
+            readonly = true
+            hexpand = true
+        }
 
-        cell(y = 2, xspan = 2).gridpane {
-            cell(x = 0).button("Message Box") {
+        row()
+        xspan = 2
+        gridpane {
+            button("Message Box") {
                 action {
                     MsgBox(text = "This is a normal message box.",
                         details = "More detailed information can be shown here.")
                 }
             }
-            cell(x = 1).button("Error Box") {
+            row()
+            button("Error Box") {
                 action {
                     MsgBoxError(text = "This message box describes an error.",
                         details = "More detailed information can be shown here.")
@@ -105,6 +114,7 @@ fun TabPane.Page.dataChoosers() = hbox {
         }
     }
 }
+
 
 fun main(args: Array<String>) = appWindow(
     title = "libui Control Gallery",
