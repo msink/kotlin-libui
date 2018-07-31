@@ -1,7 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.konanVersion = '0.9-dev-2859'
+    ext.konanVersion = '0.8.1'
     ext.dokkaVersion = '0.9.17'
     repositories {
         jcenter()
