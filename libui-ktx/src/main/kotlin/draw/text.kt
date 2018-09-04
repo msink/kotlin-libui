@@ -185,7 +185,7 @@ class OpenTypeFeatures(copy: CPointer<uiOpenTypeFeatures>? = null) : Disposable<
 
     /** Adds the given feature tag and value to OpenTypeFeatures. If there is already a value
      *  associated with the specified tag in otf, the old value is removed. */
-    fun add(tag: String, value: Int) =
+    fun add(tag: String, value: UInt) =
         uiOpenTypeFeaturesAdd(ptr, tag[0].toByte(), tag[1].toByte(), tag[2].toByte(), tag[3].toByte(), value)
 
     /** Removes the given feature tag and value from OpenTypeFeatures. If the tag is not present
@@ -194,8 +194,8 @@ class OpenTypeFeatures(copy: CPointer<uiOpenTypeFeatures>? = null) : Disposable<
         uiOpenTypeFeaturesRemove(ptr, tag[0].toByte(), tag[1].toByte(), tag[2].toByte(), tag[3].toByte())
 
     /** Determines whether the given feature tag is present in OpenTypeFeatures. */
-    fun get(tag: String): Int = memScoped {
-        val value = alloc<IntVar>()
+    fun get(tag: String): UInt = memScoped {
+        val value = alloc<UIntVar>()
         uiOpenTypeFeaturesGet(ptr, tag[0].toByte(), tag[1].toByte(), tag[2].toByte(), tag[3].toByte(), value.ptr)
         value.value
     }
@@ -227,7 +227,7 @@ class AttributedString(init: String) : Disposable<uiAttributedString>(
     val string: String get() = uiAttributedStringString(ptr).uiText()
 
     /** Returns the number of UTF-8 bytes in the textual content, excluding the terminating '\\0'. */
-    val length: Int get() = uiAttributedStringLen(ptr).narrow()
+    val length: Int get() = uiAttributedStringLen(ptr).convert()
 
     /** Adds the '\\0'-terminated UTF-8 string `str` to the end. The new substring will be unattributed. */
     fun append(str: String) = uiAttributedStringAppendUnattributed(ptr, str)
@@ -235,16 +235,16 @@ class AttributedString(init: String) : Disposable<uiAttributedString>(
     /** Adds the '\\0'-terminated UTF-8 string `str` at the byte position specified by `at`.
      *  The new substring will be unattributed existing attributes will be moved along with their text. */
     fun insert(str: String, at: Int) =
-        uiAttributedStringInsertAtUnattributed(ptr, str, at.signExtend())
+        uiAttributedStringInsertAtUnattributed(ptr, str, at.convert())
 
     /** Deletes the characters and attributes in the byte range \[`start`, `end`). */
     fun delete(start: Int, end: Int) =
-        uiAttributedStringDelete(ptr, start.signExtend(), end.signExtend())
+        uiAttributedStringDelete(ptr, start.convert(), end.convert())
 
     /** Sets a in the byte range \[`start`, `end`). Any existing attributes in that byte range of the same type are
      *  removed. Takes ownership of `a` you should not use it after `setAttribute()` returns. */
     fun setAttribute(a: Attribute, start: Int, end: Int) =
-        uiAttributedStringSetAttribute(ptr, a.ptr, start.signExtend(), end.signExtend())
+        uiAttributedStringSetAttribute(ptr, a.ptr, start.convert(), end.convert())
 }
 
 //// uiAttributedStringForEachAttributeFunc is the type of the function

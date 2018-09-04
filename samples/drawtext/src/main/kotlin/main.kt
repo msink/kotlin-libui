@@ -1,6 +1,7 @@
 import libui.*
 import libui.ktx.*
 import libui.ktx.draw.*
+import kotlinx.cinterop.convert
 
 fun AttributedString.append(what: String, attr: Attribute, attr2: Attribute? = null) {
     val start = length
@@ -82,7 +83,7 @@ fun main(args: Array<String>) = appWindow(
         area = drawarea {
             val str = makeAttributedString()
             draw {
-                text(str, font.value, it.AreaWidth, align.value, 0.0, 0.0)
+                text(str, font.value, it.AreaWidth, align.value.convert(), 0.0, 0.0)
             }
             stretchy = true
         }

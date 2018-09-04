@@ -65,7 +65,7 @@ class Brush : Disposable<uiDrawBrush>(
     alloc = nativeHeap.alloc<uiDrawBrush>().ptr) {
     override fun clear() {
         ptr.pointed.Stops?.let { nativeHeap.free(it) }
-        memset(ptr, 0, uiDrawBrush.size)
+        memset(ptr, 0, uiDrawBrush.size.convert())
     }
     override fun free() {
         clear()
@@ -108,7 +108,7 @@ class Brush : Disposable<uiDrawBrush>(
             Y0 = start.y
             X1 = end.x
             Y1 = end.y
-            NumStops = stops.size.signExtend()
+            NumStops = stops.size.convert()
             Stops = nativeHeap.allocArray<uiDrawBrushGradientStop>(stops.size)
             stops.forEachIndexed { i, (pos, color) ->
                 with(Stops!![i]) {
@@ -133,7 +133,7 @@ class Brush : Disposable<uiDrawBrush>(
             X1 = center.x
             Y1 = center.y
             OuterRadius = radius
-            NumStops = stops.size.signExtend()
+            NumStops = stops.size.convert()
             Stops = nativeHeap.allocArray<uiDrawBrushGradientStop>(stops.size)
             stops.forEachIndexed { i, (pos, color) ->
                 with(Stops!![i]) {

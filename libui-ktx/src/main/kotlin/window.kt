@@ -116,7 +116,7 @@ fun appWindow(
     margined: Boolean = true,
     init: Window.() -> Unit = {}
 ) {
-    platform.posix.srand(platform.posix.time(null).toInt())
+    platform.posix.srand(platform.posix.time(null).toUInt())
 
     memScoped {
         val options = alloc<uiInitOptions>()
