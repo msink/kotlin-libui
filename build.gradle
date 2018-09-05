@@ -1,13 +1,12 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
-    ext.konanVersion = '0.9-rc2-3661'
+    ext.konanVersion = '0.9'
     ext.dokkaVersion = '0.9.17'
     repositories {
         jcenter()
         mavenCentral()
         maven { url "https://dl.bintray.com/jetbrains/kotlin-native-dependencies" }
-        maven { url "http://dl.bintray.com/kotlin/kotlin-eap" }
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-native-gradle-plugin:${konanVersion}"
