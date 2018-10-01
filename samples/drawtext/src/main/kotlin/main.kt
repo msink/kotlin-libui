@@ -44,10 +44,10 @@ fun DrawArea.makeAttributedString() = string(
     append("and control over OpenType features such as ligatures (for instance, ")
 
     val otf = OpenTypeFeatures()
-    otf.add("liga", 0)
+    otf.add("liga", 0u)
     append("afford", FeaturesAttribute(otf))
     append(" vs. ")
-    otf.add("liga", 1)
+    otf.add("liga", 1u)
     append("afford", FeaturesAttribute(otf))
     otf.dispose()
     append(").\n")

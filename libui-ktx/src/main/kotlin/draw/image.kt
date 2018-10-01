@@ -4,7 +4,7 @@ import kotlinx.cinterop.*
 import libui.*
 import libui.ktx.*
 
-class ImageData(val width: Int, val height: Int, val stride: Int, val pixels: CValuesRef<IntVar>)
+class ImageData(val width: Int, val height: Int, val stride: Int, val pixels: CValuesRef<UIntVar>)
 
 class Image(width: Double, height: Double) : Disposable<uiImage>(
     alloc = uiNewImage(width, height)) {
