@@ -27,6 +27,9 @@ fun main(args: Array<String>) = appWindow(
                 bitmap(`tango-icon-theme-0.8.90_16x16_x-office-spreadsheet.png`)
                 bitmap(`tango-icon-theme-0.8.90_32x32_x-office-spreadsheet.png`)
             }
+            val image2 = image(width = 20, height = 22) {
+                bitmap(`lightning-orb.png`)
+            }
             var yellowRow = -1
 
             background { row ->
@@ -41,7 +44,7 @@ fun main(args: Array<String>) = appWindow(
                 label { row -> "Row $row" }
             }
             column("Column 2") {
-                image { row -> if (row < 8) image0 else image1 }
+                image { row -> if (row < 8) image0 else if (row < 14) image1 else image2 }
                 label { "Part" }
                 color { row -> if ((row % 2) == 1) Color(r = 0.5, g = 0.0, b = 0.75) else null }
             }
