@@ -7,7 +7,7 @@ task downloadFile(type: Download) {
     if (os.isWindows()) {
         src "$release-windows-amd64-mingw-static.zip"
     } else if (os.isLinux()) {
-        src "release-linux-amd64-static.tgz"
+        src "$release-linux-amd64-static.tgz"
     } else if (os.isMacOsX()) {
         src "$release-darwin-amd64-static.tgz"
     }
