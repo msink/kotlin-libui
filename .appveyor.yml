@@ -12,7 +12,7 @@ build_script:
 after_build:
   - copy libui\build\konan\libs\mingw_x64\libui.klib libui-windows.klib
   - copy libui-ktx\build\konan\libs\mingw_x64\libui-ktx.klib libui-ktx-windows.klib
-  - 7z a libui-samples-kotlin-windows.zip
+  - 7z a libui-samples-windows.zip
          .\samples\controlgallery\build\konan\bin\mingw_x64\controlgallery.exe
          .\samples\datetime\build\konan\bin\mingw_x64\datetime.exe
          .\samples\drawtext\build\konan\bin\mingw_x64\drawtext.exe
