@@ -7,7 +7,7 @@ before_build:
   - ren "C:\Program Files\Git\usr\bin\sh.exe" _sh.exe
 
 build_script:
-  - build.bat
+  - gradlew build
 
 after_build:
   - copy libui\build\konan\libs\mingw_x64\libui.klib libui-windows.klib
@@ -23,29 +23,19 @@ after_build:
          .\samples\logo\build\konan\bin\mingw_x64\logo.exe
          .\samples\table\build\konan\bin\mingw_x64\table.exe
          .\samples\timer\build\konan\bin\mingw_x64\timer.exe
-  - 7z l libui-samples-kotlin-windows.zip
-  - 7z a libui-samples-c-windows.zip
-         .\libui\build\out\controlgallery.exe
-         .\libui\build\out\cpp-multithread.exe
-         .\libui\build\out\datetime.exe
-         .\libui\build\out\drawtext.exe
-         .\libui\build\out\histogram.exe
-         .\libui\build\out\timer.exe
-  - 7z l libui-samples-c-windows.zip
+  - 7z l libui-samples-windows.zip
 
 artifacts:
   - path: libui-windows.klib
     name: interop
   - path: libui-ktx-windows.klib
     name: library
-  - path: libui-samples-kotlin-windows.zip
-    name: samples-kotlin
-  - path: libui-samples-c-windows.zip
-    name: samples-c
+  - path: libui-samples-windows.zip
+    name: samples
 
 deploy:
   provider: GitHub
-  artifact: interop, library, samples-kotlin, samples-c
+  artifact: interop, library, samples
   auth_token:
     secure: "2l/602m6FkqAB9TTIAkPX3Erfwg9jVTlf/Inmf2dWcbOrJJzK/WrCUIgY3B4ngly"
   on:

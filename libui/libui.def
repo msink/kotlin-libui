@@ -3,7 +3,7 @@ headers = ui.h
 noStringConversion = uiFreeInitError
 
 staticLibraries = libui.a
-libraryPaths = libui/build/out
+libraryPaths = libui/build
 
 linkerOpts.osx = -lobjc -framework Foundation -framework AppKit
 

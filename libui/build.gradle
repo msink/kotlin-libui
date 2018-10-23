@@ -1,8 +1,35 @@
+plugins { id 'de.undercouch.download' version '3.4.3' }
+
+def os = org.gradle.internal.os.OperatingSystem.current()
+
+task downloadFile(type: Download) {
+    def release = "https://github.com/andlabs/libui/releases/download/$libuiVersion/libui-$libuiVersion"
+    if (os.isWindows()) {
+        src "$release-windows-amd64-mingw-static.zip"
+    } else if (os.isLinux()) {
+        src "release-linux-amd64-static.tgz"
+    } else if (os.isMacOsX()) {
+        src "$release-darwin-amd64-static.tgz"
+    }
+    dest new File(buildDir, "libui-$libuiVersion.${os.isWindows() ? "zip" : "tgz"}")
+    overwrite false
+}
+
+task unpackFile(dependsOn: downloadFile, type: Copy) {
+    if (os.isWindows()) {
+        from zipTree(downloadFile.dest)
+    } else {
+        from tarTree(resources.gzip(downloadFile.dest))
+    }
+    into buildDir
+}
+
 apply plugin: 'konan'
 
 konanArtifacts {
     interop('libui') {
+        dependsOn 'unpackFile'
         defFile 'libui.def'
-        includeDirs "${project.rootDir}/libui/src"
+        includeDirs "${project.rootDir}/libui/build"
     }
 }

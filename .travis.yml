@@ -13,7 +13,7 @@ matrix:
       osx_image: xcode8
 
 script:
-  - ./build.sh
+  - ./gradlew build
 
 after_success:
   - |
@@ -35,9 +35,6 @@ after_success:
   - cp samples/table/build/konan/bin/${TARGET}_x64/table.kexe .
   - cp samples/timer/build/konan/bin/${TARGET}_x64/timer.kexe .
   - tar -czvf libui-samples-kotlin-${TARGET}.tgz *.kexe
-  - pushd libui/build/out
-  - tar -czvf libui-samples-c-${TARGET}.tgz controlgallery cpp-multithread datetime drawtext histogram timer
-  - popd
 
 deploy:
   provider: releases
@@ -47,7 +44,6 @@ deploy:
     - libui-*.klib
     - libui-ktx-*.klib
     - libui-samples-kotlin-*.tgz
-    - libui-ktx/build/libui/out/libui-samples-c-*.tgz
   file_glob: true
   skip_cleanup: true
   on:
