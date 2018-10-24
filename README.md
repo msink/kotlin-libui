@@ -199,3 +199,33 @@ responsible to dispose all its children, recursively. As DSL builders automatica
 some container - in most cases you do not have to worry about lifecycle management. But if you want to do
 something not supported by DSL builders - you can create Disposable object directly, and in this case
 *you* are responsible to dispose or attach it at some point.
+
+
+## Building samples with libui binary
+
+Building requires the source and binary of libui. Since alpha4 the libui project provides binaries for several platforms on their releases page: https://github.com/andlabs/libui/releases 
+
+The script below downloads a libui build for mingw/Windows, copies the files to where kotlin-libui expects them, builds kotlin-libui then builds and runs the sample `hello-ktx`:
+
+```
+#clone this project
+git clone https://github.com/msink/kotlin-libui.git
+cd kotlin-libui/libui
+
+#download pre-built libui - in this case alpha4 for mingw on Windows
+curl -L https://github.com/andlabs/libui/releases/download/alpha4/libui-alpha4-windows-amd64-mingw-static.zip -o libui-bin.zip
+
+#unzip it to the src directory
+unzip libui-bin.zip -d src/
+
+#kotlin-libui expects libui.a to be in libui/build/out/
+mkdir -p libui/build/out
+mv src/libui.a libui/build/out/
+
+#build kotlin-libui.klib
+../gradlew build
+
+#build and run the hello-ktx sample
+cd ../samples/hello-ktx/
+../../gradlew runHello-ktx
+```
