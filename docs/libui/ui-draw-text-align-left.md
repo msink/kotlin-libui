@@ -2,4 +2,4 @@
 
 # uiDrawTextAlignLeft
 
-`val uiDrawTextAlignLeft: Int`
+`val uiDrawTextAlignLeft: UInt`

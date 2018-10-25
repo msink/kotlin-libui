@@ -2,4 +2,4 @@
 
 # uiDrawFillMode
 
-`typealias uiDrawFillMode = Int`
+`typealias uiDrawFillMode = UInt`

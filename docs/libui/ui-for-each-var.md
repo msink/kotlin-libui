@@ -2,4 +2,4 @@
 
 # uiForEachVar
 
-`typealias uiForEachVar = IntVarOf<`[`uiForEach`](ui-for-each.md)`>`
+`typealias uiForEachVar = UIntVarOf<`[`uiForEach`](ui-for-each.md)`>`

@@ -2,4 +2,4 @@
 
 # uiTextItalicOblique
 
-`val uiTextItalicOblique: Int`
+`val uiTextItalicOblique: UInt`

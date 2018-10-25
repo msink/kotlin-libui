@@ -2,4 +2,4 @@
 
 # uiDrawLineJoinVar
 
-`typealias uiDrawLineJoinVar = IntVarOf<`[`uiDrawLineJoin`](ui-draw-line-join.md)`>`
+`typealias uiDrawLineJoinVar = UIntVarOf<`[`uiDrawLineJoin`](ui-draw-line-join.md)`>`

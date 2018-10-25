@@ -2,4 +2,4 @@
 
 # uiModifierSuper
 
-`val uiModifierSuper: Int`
+`val uiModifierSuper: UInt`

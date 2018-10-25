@@ -2,4 +2,4 @@
 
 # uiTextWeightMinimum
 
-`val uiTextWeightMinimum: Int`
+`val uiTextWeightMinimum: UInt`

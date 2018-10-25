@@ -2,4 +2,4 @@
 
 # uiAttributeTypeBackground
 
-`val uiAttributeTypeBackground: Int`
+`val uiAttributeTypeBackground: UInt`

@@ -2,4 +2,4 @@
 
 # uiImageAppend
 
-`fun uiImageAppend(i: CValuesRef<`[`uiImage`](ui-image.md)`>?, pixels: CValuesRef<*>?, pixelWidth: Int, pixelHeight: Int, pixelStride: Int): Unit`
+`fun uiImageAppend(i: CValuesRef<`[`uiImage`](ui-image.md)`>?, pixels: CValuesRef<*>?, pixelWidth: Int, pixelHeight: Int, byteStride: Int): Unit`

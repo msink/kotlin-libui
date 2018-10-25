@@ -2,4 +2,4 @@
 
 # uiTextStretchVar
 
-`typealias uiTextStretchVar = IntVarOf<`[`uiTextStretch`](ui-text-stretch.md)`>`
+`typealias uiTextStretchVar = UIntVarOf<`[`uiTextStretch`](ui-text-stretch.md)`>`

@@ -2,4 +2,4 @@
 
 # uiExtKeyPageUp
 
-`val uiExtKeyPageUp: Int`
+`val uiExtKeyPageUp: UInt`

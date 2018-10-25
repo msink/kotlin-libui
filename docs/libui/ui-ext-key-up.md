@@ -2,4 +2,4 @@
 
 # uiExtKeyUp
 
-`val uiExtKeyUp: Int`
+`val uiExtKeyUp: UInt`

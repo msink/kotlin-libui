@@ -2,4 +2,4 @@
 
 # uiAlignEnd
 
-`val uiAlignEnd: Int`
+`val uiAlignEnd: UInt`

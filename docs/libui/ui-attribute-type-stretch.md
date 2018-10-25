@@ -2,4 +2,4 @@
 
 # uiAttributeTypeStretch
 
-`val uiAttributeTypeStretch: Int`
+`val uiAttributeTypeStretch: UInt`

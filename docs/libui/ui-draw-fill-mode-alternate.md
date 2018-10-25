@@ -2,4 +2,4 @@
 
 # uiDrawFillModeAlternate
 
-`val uiDrawFillModeAlternate: Int`
+`val uiDrawFillModeAlternate: UInt`

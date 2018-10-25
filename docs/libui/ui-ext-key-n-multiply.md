@@ -2,4 +2,4 @@
 
 # uiExtKeyNMultiply
 
-`val uiExtKeyNMultiply: Int`
+`val uiExtKeyNMultiply: UInt`

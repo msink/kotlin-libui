@@ -2,4 +2,4 @@
 
 # uiExtKeyHome
 
-`val uiExtKeyHome: Int`
+`val uiExtKeyHome: UInt`

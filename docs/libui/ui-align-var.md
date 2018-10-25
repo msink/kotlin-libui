@@ -2,4 +2,4 @@
 
 # uiAlignVar
 
-`typealias uiAlignVar = IntVarOf<`[`uiAlign`](ui-align.md)`>`
+`typealias uiAlignVar = UIntVarOf<`[`uiAlign`](ui-align.md)`>`

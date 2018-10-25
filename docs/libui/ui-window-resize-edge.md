@@ -2,4 +2,4 @@
 
 # uiWindowResizeEdge
 
-`typealias uiWindowResizeEdge = Int`
+`typealias uiWindowResizeEdge = UInt`

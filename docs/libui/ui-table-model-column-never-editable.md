@@ -2,4 +2,4 @@
 
 # uiTableModelColumnNeverEditable
 
-`val uiTableModelColumnNeverEditable: Int`
+`const val uiTableModelColumnNeverEditable: Int`

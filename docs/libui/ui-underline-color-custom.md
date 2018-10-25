@@ -2,4 +2,4 @@
 
 # uiUnderlineColorCustom
 
-`val uiUnderlineColorCustom: Int`
+`val uiUnderlineColorCustom: UInt`

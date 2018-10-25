@@ -2,4 +2,4 @@
 
 # uiTableValueTypeImage
 
-`val uiTableValueTypeImage: Int`
+`val uiTableValueTypeImage: UInt`

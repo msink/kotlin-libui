@@ -2,4 +2,4 @@
 
 # uiWindowResizeEdgeVar
 
-`typealias uiWindowResizeEdgeVar = IntVarOf<`[`uiWindowResizeEdge`](ui-window-resize-edge.md)`>`
+`typealias uiWindowResizeEdgeVar = UIntVarOf<`[`uiWindowResizeEdge`](ui-window-resize-edge.md)`>`

@@ -2,4 +2,4 @@
 
 # uiUnderlineColorVar
 
-`typealias uiUnderlineColorVar = IntVarOf<`[`uiUnderlineColor`](ui-underline-color.md)`>`
+`typealias uiUnderlineColorVar = UIntVarOf<`[`uiUnderlineColor`](ui-underline-color.md)`>`

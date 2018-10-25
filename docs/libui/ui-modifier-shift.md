@@ -2,4 +2,4 @@
 
 # uiModifierShift
 
-`val uiModifierShift: Int`
+`val uiModifierShift: UInt`

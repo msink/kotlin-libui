@@ -2,4 +2,4 @@
 
 # uiUnderlineDouble
 
-`val uiUnderlineDouble: Int`
+`val uiUnderlineDouble: UInt`

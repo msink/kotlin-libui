@@ -2,4 +2,4 @@
 
 # uiTableValueType
 
-`typealias uiTableValueType = Int`
+`typealias uiTableValueType = UInt`

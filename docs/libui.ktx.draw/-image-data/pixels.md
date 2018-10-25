@@ -2,4 +2,4 @@
 
 # pixels
 
-`val pixels: CValuesRef<IntVar>`
+`val pixels: CValuesRef<UIntVar>`

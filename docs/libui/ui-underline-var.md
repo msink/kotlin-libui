@@ -2,4 +2,4 @@
 
 # uiUnderlineVar
 
-`typealias uiUnderlineVar = IntVarOf<`[`uiUnderline`](ui-underline.md)`>`
+`typealias uiUnderlineVar = UIntVarOf<`[`uiUnderline`](ui-underline.md)`>`

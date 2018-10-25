@@ -2,4 +2,4 @@
 
 # uiTextItalic
 
-`typealias uiTextItalic = Int`
+`typealias uiTextItalic = UInt`

@@ -2,4 +2,4 @@
 
 # uiAtTrailing
 
-`val uiAtTrailing: Int`
+`val uiAtTrailing: UInt`

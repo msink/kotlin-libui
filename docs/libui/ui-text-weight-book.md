@@ -2,4 +2,4 @@
 
 # uiTextWeightBook
 
-`val uiTextWeightBook: Int`
+`val uiTextWeightBook: UInt`

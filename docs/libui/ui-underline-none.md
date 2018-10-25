@@ -2,4 +2,4 @@
 
 # uiUnderlineNone
 
-`val uiUnderlineNone: Int`
+`val uiUnderlineNone: UInt`

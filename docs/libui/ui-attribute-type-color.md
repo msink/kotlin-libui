@@ -2,4 +2,4 @@
 
 # uiAttributeTypeColor
 
-`val uiAttributeTypeColor: Int`
+`val uiAttributeTypeColor: UInt`

@@ -2,4 +2,4 @@
 
 # uiDrawBrushTypeLinearGradient
 
-`val uiDrawBrushTypeLinearGradient: Int`
+`val uiDrawBrushTypeLinearGradient: UInt`

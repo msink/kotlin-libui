@@ -2,4 +2,4 @@
 
 # uiAttributeTypeUnderlineColor
 
-`val uiAttributeTypeUnderlineColor: Int`
+`val uiAttributeTypeUnderlineColor: UInt`

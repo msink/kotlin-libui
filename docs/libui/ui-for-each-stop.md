@@ -2,4 +2,4 @@
 
 # uiForEachStop
 
-`val uiForEachStop: Int`
+`val uiForEachStop: UInt`

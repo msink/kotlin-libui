@@ -2,4 +2,4 @@
 
 # uiTableValueTypeVar
 
-`typealias uiTableValueTypeVar = IntVarOf<`[`uiTableValueType`](ui-table-value-type.md)`>`
+`typealias uiTableValueTypeVar = UIntVarOf<`[`uiTableValueType`](ui-table-value-type.md)`>`

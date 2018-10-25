@@ -2,4 +2,4 @@
 
 # uiTextWeightBold
 
-`val uiTextWeightBold: Int`
+`val uiTextWeightBold: UInt`

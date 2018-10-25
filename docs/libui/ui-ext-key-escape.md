@@ -2,4 +2,4 @@
 
 # uiExtKeyEscape
 
-`val uiExtKeyEscape: Int`
+`val uiExtKeyEscape: UInt`

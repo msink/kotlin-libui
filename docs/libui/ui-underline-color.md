@@ -2,4 +2,4 @@
 
 # uiUnderlineColor
 
-`typealias uiUnderlineColor = Int`
+`typealias uiUnderlineColor = UInt`

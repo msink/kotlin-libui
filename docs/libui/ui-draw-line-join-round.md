@@ -2,4 +2,4 @@
 
 # uiDrawLineJoinRound
 
-`val uiDrawLineJoinRound: Int`
+`val uiDrawLineJoinRound: UInt`

@@ -2,4 +2,4 @@
 
 # uiAttributeTypeVar
 
-`typealias uiAttributeTypeVar = IntVarOf<`[`uiAttributeType`](ui-attribute-type.md)`>`
+`typealias uiAttributeTypeVar = UIntVarOf<`[`uiAttributeType`](ui-attribute-type.md)`>`

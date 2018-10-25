@@ -2,4 +2,4 @@
 
 # uiModifiersVar
 
-`typealias uiModifiersVar = IntVarOf<`[`uiModifiers`](ui-modifiers.md)`>`
+`typealias uiModifiersVar = UIntVarOf<`[`uiModifiers`](ui-modifiers.md)`>`

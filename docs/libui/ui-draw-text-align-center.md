@@ -2,4 +2,4 @@
 
 # uiDrawTextAlignCenter
 
-`val uiDrawTextAlignCenter: Int`
+`val uiDrawTextAlignCenter: UInt`

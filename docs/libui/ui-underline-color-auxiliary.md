@@ -2,4 +2,4 @@
 
 # uiUnderlineColorAuxiliary
 
-`val uiUnderlineColorAuxiliary: Int`
+`val uiUnderlineColorAuxiliary: UInt`

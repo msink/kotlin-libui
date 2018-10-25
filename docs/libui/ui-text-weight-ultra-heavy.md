@@ -2,4 +2,4 @@
 
 # uiTextWeightUltraHeavy
 
-`val uiTextWeightUltraHeavy: Int`
+`val uiTextWeightUltraHeavy: UInt`

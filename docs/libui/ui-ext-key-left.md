@@ -2,4 +2,4 @@
 
 # uiExtKeyLeft
 
-`val uiExtKeyLeft: Int`
+`val uiExtKeyLeft: UInt`

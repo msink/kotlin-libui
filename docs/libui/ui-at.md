@@ -2,4 +2,4 @@
 
 # uiAt
 
-`typealias uiAt = Int`
+`typealias uiAt = UInt`

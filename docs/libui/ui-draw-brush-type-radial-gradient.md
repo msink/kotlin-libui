@@ -2,4 +2,4 @@
 
 # uiDrawBrushTypeRadialGradient
 
-`val uiDrawBrushTypeRadialGradient: Int`
+`val uiDrawBrushTypeRadialGradient: UInt`

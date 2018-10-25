@@ -2,4 +2,4 @@
 
 # uiAtLeading
 
-`val uiAtLeading: Int`
+`val uiAtLeading: UInt`

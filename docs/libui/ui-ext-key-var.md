@@ -2,4 +2,4 @@
 
 # uiExtKeyVar
 
-`typealias uiExtKeyVar = IntVarOf<`[`uiExtKey`](ui-ext-key.md)`>`
+`typealias uiExtKeyVar = UIntVarOf<`[`uiExtKey`](ui-ext-key.md)`>`

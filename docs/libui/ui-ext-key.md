@@ -2,4 +2,4 @@
 
 # uiExtKey
 
-`typealias uiExtKey = Int`
+`typealias uiExtKey = UInt`

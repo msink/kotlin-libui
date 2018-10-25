@@ -2,4 +2,4 @@
 
 # uiDrawBrushType
 
-`typealias uiDrawBrushType = Int`
+`typealias uiDrawBrushType = UInt`

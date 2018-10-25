@@ -2,4 +2,4 @@
 
 # uiTextWeightVar
 
-`typealias uiTextWeightVar = IntVarOf<`[`uiTextWeight`](ui-text-weight.md)`>`
+`typealias uiTextWeightVar = UIntVarOf<`[`uiTextWeight`](ui-text-weight.md)`>`

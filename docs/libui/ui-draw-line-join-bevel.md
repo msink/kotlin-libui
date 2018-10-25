@@ -2,4 +2,4 @@
 
 # uiDrawLineJoinBevel
 
-`val uiDrawLineJoinBevel: Int`
+`val uiDrawLineJoinBevel: UInt`

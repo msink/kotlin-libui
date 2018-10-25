@@ -2,4 +2,4 @@
 
 # uiTableValueTypeString
 
-`val uiTableValueTypeString: Int`
+`val uiTableValueTypeString: UInt`

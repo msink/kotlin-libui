@@ -22,9 +22,9 @@ Represents a set of OpenType feature tag-value pairs, for applying OpenType feat
 
 | Name | Summary |
 |---|---|
-| [add](add.md) | `fun add(tag: String, value: Int): Unit`<br>Adds the given feature tag and value to OpenTypeFeatures. If there is already a value associated with the specified tag in otf, the old value is removed. |
+| [add](add.md) | `fun add(tag: String, value: UInt): Unit`<br>Adds the given feature tag and value to OpenTypeFeatures. If there is already a value associated with the specified tag in otf, the old value is removed. |
 | [copy](copy.md) | `fun copy(): `[`OpenTypeFeatures`](./index.md)<br>Makes a copy of otf and returns it. Changing one will not affect the other. |
-| [get](get.md) | `fun get(tag: String): Int`<br>Determines whether the given feature tag is present in OpenTypeFeatures. |
+| [get](get.md) | `fun get(tag: String): UInt`<br>Determines whether the given feature tag is present in OpenTypeFeatures. |
 | [remove](remove.md) | `fun remove(tag: String): Unit`<br>Removes the given feature tag and value from OpenTypeFeatures. If the tag is not present in OpenTypeFeatures, it does nothing. |
 
 ### Inherited Functions

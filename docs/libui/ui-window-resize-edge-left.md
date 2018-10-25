@@ -2,4 +2,4 @@
 
 # uiWindowResizeEdgeLeft
 
-`val uiWindowResizeEdgeLeft: Int`
+`val uiWindowResizeEdgeLeft: UInt`

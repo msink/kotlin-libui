@@ -2,4 +2,4 @@
 
 # uiTextItalicVar
 
-`typealias uiTextItalicVar = IntVarOf<`[`uiTextItalic`](ui-text-italic.md)`>`
+`typealias uiTextItalicVar = UIntVarOf<`[`uiTextItalic`](ui-text-italic.md)`>`

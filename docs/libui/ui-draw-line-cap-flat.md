@@ -2,4 +2,4 @@
 
 # uiDrawLineCapFlat
 
-`val uiDrawLineCapFlat: Int`
+`val uiDrawLineCapFlat: UInt`

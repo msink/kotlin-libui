@@ -2,4 +2,4 @@
 
 # uiTextWeightMedium
 
-`val uiTextWeightMedium: Int`
+`val uiTextWeightMedium: UInt`

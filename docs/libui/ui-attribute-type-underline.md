@@ -2,4 +2,4 @@
 
 # uiAttributeTypeUnderline
 
-`val uiAttributeTypeUnderline: Int`
+`val uiAttributeTypeUnderline: UInt`

@@ -2,4 +2,4 @@
 
 # uiExtKeyN0
 
-`val uiExtKeyN0: Int`
+`val uiExtKeyN0: UInt`

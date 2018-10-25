@@ -2,4 +2,4 @@
 
 # uiForEachContinue
 
-`val uiForEachContinue: Int`
+`val uiForEachContinue: UInt`

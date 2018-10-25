@@ -2,4 +2,4 @@
 
 # uiAttributeTypeFeatures
 
-`val uiAttributeTypeFeatures: Int`
+`val uiAttributeTypeFeatures: UInt`

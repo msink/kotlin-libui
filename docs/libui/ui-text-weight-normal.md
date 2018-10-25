@@ -2,4 +2,4 @@
 
 # uiTextWeightNormal
 
-`val uiTextWeightNormal: Int`
+`val uiTextWeightNormal: UInt`

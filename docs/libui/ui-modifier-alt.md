@@ -2,4 +2,4 @@
 
 # uiModifierAlt
 
-`val uiModifierAlt: Int`
+`val uiModifierAlt: UInt`

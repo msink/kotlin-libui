@@ -2,4 +2,4 @@
 
 # uiDrawTextAlign
 
-`typealias uiDrawTextAlign = Int`
+`typealias uiDrawTextAlign = UInt`

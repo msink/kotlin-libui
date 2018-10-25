@@ -2,4 +2,4 @@
 
 # uiDrawLineCapRound
 
-`val uiDrawLineCapRound: Int`
+`val uiDrawLineCapRound: UInt`

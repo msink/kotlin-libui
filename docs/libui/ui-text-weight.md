@@ -2,4 +2,4 @@
 
 # uiTextWeight
 
-`typealias uiTextWeight = Int`
+`typealias uiTextWeight = UInt`

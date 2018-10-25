@@ -2,4 +2,4 @@
 
 # uiAlignStart
 
-`val uiAlignStart: Int`
+`val uiAlignStart: UInt`

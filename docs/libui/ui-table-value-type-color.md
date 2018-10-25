@@ -2,4 +2,4 @@
 
 # uiTableValueTypeColor
 
-`val uiTableValueTypeColor: Int`
+`val uiTableValueTypeColor: UInt`

@@ -2,4 +2,4 @@
 
 # uiForEach
 
-`typealias uiForEach = Int`
+`typealias uiForEach = UInt`

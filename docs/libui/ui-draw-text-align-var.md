@@ -2,4 +2,4 @@
 
 # uiDrawTextAlignVar
 
-`typealias uiDrawTextAlignVar = IntVarOf<`[`uiDrawTextAlign`](ui-draw-text-align.md)`>`
+`typealias uiDrawTextAlignVar = UIntVarOf<`[`uiDrawTextAlign`](ui-draw-text-align.md)`>`

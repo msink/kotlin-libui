@@ -2,4 +2,4 @@
 
 # uiExtKeyNDivide
 
-`val uiExtKeyNDivide: Int`
+`val uiExtKeyNDivide: UInt`

@@ -2,4 +2,4 @@
 
 # uiDrawLineJoinMiter
 
-`val uiDrawLineJoinMiter: Int`
+`val uiDrawLineJoinMiter: UInt`

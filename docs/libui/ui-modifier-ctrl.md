@@ -2,4 +2,4 @@
 
 # uiModifierCtrl
 
-`val uiModifierCtrl: Int`
+`val uiModifierCtrl: UInt`

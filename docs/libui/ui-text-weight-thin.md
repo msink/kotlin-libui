@@ -2,4 +2,4 @@
 
 # uiTextWeightThin
 
-`val uiTextWeightThin: Int`
+`val uiTextWeightThin: UInt`

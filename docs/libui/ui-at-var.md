@@ -2,4 +2,4 @@
 
 # uiAtVar
 
-`typealias uiAtVar = IntVarOf<`[`uiAt`](ui-at.md)`>`
+`typealias uiAtVar = UIntVarOf<`[`uiAt`](ui-at.md)`>`

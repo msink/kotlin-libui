@@ -2,4 +2,4 @@
 
 # uiAlignCenter
 
-`val uiAlignCenter: Int`
+`val uiAlignCenter: UInt`

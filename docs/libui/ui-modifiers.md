@@ -2,4 +2,4 @@
 
 # uiModifiers
 
-`typealias uiModifiers = Int`
+`typealias uiModifiers = UInt`

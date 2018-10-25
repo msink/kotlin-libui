@@ -2,4 +2,4 @@
 
 # uiDrawBrushTypeVar
 
-`typealias uiDrawBrushTypeVar = IntVarOf<`[`uiDrawBrushType`](ui-draw-brush-type.md)`>`
+`typealias uiDrawBrushTypeVar = UIntVarOf<`[`uiDrawBrushType`](ui-draw-brush-type.md)`>`

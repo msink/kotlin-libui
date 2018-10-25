@@ -2,4 +2,4 @@
 
 # uiTableModelColumnAlwaysEditable
 
-`val uiTableModelColumnAlwaysEditable: Int`
+`const val uiTableModelColumnAlwaysEditable: Int`

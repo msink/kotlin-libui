@@ -2,4 +2,4 @@
 
 # uiDrawFillModeVar
 
-`typealias uiDrawFillModeVar = IntVarOf<`[`uiDrawFillMode`](ui-draw-fill-mode.md)`>`
+`typealias uiDrawFillModeVar = UIntVarOf<`[`uiDrawFillMode`](ui-draw-fill-mode.md)`>`

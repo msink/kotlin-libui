@@ -2,4 +2,4 @@
 
 # uiUnderlineColorSpelling
 
-`val uiUnderlineColorSpelling: Int`
+`val uiUnderlineColorSpelling: UInt`

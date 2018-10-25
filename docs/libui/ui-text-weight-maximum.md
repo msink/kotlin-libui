@@ -2,4 +2,4 @@
 
 # uiTextWeightMaximum
 
-`val uiTextWeightMaximum: Int`
+`val uiTextWeightMaximum: UInt`

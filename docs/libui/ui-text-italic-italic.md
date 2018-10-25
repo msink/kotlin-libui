@@ -2,4 +2,4 @@
 
 # uiTextItalicItalic
 
-`val uiTextItalicItalic: Int`
+`val uiTextItalicItalic: UInt`

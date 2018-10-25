@@ -2,4 +2,4 @@
 
 # uiExtKeyNSubtract
 
-`val uiExtKeyNSubtract: Int`
+`val uiExtKeyNSubtract: UInt`

@@ -2,4 +2,4 @@
 
 # uiDrawLineCap
 
-`typealias uiDrawLineCap = Int`
+`typealias uiDrawLineCap = UInt`

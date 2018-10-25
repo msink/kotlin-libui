@@ -2,4 +2,4 @@
 
 # uiTextWeightHeavy
 
-`val uiTextWeightHeavy: Int`
+`val uiTextWeightHeavy: UInt`

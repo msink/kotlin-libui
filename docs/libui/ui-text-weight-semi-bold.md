@@ -2,4 +2,4 @@
 
 # uiTextWeightSemiBold
 
-`val uiTextWeightSemiBold: Int`
+`val uiTextWeightSemiBold: UInt`

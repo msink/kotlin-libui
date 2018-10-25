@@ -2,4 +2,4 @@
 
 # uiUnderline
 
-`typealias uiUnderline = Int`
+`typealias uiUnderline = UInt`

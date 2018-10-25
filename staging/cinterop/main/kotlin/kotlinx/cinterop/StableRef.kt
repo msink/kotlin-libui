@@ -43,7 +43,7 @@ data class StableRef<out T : Any> @PublishedApi internal constructor(
          *
          * @param value must be a [value] of some [StableRef]
          */
-        @Deprecated("Use CPointer<*>.asStableRef<T>() instead", ReplaceWith("modelPtr.asStableRef<T>()"))
+        @Deprecated("Use CPointer<*>.asStableRef<T>() instead", ReplaceWith("ptr.asStableRef<T>()"))
         fun fromValue(value: COpaquePointer) = value.asStableRef<Any>()
     }
 

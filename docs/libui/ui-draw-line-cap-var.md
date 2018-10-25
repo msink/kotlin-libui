@@ -2,4 +2,4 @@
 
 # uiDrawLineCapVar
 
-`typealias uiDrawLineCapVar = IntVarOf<`[`uiDrawLineCap`](ui-draw-line-cap.md)`>`
+`typealias uiDrawLineCapVar = UIntVarOf<`[`uiDrawLineCap`](ui-draw-line-cap.md)`>`

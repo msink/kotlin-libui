@@ -24,8 +24,8 @@ package kotlinx.cinterop
  *
  * TODO: the behavior of [equals], [hashCode] and [toString] differs on Native and JVM backends.
  */
-abstract class NativePointed(rawPtr: NativePtr) {
-    var rawPtr = rawPtr
+open class NativePointed internal constructor(rawPtr: NonNullNativePtr) {
+    var rawPtr = rawPtr.toNativePtr()
         internal set
 }
 
@@ -40,7 +40,7 @@ val NativePointed?.rawPtr: NativePtr
  */
 inline fun <reified T : NativePointed> interpretPointed(ptr: NativePtr): T = interpretNullablePointed<T>(ptr)!!
 
-private class OpaqueNativePointed(rawPtr: NativePtr) : NativePointed(rawPtr)
+private class OpaqueNativePointed(rawPtr: NativePtr) : NativePointed(rawPtr.toNonNull())
 
 fun interpretOpaquePointed(ptr: NativePtr): NativePointed = interpretPointed<OpaqueNativePointed>(ptr)
 fun interpretNullableOpaquePointed(ptr: NativePtr): NativePointed? = interpretNullablePointed<OpaqueNativePointed>(ptr)
@@ -53,7 +53,7 @@ inline fun <reified T : NativePointed> NativePointed.reinterpret(): T = interpre
 /**
  * C data or code.
  */
-abstract class CPointed(rawPtr: NativePtr) : NativePointed(rawPtr)
+abstract class CPointed(rawPtr: NativePtr) : NativePointed(rawPtr.toNonNull())
 
 /**
  * Represents a reference to (possibly empty) sequence of C values.
@@ -130,7 +130,11 @@ abstract class CValue<T : CVariable> : CValues<T>()
 /**
  * C pointer.
  */
-class CPointer<T : CPointed> internal constructor(val rawValue: NativePtr) : CValuesRef<T>() {
+class CPointer<T : CPointed> internal constructor(@PublishedApi internal val value: NonNullNativePtr) : CValuesRef<T>() {
+
+    // TODO: replace by [value].
+    @Suppress("NOTHING_TO_INLINE")
+    inline val rawValue: NativePtr get() = value.toNativePtr()
 
     override fun equals(other: Any?): Boolean {
         if (this === other) {
@@ -242,7 +246,7 @@ sealed class CPrimitiveVar(rawPtr: NativePtr) : CVariable(rawPtr) {
 }
 
 interface CEnum {
-    val value: Number
+    val value: Any
 }
 abstract class CEnumVar(rawPtr: NativePtr) : CPrimitiveVar(rawPtr)
 
@@ -275,6 +279,26 @@ class LongVarOf<T : Long>(rawPtr: NativePtr) : CPrimitiveVar(rawPtr) {
 }
 
 @Suppress("FINAL_UPPER_BOUND")
+class UByteVarOf<T : UByte>(rawPtr: NativePtr) : CPrimitiveVar(rawPtr) {
+    companion object : Type(1)
+}
+
+@Suppress("FINAL_UPPER_BOUND")
+class UShortVarOf<T : UShort>(rawPtr: NativePtr) : CPrimitiveVar(rawPtr) {
+    companion object : Type(2)
+}
+
+@Suppress("FINAL_UPPER_BOUND")
+class UIntVarOf<T : UInt>(rawPtr: NativePtr) : CPrimitiveVar(rawPtr) {
+    companion object : Type(4)
+}
+
+@Suppress("FINAL_UPPER_BOUND")
+class ULongVarOf<T : ULong>(rawPtr: NativePtr) : CPrimitiveVar(rawPtr) {
+    companion object : Type(8)
+}
+
+@Suppress("FINAL_UPPER_BOUND")
 class FloatVarOf<T : Float>(rawPtr: NativePtr) : CPrimitiveVar(rawPtr) {
     companion object : Type(4)
 }
@@ -289,6 +313,10 @@ typealias ByteVar = ByteVarOf<Byte>
 typealias ShortVar = ShortVarOf<Short>
 typealias IntVar = IntVarOf<Int>
 typealias LongVar = LongVarOf<Long>
+typealias UByteVar = UByteVarOf<UByte>
+typealias UShortVar = UShortVarOf<UShort>
+typealias UIntVar = UIntVarOf<UInt>
+typealias ULongVar = ULongVarOf<ULong>
 typealias FloatVar = FloatVarOf<Float>
 typealias DoubleVar = DoubleVarOf<Double>
 
@@ -325,6 +353,26 @@ var <T : Int> IntVarOf<T>.value: T
 var <T : Long> LongVarOf<T>.value: T
     get() = nativeMemUtils.getLong(this) as T
     set(value) = nativeMemUtils.putLong(this, value)
+
+@Suppress("FINAL_UPPER_BOUND", "UNCHECKED_CAST")
+var <T : UByte> UByteVarOf<T>.value: T
+    get() = nativeMemUtils.getByte(this).toUByte() as T
+    set(value) = nativeMemUtils.putByte(this, value.toByte())
+
+@Suppress("FINAL_UPPER_BOUND", "UNCHECKED_CAST")
+var <T : UShort> UShortVarOf<T>.value: T
+    get() = nativeMemUtils.getShort(this).toUShort() as T
+    set(value) = nativeMemUtils.putShort(this, value.toShort())
+
+@Suppress("FINAL_UPPER_BOUND", "UNCHECKED_CAST")
+var <T : UInt> UIntVarOf<T>.value: T
+    get() = nativeMemUtils.getInt(this).toUInt() as T
+    set(value) = nativeMemUtils.putInt(this, value.toInt())
+
+@Suppress("FINAL_UPPER_BOUND", "UNCHECKED_CAST")
+var <T : ULong> ULongVarOf<T>.value: T
+    get() = nativeMemUtils.getLong(this).toULong() as T
+    set(value) = nativeMemUtils.putLong(this, value.toLong())
 
 // TODO: ensure native floats have the appropriate binary representation
 

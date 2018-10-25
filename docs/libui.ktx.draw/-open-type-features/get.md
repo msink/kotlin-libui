@@ -2,7 +2,7 @@
 
 # get
 
-`fun get(tag: String): Int`
+`fun get(tag: String): UInt`
 
 Determines whether the given feature tag is present in OpenTypeFeatures.
 

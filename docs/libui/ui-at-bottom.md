@@ -2,4 +2,4 @@
 
 # uiAtBottom
 
-`val uiAtBottom: Int`
+`val uiAtBottom: UInt`

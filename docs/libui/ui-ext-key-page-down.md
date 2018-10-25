@@ -2,4 +2,4 @@
 
 # uiExtKeyPageDown
 
-`val uiExtKeyPageDown: Int`
+`val uiExtKeyPageDown: UInt`

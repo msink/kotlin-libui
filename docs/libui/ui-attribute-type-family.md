@@ -2,4 +2,4 @@
 
 # uiAttributeTypeFamily
 
-`val uiAttributeTypeFamily: Int`
+`val uiAttributeTypeFamily: UInt`

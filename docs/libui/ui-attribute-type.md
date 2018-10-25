@@ -2,4 +2,4 @@
 
 # uiAttributeType
 
-`typealias uiAttributeType = Int`
+`typealias uiAttributeType = UInt`

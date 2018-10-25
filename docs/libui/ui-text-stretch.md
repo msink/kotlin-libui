@@ -2,4 +2,4 @@
 
 # uiTextStretch
 
-`typealias uiTextStretch = Int`
+`typealias uiTextStretch = UInt`

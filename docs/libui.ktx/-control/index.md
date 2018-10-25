@@ -34,7 +34,7 @@ Base class for all GUI controls (widgets).
 | [disable](disable.md) | `fun disable(): Unit`<br>Disables the Control. |
 | [dispose](dispose.md) | `open fun dispose(): Unit`<br>Dispose and free all allocated resources. |
 | [enable](enable.md) | `fun enable(): Unit`<br>Enables the Control. |
-| [getHandle](get-handle.md) | `fun getHandle(): Long`<br>Returns the OS-level handle associated with this Control. |
+| [getHandle](get-handle.md) | `fun getHandle(): ULong`<br>Returns the OS-level handle associated with this Control. |
 | [hide](hide.md) | `fun hide(): Unit`<br>Hides the Control. Hidden controls do not participate in layout (that is, Box, GridPane, etc. does not reserve space for hidden controls). |
 | [isEnabled](is-enabled.md) | `fun isEnabled(): Boolean`<br>Whether the Control is enabled. |
 | [isEnabledToUser](is-enabled-to-user.md) | `fun isEnabledToUser(): Boolean`<br>Whether the Control and all parents are enabled. |

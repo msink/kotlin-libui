@@ -29,14 +29,14 @@
 | Name | Summary |
 |---|---|
 | [tm](tm.md) | `typealias tm = CPointed` |
-| [uiAlign](ui-align.md) | `typealias uiAlign = Int` |
-| [uiAlignVar](ui-align-var.md) | `typealias uiAlignVar = IntVarOf<`[`uiAlign`](ui-align.md)`>` |
+| [uiAlign](ui-align.md) | `typealias uiAlign = UInt` |
+| [uiAlignVar](ui-align-var.md) | `typealias uiAlignVar = UIntVarOf<`[`uiAlign`](ui-align.md)`>` |
 | [uiArea](ui-area.md) | `typealias uiArea = CPointed` |
-| [uiAt](ui-at.md) | `typealias uiAt = Int` |
-| [uiAtVar](ui-at-var.md) | `typealias uiAtVar = IntVarOf<`[`uiAt`](ui-at.md)`>` |
+| [uiAt](ui-at.md) | `typealias uiAt = UInt` |
+| [uiAtVar](ui-at-var.md) | `typealias uiAtVar = UIntVarOf<`[`uiAt`](ui-at.md)`>` |
 | [uiAttribute](ui-attribute.md) | `typealias uiAttribute = CPointed` |
-| [uiAttributeType](ui-attribute-type.md) | `typealias uiAttributeType = Int` |
-| [uiAttributeTypeVar](ui-attribute-type-var.md) | `typealias uiAttributeTypeVar = IntVarOf<`[`uiAttributeType`](ui-attribute-type.md)`>` |
+| [uiAttributeType](ui-attribute-type.md) | `typealias uiAttributeType = UInt` |
+| [uiAttributeTypeVar](ui-attribute-type-var.md) | `typealias uiAttributeTypeVar = UIntVarOf<`[`uiAttributeType`](ui-attribute-type.md)`>` |
 | [uiAttributedString](ui-attributed-string.md) | `typealias uiAttributedString = CPointed` |
 | [uiAttributedStringForEachAttributeFunc](ui-attributed-string-for-each-attribute-func.md) | `typealias uiAttributedStringForEachAttributeFunc = CPointer<CFunction<(CPointer<`[`uiAttributedString`](ui-attributed-string.md)`>?, CPointer<`[`uiAttribute`](ui-attribute.md)`>?, size_t, size_t, COpaquePointer?) -> `[`uiForEach`](ui-for-each.md)`>>` |
 | [uiAttributedStringForEachAttributeFuncVar](ui-attributed-string-for-each-attribute-func-var.md) | `typealias uiAttributedStringForEachAttributeFuncVar = CPointerVarOf<`[`uiAttributedStringForEachAttributeFunc`](ui-attributed-string-for-each-attribute-func.md)`>` |
@@ -46,26 +46,26 @@
 | [uiColorButton](ui-color-button.md) | `typealias uiColorButton = CPointed` |
 | [uiCombobox](ui-combobox.md) | `typealias uiCombobox = CPointed` |
 | [uiDateTimePicker](ui-date-time-picker.md) | `typealias uiDateTimePicker = CPointed` |
-| [uiDrawBrushType](ui-draw-brush-type.md) | `typealias uiDrawBrushType = Int` |
-| [uiDrawBrushTypeVar](ui-draw-brush-type-var.md) | `typealias uiDrawBrushTypeVar = IntVarOf<`[`uiDrawBrushType`](ui-draw-brush-type.md)`>` |
+| [uiDrawBrushType](ui-draw-brush-type.md) | `typealias uiDrawBrushType = UInt` |
+| [uiDrawBrushTypeVar](ui-draw-brush-type-var.md) | `typealias uiDrawBrushTypeVar = UIntVarOf<`[`uiDrawBrushType`](ui-draw-brush-type.md)`>` |
 | [uiDrawContext](ui-draw-context.md) | `typealias uiDrawContext = CPointed` |
-| [uiDrawFillMode](ui-draw-fill-mode.md) | `typealias uiDrawFillMode = Int` |
-| [uiDrawFillModeVar](ui-draw-fill-mode-var.md) | `typealias uiDrawFillModeVar = IntVarOf<`[`uiDrawFillMode`](ui-draw-fill-mode.md)`>` |
-| [uiDrawLineCap](ui-draw-line-cap.md) | `typealias uiDrawLineCap = Int` |
-| [uiDrawLineCapVar](ui-draw-line-cap-var.md) | `typealias uiDrawLineCapVar = IntVarOf<`[`uiDrawLineCap`](ui-draw-line-cap.md)`>` |
-| [uiDrawLineJoin](ui-draw-line-join.md) | `typealias uiDrawLineJoin = Int` |
-| [uiDrawLineJoinVar](ui-draw-line-join-var.md) | `typealias uiDrawLineJoinVar = IntVarOf<`[`uiDrawLineJoin`](ui-draw-line-join.md)`>` |
+| [uiDrawFillMode](ui-draw-fill-mode.md) | `typealias uiDrawFillMode = UInt` |
+| [uiDrawFillModeVar](ui-draw-fill-mode-var.md) | `typealias uiDrawFillModeVar = UIntVarOf<`[`uiDrawFillMode`](ui-draw-fill-mode.md)`>` |
+| [uiDrawLineCap](ui-draw-line-cap.md) | `typealias uiDrawLineCap = UInt` |
+| [uiDrawLineCapVar](ui-draw-line-cap-var.md) | `typealias uiDrawLineCapVar = UIntVarOf<`[`uiDrawLineCap`](ui-draw-line-cap.md)`>` |
+| [uiDrawLineJoin](ui-draw-line-join.md) | `typealias uiDrawLineJoin = UInt` |
+| [uiDrawLineJoinVar](ui-draw-line-join-var.md) | `typealias uiDrawLineJoinVar = UIntVarOf<`[`uiDrawLineJoin`](ui-draw-line-join.md)`>` |
 | [uiDrawPath](ui-draw-path.md) | `typealias uiDrawPath = CPointed` |
-| [uiDrawTextAlign](ui-draw-text-align.md) | `typealias uiDrawTextAlign = Int` |
-| [uiDrawTextAlignVar](ui-draw-text-align-var.md) | `typealias uiDrawTextAlignVar = IntVarOf<`[`uiDrawTextAlign`](ui-draw-text-align.md)`>` |
+| [uiDrawTextAlign](ui-draw-text-align.md) | `typealias uiDrawTextAlign = UInt` |
+| [uiDrawTextAlignVar](ui-draw-text-align-var.md) | `typealias uiDrawTextAlignVar = UIntVarOf<`[`uiDrawTextAlign`](ui-draw-text-align.md)`>` |
 | [uiDrawTextLayout](ui-draw-text-layout.md) | `typealias uiDrawTextLayout = CPointed` |
 | [uiEditableCombobox](ui-editable-combobox.md) | `typealias uiEditableCombobox = CPointed` |
 | [uiEntry](ui-entry.md) | `typealias uiEntry = CPointed` |
-| [uiExtKey](ui-ext-key.md) | `typealias uiExtKey = Int` |
-| [uiExtKeyVar](ui-ext-key-var.md) | `typealias uiExtKeyVar = IntVarOf<`[`uiExtKey`](ui-ext-key.md)`>` |
+| [uiExtKey](ui-ext-key.md) | `typealias uiExtKey = UInt` |
+| [uiExtKeyVar](ui-ext-key-var.md) | `typealias uiExtKeyVar = UIntVarOf<`[`uiExtKey`](ui-ext-key.md)`>` |
 | [uiFontButton](ui-font-button.md) | `typealias uiFontButton = CPointed` |
-| [uiForEach](ui-for-each.md) | `typealias uiForEach = Int` |
-| [uiForEachVar](ui-for-each-var.md) | `typealias uiForEachVar = IntVarOf<`[`uiForEach`](ui-for-each.md)`>` |
+| [uiForEach](ui-for-each.md) | `typealias uiForEach = UInt` |
+| [uiForEachVar](ui-for-each-var.md) | `typealias uiForEachVar = UIntVarOf<`[`uiForEach`](ui-for-each.md)`>` |
 | [uiForm](ui-form.md) | `typealias uiForm = CPointed` |
 | [uiGrid](ui-grid.md) | `typealias uiGrid = CPointed` |
 | [uiGroup](ui-group.md) | `typealias uiGroup = CPointed` |
@@ -73,8 +73,8 @@
 | [uiLabel](ui-label.md) | `typealias uiLabel = CPointed` |
 | [uiMenu](ui-menu.md) | `typealias uiMenu = CPointed` |
 | [uiMenuItem](ui-menu-item.md) | `typealias uiMenuItem = CPointed` |
-| [uiModifiers](ui-modifiers.md) | `typealias uiModifiers = Int` |
-| [uiModifiersVar](ui-modifiers-var.md) | `typealias uiModifiersVar = IntVarOf<`[`uiModifiers`](ui-modifiers.md)`>` |
+| [uiModifiers](ui-modifiers.md) | `typealias uiModifiers = UInt` |
+| [uiModifiersVar](ui-modifiers-var.md) | `typealias uiModifiersVar = UIntVarOf<`[`uiModifiers`](ui-modifiers.md)`>` |
 | [uiMultilineEntry](ui-multiline-entry.md) | `typealias uiMultilineEntry = CPointed` |
 | [uiOpenTypeFeatures](ui-open-type-features.md) | `typealias uiOpenTypeFeatures = CPointed` |
 | [uiOpenTypeFeaturesForEachFunc](ui-open-type-features-for-each-func.md) | `typealias uiOpenTypeFeaturesForEachFunc = CPointer<CFunction<(CPointer<`[`uiOpenTypeFeatures`](ui-open-type-features.md)`>?, Byte, Byte, Byte, Byte, uint32_t, COpaquePointer?) -> `[`uiForEach`](ui-for-each.md)`>>` |
@@ -88,153 +88,153 @@
 | [uiTable](ui-table.md) | `typealias uiTable = CPointed` |
 | [uiTableModel](ui-table-model.md) | `typealias uiTableModel = CPointed` |
 | [uiTableValue](ui-table-value.md) | `typealias uiTableValue = CPointed` |
-| [uiTableValueType](ui-table-value-type.md) | `typealias uiTableValueType = Int` |
-| [uiTableValueTypeVar](ui-table-value-type-var.md) | `typealias uiTableValueTypeVar = IntVarOf<`[`uiTableValueType`](ui-table-value-type.md)`>` |
-| [uiTextItalic](ui-text-italic.md) | `typealias uiTextItalic = Int` |
-| [uiTextItalicVar](ui-text-italic-var.md) | `typealias uiTextItalicVar = IntVarOf<`[`uiTextItalic`](ui-text-italic.md)`>` |
-| [uiTextStretch](ui-text-stretch.md) | `typealias uiTextStretch = Int` |
-| [uiTextStretchVar](ui-text-stretch-var.md) | `typealias uiTextStretchVar = IntVarOf<`[`uiTextStretch`](ui-text-stretch.md)`>` |
-| [uiTextWeight](ui-text-weight.md) | `typealias uiTextWeight = Int` |
-| [uiTextWeightVar](ui-text-weight-var.md) | `typealias uiTextWeightVar = IntVarOf<`[`uiTextWeight`](ui-text-weight.md)`>` |
-| [uiUnderline](ui-underline.md) | `typealias uiUnderline = Int` |
-| [uiUnderlineColor](ui-underline-color.md) | `typealias uiUnderlineColor = Int` |
-| [uiUnderlineColorVar](ui-underline-color-var.md) | `typealias uiUnderlineColorVar = IntVarOf<`[`uiUnderlineColor`](ui-underline-color.md)`>` |
-| [uiUnderlineVar](ui-underline-var.md) | `typealias uiUnderlineVar = IntVarOf<`[`uiUnderline`](ui-underline.md)`>` |
+| [uiTableValueType](ui-table-value-type.md) | `typealias uiTableValueType = UInt` |
+| [uiTableValueTypeVar](ui-table-value-type-var.md) | `typealias uiTableValueTypeVar = UIntVarOf<`[`uiTableValueType`](ui-table-value-type.md)`>` |
+| [uiTextItalic](ui-text-italic.md) | `typealias uiTextItalic = UInt` |
+| [uiTextItalicVar](ui-text-italic-var.md) | `typealias uiTextItalicVar = UIntVarOf<`[`uiTextItalic`](ui-text-italic.md)`>` |
+| [uiTextStretch](ui-text-stretch.md) | `typealias uiTextStretch = UInt` |
+| [uiTextStretchVar](ui-text-stretch-var.md) | `typealias uiTextStretchVar = UIntVarOf<`[`uiTextStretch`](ui-text-stretch.md)`>` |
+| [uiTextWeight](ui-text-weight.md) | `typealias uiTextWeight = UInt` |
+| [uiTextWeightVar](ui-text-weight-var.md) | `typealias uiTextWeightVar = UIntVarOf<`[`uiTextWeight`](ui-text-weight.md)`>` |
+| [uiUnderline](ui-underline.md) | `typealias uiUnderline = UInt` |
+| [uiUnderlineColor](ui-underline-color.md) | `typealias uiUnderlineColor = UInt` |
+| [uiUnderlineColorVar](ui-underline-color-var.md) | `typealias uiUnderlineColorVar = UIntVarOf<`[`uiUnderlineColor`](ui-underline-color.md)`>` |
+| [uiUnderlineVar](ui-underline-var.md) | `typealias uiUnderlineVar = UIntVarOf<`[`uiUnderline`](ui-underline.md)`>` |
 | [uiWindow](ui-window.md) | `typealias uiWindow = CPointed` |
-| [uiWindowResizeEdge](ui-window-resize-edge.md) | `typealias uiWindowResizeEdge = Int` |
-| [uiWindowResizeEdgeVar](ui-window-resize-edge-var.md) | `typealias uiWindowResizeEdgeVar = IntVarOf<`[`uiWindowResizeEdge`](ui-window-resize-edge.md)`>` |
+| [uiWindowResizeEdge](ui-window-resize-edge.md) | `typealias uiWindowResizeEdge = UInt` |
+| [uiWindowResizeEdgeVar](ui-window-resize-edge-var.md) | `typealias uiWindowResizeEdgeVar = UIntVarOf<`[`uiWindowResizeEdge`](ui-window-resize-edge.md)`>` |
 
 ### Properties
 
 | Name | Summary |
 |---|---|
-| [uiAlignCenter](ui-align-center.md) | `val uiAlignCenter: Int` |
-| [uiAlignEnd](ui-align-end.md) | `val uiAlignEnd: Int` |
-| [uiAlignFill](ui-align-fill.md) | `val uiAlignFill: Int` |
-| [uiAlignStart](ui-align-start.md) | `val uiAlignStart: Int` |
-| [uiAtBottom](ui-at-bottom.md) | `val uiAtBottom: Int` |
-| [uiAtLeading](ui-at-leading.md) | `val uiAtLeading: Int` |
-| [uiAtTop](ui-at-top.md) | `val uiAtTop: Int` |
-| [uiAtTrailing](ui-at-trailing.md) | `val uiAtTrailing: Int` |
-| [uiAttributeTypeBackground](ui-attribute-type-background.md) | `val uiAttributeTypeBackground: Int` |
-| [uiAttributeTypeColor](ui-attribute-type-color.md) | `val uiAttributeTypeColor: Int` |
-| [uiAttributeTypeFamily](ui-attribute-type-family.md) | `val uiAttributeTypeFamily: Int` |
-| [uiAttributeTypeFeatures](ui-attribute-type-features.md) | `val uiAttributeTypeFeatures: Int` |
-| [uiAttributeTypeItalic](ui-attribute-type-italic.md) | `val uiAttributeTypeItalic: Int` |
-| [uiAttributeTypeSize](ui-attribute-type-size.md) | `val uiAttributeTypeSize: Int` |
-| [uiAttributeTypeStretch](ui-attribute-type-stretch.md) | `val uiAttributeTypeStretch: Int` |
-| [uiAttributeTypeUnderline](ui-attribute-type-underline.md) | `val uiAttributeTypeUnderline: Int` |
-| [uiAttributeTypeUnderlineColor](ui-attribute-type-underline-color.md) | `val uiAttributeTypeUnderlineColor: Int` |
-| [uiAttributeTypeWeight](ui-attribute-type-weight.md) | `val uiAttributeTypeWeight: Int` |
-| [uiDrawBrushTypeImage](ui-draw-brush-type-image.md) | `val uiDrawBrushTypeImage: Int` |
-| [uiDrawBrushTypeLinearGradient](ui-draw-brush-type-linear-gradient.md) | `val uiDrawBrushTypeLinearGradient: Int` |
-| [uiDrawBrushTypeRadialGradient](ui-draw-brush-type-radial-gradient.md) | `val uiDrawBrushTypeRadialGradient: Int` |
-| [uiDrawBrushTypeSolid](ui-draw-brush-type-solid.md) | `val uiDrawBrushTypeSolid: Int` |
+| [uiAlignCenter](ui-align-center.md) | `val uiAlignCenter: UInt` |
+| [uiAlignEnd](ui-align-end.md) | `val uiAlignEnd: UInt` |
+| [uiAlignFill](ui-align-fill.md) | `val uiAlignFill: UInt` |
+| [uiAlignStart](ui-align-start.md) | `val uiAlignStart: UInt` |
+| [uiAtBottom](ui-at-bottom.md) | `val uiAtBottom: UInt` |
+| [uiAtLeading](ui-at-leading.md) | `val uiAtLeading: UInt` |
+| [uiAtTop](ui-at-top.md) | `val uiAtTop: UInt` |
+| [uiAtTrailing](ui-at-trailing.md) | `val uiAtTrailing: UInt` |
+| [uiAttributeTypeBackground](ui-attribute-type-background.md) | `val uiAttributeTypeBackground: UInt` |
+| [uiAttributeTypeColor](ui-attribute-type-color.md) | `val uiAttributeTypeColor: UInt` |
+| [uiAttributeTypeFamily](ui-attribute-type-family.md) | `val uiAttributeTypeFamily: UInt` |
+| [uiAttributeTypeFeatures](ui-attribute-type-features.md) | `val uiAttributeTypeFeatures: UInt` |
+| [uiAttributeTypeItalic](ui-attribute-type-italic.md) | `val uiAttributeTypeItalic: UInt` |
+| [uiAttributeTypeSize](ui-attribute-type-size.md) | `val uiAttributeTypeSize: UInt` |
+| [uiAttributeTypeStretch](ui-attribute-type-stretch.md) | `val uiAttributeTypeStretch: UInt` |
+| [uiAttributeTypeUnderline](ui-attribute-type-underline.md) | `val uiAttributeTypeUnderline: UInt` |
+| [uiAttributeTypeUnderlineColor](ui-attribute-type-underline-color.md) | `val uiAttributeTypeUnderlineColor: UInt` |
+| [uiAttributeTypeWeight](ui-attribute-type-weight.md) | `val uiAttributeTypeWeight: UInt` |
+| [uiDrawBrushTypeImage](ui-draw-brush-type-image.md) | `val uiDrawBrushTypeImage: UInt` |
+| [uiDrawBrushTypeLinearGradient](ui-draw-brush-type-linear-gradient.md) | `val uiDrawBrushTypeLinearGradient: UInt` |
+| [uiDrawBrushTypeRadialGradient](ui-draw-brush-type-radial-gradient.md) | `val uiDrawBrushTypeRadialGradient: UInt` |
+| [uiDrawBrushTypeSolid](ui-draw-brush-type-solid.md) | `val uiDrawBrushTypeSolid: UInt` |
 | [uiDrawDefaultMiterLimit](ui-draw-default-miter-limit.md) | `val uiDrawDefaultMiterLimit: Double` |
-| [uiDrawFillModeAlternate](ui-draw-fill-mode-alternate.md) | `val uiDrawFillModeAlternate: Int` |
-| [uiDrawFillModeWinding](ui-draw-fill-mode-winding.md) | `val uiDrawFillModeWinding: Int` |
-| [uiDrawLineCapFlat](ui-draw-line-cap-flat.md) | `val uiDrawLineCapFlat: Int` |
-| [uiDrawLineCapRound](ui-draw-line-cap-round.md) | `val uiDrawLineCapRound: Int` |
-| [uiDrawLineCapSquare](ui-draw-line-cap-square.md) | `val uiDrawLineCapSquare: Int` |
-| [uiDrawLineJoinBevel](ui-draw-line-join-bevel.md) | `val uiDrawLineJoinBevel: Int` |
-| [uiDrawLineJoinMiter](ui-draw-line-join-miter.md) | `val uiDrawLineJoinMiter: Int` |
-| [uiDrawLineJoinRound](ui-draw-line-join-round.md) | `val uiDrawLineJoinRound: Int` |
-| [uiDrawTextAlignCenter](ui-draw-text-align-center.md) | `val uiDrawTextAlignCenter: Int` |
-| [uiDrawTextAlignLeft](ui-draw-text-align-left.md) | `val uiDrawTextAlignLeft: Int` |
-| [uiDrawTextAlignRight](ui-draw-text-align-right.md) | `val uiDrawTextAlignRight: Int` |
-| [uiExtKeyDelete](ui-ext-key-delete.md) | `val uiExtKeyDelete: Int` |
-| [uiExtKeyDown](ui-ext-key-down.md) | `val uiExtKeyDown: Int` |
-| [uiExtKeyEnd](ui-ext-key-end.md) | `val uiExtKeyEnd: Int` |
-| [uiExtKeyEscape](ui-ext-key-escape.md) | `val uiExtKeyEscape: Int` |
-| [uiExtKeyF1](ui-ext-key-f1.md) | `val uiExtKeyF1: Int` |
-| [uiExtKeyF10](ui-ext-key-f10.md) | `val uiExtKeyF10: Int` |
-| [uiExtKeyF11](ui-ext-key-f11.md) | `val uiExtKeyF11: Int` |
-| [uiExtKeyF12](ui-ext-key-f12.md) | `val uiExtKeyF12: Int` |
-| [uiExtKeyF2](ui-ext-key-f2.md) | `val uiExtKeyF2: Int` |
-| [uiExtKeyF3](ui-ext-key-f3.md) | `val uiExtKeyF3: Int` |
-| [uiExtKeyF4](ui-ext-key-f4.md) | `val uiExtKeyF4: Int` |
-| [uiExtKeyF5](ui-ext-key-f5.md) | `val uiExtKeyF5: Int` |
-| [uiExtKeyF6](ui-ext-key-f6.md) | `val uiExtKeyF6: Int` |
-| [uiExtKeyF7](ui-ext-key-f7.md) | `val uiExtKeyF7: Int` |
-| [uiExtKeyF8](ui-ext-key-f8.md) | `val uiExtKeyF8: Int` |
-| [uiExtKeyF9](ui-ext-key-f9.md) | `val uiExtKeyF9: Int` |
-| [uiExtKeyHome](ui-ext-key-home.md) | `val uiExtKeyHome: Int` |
-| [uiExtKeyInsert](ui-ext-key-insert.md) | `val uiExtKeyInsert: Int` |
-| [uiExtKeyLeft](ui-ext-key-left.md) | `val uiExtKeyLeft: Int` |
-| [uiExtKeyN0](ui-ext-key-n0.md) | `val uiExtKeyN0: Int` |
-| [uiExtKeyN1](ui-ext-key-n1.md) | `val uiExtKeyN1: Int` |
-| [uiExtKeyN2](ui-ext-key-n2.md) | `val uiExtKeyN2: Int` |
-| [uiExtKeyN3](ui-ext-key-n3.md) | `val uiExtKeyN3: Int` |
-| [uiExtKeyN4](ui-ext-key-n4.md) | `val uiExtKeyN4: Int` |
-| [uiExtKeyN5](ui-ext-key-n5.md) | `val uiExtKeyN5: Int` |
-| [uiExtKeyN6](ui-ext-key-n6.md) | `val uiExtKeyN6: Int` |
-| [uiExtKeyN7](ui-ext-key-n7.md) | `val uiExtKeyN7: Int` |
-| [uiExtKeyN8](ui-ext-key-n8.md) | `val uiExtKeyN8: Int` |
-| [uiExtKeyN9](ui-ext-key-n9.md) | `val uiExtKeyN9: Int` |
-| [uiExtKeyNAdd](ui-ext-key-n-add.md) | `val uiExtKeyNAdd: Int` |
-| [uiExtKeyNDivide](ui-ext-key-n-divide.md) | `val uiExtKeyNDivide: Int` |
-| [uiExtKeyNDot](ui-ext-key-n-dot.md) | `val uiExtKeyNDot: Int` |
-| [uiExtKeyNEnter](ui-ext-key-n-enter.md) | `val uiExtKeyNEnter: Int` |
-| [uiExtKeyNMultiply](ui-ext-key-n-multiply.md) | `val uiExtKeyNMultiply: Int` |
-| [uiExtKeyNSubtract](ui-ext-key-n-subtract.md) | `val uiExtKeyNSubtract: Int` |
-| [uiExtKeyPageDown](ui-ext-key-page-down.md) | `val uiExtKeyPageDown: Int` |
-| [uiExtKeyPageUp](ui-ext-key-page-up.md) | `val uiExtKeyPageUp: Int` |
-| [uiExtKeyRight](ui-ext-key-right.md) | `val uiExtKeyRight: Int` |
-| [uiExtKeyUp](ui-ext-key-up.md) | `val uiExtKeyUp: Int` |
-| [uiForEachContinue](ui-for-each-continue.md) | `val uiForEachContinue: Int` |
-| [uiForEachStop](ui-for-each-stop.md) | `val uiForEachStop: Int` |
-| [uiModifierAlt](ui-modifier-alt.md) | `val uiModifierAlt: Int` |
-| [uiModifierCtrl](ui-modifier-ctrl.md) | `val uiModifierCtrl: Int` |
-| [uiModifierShift](ui-modifier-shift.md) | `val uiModifierShift: Int` |
-| [uiModifierSuper](ui-modifier-super.md) | `val uiModifierSuper: Int` |
+| [uiDrawFillModeAlternate](ui-draw-fill-mode-alternate.md) | `val uiDrawFillModeAlternate: UInt` |
+| [uiDrawFillModeWinding](ui-draw-fill-mode-winding.md) | `val uiDrawFillModeWinding: UInt` |
+| [uiDrawLineCapFlat](ui-draw-line-cap-flat.md) | `val uiDrawLineCapFlat: UInt` |
+| [uiDrawLineCapRound](ui-draw-line-cap-round.md) | `val uiDrawLineCapRound: UInt` |
+| [uiDrawLineCapSquare](ui-draw-line-cap-square.md) | `val uiDrawLineCapSquare: UInt` |
+| [uiDrawLineJoinBevel](ui-draw-line-join-bevel.md) | `val uiDrawLineJoinBevel: UInt` |
+| [uiDrawLineJoinMiter](ui-draw-line-join-miter.md) | `val uiDrawLineJoinMiter: UInt` |
+| [uiDrawLineJoinRound](ui-draw-line-join-round.md) | `val uiDrawLineJoinRound: UInt` |
+| [uiDrawTextAlignCenter](ui-draw-text-align-center.md) | `val uiDrawTextAlignCenter: UInt` |
+| [uiDrawTextAlignLeft](ui-draw-text-align-left.md) | `val uiDrawTextAlignLeft: UInt` |
+| [uiDrawTextAlignRight](ui-draw-text-align-right.md) | `val uiDrawTextAlignRight: UInt` |
+| [uiExtKeyDelete](ui-ext-key-delete.md) | `val uiExtKeyDelete: UInt` |
+| [uiExtKeyDown](ui-ext-key-down.md) | `val uiExtKeyDown: UInt` |
+| [uiExtKeyEnd](ui-ext-key-end.md) | `val uiExtKeyEnd: UInt` |
+| [uiExtKeyEscape](ui-ext-key-escape.md) | `val uiExtKeyEscape: UInt` |
+| [uiExtKeyF1](ui-ext-key-f1.md) | `val uiExtKeyF1: UInt` |
+| [uiExtKeyF10](ui-ext-key-f10.md) | `val uiExtKeyF10: UInt` |
+| [uiExtKeyF11](ui-ext-key-f11.md) | `val uiExtKeyF11: UInt` |
+| [uiExtKeyF12](ui-ext-key-f12.md) | `val uiExtKeyF12: UInt` |
+| [uiExtKeyF2](ui-ext-key-f2.md) | `val uiExtKeyF2: UInt` |
+| [uiExtKeyF3](ui-ext-key-f3.md) | `val uiExtKeyF3: UInt` |
+| [uiExtKeyF4](ui-ext-key-f4.md) | `val uiExtKeyF4: UInt` |
+| [uiExtKeyF5](ui-ext-key-f5.md) | `val uiExtKeyF5: UInt` |
+| [uiExtKeyF6](ui-ext-key-f6.md) | `val uiExtKeyF6: UInt` |
+| [uiExtKeyF7](ui-ext-key-f7.md) | `val uiExtKeyF7: UInt` |
+| [uiExtKeyF8](ui-ext-key-f8.md) | `val uiExtKeyF8: UInt` |
+| [uiExtKeyF9](ui-ext-key-f9.md) | `val uiExtKeyF9: UInt` |
+| [uiExtKeyHome](ui-ext-key-home.md) | `val uiExtKeyHome: UInt` |
+| [uiExtKeyInsert](ui-ext-key-insert.md) | `val uiExtKeyInsert: UInt` |
+| [uiExtKeyLeft](ui-ext-key-left.md) | `val uiExtKeyLeft: UInt` |
+| [uiExtKeyN0](ui-ext-key-n0.md) | `val uiExtKeyN0: UInt` |
+| [uiExtKeyN1](ui-ext-key-n1.md) | `val uiExtKeyN1: UInt` |
+| [uiExtKeyN2](ui-ext-key-n2.md) | `val uiExtKeyN2: UInt` |
+| [uiExtKeyN3](ui-ext-key-n3.md) | `val uiExtKeyN3: UInt` |
+| [uiExtKeyN4](ui-ext-key-n4.md) | `val uiExtKeyN4: UInt` |
+| [uiExtKeyN5](ui-ext-key-n5.md) | `val uiExtKeyN5: UInt` |
+| [uiExtKeyN6](ui-ext-key-n6.md) | `val uiExtKeyN6: UInt` |
+| [uiExtKeyN7](ui-ext-key-n7.md) | `val uiExtKeyN7: UInt` |
+| [uiExtKeyN8](ui-ext-key-n8.md) | `val uiExtKeyN8: UInt` |
+| [uiExtKeyN9](ui-ext-key-n9.md) | `val uiExtKeyN9: UInt` |
+| [uiExtKeyNAdd](ui-ext-key-n-add.md) | `val uiExtKeyNAdd: UInt` |
+| [uiExtKeyNDivide](ui-ext-key-n-divide.md) | `val uiExtKeyNDivide: UInt` |
+| [uiExtKeyNDot](ui-ext-key-n-dot.md) | `val uiExtKeyNDot: UInt` |
+| [uiExtKeyNEnter](ui-ext-key-n-enter.md) | `val uiExtKeyNEnter: UInt` |
+| [uiExtKeyNMultiply](ui-ext-key-n-multiply.md) | `val uiExtKeyNMultiply: UInt` |
+| [uiExtKeyNSubtract](ui-ext-key-n-subtract.md) | `val uiExtKeyNSubtract: UInt` |
+| [uiExtKeyPageDown](ui-ext-key-page-down.md) | `val uiExtKeyPageDown: UInt` |
+| [uiExtKeyPageUp](ui-ext-key-page-up.md) | `val uiExtKeyPageUp: UInt` |
+| [uiExtKeyRight](ui-ext-key-right.md) | `val uiExtKeyRight: UInt` |
+| [uiExtKeyUp](ui-ext-key-up.md) | `val uiExtKeyUp: UInt` |
+| [uiForEachContinue](ui-for-each-continue.md) | `val uiForEachContinue: UInt` |
+| [uiForEachStop](ui-for-each-stop.md) | `val uiForEachStop: UInt` |
+| [uiModifierAlt](ui-modifier-alt.md) | `val uiModifierAlt: UInt` |
+| [uiModifierCtrl](ui-modifier-ctrl.md) | `val uiModifierCtrl: UInt` |
+| [uiModifierShift](ui-modifier-shift.md) | `val uiModifierShift: UInt` |
+| [uiModifierSuper](ui-modifier-super.md) | `val uiModifierSuper: UInt` |
 | [uiPi](ui-pi.md) | `val uiPi: Double` |
-| [uiTableModelColumnAlwaysEditable](ui-table-model-column-always-editable.md) | `val uiTableModelColumnAlwaysEditable: Int` |
-| [uiTableModelColumnNeverEditable](ui-table-model-column-never-editable.md) | `val uiTableModelColumnNeverEditable: Int` |
-| [uiTableValueTypeColor](ui-table-value-type-color.md) | `val uiTableValueTypeColor: Int` |
-| [uiTableValueTypeImage](ui-table-value-type-image.md) | `val uiTableValueTypeImage: Int` |
-| [uiTableValueTypeInt](ui-table-value-type-int.md) | `val uiTableValueTypeInt: Int` |
-| [uiTableValueTypeString](ui-table-value-type-string.md) | `val uiTableValueTypeString: Int` |
-| [uiTextItalicItalic](ui-text-italic-italic.md) | `val uiTextItalicItalic: Int` |
-| [uiTextItalicNormal](ui-text-italic-normal.md) | `val uiTextItalicNormal: Int` |
-| [uiTextItalicOblique](ui-text-italic-oblique.md) | `val uiTextItalicOblique: Int` |
-| [uiTextStretchCondensed](ui-text-stretch-condensed.md) | `val uiTextStretchCondensed: Int` |
-| [uiTextStretchExpanded](ui-text-stretch-expanded.md) | `val uiTextStretchExpanded: Int` |
-| [uiTextStretchExtraCondensed](ui-text-stretch-extra-condensed.md) | `val uiTextStretchExtraCondensed: Int` |
-| [uiTextStretchExtraExpanded](ui-text-stretch-extra-expanded.md) | `val uiTextStretchExtraExpanded: Int` |
-| [uiTextStretchNormal](ui-text-stretch-normal.md) | `val uiTextStretchNormal: Int` |
-| [uiTextStretchSemiCondensed](ui-text-stretch-semi-condensed.md) | `val uiTextStretchSemiCondensed: Int` |
-| [uiTextStretchSemiExpanded](ui-text-stretch-semi-expanded.md) | `val uiTextStretchSemiExpanded: Int` |
-| [uiTextStretchUltraCondensed](ui-text-stretch-ultra-condensed.md) | `val uiTextStretchUltraCondensed: Int` |
-| [uiTextStretchUltraExpanded](ui-text-stretch-ultra-expanded.md) | `val uiTextStretchUltraExpanded: Int` |
-| [uiTextWeightBold](ui-text-weight-bold.md) | `val uiTextWeightBold: Int` |
-| [uiTextWeightBook](ui-text-weight-book.md) | `val uiTextWeightBook: Int` |
-| [uiTextWeightHeavy](ui-text-weight-heavy.md) | `val uiTextWeightHeavy: Int` |
-| [uiTextWeightLight](ui-text-weight-light.md) | `val uiTextWeightLight: Int` |
-| [uiTextWeightMaximum](ui-text-weight-maximum.md) | `val uiTextWeightMaximum: Int` |
-| [uiTextWeightMedium](ui-text-weight-medium.md) | `val uiTextWeightMedium: Int` |
-| [uiTextWeightMinimum](ui-text-weight-minimum.md) | `val uiTextWeightMinimum: Int` |
-| [uiTextWeightNormal](ui-text-weight-normal.md) | `val uiTextWeightNormal: Int` |
-| [uiTextWeightSemiBold](ui-text-weight-semi-bold.md) | `val uiTextWeightSemiBold: Int` |
-| [uiTextWeightThin](ui-text-weight-thin.md) | `val uiTextWeightThin: Int` |
-| [uiTextWeightUltraBold](ui-text-weight-ultra-bold.md) | `val uiTextWeightUltraBold: Int` |
-| [uiTextWeightUltraHeavy](ui-text-weight-ultra-heavy.md) | `val uiTextWeightUltraHeavy: Int` |
-| [uiTextWeightUltraLight](ui-text-weight-ultra-light.md) | `val uiTextWeightUltraLight: Int` |
-| [uiUnderlineColorAuxiliary](ui-underline-color-auxiliary.md) | `val uiUnderlineColorAuxiliary: Int` |
-| [uiUnderlineColorCustom](ui-underline-color-custom.md) | `val uiUnderlineColorCustom: Int` |
-| [uiUnderlineColorGrammar](ui-underline-color-grammar.md) | `val uiUnderlineColorGrammar: Int` |
-| [uiUnderlineColorSpelling](ui-underline-color-spelling.md) | `val uiUnderlineColorSpelling: Int` |
-| [uiUnderlineDouble](ui-underline-double.md) | `val uiUnderlineDouble: Int` |
-| [uiUnderlineNone](ui-underline-none.md) | `val uiUnderlineNone: Int` |
-| [uiUnderlineSingle](ui-underline-single.md) | `val uiUnderlineSingle: Int` |
-| [uiUnderlineSuggestion](ui-underline-suggestion.md) | `val uiUnderlineSuggestion: Int` |
-| [uiWindowResizeEdgeBottom](ui-window-resize-edge-bottom.md) | `val uiWindowResizeEdgeBottom: Int` |
-| [uiWindowResizeEdgeBottomLeft](ui-window-resize-edge-bottom-left.md) | `val uiWindowResizeEdgeBottomLeft: Int` |
-| [uiWindowResizeEdgeBottomRight](ui-window-resize-edge-bottom-right.md) | `val uiWindowResizeEdgeBottomRight: Int` |
-| [uiWindowResizeEdgeLeft](ui-window-resize-edge-left.md) | `val uiWindowResizeEdgeLeft: Int` |
-| [uiWindowResizeEdgeRight](ui-window-resize-edge-right.md) | `val uiWindowResizeEdgeRight: Int` |
-| [uiWindowResizeEdgeTop](ui-window-resize-edge-top.md) | `val uiWindowResizeEdgeTop: Int` |
-| [uiWindowResizeEdgeTopLeft](ui-window-resize-edge-top-left.md) | `val uiWindowResizeEdgeTopLeft: Int` |
-| [uiWindowResizeEdgeTopRight](ui-window-resize-edge-top-right.md) | `val uiWindowResizeEdgeTopRight: Int` |
+| [uiTableModelColumnAlwaysEditable](ui-table-model-column-always-editable.md) | `const val uiTableModelColumnAlwaysEditable: Int` |
+| [uiTableModelColumnNeverEditable](ui-table-model-column-never-editable.md) | `const val uiTableModelColumnNeverEditable: Int` |
+| [uiTableValueTypeColor](ui-table-value-type-color.md) | `val uiTableValueTypeColor: UInt` |
+| [uiTableValueTypeImage](ui-table-value-type-image.md) | `val uiTableValueTypeImage: UInt` |
+| [uiTableValueTypeInt](ui-table-value-type-int.md) | `val uiTableValueTypeInt: UInt` |
+| [uiTableValueTypeString](ui-table-value-type-string.md) | `val uiTableValueTypeString: UInt` |
+| [uiTextItalicItalic](ui-text-italic-italic.md) | `val uiTextItalicItalic: UInt` |
+| [uiTextItalicNormal](ui-text-italic-normal.md) | `val uiTextItalicNormal: UInt` |
+| [uiTextItalicOblique](ui-text-italic-oblique.md) | `val uiTextItalicOblique: UInt` |
+| [uiTextStretchCondensed](ui-text-stretch-condensed.md) | `val uiTextStretchCondensed: UInt` |
+| [uiTextStretchExpanded](ui-text-stretch-expanded.md) | `val uiTextStretchExpanded: UInt` |
+| [uiTextStretchExtraCondensed](ui-text-stretch-extra-condensed.md) | `val uiTextStretchExtraCondensed: UInt` |
+| [uiTextStretchExtraExpanded](ui-text-stretch-extra-expanded.md) | `val uiTextStretchExtraExpanded: UInt` |
+| [uiTextStretchNormal](ui-text-stretch-normal.md) | `val uiTextStretchNormal: UInt` |
+| [uiTextStretchSemiCondensed](ui-text-stretch-semi-condensed.md) | `val uiTextStretchSemiCondensed: UInt` |
+| [uiTextStretchSemiExpanded](ui-text-stretch-semi-expanded.md) | `val uiTextStretchSemiExpanded: UInt` |
+| [uiTextStretchUltraCondensed](ui-text-stretch-ultra-condensed.md) | `val uiTextStretchUltraCondensed: UInt` |
+| [uiTextStretchUltraExpanded](ui-text-stretch-ultra-expanded.md) | `val uiTextStretchUltraExpanded: UInt` |
+| [uiTextWeightBold](ui-text-weight-bold.md) | `val uiTextWeightBold: UInt` |
+| [uiTextWeightBook](ui-text-weight-book.md) | `val uiTextWeightBook: UInt` |
+| [uiTextWeightHeavy](ui-text-weight-heavy.md) | `val uiTextWeightHeavy: UInt` |
+| [uiTextWeightLight](ui-text-weight-light.md) | `val uiTextWeightLight: UInt` |
+| [uiTextWeightMaximum](ui-text-weight-maximum.md) | `val uiTextWeightMaximum: UInt` |
+| [uiTextWeightMedium](ui-text-weight-medium.md) | `val uiTextWeightMedium: UInt` |
+| [uiTextWeightMinimum](ui-text-weight-minimum.md) | `val uiTextWeightMinimum: UInt` |
+| [uiTextWeightNormal](ui-text-weight-normal.md) | `val uiTextWeightNormal: UInt` |
+| [uiTextWeightSemiBold](ui-text-weight-semi-bold.md) | `val uiTextWeightSemiBold: UInt` |
+| [uiTextWeightThin](ui-text-weight-thin.md) | `val uiTextWeightThin: UInt` |
+| [uiTextWeightUltraBold](ui-text-weight-ultra-bold.md) | `val uiTextWeightUltraBold: UInt` |
+| [uiTextWeightUltraHeavy](ui-text-weight-ultra-heavy.md) | `val uiTextWeightUltraHeavy: UInt` |
+| [uiTextWeightUltraLight](ui-text-weight-ultra-light.md) | `val uiTextWeightUltraLight: UInt` |
+| [uiUnderlineColorAuxiliary](ui-underline-color-auxiliary.md) | `val uiUnderlineColorAuxiliary: UInt` |
+| [uiUnderlineColorCustom](ui-underline-color-custom.md) | `val uiUnderlineColorCustom: UInt` |
+| [uiUnderlineColorGrammar](ui-underline-color-grammar.md) | `val uiUnderlineColorGrammar: UInt` |
+| [uiUnderlineColorSpelling](ui-underline-color-spelling.md) | `val uiUnderlineColorSpelling: UInt` |
+| [uiUnderlineDouble](ui-underline-double.md) | `val uiUnderlineDouble: UInt` |
+| [uiUnderlineNone](ui-underline-none.md) | `val uiUnderlineNone: UInt` |
+| [uiUnderlineSingle](ui-underline-single.md) | `val uiUnderlineSingle: UInt` |
+| [uiUnderlineSuggestion](ui-underline-suggestion.md) | `val uiUnderlineSuggestion: UInt` |
+| [uiWindowResizeEdgeBottom](ui-window-resize-edge-bottom.md) | `val uiWindowResizeEdgeBottom: UInt` |
+| [uiWindowResizeEdgeBottomLeft](ui-window-resize-edge-bottom-left.md) | `val uiWindowResizeEdgeBottomLeft: UInt` |
+| [uiWindowResizeEdgeBottomRight](ui-window-resize-edge-bottom-right.md) | `val uiWindowResizeEdgeBottomRight: UInt` |
+| [uiWindowResizeEdgeLeft](ui-window-resize-edge-left.md) | `val uiWindowResizeEdgeLeft: UInt` |
+| [uiWindowResizeEdgeRight](ui-window-resize-edge-right.md) | `val uiWindowResizeEdgeRight: UInt` |
+| [uiWindowResizeEdgeTop](ui-window-resize-edge-top.md) | `val uiWindowResizeEdgeTop: UInt` |
+| [uiWindowResizeEdgeTopLeft](ui-window-resize-edge-top-left.md) | `val uiWindowResizeEdgeTopLeft: UInt` |
+| [uiWindowResizeEdgeTopRight](ui-window-resize-edge-top-right.md) | `val uiWindowResizeEdgeTopRight: UInt` |
 
 ### Functions
 
@@ -365,7 +365,7 @@
 | [uiGroupSetMargined](ui-group-set-margined.md) | `fun uiGroupSetMargined(g: CValuesRef<`[`uiGroup`](ui-group.md)`>?, margined: Int): Unit` |
 | [uiGroupSetTitle](ui-group-set-title.md) | `fun uiGroupSetTitle(g: CValuesRef<`[`uiGroup`](ui-group.md)`>?, title: String?): Unit` |
 | [uiGroupTitle](ui-group-title.md) | `fun uiGroupTitle(g: CValuesRef<`[`uiGroup`](ui-group.md)`>?): CPointer<ByteVar>?` |
-| [uiImageAppend](ui-image-append.md) | `fun uiImageAppend(i: CValuesRef<`[`uiImage`](ui-image.md)`>?, pixels: CValuesRef<*>?, pixelWidth: Int, pixelHeight: Int, pixelStride: Int): Unit` |
+| [uiImageAppend](ui-image-append.md) | `fun uiImageAppend(i: CValuesRef<`[`uiImage`](ui-image.md)`>?, pixels: CValuesRef<*>?, pixelWidth: Int, pixelHeight: Int, byteStride: Int): Unit` |
 | [uiInit](ui-init.md) | `fun uiInit(options: CValuesRef<`[`uiInitOptions`](ui-init-options/index.md)`>?): CPointer<ByteVar>?` |
 | [uiLabelSetText](ui-label-set-text.md) | `fun uiLabelSetText(l: CValuesRef<`[`uiLabel`](ui-label.md)`>?, text: String?): Unit` |
 | [uiLabelText](ui-label-text.md) | `fun uiLabelText(l: CValuesRef<`[`uiLabel`](ui-label.md)`>?): CPointer<ByteVar>?` |

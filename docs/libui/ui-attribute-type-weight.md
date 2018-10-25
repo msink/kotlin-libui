@@ -2,4 +2,4 @@
 
 # uiAttributeTypeWeight
 
-`val uiAttributeTypeWeight: Int`
+`val uiAttributeTypeWeight: UInt`

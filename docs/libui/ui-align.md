@@ -2,4 +2,4 @@
 
 # uiAlign
 
-`typealias uiAlign = Int`
+`typealias uiAlign = UInt`

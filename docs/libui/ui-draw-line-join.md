@@ -2,4 +2,4 @@
 
 # uiDrawLineJoin
 
-`typealias uiDrawLineJoin = Int`
+`typealias uiDrawLineJoin = UInt`

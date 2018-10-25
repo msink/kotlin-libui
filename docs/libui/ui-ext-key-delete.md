@@ -2,4 +2,4 @@
 
 # uiExtKeyDelete
 
-`val uiExtKeyDelete: Int`
+`val uiExtKeyDelete: UInt`

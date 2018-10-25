@@ -2,4 +2,4 @@
 
 # uiTextStretchExtraCondensed
 
-`val uiTextStretchExtraCondensed: Int`
+`val uiTextStretchExtraCondensed: UInt`

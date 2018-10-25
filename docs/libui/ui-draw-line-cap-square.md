@@ -2,4 +2,4 @@
 
 # uiDrawLineCapSquare
 
-`val uiDrawLineCapSquare: Int`
+`val uiDrawLineCapSquare: UInt`

@@ -2,4 +2,4 @@
 
 # uiDrawBrushTypeImage
 
-`val uiDrawBrushTypeImage: Int`
+`val uiDrawBrushTypeImage: UInt`

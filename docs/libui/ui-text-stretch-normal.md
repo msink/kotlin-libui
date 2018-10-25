@@ -2,4 +2,4 @@
 
 # uiTextStretchNormal
 
-`val uiTextStretchNormal: Int`
+`val uiTextStretchNormal: UInt`

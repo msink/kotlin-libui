@@ -2,4 +2,4 @@
 
 # uiAttributeTypeSize
 
-`val uiAttributeTypeSize: Int`
+`val uiAttributeTypeSize: UInt`

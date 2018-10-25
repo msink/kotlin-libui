@@ -2,4 +2,4 @@
 
 # uiAttributeTypeItalic
 
-`val uiAttributeTypeItalic: Int`
+`val uiAttributeTypeItalic: UInt`

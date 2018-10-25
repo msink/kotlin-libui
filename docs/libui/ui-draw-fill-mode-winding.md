@@ -2,4 +2,4 @@
 
 # uiDrawFillModeWinding
 
-`val uiDrawFillModeWinding: Int`
+`val uiDrawFillModeWinding: UInt`

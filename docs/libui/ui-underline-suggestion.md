@@ -2,4 +2,4 @@
 
 # uiUnderlineSuggestion
 
-`val uiUnderlineSuggestion: Int`
+`val uiUnderlineSuggestion: UInt`

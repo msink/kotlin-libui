@@ -2,4 +2,4 @@
 
 # uiExtKeyNEnter
 
-`val uiExtKeyNEnter: Int`
+`val uiExtKeyNEnter: UInt`

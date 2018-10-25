@@ -2,4 +2,4 @@
 
 # uiTextStretchSemiExpanded
 
-`val uiTextStretchSemiExpanded: Int`
+`val uiTextStretchSemiExpanded: UInt`
