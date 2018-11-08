@@ -36,26 +36,12 @@ subprojects {
         }
         sourceSets {
             commonMain {
+                dependencies {
+                    implementation project(':libui-ktx')
+                }
                 kotlin.srcDir('src/main/kotlin')
             }
-            // TODO: unfortunately just adding 'project (":libui-ktx")' to commonMain results in linker errors
-            macosxMain {
-                dependencies {
-                    implementation files("${project(":libui-ktx").buildDir}/classes/kotlin/macosx/main/libui-ktx.klib",
-                            "${project(":libui-ktx").buildDir}/classes/kotlin/macosx/main/libui-ktx-cinterop-libui.klib")
-                }
-            }
-            linuxMain {
-                dependencies {
-                    implementation files("${project(":libui-ktx").buildDir}/classes/kotlin/linux/main/libui-ktx.klib",
-                            "${project(":libui-ktx").buildDir}/classes/kotlin/linux/main/libui-ktx-cinterop-libui.klib")
-                }
-            }
             windowsMain {
-                dependencies {
-                    implementation files("${project(":libui-ktx").buildDir}/classes/kotlin/windows/main/libui-ktx.klib",
-                            "${project(":libui-ktx").buildDir}/classes/kotlin/windows/main/libui-ktx-cinterop-libui.klib")
-                }
                 kotlin.include samplesResource
             }
         }
