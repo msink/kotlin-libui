@@ -2,6 +2,8 @@ plugins {
     id 'kotlin-multiplatform' version '1.3.0' apply false
 }
 
+ext.samplesResourcesDirectory = "${projectDir}/resources"
+
 subprojects {
     apply plugin: 'kotlin-multiplatform'
 
@@ -12,12 +14,12 @@ subprojects {
 
         def konanUserDir = System.getenv("KONAN_DATA_DIR") ?: "${System.getProperty("user.home")}/.konan"
         def windresDir = "${konanUserDir}/dependencies/msys2-mingw-w64-x86_64-gcc-7.3.0-clang-llvm-lld-6.0.1/bin"
-        def rcFile = file('${project.buildDir}/src/main/resources/samples.rc')
+        def rcFile = file("${samplesResourcesDirectory}/samples.rc")
 
         inputs.file rcFile
         outputs.file file(samplesResource)
-        commandLine "$windresDir/windres", rcFile, '-O', 'coff', '-o', samplesResource
-        environment 'PATH', "$windresDir;${System.getenv('PATH')}"
+        commandLine "${windresDir}/windres", rcFile, '-O', 'coff', '-o', samplesResource
+        environment 'PATH', "${windresDir};${System.getenv('PATH')}"
     }
 
     kotlin {
