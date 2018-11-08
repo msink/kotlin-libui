@@ -3,10 +3,6 @@ plugins {
 }
 
 subprojects {
-    repositories {
-        jcenter()
-    }
-
     apply plugin: 'kotlin-multiplatform'
 
     def samplesResource = "${project.buildDir}/konan/resources/samples.res"
