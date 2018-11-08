@@ -13,14 +13,12 @@ enableFeaturePreview('GRADLE_METADATA')
 include ':libui-ktx'
 
 include ':samples:controlgallery'
-
-// TODO: make all examples work again
-// include ':samples:datetime'
-// include ':samples:drawtext'
-// include ':samples:form'
-// include ':samples:hello'
-// include ':samples:hello-ktx'
-// include ':samples:histogram'
-// include ':samples:logo'
-// include ':samples:table'
-// include ':samples:timer'
+include ':samples:datetime'
+include ':samples:drawtext'
+include ':samples:form'
+include ':samples:hello'
+include ':samples:hello-ktx'
+include ':samples:histogram'
+include ':samples:logo'
+include ':samples:table'
+include ':samples:timer'
