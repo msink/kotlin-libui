@@ -3,11 +3,11 @@ headers = ui.h
 noStringConversion = uiFreeInitError
 
 staticLibraries = libui.a
-libraryPaths = libui/build
+libraryPaths = libui-ktx/build
 
 linkerOpts.osx = -lobjc -framework Foundation -framework AppKit
 
-linkerOpts.linux = -L/usr/lib/x86_64-linux-gnu \
+linkerOpts.linux = -L/usr/lib/x86_64-linux-gnu -L/usr/lib \
     -lgtk-3 -lgdk-3 -latk-1.0 -lgio-2.0 -lpangocairo-1.0 -lgdk_pixbuf-2.0 \
     -lcairo-gobject -lpango-1.0 -lcairo -lgobject-2.0 -lglib-2.0 -lm -ldl
 

@@ -1,15 +1,26 @@
+pluginManagement {
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == "kotlin-multiplatform") {
+                useModule("org.jetbrains.kotlin:kotlin-gradle-plugin:${requested.version}")
+            }
+        }
+    }
+}
+
 enableFeaturePreview('GRADLE_METADATA')
 
-include ':libui'
 include ':libui-ktx'
 
 include ':samples:controlgallery'
-include ':samples:datetime'
-include ':samples:drawtext'
-include ':samples:form'
-include ':samples:hello'
-include ':samples:hello-ktx'
-include ':samples:histogram'
-include ':samples:logo'
-include ':samples:table'
-include ':samples:timer'
+
+// TODO: make all examples work again
+// include ':samples:datetime'
+// include ':samples:drawtext'
+// include ':samples:form'
+// include ':samples:hello'
+// include ':samples:hello-ktx'
+// include ':samples:histogram'
+// include ':samples:logo'
+// include ':samples:table'
+// include ':samples:timer'
