@@ -1,0 +1,70 @@
+plugins {
+    id 'kotlin-multiplatform' version '1.3.0' apply false
+}
+
+subprojects {
+    repositories {
+        jcenter()
+    }
+
+    apply plugin: 'kotlin-multiplatform'
+
+    def samplesResource = "${project.buildDir}/konan/resources/samples.res"
+
+    task windowsResources(type: Exec) {
+        onlyIf { org.gradle.internal.os.OperatingSystem.current().isWindows() }
+
+        def konanUserDir = System.getenv("KONAN_DATA_DIR") ?: "${System.getProperty("user.home")}/.konan"
+        def windresDir = "${konanUserDir}/dependencies/msys2-mingw-w64-x86_64-gcc-7.3.0-clang-llvm-lld-6.0.1/bin"
+        def rcFile = file('${project.buildDir}/src/main/resources/samples.rc')
+
+        inputs.file rcFile
+        outputs.file file(samplesResource)
+        commandLine "$windresDir/windres", rcFile, '-O', 'coff', '-o', samplesResource
+        environment 'PATH', "$windresDir;${System.getenv('PATH')}"
+    }
+
+    kotlin {
+        targets {
+            fromPreset(presets.macosX64, 'macosx')
+            fromPreset(presets.linuxX64, 'linux')
+            fromPreset(presets.mingwX64, 'windows') {
+                compilations.main.linkerOpts "$samplesResource -mwindows"
+            }
+            configure([macosx, linux, windows]) {
+                compilations.main.outputKinds 'executable'
+                compilations.main.entryPoint 'main'
+            }
+        }
+        sourceSets {
+            commonMain {
+                kotlin.srcDir('src/main/kotlin')
+            }
+            // TODO: unfortunately just adding 'project (":libui-ktx")' to commonMain results in linker errors
+            macosxMain {
+                dependencies {
+                    implementation files("${project(":libui-ktx").buildDir}/classes/kotlin/macosx/main/libui-ktx.klib",
+                            "${project(":libui-ktx").buildDir}/classes/kotlin/macosx/main/libui-ktx-cinterop-libui.klib")
+                }
+            }
+            linuxMain {
+                dependencies {
+                    implementation files("${project(":libui-ktx").buildDir}/classes/kotlin/linux/main/libui-ktx.klib",
+                            "${project(":libui-ktx").buildDir}/classes/kotlin/linux/main/libui-ktx-cinterop-libui.klib")
+                }
+            }
+            windowsMain {
+                dependencies {
+                    implementation files("${project(":libui-ktx").buildDir}/classes/kotlin/windows/main/libui-ktx.klib",
+                            "${project(":libui-ktx").buildDir}/classes/kotlin/windows/main/libui-ktx-cinterop-libui.klib")
+                }
+                kotlin.include samplesResource
+            }
+        }
+    }
+
+    tasks.compileKotlinWindows.dependsOn windowsResources
+
+    // TODO: this was needed, because if it's missing the build fails. why?
+    tasks.compileKotlinMetadata.enabled = false
+}
