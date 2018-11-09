@@ -22,8 +22,8 @@ after_success:
       linux) export TARGET=linux ;;
       *)     exit 1 ;;
     esac
-  - cp libui/build/konan/libs/${TARGET}_x64/libui.klib libui-${TARGET}.klib
-  - cp libui-ktx/build/konan/libs/${TARGET}_x64/libui-ktx.klib libui-ktx-${TARGET}.klib
+  - cp libui/build/classes/kotlin/native/main/libui-cinterop-libui.klib libui-${TARGET}.klib
+  - cp libui/build/classes/kotlin/native/main/libui.klib libui-ktx-${TARGET}.klib
   - cp samples/controlgallery/build/konan/bin/${TARGET}_x64/controlgallery.kexe .
   - cp samples/datetime/build/konan/bin/${TARGET}_x64/datetime.kexe .
   - cp samples/drawtext/build/konan/bin/${TARGET}_x64/drawtext.kexe .
