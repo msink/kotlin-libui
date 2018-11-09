@@ -12,30 +12,30 @@ build_script:
 after_build:
   - copy libui\build\classes\kotlin\native\main\libui-cinterop-libui.klib libui-windows.klib
   - copy libui\build\classes\kotlin\native\main\libui.klib libui-ktx-windows.klib
-# - 7z a libui-samples-windows.zip
-#        .\samples\controlgallery\build\konan\bin\mingw_x64\controlgallery.exe
-#        .\samples\datetime\build\konan\bin\mingw_x64\datetime.exe
-#        .\samples\drawtext\build\konan\bin\mingw_x64\drawtext.exe
-#        .\samples\form\build\konan\bin\mingw_x64\form.exe
-#        .\samples\hello\build\konan\bin\mingw_x64\hello.exe
-#        .\samples\hello-ktx\build\konan\bin\mingw_x64\hello-ktx.exe
-#        .\samples\histogram\build\konan\bin\mingw_x64\histogram.exe
-#        .\samples\logo\build\konan\bin\mingw_x64\logo.exe
-#        .\samples\table\build\konan\bin\mingw_x64\table.exe
-#        .\samples\timer\build\konan\bin\mingw_x64\timer.exe
-# - 7z l libui-samples-windows.zip
+  - 7z a libui-samples-windows.zip
+         .\samples\controlgallery\build\bin\native\main\release\executable\controlgallery.exe
+         .\samples\datetime\build\bin\native\main\release\executable\datetime.exe
+         .\samples\drawtext\build\bin\native\main\release\executable\drawtext.exe
+         .\samples\form\build\bin\native\main\release\executable\form.exe
+         .\samples\hello\build\bin\native\main\release\executable\hello.exe
+         .\samples\hello-ktx\build\bin\native\main\release\executable\hello-ktx.exe
+         .\samples\histogram\build\bin\native\main\release\executable\histogram.exe
+         .\samples\logo\build\bin\native\main\release\executable\logo.exe
+         .\samples\table\build\bin\native\main\release\executable\table.exe
+         .\samples\timer\build\bin\native\main\release\executable\timer.exe
+  - 7z l libui-samples-windows.zip
 
 artifacts:
   - path: libui-windows.klib
     name: interop
   - path: libui-ktx-windows.klib
     name: library
-# - path: libui-samples-windows.zip
-#   name: samples
+  - path: libui-samples-windows.zip
+    name: samples
 
 deploy:
   provider: GitHub
-  artifact: interop, library #, samples
+  artifact: interop, library, samples
   auth_token:
     secure: "2l/602m6FkqAB9TTIAkPX3Erfwg9jVTlf/Inmf2dWcbOrJJzK/WrCUIgY3B4ngly"
   on:
