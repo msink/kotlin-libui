@@ -48,7 +48,5 @@ subprojects {
     }
 
     tasks.compileKotlinWindows.dependsOn windowsResources
-
-    // TODO: this was needed, because if it's missing the build fails. why?
     tasks.compileKotlinMetadata.enabled = false
 }

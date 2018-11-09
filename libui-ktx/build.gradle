@@ -60,5 +60,4 @@ tasks.withType(CInteropProcess).all {
     dependsOn unpackFile
 }
 
-// TODO: this was needed, because if it's missing the build fails. why?
 tasks.compileKotlinMetadata.enabled = false
