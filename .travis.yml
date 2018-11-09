@@ -22,18 +22,18 @@ after_success:
       linux) export TARGET=linux ;;
       *)     exit 1 ;;
     esac
-  - cp libui/build/konan/libs/${TARGET}_x64/libui.klib libui-${TARGET}.klib
-  - cp libui-ktx/build/konan/libs/${TARGET}_x64/libui-ktx.klib libui-ktx-${TARGET}.klib
-  - cp samples/controlgallery/build/konan/bin/${TARGET}_x64/controlgallery.kexe .
-  - cp samples/datetime/build/konan/bin/${TARGET}_x64/datetime.kexe .
-  - cp samples/drawtext/build/konan/bin/${TARGET}_x64/drawtext.kexe .
-  - cp samples/form/build/konan/bin/${TARGET}_x64/form.kexe .
-  - cp samples/hello/build/konan/bin/${TARGET}_x64/hello.kexe .
-  - cp samples/hello-ktx/build/konan/bin/${TARGET}_x64/hello-ktx.kexe .
-  - cp samples/histogram/build/konan/bin/${TARGET}_x64/histogram.kexe .
-  - cp samples/logo/build/konan/bin/${TARGET}_x64/logo.kexe .
-  - cp samples/table/build/konan/bin/${TARGET}_x64/table.kexe .
-  - cp samples/timer/build/konan/bin/${TARGET}_x64/timer.kexe .
+  - cp libui/build/classes/kotlin/native/main/libui-cinterop-libui.klib libui-${TARGET}.klib
+  - cp libui/build/classes/kotlin/native/main/libui.klib libui-ktx-${TARGET}.klib
+  - cp samples/controlgallery/build/bin/native/main/release/executable/controlgallery.kexe .
+  - cp samples/datetime/build/bin/native/main/release/executable/datetime.kexe .
+  - cp samples/drawtext/build/bin/native/main/release/executable/drawtext.kexe .
+  - cp samples/form/build/bin/native/main/release/executable/form.kexe .
+  - cp samples/hello/build/bin/native/main/release/executable/hello.kexe .
+  - cp samples/hello-ktx/build/bin/native/main/release/executable/hello-ktx.kexe .
+  - cp samples/histogram/build/bin/native/main/release/executable/histogram.kexe .
+  - cp samples/logo/build/bin/native/main/release/executable/logo.kexe .
+  - cp samples/table/build/bin/native/main/release/executable/table.kexe .
+  - cp samples/timer/build/bin/native/main/release/executable/timer.kexe .
   - tar -czvf libui-samples-kotlin-${TARGET}.tgz *.kexe
 
 deploy:

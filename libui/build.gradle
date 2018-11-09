@@ -1,8 +1,16 @@
-plugins { id 'de.undercouch.download' version '3.4.3' }
+plugins {
+    id 'de.undercouch.download' version '3.4.3'
+    id 'kotlin-multiplatform' version '1.3.0'
+}
 
-def os = org.gradle.internal.os.OperatingSystem.current()
+repositories {
+    jcenter()
+    mavenCentral()
+}
 
-task downloadFile(type: Download) {
+final def os = org.gradle.internal.os.OperatingSystem.current()
+
+task downloadArchive(type: Download) {
     def release = "https://github.com/andlabs/libui/releases/download/$libuiVersion/libui-$libuiVersion"
     if (os.isWindows()) {
         src "$release-windows-amd64-mingw-static.zip"
@@ -15,21 +23,31 @@ task downloadFile(type: Download) {
     overwrite false
 }
 
-task unpackFile(dependsOn: downloadFile, type: Copy) {
+task unpackArchive(dependsOn: downloadArchive, type: Copy) {
     if (os.isWindows()) {
-        from zipTree(downloadFile.dest)
+        from zipTree(downloadArchive.dest)
     } else {
-        from tarTree(resources.gzip(downloadFile.dest))
+        from tarTree(resources.gzip(downloadArchive.dest))
     }
     into buildDir
 }
 
-apply plugin: 'konan'
-
-konanArtifacts {
-    interop('libui') {
-        dependsOn 'unpackFile'
-        defFile 'libui.def'
-        includeDirs "${project.rootDir}/libui/build"
+kotlin {
+    final def nativePreset = os.isWindows() ? presets.mingwX64
+                           : os.isLinux()   ? presets.linuxX64
+                           : os.isMacOsX()  ? presets.macosX64
+                           : /*unknown host*/ null
+    targets {
+        fromPreset(nativePreset, 'native') {
+            compilations.main {
+                cinterops {
+                    libui {
+                        includeDirs "${project.rootDir}/libui/build"
+                    }
+                }
+            }
+        }
     }
 }
+
+tasks[kotlin.targets.native.compilations.main.cinterops.libui.interopProcessingTaskName].dependsOn unpackArchive
