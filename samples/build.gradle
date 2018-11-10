@@ -9,7 +9,7 @@ subprojects {
 
     def samplesResource = "${project.buildDir}/konan/resources/samples.res"
 
-    task windowsResources(type: Exec) {
+    task compileWindowsResources(type: Exec) {
         onlyIf { org.gradle.internal.os.OperatingSystem.current().isWindows() }
 
         def konanUserDir = System.getenv("KONAN_DATA_DIR") ?: "${System.getProperty("user.home")}/.konan"
@@ -35,18 +35,26 @@ subprojects {
             }
         }
         sourceSets {
-            commonMain {
+            nativeMain {
                 dependencies {
-                    implementation project(':libui-ktx')
+                    implementation project(':libui')
                 }
-                kotlin.srcDir('src/main/kotlin')
+                kotlin.srcDir('src/nativeMain/kotlin')
+            }
+            macosxMain {
+                dependsOn nativeMain
+            }
+            linuxMain {
+                dependsOn nativeMain
             }
             windowsMain {
+                dependsOn nativeMain
                 kotlin.include samplesResource
             }
         }
     }
 
-    tasks.compileKotlinWindows.dependsOn windowsResources
-    tasks.compileKotlinMetadata.enabled = false
+    // TODO: run program
+
+    tasks.compileKotlinWindows.dependsOn compileWindowsResources
 }

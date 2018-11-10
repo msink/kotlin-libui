@@ -10,19 +10,19 @@ build_script:
   - gradlew build
 
 after_build:
-  - copy libui\build\konan\libs\mingw_x64\libui.klib libui-windows.klib
-  - copy libui-ktx\build\konan\libs\mingw_x64\libui-ktx.klib libui-ktx-windows.klib
+  - copy libui\build\classes\kotlin\native\main\libui-cinterop-libui.klib libui-windows.klib
+  - copy libui\build\classes\kotlin\native\main\libui.klib libui-ktx-windows.klib
   - 7z a libui-samples-windows.zip
-         .\samples\controlgallery\build\konan\bin\mingw_x64\controlgallery.exe
-         .\samples\datetime\build\konan\bin\mingw_x64\datetime.exe
-         .\samples\drawtext\build\konan\bin\mingw_x64\drawtext.exe
-         .\samples\form\build\konan\bin\mingw_x64\form.exe
-         .\samples\hello\build\konan\bin\mingw_x64\hello.exe
-         .\samples\hello-ktx\build\konan\bin\mingw_x64\hello-ktx.exe
-         .\samples\histogram\build\konan\bin\mingw_x64\histogram.exe
-         .\samples\logo\build\konan\bin\mingw_x64\logo.exe
-         .\samples\table\build\konan\bin\mingw_x64\table.exe
-         .\samples\timer\build\konan\bin\mingw_x64\timer.exe
+         .\samples\controlgallery\build\bin\native\main\release\executable\controlgallery.exe
+         .\samples\datetime\build\bin\native\main\release\executable\datetime.exe
+         .\samples\drawtext\build\bin\native\main\release\executable\drawtext.exe
+         .\samples\form\build\bin\native\main\release\executable\form.exe
+         .\samples\hello\build\bin\native\main\release\executable\hello.exe
+         .\samples\hello-ktx\build\bin\native\main\release\executable\hello-ktx.exe
+         .\samples\histogram\build\bin\native\main\release\executable\histogram.exe
+         .\samples\logo\build\bin\native\main\release\executable\logo.exe
+         .\samples\table\build\bin\native\main\release\executable\table.exe
+         .\samples\timer\build\bin\native\main\release\executable\timer.exe
   - 7z l libui-samples-windows.zip
 
 artifacts:

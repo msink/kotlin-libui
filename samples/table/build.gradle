@@ -1,7 +1,7 @@
 kotlin {
     sourceSets {
-        commonMain {
-            kotlin.srcDir('src/main/resources')
+        nativeMain {
+            kotlin.srcDir('src/nativeMain/resources')
         }
     }
 }

@@ -15,22 +15,14 @@ buildscript {
     }
 }
 
-allprojects {
-    repositories {
-        jcenter()
-        mavenCentral()
-        maven { url "https://dl.bintray.com/jetbrains/kotlin-native-dependencies" }
-    }
-}
-
 apply plugin: 'org.jetbrains.dokka'
 
 dokka {
     outputFormat = 'gfm'
     outputDirectory = 'docs'
     moduleName = ''
-    sourceRoot { path = 'libui/build/konan' }
-    sourceRoot { path = 'libui-ktx/src/main/kotlin' }
+    sourceRoot { path = 'libui/build/classes/kotlin/native/main/libui-cinterop-libui.klib-build' }
+    sourceRoot { path = 'libui/src/nativeMain/kotlin' }
     sourceRoot { path = 'staging' }
     reportUndocumented = false
     noStdlibLink = true

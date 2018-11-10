@@ -1,16 +1,16 @@
 plugins {
-    id 'kotlin-multiplatform' version '1.3.0'
     id 'de.undercouch.download' version '3.4.3'
+    id 'kotlin-multiplatform' version '1.3.0'
 }
+
 repositories {
     jcenter()
+    mavenCentral()
 }
 
-import org.jetbrains.kotlin.gradle.tasks.CInteropProcess
+final def os = org.gradle.internal.os.OperatingSystem.current()
 
-def os = org.gradle.internal.os.OperatingSystem.current()
-
-task downloadFile(type: Download) {
+task downloadArchive(type: Download) {
     def release = "https://github.com/andlabs/libui/releases/download/$libuiVersion/libui-$libuiVersion"
     if (os.isWindows()) {
         src "$release-windows-amd64-mingw-static.zip"
@@ -23,11 +23,11 @@ task downloadFile(type: Download) {
     overwrite false
 }
 
-task unpackFile(dependsOn: downloadFile, type: Copy) {
+task unpackArchive(dependsOn: downloadArchive, type: Copy) {
     if (os.isWindows()) {
-        from zipTree(downloadFile.dest)
+        from zipTree(downloadArchive.dest)
     } else {
-        from tarTree(resources.gzip(downloadFile.dest))
+        from tarTree(resources.gzip(downloadArchive.dest))
     }
     into buildDir
 }
@@ -39,25 +39,32 @@ kotlin {
         fromPreset(presets.mingwX64, 'windows')
 
         configure([macosx, linux, windows]) {
-            compilations.main.outputKinds 'static'
-            compilations.main.cinterops {
-                libui {
-                    includeDirs "${project.buildDir}"
-                    defFile project.file("libui.def")
+            compilations.main {
+                cinterops {
+                    libui {
+                        includeDirs "${project.rootDir}/libui/build"
+                    }
                 }
             }
         }
     }
 
     sourceSets {
-        commonMain {
-            kotlin.srcDir('src/main/kotlin')
+        nativeMain {
+            kotlin.srcDir('src/nativeMain/kotlin')
+        }
+        macosxMain {
+            dependsOn nativeMain
+        }
+        linuxMain {
+            dependsOn nativeMain
+        }
+        windowsMain {
+            dependsOn nativeMain
         }
     }
 }
 
-tasks.withType(CInteropProcess).all {
-    dependsOn unpackFile
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.CInteropProcess).all {
+    dependsOn unpackArchive
 }
-
-tasks.compileKotlinMetadata.enabled = false
