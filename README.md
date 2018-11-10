@@ -24,13 +24,13 @@ The script below builds kotlin-libui then builds and runs the sample `hello-ktx`
 #clone this project
 git clone https://github.com/msink/kotlin-libui.git
 
-#build kotlin-libui.klib
+#build libui.klib
 cd kotlin-libui/libui
 ../gradlew build
 
 #build and run the hello-ktx sample
 cd ../samples/hello-ktx/
-../../gradlew runHello-ktx
+../../gradlew run
 ```
 
 ## Status
@@ -214,8 +214,3 @@ responsible to dispose all its children, recursively. As DSL builders automatica
 some container - in most cases you do not have to worry about lifecycle management. But if you want to do
 something not supported by DSL builders - you can create Disposable object directly, and in this case
 *you* are responsible to dispose or attach it at some point.
-
-## TODO
-
-- [ ] replace deprecated 'konan' plugin to 'kotlin-multiplatform'
-
