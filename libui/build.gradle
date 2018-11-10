@@ -53,13 +53,7 @@ kotlin {
         nativeMain {
             kotlin.srcDir('src/nativeMain/kotlin')
         }
-        macosxMain {
-            dependsOn nativeMain
-        }
-        linuxMain {
-            dependsOn nativeMain
-        }
-        windowsMain {
+        configure([macosxMain, linuxMain, windowsMain]) {
             dependsOn nativeMain
         }
     }

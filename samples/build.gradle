@@ -41,14 +41,10 @@ subprojects {
                 }
                 kotlin.srcDir('src/nativeMain/kotlin')
             }
-            macosxMain {
-                dependsOn nativeMain
-            }
-            linuxMain {
+            configure([macosxMain, linuxMain, windowsMain]) {
                 dependsOn nativeMain
             }
             windowsMain {
-                dependsOn nativeMain
                 kotlin.include samplesResource
             }
         }
