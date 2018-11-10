@@ -33,6 +33,8 @@ cd ../samples/hello-ktx/
 ../../gradlew run
 ```
 
+You can use IntelliJ IDEA CE/UE or CLion EAP for code navigation and code completion, debugging works only in CLion.
+
 ## Status
 
 **Warning:** currently it is just a prototype - works in most cases, but not protected from errors.
