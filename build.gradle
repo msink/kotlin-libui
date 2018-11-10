@@ -15,6 +15,13 @@ buildscript {
     }
 }
 
+allprojects {
+    repositories {
+        jcenter()
+        mavenCentral()
+    }
+}
+
 apply plugin: 'org.jetbrains.dokka'
 
 dokka {
