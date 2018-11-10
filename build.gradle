@@ -33,7 +33,7 @@ dokka {
     outputDirectory = 'docs'
     moduleName = ''
 
-    def cinteropBuildDirs = find(get("${rootDir}/libui/"), 16) {
+    def cinteropBuildDirs = find(get("${rootDir}/libui/build/classes/kotlin"), 16) {
         path, attributes -> path.endsWith("libui-cinterop-libui.klib-build")
     }.map({ it.toString() }).collect(toSet())
 
