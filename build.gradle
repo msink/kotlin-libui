@@ -11,8 +11,6 @@ buildscript {
         dokkaVersion = '0.9.17'
     }
     repositories {
-        jcenter()
-        mavenCentral()
         maven {
             url "https://plugins.gradle.org/m2/"
         }
