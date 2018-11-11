@@ -4,12 +4,6 @@ import static java.nio.file.Files.find
 import static java.nio.file.Paths.get
 import static java.util.stream.Collectors.toSet
 
-buildscript {
-    ext {
-        libuiVersion = 'alpha4.1'
-    }
-}
-
 plugins {
     id "org.jetbrains.dokka" version "0.9.17"
 }

@@ -3,6 +3,8 @@ plugins {
     id 'kotlin-multiplatform' version '1.3.0'
 }
 
+final def libuiVersion = 'alpha4.1'
+
 task downloadArchive(type: Download) {
     def release = "https://github.com/andlabs/libui/releases/download/$libuiVersion/libui-$libuiVersion"
     if (os.isWindows()) {
