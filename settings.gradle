@@ -9,11 +9,6 @@ pluginManagement {
             }
         }
     }
-
-    repositories {
-        jcenter()
-        mavenCentral()
-    }
 }
 
 enableFeaturePreview('GRADLE_METADATA')
