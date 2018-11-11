@@ -3,11 +3,6 @@ plugins {
     id 'kotlin-multiplatform' version '1.3.0'
 }
 
-repositories {
-    jcenter()
-    mavenCentral()
-}
-
 final def os = org.gradle.internal.os.OperatingSystem.current()
 
 task downloadArchive(type: Download) {
