@@ -10,7 +10,7 @@ subprojects {
     def samplesResource = "${project.buildDir}/konan/resources/samples.res"
 
     task compileWindowsResources(type: Exec) {
-        onlyIf { org.gradle.internal.os.OperatingSystem.current().isWindows() }
+        onlyIf { os.isWindows() }
 
         def konanUserDir = System.getenv("KONAN_DATA_DIR") ?: "${System.getProperty("user.home")}/.konan"
         def windresDir = "${konanUserDir}/dependencies/msys2-mingw-w64-x86_64-gcc-7.3.0-clang-llvm-lld-6.0.1/bin"

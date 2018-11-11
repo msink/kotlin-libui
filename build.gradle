@@ -20,6 +20,10 @@ buildscript {
     }
 }
 
+ext {
+    os = org.gradle.internal.os.OperatingSystem.current()
+}
+
 allprojects {
     repositories {
         jcenter()
