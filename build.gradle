@@ -1,5 +1,4 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-
 import static java.nio.file.Files.find
 import static java.nio.file.Paths.get
 import static java.util.stream.Collectors.toSet
@@ -14,7 +13,6 @@ ext {
 
 allprojects {
     repositories {
-        jcenter()
         mavenCentral()
     }
 }
