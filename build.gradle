@@ -7,17 +7,11 @@ import static java.util.stream.Collectors.toSet
 buildscript {
     ext {
         libuiVersion = 'alpha4.1'
-        dokkaVersion = '0.9.17'
     }
-    repositories {
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
-        
-    }
-    dependencies {
-        classpath "org.jetbrains.dokka:dokka-gradle-plugin:${dokkaVersion}"
-    }
+}
+
+plugins {
+    id "org.jetbrains.dokka" version "0.9.17"
 }
 
 ext {
@@ -30,8 +24,6 @@ allprojects {
         mavenCentral()
     }
 }
-
-apply plugin: 'org.jetbrains.dokka'
 
 dokka {
     outputFormat = 'gfm'
