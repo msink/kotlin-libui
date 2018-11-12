@@ -1,3 +1,5 @@
+ext.samplesResourcesDirectory = "${projectDir}/resources"
+
 subprojects {
     apply plugin: "org.jetbrains.kotlin.multiplatform"
 
@@ -8,7 +10,7 @@ subprojects {
 
         def konanUserDir = System.getenv("KONAN_DATA_DIR") ?: "${System.getProperty("user.home")}/.konan"
         def windresDir = "${konanUserDir}/dependencies/msys2-mingw-w64-x86_64-gcc-7.3.0-clang-llvm-lld-6.0.1/bin"
-        def rcFile = file("${projectDir}/resources/samples.rc")
+        def rcFile = file("${samplesResourcesDirectory}/samples.rc")
 
         inputs.file rcFile
         outputs.file file(samplesResource)
