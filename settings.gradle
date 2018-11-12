@@ -1,21 +1,3 @@
-pluginManagement {
-    resolutionStrategy {
-        eachPlugin {
-            if (requested.id.id == "kotlin-multiplatform") {
-                useModule("org.jetbrains.kotlin:kotlin-gradle-plugin:${requested.version}")
-            }
-            if (requested.id.id == "de.undercouch.download") {
-                useModule("de.undercouch:gradle-download-task:${requested.version}")
-            }
-        }
-    }
-
-    repositories {
-        jcenter()
-        mavenCentral()
-    }
-}
-
 enableFeaturePreview('GRADLE_METADATA')
 
 include ':libui'

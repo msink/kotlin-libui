@@ -1,14 +1,12 @@
 plugins {
-    id 'de.undercouch.download' version '3.4.3'
-    id 'kotlin-multiplatform' version '1.3.0'
+    id "de.undercouch.download" version "3.4.3"
 }
 
-repositories {
-    jcenter()
-    mavenCentral()
-}
+apply plugin: "org.jetbrains.kotlin.multiplatform"
 
 final def os = org.gradle.internal.os.OperatingSystem.current()
+
+final def libuiVersion = 'alpha4.1'
 
 task downloadArchive(type: Download) {
     def release = "https://github.com/andlabs/libui/releases/download/$libuiVersion/libui-$libuiVersion"
