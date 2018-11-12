@@ -1,7 +1,8 @@
 plugins {
     id "de.undercouch.download" version "3.4.3"
-    id "org.jetbrains.kotlin.multiplatform" version "1.3.0"
 }
+
+apply plugin: "org.jetbrains.kotlin.multiplatform"
 
 final def libuiVersion = 'alpha4.1'
 

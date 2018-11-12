@@ -1,11 +1,7 @@
-plugins {
-    id "org.jetbrains.kotlin.multiplatform" version "1.3.0" apply false
-}
-
 ext.samplesResourcesDirectory = "${projectDir}/resources"
 
 subprojects {
-    apply plugin: 'kotlin-multiplatform'
+    apply plugin: "org.jetbrains.kotlin.multiplatform"
 
     def samplesResource = "${project.buildDir}/konan/resources/samples.res"
 
