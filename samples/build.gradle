@@ -46,7 +46,20 @@ subprojects {
         }
     }
 
-    // TODO: run program
+    task runProgram {
+        def buildType = 'DEBUG' // 'RELEASE'
+        def target = kotlin.targets.find {
+            it instanceof org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget && it.publishable
+        }
+
+        dependsOn target.compilations.main.linkTaskName('EXECUTABLE', buildType)
+
+        doLast {
+            exec {
+                executable target.compilations.main.getBinary('EXECUTABLE', buildType)
+            }
+        }
+    }
 
     tasks.compileKotlinWindows.dependsOn compileWindowsResources
 }
