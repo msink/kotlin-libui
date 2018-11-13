@@ -29,9 +29,9 @@ dokka {
             "${rootDir}/libui/src/nativeMain/kotlin"
     )
     
-    def buildDirPath = get("${rootDir}/libui/build/classes/kotlin")
+    def buildDirPath = get("${project(":libui").buildDir}/classes/kotlin")
     if (exists(buildDirPath)) {
-        def cinteropBuildDirs = find(get("${rootDir}/libui/build/classes/kotlin"), 16) {
+        def cinteropBuildDirs = find(buildDirPath, 16) {
             path, attributes -> path.endsWith("libui-cinterop-libui.klib-build")
         }.map({ it.toString() }).collect(toSet())
 
