@@ -1,5 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-import static java.nio.file.Files.find
+
+import static java.nio.file.Files.*
 import static java.nio.file.Paths.get
 import static java.util.stream.Collectors.toSet
 
@@ -23,15 +24,19 @@ dokka {
     outputDirectory = 'docs'
     moduleName = ''
 
-    def cinteropBuildDirs = find(get("${rootDir}/libui/build/classes/kotlin"), 16) {
-        path, attributes -> path.endsWith("libui-cinterop-libui.klib-build")
-    }.map({ it.toString() }).collect(toSet())
+    sourceDirs = files(
+            "${rootDir}/staging",
+            "${rootDir}/libui/src/nativeMain/kotlin"
+    )
+    
+    def buildDirPath = get("${rootDir}/libui/build/classes/kotlin")
+    if (exists(buildDirPath)) {
+        def cinteropBuildDirs = find(get("${rootDir}/libui/build/classes/kotlin"), 16) {
+            path, attributes -> path.endsWith("libui-cinterop-libui.klib-build")
+        }.map({ it.toString() }).collect(toSet())
 
-    sourceDirs = files(cinteropBuildDirs) +
-            files(
-                    "${rootDir}/staging",
-                    "${rootDir}/libui/src/nativeMain/kotlin"
-            )
+        sourceDirs += files(cinteropBuildDirs)
+    }
     
     reportUndocumented = false
     noStdlibLink = true
