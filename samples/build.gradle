@@ -3,6 +3,11 @@ ext.samplesResourcesDirectory = "${projectDir}/resources"
 subprojects {
     apply plugin: "org.jetbrains.kotlin.multiplatform"
 
+    final def nativePreset = os.isWindows() ? kotlin.presets.mingwX64
+            : os.isLinux() ? kotlin.presets.linuxX64
+            : os.isMacOsX() ? kotlin.presets.macosX64
+            : /*unknown host*/ null
+
     def samplesResource = "${project.buildDir}/konan/resources/samples.res"
 
     task compileWindowsResources(type: Exec) {
@@ -20,28 +25,22 @@ subprojects {
 
     kotlin {
         targets {
-            fromPreset(presets.macosX64, 'macosx')
-            fromPreset(presets.linuxX64, 'linux')
-            fromPreset(presets.mingwX64, 'windows') {
-                compilations.main.linkerOpts "$samplesResource -mwindows"
-            }
-            configure([macosx, linux, windows]) {
-                compilations.main.outputKinds 'executable'
-                compilations.main.entryPoint 'main'
+            fromPreset(nativePreset, 'native') {
+                compilations.main {
+                    outputKinds 'executable'
+                    entryPoint 'main'
+                    if (nativePreset == presets.mingwX64) {
+                        linkerOpts "$samplesResource -mwindows"
+                    }
+                }
             }
         }
+
         sourceSets {
             nativeMain {
                 dependencies {
                     implementation project(':libui')
                 }
-                kotlin.srcDir('src/nativeMain/kotlin')
-            }
-            configure([macosxMain, linuxMain, windowsMain]) {
-                dependsOn nativeMain
-            }
-            windowsMain {
-                kotlin.include samplesResource
             }
         }
     }
@@ -61,5 +60,5 @@ subprojects {
         }
     }
 
-    tasks.compileKotlinWindows.dependsOn compileWindowsResources
+    tasks.compileKotlinNative.dependsOn compileWindowsResources
 }
