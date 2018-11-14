@@ -23,10 +23,10 @@ dokka {
     outputFormat = 'gfm'
     outputDirectory = 'docs'
     moduleName = ''
-
+    
     sourceDirs = files(
             "${rootDir}/staging",
-            "${rootDir}/libui/src/nativeMain/kotlin"
+            "${project(":libui").projectDir}/src/nativeMain/kotlin"
     )
     
     def buildDirPath = get("${project(":libui").buildDir}/classes/kotlin")
