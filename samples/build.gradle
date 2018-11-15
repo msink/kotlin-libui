@@ -1,0 +1,64 @@
+ext.samplesResourcesDirectory = "${projectDir}/resources"
+
+subprojects {
+    apply plugin: "org.jetbrains.kotlin.multiplatform"
+
+    final def nativePreset = os.isWindows() ? kotlin.presets.mingwX64
+            : os.isLinux() ? kotlin.presets.linuxX64
+            : os.isMacOsX() ? kotlin.presets.macosX64
+            : /*unknown host*/ null
+
+    def samplesResource = "${project.buildDir}/konan/resources/samples.res"
+
+    task compileWindowsResources(type: Exec) {
+        onlyIf { os.isWindows() }
+
+        def konanUserDir = System.getenv("KONAN_DATA_DIR") ?: "${System.getProperty("user.home")}/.konan"
+        def windresDir = "${konanUserDir}/dependencies/msys2-mingw-w64-x86_64-gcc-7.3.0-clang-llvm-lld-6.0.1/bin"
+        def rcFile = file("${samplesResourcesDirectory}/samples.rc")
+
+        inputs.file rcFile
+        outputs.file file(samplesResource)
+        commandLine "${windresDir}/windres", rcFile, '-O', 'coff', '-o', samplesResource
+        environment 'PATH', "${windresDir};${System.getenv('PATH')}"
+    }
+
+    kotlin {
+        targets {
+            fromPreset(nativePreset, 'native') {
+                compilations.main {
+                    outputKinds 'executable'
+                    entryPoint 'main'
+                    if (nativePreset == presets.mingwX64) {
+                        linkerOpts "$samplesResource -mwindows"
+                    }
+                }
+            }
+        }
+
+        sourceSets {
+            nativeMain {
+                dependencies {
+                    implementation project(':libui')
+                }
+            }
+        }
+    }
+
+    task runProgram {
+        def buildType = 'DEBUG' // 'RELEASE'
+        def target = kotlin.targets.find {
+            it instanceof org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget && it.publishable
+        }
+
+        dependsOn target.compilations.main.linkTaskName('EXECUTABLE', buildType)
+
+        doLast {
+            exec {
+                executable target.compilations.main.getBinary('EXECUTABLE', buildType)
+            }
+        }
+    }
+
+    tasks.compileKotlinNative.dependsOn compileWindowsResources
+}

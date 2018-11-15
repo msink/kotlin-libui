@@ -4,8 +4,6 @@ plugins {
 
 apply plugin: "org.jetbrains.kotlin.multiplatform"
 
-final def os = org.gradle.internal.os.OperatingSystem.current()
-
 final def libuiVersion = 'alpha4.1'
 
 task downloadArchive(type: Download) {
@@ -32,9 +30,9 @@ task unpackArchive(dependsOn: downloadArchive, type: Copy) {
 
 kotlin {
     final def nativePreset = os.isWindows() ? presets.mingwX64
-                           : os.isLinux()   ? presets.linuxX64
-                           : os.isMacOsX()  ? presets.macosX64
-                           : /*unknown host*/ null
+            : os.isLinux()   ? presets.linuxX64
+            : os.isMacOsX()  ? presets.macosX64
+            : /*unknown host*/ null
     targets {
         fromPreset(nativePreset, 'native') {
             compilations.main {
@@ -48,4 +46,6 @@ kotlin {
     }
 }
 
-tasks[kotlin.targets.native.compilations.main.cinterops.libui.interopProcessingTaskName].dependsOn unpackArchive
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.CInteropProcess).all {
+    dependsOn unpackArchive
+}

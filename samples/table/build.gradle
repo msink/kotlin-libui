@@ -1,69 +1,7 @@
-apply plugin: "org.jetbrains.kotlin.multiplatform"
-
-final def os = org.gradle.internal.os.OperatingSystem.current()
-final def nativePreset = os.isWindows() ? kotlin.presets.mingwX64
-                       : os.isLinux()   ? kotlin.presets.linuxX64
-                       : os.isMacOsX()  ? kotlin.presets.macosX64
-                       : /*unknown host*/ null
-
-File winCompiledResourceFile = file("$buildDir/compiledWindowsResources/samples.res")
-
 kotlin {
-    targets {
-        fromPreset(nativePreset, 'native') {
-            compilations.main {
-                outputKinds 'EXECUTABLE'
-                if (nativePreset == presets.mingwX64) {
-                    linkerOpts winCompiledResourceFile.path, '-mwindows'
-                }
-            }
-        }
-    }
-
     sourceSets {
         nativeMain {
             kotlin.srcDir('src/nativeMain/resources')
-            dependencies {
-                implementation project(':libui')
-            }
-        }
-    }
-}
-
-if (nativePreset == kotlin.presets.mingwX64) {
-    tasks.create('compileWindowsResources', Exec) {
-        def winResourceFile = kotlin.sourceSets.nativeMain.resources.files.find { it.name == 'samples.rc' }
-        def konanUserDir = System.getenv("KONAN_DATA_DIR") ?: "${System.getProperty("user.home")}/.konan"
-        def windresDir = "$konanUserDir/dependencies/msys2-mingw-w64-x86_64-gcc-7.3.0-clang-llvm-lld-6.0.1/bin"
-
-        commandLine "$windresDir/windres", winResourceFile, '-O', 'coff', '-o', winCompiledResourceFile
-        environment 'PATH', "$windresDir;${System.getenv('PATH')}"
-        inputs.file winResourceFile
-        outputs.file winCompiledResourceFile
-    }
-}
-
-afterEvaluate {
-    kotlin.targets.native.compilations.main { mainCompilation ->
-        def linkTasks = ['RELEASE', 'DEBUG']
-                .collect { mainCompilation.findLinkTask('EXECUTABLE', it) }
-                .findAll { it != null }
-
-        def compileWindowsResourcesTask = tasks.findByName('compileWindowsResources')
-
-        linkTasks.each { task ->
-            if (compileWindowsResourcesTask != null)
-                task.dependsOn compileWindowsResourcesTask
-        }
-    }
-}
-
-task runProgram {
-    def buildType = 'DEBUG' // 'RELEASE'
-    dependsOn kotlin.targets.native.compilations.main.linkTaskName('EXECUTABLE', buildType)
-    doLast {
-        exec {
-            executable kotlin.targets.native.compilations.main.getBinary('EXECUTABLE', buildType)
         }
     }
 }

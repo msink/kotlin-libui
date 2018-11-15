@@ -1,5 +1,9 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
+import static java.nio.file.Files.*
+import static java.nio.file.Paths.get
+import static java.util.stream.Collectors.toSet
+
 plugins {
     id "org.jetbrains.dokka" version "0.9.17"
     id "org.jetbrains.kotlin.multiplatform" version "1.3.10" apply false
@@ -11,23 +15,42 @@ allprojects {
     }
 }
 
+ext {
+    os = org.gradle.internal.os.OperatingSystem.current()
+}
+
 dokka {
     outputFormat = 'gfm'
     outputDirectory = 'docs'
     moduleName = ''
-    sourceRoot { path = 'libui/build/classes/kotlin/native/main/libui-cinterop-libui.klib-build' }
-    sourceRoot { path = 'libui/src/nativeMain/kotlin' }
-    sourceRoot { path = 'staging' }
+    
+    sourceDirs = files(
+            "${rootDir}/staging",
+            "${project(":libui").projectDir}/src/nativeMain/kotlin"
+    )
+    
+    def buildDirPath = get("${project(":libui").buildDir}/classes/kotlin")
+    if (exists(buildDirPath)) {
+        def cinteropBuildDirs = find(buildDirPath, 16) {
+            path, attributes -> path.endsWith("libui-cinterop-libui.klib-build")
+        }.map({ it.toString() }).collect(toSet())
+
+        sourceDirs += files(cinteropBuildDirs)
+    }
+    
     reportUndocumented = false
     noStdlibLink = true
+    
     packageOptions {
         prefix = "kotlin"
         suppress = true
     }
+    
     packageOptions {
         prefix = "kotlinx"
         suppress = true
     }
+    
     packageOptions {
         prefix = "platform"
         suppress = true

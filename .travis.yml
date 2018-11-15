@@ -18,7 +18,7 @@ script:
 after_success:
   - |
     case "${TRAVIS_OS_NAME}" in
-      osx)   export TARGET=macos ;;
+      osx)   export TARGET=macosx ;;
       linux) export TARGET=linux ;;
       *)     exit 1 ;;
     esac
