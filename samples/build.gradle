@@ -20,28 +20,52 @@ subprojects {
 
     kotlin {
         targets {
-            fromPreset(presets.macosX64, 'macosx')
-            fromPreset(presets.linuxX64, 'linux')
-            fromPreset(presets.mingwX64, 'windows') {
-                compilations.main.linkerOpts "$samplesResource -mwindows"
-            }
-            configure([macosx, linux, windows]) {
-                compilations.main.outputKinds 'executable'
-                compilations.main.entryPoint 'main'
+            if (os.isWindows()) {
+                fromPreset(presets.mingwX64, 'windows') {
+                    compilations.main {
+                        outputKinds 'executable'
+                        entryPoint 'main'
+                        linkerOpts "$samplesResource -mwindows"
+                    }
+                }
+                tasks.compileKotlinWindows.dependsOn compileWindowsResources
+
+            } else if (os.isLinux()) {
+                fromPreset(presets.linuxX64, 'linux') {
+                    compilations.main {
+                        outputKinds 'executable'
+                        entryPoint 'main'
+                    }
+                }
+
+            } else if (os.isMacOsX()) {
+                fromPreset(presets.macosX64, 'macosx') {
+                    compilations.main {
+                        outputKinds 'executable'
+                        entryPoint 'main'
+                    }
+                }
             }
         }
+
         sourceSets {
-            nativeMain {
+            windowsMain {
+                kotlin.srcDir('src/nativeMain/kotlin')
                 dependencies {
                     implementation project(':libui')
                 }
+            }
+            linuxMain {
                 kotlin.srcDir('src/nativeMain/kotlin')
+                dependencies {
+                    implementation project(':libui')
+                }
             }
-            configure([macosxMain, linuxMain, windowsMain]) {
-                dependsOn nativeMain
-            }
-            windowsMain {
-                kotlin.include samplesResource
+            macosxMain {
+                kotlin.srcDir('src/nativeMain/kotlin')
+                dependencies {
+                    implementation project(':libui')
+                }
             }
         }
     }
@@ -60,6 +84,4 @@ subprojects {
             }
         }
     }
-
-    tasks.compileKotlinWindows.dependsOn compileWindowsResources
 }

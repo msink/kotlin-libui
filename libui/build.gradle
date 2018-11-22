@@ -30,27 +30,36 @@ task unpackArchive(dependsOn: downloadArchive, type: Copy) {
 
 kotlin {
     targets {
-        fromPreset(presets.macosX64, 'macosx')
-        fromPreset(presets.linuxX64, 'linux')
-        fromPreset(presets.mingwX64, 'windows')
-
-        configure([macosx, linux, windows]) {
-            compilations.main {
-                cinterops {
-                    libui {
-                        includeDirs "${project.rootDir}/libui/build"
-                    }
+        if (os.isWindows()) {
+            fromPreset(presets.mingwX64, 'windows') {
+                compilations.main.cinterops {
+                    libui { includeDirs buildDir }
+                }
+            }
+        } else if (os.isLinux()) {
+            fromPreset(presets.linuxX64, 'linux') {
+                compilations.main.cinterops {
+                    libui { includeDirs buildDir }
+                }
+            }
+        } else if (os.isMacOsX()) {
+            fromPreset(presets.macosX64, 'macosx') {
+                compilations.main.cinterops {
+                    libui { includeDirs buildDir }
                 }
             }
         }
     }
 
     sourceSets {
-        nativeMain {
+        windowsMain {
             kotlin.srcDir('src/nativeMain/kotlin')
         }
-        configure([macosxMain, linuxMain, windowsMain]) {
-            dependsOn nativeMain
+        linuxMain {
+            kotlin.srcDir('src/nativeMain/kotlin')
+        }
+        macosxMain {
+            kotlin.srcDir('src/nativeMain/kotlin')
         }
     }
 }
