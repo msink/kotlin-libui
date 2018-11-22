@@ -22,18 +22,18 @@ after_success:
       linux) export TARGET=linux ;;
       *)     exit 1 ;;
     esac
-  - cp libui/build/classes/kotlin/native/main/libui-cinterop-libui.klib libui-${TARGET}.klib
-  - cp libui/build/classes/kotlin/native/main/libui.klib libui-ktx-${TARGET}.klib
-  - cp samples/controlgallery/build/bin/native/main/release/executable/controlgallery.kexe .
-  - cp samples/datetime/build/bin/native/main/release/executable/datetime.kexe .
-  - cp samples/drawtext/build/bin/native/main/release/executable/drawtext.kexe .
-  - cp samples/form/build/bin/native/main/release/executable/form.kexe .
-  - cp samples/hello/build/bin/native/main/release/executable/hello.kexe .
-  - cp samples/hello-ktx/build/bin/native/main/release/executable/hello-ktx.kexe .
-  - cp samples/histogram/build/bin/native/main/release/executable/histogram.kexe .
-  - cp samples/logo/build/bin/native/main/release/executable/logo.kexe .
-  - cp samples/table/build/bin/native/main/release/executable/table.kexe .
-  - cp samples/timer/build/bin/native/main/release/executable/timer.kexe .
+  - cp libui/build/classes/kotlin/${TARGET}/main/libui-cinterop-libui.klib libui-${TARGET}.klib
+  - cp libui/build/classes/kotlin/${TARGET}/main/libui.klib libui-ktx-${TARGET}.klib
+  - cp samples/controlgallery/build/bin/${TARGET}/main/release/executable/controlgallery.kexe .
+  - cp samples/datetime/build/bin/${TARGET}/main/release/executable/datetime.kexe .
+  - cp samples/drawtext/build/bin/${TARGET}/main/release/executable/drawtext.kexe .
+  - cp samples/form/build/bin/${TARGET}/main/release/executable/form.kexe .
+  - cp samples/hello/build/bin/${TARGET}/main/release/executable/hello.kexe .
+  - cp samples/hello-ktx/build/bin/${TARGET}/main/release/executable/hello-ktx.kexe .
+  - cp samples/histogram/build/bin/${TARGET}/main/release/executable/histogram.kexe .
+  - cp samples/logo/build/bin/${TARGET}/main/release/executable/logo.kexe .
+  - cp samples/table/build/bin/${TARGET}/main/release/executable/table.kexe .
+  - cp samples/timer/build/bin/${TARGET}/main/release/executable/timer.kexe .
   - tar -czvf libui-samples-kotlin-${TARGET}.tgz *.kexe
 
 deploy:
