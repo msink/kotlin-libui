@@ -14,9 +14,9 @@ matrix:
 
 script:
   - ./gradlew build
-  - ./gradlew publishToMavenLocal bintrayUpload
 
 after_success:
+  - ./gradlew publishToMavenLocal bintrayUpload
   - |
     case "${TRAVIS_OS_NAME}" in
       osx)   export TARGET=macosx ;;
