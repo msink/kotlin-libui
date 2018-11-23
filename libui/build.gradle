@@ -1,10 +1,19 @@
-plugins {
-    id "de.undercouch.download" version "3.4.3"
+buildscript {
+    repositories {
+        jcenter()
+        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url "https://dl.bintray.com/jetbrains/kotlin-native-dependencies" }
+    }
+    dependencies {
+        classpath 'de.undercouch:gradle-download-task:4.0.0-SNAPSHOT'
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.2-SNAPSHOT"
+    }
 }
 
+apply plugin: 'de.undercouch.download'
 apply plugin: "org.jetbrains.kotlin.multiplatform"
-
 apply plugin: 'maven-publish'
+apply plugin: 'com.jfrog.bintray'
 
 group = GROUP
 version = VERSION_NAME
@@ -105,6 +114,36 @@ afterEvaluate {
 
 publishing {
     repositories {
-        maven { url = "file://$rootDir/.m2-local" }
+        maven { url = 'https://bintray.com/msink/kotlin-native' }
+    }
+}
+
+bintrayUpload.doFirst {
+    publications = []
+    def pubs = project.extensions.getByName("publishing").getPublications()
+    for(pub in pubs) {
+        String pubUrl = "https://dl.bintray.com/${BINTRAY_USER}/${BINTRAY_REPO}/" +
+            pub.groupId.replace(".", "/") +"/"+ pub.artifactId +"/"+
+            pub.version +"/"+ pub.artifactId +"-"+ pub.version +".pom"
+        println "Upload "+ pubUrl
+        publications += pub.name
+    }
+}
+
+bintray {
+    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
+    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+    override = true // for multi-platform Kotlin/Native publishing
+    pkg {
+        userOrg = BINTRAY_USER
+        repo = BINTRAY_REPO
+        name = POM_ARTIFACT_ID
+        licenses = ['MIT']
+        vcsUrl = POM_SCM_URL
+        version {
+            name = project.version
+            vcsTag = project.version
+            released = new Date()
+        }
     }
 }
