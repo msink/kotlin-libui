@@ -8,6 +8,7 @@ before_build:
 
 build_script:
   - gradlew build
+  - gradlew publishToMavenLocal bintrayUpload
 
 after_build:
   - copy libui\build\classes\kotlin\windows\main\libui-cinterop-libui.klib libui-windows.klib
@@ -40,3 +41,9 @@ deploy:
     secure: "2l/602m6FkqAB9TTIAkPX3Erfwg9jVTlf/Inmf2dWcbOrJJzK/WrCUIgY3B4ngly"
   on:
     appveyor_repo_tag: true
+
+environment:
+  BINTRAY_USER:
+    secure: oyn6rsy2W3IzWMN9gx4u9w==
+  BINTRAY_API_KEY:
+    secure: BhHNDSz5XPW90PhX7c/e+t4A3nNPNtsauux+yE9Lzjf90YR4PDMdk1bKiTS7nW5X
