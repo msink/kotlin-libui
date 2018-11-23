@@ -1,4 +1,5 @@
 build/
 .gradle
 .idea
+.m2-local
 kotlin-libui.iml
