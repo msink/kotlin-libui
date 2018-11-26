@@ -4,10 +4,10 @@ before_build:
   - git submodule update --init
 
 build_script:
-  - gradlew build
+  - gradlew -PpublishMode build
 
 after_build:
-  - gradlew publishToMavenLocal bintrayUpload
+  - gradlew -PpublishMode publishToMavenLocal bintrayUpload
   - copy libui\build\classes\kotlin\windows\main\libui-cinterop-libui.klib libui-windows.klib
   - copy libui\build\classes\kotlin\windows\main\libui.klib libui-ktx-windows.klib
   - 7z a libui-samples-windows.zip

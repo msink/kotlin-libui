@@ -41,20 +41,25 @@ task unpackArchive(dependsOn: downloadArchive, type: Copy) {
 }
 
 kotlin {
+    final def publishModeEnabled = rootProject.hasProperty('publishMode')
+    println "publishModeEnabled: $publishModeEnabled"
+
     targets {
-        if (os.isWindows()) {
+        if (os.isWindows() || publishModeEnabled) {
             fromPreset(presets.mingwX64, 'windows') {
                 compilations.main.cinterops {
                     libui { includeDirs buildDir }
                 }
             }
-        } else if (os.isLinux()) {
+        }
+        if (os.isLinux() || publishModeEnabled) {
             fromPreset(presets.linuxX64, 'linux') {
                 compilations.main.cinterops {
                     libui { includeDirs buildDir }
                 }
             }
-        } else if (os.isMacOsX()) {
+        }
+        if (os.isMacOsX() || publishModeEnabled) {
             fromPreset(presets.macosX64, 'macosx') {
                 compilations.main.cinterops {
                     libui { includeDirs buildDir }

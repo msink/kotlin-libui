@@ -13,10 +13,10 @@ matrix:
       osx_image: xcode8
 
 script:
-  - ./gradlew build
+  - ./gradlew -PpublishMode build
 
 after_success:
-  - ./gradlew publishToMavenLocal bintrayUpload
+  - ./gradlew -PpublishMode publishToMavenLocal bintrayUpload
   - |
     case "${TRAVIS_OS_NAME}" in
       osx)   export TARGET=macosx ;;
