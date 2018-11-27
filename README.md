@@ -11,6 +11,13 @@ libui is a C lightweight multi-platform UI library using native widgets on Linux
 Using this bindings you can develop cross-platform but native-looking GUI programs, written in Kotlin,
 and compiled to small native executable file.
 
+## Using
+
+To use this library in your project you can clone [Hello World](https://github.com/msink/hello-libui.git)
+application and use it as starting point.
+
+## Building
+
 Cross-platform build is automated using [Travis](https://travis-ci.org) for Linux and macOS targets, and
 [AppVeyor](https://ci.appveyor.com) for Windows targets. Just create release on GitHub, and executable files
 for all 3 major desktop platforms will be compiled and attached to release.
