@@ -16,7 +16,7 @@ apply plugin: 'maven-publish'
 apply plugin: 'com.jfrog.bintray'
 
 group = GROUP
-version = VERSION_NAME
+version = VERSION
 
 task downloadArchive(type: Download) {
     def release = "https://github.com/andlabs/libui/releases/download/$LIBUI_VERSION/libui-$LIBUI_VERSION"
