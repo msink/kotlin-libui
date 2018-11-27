@@ -89,22 +89,22 @@ afterEvaluate {
     project.publishing.publications.forEach { publication ->
         publication.pom.withXml {
             def root = asNode()
-            root.appendNode('name', POM_NAME)
-            root.appendNode('description', POM_DESCRIPTION)
-            root.appendNode('url', POM_URL)
+            root.appendNode('name', 'libui')
+            root.appendNode('description', 'Kotlin/Native interop to libui: a portable GUI library')
+            root.appendNode('url', POM_SCM_URL)
             root.children().last() + {
                 licenses {
                     license {
-                        name POM_LICENCE_NAME
+                        name 'MIT License'
                         url POM_SCM_URL
-                        distribution POM_LICENCE_DIST
+                        distribution 'repo'
                     }
                 }
                 developers {
                     developer {
-                        id "msink"
-                        name "Mike Sinkovsky"
-                        email "msink@permonline.ru"
+                        id 'msink'
+                        name 'Mike Sinkovsky'
+                        email 'msink@permonline.ru'
                     }
                 }
                 scm {
@@ -123,26 +123,23 @@ publishing {
     }
 }
 
+bintrayUpload.dependsOn publishToMavenLocal
+
 bintrayUpload.doFirst {
-    publications = []
-    def pubs = project.extensions.getByName("publishing").getPublications()
-    for(pub in pubs) {
-        String pubUrl = "https://dl.bintray.com/${BINTRAY_USER}/${BINTRAY_REPO}/" +
-            pub.groupId.replace(".", "/") +"/"+ pub.artifactId +"/"+
-            pub.version +"/"+ pub.artifactId +"-"+ pub.version +".pom"
-        println "Upload "+ pubUrl
-        publications += pub.name
+    publications = project.publishing.publications.collect {
+        println("Uploading artifact '$it.groupId:$it.artifactId:$it.version' from publication '$it.name'")
+        it
     }
 }
 
 bintray {
-    user = project.hasProperty('bintrayUser') ? project.property('bintrayUser') : System.getenv('BINTRAY_USER')
-    key = project.hasProperty('bintrayApiKey') ? project.property('bintrayApiKey') : System.getenv('BINTRAY_API_KEY')
+    user = BINTRAY_USER
+    key = System.getenv('BINTRAY_API_KEY')
     override = true // for multi-platform Kotlin/Native publishing
     pkg {
         userOrg = BINTRAY_USER
         repo = BINTRAY_REPO
-        name = POM_ARTIFACT_ID
+        name = 'libui'
         licenses = ['MIT']
         vcsUrl = POM_SCM_URL
         version {

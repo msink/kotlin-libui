@@ -16,7 +16,7 @@ script:
   - ./gradlew -PpublishMode build
 
 after_success:
-  - ./gradlew -PpublishMode publishToMavenLocal bintrayUpload
+  - ./gradlew -PpublishMode bintrayUpload
   - |
     case "${TRAVIS_OS_NAME}" in
       osx)   export TARGET=macosx ;;
@@ -53,5 +53,4 @@ deploy:
 
 env:
   global:
-  - secure: pOCynEVOvP71OES5sm9IlwCxgwlWKYe7F1Uhetot1PRTc5uyV9ds8bZXoc5ekjlZ6ZcUhO7208G+DM4sXv26KlVKcKSOISzuksKFZgA0U8QxGROCWoRqVTKdy8Cof175DDayA5X7GohoC5tA70Tb6Z7CaDepij43aU5YfQO1Es1aeFYbB0PXteTxtXu3aoEFvCpwZlGoNDxBZ/ZJrRzXbnAirEwog8/m2UTZ5p8naclWgekHN8PSA8QjYv8VjRAus6GwyVPSywB5mxJxO0OMUIH3RaIC59DHV1BSg1uSS7k9Kvx+GTlFFXxxdHBoDCaZXpssOmXxeU3UqymH410O+Q+r57x/qSxat5zokwc6W1IxrqvSyH5yGIo1a+/5sjSah7AFzhLLbyd4lAu6OVcqa5dQlFH3JU5tsbc0+To1wFQwg5BFO1SaiyDQKoAa1/KpPDQFPT5P0j4BOjtvlvQQyvpluJlNVLDFGFEB4qlV5DC69qsDvuIA5vkzzxwyIPni4GvbLWKInSAxMovt567VfgJ87LzvsPv2JSV2GWZ3RjT3vBEBRJNKtZzuDI3LaASjE6EOi6TzjH8vR7m4eycoM4gkxJpLaXsb/c8co+m4KcQh0YMJV/Pi/KOyJm4ZWEM02A89l8cNxzAsTXlz9LU+2Dl4mmALVfCGeqlvHwniu+I=
   - secure: O/bU9HK3wAMbNsQxkmAs2I7dphi9JQm+ckwMyFdmr+NbbblUrcOLMjPoVh+x1nm8yVcYrSTrOoP1Z7D/46KWz4Pmw7kpy5DBSI6jQ8QO+9Ij6FtI6pWGqsTsNCEqlyjyH00PNSBX90Mz4CZr41YrZbl3lTrh9WKgJnEzU9raoQwE39T+x8f8z/nDmPkQhtgPeVr7S/QysT0rsksdLLNsybCzgPBjzXUC9HKngVXO+dvXsQfVqLKsuXXXpWVxH9xV5CmxBpBaYLpK+yiFl5nMNRJQuY4iBcTA8NMDQ/hofrpy/R/LEb5uKtaZlXcrSqgSGdK0L/g3WkNt6ZIXMiLTtoBcvdwQjl5/dk4KNaekoSbPTo4Fp4q1GKq4EST/Tn8AGHmqBsNUhyxXNEVfzh/wg3nB0bY+2MuTbq2/0r86ow+PqbRZiMLCjUDdkEGt+ayMx+mtQOdRh2jbqb+5G+45bynbrOJBvYKI0eV43aDX7pKXepKwiKhfZvUYKG2YDcq7kKcu1DJ6HMlQ0aMFPxhP52IvMtEUwN/hNPh0jNb80cfbSegpgNzYLXDKxade86ZmnhzpsuCevJGNnYQAOYvTVJl3hk/KSfhKnxDUIxDA7FMkL3zCzVGfceRia0YRT+GgtSf8hVKk2wg9VcimIf3pkfVYUU6sJGqhykJPb828BCY=
