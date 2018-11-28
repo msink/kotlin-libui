@@ -41,7 +41,7 @@ after_success:
   - cp samples/logo/build/bin/${TARGET}/main/release/executable/logo.kexe .
   - cp samples/table/build/bin/${TARGET}/main/release/executable/table.kexe .
   - cp samples/timer/build/bin/${TARGET}/main/release/executable/timer.kexe .
-  - tar -czvf libui-samples-kotlin-${TARGET}.tgz *.kexe
+  - tar -czvf libui-samples-${TARGET}.tgz *.kexe
 
 deploy:
   provider: releases
@@ -50,7 +50,7 @@ deploy:
   file:
     - libui-*.klib
     - libui-ktx-*.klib
-    - libui-samples-kotlin-*.tgz
+    - libui-samples-*.tgz
   file_glob: true
   skip_cleanup: true
   on:
