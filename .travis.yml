@@ -16,7 +16,13 @@ script:
   - ./gradlew -PpublishMode build
 
 after_success:
-  - ./gradlew -PpublishMode bintrayUpload
+  - |
+    if [[ "x${TRAVIS_TAG}" != "x" ]]
+    then
+      ./gradlew -PpublishMode bintrayUpload
+    else
+      ./gradlew -PpublishMode -PVERSION_SUFFIX=-dev bintrayUpload
+    fi
   - |
     case "${TRAVIS_OS_NAME}" in
       osx)   export TARGET=macosx ;;
