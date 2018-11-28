@@ -19,9 +19,9 @@ after_success:
   - |
     if [[ "x${TRAVIS_TAG}" != "x" ]]
     then
-      ./gradlew -PpublishMode bintrayUpload
+      ./gradlew -PpublishMode -PVERSION_SUFFIX bintrayUpload
     else
-      ./gradlew -PpublishMode -PVERSION_SUFFIX=-dev bintrayUpload
+      ./gradlew -PpublishMode bintrayUpload
     fi
   - |
     case "${TRAVIS_OS_NAME}" in
