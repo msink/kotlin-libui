@@ -8,7 +8,7 @@ build_script:
 
 after_build:
   - if %APPVEYOR_REPO_TAG%==true ( gradlew -PpublishMode -PVERSION_SUFFIX bintrayUpload )
-    else ( gradlew -PpublishMode bintrayUpload )
+    else ( gradlew -PpublishMode publishToMavenLocal )
   - copy libui\build\classes\kotlin\windows\main\libui-cinterop-libui.klib libui-windows.klib
   - copy libui\build\classes\kotlin\windows\main\libui.klib libui-ktx-windows.klib
   - 7z a libui-samples-windows.zip

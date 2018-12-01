@@ -21,7 +21,7 @@ after_success:
     then
       ./gradlew -PpublishMode -PVERSION_SUFFIX bintrayUpload
     else
-      ./gradlew -PpublishMode bintrayUpload
+      ./gradlew -PpublishMode publishToMavenLocal
     fi
   - |
     case "${TRAVIS_OS_NAME}" in
