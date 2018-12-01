@@ -1,11 +1,10 @@
 buildscript {
     repositories {
         jcenter()
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url "https://dl.bintray.com/jetbrains/kotlin-native-dependencies" }
     }
     dependencies {
-        classpath 'de.undercouch:gradle-download-task:4.0.0-SNAPSHOT'
+        classpath 'de.undercouch:gradle-download-task:3.4.3'
         classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.2-SNAPSHOT"
     }
 }
