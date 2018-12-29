@@ -73,15 +73,27 @@ fun TabPane.Page.dataChoosers() = hbox {
     separator()
     stretchy = true
     vbox.gridpane {
-        lateinit var open: TextField
+        lateinit var file: TextField
+        lateinit var folder: TextField
         lateinit var save: TextField
 
         button("Open File") {
             action {
-                open.value = OpenFileDialog() ?: "(cancelled)"
+                file.value = OpenFileDialog() ?: "(cancelled)"
             }
         }
-        open = textfield {
+        file = textfield {
+            readonly = true
+            hexpand = true
+        }
+
+        row()
+        button("Open Folder") {
+            action {
+                folder.value = OpenFolderDialog() ?: "(cancelled)"
+            }
+        }
+        folder = textfield {
             readonly = true
             hexpand = true
         }

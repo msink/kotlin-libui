@@ -67,6 +67,7 @@
 | [MsgBox](-msg-box.md) | `fun MsgBox(text: String, details: String = ""): Unit`<br>Displays a modal Message Box. |
 | [MsgBoxError](-msg-box-error.md) | `fun MsgBoxError(text: String, details: String = ""): Unit`<br>Displays a modal Error Message Box. |
 | [OpenFileDialog](-open-file-dialog.md) | `fun OpenFileDialog(): String?`<br>Displays a modal Open File Dialog. |
+| [OpenFolderDialog](-open-folder-dialog.md) | `fun OpenFolderDialog(): String?`<br>Displays a modal Open Folder Dialog. |
 | [SaveFileDialog](-save-file-dialog.md) | `fun SaveFileDialog(): String?`<br>Displays a modal Save File Dialog. |
 | [appWindow](app-window.md) | `fun appWindow(title: String, width: Int, height: Int, margined: Boolean = true, init: `[`Window`](-window/index.md)`.() -> Unit = {}): Unit`<br>Initializes package ui, runs `init` to set up the program, and executes the GUI main loop. `init` should set up the program's initial state: open the main window, create controls, and set up events. |
 | [button](button.md) | `fun `[`Container`](-container/index.md)`.button(text: String, init: `[`Button`](-button/index.md)`.() -> Unit = {}): `[`Button`](-button/index.md)<br>DSL builder for a simple button. |

@@ -86,6 +86,15 @@ fun OpenFileDialog(): String? {
     return strName
 }
 
+/** Displays a modal Open Folder Dialog. */
+fun OpenFolderDialog(): String? {
+    val rawName = uiOpenFolder(mainWindow.ptr)
+    if (rawName == null) return null
+    val strName = rawName.toKString()
+    uiFreeText(rawName)
+    return strName
+}
+
 /** Displays a modal Save File Dialog. */
 fun SaveFileDialog(): String? {
     val rawName = uiSaveFile(mainWindow.ptr)

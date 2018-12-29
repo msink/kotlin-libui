@@ -443,6 +443,7 @@
 | [uiNewWindow](ui-new-window.md) | `fun uiNewWindow(title: String?, width: Int, height: Int, hasMenubar: Int): CPointer<`[`uiWindow`](ui-window.md)`>?` |
 | [uiOnShouldQuit](ui-on-should-quit.md) | `fun uiOnShouldQuit(f: CPointer<CFunction<(COpaquePointer?) -> Int>>?, data: CValuesRef<*>?): Unit` |
 | [uiOpenFile](ui-open-file.md) | `fun uiOpenFile(parent: CValuesRef<`[`uiWindow`](ui-window.md)`>?): CPointer<ByteVar>?` |
+| [uiOpenFolder](ui-open-folder.md) | `fun uiOpenFolder(parent: CValuesRef<`[`uiWindow`](ui-window.md)`>?): CPointer<ByteVar>?` |
 | [uiOpenTypeFeaturesAdd](ui-open-type-features-add.md) | `fun uiOpenTypeFeaturesAdd(otf: CValuesRef<`[`uiOpenTypeFeatures`](ui-open-type-features.md)`>?, a: Byte, b: Byte, c: Byte, d: Byte, value: uint32_t): Unit` |
 | [uiOpenTypeFeaturesClone](ui-open-type-features-clone.md) | `fun uiOpenTypeFeaturesClone(otf: CValuesRef<`[`uiOpenTypeFeatures`](ui-open-type-features.md)`>?): CPointer<`[`uiOpenTypeFeatures`](ui-open-type-features.md)`>?` |
 | [uiOpenTypeFeaturesForEach](ui-open-type-features-for-each.md) | `fun uiOpenTypeFeaturesForEach(otf: CValuesRef<`[`uiOpenTypeFeatures`](ui-open-type-features.md)`>?, f: `[`uiOpenTypeFeaturesForEachFunc`](ui-open-type-features-for-each-func.md)`?, data: CValuesRef<*>?): Unit` |
