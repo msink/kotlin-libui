@@ -118,7 +118,7 @@ afterEvaluate {
 
 publishing {
     repositories {
-        maven { url = 'https://bintray.com/msink/kotlin-native' }
+        maven { url = "https://bintray.com/${BINTRAY_USER}/${BINTRAY_REPO}" }
     }
 }
 

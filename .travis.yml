@@ -19,9 +19,9 @@ after_success:
   - |
     if [[ "x${TRAVIS_TAG}" != "x" ]]
     then
-      ./gradlew -PpublishMode -PVERSION_SUFFIX bintrayUpload
+      ./gradlew -PpublishMode -PBINTRAY_REPO=kotlin-native -PVERSION_SUFFIX bintrayUpload
     else
-      ./gradlew -PpublishMode publishToMavenLocal
+      ./gradlew -PpublishMode -PBINTRAY_REPO=kotlin-dev -PVERSION_SUFFIX=-dev bintrayUpload
     fi
   - |
     case "${TRAVIS_OS_NAME}" in
