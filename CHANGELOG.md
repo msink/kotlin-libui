@@ -1,3 +1,9 @@
+# 0.1.1
+> Published 29 Dec 2018
+
+* added OpenFolderDialog (#18)
+
+
 # 0.1.0
 > Published 28 Nov 2018
 
