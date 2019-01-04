@@ -6,7 +6,7 @@ data class Color(
     val b: Double,
     val a: Double = 1.0
 ) {
-    constructor(rgb: Int, alpha: Double = 1.0): this(
+    constructor(rgb: Int, alpha: Double = 1.0) : this(
         r = ((rgb shr 16) and 255).toDouble() / 255,
         g = ((rgb shr 8) and 255).toDouble() / 255,
         b = ((rgb) and 255).toDouble() / 255,

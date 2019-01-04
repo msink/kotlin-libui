@@ -62,11 +62,13 @@ fun DrawArea.brush(): Brush = Brush().also { disposables.add(it) }
 
 /** Defines the color(s) to draw a path with. */
 class Brush : Disposable<uiDrawBrush>(
-    alloc = nativeHeap.alloc<uiDrawBrush>().ptr) {
+    alloc = nativeHeap.alloc<uiDrawBrush>().ptr
+) {
     override fun clear() {
         ptr.pointed.Stops?.let { nativeHeap.free(it) }
         memset(ptr, 0, uiDrawBrush.size.convert())
     }
+
     override fun free() {
         clear()
         nativeHeap.free(ptr)
@@ -160,7 +162,8 @@ fun DrawArea.stroke(block: uiDrawStrokeParams.() -> Unit = {}): Stroke =
 
 /** Describes the stroke to draw with. */
 class Stroke : Disposable<uiDrawStrokeParams>(
-    alloc = nativeHeap.alloc<uiDrawStrokeParams>().ptr) {
+    alloc = nativeHeap.alloc<uiDrawStrokeParams>().ptr
+) {
     override fun free() = nativeHeap.free(ptr)
 }
 
@@ -168,7 +171,8 @@ class Stroke : Disposable<uiDrawStrokeParams>(
 
 /** Represent a path that could be drawed on a [DrawContext] */
 class Path(mode: uiDrawFillMode) : Disposable<uiDrawPath>(
-    alloc = uiDrawNewPath(mode)) {
+    alloc = uiDrawNewPath(mode)
+) {
     override fun free() = uiDrawFreePath(ptr)
 
     /** Starts a new figure at the specified point. Call this method when you want to create a new path. */
@@ -177,8 +181,14 @@ class Path(mode: uiDrawFillMode) : Disposable<uiDrawPath>(
     /** Starts a new figure and adds an arc to the path which is centered at (`xCenter`, `yCenter`) position
      *  with radius `radius` starting at `startAngle` and with sweep angle `sweep` going in the given direction
      *  by anticlockwise (defaulting to clockwise) as specified by `negative`. */
-    fun figureWithArc(xCenter: Double, yCenter: Double, radius: Double,
-                      startAngle: Double, sweep: Double, negative: Boolean = false) =
+    fun figureWithArc(
+        xCenter: Double,
+        yCenter: Double,
+        radius: Double,
+        startAngle: Double,
+        sweep: Double,
+        negative: Boolean = false
+    ) =
         uiDrawPathNewFigureWithArc(ptr, xCenter, yCenter, radius, startAngle, sweep, if (negative) 1 else 0)
 
     /** Connects the last point in the subpath to the `x`, `y` coordinates with a straight line. */
@@ -187,8 +197,14 @@ class Path(mode: uiDrawFillMode) : Disposable<uiDrawPath>(
     /** Adds an arc to the path which is centered at (`xCenter`, `yCenter`) position with radius `radius`
      *  starting at `startAngle` and with sweep angle `sweep` going in the given direction by
      *  anticlockwise (defaulting to clockwise) as specified by `negative`. */
-    fun arcTo(xCenter: Double, yCenter: Double, radius: Double,
-              startAngle: Double, sweep: Double, negative: Boolean = false) =
+    fun arcTo(
+        xCenter: Double,
+        yCenter: Double,
+        radius: Double,
+        startAngle: Double,
+        sweep: Double,
+        negative: Boolean = false
+    ) =
         uiDrawPathArcTo(ptr, xCenter, yCenter, radius, startAngle, sweep, if (negative) 1 else 0)
 
     /** Adds a cubic Bézier curve to the path. It requires three points. The first two points are control
@@ -211,7 +227,8 @@ class Path(mode: uiDrawFillMode) : Disposable<uiDrawPath>(
 
 /** Defines a transformation (e.g. rotation, translation) */
 class Matrix : Disposable<uiDrawMatrix>(
-    alloc = nativeHeap.alloc<uiDrawMatrix>().ptr) {
+    alloc = nativeHeap.alloc<uiDrawMatrix>().ptr
+) {
     override fun free() = nativeHeap.free(ptr)
 
     /** Moves paths over by `x` to the right and `y` down. */

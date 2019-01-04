@@ -3,21 +3,21 @@ import libui.ktx.*
 import libui.ktx.draw.*
 
 // histogram margins
-const val xoffLeft          = 20.0
-const val yoffTop           = 20.0
-const val xoffRight         = 20.0
-const val yoffBottom        = 20.0
-const val pointRadius       = 5.0
+const val xoffLeft = 20.0
+const val yoffTop = 20.0
+const val xoffRight = 20.0
+const val yoffBottom = 20.0
+const val pointRadius = 5.0
 
 // and some colors
-const val colorWhite        = 0xFFFFFF
-const val colorBlack        = 0x000000
-const val colorDodgerBlue   = 0x1E90FF
+const val colorWhite = 0xFFFFFF
+const val colorBlack = 0x000000
+const val colorDodgerBlue = 0x1E90FF
 
 fun graphWidth(clientWidth: Double): Double = clientWidth - xoffLeft - xoffRight
 fun graphHeight(clientHeight: Double): Double = clientHeight - yoffTop - yoffBottom
 
-const val numPoints         = 10
+const val numPoints = 10
 
 fun main(args: Array<String>) = appWindow(
     title = "libui Histogram Example",
@@ -116,8 +116,10 @@ fun main(args: Array<String>) = appWindow(
                 // draw the point being hovered over
                 if (currentPoint != -1) {
                     fill(brush) {
-                        figureWithArc(xs[currentPoint], ys[currentPoint], pointRadius,
-                            startAngle = 0.0, sweep = 6.23)
+                        figureWithArc(
+                            xs[currentPoint], ys[currentPoint], pointRadius,
+                            startAngle = 0.0, sweep = 6.23
+                        )
                     }
                 }
             }
@@ -136,7 +138,8 @@ fun main(args: Array<String>) = appWindow(
                     if ((x >= xs[i] - pointRadius) &&
                         (x <= xs[i] + pointRadius) &&
                         (y >= ys[i] - pointRadius) &&
-                        (y <= ys[i] + pointRadius)) {
+                        (y <= ys[i] + pointRadius)
+                    ) {
                         currentPoint = i
                         return@repeat
                     }

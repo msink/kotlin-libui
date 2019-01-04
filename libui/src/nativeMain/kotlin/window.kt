@@ -57,10 +57,13 @@ class Window(
     /** Function to be run when window content size change. */
     fun onResize(block: Window.() -> Unit) {
         onResize = block
-        uiWindowOnContentSizeChanged(ptr, staticCFunction { _, ref -> with(ref.to<Window>()) {
-            onResize?.invoke(this)
-        }}, ref.asCPointer())
+        uiWindowOnContentSizeChanged(ptr, staticCFunction { _, ref ->
+            with(ref.to<Window>()) {
+                onResize?.invoke(this)
+            }
+        }, ref.asCPointer())
     }
+
     internal var onResize: (Window.() -> Unit)? = null
 
     /** Function to be run when the user clicks the Window's close button.
@@ -68,10 +71,13 @@ class Window(
      *  @returns true if window is disposed */
     fun onClose(block: Window.() -> Boolean) {
         onClose = block
-        uiWindowOnClosing(ptr, staticCFunction { _, ref -> with(ref.to<Window>()) {
-            if (onClose?.invoke(this) ?: true) 1 else 0
-        }}, ref.asCPointer())
+        uiWindowOnClosing(ptr, staticCFunction { _, ref ->
+            with(ref.to<Window>()) {
+                if (onClose?.invoke(this) ?: true) 1 else 0
+            }
+        }, ref.asCPointer())
     }
+
     internal var onClose: (Window.() -> Boolean)? = null
 }
 
@@ -105,12 +111,10 @@ fun SaveFileDialog(): String? {
 }
 
 /** Displays a modal Message Box. */
-fun MsgBox(text: String, details: String = "")
-    = uiMsgBox(mainWindow.ptr, text, details)
+fun MsgBox(text: String, details: String = "") = uiMsgBox(mainWindow.ptr, text, details)
 
 /** Displays a modal Error Message Box. */
-fun MsgBoxError(text: String, details: String = "")
-    = uiMsgBoxError(mainWindow.ptr, text, details)
+fun MsgBoxError(text: String, details: String = "") = uiMsgBoxError(mainWindow.ptr, text, details)
 
 /**
  * Initializes package ui, runs `init` to set up the program,
@@ -137,7 +141,7 @@ fun appWindow(
         }
     }
 
-     mainWindow = Window(title, width, height).apply {
+    mainWindow = Window(title, width, height).apply {
         onClose { uiQuit(); true }
         onShouldQuit { dispose(); true }
         if (margined) this.margined = margined
@@ -160,14 +164,16 @@ fun onShouldQuit(block: () -> Boolean) {
     val ref = StableRef.create(block).also { actions.add(it) }
     uiOnShouldQuit(staticCFunction { _ref ->
         val _block = _ref!!.asStableRef<() -> Boolean>().get()
-        if (_block()) 1 else 0 }, ref.asCPointer())
+        if (_block()) 1 else 0
+    }, ref.asCPointer())
 }
 
 /** Function to be executed on a timer on the main thread.
  *  @returns `true` to continue and `false` to stop. */
 fun onTimer(milliseconds: Int, block: () -> Boolean) {
     val ref = StableRef.create(block).also { actions.add(it) }
-    uiTimer(milliseconds, staticCFunction{ _ref ->
+    uiTimer(milliseconds, staticCFunction { _ref ->
         val _block = _ref!!.asStableRef<() -> Boolean>().get()
-        if (_block()) 1 else 0 }, ref.asCPointer())
+        if (_block()) 1 else 0
+    }, ref.asCPointer())
 }

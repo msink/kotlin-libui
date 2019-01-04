@@ -117,14 +117,18 @@ fun TabPane.Page.dataChoosers() = hbox {
         gridpane {
             button("Message Box") {
                 action {
-                    MsgBox(text = "This is a normal message box.",
-                        details = "More detailed information can be shown here.")
+                    MsgBox(
+                        text = "This is a normal message box.",
+                        details = "More detailed information can be shown here."
+                    )
                 }
             }
             button("Error Box") {
                 action {
-                    MsgBoxError(text = "This message box describes an error.",
-                        details = "More detailed information can be shown here.")
+                    MsgBoxError(
+                        text = "This message box describes an error.",
+                        details = "More detailed information can be shown here."
+                    )
                 }
             }
         }

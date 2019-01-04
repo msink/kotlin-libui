@@ -108,7 +108,7 @@ inline fun Container.form(
     .apply(init))
 
 /** Wrapper class for [uiForm] - a container that organize children as labeled fields. */
-class Form : Control<uiForm>(uiNewForm()), Container  {
+class Form : Control<uiForm>(uiNewForm()), Container {
     /** Label for next added child */
     var label = ""
 
@@ -243,10 +243,12 @@ class GridPane : Control<uiGrid>(uiNewGrid()), Container {
 
     /** Adds the given widget to the end of the form. */
     override fun <T : Control<*>> add(widget: T): T {
-        uiGridAppend(ptr, widget.ctl,
+        uiGridAppend(
+            ptr, widget.ctl,
             x, y, xspan, yspan,
             if (hexpand) 1 else 0, halign,
-            if (vexpand) 1 else 0, valign)
+            if (vexpand) 1 else 0, valign
+        )
         nextCell()
         return widget
     }
@@ -262,10 +264,12 @@ class GridPane : Control<uiGrid>(uiNewGrid()), Container {
         existing: Control<*>,
         at: uiAt
     ) {
-        uiGridInsertAt(ptr, widget.ctl, existing.ctl,
+        uiGridInsertAt(
+            ptr, widget.ctl, existing.ctl,
             at, xspan, yspan,
             if (hexpand) 1 else 0, halign,
-            if (vexpand) 1 else 0, valign)
+            if (vexpand) 1 else 0, valign
+        )
         nextCell()
     }
 }

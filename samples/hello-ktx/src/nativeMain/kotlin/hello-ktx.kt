@@ -10,11 +10,13 @@ fun main(args: Array<String>) = appWindow(
 
         button("libui говорит: click me!") {
             action {
-                scroll.append("""
+                scroll.append(
+                    """
                     |Hello, World!  Ciao, mondo!
                     |Привет, мир!  你好，世界！
                     |
-                    |""".trimMargin())
+                    |""".trimMargin()
+                )
             }
         }
         scroll = textarea {

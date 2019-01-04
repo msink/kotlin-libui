@@ -40,22 +40,25 @@ class TextLayout(
     override fun free() = uiDrawFreeTextLayout(ptr)
 
     /** Returns the size of TextLayout. */
-    val size: Size get() = memScoped {
-        val width = alloc<DoubleVar>()
-        val height = alloc<DoubleVar>()
-        uiDrawTextLayoutExtents(ptr, width.ptr, height.ptr)
-        Size(width.value, height.value)
-    }
+    val size: Size
+        get() = memScoped {
+            val width = alloc<DoubleVar>()
+            val height = alloc<DoubleVar>()
+            uiDrawTextLayoutExtents(ptr, width.ptr, height.ptr)
+            Size(width.value, height.value)
+        }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Provides a complete description of a font where one is needed.  */
 class Font : Disposable<uiFontDescriptor>(
-    alloc = nativeHeap.alloc<uiFontDescriptor>().ptr) {
+    alloc = nativeHeap.alloc<uiFontDescriptor>().ptr
+) {
     override fun clear() {
         if (ptr.pointed.Family != null) uiFreeFontButtonFont(ptr)
     }
+
     override fun free() {
         clear()
         nativeHeap.free(ptr)
@@ -114,14 +117,15 @@ class StretchAttribute(stretch: uiTextStretch) : Attribute(uiNewStretchAttribute
 class ColorAttribute(color: Color) : Attribute(uiNewColorAttribute(color.r, color.g, color.b, color.a)) {
 
     /** Returns the text color stored. */
-    val value: Color get() = memScoped {
-        val r = alloc<DoubleVar>()
-        val g = alloc<DoubleVar>()
-        val b = alloc<DoubleVar>()
-        val a = alloc<DoubleVar>()
-        uiAttributeColor(ptr, r.ptr, g.ptr, b.ptr, a.ptr)
-        Color(r.value, g.value, b.value, a.value)
-    }
+    val value: Color
+        get() = memScoped {
+            val r = alloc<DoubleVar>()
+            val g = alloc<DoubleVar>()
+            val b = alloc<DoubleVar>()
+            val a = alloc<DoubleVar>()
+            uiAttributeColor(ptr, r.ptr, g.ptr, b.ptr, a.ptr)
+            Color(r.value, g.value, b.value, a.value)
+        }
 }
 
 /** Changes the background color of the text it is applied to. */
@@ -140,29 +144,32 @@ class UnderlineAttribute(u: uiUnderline) : Attribute(uiNewUnderlineAttribute(u))
 
 /** Changes the color of the underline on the text it is applied to. */
 class UnderlineColorAttribute(kind: uiUnderlineColor, color: Color) : Attribute(
-    uiNewUnderlineColorAttribute(kind, color.r, color.g, color.b, color.a)) {
+    uiNewUnderlineColorAttribute(kind, color.r, color.g, color.b, color.a)
+) {
 
     /** Returns the underline color kind stored. */
-    val kind: uiUnderlineColor get() = memScoped {
-        val kind = alloc<uiUnderlineColorVar>()
-        val r = alloc<DoubleVar>()
-        val g = alloc<DoubleVar>()
-        val b = alloc<DoubleVar>()
-        val a = alloc<DoubleVar>()
-        uiAttributeUnderlineColor(ptr, kind.ptr, r.ptr, g.ptr, b.ptr, a.ptr)
-        kind.value
-    }
+    val kind: uiUnderlineColor
+        get() = memScoped {
+            val kind = alloc<uiUnderlineColorVar>()
+            val r = alloc<DoubleVar>()
+            val g = alloc<DoubleVar>()
+            val b = alloc<DoubleVar>()
+            val a = alloc<DoubleVar>()
+            uiAttributeUnderlineColor(ptr, kind.ptr, r.ptr, g.ptr, b.ptr, a.ptr)
+            kind.value
+        }
 
     /** Returns the underline color stored. */
-    val color: Color get() = memScoped {
-        val kind = alloc<uiUnderlineColorVar>()
-        val r = alloc<DoubleVar>()
-        val g = alloc<DoubleVar>()
-        val b = alloc<DoubleVar>()
-        val a = alloc<DoubleVar>()
-        uiAttributeUnderlineColor(ptr, kind.ptr, r.ptr, g.ptr, b.ptr, a.ptr)
-        Color(r.value, g.value, b.value, a.value)
-    }
+    val color: Color
+        get() = memScoped {
+            val kind = alloc<uiUnderlineColorVar>()
+            val r = alloc<DoubleVar>()
+            val g = alloc<DoubleVar>()
+            val b = alloc<DoubleVar>()
+            val a = alloc<DoubleVar>()
+            uiAttributeUnderlineColor(ptr, kind.ptr, r.ptr, g.ptr, b.ptr, a.ptr)
+            Color(r.value, g.value, b.value, a.value)
+        }
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -177,7 +184,8 @@ class FeaturesAttribute(otf: OpenTypeFeatures) : Attribute(uiNewFeaturesAttribut
 
 /** Represents a set of OpenType feature tag-value pairs, for applying OpenType features to text. */
 class OpenTypeFeatures(copy: CPointer<uiOpenTypeFeatures>? = null) : Disposable<uiOpenTypeFeatures>(
-    alloc = copy ?: uiNewOpenTypeFeatures()) {
+    alloc = copy ?: uiNewOpenTypeFeatures()
+) {
     override fun free() = uiFreeOpenTypeFeatures(ptr)
 
     /** Makes a copy of otf and returns it. Changing one will not affect the other. */
@@ -220,7 +228,8 @@ fun DrawArea.string(init: String): AttributedString =
 
 /** Represents a string of UTF-8 text that can be embellished with formatting attributes. */
 class AttributedString(init: String) : Disposable<uiAttributedString>(
-    alloc = uiNewAttributedString(init)) {
+    alloc = uiNewAttributedString(init)
+) {
     override fun free() = uiFreeAttributedString(ptr)
 
     /** Returns the textual content of AttributedString. */

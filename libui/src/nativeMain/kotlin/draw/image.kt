@@ -7,7 +7,8 @@ import libui.ktx.*
 class ImageData(val width: Int, val height: Int, val stride: Int, val pixels: CValuesRef<UIntVar>)
 
 class Image(width: Double, height: Double) : Disposable<uiImage>(
-    alloc = uiNewImage(width, height)) {
+    alloc = uiNewImage(width, height)
+) {
     override fun free() = uiFreeImage(ptr)
 }
 

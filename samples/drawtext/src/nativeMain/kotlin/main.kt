@@ -14,7 +14,8 @@ fun AttributedString.append(what: String, attr: Attribute, attr2: Attribute? = n
 
 fun DrawArea.makeAttributedString() = string(
     "Drawing strings with libui is done with the uiAttributedString and uiDrawTextLayout objects.\n" +
-    "uiAttributedString lets you have a variety of attributes: ").apply {
+        "uiAttributedString lets you have a variety of attributes: "
+).apply {
     append("font family", FamilyAttribute("Courier New"))
     append(", ")
     append("font size", SizeAttribute(18.0))
@@ -25,21 +26,25 @@ fun DrawArea.makeAttributedString() = string(
     append(", ")
     append("font stretch", StretchAttribute(uiTextStretchCondensed))
     append(", ")
-    append("text color", ColorAttribute(Color(r=0.75, g=0.25, b=0.5, a=0.75)))
+    append("text color", ColorAttribute(Color(r = 0.75, g = 0.25, b = 0.5, a = 0.75)))
     append(", ")
-    append("text background color", BackgroundAttribute(Color(r=0.5, g=0.5, b=0.25, a=0.5)))
+    append("text background color", BackgroundAttribute(Color(r = 0.5, g = 0.5, b = 0.25, a = 0.5)))
     append(", ")
     append("underline style", UnderlineAttribute(uiUnderlineSingle))
     append(", ")
     append("and ")
-    append("underline color",
-           UnderlineAttribute(uiUnderlineDouble),
-           UnderlineColorAttribute(uiUnderlineColorCustom, Color(r=1.0, g=0.0, b=0.5, a=1.0)))
+    append(
+        "underline color",
+        UnderlineAttribute(uiUnderlineDouble),
+        UnderlineColorAttribute(uiUnderlineColorCustom, Color(r = 1.0, g = 0.0, b = 0.5, a = 1.0))
+    )
     append(". ")
     append("Furthermore, there are attributes allowing for ")
-    append("special underlines for indicating spelling errors",
-           UnderlineAttribute(uiUnderlineSuggestion),
-           UnderlineColorAttribute(uiUnderlineColorSpelling, Color(r=0.0, g=0.0, b=0.0, a=0.0)))
+    append(
+        "special underlines for indicating spelling errors",
+        UnderlineAttribute(uiUnderlineSuggestion),
+        UnderlineColorAttribute(uiUnderlineColorSpelling, Color(r = 0.0, g = 0.0, b = 0.0, a = 0.0))
+    )
     append(" (and other types of errors) ")
     append("and control over OpenType features such as ligatures (for instance, ")
 

@@ -40,8 +40,8 @@ inline fun Container.textfield(
     readonly: Boolean = false,
     init: TextField.() -> Unit = {}
 ): TextField = add(TextField()
-        .apply { if (readonly) this.readonly = readonly }
-        .apply(init))
+    .apply { if (readonly) this.readonly = readonly }
+    .apply(init))
 
 /** DSL builder for a text entry widget that mask the input,
  *  useful to edit passwords or other sensible data. */
@@ -49,20 +49,20 @@ inline fun Container.passwordfield(
     readonly: Boolean = false,
     init: PasswordField.() -> Unit = {}
 ): PasswordField = add(PasswordField()
-        .apply { if (readonly) this.readonly = readonly }
-        .apply(init))
+    .apply { if (readonly) this.readonly = readonly }
+    .apply(init))
 
 /** DSL builder for a text entry widget to search text. */
 inline fun Container.searchfield(
     readonly: Boolean = false,
     init: SearchField.() -> Unit = {}
 ): SearchField = add(SearchField()
-        .apply { if (readonly) this.readonly = readonly }
-        .apply(init))
+    .apply { if (readonly) this.readonly = readonly }
+    .apply(init))
 
 /** Wrapper class for [uiEntry] - a simple single line text entry widget */
 open class TextField internal constructor(alloc: CPointer<uiEntry>?) : Control<uiEntry>(alloc) {
-    constructor(): this(uiNewEntry())
+    constructor() : this(uiNewEntry())
 
     /** The current text of the TextField. */
     var value: String
@@ -78,10 +78,13 @@ open class TextField internal constructor(alloc: CPointer<uiEntry>?) : Control<u
      *  Only one function can be registered at a time. */
     fun action(block: TextField.() -> Unit) {
         action = block
-        uiEntryOnChanged(ptr, staticCFunction { _, ref -> with(ref.to<TextField>()) {
-            action?.invoke(this)
-        }}, ref.asCPointer())
+        uiEntryOnChanged(ptr, staticCFunction { _, ref ->
+            with(ref.to<TextField>()) {
+                action?.invoke(this)
+            }
+        }, ref.asCPointer())
     }
+
     internal var action: (TextField.() -> Unit)? = null
 }
 
@@ -100,12 +103,12 @@ class SearchField : TextField(uiNewSearchEntry())
 inline fun Container.textarea(
     wrap: Boolean = true,
     init: TextArea.() -> Unit = {}
-): TextArea = add(TextArea(wrap)
-        .apply(init))
+): TextArea = add(TextArea(wrap).apply(init))
 
 /** Wrapper class for [uiMultilineEntry] - a multiline plain text editing widget */
 class TextArea(wrap: Boolean = true) : Control<uiMultilineEntry>(
-    if (wrap) uiNewMultilineEntry() else uiNewNonWrappingMultilineEntry()) {
+    if (wrap) uiNewMultilineEntry() else uiNewNonWrappingMultilineEntry()
+) {
 
     /** The current text in the area. */
     var value: String
@@ -124,10 +127,13 @@ class TextArea(wrap: Boolean = true) : Control<uiMultilineEntry>(
      *  Only one function can be registered at a time. */
     fun action(block: TextArea.() -> Unit) {
         action = block
-        uiMultilineEntryOnChanged(ptr, staticCFunction { _, ref -> with(ref.to<TextArea>()) {
-            action?.invoke(this)
-        }}, ref.asCPointer())
+        uiMultilineEntryOnChanged(ptr, staticCFunction { _, ref ->
+            with(ref.to<TextArea>()) {
+                action?.invoke(this)
+            }
+        }, ref.asCPointer())
     }
+
     internal var action: (TextArea.() -> Unit)? = null
 }
 
@@ -156,10 +162,13 @@ class Checkbox(label: String) : Control<uiCheckbox>(uiNewCheckbox(label)) {
      *  Only one function can be registered at a time. */
     fun action(block: Checkbox.() -> Unit) {
         action = block
-        uiCheckboxOnToggled(ptr, staticCFunction { _, ref -> with(ref.to<Checkbox>()) {
-            action?.invoke(this)
-        }}, ref.asCPointer())
+        uiCheckboxOnToggled(ptr, staticCFunction { _, ref ->
+            with(ref.to<Checkbox>()) {
+                action?.invoke(this)
+            }
+        }, ref.asCPointer())
     }
+
     internal var action: (Checkbox.() -> Unit)? = null
 }
 
@@ -186,10 +195,13 @@ class Combobox : Control<uiCombobox>(uiNewCombobox()) {
      *  Only one function can be registered at a time. */
     fun action(block: Combobox.() -> Unit) {
         action = block
-        uiComboboxOnSelected(ptr, staticCFunction { _, ref -> with(ref.to<Combobox>()) {
-            action?.invoke(this)
-        }}, ref.asCPointer())
+        uiComboboxOnSelected(ptr, staticCFunction { _, ref ->
+            with(ref.to<Combobox>()) {
+                action?.invoke(this)
+            }
+        }, ref.asCPointer())
     }
+
     internal var action: (Combobox.() -> Unit)? = null
 }
 
@@ -200,7 +212,7 @@ inline fun Container.editablecombobox(
     init: EditableCombobox.() -> Unit = {}
 ): EditableCombobox = add(EditableCombobox().apply(init))
 
-/** Wrapper class for [uiEditableCombobox] - 
+/** Wrapper class for [uiEditableCombobox] -
  *  a drop down combo box that allow selection from list or free text entry. */
 class EditableCombobox : Control<uiEditableCombobox>(uiNewEditableCombobox()) {
 
@@ -217,10 +229,13 @@ class EditableCombobox : Control<uiEditableCombobox>(uiNewEditableCombobox()) {
      *  Only one function can be registered at a time. */
     fun action(block: EditableCombobox.() -> Unit) {
         action = block
-        uiEditableComboboxOnChanged(ptr, staticCFunction { _, ref -> with(ref.to<EditableCombobox>()) {
-            action?.invoke(this)
-        }}, ref.asCPointer())
+        uiEditableComboboxOnChanged(ptr, staticCFunction { _, ref ->
+            with(ref.to<EditableCombobox>()) {
+                action?.invoke(this)
+            }
+        }, ref.asCPointer())
     }
+
     internal var action: (EditableCombobox.() -> Unit)? = null
 }
 
@@ -245,10 +260,13 @@ class Spinbox(min: Int, max: Int) : Control<uiSpinbox>(uiNewSpinbox(min, max)) {
      *  Only one function can be registered at a time. */
     fun action(block: Spinbox.() -> Unit) {
         action = block
-        uiSpinboxOnChanged(ptr, staticCFunction { _, ref -> with(ref.to<Spinbox>()) {
-            action?.invoke(this)
-        }}, ref.asCPointer())
+        uiSpinboxOnChanged(ptr, staticCFunction { _, ref ->
+            with(ref.to<Spinbox>()) {
+                action?.invoke(this)
+            }
+        }, ref.asCPointer())
     }
+
     internal var action: (Spinbox.() -> Unit)? = null
 }
 
@@ -273,10 +291,13 @@ class Slider(min: Int, max: Int) : Control<uiSlider>(uiNewSlider(min, max)) {
      *  Only one function can be registered at a time. */
     fun action(block: Slider.() -> Unit) {
         action = block
-        uiSliderOnChanged(ptr, staticCFunction { _, ref -> with(ref.to<Slider>()) {
-            action?.invoke(this)
-        }}, ref.asCPointer())
+        uiSliderOnChanged(ptr, staticCFunction { _, ref ->
+            with(ref.to<Slider>()) {
+                action?.invoke(this)
+            }
+        }, ref.asCPointer())
     }
+
     internal var action: (Slider.() -> Unit)? = null
 }
 
@@ -284,7 +305,7 @@ class Slider(min: Int, max: Int) : Control<uiSlider>(uiNewSlider(min, max)) {
 
 /** DSL builder for a widget that represent a group of radio options. */
 inline fun Container.radiobuttons(
-   init: RadioButtons.() -> Unit = {}
+    init: RadioButtons.() -> Unit = {}
 ): RadioButtons = add(RadioButtons().apply(init))
 
 /** Wrapper class for [uiRadioButtons] - a widget that represent a group of radio options. */
@@ -303,10 +324,13 @@ class RadioButtons : Control<uiRadioButtons>(uiNewRadioButtons()) {
      *  Only one function can be registered at a time. */
     fun action(block: RadioButtons.() -> Unit) {
         action = block
-        uiRadioButtonsOnSelected(ptr, staticCFunction { _, ref -> with(ref.to<RadioButtons>()) {
-            action?.invoke(this)
-        }}, ref.asCPointer())
+        uiRadioButtonsOnSelected(ptr, staticCFunction { _, ref ->
+            with(ref.to<RadioButtons>()) {
+                action?.invoke(this)
+            }
+        }, ref.asCPointer())
     }
+
     internal var action: (RadioButtons.() -> Unit)? = null
 }
 
@@ -328,9 +352,11 @@ inline fun Container.timepicker(
 ): TimePicker = add(TimePicker().apply(init))
 
 /** Wrapper class for [uiDateTimePicker] - a widget to edit date and time. */
-open class DateTimePicker internal constructor(alloc: CPointer<uiDateTimePicker>?
+open class DateTimePicker internal constructor(
+    alloc: CPointer<uiDateTimePicker>?
 ) : Control<uiDateTimePicker>(alloc) {
-    constructor(): this(uiNewDateTimePicker())
+    constructor() : this(uiNewDateTimePicker())
+
     internal var action: (DateTimePicker.() -> Unit)? = null
     internal open var defaultFormat = "%c"
 
@@ -343,14 +369,14 @@ open class DateTimePicker internal constructor(alloc: CPointer<uiDateTimePicker>
     /** The current value in Unix epoch */
     var value: Long
         get() = memScoped {
-           val tm = alloc<tm>()
-           getValue(tm.ptr)
-           mktime(tm.ptr)
+            val tm = alloc<tm>()
+            getValue(tm.ptr)
+            mktime(tm.ptr)
         }
         set(value) = memScoped {
-           val time = alloc<time_tVar>()
-           time.value = value
-           setValue(localtime(time.ptr)!!)
+            val time = alloc<time_tVar>()
+            time.value = value
+            setValue(localtime(time.ptr)!!)
         }
 
     /** The current value as String. */
@@ -366,9 +392,11 @@ open class DateTimePicker internal constructor(alloc: CPointer<uiDateTimePicker>
      *  Only one function can be registered at a time. */
     fun action(block: DateTimePicker.() -> Unit) {
         action = block
-        uiDateTimePickerOnChanged(ptr, staticCFunction { _, ref -> with(ref.to<DateTimePicker>()) {
-            action?.invoke(this)
-        }}, ref.asCPointer())
+        uiDateTimePickerOnChanged(ptr, staticCFunction { _, ref ->
+            with(ref.to<DateTimePicker>()) {
+                action?.invoke(this)
+            }
+        }, ref.asCPointer())
     }
 }
 
@@ -412,7 +440,8 @@ inline fun HBox.separator(
 ): VerticalSeparator = add(VerticalSeparator().apply(init))
 
 /** Wrapper class for [uiSeparator] */
-abstract class Separator(alloc: CPointer<uiSeparator>?
+abstract class Separator(
+    alloc: CPointer<uiSeparator>?
 ) : Control<uiSeparator>(alloc)
 
 /** Wrapper class for [uiSeparator] - an horizontal line to visually separate widgets. */
@@ -458,10 +487,13 @@ class Button(text: String) : Control<uiButton>(uiNewButton(text)) {
      *  Only one function can be registered at a time. */
     fun action(block: Button.() -> Unit) {
         action = block
-        uiButtonOnClicked(ptr, staticCFunction { _, ref -> with(ref.to<Button>()) {
-            action?.invoke(this)
-        }}, ref.asCPointer())
+        uiButtonOnClicked(ptr, staticCFunction { _, ref ->
+            with(ref.to<Button>()) {
+                action?.invoke(this)
+            }
+        }, ref.asCPointer())
     }
+
     internal var action: (Button.() -> Unit)? = null
 }
 
@@ -493,10 +525,13 @@ class ColorButton : Control<uiColorButton>(uiNewColorButton()) {
      *  Only one function can be registered at a time. */
     fun action(block: ColorButton.() -> Unit) {
         action = block
-        uiColorButtonOnChanged(ptr, staticCFunction { _, ref -> with(ref.to<ColorButton>()) {
-            action?.invoke(this)
-        }}, ref.asCPointer())
+        uiColorButtonOnChanged(ptr, staticCFunction { _, ref ->
+            with(ref.to<ColorButton>()) {
+                action?.invoke(this)
+            }
+        }, ref.asCPointer())
     }
+
     internal var action: (ColorButton.() -> Unit)? = null
 }
 
@@ -528,9 +563,12 @@ class FontButton : Control<uiFontButton>(uiNewFontButton()) {
      *  Only one function can be registered at a time. */
     fun action(block: FontButton.() -> Unit) {
         action = block
-        uiFontButtonOnChanged(ptr, staticCFunction { _, ref -> with(ref.to<FontButton>()) {
-            action?.invoke(this)
-        }}, ref.asCPointer())
+        uiFontButtonOnChanged(ptr, staticCFunction { _, ref ->
+            with(ref.to<FontButton>()) {
+                action?.invoke(this)
+            }
+        }, ref.asCPointer())
     }
+
     internal var action: (FontButton.() -> Unit)? = null
 }
