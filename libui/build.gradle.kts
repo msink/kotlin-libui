@@ -48,6 +48,9 @@ kotlin {
     if (os.isWindows || publishModeEnabled) mingwX64("windows") {
         sourceSets["windowsMain"].apply {
             kotlin.srcDir("src/nativeMain/kotlin")
+            dependencies {
+                implementation(Libs.coroutines)
+            }
         }
         compilations["main"].cinterops.create("libui") {
             includeDirs(buildDir)
@@ -57,6 +60,9 @@ kotlin {
     if (os.isLinux || publishModeEnabled) linuxX64("linux") {
         sourceSets["linuxMain"].apply {
             kotlin.srcDir("src/nativeMain/kotlin")
+            dependencies {
+                implementation(Libs.coroutines)
+            }
         }
         compilations["main"].cinterops.create("libui") {
             includeDirs(buildDir)
@@ -66,6 +72,9 @@ kotlin {
     if (os.isMacOsX || publishModeEnabled) macosX64("macosx") {
         sourceSets["macosxMain"].apply {
             kotlin.srcDir("src/nativeMain/kotlin")
+            dependencies {
+                implementation(Libs.coroutines)
+            }
         }
         compilations["main"].cinterops.create("libui") {
             includeDirs(buildDir)

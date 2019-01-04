@@ -9,6 +9,7 @@ allprojects {
     repositories {
         if (Kotlin.repo.isNotEmpty()) maven { url = uri(Kotlin.repo) }
         mavenCentral()
+        jcenter()
     }
 }
 

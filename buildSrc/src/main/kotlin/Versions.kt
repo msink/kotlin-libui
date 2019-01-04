@@ -32,3 +32,7 @@ object Bintray {
     const val version = "1.8.4-jetbrains-5"
     const val repo = "https://dl.bintray.com/jetbrains/kotlin-native-dependencies"
 }
+
+object Libs {
+    const val coroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core-native:1.1.1"
+}
