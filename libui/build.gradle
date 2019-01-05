@@ -43,39 +43,48 @@ kotlin {
     final def publishModeEnabled = rootProject.hasProperty('publishMode')
     println "publishModeEnabled: $publishModeEnabled"
 
-    targets {
-        if (os.isWindows() || publishModeEnabled) {
+    if (os.isWindows() || publishModeEnabled) {
+        targets {
             fromPreset(presets.mingwX64, 'windows') {
                 compilations.main.cinterops {
                     libui { includeDirs buildDir }
                 }
             }
         }
-        if (os.isLinux() || publishModeEnabled) {
+        sourceSets {
+            windowsMain {
+                kotlin.srcDir('src/nativeMain/kotlin')
+            }
+        }
+    }
+
+    if (os.isLinux() || publishModeEnabled) {
+        targets {
             fromPreset(presets.linuxX64, 'linux') {
                 compilations.main.cinterops {
                     libui { includeDirs buildDir }
                 }
             }
         }
-        if (os.isMacOsX() || publishModeEnabled) {
+        sourceSets {
+            linuxMain {
+                kotlin.srcDir('src/nativeMain/kotlin')
+            }
+        }
+    }
+
+    if (os.isMacOsX() || publishModeEnabled) {
+        targets {
             fromPreset(presets.macosX64, 'macosx') {
                 compilations.main.cinterops {
                     libui { includeDirs buildDir }
                 }
             }
         }
-    }
-
-    sourceSets {
-        windowsMain {
-            kotlin.srcDir('src/nativeMain/kotlin')
-        }
-        linuxMain {
-            kotlin.srcDir('src/nativeMain/kotlin')
-        }
-        macosxMain {
-            kotlin.srcDir('src/nativeMain/kotlin')
+        sourceSets {
+            macosxMain {
+                kotlin.srcDir('src/nativeMain/kotlin')
+            }
         }
     }
 }

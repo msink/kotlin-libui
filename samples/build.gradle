@@ -19,8 +19,8 @@ subprojects {
     }
 
     kotlin {
-        targets {
-            if (os.isWindows()) {
+        if (os.isWindows()) {
+            targets {
                 fromPreset(presets.mingwX64, 'windows') {
                     compilations.main {
                         outputKinds 'executable'
@@ -29,16 +29,38 @@ subprojects {
                     }
                 }
                 tasks.compileKotlinWindows.dependsOn compileWindowsResources
+            }
+            sourceSets {
+                windowsMain {
+                    kotlin.srcDir('src/nativeMain/kotlin')
+                    dependencies {
+                        implementation project(':libui')
+                    }
+                }
+            }
+        }
 
-            } else if (os.isLinux()) {
+        if (os.isLinux()) {
+            targets {
                 fromPreset(presets.linuxX64, 'linux') {
                     compilations.main {
                         outputKinds 'executable'
                         entryPoint 'main'
                     }
                 }
+            }
+            sourceSets {
+                linuxMain {
+                    kotlin.srcDir('src/nativeMain/kotlin')
+                    dependencies {
+                        implementation project(':libui')
+                    }
+                }
+            }
+        }
 
-            } else if (os.isMacOsX()) {
+        if (os.isMacOsX()) {
+            targets {
                 fromPreset(presets.macosX64, 'macosx') {
                     compilations.main {
                         outputKinds 'executable'
@@ -46,25 +68,12 @@ subprojects {
                     }
                 }
             }
-        }
-
-        sourceSets {
-            windowsMain {
-                kotlin.srcDir('src/nativeMain/kotlin')
-                dependencies {
-                    implementation project(':libui')
-                }
-            }
-            linuxMain {
-                kotlin.srcDir('src/nativeMain/kotlin')
-                dependencies {
-                    implementation project(':libui')
-                }
-            }
-            macosxMain {
-                kotlin.srcDir('src/nativeMain/kotlin')
-                dependencies {
-                    implementation project(':libui')
+            sourceSets {
+                macosxMain {
+                    kotlin.srcDir('src/nativeMain/kotlin')
+                    dependencies {
+                        implementation project(':libui')
+                    }
                 }
             }
         }
