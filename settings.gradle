@@ -13,24 +13,24 @@ pluginManagement {
     }
 
     repositories {
-        maven { url "https://dl.bintray.com/kotlin/kotlin-eap" }
-        maven { url "https://dl.bintray.com/touchlabpublic/kotlin" }
+        maven { url = uri("https://dl.bintray.com/kotlin/kotlin-eap") }
+        maven { url = uri("https://dl.bintray.com/touchlabpublic/kotlin") }
         mavenCentral()
-        maven { url "https://plugins.gradle.org/m2/" }
+        maven { url = uri("https://plugins.gradle.org/m2/") }
     }
 }
 
-enableFeaturePreview('GRADLE_METADATA')
+enableFeaturePreview("GRADLE_METADATA")
 
-include ':libui'
+include(":libui")
 
-include ':samples:controlgallery'
-include ':samples:datetime'
-include ':samples:drawtext'
-include ':samples:form'
-include ':samples:hello'
-include ':samples:hello-ktx'
-include ':samples:histogram'
-include ':samples:logo'
-include ':samples:table'
-include ':samples:timer'
+include(":samples:controlgallery")
+include(":samples:datetime")
+include(":samples:drawtext")
+include(":samples:form")
+include(":samples:hello")
+include(":samples:hello-ktx")
+include(":samples:histogram")
+include(":samples:logo")
+include(":samples:table")
+include(":samples:timer")

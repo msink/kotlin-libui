@@ -12,33 +12,33 @@ subprojects {
         def windresDir = "${konanUserDir}/dependencies/msys2-mingw-w64-x86_64-gcc-7.3.0-clang-llvm-lld-6.0.1/bin"
         def rcFile = file("${samplesResourcesDirectory}/samples.rc")
 
-        inputs.file rcFile
-        outputs.file file(samplesResource)
-        commandLine "${windresDir}/windres", rcFile, '-O', 'coff', '-o', samplesResource
-        environment 'PATH', "${windresDir};${System.getenv('PATH')}"
+        inputs.file(rcFile)
+        outputs.file(file(samplesResource))
+        commandLine("${windresDir}/windres", rcFile, "-O", "coff", "-o", samplesResource)
+        environment("PATH", "${windresDir};${System.getenv("PATH")}")
     }
 
     kotlin {
-        if (os.isWindows()) mingwX64('windows') {
+        if (os.isWindows()) mingwX64("windows") {
             sourceSets.windowsMain {
-                kotlin.srcDir('src/nativeMain/kotlin')
+                kotlin.srcDir("src/nativeMain/kotlin")
                 dependencies {
-                    implementation project(':libui')
+                    implementation(project(":libui"))
                 }
             }
             binaries {
                 executable([RELEASE]) {
                     tasks.compileKotlinWindows.dependsOn compileWindowsResources
-                    linkerOpts samplesResource, "-mwindows"
+                    linkerOpts(samplesResource, "-mwindows")
                 }
             }
         }
 
-        if (os.isLinux()) linuxX64('linux') {
+        if (os.isLinux()) linuxX64("linux") {
             sourceSets.linuxMain {
-                kotlin.srcDir('src/nativeMain/kotlin')
+                kotlin.srcDir("src/nativeMain/kotlin")
                 dependencies {
-                    implementation project(':libui')
+                    implementation(project(":libui"))
                 }
             }
             binaries {
@@ -46,11 +46,11 @@ subprojects {
             }
         }
 
-        if (os.isMacOsX()) macosX64('macosx') {
+        if (os.isMacOsX()) macosX64("macosx") {
             sourceSets.macosxMain {
-                kotlin.srcDir('src/nativeMain/kotlin')
+                kotlin.srcDir("src/nativeMain/kotlin")
                 dependencies {
-                    implementation project(':libui')
+                    implementation(project(":libui"))
                 }
             }
             binaries {

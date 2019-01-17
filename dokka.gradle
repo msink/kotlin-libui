@@ -1,0 +1,43 @@
+// SPDX-License-Identifier: MIT
+
+import static java.nio.file.Files.*
+import static java.nio.file.Paths.get
+import static java.util.stream.Collectors.toSet
+
+dokka {
+    outputFormat = 'gfm'
+    outputDirectory = 'docs'
+    moduleName = ''
+
+    sourceDirs = files(
+            "${rootDir}/staging",
+            "${project(":libui").projectDir}/src/nativeMain/kotlin"
+    )
+
+    def buildDirPath = get("${project(":libui").buildDir}/classes/kotlin")
+    if (exists(buildDirPath)) {
+        def cinteropBuildDirs = find(buildDirPath, 16) {
+            path, attributes -> path.endsWith("libui-cinterop-libui.klib-build")
+        }.map({ it.toString() }).collect(toSet())
+
+        sourceDirs += files(cinteropBuildDirs)
+    }
+
+    reportUndocumented = false
+    noStdlibLink = true
+
+    packageOptions {
+        prefix = "kotlin"
+        suppress = true
+    }
+
+    packageOptions {
+        prefix = "kotlinx"
+        suppress = true
+    }
+
+    packageOptions {
+        prefix = "platform"
+        suppress = true
+    }
+}

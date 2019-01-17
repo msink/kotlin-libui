@@ -1,13 +1,13 @@
 kotlin {
     sourceSets {
         windowsMain {
-            kotlin.srcDir('src/nativeMain/resources')
+            kotlin.srcDir("src/nativeMain/resources")
         }
         linuxMain {
-            kotlin.srcDir('src/nativeMain/resources')
+            kotlin.srcDir("src/nativeMain/resources")
         }
         macosxMain {
-            kotlin.srcDir('src/nativeMain/resources')
+            kotlin.srcDir("src/nativeMain/resources")
         }
     }
 }
