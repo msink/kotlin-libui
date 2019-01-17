@@ -32,48 +32,30 @@ kotlin {
     final def publishModeEnabled = rootProject.hasProperty('publishMode')
     println "publishModeEnabled: $publishModeEnabled"
 
-    if (os.isWindows() || publishModeEnabled) {
-        targets {
-            fromPreset(presets.mingwX64, 'windows') {
-                compilations.main.cinterops {
-                    libui { includeDirs buildDir }
-                }
-            }
+    if (os.isWindows() || publishModeEnabled) mingwX64('windows') {
+        sourceSets.windowsMain {
+            kotlin.srcDir('src/nativeMain/kotlin')
         }
-        sourceSets {
-            windowsMain {
-                kotlin.srcDir('src/nativeMain/kotlin')
-            }
+        compilations.main.cinterops {
+            libui { includeDirs buildDir }
         }
     }
 
-    if (os.isLinux() || publishModeEnabled) {
-        targets {
-            fromPreset(presets.linuxX64, 'linux') {
-                compilations.main.cinterops {
-                    libui { includeDirs buildDir }
-                }
-            }
+    if (os.isLinux() || publishModeEnabled) linuxX64('linux') {
+        sourceSets.linuxMain {
+            kotlin.srcDir('src/nativeMain/kotlin')
         }
-        sourceSets {
-            linuxMain {
-                kotlin.srcDir('src/nativeMain/kotlin')
-            }
+        compilations.main.cinterops {
+            libui { includeDirs buildDir }
         }
     }
 
-    if (os.isMacOsX() || publishModeEnabled) {
-        targets {
-            fromPreset(presets.macosX64, 'macosx') {
-                compilations.main.cinterops {
-                    libui { includeDirs buildDir }
-                }
-            }
+    if (os.isMacOsX() || publishModeEnabled) macosX64('macosx') {
+        sourceSets.macosxMain {
+            kotlin.srcDir('src/nativeMain/kotlin')
         }
-        sourceSets {
-            macosxMain {
-                kotlin.srcDir('src/nativeMain/kotlin')
-            }
+        compilations.main.cinterops {
+            libui { includeDirs buildDir }
         }
     }
 }
@@ -82,33 +64,31 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.CInteropProcess).all {
     dependsOn unpackArchive
 }
 
-afterEvaluate {
-    project.publishing.publications.forEach { publication ->
-        publication.pom.withXml {
-            def root = asNode()
-            root.appendNode('name', 'libui')
-            root.appendNode('description', 'Kotlin/Native interop to libui: a portable GUI library')
-            root.appendNode('url', POM_SCM_URL)
-            root.children().last() + {
-                licenses {
-                    license {
-                        name 'MIT License'
-                        url POM_SCM_URL
-                        distribution 'repo'
-                    }
-                }
-                developers {
-                    developer {
-                        id 'msink'
-                        name 'Mike Sinkovsky'
-                        email 'msink@permonline.ru'
-                    }
-                }
-                scm {
+project.publishing.publications.forEach { publication ->
+    publication.pom.withXml {
+        def root = asNode()
+        root.appendNode('name', 'libui')
+        root.appendNode('description', 'Kotlin/Native interop to libui: a portable GUI library')
+        root.appendNode('url', POM_SCM_URL)
+        root.children().last() + {
+            licenses {
+                license {
+                    name 'MIT License'
                     url POM_SCM_URL
-                    connection POM_SCM_CONNECTION
-                    developerConnection POM_SCM_DEV_CONNECTION
+                    distribution 'repo'
                 }
+            }
+            developers {
+                developer {
+                    id 'msink'
+                    name 'Mike Sinkovsky'
+                    email 'msink@permonline.ru'
+                }
+            }
+            scm {
+                url POM_SCM_URL
+                connection POM_SCM_CONNECTION
+                developerConnection POM_SCM_DEV_CONNECTION
             }
         }
     }

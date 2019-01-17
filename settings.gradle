@@ -13,6 +13,7 @@ pluginManagement {
     }
 
     repositories {
+        maven { url "https://dl.bintray.com/kotlin/kotlin-eap" }
         maven { url "https://dl.bintray.com/touchlabpublic/kotlin" }
         mavenCentral()
         maven { url "https://plugins.gradle.org/m2/" }

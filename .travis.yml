@@ -31,16 +31,16 @@ after_success:
     esac
   - cp libui/build/classes/kotlin/${TARGET}/main/libui-cinterop-libui.klib libui-${TARGET}.klib
   - cp libui/build/classes/kotlin/${TARGET}/main/libui.klib libui-ktx-${TARGET}.klib
-  - cp samples/controlgallery/build/bin/${TARGET}/main/release/executable/controlgallery.kexe .
-  - cp samples/datetime/build/bin/${TARGET}/main/release/executable/datetime.kexe .
-  - cp samples/drawtext/build/bin/${TARGET}/main/release/executable/drawtext.kexe .
-  - cp samples/form/build/bin/${TARGET}/main/release/executable/form.kexe .
-  - cp samples/hello/build/bin/${TARGET}/main/release/executable/hello.kexe .
-  - cp samples/hello-ktx/build/bin/${TARGET}/main/release/executable/hello-ktx.kexe .
-  - cp samples/histogram/build/bin/${TARGET}/main/release/executable/histogram.kexe .
-  - cp samples/logo/build/bin/${TARGET}/main/release/executable/logo.kexe .
-  - cp samples/table/build/bin/${TARGET}/main/release/executable/table.kexe .
-  - cp samples/timer/build/bin/${TARGET}/main/release/executable/timer.kexe .
+  - cp samples/controlgallery/build/bin/${TARGET}/releaseExecutable/controlgallery.kexe .
+  - cp samples/datetime/build/bin/${TARGET}/releaseExecutable/datetime.kexe .
+  - cp samples/drawtext/build/bin/${TARGET}/releaseExecutable/drawtext.kexe .
+  - cp samples/form/build/bin/${TARGET}/releaseExecutable/form.kexe .
+  - cp samples/hello/build/bin/${TARGET}/releaseExecutable/hello.kexe .
+  - cp samples/hello-ktx/build/bin/${TARGET}/releaseExecutable/hello-ktx.kexe .
+  - cp samples/histogram/build/bin/${TARGET}/releaseExecutable/histogram.kexe .
+  - cp samples/logo/build/bin/${TARGET}/releaseExecutable/logo.kexe .
+  - cp samples/table/build/bin/${TARGET}/releaseExecutable/table.kexe .
+  - cp samples/timer/build/bin/${TARGET}/releaseExecutable/timer.kexe .
   - tar -czvf libui-samples-${TARGET}.tgz *.kexe
 
 deploy:

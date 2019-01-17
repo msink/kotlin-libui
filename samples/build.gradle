@@ -19,77 +19,42 @@ subprojects {
     }
 
     kotlin {
-        if (os.isWindows()) {
-            targets {
-                fromPreset(presets.mingwX64, 'windows') {
-                    compilations.main {
-                        outputKinds 'executable'
-                        entryPoint 'main'
-                        linkerOpts "$samplesResource -mwindows"
-                    }
+        if (os.isWindows()) mingwX64('windows') {
+            sourceSets.windowsMain {
+                kotlin.srcDir('src/nativeMain/kotlin')
+                dependencies {
+                    implementation project(':libui')
                 }
-                tasks.compileKotlinWindows.dependsOn compileWindowsResources
             }
-            sourceSets {
-                windowsMain {
-                    kotlin.srcDir('src/nativeMain/kotlin')
-                    dependencies {
-                        implementation project(':libui')
-                    }
+            binaries {
+                executable([RELEASE]) {
+                    tasks.compileKotlinWindows.dependsOn compileWindowsResources
+                    linkerOpts samplesResource, "-mwindows"
                 }
             }
         }
 
-        if (os.isLinux()) {
-            targets {
-                fromPreset(presets.linuxX64, 'linux') {
-                    compilations.main {
-                        outputKinds 'executable'
-                        entryPoint 'main'
-                    }
+        if (os.isLinux()) linuxX64('linux') {
+            sourceSets.linuxMain {
+                kotlin.srcDir('src/nativeMain/kotlin')
+                dependencies {
+                    implementation project(':libui')
                 }
             }
-            sourceSets {
-                linuxMain {
-                    kotlin.srcDir('src/nativeMain/kotlin')
-                    dependencies {
-                        implementation project(':libui')
-                    }
-                }
+            binaries {
+                executable([RELEASE])
             }
         }
 
-        if (os.isMacOsX()) {
-            targets {
-                fromPreset(presets.macosX64, 'macosx') {
-                    compilations.main {
-                        outputKinds 'executable'
-                        entryPoint 'main'
-                    }
+        if (os.isMacOsX()) macosX64('macosx') {
+            sourceSets.macosxMain {
+                kotlin.srcDir('src/nativeMain/kotlin')
+                dependencies {
+                    implementation project(':libui')
                 }
             }
-            sourceSets {
-                macosxMain {
-                    kotlin.srcDir('src/nativeMain/kotlin')
-                    dependencies {
-                        implementation project(':libui')
-                    }
-                }
-            }
-        }
-    }
-
-    task runProgram {
-        def buildType = 'DEBUG' // 'RELEASE'
-        def target = kotlin.targets.find {
-            it instanceof org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget && it.publishable
-        }
-
-        dependsOn target.compilations.main.linkTaskName('EXECUTABLE', buildType)
-
-        doLast {
-            exec {
-                executable target.compilations.main.getBinary('EXECUTABLE', buildType)
+            binaries {
+                executable([RELEASE])
             }
         }
     }
