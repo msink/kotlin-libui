@@ -1,5 +1,7 @@
 // SPDX-License-Identifier: MIT
 
+@file:Suppress("SpellCheckingInspection")
+
 pluginManagement {
     resolutionStrategy {
         eachPlugin {

@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: MIT
+
+@file:Suppress("SpellCheckingInspection")
+
 plugins {
     id("kotlin-multiplatform")
 }

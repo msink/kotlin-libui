@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: MIT
+
+@file:Suppress("SpellCheckingInspection")
+
 val os = org.gradle.internal.os.OperatingSystem.current()!!
 
 kotlin {

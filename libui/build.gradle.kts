@@ -1,3 +1,7 @@
+// SPDX-License-Identifier: MIT
+
+@file:Suppress("SpellCheckingInspection")
+
 plugins {
     id("kotlin-multiplatform")
     id("de.undercouch.download")
@@ -14,27 +18,25 @@ val LIBUI_VERSION: String by project
 val os = org.gradle.internal.os.OperatingSystem.current()!!
 
 group = GROUP
-version = "${VERSION_NAME}${VERSION_SUFFIX}"
+version = "$VERSION_NAME$VERSION_SUFFIX"
 
-val downloadArchive_dest = File(buildDir, "libui-$LIBUI_VERSION.${if (os.isWindows) "zip" else "tgz"}")
+val downloadArchiveDest = File(buildDir, "libui-$LIBUI_VERSION.${if (os.isWindows) "zip" else "tgz"}")
 val downloadArchive by tasks.registering(de.undercouch.gradle.tasks.download.Download::class) {
     val release = "$LIBUI_REPO/releases/download/$LIBUI_VERSION/libui-$LIBUI_VERSION"
-    if (os.isWindows) {
-        src("$release-windows-amd64-mingw-static.zip")
-    } else if (os.isLinux) {
-        src("$release-linux-amd64-static.tgz")
-    } else if (os.isMacOsX) {
-        src("$release-darwin-amd64-static.tgz")
+    when {
+        os.isWindows -> src("$release-windows-amd64-mingw-static.zip")
+        os.isLinux -> src("$release-linux-amd64-static.tgz")
+        os.isMacOsX -> src("$release-darwin-amd64-static.tgz")
     }
-    dest(downloadArchive_dest)
+    dest(downloadArchiveDest)
     overwrite(false)
 }
 
 val unpackArchive by tasks.registering(Copy::class) {
     if (os.isWindows) {
-        from(zipTree(downloadArchive_dest))
+        from(zipTree(downloadArchiveDest))
     } else {
-        from(tarTree(resources.gzip(downloadArchive_dest)))
+        from(tarTree(resources.gzip(downloadArchiveDest)))
     }
     into(buildDir)
     dependsOn(downloadArchive)
