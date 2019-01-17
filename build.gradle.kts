@@ -14,8 +14,6 @@ allprojects {
     }
 }
 
-ext {
-    os = org.gradle.internal.os.OperatingSystem.current()
+apply {
+    from("dokka.gradle")
 }
-
-apply from: "dokka.gradle"
