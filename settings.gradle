@@ -1,3 +1,24 @@
+// SPDX-License-Identifier: MIT
+
+pluginManagement {
+    resolutionStrategy {
+        eachPlugin {
+            if (requested.id.id == "kotlin-multiplatform") {
+                useModule("org.jetbrains.kotlin:kotlin-gradle-plugin:${requested.version}")
+            }
+            if (requested.id.id == "com.jfrog.bintray") {
+                useModule("com.jfrog.bintray.gradle:gradle-bintray-plugin:${requested.version}")
+            }
+        }
+    }
+
+    repositories {
+        maven { url "https://dl.bintray.com/touchlabpublic/kotlin" }
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+}
+
 enableFeaturePreview('GRADLE_METADATA')
 
 include ':libui'

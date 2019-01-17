@@ -1,18 +1,7 @@
-buildscript {
-    repositories {
-        jcenter()
-        maven { url "https://dl.bintray.com/jetbrains/kotlin-native-dependencies" }
-    }
-    dependencies {
-        classpath 'de.undercouch:gradle-download-task:3.4.3'
-        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.2-SNAPSHOT"
-    }
-}
-
-apply plugin: 'de.undercouch.download'
 apply plugin: "org.jetbrains.kotlin.multiplatform"
-apply plugin: 'maven-publish'
-apply plugin: 'com.jfrog.bintray'
+apply plugin: "de.undercouch.download"
+apply plugin: "maven-publish"
+apply plugin: "com.jfrog.bintray"
 
 group = GROUP
 version = "${VERSION_NAME}${VERSION_SUFFIX}"
