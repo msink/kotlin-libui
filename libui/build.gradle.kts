@@ -119,7 +119,7 @@ val publications = project.publishing.publications.withType(MavenPublication::cl
             developerConnection.set(POM_SCM_DEV_CONNECTION)
         }
     }
-    println("Publishing artifact '${it.groupId}:${it.artifactId}:${it.version}' from publication '${it.name}'")
+/// println("Publishing artifact '${it.groupId}:${it.artifactId}:${it.version}' from publication '${it.name}'")
     it
 }
 
@@ -129,9 +129,25 @@ publishing {
     }
 }
 
+/*TODO this does not work:
 tasks.withType<BintrayUploadTask>().configureEach {
     dependsOn("publishToMavenLocal")
     setPublications(publications)
+}
+*/
+apply {
+    from("publish.gradle")
+/*TODO this works, in Groovy DSL:
+bintrayUpload {
+    dependsOn publishToMavenLocal
+    doFirst {
+        publications = project.publishing.publications.collect {
+            println("Uploading artifact '$it.groupId:$it.artifactId:$it.version' from publication '$it.name'")
+            it
+        }
+    }
+}
+*/
 }
 
 bintray {

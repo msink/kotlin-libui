@@ -1,0 +1,11 @@
+// SPDX-License-Identifier: MIT
+
+bintrayUpload {
+    dependsOn publishToMavenLocal
+    doFirst {
+        publications = project.publishing.publications.collect {
+            println("Uploading artifact '$it.groupId:$it.artifactId:$it.version' from publication '$it.name'")
+            it
+        }
+    }
+}
