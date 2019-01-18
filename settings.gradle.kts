@@ -15,8 +15,8 @@ pluginManagement {
     }
 
     repositories {
-        maven { url = uri("https://dl.bintray.com/kotlin/kotlin-eap") }
-        maven { url = uri("https://dl.bintray.com/touchlabpublic/kotlin") }
+        maven { url = uri(Kotlin.repo) }
+        maven { url = uri(Bintray.repo) }
         mavenCentral()
         maven { url = uri("https://plugins.gradle.org/m2/") }
     }

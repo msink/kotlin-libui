@@ -3,11 +3,10 @@
 @file:Suppress("SpellCheckingInspection")
 
 plugins {
-    id("kotlin-multiplatform")
+    id("kotlin-multiplatform") version Kotlin.version
 }
 
 val samplesResourcesDir = "$projectDir/resources"
-val os = org.gradle.internal.os.OperatingSystem.current()!!
 
 subprojects {
     apply(plugin = "kotlin-multiplatform")

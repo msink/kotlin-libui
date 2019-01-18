@@ -2,8 +2,6 @@
 
 @file:Suppress("SpellCheckingInspection")
 
-val os = org.gradle.internal.os.OperatingSystem.current()!!
-
 kotlin {
     if (os.isWindows) sourceSets["windowsMain"]?.apply {
         kotlin.srcDir("src/nativeMain/resources")
