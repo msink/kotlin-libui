@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 
-object Project {
+object Publish {
     const val group = "com.github.msink"
-    const val bintrayUser = "msink"
+    const val user = "msink"
     object pom {
         const val url = "https://github.com/msink/kotlin-libui"
         const val connection = "scm:git:https://github.com/msink/kotlin-libui.git"

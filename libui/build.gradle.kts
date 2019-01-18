@@ -17,7 +17,7 @@ val VERSION_NAME: String by project
 val VERSION_SUFFIX: String by project
 val BINTRAY_REPO: String by project
 
-group = Project.group
+group = Publish.group
 version = "$VERSION_NAME$VERSION_SUFFIX"
 
 val downloadArchiveDest = File(buildDir, "libui-${Libui.version}.${if (os.isWindows) "zip" else "tgz"}")
@@ -87,12 +87,12 @@ val publications = project.publishing.publications.withType(MavenPublication::cl
             val root = asNode()
             root.appendNode("name", "libui")
             root.appendNode("description", "Kotlin/Native interop to libui: a portable GUI library")
-            root.appendNode("url", Project.pom.url)
+            root.appendNode("url", Publish.pom.url)
         }
         licenses {
             license {
                 name.set("MIT License")
-                url.set(Project.pom.url)
+                url.set(Publish.pom.url)
                 distribution.set("repo")
             }
         }
@@ -104,9 +104,9 @@ val publications = project.publishing.publications.withType(MavenPublication::cl
             }
         }
         scm {
-            url.set(Project.pom.url)
-            connection.set(Project.pom.connection)
-            developerConnection.set(Project.pom.devConnection)
+            url.set(Publish.pom.url)
+            connection.set(Publish.pom.connection)
+            developerConnection.set(Publish.pom.devConnection)
         }
     }
 /// println("Publishing artifact '${it.groupId}:${it.artifactId}:${it.version}' from publication '${it.name}'")
@@ -115,7 +115,7 @@ val publications = project.publishing.publications.withType(MavenPublication::cl
 
 publishing {
     repositories {
-        maven { url = uri("https://bintray.com/${Project.bintrayUser}/$BINTRAY_REPO") }
+        maven { url = uri("https://bintray.com/${Publish.user}/$BINTRAY_REPO") }
     }
 }
 
@@ -141,15 +141,15 @@ bintrayUpload {
 }
 
 bintray {
-    user = Project.bintrayUser
+    user = Publish.user
     key = System.getenv("BINTRAY_API_KEY")
     override = true // for multi-platform Kotlin/Native publishing
     pkg(delegateClosureOf<BintrayExtension.PackageConfig> {
-        userOrg = Project.bintrayUser
+        userOrg = Publish.user
         repo = BINTRAY_REPO
         name = "libui"
         setLicenses("MIT")
-        vcsUrl = Project.pom.url
+        vcsUrl = Publish.pom.url
         version(delegateClosureOf<BintrayExtension.VersionConfig> {
             name = project.version.toString()
             vcsTag = project.version.toString()
