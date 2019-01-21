@@ -1,6 +1,4 @@
-// Top-level build file where you can add configuration options common to all sub-projects/modules.
-// SPDX-License-Identifier: MIT
-
+// SPDX-License-Identifier: MIT OR Apache-2.0
 @file:Suppress("SpellCheckingInspection")
 
 plugins {
