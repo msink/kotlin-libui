@@ -144,16 +144,27 @@ bintray {
     user = Publish.user
     key = System.getenv("BINTRAY_API_KEY")
     override = true // for multi-platform Kotlin/Native publishing
-    pkg(delegateClosureOf<BintrayExtension.PackageConfig> {
+    pkg {
         userOrg = Publish.user
         repo = BINTRAY_REPO
         name = "libui"
         setLicenses("MIT")
         vcsUrl = Publish.pom.url
-        version(delegateClosureOf<BintrayExtension.VersionConfig> {
+        version {
             name = project.version.toString()
             vcsTag = project.version.toString()
             released = Date().toString()
-        })
-    })
+        }
+    }
+}
+
+/*
+ * Workarounds
+ */
+fun BintrayExtension.pkg(configure: BintrayExtension.PackageConfig.() -> Unit): Any? {
+    return pkg(delegateClosureOf(configure))
+}
+
+fun BintrayExtension.PackageConfig.version(configure: BintrayExtension.VersionConfig.() -> Unit): Any? {
+    return version(delegateClosureOf(configure))
 }
