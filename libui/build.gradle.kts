@@ -148,7 +148,7 @@ bintray {
         userOrg = Publish.user
         repo = BINTRAY_REPO
         name = "libui"
-        setLicenses("MIT")
+        setLicenses("MIT", "Apache-2.0")
         vcsUrl = Publish.pom.url
         version {
             name = project.version.toString()
