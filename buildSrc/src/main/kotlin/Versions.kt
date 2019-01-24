@@ -11,8 +11,8 @@ object Publish {
 }
 
 object Kotlin {
-    const val version = "1.3.20-eap-100"
-    const val repo = "https://dl.bintray.com/kotlin/kotlin-eap"
+    const val version = "1.3.20"
+    const val repo = ""
 }
 
 object Libui {
@@ -29,7 +29,6 @@ object Download {
 }
 
 object Bintray {
-    const val version = "1.8.3-kotlin-a1"
-    const val repo = "https://dl.bintray.com/touchlabpublic/kotlin"
+    const val version = "1.8.4-jetbrains-5"
+    const val repo = "https://dl.bintray.com/jetbrains/kotlin-native-dependencies"
 }
-

@@ -3,7 +3,6 @@
 @file:Suppress("SpellCheckingInspection")
 
 import com.jfrog.bintray.gradle.BintrayExtension
-import com.jfrog.bintray.gradle.BintrayUploadTask
 import java.util.Date
 
 plugins {

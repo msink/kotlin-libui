@@ -7,7 +7,7 @@ plugins {
 
 allprojects {
     repositories {
-        maven { url = uri(Kotlin.repo) }
+        if (Kotlin.repo.isNotEmpty()) maven { url = uri(Kotlin.repo) }
         mavenCentral()
     }
 }

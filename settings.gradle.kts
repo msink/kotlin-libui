@@ -14,7 +14,7 @@ pluginManagement {
     }
 
     repositories {
-        maven { url = uri(Kotlin.repo) }
+        if (Kotlin.repo.isNotEmpty()) maven { url = uri(Kotlin.repo) }
         maven { url = uri(Bintray.repo) }
         mavenCentral()
         maven { url = uri("https://plugins.gradle.org/m2/") }
