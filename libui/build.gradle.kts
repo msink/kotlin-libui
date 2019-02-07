@@ -6,10 +6,10 @@ import com.jfrog.bintray.gradle.BintrayExtension
 import java.util.Date
 
 plugins {
-    id("kotlin-multiplatform") version Kotlin.version
-    id("de.undercouch.download") version Download.version
+    kotlin("multiplatform")
+    id("de.undercouch.download")
     id("maven-publish")
-    id("com.jfrog.bintray") version Bintray.version
+    id("com.jfrog.bintray")
 }
 
 val VERSION_NAME: String by project

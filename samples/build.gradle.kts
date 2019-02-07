@@ -2,7 +2,7 @@
 @file:Suppress("SpellCheckingInspection")
 
 plugins {
-    id("kotlin-multiplatform") version Kotlin.version
+    kotlin("multiplatform")
 }
 
 val samplesResourcesDir = "$projectDir/resources"
