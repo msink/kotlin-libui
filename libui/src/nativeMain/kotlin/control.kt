@@ -40,7 +40,7 @@ abstract class Control<T : CPointed>(alloc: CPointer<T>?) : Disposable<T>(alloc)
     }
 
     /** Returns the OS-level handle associated with this Control. */
-    fun getHandle(): ULong = uiControlHandle(ctl)
+    fun getHandle(): ULong = uiControlHandle(ctl).convert()
 
     /** Returns whether the control is a top level one or not. */
     val toplevel: Boolean

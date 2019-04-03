@@ -23,7 +23,7 @@ val downloadArchiveDest = File(buildDir, "libui-${Libui.version}.${if (os.isWind
 val downloadArchive by tasks.registering(de.undercouch.gradle.tasks.download.Download::class) {
     val release = "${Libui.repo}/releases/download/${Libui.version}/libui-${Libui.version}"
     when {
-        os.isWindows -> src("$release-windows-amd64-mingw-static.zip")
+        os.isWindows -> src("$release-windows-386-mingw-static.zip")
         os.isLinux -> src("$release-linux-amd64-static.tgz")
         os.isMacOsX -> src("$release-darwin-amd64-static.tgz")
     }
@@ -45,7 +45,7 @@ kotlin {
     val publishModeEnabled = rootProject.hasProperty("publishMode")
     println("publishModeEnabled: $publishModeEnabled")
 
-    if (os.isWindows || publishModeEnabled) mingwX64("windows") {
+    if (os.isWindows || publishModeEnabled) mingwX86("windows") {
         sourceSets["windowsMain"].apply {
             kotlin.srcDir("src/nativeMain/kotlin")
         }

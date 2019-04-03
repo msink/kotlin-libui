@@ -369,7 +369,7 @@ open class DateTimePicker internal constructor(
     fun setValue(value: CPointer<tm>) = uiDateTimePickerSetTime(ptr, value)
 
     /** The current value in Unix epoch */
-    var value: Long
+    var value: time_t
         get() = memScoped {
             val tm = alloc<tm>()
             getValue(tm.ptr)
