@@ -80,6 +80,12 @@ tasks.withType(org.jetbrains.kotlin.gradle.tasks.CInteropProcess::class).all {
 /*
  * Publishing
  */
+publishing {
+    repositories {
+        maven { url = uri("https://bintray.com/${Publish.user}/$BINTRAY_REPO") }
+    }
+}
+
 val publications = project.publishing.publications.withType(MavenPublication::class.java).map {
     with(it.pom) {
         withXml {
@@ -112,35 +118,6 @@ val publications = project.publishing.publications.withType(MavenPublication::cl
             developerConnection.set(Publish.pom.devConnection)
         }
     }
-/// println("Publishing artifact '${it.groupId}:${it.artifactId}:${it.version}' from publication '${it.name}'")
-    it
-}
-
-publishing {
-    repositories {
-        maven { url = uri("https://bintray.com/${Publish.user}/$BINTRAY_REPO") }
-    }
-}
-
-/*TODO this does not work:
-tasks.withType<BintrayUploadTask>().configureEach {
-    dependsOn("publishToMavenLocal")
-    setPublications(publications)
-}
-*/
-apply {
-    from("publish.gradle")
-/*TODO this works, in Groovy DSL:
-bintrayUpload {
-    dependsOn publishToMavenLocal
-    doFirst {
-        publications = project.publishing.publications.collect {
-            println("Uploading artifact '$it.groupId:$it.artifactId:$it.version' from publication '$it.name'")
-            it
-        }
-    }
-}
-*/
 }
 
 bintray {
@@ -157,6 +134,15 @@ bintray {
             name = project.version.toString()
             vcsTag = project.version.toString()
             released = Date().toString()
+        }
+    }
+    project.publishing.publications.all {
+        if ((name != "windows" || os.isWindows) &&
+            (name != "macosx" || os.isMacOsX) &&
+            (name != "linux" || os.isLinux)
+        ) {
+            // Bintray DSL doesn't allow writing just `publication += name` :(
+            this@bintray.setPublications(*publications, name)
         }
     }
 }
