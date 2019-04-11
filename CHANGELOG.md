@@ -1,3 +1,11 @@
+# 0.1.3
+> Published 11 Apr 2019
+
+* Compatible with Kotlin 1.3.30
+* **BREAKING GHANGE** - windows target switched to 32-bit version (mingw_x86)
+  While https://github.com/JetBrains/kotlin-native/issues/2848 not fixed, please use DEBUG build.
+
+
 # 0.1.2
 > Published 24 Jan 2019
 
