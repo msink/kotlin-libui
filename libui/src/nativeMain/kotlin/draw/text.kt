@@ -54,9 +54,23 @@ class TextLayout(
 ///////////////////////////////////////////////////////////////////////////////
 
 /** Provides a complete description of a font where one is needed.  */
-class Font : Disposable<uiFontDescriptor>(
+class Font() : Disposable<uiFontDescriptor>(
     alloc = nativeHeap.alloc<uiFontDescriptor>().ptr
 ) {
+    constructor(family: String,
+                size: Double,
+                weight: uiTextWeight,
+                italic: uiTextItalic,
+                stretch: uiTextStretch) : this() {
+        with(ptr.pointed){
+            Family = uiAttributeFamily(uiNewFamilyAttribute(family))
+            Size = size
+            Weight = weight
+            Italic = italic
+            Stretch = stretch
+        }
+    }
+
     override fun clear() {
         if (ptr.pointed.Family != null) uiFreeFontButtonFont(ptr)
     }

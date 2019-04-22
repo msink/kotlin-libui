@@ -66,12 +66,14 @@ fun main(args: Array<String>) = appWindow(
     height = 480
 ) {
     hbox {
-        lateinit var font: FontButton
+        lateinit var fontButton: FontButton
         lateinit var align: Combobox
         lateinit var area: DrawArea
+        lateinit var checkbox: Checkbox
+        val georgia = Font("Georgia", 12.0, uiTextWeightNormal, uiTextItalicNormal, uiTextStretchNormal)
 
         vbox {
-            font = fontbutton {
+            fontButton = fontbutton {
                 action { area.redraw() }
             }
             form {
@@ -84,11 +86,19 @@ fun main(args: Array<String>) = appWindow(
                     action { area.redraw() }
                 }
             }
+            checkbox = checkbox("Use Georgia instead of button") {
+                action {
+                    fontButton.enabled = !this.value
+                    area.redraw()
+                }
+            }
         }
         area = drawarea {
             val str = makeAttributedString()
             draw {
-                text(str, font.value, it.AreaWidth, align.value.convert(), 0.0, 0.0)
+                val font = if (checkbox.value) georgia else fontButton.value
+
+                text(str, font, it.AreaWidth, align.value.convert(), 0.0, 0.0)
             }
             stretchy = true
         }
