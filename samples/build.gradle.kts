@@ -34,7 +34,7 @@ subprojects {
                 }
             }
             binaries {
-                executable(listOf(DEBUG)) {
+                executable(listOf(RELEASE)) {
                     tasks.named("compileKotlinWindows") { dependsOn(compileWindowsResources) }
                     linkerOpts(samplesResource, "-mwindows")
                 }

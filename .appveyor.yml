@@ -12,16 +12,16 @@ after_build:
   - copy libui\build\classes\kotlin\windows\main\libui-cinterop-libui.klib libui-windows.klib
   - copy libui\build\classes\kotlin\windows\main\libui.klib libui-ktx-windows.klib
   - 7z a libui-samples-windows.zip
-         .\samples\controlgallery\build\bin\windows\debugExecutable\controlgallery.exe
-         .\samples\datetime\build\bin\windows\debugExecutable\datetime.exe
-         .\samples\drawtext\build\bin\windows\debugExecutable\drawtext.exe
-         .\samples\form\build\bin\windows\debugExecutable\form.exe
-         .\samples\hello\build\bin\windows\debugExecutable\hello.exe
-         .\samples\hello-ktx\build\bin\windows\debugExecutable\hello-ktx.exe
-         .\samples\histogram\build\bin\windows\debugExecutable\histogram.exe
-         .\samples\logo\build\bin\windows\debugExecutable\logo.exe
-         .\samples\table\build\bin\windows\debugExecutable\table.exe
-         .\samples\timer\build\bin\windows\debugExecutable\timer.exe
+         .\samples\controlgallery\build\bin\windows\releaseExecutable\controlgallery.exe
+         .\samples\datetime\build\bin\windows\releaseExecutable\datetime.exe
+         .\samples\drawtext\build\bin\windows\releaseExecutable\drawtext.exe
+         .\samples\form\build\bin\windows\releaseExecutable\form.exe
+         .\samples\hello\build\bin\windows\releaseExecutable\hello.exe
+         .\samples\hello-ktx\build\bin\windows\releaseExecutable\hello-ktx.exe
+         .\samples\histogram\build\bin\windows\releaseExecutable\histogram.exe
+         .\samples\logo\build\bin\windows\releaseExecutable\logo.exe
+         .\samples\table\build\bin\windows\releaseExecutable\table.exe
+         .\samples\timer\build\bin\windows\releaseExecutable\timer.exe
   - 7z l libui-samples-windows.zip
 
 artifacts:
