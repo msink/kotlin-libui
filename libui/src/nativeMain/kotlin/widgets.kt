@@ -546,7 +546,12 @@ inline fun Container.fontbutton(
 
 /** Wrapper class for [uiFontButton] - a button that allows users to choose a font. */
 class FontButton : Control<uiFontButton>(uiNewFontButton()) {
-    internal val font = Font()
+    private val font = object : Font() {
+        override fun clear() {
+            if (ptr.pointed.Family != null) uiFreeFontButtonFont(ptr)
+        }
+    }
+
     override fun free() {
         font.dispose()
         super.free()

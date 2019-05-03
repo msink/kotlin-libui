@@ -53,12 +53,37 @@ class TextLayout(
 
 ///////////////////////////////////////////////////////////////////////////////
 
+/** Creates a new [Font] with lifecycle delegated to [DrawArea]. */
+fun DrawArea.font(
+    family: String? = null,
+    size: Double = 0.0,
+    weight: uiTextWeight = uiTextWeightNormal,
+    italic: uiTextItalic = uiTextItalicNormal,
+    stretch: uiTextStretch = uiTextStretchNormal
+): Font = Font(family, size, weight, italic, stretch).also { disposables.add(it) }
+
 /** Provides a complete description of a font where one is needed.  */
-class Font : Disposable<uiFontDescriptor>(
+open class Font(
+    family: String? = null,
+    size: Double = 0.0,
+    weight: uiTextWeight = uiTextWeightNormal,
+    italic: uiTextItalic = uiTextItalicNormal,
+    stretch: uiTextStretch = uiTextStretchNormal
+) : Disposable<uiFontDescriptor>(
     alloc = nativeHeap.alloc<uiFontDescriptor>().ptr
 ) {
+    init {
+        with(ptr.pointed) {
+            Family = family?.cstr?.place(nativeHeap.allocArray(family.length * 4))
+            Size = size
+            Weight = weight
+            Italic = italic
+            Stretch = stretch
+        }
+    }
+
     override fun clear() {
-        if (ptr.pointed.Family != null) uiFreeFontButtonFont(ptr)
+        ptr.pointed.Family?.let { nativeHeap.free(it) }
     }
 
     override fun free() {
