@@ -2,9 +2,6 @@ package = libui
 headers = ui.h
 noStringConversion = uiFreeInitError
 
-staticLibraries = libui.a
-libraryPaths = build libui/build
-
 linkerOpts.osx = -lobjc -framework Foundation -framework AppKit
 
 linkerOpts.linux = -L/usr/lib/x86_64-linux-gnu -L/usr/lib64 -L/usr/lib \

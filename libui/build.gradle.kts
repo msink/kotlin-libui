@@ -3,6 +3,8 @@
 @file:Suppress("SpellCheckingInspection")
 
 import com.jfrog.bintray.gradle.BintrayExtension
+import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
+import org.jetbrains.kotlin.gradle.tasks.CInteropProcess
 import java.util.Date
 
 plugins {
@@ -45,35 +47,30 @@ kotlin {
     val publishModeEnabled = rootProject.hasProperty("publishMode")
     println("publishModeEnabled: $publishModeEnabled")
 
-    if (os.isWindows || publishModeEnabled) mingwX86("windows") {
-        sourceSets["windowsMain"].apply {
-            kotlin.srcDir("src/nativeMain/kotlin")
-        }
-        compilations["main"].cinterops.create("libui") {
-            includeDirs(buildDir)
-        }
-    }
+    if (publishModeEnabled || os.isWindows) mingwX86("windows")
+    if (publishModeEnabled || os.isLinux) linuxX64("linux")
+    if (publishModeEnabled || os.isMacOsX) macosX64("macosx")
 
-    if (os.isLinux || publishModeEnabled) linuxX64("linux") {
-        sourceSets["linuxMain"].apply {
-            kotlin.srcDir("src/nativeMain/kotlin")
-        }
-        compilations["main"].cinterops.create("libui") {
-            includeDirs(buildDir)
-        }
-    }
-
-    if (os.isMacOsX || publishModeEnabled) macosX64("macosx") {
-        sourceSets["macosxMain"].apply {
-            kotlin.srcDir("src/nativeMain/kotlin")
-        }
-        compilations["main"].cinterops.create("libui") {
-            includeDirs(buildDir)
+    targets.all {
+        when {
+            this is KotlinNativeTarget -> {
+                sourceSets["${targetName}Main"].apply {
+                    kotlin.srcDir("src/nativeMain/kotlin")
+                }
+                compilations["main"].apply {
+                    cinterops.create("libui") {
+                        includeDirs(buildDir)
+                    }
+                    kotlinOptions.freeCompilerArgs = listOf(
+                        "-include-binary", "$buildDir/libui.a"
+                    )
+                }
+            }
         }
     }
 }
 
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.CInteropProcess::class).all {
+tasks.withType(CInteropProcess::class).all {
     dependsOn(unpackArchive)
 }
 
