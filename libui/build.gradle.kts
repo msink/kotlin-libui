@@ -51,21 +51,17 @@ kotlin {
     if (publishModeEnabled || os.isLinux) linuxX64("linux")
     if (publishModeEnabled || os.isMacOsX) macosX64("macosx")
 
-    targets.all {
-        when {
-            this is KotlinNativeTarget -> {
-                sourceSets["${targetName}Main"].apply {
-                    kotlin.srcDir("src/nativeMain/kotlin")
-                }
-                compilations["main"].apply {
-                    cinterops.create("libui") {
-                        includeDirs(buildDir)
-                    }
-                    kotlinOptions.freeCompilerArgs = listOf(
-                        "-include-binary", "$buildDir/libui.a"
-                    )
-                }
+    targets.withType(KotlinNativeTarget::class.java) {
+        sourceSets["${targetName}Main"].apply {
+            kotlin.srcDir("src/nativeMain/kotlin")
+        }
+        compilations["main"].apply {
+            cinterops.create("libui") {
+                includeDirs(buildDir)
             }
+            kotlinOptions.freeCompilerArgs = listOf(
+                "-include-binary", "$buildDir/libui.a"
+            )
         }
     }
 }
