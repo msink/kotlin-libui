@@ -11,7 +11,7 @@ object Publish {
 }
 
 object Kotlin {
-    const val version = "1.3.31"
+    const val version = "1.3.40"
     const val repo = "https://dl.bintray.com/kotlin/kotlin-dev"
 }
 

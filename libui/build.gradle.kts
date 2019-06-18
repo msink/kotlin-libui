@@ -51,7 +51,7 @@ kotlin {
     if (publishModeEnabled || os.isLinux) linuxX64("linux")
     if (publishModeEnabled || os.isMacOsX) macosX64("macosx")
 
-    targets.withType(KotlinNativeTarget::class.java) {
+    targets.withType(KotlinNativeTarget::class) {
         sourceSets["${targetName}Main"].apply {
             kotlin.srcDir("src/nativeMain/kotlin")
         }
