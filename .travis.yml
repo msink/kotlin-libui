@@ -10,7 +10,7 @@ matrix:
           packages:
             - libgtk-3-dev
     - os: osx
-      osx_image: xcode8
+      osx_image: xcode10.2
 
 script:
   - ./gradlew -PpublishMode build
