@@ -51,7 +51,7 @@ kotlin {
     if (publishModeEnabled || os.isLinux) linuxX64("linux")
     if (publishModeEnabled || os.isMacOsX) macosX64("macosx")
 
-    targets.withType(KotlinNativeTarget::class) {
+    targets.withType<KotlinNativeTarget> {
         sourceSets["${targetName}Main"].apply {
             kotlin.srcDir("src/nativeMain/kotlin")
         }
@@ -66,50 +66,48 @@ kotlin {
     }
 }
 
-tasks.withType(CInteropProcess::class).all {
+tasks.withType<CInteropProcess>().all {
     dependsOn(unpackArchive)
 }
 
-/*
- * Publishing
- */
 publishing {
+    publications.withType<MavenPublication>().all {
+        pom {
+            withXml {
+                asNode().apply {
+                    appendNode("name", "libui")
+                    appendNode("description", "Kotlin/Native interop to libui: a portable GUI library")
+                    appendNode("url", Publish.pom.url)
+                }
+            }
+            licenses {
+                license {
+                    name.set("MIT License")
+                    url.set(Publish.pom.url)
+                    distribution.set("repo")
+                }
+                license {
+                    name.set("The Apache License, Version 2.0")
+                    url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
+                }
+            }
+            developers {
+                developer {
+                    id.set("msink")
+                    name.set("Mike Sinkovsky")
+                    email.set("msink@permonline.ru")
+                }
+            }
+            scm {
+                url.set(Publish.pom.url)
+                connection.set(Publish.pom.connection)
+                developerConnection.set(Publish.pom.devConnection)
+            }
+        }
+    }
+
     repositories {
         maven { url = uri("https://bintray.com/${Publish.user}/$BINTRAY_REPO") }
-    }
-}
-
-val publications = project.publishing.publications.withType(MavenPublication::class.java).map {
-    with(it.pom) {
-        withXml {
-            val root = asNode()
-            root.appendNode("name", "libui")
-            root.appendNode("description", "Kotlin/Native interop to libui: a portable GUI library")
-            root.appendNode("url", Publish.pom.url)
-        }
-        licenses {
-            license {
-                name.set("MIT License")
-                url.set(Publish.pom.url)
-                distribution.set("repo")
-            }
-            license {
-                name.set("The Apache License, Version 2.0")
-                url.set("http://www.apache.org/licenses/LICENSE-2.0.txt")
-            }
-        }
-        developers {
-            developer {
-                id.set("msink")
-                name.set("Mike Sinkovsky")
-                email.set("msink@permonline.ru")
-            }
-        }
-        scm {
-            url.set(Publish.pom.url)
-            connection.set(Publish.pom.connection)
-            developerConnection.set(Publish.pom.devConnection)
-        }
     }
 }
 
