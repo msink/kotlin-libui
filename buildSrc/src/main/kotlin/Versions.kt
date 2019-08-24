@@ -27,8 +27,3 @@ object Dokka {
 object Download {
     const val version = "3.4.3"
 }
-
-object Bintray {
-    const val version = "1.8.4-jetbrains-5"
-    const val repo = "https://dl.bintray.com/jetbrains/kotlin-native-dependencies"
-}

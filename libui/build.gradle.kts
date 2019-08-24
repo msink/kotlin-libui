@@ -2,16 +2,13 @@
 
 @file:Suppress("SpellCheckingInspection")
 
-import com.jfrog.bintray.gradle.BintrayExtension
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 import org.jetbrains.kotlin.gradle.tasks.CInteropProcess
-import java.util.Date
 
 plugins {
     kotlin("multiplatform")
     id("de.undercouch.download")
     id("maven-publish")
-    id("com.jfrog.bintray")
 }
 
 val VERSION_NAME: String by project
@@ -107,44 +104,18 @@ publishing {
     }
 
     repositories {
-        maven { url = uri("https://bintray.com/${Publish.user}/$BINTRAY_REPO") }
-    }
-}
-
-bintray {
-    user = Publish.user
-    key = System.getenv("BINTRAY_API_KEY")
-    override = true // for multi-platform Kotlin/Native publishing
-    pkg {
-        userOrg = Publish.user
-        repo = BINTRAY_REPO
-        name = "libui"
-        setLicenses("MIT", "Apache-2.0")
-        vcsUrl = Publish.pom.url
-        version {
-            name = project.version.toString()
-            vcsTag = project.version.toString()
-            released = Date().toString()
-        }
-    }
-    project.publishing.publications.all {
-        if ((name != "windows" || os.isWindows) &&
-            (name != "macosx" || os.isMacOsX) &&
-            (name != "linux" || os.isLinux)
-        ) {
-            // Bintray DSL doesn't allow writing just `publication += name` :(
-            this@bintray.setPublications(*publications, name)
+        maven {
+            url = uri("https://api.bintray.com/maven/${Publish.user}/$BINTRAY_REPO/libui/;publish=0;override=1")
+            credentials {
+                username = Publish.user
+                password = System.getenv("BINTRAY_API_KEY")
+            }
         }
     }
 }
 
-/*
- * Workarounds
- */
-fun BintrayExtension.pkg(configure: BintrayExtension.PackageConfig.() -> Unit): Any? {
-    return pkg(delegateClosureOf(configure))
-}
-
-fun BintrayExtension.PackageConfig.version(configure: BintrayExtension.VersionConfig.() -> Unit): Any? {
-    return version(delegateClosureOf(configure))
+tasks.withType<AbstractPublishToMaven>().all {
+    onlyIf { !name.startsWith("publishWindows") || os.isWindows }
+    onlyIf { !name.startsWith("publishMacosx") || os.isMacOsX }
+    onlyIf { !name.startsWith("publishLinux") || os.isLinux }
 }
