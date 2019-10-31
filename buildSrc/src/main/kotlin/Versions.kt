@@ -11,8 +11,7 @@ object Publish {
 }
 
 object Kotlin {
-    const val version = "1.3.50"
-    const val repo = "https://dl.bintray.com/kotlin/kotlin-dev"
+    const val version = "1.3.60"
 }
 
 object Libui {
@@ -25,5 +24,5 @@ object Dokka {
 }
 
 object Download {
-    const val version = "3.4.3"
+    const val version = "4.0.1"
 }

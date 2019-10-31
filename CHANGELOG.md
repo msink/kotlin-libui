@@ -1,3 +1,10 @@
+# 0.1.6
+> Published 18 Nov 2019
+
+* Compatible with Kotlin 1.3.60
+* On macOS requires Xcode 11 or higher
+
+
 # 0.1.5
 > Published 22 Aug 2019
 

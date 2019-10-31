@@ -63,20 +63,16 @@ kotlin {
     }
 }
 
-tasks.withType<CInteropProcess>().all {
+tasks.withType<CInteropProcess> {
     dependsOn(unpackArchive)
 }
 
 publishing {
-    publications.withType<MavenPublication>().all {
+    publications.withType<MavenPublication> {
         pom {
-            withXml {
-                asNode().apply {
-                    appendNode("name", "libui")
-                    appendNode("description", "Kotlin/Native interop to libui: a portable GUI library")
-                    appendNode("url", Publish.pom.url)
-                }
-            }
+            name.set("libui")
+            description.set("Kotlin/Native interop to libui: a portable GUI library")
+            url.set(Publish.pom.url)
             licenses {
                 license {
                     name.set("MIT License")
@@ -104,8 +100,7 @@ publishing {
     }
 
     repositories {
-        maven {
-            url = uri("https://api.bintray.com/maven/${Publish.user}/$BINTRAY_REPO/libui/;publish=0;override=1")
+        maven("https://api.bintray.com/maven/${Publish.user}/$BINTRAY_REPO/libui/;publish=0;override=1") {
             credentials {
                 username = Publish.user
                 password = System.getenv("BINTRAY_API_KEY")
@@ -114,7 +109,7 @@ publishing {
     }
 }
 
-tasks.withType<AbstractPublishToMaven>().all {
+tasks.withType<AbstractPublishToMaven> {
     onlyIf { !name.startsWith("publishWindows") || os.isWindows }
     onlyIf { !name.startsWith("publishMacosx") || os.isMacOsX }
     onlyIf { !name.startsWith("publishLinux") || os.isLinux }

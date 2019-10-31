@@ -3,14 +3,15 @@ language: java
 matrix:
   include:
     - os: linux
-      dist: trusty
-      jdk: oraclejdk8
+      dist: bionic
+      jdk: oraclejdk11
       addons:
         apt:
           packages:
             - libgtk-3-dev
     - os: osx
-      osx_image: xcode10.2
+      osx_image: xcode11
+      jdk: oraclejdk11
 
 script:
   - ./gradlew -PpublishMode build
