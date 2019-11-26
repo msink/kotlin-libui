@@ -24,5 +24,5 @@ object Dokka {
 }
 
 object Download {
-    const val version = "4.0.1"
+    const val version = "4.0.2"
 }
