@@ -14,6 +14,6 @@ allprojects {
     }
 }
 
-apply {
+/*apply {
     from("dokka.gradle")
-}
+}*/

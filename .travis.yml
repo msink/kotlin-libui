@@ -5,59 +5,9 @@ matrix:
     - os: linux
       dist: bionic
       jdk: oraclejdk11
-      addons:
-        apt:
-          packages:
-            - libgtk-3-dev
     - os: osx
       osx_image: xcode11
       jdk: oraclejdk11
 
 script:
-  - ./gradlew -PpublishMode build --scan
-
-after_success:
-  - |
-    if [[ "x${TRAVIS_TAG}" != "x" ]]
-    then
-      ./gradlew -PpublishMode -PBINTRAY_REPO=kotlin-native -PVERSION_SUFFIX publish
-    else
-      ./gradlew -PpublishMode -PBINTRAY_REPO=kotlin-dev -PVERSION_SUFFIX=-dev publish
-    fi
-  - |
-    case "${TRAVIS_OS_NAME}" in
-      osx)   export TARGET=macosx ;;
-      linux) export TARGET=linux ;;
-      *)     exit 1 ;;
-    esac
-  - cp libui/build/classes/kotlin/${TARGET}/main/libui-cinterop-libui.klib libui-${TARGET}.klib
-  - cp libui/build/classes/kotlin/${TARGET}/main/libui.klib libui-ktx-${TARGET}.klib
-  - cp samples/controlgallery/build/bin/${TARGET}/releaseExecutable/controlgallery.kexe .
-  - cp samples/datetime/build/bin/${TARGET}/releaseExecutable/datetime.kexe .
-  - cp samples/drawtext/build/bin/${TARGET}/releaseExecutable/drawtext.kexe .
-  - cp samples/form/build/bin/${TARGET}/releaseExecutable/form.kexe .
-  - cp samples/hello/build/bin/${TARGET}/releaseExecutable/hello.kexe .
-  - cp samples/hello-ktx/build/bin/${TARGET}/releaseExecutable/hello-ktx.kexe .
-  - cp samples/histogram/build/bin/${TARGET}/releaseExecutable/histogram.kexe .
-  - cp samples/logo/build/bin/${TARGET}/releaseExecutable/logo.kexe .
-  - cp samples/table/build/bin/${TARGET}/releaseExecutable/table.kexe .
-  - cp samples/timer/build/bin/${TARGET}/releaseExecutable/timer.kexe .
-  - tar -czvf libui-samples-${TARGET}.tgz *.kexe
-
-deploy:
-  provider: releases
-  api_key:
-    secure: UBBD+8M/L5Aqyzti5JbbelugfXeKBY8UdwWEaGmy9Akf5ktw4mEfL3VjdoyPT2gD4bmSSwk/vIEXzNnjIMR479ps63fpVBylQY+bSLeBqJeV6D7nt+0Q2RZf70dClEHaNeewoZsFv7wdsHphIi8i3McnYmPRjzWyJ5lLSAo25VPcg6PWJGQBT6S6CWKJKngHwaLEy4e7QmKypoAKnBTar5An2hsIXaksm5wGGstAJN6PMxvR9dXA18MvTO6UB0zJ8hLV/WzSaVcZgFEFpbk+jcW4MCw0/a+Z3HULZ16vH9KCh14P6JEmPHjGa+pQ0LTBjyFYJIh32d9VCNSlbedT3LL9++hROPyZl7B2jqRAbtZBKY0pMhiDXiWKi42n4U8gFSS8T1KkyaTzW7rQGPLurSsnU4snrQF2z7X5E4mJI0UY68PatGXujjFmtCW/mS2iLnrxc/17KxZhqUkv/OSJkqTw+KWP5BB2QI6humhb6CaGQL99Y96jzNpXvgF+KU9cBGKdqODiAR5ytBFXmCdGz/Am1KSfR5ujuVw7GOESkz5TFJAT/+exV4brZL9/YmE8rYokluv5Y3M3f6y7Kf09DqcbQY5J4WFyUugDq8kIYDdNRbwFFJE5XUvboaeBQhQq4z4OA5QAWWZRYwmwlV6mfQsxwfSnFYls0ObYvia5pSw=
-  file:
-    - libui-*.klib
-    - libui-ktx-*.klib
-    - libui-samples-*.tgz
-  file_glob: true
-  skip_cleanup: true
-  on:
-    tags: true
-    repo: msink/kotlin-libui
-
-env:
-  global:
-  - secure: O/bU9HK3wAMbNsQxkmAs2I7dphi9JQm+ckwMyFdmr+NbbblUrcOLMjPoVh+x1nm8yVcYrSTrOoP1Z7D/46KWz4Pmw7kpy5DBSI6jQ8QO+9Ij6FtI6pWGqsTsNCEqlyjyH00PNSBX90Mz4CZr41YrZbl3lTrh9WKgJnEzU9raoQwE39T+x8f8z/nDmPkQhtgPeVr7S/QysT0rsksdLLNsybCzgPBjzXUC9HKngVXO+dvXsQfVqLKsuXXXpWVxH9xV5CmxBpBaYLpK+yiFl5nMNRJQuY4iBcTA8NMDQ/hofrpy/R/LEb5uKtaZlXcrSqgSGdK0L/g3WkNt6ZIXMiLTtoBcvdwQjl5/dk4KNaekoSbPTo4Fp4q1GKq4EST/Tn8AGHmqBsNUhyxXNEVfzh/wg3nB0bY+2MuTbq2/0r86ow+PqbRZiMLCjUDdkEGt+ayMx+mtQOdRh2jbqb+5G+45bynbrOJBvYKI0eV43aDX7pKXepKwiKhfZvUYKG2YDcq7kKcu1DJ6HMlQ0aMFPxhP52IvMtEUwN/hNPh0jNb80cfbSegpgNzYLXDKxade86ZmnhzpsuCevJGNnYQAOYvTVJl3hk/KSfhKnxDUIxDA7FMkL3zCzVGfceRia0YRT+GgtSf8hVKk2wg9VcimIf3pkfVYUU6sJGqhykJPb828BCY=
+  - ./gradlew build --scan

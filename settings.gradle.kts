@@ -20,6 +20,8 @@ gradleEnterprise {
     }
 }
 
+include(":compose-runtime")
+/*
 include(":libui")
 
 include(":samples:controlgallery")
@@ -32,3 +34,4 @@ include(":samples:histogram")
 include(":samples:logo")
 include(":samples:table")
 include(":samples:timer")
+*/
