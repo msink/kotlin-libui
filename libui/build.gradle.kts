@@ -2,6 +2,7 @@
 
 @file:Suppress("SpellCheckingInspection")
 
+import de.undercouch.gradle.tasks.download.Download
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 import org.jetbrains.kotlin.gradle.tasks.CInteropProcess
 import org.jetbrains.kotlin.konan.target.Family
@@ -47,7 +48,7 @@ tasks.withType<CInteropProcess> {
     val archiveFile = File("$buildDir/libui/${konanTarget.name}",
         "libui.${if (konanTarget.family == Family.MINGW) "zip" else "tgz"}")
 
-    val downloadArchive by tasks.registering(de.undercouch.gradle.tasks.download.Download::class) {
+    val downloadArchive = tasks.register<Download>(name.replaceFirst("cinterop", "download")) {
         val release = "${Libui.repo}/releases/download/${Libui.version}/libui-${Libui.version}"
         when (konanTarget) {
             MINGW_X86 -> src("$release-windows-386-mingw-static.zip")
@@ -58,7 +59,7 @@ tasks.withType<CInteropProcess> {
         overwrite(false)
     }
 
-    val unpackArchive by tasks.registering(Copy::class) {
+    val unpackArchive = tasks.register<Copy>(name.replaceFirst("cinterop", "unpack")) {
         if (konanTarget.family == Family.MINGW) {
             from(zipTree(archiveFile))
         } else {
