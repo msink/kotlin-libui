@@ -4,6 +4,8 @@
 
 import org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget
 import org.jetbrains.kotlin.gradle.tasks.CInteropProcess
+import org.jetbrains.kotlin.konan.target.Family
+import org.jetbrains.kotlin.konan.target.KonanTarget.*
 
 plugins {
     kotlin("multiplatform")
@@ -17,28 +19,6 @@ val BINTRAY_REPO: String by project
 
 group = Publish.group
 version = "$VERSION_NAME$VERSION_SUFFIX"
-
-val downloadArchiveDest = File(buildDir, "libui-${Libui.version}.${if (os.isWindows) "zip" else "tgz"}")
-val downloadArchive by tasks.registering(de.undercouch.gradle.tasks.download.Download::class) {
-    val release = "${Libui.repo}/releases/download/${Libui.version}/libui-${Libui.version}"
-    when {
-        os.isWindows -> src("$release-windows-386-mingw-static.zip")
-        os.isLinux -> src("$release-linux-amd64-static.tgz")
-        os.isMacOsX -> src("$release-darwin-amd64-static.tgz")
-    }
-    dest(downloadArchiveDest)
-    overwrite(false)
-}
-
-val unpackArchive by tasks.registering(Copy::class) {
-    if (os.isWindows) {
-        from(zipTree(downloadArchiveDest))
-    } else {
-        from(tarTree(resources.gzip(downloadArchiveDest)))
-    }
-    into(buildDir)
-    dependsOn(downloadArchive)
-}
 
 kotlin {
     val publishModeEnabled = rootProject.hasProperty("publishMode")
@@ -54,16 +34,40 @@ kotlin {
         }
         compilations["main"].apply {
             cinterops.create("libui") {
-                includeDirs(buildDir)
+                includeDirs("$buildDir/libui/${konanTarget.name}")
             }
             kotlinOptions.freeCompilerArgs = listOf(
-                "-include-binary", "$buildDir/libui.a"
+                "-include-binary", "$buildDir/libui/${konanTarget.name}/libui.a"
             )
         }
     }
 }
 
 tasks.withType<CInteropProcess> {
+    val archiveFile = File("$buildDir/libui/${konanTarget.name}",
+        "libui.${if (konanTarget.family == Family.MINGW) "zip" else "tgz"}")
+
+    val downloadArchive by tasks.registering(de.undercouch.gradle.tasks.download.Download::class) {
+        val release = "${Libui.repo}/releases/download/${Libui.version}/libui-${Libui.version}"
+        when (konanTarget) {
+            MINGW_X86 -> src("$release-windows-386-mingw-static.zip")
+            LINUX_X64 -> src("$release-linux-amd64-static.tgz")
+            MACOS_X64 -> src("$release-darwin-amd64-static.tgz")
+        }
+        dest(archiveFile)
+        overwrite(false)
+    }
+
+    val unpackArchive by tasks.registering(Copy::class) {
+        if (konanTarget.family == Family.MINGW) {
+            from(zipTree(archiveFile))
+        } else {
+            from(tarTree(resources.gzip(archiveFile)))
+        }
+        into("$buildDir/libui/${konanTarget.name}")
+        dependsOn(downloadArchive)
+    }
+
     dependsOn(unpackArchive)
 }
 
