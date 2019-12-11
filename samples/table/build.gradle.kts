@@ -2,13 +2,9 @@
 @file:Suppress("SpellCheckingInspection")
 
 kotlin {
-    if (os.isWindows) sourceSets["windowsMain"]?.apply {
-        kotlin.srcDir("src/nativeMain/resources")
-    }
-    if (os.isLinux) sourceSets["linuxMain"]?.apply {
-        kotlin.srcDir("src/nativeMain/resources")
-    }
-    if (os.isMacOsX) sourceSets["macosxMain"]?.apply {
-        kotlin.srcDir("src/nativeMain/resources")
+    targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
+        sourceSets["${targetName}Main"].apply {
+            kotlin.srcDir("src/nativeMain/resources")
+        }
     }
 }

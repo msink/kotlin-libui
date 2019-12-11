@@ -10,24 +10,34 @@ val samplesResourcesDir = "$projectDir/resources"
 subprojects {
     apply(plugin = "kotlin-multiplatform")
 
-    val samplesResource = "${project.buildDir}/konan/resources/samples.res"
-
-    val compileWindowsResources by tasks.registering(Exec::class) {
-        onlyIf { os.isWindows }
-
-        val konanUserDir = System.getenv("KONAN_DATA_DIR") ?: "${System.getProperty("user.home")}/.konan"
-        val konanLlvmDir = "$konanUserDir/dependencies/msys2-mingw-w64-i686-gcc-7.4.0-clang-llvm-6.0.1/bin"
-        val rcFile = file("$samplesResourcesDir/samples.rc")
-
-        inputs.file(rcFile)
-        outputs.file(file(samplesResource))
-        commandLine("cmd", "/c", "windres", rcFile, "-O", "coff", "-o", samplesResource)
-        environment("PATH", "c:/msys64/mingw32/bin;$konanLlvmDir;${System.getenv("PATH")}")
-    }
-
     kotlin {
-        if (os.isWindows) mingwX86("windows") {
-            sourceSets["windowsMain"].apply {
+        if (os.isWindows) mingwX86("windows")
+        if (os.isLinux) linuxX64("linux")
+        if (os.isMacOsX) macosX64("macosx")
+
+        fun org.jetbrains.kotlin.gradle.plugin.mpp.Executable.windowsResources(rcFileName: String) {
+            val taskName = linkTaskName.replaceFirst("link", "windres")
+            val inFile = File(rcFileName)
+            val outFile = buildDir.resolve("processedResources/$taskName.res")
+
+            val windresTask = tasks.create<Exec>(taskName) {
+                val konanUserDir = System.getenv("KONAN_DATA_DIR") ?: "${System.getProperty("user.home")}/.konan"
+                val konanLlvmDir = "$konanUserDir/dependencies/msys2-mingw-w64-i686-clang-llvm-lld-compiler_rt-8.0.1/bin"
+
+                inputs.file(inFile)
+                outputs.file(outFile)
+                commandLine("$konanLlvmDir/windres", inFile, "-D_${buildType.name}", "-O", "coff", "-o", outFile)
+                environment("PATH", "$konanLlvmDir;${System.getenv("PATH")}")
+
+                dependsOn(compilation.compileKotlinTask)
+            }
+
+            linkTask.dependsOn(windresTask)
+            linkerOpts(outFile.toString())
+        }
+
+        targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
+            sourceSets["${targetName}Main"].apply {
                 kotlin.srcDir("src/nativeMain/kotlin")
                 dependencies {
                     implementation(project(":libui"))
@@ -35,33 +45,10 @@ subprojects {
             }
             binaries {
                 executable(listOf(RELEASE)) {
-                    tasks.named("compileKotlinWindows") { dependsOn(compileWindowsResources) }
-                    linkerOpts(samplesResource, "-mwindows")
+                    if (konanTarget.family == org.jetbrains.kotlin.konan.target.Family.MINGW) {
+                        windowsResources("${rootProject.rootDir}/samples/resources/samples.rc")
+                    }
                 }
-            }
-        }
-
-        if (os.isLinux) linuxX64("linux") {
-            sourceSets["linuxMain"].apply {
-                kotlin.srcDir("src/nativeMain/kotlin")
-                dependencies {
-                    implementation(project(":libui"))
-                }
-            }
-            binaries {
-                executable(listOf(RELEASE))
-            }
-        }
-
-        if (os.isMacOsX) macosX64("macosx") {
-            sourceSets["macosxMain"].apply {
-                kotlin.srcDir("src/nativeMain/kotlin")
-                dependencies {
-                    implementation(project(":libui"))
-                }
-            }
-            binaries {
-                executable(listOf(RELEASE))
             }
         }
     }
