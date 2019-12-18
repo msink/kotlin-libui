@@ -14,7 +14,7 @@ matrix:
       jdk: oraclejdk11
 
 script:
-  - ./gradlew -PpublishMode build
+  - ./gradlew -PpublishMode build --scan
 
 after_success:
   - |

@@ -4,7 +4,7 @@ before_build:
   - git submodule update --init
 
 build_script:
-  - gradlew -PpublishMode build
+  - gradlew -PpublishMode build --scan
 
 after_build:
   - if %APPVEYOR_REPO_TAG%==true ( gradlew -PpublishMode -PBINTRAY_REPO=kotlin-native -PVERSION_SUFFIX publish )
