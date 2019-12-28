@@ -25,9 +25,16 @@ kotlin {
     val publishModeEnabled = rootProject.hasProperty("publishMode")
     println("publishModeEnabled: $publishModeEnabled")
 
-    if (publishModeEnabled || os.isWindows) mingwX86("windows")
-    if (publishModeEnabled || os.isLinux) linuxX64("linux")
-    if (publishModeEnabled || os.isMacOsX) macosX64("macosx")
+    if (publishModeEnabled || os.isWindows) {
+        mingwX86("windows")
+        mingwX64("windows64")
+    }
+    if (publishModeEnabled || os.isLinux) {
+        linuxX64("linux")
+    }
+    if (publishModeEnabled || os.isMacOsX) {
+        macosX64("macosx")
+    }
 
     targets.withType<KotlinNativeTarget> {
         sourceSets["${targetName}Main"].apply {
@@ -52,6 +59,7 @@ tasks.withType<CInteropProcess> {
         val release = "${Libui.repo}/releases/download/${Libui.version}/libui-${Libui.version}"
         when (konanTarget) {
             MINGW_X86 -> src("$release-windows-386-mingw-static.zip")
+            MINGW_X64 -> src("$release-windows-amd64-mingw-static.zip")
             LINUX_X64 -> src("$release-linux-amd64-static.tgz")
             MACOS_X64 -> src("$release-darwin-amd64-static.tgz")
         }
