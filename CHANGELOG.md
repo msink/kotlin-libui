@@ -1,3 +1,10 @@
+# 0.1.7
+> Published 28 Dec 2019
+
+* Compatible with Kotlin 1.3.70
+* Added 64-bit windows target
+
+
 # 0.1.6
 > Published 18 Nov 2019
 
