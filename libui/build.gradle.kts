@@ -26,8 +26,10 @@ kotlin {
     println("publishModeEnabled: $publishModeEnabled")
 
     if (publishModeEnabled || os.isWindows) {
-        mingwX86("windows")
         mingwX64("windows64")
+        if (!isRunningInIde) {
+            mingwX86("windows")
+        }
     }
     if (publishModeEnabled || os.isLinux) {
         linuxX64("linux")

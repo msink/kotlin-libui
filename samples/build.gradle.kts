@@ -12,8 +12,10 @@ subprojects {
 
     kotlin {
         if (os.isWindows) {
-            mingwX86("windows")
             mingwX64("windows64")
+            if (!isRunningInIde) {
+                mingwX86("windows")
+            }
         }
         if (os.isLinux) {
             linuxX64("linux")
