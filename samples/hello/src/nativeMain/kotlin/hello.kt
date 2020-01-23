@@ -1,7 +1,7 @@
 ﻿import kotlinx.cinterop.*
 import libui.*
 
-fun main(args: Array<String>) = memScoped {
+fun main() = memScoped {
     val options = alloc<uiInitOptions>()
     val error = uiInit(options.ptr)
     if (error != null) throw Error("Error: '${error.toKString()}'")
@@ -16,6 +16,8 @@ fun main(args: Array<String>) = memScoped {
     val scroll = uiNewMultilineEntry()
     uiMultilineEntrySetReadOnly(scroll, 1)
     val button = uiNewButton("libui говорит: click me!")
+
+    @Suppress("UNUSED_PARAMETER")
     fun saySomething(button: CPointer<uiButton>?, data: COpaquePointer?) {
         uiMultilineEntryAppend(data?.reinterpret(),
             "Hello, World!  Ciao, mondo!\n" +
@@ -25,6 +27,7 @@ fun main(args: Array<String>) = memScoped {
     uiBoxAppend(box, button?.reinterpret(), 0)
     uiBoxAppend(box, scroll?.reinterpret(), 1)
 
+    @Suppress("UNUSED_PARAMETER")
     fun onClosing(window: CPointer<uiWindow>?, data: COpaquePointer?): Int {
         uiQuit()
         return 1

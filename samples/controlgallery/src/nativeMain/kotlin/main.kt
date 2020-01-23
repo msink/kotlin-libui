@@ -136,7 +136,7 @@ fun TabPane.Page.dataChoosers() = hbox {
 }
 
 
-fun main(args: Array<String>) = appWindow(
+fun main() = appWindow(
     title = "libui Control Gallery",
     width = 640,
     height = 480

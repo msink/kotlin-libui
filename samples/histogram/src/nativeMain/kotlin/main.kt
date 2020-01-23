@@ -19,7 +19,7 @@ fun graphHeight(clientHeight: Double): Double = clientHeight - yoffTop - yoffBot
 
 const val numPoints = 10
 
-fun main(args: Array<String>) = appWindow(
+fun main() = appWindow(
     title = "libui Histogram Example",
     width = 640,
     height = 480

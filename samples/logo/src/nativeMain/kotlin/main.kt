@@ -3,7 +3,7 @@ import libui.*
 import libui.ktx.*
 import libui.ktx.draw.*
 
-fun main(args: Array<String>) = appWindow(
+fun main() = appWindow(
     title = "Kotlin Logo (click to rotate)",
     width = 500,
     height = 500,

@@ -1,6 +1,6 @@
 import libui.ktx.*
 
-fun main(args: Array<String>) = appWindow(
+fun main() = appWindow(
     title = "Authentication required",
     width = 320,
     height = 200

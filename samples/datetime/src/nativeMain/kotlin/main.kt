@@ -1,7 +1,7 @@
 import libui.*
 import libui.ktx.*
 
-fun main(args: Array<String>) = appWindow(
+fun main() = appWindow(
     title = "Date / Time",
     width = 320,
     height = 240

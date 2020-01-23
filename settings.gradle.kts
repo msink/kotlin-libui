@@ -17,8 +17,6 @@ pluginManagement {
     }
 }
 
-enableFeaturePreview("GRADLE_METADATA")
-
 include(":libui")
 
 include(":samples:controlgallery")

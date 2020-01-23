@@ -10,7 +10,7 @@ val data = List(15) {
     Data("Part", false)
 }
 
-fun main(args: Array<String>) = appWindow(
+fun main() = appWindow(
     title = "Table",
     width = 800,
     height = 480

@@ -60,7 +60,7 @@ fun DrawArea.makeAttributedString() = string(
     append("Use the controls opposite to the text to control properties of the text.")
 }
 
-fun main(args: Array<String>) = appWindow(
+fun main() = appWindow(
     title = "libui Text-Drawing Example",
     width = 640,
     height = 480

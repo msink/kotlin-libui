@@ -1,6 +1,6 @@
 import libui.ktx.*
 
-fun main(args: Array<String>) = appWindow(
+fun main() = appWindow(
     title = "Hello",
     width = 320,
     height = 240
