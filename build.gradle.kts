@@ -10,7 +10,7 @@ plugins {
 allprojects {
     repositories {
         mavenCentral()
-        maven { url = uri("https://dl.bintray.com/kotlin/kotlin-dev") }
+        maven("https://dl.bintray.com/kotlin/kotlin-dev")
     }
 }
 
