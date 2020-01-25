@@ -15,7 +15,7 @@ jobs:
           java-version: 11
       - name: Install Dependencies
         if: matrix.os == 'ubuntu-latest'
-        run: sudo apt update && sudo apt install -y libgtk-3-dev
+        run: sudo apt-get update && sudo apt-get install -y libgtk-3-dev
       - name: Build
         uses: eskatos/gradle-command-action@v1
         with:
