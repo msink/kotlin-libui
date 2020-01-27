@@ -20,6 +20,7 @@ package androidx.compose
  * A global namespace to hold some Compose utility methods, such as [Compose.composeInto] and
  * [Compose.disposeComposition].
  */
+@kotlin.native.concurrent.ThreadLocal
 object Compose {
     /**
      * Apply Code Changes will invoke the two functions before and after a code swap.

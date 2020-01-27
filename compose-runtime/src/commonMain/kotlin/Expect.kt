@@ -16,11 +16,11 @@
 
 package androidx.compose
 
-expect class BitSet() {
-    fun set(bitIndex: Int)
-    fun or(set: BitSet)
-    fun clear(bitIndex: Int)
-    operator fun get(bitIndex: Int): Boolean
+expect class BitSet(size: Int) {
+    fun set(index: Int, value: Boolean)
+    fun or(another: BitSet)
+    fun clear(index: Int)
+    operator fun get(index: Int): Boolean
 }
 
 expect open class ThreadLocal<T>(initialValue: () -> T) {
@@ -30,7 +30,7 @@ expect open class ThreadLocal<T>(initialValue: () -> T) {
 
 fun <T> ThreadLocal() = ThreadLocal<T?> { null }
 
-expect class WeakHashMap<K, V>() : MutableMap<K, V>
+expect class WeakHashMap<K : Any, V>() : MutableMap<K, V>
 
 expect fun identityHashCode(instance: Any?): Int
 
@@ -52,19 +52,6 @@ expect abstract class Context
 expect class FrameLayout(context: Context)
 
 expect inline fun <R> synchronized(lock: Any, block: () -> R): R
-
-expect open class WeakReference<T> : Reference<T> {
-    constructor(referent: T)
-    constructor(referent: T, q: ReferenceQueue<in T>?)
-}
-
-expect abstract class Reference<T> {
-    open fun get(): T?
-}
-
-expect open class ReferenceQueue<T>() {
-    open fun poll(): Reference<out T>?
-}
 
 expect class Looper
 

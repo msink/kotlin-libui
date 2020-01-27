@@ -42,7 +42,7 @@ import androidx.compose.mock.skip
 import androidx.compose.mock.text
 import androidx.compose.mock.update
 import androidx.compose.mock.validate
-import org.junit.After
+import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
@@ -50,7 +50,7 @@ import kotlin.test.assertTrue
 
 class CompositionTests {
 
-    @After
+    @AfterTest
     fun teardown() {
         androidx.compose.Compose.clearRoots()
     }
