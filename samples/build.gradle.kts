@@ -7,6 +7,10 @@ plugins {
 
 val samplesResourcesDir = "$projectDir/resources"
 
+kotlin {
+    jvm()
+}
+
 subprojects {
     apply(plugin = "kotlin-multiplatform")
 
