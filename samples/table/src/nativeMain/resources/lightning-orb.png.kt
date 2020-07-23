@@ -1,7 +1,7 @@
 import kotlinx.cinterop.cValuesOf
 import libui.ktx.draw.ImageData
 
-val `lightning-orb.png` = ImageData(width=20, height=22, stride=80, pixels=cValuesOf(
+val `lightning-orb` = ImageData(width=20, height=22, stride=80, pixels=cValuesOf(
     0x00000000u,0x00000000u,0x00000000u,0x00000000u,0x00000000u,0x00000000u,0x00000000u,0x00000000u,
     0x00000000u,0x00000000u,0x00000000u,0x00000000u,0x6906ACFAu,0xCF0ABFF9u,0xD30BBBFAu,0xD80BB5FCu,
     0xDE0BB4FCu,0xE70BB4FCu,0xED08A8FAu,0x77007BE9u,0x00000000u,0x00000000u,0x00000000u,0x00000000u,

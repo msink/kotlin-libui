@@ -1,7 +1,7 @@
 import kotlinx.cinterop.cValuesOf
 import libui.ktx.draw.ImageData
 
-val `andlabs_32x32test_24june2016.png` = ImageData(width=32, height=32, stride=128, pixels=cValuesOf(
+val `andlabs_32x32test_24june2016` = ImageData(width=32, height=32, stride=128, pixels=cValuesOf(
     0xFF7CC589u,0xFF7CC589u,0xFF7CC589u,0xFF7CC589u,0xFF7CC589u,0xFF7CC589u,0xFF7CC589u,0xFF7CC589u,
     0xFF7CC589u,0xFF7CC589u,0xFF7CC589u,0xFF7CC589u,0xFF7CC589u,0xFF7CC589u,0xFF7CC589u,0xFF7CC589u,
     0xFF7CC589u,0xFF7CC589u,0xFF7CC589u,0xFF7CC589u,0xFF7CC589u,0xFF7CC589u,0xFF7CC589u,0xFF7CC589u,
