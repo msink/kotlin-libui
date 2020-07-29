@@ -1,3 +1,9 @@
+# 0.1.8
+> Published 29 Jul 2020
+
+* Compatible with Kotlin 1.4.0
+
+
 # 0.1.7
 > Published 28 Dec 2019
 
