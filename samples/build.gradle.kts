@@ -1,20 +1,14 @@
 // SPDX-License-Identifier: MIT OR Apache-2.0
 @file:Suppress("SpellCheckingInspection")
 
-plugins {
-    kotlin("multiplatform")
-}
+import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
 val samplesResourcesDir = "$projectDir/resources"
-
-kotlin {
-    jvm()
-}
 
 subprojects {
     apply(plugin = "kotlin-multiplatform")
 
-    kotlin {
+    configure<KotlinMultiplatformExtension> {
         if (os.isWindows) {
             mingwX64("windows64")
             if (!isRunningInIde) {
