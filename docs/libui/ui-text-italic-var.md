@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTextItalicVar](./ui-text-italic-var.md)
+[libui](README.md) / [uiTextItalicVar](ui-text-italic-var.md)
 
 # uiTextItalicVar
 

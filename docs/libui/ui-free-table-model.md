@@ -1,4 +1,4 @@
-[libui](index.md) / [uiFreeTableModel](./ui-free-table-model.md)
+[libui](README.md) / [uiFreeTableModel](ui-free-table-model.md)
 
 # uiFreeTableModel
 

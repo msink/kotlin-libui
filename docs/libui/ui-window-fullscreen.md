@@ -1,4 +1,4 @@
-[libui](index.md) / [uiWindowFullscreen](./ui-window-fullscreen.md)
+[libui](README.md) / [uiWindowFullscreen](ui-window-fullscreen.md)
 
 # uiWindowFullscreen
 

@@ -1,4 +1,4 @@
-[libui.ktx.draw](../index.md) / [Path](index.md) / [closeFigure](./close-figure.md)
+[libui.ktx.draw](../README.md) / [Path](README.md) / [closeFigure](close-figure.md)
 
 # closeFigure
 

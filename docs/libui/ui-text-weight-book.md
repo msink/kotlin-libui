@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTextWeightBook](./ui-text-weight-book.md)
+[libui](README.md) / [uiTextWeightBook](ui-text-weight-book.md)
 
 # uiTextWeightBook
 

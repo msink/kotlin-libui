@@ -1,4 +1,4 @@
-[libui](index.md) / [uiWindowSetBorderless](./ui-window-set-borderless.md)
+[libui](README.md) / [uiWindowSetBorderless](ui-window-set-borderless.md)
 
 # uiWindowSetBorderless
 

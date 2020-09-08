@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAlignVar](./ui-align-var.md)
+[libui](README.md) / [uiAlignVar](ui-align-var.md)
 
 # uiAlignVar
 

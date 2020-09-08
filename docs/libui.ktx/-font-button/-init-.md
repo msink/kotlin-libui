@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [FontButton](index.md) / [&lt;init&gt;](./-init-.md)
+[libui.ktx](../README.md) / [FontButton](README.md) / [&lt;init&gt;](-init-.md)
 
 # &lt;init&gt;
 

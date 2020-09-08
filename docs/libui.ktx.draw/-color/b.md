@@ -1,4 +1,4 @@
-[libui.ktx.draw](../index.md) / [Color](index.md) / [b](./b.md)
+[libui.ktx.draw](../README.md) / [Color](README.md) / [b](b.md)
 
 # b
 

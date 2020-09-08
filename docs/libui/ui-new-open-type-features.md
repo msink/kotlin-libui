@@ -1,4 +1,4 @@
-[libui](index.md) / [uiNewOpenTypeFeatures](./ui-new-open-type-features.md)
+[libui](README.md) / [uiNewOpenTypeFeatures](ui-new-open-type-features.md)
 
 # uiNewOpenTypeFeatures
 

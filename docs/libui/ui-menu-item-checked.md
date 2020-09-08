@@ -1,4 +1,4 @@
-[libui](index.md) / [uiMenuItemChecked](./ui-menu-item-checked.md)
+[libui](README.md) / [uiMenuItemChecked](ui-menu-item-checked.md)
 
 # uiMenuItemChecked
 

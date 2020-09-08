@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [Group](index.md) / [&lt;init&gt;](./-init-.md)
+[libui.ktx](../README.md) / [Group](README.md) / [&lt;init&gt;](-init-.md)
 
 # &lt;init&gt;
 

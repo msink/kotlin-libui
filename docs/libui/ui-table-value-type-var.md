@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTableValueTypeVar](./ui-table-value-type-var.md)
+[libui](README.md) / [uiTableValueTypeVar](ui-table-value-type-var.md)
 
 # uiTableValueTypeVar
 

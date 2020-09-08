@@ -1,4 +1,4 @@
-[libui](index.md) / [uiOpenFile](./ui-open-file.md)
+[libui](README.md) / [uiOpenFile](ui-open-file.md)
 
 # uiOpenFile
 

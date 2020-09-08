@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAtTrailing](./ui-at-trailing.md)
+[libui](README.md) / [uiAtTrailing](ui-at-trailing.md)
 
 # uiAtTrailing
 

@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAttributedStringSetAttribute](./ui-attributed-string-set-attribute.md)
+[libui](README.md) / [uiAttributedStringSetAttribute](ui-attributed-string-set-attribute.md)
 
 # uiAttributedStringSetAttribute
 

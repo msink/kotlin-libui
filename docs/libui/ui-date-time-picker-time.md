@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDateTimePickerTime](./ui-date-time-picker-time.md)
+[libui](README.md) / [uiDateTimePickerTime](ui-date-time-picker-time.md)
 
 # uiDateTimePickerTime
 

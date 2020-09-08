@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiDrawBrush](index.md) / [NumStops](./-num-stops.md)
+[libui](../README.md) / [uiDrawBrush](README.md) / [NumStops](-num-stops.md)
 
 # NumStops
 

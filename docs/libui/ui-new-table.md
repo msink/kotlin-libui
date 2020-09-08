@@ -1,5 +1,5 @@
-[libui](index.md) / [uiNewTable](./ui-new-table.md)
+[libui](README.md) / [uiNewTable](ui-new-table.md)
 
 # uiNewTable
 
-`fun uiNewTable(params: CValuesRef<`[`uiTableParams`](ui-table-params/index.md)`>?): CPointer<`[`uiTable`](ui-table.md)`>?`
+`fun uiNewTable(params: CValuesRef<`[`uiTableParams`](ui-table-params/README.md)`>?): CPointer<`[`uiTable`](ui-table.md)`>?`

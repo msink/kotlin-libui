@@ -1,8 +1,8 @@
-[libui.ktx](index.md) / [combobox](./combobox.md)
+[libui.ktx](README.md) / [combobox](combobox.md)
 
 # combobox
 
-`inline fun `[`Container`](-container/index.md)`.combobox(init: `[`Combobox`](-combobox/index.md)`.() -> Unit = {}): `[`Combobox`](-combobox/index.md)
+`inline fun `[`Container`](-container/README.md)`.combobox(init: `[`Combobox`](-combobox/README.md)`.() -> Unit = {}): `[`Combobox`](-combobox/README.md)
 
 DSL builder for a drop down combo box that allow list selection only.
 

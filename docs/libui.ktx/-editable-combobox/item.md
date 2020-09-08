@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [EditableCombobox](index.md) / [item](./item.md)
+[libui.ktx](../README.md) / [EditableCombobox](README.md) / [item](item.md)
 
 # item
 

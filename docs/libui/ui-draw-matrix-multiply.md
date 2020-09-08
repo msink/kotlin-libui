@@ -1,5 +1,5 @@
-[libui](index.md) / [uiDrawMatrixMultiply](./ui-draw-matrix-multiply.md)
+[libui](README.md) / [uiDrawMatrixMultiply](ui-draw-matrix-multiply.md)
 
 # uiDrawMatrixMultiply
 
-`fun uiDrawMatrixMultiply(dest: CValuesRef<`[`uiDrawMatrix`](ui-draw-matrix/index.md)`>?, src: CValuesRef<`[`uiDrawMatrix`](ui-draw-matrix/index.md)`>?): Unit`
+`fun uiDrawMatrixMultiply(dest: CValuesRef<`[`uiDrawMatrix`](ui-draw-matrix/README.md)`>?, src: CValuesRef<`[`uiDrawMatrix`](ui-draw-matrix/README.md)`>?): Unit`

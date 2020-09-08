@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiTableTextColumnOptionalParams](index.md) / [ColorModelColumn](./-color-model-column.md)
+[libui](../README.md) / [uiTableTextColumnOptionalParams](README.md) / [ColorModelColumn](-color-model-column.md)
 
 # ColorModelColumn
 

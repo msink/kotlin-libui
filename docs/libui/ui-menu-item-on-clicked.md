@@ -1,4 +1,4 @@
-[libui](index.md) / [uiMenuItemOnClicked](./ui-menu-item-on-clicked.md)
+[libui](README.md) / [uiMenuItemOnClicked](ui-menu-item-on-clicked.md)
 
 # uiMenuItemOnClicked
 

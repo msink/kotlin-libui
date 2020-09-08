@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTextWeightNormal](./ui-text-weight-normal.md)
+[libui](README.md) / [uiTextWeightNormal](ui-text-weight-normal.md)
 
 # uiTextWeightNormal
 

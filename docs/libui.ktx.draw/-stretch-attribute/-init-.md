@@ -1,4 +1,4 @@
-[libui.ktx.draw](../index.md) / [StretchAttribute](index.md) / [&lt;init&gt;](./-init-.md)
+[libui.ktx.draw](../README.md) / [StretchAttribute](README.md) / [&lt;init&gt;](-init-.md)
 
 # &lt;init&gt;
 

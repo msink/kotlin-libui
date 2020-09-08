@@ -1,4 +1,4 @@
-[libui](index.md) / [uiFreeImage](./ui-free-image.md)
+[libui](README.md) / [uiFreeImage](ui-free-image.md)
 
 # uiFreeImage
 

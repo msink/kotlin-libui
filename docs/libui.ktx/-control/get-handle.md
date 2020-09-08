@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [Control](index.md) / [getHandle](./get-handle.md)
+[libui.ktx](../README.md) / [Control](README.md) / [getHandle](get-handle.md)
 
 # getHandle
 

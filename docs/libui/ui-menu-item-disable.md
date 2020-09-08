@@ -1,4 +1,4 @@
-[libui](index.md) / [uiMenuItemDisable](./ui-menu-item-disable.md)
+[libui](README.md) / [uiMenuItemDisable](ui-menu-item-disable.md)
 
 # uiMenuItemDisable
 

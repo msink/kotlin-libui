@@ -1,4 +1,4 @@
-[libui](index.md) / [uiWindow](./ui-window.md)
+[libui](README.md) / [uiWindow](ui-window.md)
 
 # uiWindow
 

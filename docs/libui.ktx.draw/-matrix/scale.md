@@ -1,4 +1,4 @@
-[libui.ktx.draw](../index.md) / [Matrix](index.md) / [scale](./scale.md)
+[libui.ktx.draw](../README.md) / [Matrix](README.md) / [scale](scale.md)
 
 # scale
 

@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [Form](index.md) / [stretchy](./stretchy.md)
+[libui.ktx](../README.md) / [Form](README.md) / [stretchy](stretchy.md)
 
 # stretchy
 

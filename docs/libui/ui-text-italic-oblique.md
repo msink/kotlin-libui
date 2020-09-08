@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTextItalicOblique](./ui-text-italic-oblique.md)
+[libui](README.md) / [uiTextItalicOblique](ui-text-italic-oblique.md)
 
 # uiTextItalicOblique
 

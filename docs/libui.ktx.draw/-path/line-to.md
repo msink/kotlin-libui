@@ -1,4 +1,4 @@
-[libui.ktx.draw](../index.md) / [Path](index.md) / [lineTo](./line-to.md)
+[libui.ktx.draw](../README.md) / [Path](README.md) / [lineTo](line-to.md)
 
 # lineTo
 

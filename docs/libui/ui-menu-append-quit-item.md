@@ -1,4 +1,4 @@
-[libui](index.md) / [uiMenuAppendQuitItem](./ui-menu-append-quit-item.md)
+[libui](README.md) / [uiMenuAppendQuitItem](ui-menu-append-quit-item.md)
 
 # uiMenuAppendQuitItem
 

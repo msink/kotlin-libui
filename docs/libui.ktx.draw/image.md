@@ -1,5 +1,5 @@
-[libui.ktx.draw](index.md) / [image](./image.md)
+[libui.ktx.draw](README.md) / [image](image.md)
 
 # image
 
-`fun `[`Table`](../libui.ktx/-table/index.md)`<*>.image(width: Int, height: Int, block: `[`Image`](-image/index.md)`.() -> Unit = {}): `[`Image`](-image/index.md)
+`fun `[`Table`](../libui.ktx/-table/README.md)`<*>.image(width: Int, height: Int, block: `[`Image`](-image/README.md)`.() -> Unit = {}): `[`Image`](-image/README.md)

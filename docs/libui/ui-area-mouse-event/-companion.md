@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiAreaMouseEvent](index.md) / [Companion](./-companion.md)
+[libui](../README.md) / [uiAreaMouseEvent](README.md) / [Companion](-companion.md)
 
 # Companion
 

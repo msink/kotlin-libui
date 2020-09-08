@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTextStretch](./ui-text-stretch.md)
+[libui](README.md) / [uiTextStretch](ui-text-stretch.md)
 
 # uiTextStretch
 

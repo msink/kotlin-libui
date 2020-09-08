@@ -1,4 +1,4 @@
-[libui](index.md) / [uiEditableComboboxOnChanged](./ui-editable-combobox-on-changed.md)
+[libui](README.md) / [uiEditableComboboxOnChanged](ui-editable-combobox-on-changed.md)
 
 # uiEditableComboboxOnChanged
 

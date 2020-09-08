@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiDrawTextLayoutParams](index.md) / [Align](./-align.md)
+[libui](../README.md) / [uiDrawTextLayoutParams](README.md) / [Align](-align.md)
 
 # Align
 

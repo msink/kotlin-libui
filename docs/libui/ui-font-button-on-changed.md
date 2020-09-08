@@ -1,4 +1,4 @@
-[libui](index.md) / [uiFontButtonOnChanged](./ui-font-button-on-changed.md)
+[libui](README.md) / [uiFontButtonOnChanged](ui-font-button-on-changed.md)
 
 # uiFontButtonOnChanged
 

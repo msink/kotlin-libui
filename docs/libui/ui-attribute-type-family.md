@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAttributeTypeFamily](./ui-attribute-type-family.md)
+[libui](README.md) / [uiAttributeTypeFamily](ui-attribute-type-family.md)
 
 # uiAttributeTypeFamily
 

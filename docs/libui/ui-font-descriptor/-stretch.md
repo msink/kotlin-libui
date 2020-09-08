@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiFontDescriptor](index.md) / [Stretch](./-stretch.md)
+[libui](../README.md) / [uiFontDescriptor](README.md) / [Stretch](-stretch.md)
 
 # Stretch
 

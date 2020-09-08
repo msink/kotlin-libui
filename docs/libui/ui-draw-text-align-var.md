@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDrawTextAlignVar](./ui-draw-text-align-var.md)
+[libui](README.md) / [uiDrawTextAlignVar](ui-draw-text-align-var.md)
 
 # uiDrawTextAlignVar
 

@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiControl](index.md) / [Companion](./-companion.md)
+[libui](../README.md) / [uiControl](README.md) / [Companion](-companion.md)
 
 # Companion
 

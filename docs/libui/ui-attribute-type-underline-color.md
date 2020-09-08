@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAttributeTypeUnderlineColor](./ui-attribute-type-underline-color.md)
+[libui](README.md) / [uiAttributeTypeUnderlineColor](ui-attribute-type-underline-color.md)
 
 # uiAttributeTypeUnderlineColor
 

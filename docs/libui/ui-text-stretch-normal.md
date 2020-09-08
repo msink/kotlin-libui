@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTextStretchNormal](./ui-text-stretch-normal.md)
+[libui](README.md) / [uiTextStretchNormal](ui-text-stretch-normal.md)
 
 # uiTextStretchNormal
 

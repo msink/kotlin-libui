@@ -1,4 +1,4 @@
-[libui](index.md) / [uiNewHorizontalBox](./ui-new-horizontal-box.md)
+[libui](README.md) / [uiNewHorizontalBox](ui-new-horizontal-box.md)
 
 # uiNewHorizontalBox
 

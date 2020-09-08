@@ -1,4 +1,4 @@
-[libui](index.md) / [uiBox](./ui-box.md)
+[libui](README.md) / [uiBox](ui-box.md)
 
 # uiBox
 

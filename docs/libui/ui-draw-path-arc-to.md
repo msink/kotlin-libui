@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDrawPathArcTo](./ui-draw-path-arc-to.md)
+[libui](README.md) / [uiDrawPathArcTo](ui-draw-path-arc-to.md)
 
 # uiDrawPathArcTo
 

@@ -1,4 +1,4 @@
-[libui](index.md) / [uiModifiersVar](./ui-modifiers-var.md)
+[libui](README.md) / [uiModifiersVar](ui-modifiers-var.md)
 
 # uiModifiersVar
 

@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDrawClip](./ui-draw-clip.md)
+[libui](README.md) / [uiDrawClip](ui-draw-clip.md)
 
 # uiDrawClip
 

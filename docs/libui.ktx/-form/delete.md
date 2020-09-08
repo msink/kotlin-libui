@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [Form](index.md) / [delete](./delete.md)
+[libui.ktx](../README.md) / [Form](README.md) / [delete](delete.md)
 
 # delete
 

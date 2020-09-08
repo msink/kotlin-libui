@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [Window](index.md) / [fullscreen](./fullscreen.md)
+[libui.ktx](../README.md) / [Window](README.md) / [fullscreen](fullscreen.md)
 
 # fullscreen
 

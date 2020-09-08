@@ -1,4 +1,4 @@
-[libui](index.md) / [uiWindowContentSize](./ui-window-content-size.md)
+[libui](README.md) / [uiWindowContentSize](ui-window-content-size.md)
 
 # uiWindowContentSize
 

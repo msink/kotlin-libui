@@ -1,4 +1,4 @@
-[libui.ktx](index.md) / [OpenFileDialog](./-open-file-dialog.md)
+[libui.ktx](README.md) / [OpenFileDialog](-open-file-dialog.md)
 
 # OpenFileDialog
 

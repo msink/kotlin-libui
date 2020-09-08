@@ -1,4 +1,4 @@
-[libui](index.md) / [uiUninit](./ui-uninit.md)
+[libui](README.md) / [uiUninit](ui-uninit.md)
 
 # uiUninit
 

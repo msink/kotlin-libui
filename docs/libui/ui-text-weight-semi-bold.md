@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTextWeightSemiBold](./ui-text-weight-semi-bold.md)
+[libui](README.md) / [uiTextWeightSemiBold](ui-text-weight-semi-bold.md)
 
 # uiTextWeightSemiBold
 

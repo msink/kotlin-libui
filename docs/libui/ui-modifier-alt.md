@@ -1,4 +1,4 @@
-[libui](index.md) / [uiModifierAlt](./ui-modifier-alt.md)
+[libui](README.md) / [uiModifierAlt](ui-modifier-alt.md)
 
 # uiModifierAlt
 

@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAttributedStringForEachAttributeFunc](./ui-attributed-string-for-each-attribute-func.md)
+[libui](README.md) / [uiAttributedStringForEachAttributeFunc](ui-attributed-string-for-each-attribute-func.md)
 
 # uiAttributedStringForEachAttributeFunc
 

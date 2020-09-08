@@ -1,4 +1,4 @@
-[libui](index.md) / [uiUnderlineColorSpelling](./ui-underline-color-spelling.md)
+[libui](README.md) / [uiUnderlineColorSpelling](ui-underline-color-spelling.md)
 
 # uiUnderlineColorSpelling
 

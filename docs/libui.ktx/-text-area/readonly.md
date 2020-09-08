@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [TextArea](index.md) / [readonly](./readonly.md)
+[libui.ktx](../README.md) / [TextArea](README.md) / [readonly](readonly.md)
 
 # readonly
 

@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDrawLineCapVar](./ui-draw-line-cap-var.md)
+[libui](README.md) / [uiDrawLineCapVar](ui-draw-line-cap-var.md)
 
 # uiDrawLineCapVar
 

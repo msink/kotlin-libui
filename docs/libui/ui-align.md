@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAlign](./ui-align.md)
+[libui](README.md) / [uiAlign](ui-align.md)
 
 # uiAlign
 

@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [TabPane](index.md) / [&lt;init&gt;](./-init-.md)
+[libui.ktx](../README.md) / [TabPane](README.md) / [&lt;init&gt;](-init-.md)
 
 # &lt;init&gt;
 

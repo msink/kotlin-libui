@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAttributedStringLen](./ui-attributed-string-len.md)
+[libui](README.md) / [uiAttributedStringLen](ui-attributed-string-len.md)
 
 # uiAttributedStringLen
 

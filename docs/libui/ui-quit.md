@@ -1,4 +1,4 @@
-[libui](index.md) / [uiQuit](./ui-quit.md)
+[libui](README.md) / [uiQuit](ui-quit.md)
 
 # uiQuit
 

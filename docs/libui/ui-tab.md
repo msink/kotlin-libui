@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTab](./ui-tab.md)
+[libui](README.md) / [uiTab](ui-tab.md)
 
 # uiTab
 

@@ -1,4 +1,4 @@
-[libui](index.md) / [uiBoxDelete](./ui-box-delete.md)
+[libui](README.md) / [uiBoxDelete](ui-box-delete.md)
 
 # uiBoxDelete
 

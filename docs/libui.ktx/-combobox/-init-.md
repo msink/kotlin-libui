@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [Combobox](index.md) / [&lt;init&gt;](./-init-.md)
+[libui.ktx](../README.md) / [Combobox](README.md) / [&lt;init&gt;](-init-.md)
 
 # &lt;init&gt;
 

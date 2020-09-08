@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [Checkbox](index.md) / [&lt;init&gt;](./-init-.md)
+[libui.ktx](../README.md) / [Checkbox](README.md) / [&lt;init&gt;](-init-.md)
 
 # &lt;init&gt;
 

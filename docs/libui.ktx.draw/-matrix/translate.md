@@ -1,4 +1,4 @@
-[libui.ktx.draw](../index.md) / [Matrix](index.md) / [translate](./translate.md)
+[libui.ktx.draw](../README.md) / [Matrix](README.md) / [translate](translate.md)
 
 # translate
 

@@ -1,4 +1,4 @@
-[libui](index.md) / [uiNewItalicAttribute](./ui-new-italic-attribute.md)
+[libui](README.md) / [uiNewItalicAttribute](ui-new-italic-attribute.md)
 
 # uiNewItalicAttribute
 

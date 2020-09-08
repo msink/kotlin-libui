@@ -1,4 +1,4 @@
-[libui](index.md) / [uiModifierCtrl](./ui-modifier-ctrl.md)
+[libui](README.md) / [uiModifierCtrl](ui-modifier-ctrl.md)
 
 # uiModifierCtrl
 

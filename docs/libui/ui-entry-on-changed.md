@@ -1,4 +1,4 @@
-[libui](index.md) / [uiEntryOnChanged](./ui-entry-on-changed.md)
+[libui](README.md) / [uiEntryOnChanged](ui-entry-on-changed.md)
 
 # uiEntryOnChanged
 

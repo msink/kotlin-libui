@@ -1,4 +1,4 @@
-[libui](index.md) / [uiSpinboxSetValue](./ui-spinbox-set-value.md)
+[libui](README.md) / [uiSpinboxSetValue](ui-spinbox-set-value.md)
 
 # uiSpinboxSetValue
 

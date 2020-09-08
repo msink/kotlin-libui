@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiFontDescriptor](index.md) / [Italic](./-italic.md)
+[libui](../README.md) / [uiFontDescriptor](README.md) / [Italic](-italic.md)
 
 # Italic
 

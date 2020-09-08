@@ -1,4 +1,4 @@
-[libui](index.md) / [uiNewUnderlineAttribute](./ui-new-underline-attribute.md)
+[libui](README.md) / [uiNewUnderlineAttribute](ui-new-underline-attribute.md)
 
 # uiNewUnderlineAttribute
 

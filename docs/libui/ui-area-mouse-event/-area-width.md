@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiAreaMouseEvent](index.md) / [AreaWidth](./-area-width.md)
+[libui](../README.md) / [uiAreaMouseEvent](README.md) / [AreaWidth](-area-width.md)
 
 # AreaWidth
 

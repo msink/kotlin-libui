@@ -1,4 +1,4 @@
-[libui.ktx.draw](../index.md) / [Path](index.md) / [bezierTo](./bezier-to.md)
+[libui.ktx.draw](../README.md) / [Path](README.md) / [bezierTo](bezier-to.md)
 
 # bezierTo
 

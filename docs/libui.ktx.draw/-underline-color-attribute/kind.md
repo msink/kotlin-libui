@@ -1,4 +1,4 @@
-[libui.ktx.draw](../index.md) / [UnderlineColorAttribute](index.md) / [kind](./kind.md)
+[libui.ktx.draw](../README.md) / [UnderlineColorAttribute](README.md) / [kind](kind.md)
 
 # kind
 

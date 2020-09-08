@@ -1,4 +1,4 @@
-[libui](index.md) / [uiEntryText](./ui-entry-text.md)
+[libui](README.md) / [uiEntryText](ui-entry-text.md)
 
 # uiEntryText
 

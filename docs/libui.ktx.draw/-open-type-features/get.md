@@ -1,4 +1,4 @@
-[libui.ktx.draw](../index.md) / [OpenTypeFeatures](index.md) / [get](./get.md)
+[libui.ktx.draw](../README.md) / [OpenTypeFeatures](README.md) / [get](get.md)
 
 # get
 

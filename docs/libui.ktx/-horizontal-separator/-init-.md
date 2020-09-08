@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [HorizontalSeparator](index.md) / [&lt;init&gt;](./-init-.md)
+[libui.ktx](../README.md) / [HorizontalSeparator](README.md) / [&lt;init&gt;](-init-.md)
 
 # &lt;init&gt;
 

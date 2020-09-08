@@ -1,4 +1,4 @@
-[libui.ktx.draw](../index.md) / [SizeAttribute](index.md) / [value](./value.md)
+[libui.ktx.draw](../README.md) / [SizeAttribute](README.md) / [value](value.md)
 
 # value
 

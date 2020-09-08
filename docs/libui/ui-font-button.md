@@ -1,4 +1,4 @@
-[libui](index.md) / [uiFontButton](./ui-font-button.md)
+[libui](README.md) / [uiFontButton](ui-font-button.md)
 
 # uiFontButton
 

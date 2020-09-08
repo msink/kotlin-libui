@@ -1,5 +1,5 @@
-[libui](../index.md) / [uiControl](index.md) / [Show](./-show.md)
+[libui](../README.md) / [uiControl](README.md) / [Show](-show.md)
 
 # Show
 
-`var Show: CPointer<CFunction<(CPointer<`[`uiControl`](index.md)`>?) -> Unit>>?`
+`var Show: CPointer<CFunction<(CPointer<`[`uiControl`](README.md)`>?) -> Unit>>?`

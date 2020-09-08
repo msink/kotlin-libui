@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTableValueGetType](./ui-table-value-get-type.md)
+[libui](README.md) / [uiTableValueGetType](ui-table-value-get-type.md)
 
 # uiTableValueGetType
 

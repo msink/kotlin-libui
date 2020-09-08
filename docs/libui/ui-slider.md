@@ -1,4 +1,4 @@
-[libui](index.md) / [uiSlider](./ui-slider.md)
+[libui](README.md) / [uiSlider](ui-slider.md)
 
 # uiSlider
 

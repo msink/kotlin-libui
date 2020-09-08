@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [GridPane](index.md) / [hexpand](./hexpand.md)
+[libui.ktx](../README.md) / [GridPane](README.md) / [hexpand](hexpand.md)
 
 # hexpand
 

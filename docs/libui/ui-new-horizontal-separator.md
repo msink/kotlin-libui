@@ -1,4 +1,4 @@
-[libui](index.md) / [uiNewHorizontalSeparator](./ui-new-horizontal-separator.md)
+[libui](README.md) / [uiNewHorizontalSeparator](ui-new-horizontal-separator.md)
 
 # uiNewHorizontalSeparator
 

@@ -1,8 +1,8 @@
-[libui.ktx](index.md) / [tabpane](./tabpane.md)
+[libui.ktx](README.md) / [tabpane](tabpane.md)
 
 # tabpane
 
-`inline fun `[`Container`](-container/index.md)`.tabpane(init: `[`TabPane`](-tab-pane/index.md)`.() -> Unit = {}): `[`TabPane`](-tab-pane/index.md)
+`inline fun `[`Container`](-container/README.md)`.tabpane(init: `[`TabPane`](-tab-pane/README.md)`.() -> Unit = {}): `[`TabPane`](-tab-pane/README.md)
 
 DSL builder for a container that show each children in a separate tab.
 

@@ -1,4 +1,4 @@
-[libui](index.md) / [uiPi](./ui-pi.md)
+[libui](README.md) / [uiPi](ui-pi.md)
 
 # uiPi
 

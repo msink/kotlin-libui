@@ -1,4 +1,4 @@
-[libui](index.md) / [uiMenuItemSetChecked](./ui-menu-item-set-checked.md)
+[libui](README.md) / [uiMenuItemSetChecked](ui-menu-item-set-checked.md)
 
 # uiMenuItemSetChecked
 

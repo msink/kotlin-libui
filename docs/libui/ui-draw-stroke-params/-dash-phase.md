@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiDrawStrokeParams](index.md) / [DashPhase](./-dash-phase.md)
+[libui](../README.md) / [uiDrawStrokeParams](README.md) / [DashPhase](-dash-phase.md)
 
 # DashPhase
 

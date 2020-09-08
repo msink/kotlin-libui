@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiDrawStrokeParams](index.md) / [Thickness](./-thickness.md)
+[libui](../README.md) / [uiDrawStrokeParams](README.md) / [Thickness](-thickness.md)
 
 # Thickness
 

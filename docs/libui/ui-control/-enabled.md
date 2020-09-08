@@ -1,5 +1,5 @@
-[libui](../index.md) / [uiControl](index.md) / [Enabled](./-enabled.md)
+[libui](../README.md) / [uiControl](README.md) / [Enabled](-enabled.md)
 
 # Enabled
 
-`var Enabled: CPointer<CFunction<(CPointer<`[`uiControl`](index.md)`>?) -> Int>>?`
+`var Enabled: CPointer<CFunction<(CPointer<`[`uiControl`](README.md)`>?) -> Int>>?`

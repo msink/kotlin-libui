@@ -1,5 +1,5 @@
-[libui.ktx](../../index.md) / [Table](../index.md) / [TableColumn](index.md) / [image](./image.md)
+[libui.ktx](../../README.md) / [Table](../README.md) / [TableColumn](README.md) / [image](image.md)
 
 # image
 
-`fun image(get: (row: Int) -> `[`Image`](../../../libui.ktx.draw/-image/index.md)`?): Unit`
+`fun image(get: (row: Int) -> `[`Image`](../../../libui.ktx.draw/-image/README.md)`?): Unit`

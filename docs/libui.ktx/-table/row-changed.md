@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [Table](index.md) / [rowChanged](./row-changed.md)
+[libui.ktx](../README.md) / [Table](README.md) / [rowChanged](row-changed.md)
 
 # rowChanged
 

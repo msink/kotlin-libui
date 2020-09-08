@@ -1,4 +1,4 @@
-[libui](index.md) / [uiMsgBoxError](./ui-msg-box-error.md)
+[libui](README.md) / [uiMsgBoxError](ui-msg-box-error.md)
 
 # uiMsgBoxError
 

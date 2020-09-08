@@ -1,4 +1,4 @@
-[libui](index.md) / [uiBoxSetPadded](./ui-box-set-padded.md)
+[libui](README.md) / [uiBoxSetPadded](ui-box-set-padded.md)
 
 # uiBoxSetPadded
 

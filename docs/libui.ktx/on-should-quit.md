@@ -1,4 +1,4 @@
-[libui.ktx](index.md) / [onShouldQuit](./on-should-quit.md)
+[libui.ktx](README.md) / [onShouldQuit](on-should-quit.md)
 
 # onShouldQuit
 

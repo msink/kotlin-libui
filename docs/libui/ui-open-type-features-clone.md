@@ -1,4 +1,4 @@
-[libui](index.md) / [uiOpenTypeFeaturesClone](./ui-open-type-features-clone.md)
+[libui](README.md) / [uiOpenTypeFeaturesClone](ui-open-type-features-clone.md)
 
 # uiOpenTypeFeaturesClone
 

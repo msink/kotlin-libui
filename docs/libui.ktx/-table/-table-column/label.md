@@ -1,6 +1,6 @@
-[libui.ktx](../../index.md) / [Table](../index.md) / [TableColumn](index.md) / [label](./label.md)
+[libui.ktx](../../README.md) / [Table](../README.md) / [TableColumn](README.md) / [label](label.md)
 
 # label
 
 `fun label(get: (row: Int) -> String): Unit`
-`fun label(property: KProperty1<`[`T`](index.md#T)`, String>): Unit`
+`fun label(property: KProperty1<`[`T`](README.md#T)`, String>): Unit`

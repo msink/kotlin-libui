@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAreaScrollTo](./ui-area-scroll-to.md)
+[libui](README.md) / [uiAreaScrollTo](ui-area-scroll-to.md)
 
 # uiAreaScrollTo
 

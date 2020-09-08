@@ -1,4 +1,4 @@
-[libui](index.md) / [uiEntrySetReadOnly](./ui-entry-set-read-only.md)
+[libui](README.md) / [uiEntrySetReadOnly](ui-entry-set-read-only.md)
 
 # uiEntrySetReadOnly
 

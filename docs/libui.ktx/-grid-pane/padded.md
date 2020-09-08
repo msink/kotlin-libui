@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [GridPane](index.md) / [padded](./padded.md)
+[libui.ktx](../README.md) / [GridPane](README.md) / [padded](padded.md)
 
 # padded
 

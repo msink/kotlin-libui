@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTableModelRowDeleted](./ui-table-model-row-deleted.md)
+[libui](README.md) / [uiTableModelRowDeleted](ui-table-model-row-deleted.md)
 
 # uiTableModelRowDeleted
 

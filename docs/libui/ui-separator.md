@@ -1,4 +1,4 @@
-[libui](index.md) / [uiSeparator](./ui-separator.md)
+[libui](README.md) / [uiSeparator](ui-separator.md)
 
 # uiSeparator
 

@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiDrawTextLayoutParams](index.md) / [Companion](./-companion.md)
+[libui](../README.md) / [uiDrawTextLayoutParams](README.md) / [Companion](-companion.md)
 
 # Companion
 

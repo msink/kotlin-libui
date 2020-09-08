@@ -1,4 +1,4 @@
-[libui](index.md) / [uiOpenTypeFeaturesRemove](./ui-open-type-features-remove.md)
+[libui](README.md) / [uiOpenTypeFeaturesRemove](ui-open-type-features-remove.md)
 
 # uiOpenTypeFeaturesRemove
 

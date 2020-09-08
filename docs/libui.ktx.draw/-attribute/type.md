@@ -1,4 +1,4 @@
-[libui.ktx.draw](../index.md) / [Attribute](index.md) / [type](./type.md)
+[libui.ktx.draw](../README.md) / [Attribute](README.md) / [type](type.md)
 
 # type
 

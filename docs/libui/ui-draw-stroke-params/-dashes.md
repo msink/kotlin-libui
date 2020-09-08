@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiDrawStrokeParams](index.md) / [Dashes](./-dashes.md)
+[libui](../README.md) / [uiDrawStrokeParams](README.md) / [Dashes](-dashes.md)
 
 # Dashes
 

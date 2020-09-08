@@ -1,4 +1,4 @@
-[libui](index.md) / [uiFreeText](./ui-free-text.md)
+[libui](README.md) / [uiFreeText](ui-free-text.md)
 
 # uiFreeText
 

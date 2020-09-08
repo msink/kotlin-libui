@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [Disposable](index.md) / [disposed](./disposed.md)
+[libui.ktx](../README.md) / [Disposable](README.md) / [disposed](disposed.md)
 
 # disposed
 

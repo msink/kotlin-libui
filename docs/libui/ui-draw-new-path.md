@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDrawNewPath](./ui-draw-new-path.md)
+[libui](README.md) / [uiDrawNewPath](ui-draw-new-path.md)
 
 # uiDrawNewPath
 

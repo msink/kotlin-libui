@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiDrawStrokeParams](index.md) / [Cap](./-cap.md)
+[libui](../README.md) / [uiDrawStrokeParams](README.md) / [Cap](-cap.md)
 
 # Cap
 

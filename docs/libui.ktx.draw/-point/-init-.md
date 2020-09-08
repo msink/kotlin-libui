@@ -1,4 +1,4 @@
-[libui.ktx.draw](../index.md) / [Point](index.md) / [&lt;init&gt;](./-init-.md)
+[libui.ktx.draw](../README.md) / [Point](README.md) / [&lt;init&gt;](-init-.md)
 
 # &lt;init&gt;
 

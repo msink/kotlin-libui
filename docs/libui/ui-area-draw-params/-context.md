@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiAreaDrawParams](index.md) / [Context](./-context.md)
+[libui](../README.md) / [uiAreaDrawParams](README.md) / [Context](-context.md)
 
 # Context
 

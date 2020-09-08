@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiAreaDrawParams](index.md) / [ClipY](./-clip-y.md)
+[libui](../README.md) / [uiAreaDrawParams](README.md) / [ClipY](-clip-y.md)
 
 # ClipY
 

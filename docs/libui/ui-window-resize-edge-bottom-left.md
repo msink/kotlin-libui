@@ -1,4 +1,4 @@
-[libui](index.md) / [uiWindowResizeEdgeBottomLeft](./ui-window-resize-edge-bottom-left.md)
+[libui](README.md) / [uiWindowResizeEdgeBottomLeft](ui-window-resize-edge-bottom-left.md)
 
 # uiWindowResizeEdgeBottomLeft
 

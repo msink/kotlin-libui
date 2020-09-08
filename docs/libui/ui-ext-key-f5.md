@@ -1,4 +1,4 @@
-[libui](index.md) / [uiExtKeyF5](./ui-ext-key-f5.md)
+[libui](README.md) / [uiExtKeyF5](ui-ext-key-f5.md)
 
 # uiExtKeyF5
 

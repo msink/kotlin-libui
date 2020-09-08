@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiDrawBrush](index.md) / [&lt;init&gt;](./-init-.md)
+[libui](../README.md) / [uiDrawBrush](README.md) / [&lt;init&gt;](-init-.md)
 
 # &lt;init&gt;
 

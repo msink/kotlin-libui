@@ -1,8 +1,8 @@
-[libui.ktx](../index.md) / [GridPane](index.md) / [insert](./insert.md)
+[libui.ktx](../README.md) / [GridPane](README.md) / [insert](insert.md)
 
 # insert
 
-`fun insert(widget: `[`Control`](../-control/index.md)`<*>, existing: `[`Control`](../-control/index.md)`<*>, at: `[`uiAt`](../../libui/ui-at.md)`): Unit`
+`fun insert(widget: `[`Control`](../-control/README.md)`<*>, existing: `[`Control`](../-control/README.md)`<*>, at: `[`uiAt`](../../libui/ui-at.md)`): Unit`
 
 Insert the given Control after existing Control.
 

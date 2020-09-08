@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [Control](index.md) / [show](./show.md)
+[libui.ktx](../README.md) / [Control](README.md) / [show](show.md)
 
 # show
 

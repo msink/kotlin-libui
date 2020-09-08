@@ -1,4 +1,4 @@
-[libui](index.md) / [uiNewMultilineEntry](./ui-new-multiline-entry.md)
+[libui](README.md) / [uiNewMultilineEntry](ui-new-multiline-entry.md)
 
 # uiNewMultilineEntry
 

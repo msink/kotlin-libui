@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiDrawStrokeParams](index.md) / [MiterLimit](./-miter-limit.md)
+[libui](../README.md) / [uiDrawStrokeParams](README.md) / [MiterLimit](-miter-limit.md)
 
 # MiterLimit
 

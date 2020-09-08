@@ -1,4 +1,4 @@
-[libui](index.md) / [uiSpinbox](./ui-spinbox.md)
+[libui](README.md) / [uiSpinbox](ui-spinbox.md)
 
 # uiSpinbox
 

@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [Window](index.md) / [margined](./margined.md)
+[libui.ktx](../README.md) / [Window](README.md) / [margined](margined.md)
 
 # margined
 

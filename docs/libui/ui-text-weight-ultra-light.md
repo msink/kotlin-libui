@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTextWeightUltraLight](./ui-text-weight-ultra-light.md)
+[libui](README.md) / [uiTextWeightUltraLight](ui-text-weight-ultra-light.md)
 
 # uiTextWeightUltraLight
 

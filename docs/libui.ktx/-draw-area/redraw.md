@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [DrawArea](index.md) / [redraw](./redraw.md)
+[libui.ktx](../README.md) / [DrawArea](README.md) / [redraw](redraw.md)
 
 # redraw
 

@@ -1,4 +1,4 @@
-[libui](index.md) / [uiMultilineEntryOnChanged](./ui-multiline-entry-on-changed.md)
+[libui](README.md) / [uiMultilineEntryOnChanged](ui-multiline-entry-on-changed.md)
 
 # uiMultilineEntryOnChanged
 

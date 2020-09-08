@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAtBottom](./ui-at-bottom.md)
+[libui](README.md) / [uiAtBottom](ui-at-bottom.md)
 
 # uiAtBottom
 

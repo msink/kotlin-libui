@@ -1,5 +1,5 @@
-[libui](index.md) / [uiTabAppend](./ui-tab-append.md)
+[libui](README.md) / [uiTabAppend](ui-tab-append.md)
 
 # uiTabAppend
 
-`fun uiTabAppend(t: CValuesRef<`[`uiTab`](ui-tab.md)`>?, name: String?, c: CValuesRef<`[`uiControl`](ui-control/index.md)`>?): Unit`
+`fun uiTabAppend(t: CValuesRef<`[`uiTab`](ui-tab.md)`>?, name: String?, c: CValuesRef<`[`uiControl`](ui-control/README.md)`>?): Unit`

@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiDrawStrokeParams](index.md) / [Join](./-join.md)
+[libui](../README.md) / [uiDrawStrokeParams](README.md) / [Join](-join.md)
 
 # Join
 

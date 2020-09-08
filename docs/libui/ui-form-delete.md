@@ -1,4 +1,4 @@
-[libui](index.md) / [uiFormDelete](./ui-form-delete.md)
+[libui](README.md) / [uiFormDelete](ui-form-delete.md)
 
 # uiFormDelete
 

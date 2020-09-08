@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiAreaMouseEvent](index.md) / [&lt;init&gt;](./-init-.md)
+[libui](../README.md) / [uiAreaMouseEvent](README.md) / [&lt;init&gt;](-init-.md)
 
 # &lt;init&gt;
 

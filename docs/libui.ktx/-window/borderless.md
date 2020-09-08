@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [Window](index.md) / [borderless](./borderless.md)
+[libui.ktx](../README.md) / [Window](README.md) / [borderless](borderless.md)
 
 # borderless
 

@@ -1,4 +1,4 @@
-[libui](index.md) / [uiExtKeyNSubtract](./ui-ext-key-n-subtract.md)
+[libui](README.md) / [uiExtKeyNSubtract](ui-ext-key-n-subtract.md)
 
 # uiExtKeyNSubtract
 

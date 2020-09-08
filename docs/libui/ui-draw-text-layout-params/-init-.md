@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiDrawTextLayoutParams](index.md) / [&lt;init&gt;](./-init-.md)
+[libui](../README.md) / [uiDrawTextLayoutParams](README.md) / [&lt;init&gt;](-init-.md)
 
 # &lt;init&gt;
 

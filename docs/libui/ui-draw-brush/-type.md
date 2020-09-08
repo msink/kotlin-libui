@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiDrawBrush](index.md) / [Type](./-type.md)
+[libui](../README.md) / [uiDrawBrush](README.md) / [Type](-type.md)
 
 # Type
 

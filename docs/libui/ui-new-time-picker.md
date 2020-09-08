@@ -1,4 +1,4 @@
-[libui](index.md) / [uiNewTimePicker](./ui-new-time-picker.md)
+[libui](README.md) / [uiNewTimePicker](ui-new-time-picker.md)
 
 # uiNewTimePicker
 

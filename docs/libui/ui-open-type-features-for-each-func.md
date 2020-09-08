@@ -1,4 +1,4 @@
-[libui](index.md) / [uiOpenTypeFeaturesForEachFunc](./ui-open-type-features-for-each-func.md)
+[libui](README.md) / [uiOpenTypeFeaturesForEachFunc](ui-open-type-features-for-each-func.md)
 
 # uiOpenTypeFeaturesForEachFunc
 

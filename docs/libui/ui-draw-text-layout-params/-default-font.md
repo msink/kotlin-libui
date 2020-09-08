@@ -1,5 +1,5 @@
-[libui](../index.md) / [uiDrawTextLayoutParams](index.md) / [DefaultFont](./-default-font.md)
+[libui](../README.md) / [uiDrawTextLayoutParams](README.md) / [DefaultFont](-default-font.md)
 
 # DefaultFont
 
-`var DefaultFont: CPointer<`[`uiFontDescriptor`](../ui-font-descriptor/index.md)`>?`
+`var DefaultFont: CPointer<`[`uiFontDescriptor`](../ui-font-descriptor/README.md)`>?`

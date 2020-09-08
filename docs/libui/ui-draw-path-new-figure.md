@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDrawPathNewFigure](./ui-draw-path-new-figure.md)
+[libui](README.md) / [uiDrawPathNewFigure](ui-draw-path-new-figure.md)
 
 # uiDrawPathNewFigure
 

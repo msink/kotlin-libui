@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTableModelRowChanged](./ui-table-model-row-changed.md)
+[libui](README.md) / [uiTableModelRowChanged](ui-table-model-row-changed.md)
 
 # uiTableModelRowChanged
 

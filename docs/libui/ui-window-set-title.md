@@ -1,4 +1,4 @@
-[libui](index.md) / [uiWindowSetTitle](./ui-window-set-title.md)
+[libui](README.md) / [uiWindowSetTitle](ui-window-set-title.md)
 
 # uiWindowSetTitle
 

@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAttributedStringByteIndexToGrapheme](./ui-attributed-string-byte-index-to-grapheme.md)
+[libui](README.md) / [uiAttributedStringByteIndexToGrapheme](ui-attributed-string-byte-index-to-grapheme.md)
 
 # uiAttributedStringByteIndexToGrapheme
 

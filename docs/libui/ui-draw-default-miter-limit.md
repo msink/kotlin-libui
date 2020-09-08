@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDrawDefaultMiterLimit](./ui-draw-default-miter-limit.md)
+[libui](README.md) / [uiDrawDefaultMiterLimit](ui-draw-default-miter-limit.md)
 
 # uiDrawDefaultMiterLimit
 

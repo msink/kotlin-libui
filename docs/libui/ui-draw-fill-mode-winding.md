@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDrawFillModeWinding](./ui-draw-fill-mode-winding.md)
+[libui](README.md) / [uiDrawFillModeWinding](ui-draw-fill-mode-winding.md)
 
 # uiDrawFillModeWinding
 

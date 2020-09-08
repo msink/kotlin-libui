@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [DatePicker](index.md) / [&lt;init&gt;](./-init-.md)
+[libui.ktx](../README.md) / [DatePicker](README.md) / [&lt;init&gt;](-init-.md)
 
 # &lt;init&gt;
 

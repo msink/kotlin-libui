@@ -1,4 +1,4 @@
-[libui](index.md) / [tm](./tm.md)
+[libui](README.md) / [tm](tm.md)
 
 # tm
 

@@ -1,4 +1,4 @@
-[libui](index.md) / [uiNewGrid](./ui-new-grid.md)
+[libui](README.md) / [uiNewGrid](ui-new-grid.md)
 
 # uiNewGrid
 

@@ -1,5 +1,5 @@
-[libui](index.md) / [uiNewArea](./ui-new-area.md)
+[libui](README.md) / [uiNewArea](ui-new-area.md)
 
 # uiNewArea
 
-`fun uiNewArea(ah: CValuesRef<`[`uiAreaHandler`](ui-area-handler/index.md)`>?): CPointer<`[`uiArea`](ui-area.md)`>?`
+`fun uiNewArea(ah: CValuesRef<`[`uiAreaHandler`](ui-area-handler/README.md)`>?): CPointer<`[`uiArea`](ui-area.md)`>?`

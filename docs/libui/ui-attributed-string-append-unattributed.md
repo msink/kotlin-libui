@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAttributedStringAppendUnattributed](./ui-attributed-string-append-unattributed.md)
+[libui](README.md) / [uiAttributedStringAppendUnattributed](ui-attributed-string-append-unattributed.md)
 
 # uiAttributedStringAppendUnattributed
 

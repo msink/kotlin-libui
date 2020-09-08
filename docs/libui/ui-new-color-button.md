@@ -1,4 +1,4 @@
-[libui](index.md) / [uiNewColorButton](./ui-new-color-button.md)
+[libui](README.md) / [uiNewColorButton](ui-new-color-button.md)
 
 # uiNewColorButton
 

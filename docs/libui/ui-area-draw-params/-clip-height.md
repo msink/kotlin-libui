@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiAreaDrawParams](index.md) / [ClipHeight](./-clip-height.md)
+[libui](../README.md) / [uiAreaDrawParams](README.md) / [ClipHeight](-clip-height.md)
 
 # ClipHeight
 

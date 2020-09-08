@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiDrawTextLayoutParams](index.md) / [Width](./-width.md)
+[libui](../README.md) / [uiDrawTextLayoutParams](README.md) / [Width](-width.md)
 
 # Width
 

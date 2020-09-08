@@ -1,5 +1,5 @@
-[libui.ktx](../index.md) / [TableView](index.md) / [table](./table.md)
+[libui.ktx](../README.md) / [TableView](README.md) / [table](table.md)
 
 # table
 
-`val table: `[`Table`](../-table/index.md)`<*>`
+`val table: `[`Table`](../-table/README.md)`<*>`

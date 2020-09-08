@@ -1,4 +1,4 @@
-[libui.ktx](index.md) / [Menu](./-menu.md)
+[libui.ktx](README.md) / [Menu](-menu.md)
 
 # Menu
 

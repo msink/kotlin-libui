@@ -1,4 +1,4 @@
-[libui](index.md) / [uiMenuAppendPreferencesItem](./ui-menu-append-preferences-item.md)
+[libui](README.md) / [uiMenuAppendPreferencesItem](ui-menu-append-preferences-item.md)
 
 # uiMenuAppendPreferencesItem
 

@@ -1,4 +1,4 @@
-[libui.ktx.draw](../index.md) / [AttributedString](index.md) / [delete](./delete.md)
+[libui.ktx.draw](../README.md) / [AttributedString](README.md) / [delete](delete.md)
 
 # delete
 

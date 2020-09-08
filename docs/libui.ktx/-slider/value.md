@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [Slider](index.md) / [value](./value.md)
+[libui.ktx](../README.md) / [Slider](README.md) / [value](value.md)
 
 # value
 

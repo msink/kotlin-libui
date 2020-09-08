@@ -1,4 +1,4 @@
-[libui.ktx.draw](../index.md) / [Path](index.md) / [rectangle](./rectangle.md)
+[libui.ktx.draw](../README.md) / [Path](README.md) / [rectangle](rectangle.md)
 
 # rectangle
 

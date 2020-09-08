@@ -1,4 +1,4 @@
-[libui](index.md) / [uiEntrySetText](./ui-entry-set-text.md)
+[libui](README.md) / [uiEntrySetText](ui-entry-set-text.md)
 
 # uiEntrySetText
 

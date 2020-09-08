@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAttributedStringNumGraphemes](./ui-attributed-string-num-graphemes.md)
+[libui](README.md) / [uiAttributedStringNumGraphemes](ui-attributed-string-num-graphemes.md)
 
 # uiAttributedStringNumGraphemes
 

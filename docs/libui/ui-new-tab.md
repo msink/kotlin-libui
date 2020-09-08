@@ -1,4 +1,4 @@
-[libui](index.md) / [uiNewTab](./ui-new-tab.md)
+[libui](README.md) / [uiNewTab](ui-new-tab.md)
 
 # uiNewTab
 

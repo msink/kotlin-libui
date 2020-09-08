@@ -1,5 +1,5 @@
-[libui.ktx](../../index.md) / [Table](../index.md) / [TableColumn](index.md) / [checkbox](./checkbox.md)
+[libui.ktx](../../README.md) / [Table](../README.md) / [TableColumn](README.md) / [checkbox](checkbox.md)
 
 # checkbox
 
-`fun checkbox(property: KMutableProperty1<`[`T`](index.md#T)`, Boolean>): Unit`
+`fun checkbox(property: KMutableProperty1<`[`T`](README.md#T)`, Boolean>): Unit`

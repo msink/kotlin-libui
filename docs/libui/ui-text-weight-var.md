@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTextWeightVar](./ui-text-weight-var.md)
+[libui](README.md) / [uiTextWeightVar](ui-text-weight-var.md)
 
 # uiTextWeightVar
 

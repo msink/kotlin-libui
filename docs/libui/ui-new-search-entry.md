@@ -1,4 +1,4 @@
-[libui](index.md) / [uiNewSearchEntry](./ui-new-search-entry.md)
+[libui](README.md) / [uiNewSearchEntry](ui-new-search-entry.md)
 
 # uiNewSearchEntry
 

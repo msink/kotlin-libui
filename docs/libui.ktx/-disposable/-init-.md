@@ -1,8 +1,8 @@
-[libui.ktx](../index.md) / [Disposable](index.md) / [&lt;init&gt;](./-init-.md)
+[libui.ktx](../README.md) / [Disposable](README.md) / [&lt;init&gt;](-init-.md)
 
 # &lt;init&gt;
 
-`Disposable(alloc: CPointer<`[`T`](index.md#T)`>?)`
+`Disposable(alloc: CPointer<`[`T`](README.md#T)`>?)`
 
 Base class for all objects that have a holder reference to the native C resource(s).
 

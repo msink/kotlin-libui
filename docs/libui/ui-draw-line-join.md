@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDrawLineJoin](./ui-draw-line-join.md)
+[libui](README.md) / [uiDrawLineJoin](ui-draw-line-join.md)
 
 # uiDrawLineJoin
 

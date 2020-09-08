@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [ProgressBar](index.md) / [value](./value.md)
+[libui.ktx](../README.md) / [ProgressBar](README.md) / [value](value.md)
 
 # value
 

@@ -1,4 +1,4 @@
-[libui.ktx.draw](../index.md) / [AttributedString](index.md) / [append](./append.md)
+[libui.ktx.draw](../README.md) / [AttributedString](README.md) / [append](append.md)
 
 # append
 

@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiDrawStrokeParams](index.md) / [Companion](./-companion.md)
+[libui](../README.md) / [uiDrawStrokeParams](README.md) / [Companion](-companion.md)
 
 # Companion
 

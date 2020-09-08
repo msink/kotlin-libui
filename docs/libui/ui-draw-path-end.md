@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDrawPathEnd](./ui-draw-path-end.md)
+[libui](README.md) / [uiDrawPathEnd](ui-draw-path-end.md)
 
 # uiDrawPathEnd
 

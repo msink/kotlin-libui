@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTableAppendImageColumn](./ui-table-append-image-column.md)
+[libui](README.md) / [uiTableAppendImageColumn](ui-table-append-image-column.md)
 
 # uiTableAppendImageColumn
 

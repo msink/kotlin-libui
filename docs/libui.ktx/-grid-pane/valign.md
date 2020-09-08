@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [GridPane](index.md) / [valign](./valign.md)
+[libui.ktx](../README.md) / [GridPane](README.md) / [valign](valign.md)
 
 # valign
 

@@ -1,4 +1,4 @@
-[libui](index.md) / [uiModifierSuper](./ui-modifier-super.md)
+[libui](README.md) / [uiModifierSuper](ui-modifier-super.md)
 
 # uiModifierSuper
 

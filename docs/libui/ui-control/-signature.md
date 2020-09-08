@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiControl](index.md) / [Signature](./-signature.md)
+[libui](../README.md) / [uiControl](README.md) / [Signature](-signature.md)
 
 # Signature
 

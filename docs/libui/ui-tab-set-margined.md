@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTabSetMargined](./ui-tab-set-margined.md)
+[libui](README.md) / [uiTabSetMargined](ui-tab-set-margined.md)
 
 # uiTabSetMargined
 

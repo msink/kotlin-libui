@@ -1,4 +1,4 @@
-[libui](index.md) / [uiNewPasswordEntry](./ui-new-password-entry.md)
+[libui](README.md) / [uiNewPasswordEntry](ui-new-password-entry.md)
 
 # uiNewPasswordEntry
 

@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiAreaMouseEvent](index.md) / [Count](./-count.md)
+[libui](../README.md) / [uiAreaMouseEvent](README.md) / [Count](-count.md)
 
 # Count
 

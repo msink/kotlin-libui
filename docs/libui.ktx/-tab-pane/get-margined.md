@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [TabPane](index.md) / [getMargined](./get-margined.md)
+[libui.ktx](../README.md) / [TabPane](README.md) / [getMargined](get-margined.md)
 
 # getMargined
 

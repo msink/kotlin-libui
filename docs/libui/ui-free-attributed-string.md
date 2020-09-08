@@ -1,4 +1,4 @@
-[libui](index.md) / [uiFreeAttributedString](./ui-free-attributed-string.md)
+[libui](README.md) / [uiFreeAttributedString](ui-free-attributed-string.md)
 
 # uiFreeAttributedString
 

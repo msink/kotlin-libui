@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAttributeSize](./ui-attribute-size.md)
+[libui](README.md) / [uiAttributeSize](ui-attribute-size.md)
 
 # uiAttributeSize
 

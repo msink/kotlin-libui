@@ -1,4 +1,4 @@
-[libui](index.md) / [uiExtKeyF8](./ui-ext-key-f8.md)
+[libui](README.md) / [uiExtKeyF8](ui-ext-key-f8.md)
 
 # uiExtKeyF8
 

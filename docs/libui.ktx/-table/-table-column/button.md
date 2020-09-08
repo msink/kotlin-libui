@@ -1,4 +1,4 @@
-[libui.ktx](../../index.md) / [Table](../index.md) / [TableColumn](index.md) / [button](./button.md)
+[libui.ktx](../../README.md) / [Table](../README.md) / [TableColumn](README.md) / [button](button.md)
 
 # button
 

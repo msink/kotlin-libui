@@ -1,4 +1,4 @@
-[libui.ktx.draw](../index.md) / [Size](index.md) / [width](./width.md)
+[libui.ktx.draw](../README.md) / [Size](README.md) / [width](width.md)
 
 # width
 

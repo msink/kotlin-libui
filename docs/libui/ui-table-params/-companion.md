@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiTableParams](index.md) / [Companion](./-companion.md)
+[libui](../README.md) / [uiTableParams](README.md) / [Companion](-companion.md)
 
 # Companion
 

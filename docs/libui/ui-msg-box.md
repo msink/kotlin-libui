@@ -1,4 +1,4 @@
-[libui](index.md) / [uiMsgBox](./ui-msg-box.md)
+[libui](README.md) / [uiMsgBox](ui-msg-box.md)
 
 # uiMsgBox
 

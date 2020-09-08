@@ -1,8 +1,8 @@
-[libui.ktx](index.md) / [searchfield](./searchfield.md)
+[libui.ktx](README.md) / [searchfield](searchfield.md)
 
 # searchfield
 
-`inline fun `[`Container`](-container/index.md)`.searchfield(readonly: Boolean = false, init: `[`SearchField`](-search-field/index.md)`.() -> Unit = {}): `[`SearchField`](-search-field/index.md)
+`inline fun `[`Container`](-container/README.md)`.searchfield(readonly: Boolean = false, init: `[`SearchField`](-search-field/README.md)`.() -> Unit = {}): `[`SearchField`](-search-field/README.md)
 
 DSL builder for a text entry widget to search text.
 

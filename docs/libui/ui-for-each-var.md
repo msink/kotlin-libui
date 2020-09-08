@@ -1,4 +1,4 @@
-[libui](index.md) / [uiForEachVar](./ui-for-each-var.md)
+[libui](README.md) / [uiForEachVar](ui-for-each-var.md)
 
 # uiForEachVar
 

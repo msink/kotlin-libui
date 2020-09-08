@@ -1,4 +1,4 @@
-[libui](index.md) / [uiEditableComboboxText](./ui-editable-combobox-text.md)
+[libui](README.md) / [uiEditableComboboxText](ui-editable-combobox-text.md)
 
 # uiEditableComboboxText
 

@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [GridPane](index.md) / [vexpand](./vexpand.md)
+[libui.ktx](../README.md) / [GridPane](README.md) / [vexpand](vexpand.md)
 
 # vexpand
 

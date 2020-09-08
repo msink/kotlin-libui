@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTabNumPages](./ui-tab-num-pages.md)
+[libui](README.md) / [uiTabNumPages](ui-tab-num-pages.md)
 
 # uiTabNumPages
 

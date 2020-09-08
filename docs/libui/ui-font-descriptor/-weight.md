@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiFontDescriptor](index.md) / [Weight](./-weight.md)
+[libui](../README.md) / [uiFontDescriptor](README.md) / [Weight](-weight.md)
 
 # Weight
 

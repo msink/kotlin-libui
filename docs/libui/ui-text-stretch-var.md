@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTextStretchVar](./ui-text-stretch-var.md)
+[libui](README.md) / [uiTextStretchVar](ui-text-stretch-var.md)
 
 # uiTextStretchVar
 

@@ -1,4 +1,4 @@
-[libui](index.md) / [uiWindowOnContentSizeChanged](./ui-window-on-content-size-changed.md)
+[libui](README.md) / [uiWindowOnContentSizeChanged](ui-window-on-content-size-changed.md)
 
 # uiWindowOnContentSizeChanged
 

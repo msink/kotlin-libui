@@ -1,4 +1,4 @@
-[libui](index.md) / [uiProgressBarSetValue](./ui-progress-bar-set-value.md)
+[libui](README.md) / [uiProgressBarSetValue](ui-progress-bar-set-value.md)
 
 # uiProgressBarSetValue
 

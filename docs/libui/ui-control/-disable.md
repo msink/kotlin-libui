@@ -1,5 +1,5 @@
-[libui](../index.md) / [uiControl](index.md) / [Disable](./-disable.md)
+[libui](../README.md) / [uiControl](README.md) / [Disable](-disable.md)
 
 # Disable
 
-`var Disable: CPointer<CFunction<(CPointer<`[`uiControl`](index.md)`>?) -> Unit>>?`
+`var Disable: CPointer<CFunction<(CPointer<`[`uiControl`](README.md)`>?) -> Unit>>?`

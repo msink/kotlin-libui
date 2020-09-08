@@ -1,4 +1,4 @@
-[libui.ktx](index.md) / [MsgBox](./-msg-box.md)
+[libui.ktx](README.md) / [MsgBox](-msg-box.md)
 
 # MsgBox
 

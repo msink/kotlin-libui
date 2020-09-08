@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAttributeTypeVar](./ui-attribute-type-var.md)
+[libui](README.md) / [uiAttributeTypeVar](ui-attribute-type-var.md)
 
 # uiAttributeTypeVar
 

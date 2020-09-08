@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDrawFillMode](./ui-draw-fill-mode.md)
+[libui](README.md) / [uiDrawFillMode](ui-draw-fill-mode.md)
 
 # uiDrawFillMode
 

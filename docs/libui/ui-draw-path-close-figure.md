@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDrawPathCloseFigure](./ui-draw-path-close-figure.md)
+[libui](README.md) / [uiDrawPathCloseFigure](ui-draw-path-close-figure.md)
 
 # uiDrawPathCloseFigure
 

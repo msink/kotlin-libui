@@ -1,4 +1,4 @@
-[libui.ktx](index.md) / [random](./random.md)
+[libui.ktx](README.md) / [random](random.md)
 
 # random
 

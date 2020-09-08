@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTableAppendButtonColumn](./ui-table-append-button-column.md)
+[libui](README.md) / [uiTableAppendButtonColumn](ui-table-append-button-column.md)
 
 # uiTableAppendButtonColumn
 

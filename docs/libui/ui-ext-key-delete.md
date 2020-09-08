@@ -1,4 +1,4 @@
-[libui](index.md) / [uiExtKeyDelete](./ui-ext-key-delete.md)
+[libui](README.md) / [uiExtKeyDelete](ui-ext-key-delete.md)
 
 # uiExtKeyDelete
 

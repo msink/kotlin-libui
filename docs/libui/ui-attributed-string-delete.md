@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAttributedStringDelete](./ui-attributed-string-delete.md)
+[libui](README.md) / [uiAttributedStringDelete](ui-attributed-string-delete.md)
 
 # uiAttributedStringDelete
 

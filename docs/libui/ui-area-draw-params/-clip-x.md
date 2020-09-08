@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiAreaDrawParams](index.md) / [ClipX](./-clip-x.md)
+[libui](../README.md) / [uiAreaDrawParams](README.md) / [ClipX](-clip-x.md)
 
 # ClipX
 

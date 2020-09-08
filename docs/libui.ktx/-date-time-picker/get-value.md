@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [DateTimePicker](index.md) / [getValue](./get-value.md)
+[libui.ktx](../README.md) / [DateTimePicker](README.md) / [getValue](get-value.md)
 
 # getValue
 

@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [Spinbox](index.md) / [value](./value.md)
+[libui.ktx](../README.md) / [Spinbox](README.md) / [value](value.md)
 
 # value
 

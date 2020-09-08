@@ -1,4 +1,4 @@
-[libui.ktx.draw](../index.md) / [ImageData](index.md) / [pixels](./pixels.md)
+[libui.ktx.draw](../README.md) / [ImageData](README.md) / [pixels](pixels.md)
 
 # pixels
 

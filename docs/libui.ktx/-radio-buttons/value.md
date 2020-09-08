@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [RadioButtons](index.md) / [value](./value.md)
+[libui.ktx](../README.md) / [RadioButtons](README.md) / [value](value.md)
 
 # value
 

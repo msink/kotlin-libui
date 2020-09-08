@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [GridPane](index.md) / [row](./row.md)
+[libui.ktx](../README.md) / [GridPane](README.md) / [row](row.md)
 
 # row
 

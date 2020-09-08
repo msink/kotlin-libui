@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiFontDescriptor](index.md) / [Companion](./-companion.md)
+[libui](../README.md) / [uiFontDescriptor](README.md) / [Companion](-companion.md)
 
 # Companion
 

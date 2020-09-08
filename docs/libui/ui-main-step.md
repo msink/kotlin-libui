@@ -1,4 +1,4 @@
-[libui](index.md) / [uiMainStep](./ui-main-step.md)
+[libui](README.md) / [uiMainStep](ui-main-step.md)
 
 # uiMainStep
 

@@ -1,5 +1,5 @@
-[libui](../index.md) / [uiControl](index.md) / [Visible](./-visible.md)
+[libui](../README.md) / [uiControl](README.md) / [Visible](-visible.md)
 
 # Visible
 
-`var Visible: CPointer<CFunction<(CPointer<`[`uiControl`](index.md)`>?) -> Int>>?`
+`var Visible: CPointer<CFunction<(CPointer<`[`uiControl`](README.md)`>?) -> Int>>?`

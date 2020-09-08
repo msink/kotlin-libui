@@ -1,4 +1,4 @@
-[libui](index.md) / [uiCheckboxOnToggled](./ui-checkbox-on-toggled.md)
+[libui](README.md) / [uiCheckboxOnToggled](ui-checkbox-on-toggled.md)
 
 # uiCheckboxOnToggled
 

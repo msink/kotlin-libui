@@ -1,4 +1,4 @@
-[libui](index.md) / [uiModifierShift](./ui-modifier-shift.md)
+[libui](README.md) / [uiModifierShift](ui-modifier-shift.md)
 
 # uiModifierShift
 

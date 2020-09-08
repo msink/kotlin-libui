@@ -1,4 +1,4 @@
-[libui](index.md) / [uiUnderlineColorGrammar](./ui-underline-color-grammar.md)
+[libui](README.md) / [uiUnderlineColorGrammar](ui-underline-color-grammar.md)
 
 # uiUnderlineColorGrammar
 

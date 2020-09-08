@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDrawLineCap](./ui-draw-line-cap.md)
+[libui](README.md) / [uiDrawLineCap](ui-draw-line-cap.md)
 
 # uiDrawLineCap
 

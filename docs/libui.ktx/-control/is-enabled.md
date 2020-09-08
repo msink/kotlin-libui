@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [Control](index.md) / [isEnabled](./is-enabled.md)
+[libui.ktx](../README.md) / [Control](README.md) / [isEnabled](is-enabled.md)
 
 # isEnabled
 

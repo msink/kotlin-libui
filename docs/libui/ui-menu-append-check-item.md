@@ -1,4 +1,4 @@
-[libui](index.md) / [uiMenuAppendCheckItem](./ui-menu-append-check-item.md)
+[libui](README.md) / [uiMenuAppendCheckItem](ui-menu-append-check-item.md)
 
 # uiMenuAppendCheckItem
 

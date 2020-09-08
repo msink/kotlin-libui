@@ -1,4 +1,4 @@
-[libui](index.md) / [uiFreeTableValue](./ui-free-table-value.md)
+[libui](README.md) / [uiFreeTableValue](ui-free-table-value.md)
 
 # uiFreeTableValue
 

@@ -1,4 +1,4 @@
-[libui](index.md) / [uiSliderSetValue](./ui-slider-set-value.md)
+[libui](README.md) / [uiSliderSetValue](ui-slider-set-value.md)
 
 # uiSliderSetValue
 

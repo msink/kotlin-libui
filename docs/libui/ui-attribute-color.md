@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAttributeColor](./ui-attribute-color.md)
+[libui](README.md) / [uiAttributeColor](ui-attribute-color.md)
 
 # uiAttributeColor
 

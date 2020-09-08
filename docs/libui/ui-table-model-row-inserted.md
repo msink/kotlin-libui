@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTableModelRowInserted](./ui-table-model-row-inserted.md)
+[libui](README.md) / [uiTableModelRowInserted](ui-table-model-row-inserted.md)
 
 # uiTableModelRowInserted
 

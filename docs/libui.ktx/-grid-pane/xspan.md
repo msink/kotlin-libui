@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [GridPane](index.md) / [xspan](./xspan.md)
+[libui.ktx](../README.md) / [GridPane](README.md) / [xspan](xspan.md)
 
 # xspan
 

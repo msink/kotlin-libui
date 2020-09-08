@@ -1,5 +1,5 @@
-[libui](../index.md) / [ktAreaHandler](index.md) / [ui](./ui.md)
+[libui](../README.md) / [ktAreaHandler](README.md) / [ui](ui.md)
 
 # ui
 
-`val ui: `[`uiAreaHandler`](../ui-area-handler/index.md)
+`val ui: `[`uiAreaHandler`](../ui-area-handler/README.md)

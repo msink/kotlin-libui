@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiFontDescriptor](index.md) / [Size](./-size.md)
+[libui](../README.md) / [uiFontDescriptor](README.md) / [Size](-size.md)
 
 # Size
 

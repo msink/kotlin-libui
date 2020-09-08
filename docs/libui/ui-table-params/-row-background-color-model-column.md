@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiTableParams](index.md) / [RowBackgroundColorModelColumn](./-row-background-color-model-column.md)
+[libui](../README.md) / [uiTableParams](README.md) / [RowBackgroundColorModelColumn](-row-background-color-model-column.md)
 
 # RowBackgroundColorModelColumn
 

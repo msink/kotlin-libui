@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAttributeWeight](./ui-attribute-weight.md)
+[libui](README.md) / [uiAttributeWeight](ui-attribute-weight.md)
 
 # uiAttributeWeight
 

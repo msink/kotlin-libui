@@ -1,4 +1,4 @@
-[libui](index.md) / [uiNewImage](./ui-new-image.md)
+[libui](README.md) / [uiNewImage](ui-new-image.md)
 
 # uiNewImage
 

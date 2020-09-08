@@ -1,4 +1,4 @@
-[libui](index.md) / [uiLabelSetText](./ui-label-set-text.md)
+[libui](README.md) / [uiLabelSetText](ui-label-set-text.md)
 
 # uiLabelSetText
 

@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTextItalicNormal](./ui-text-italic-normal.md)
+[libui](README.md) / [uiTextItalicNormal](ui-text-italic-normal.md)
 
 # uiTextItalicNormal
 

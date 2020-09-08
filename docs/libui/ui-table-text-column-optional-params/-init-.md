@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiTableTextColumnOptionalParams](index.md) / [&lt;init&gt;](./-init-.md)
+[libui](../README.md) / [uiTableTextColumnOptionalParams](README.md) / [&lt;init&gt;](-init-.md)
 
 # &lt;init&gt;
 

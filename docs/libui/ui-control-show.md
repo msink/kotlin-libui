@@ -1,5 +1,5 @@
-[libui](index.md) / [uiControlShow](./ui-control-show.md)
+[libui](README.md) / [uiControlShow](ui-control-show.md)
 
 # uiControlShow
 
-`fun uiControlShow(arg0: CValuesRef<`[`uiControl`](ui-control/index.md)`>?): Unit`
+`fun uiControlShow(arg0: CValuesRef<`[`uiControl`](ui-control/README.md)`>?): Unit`

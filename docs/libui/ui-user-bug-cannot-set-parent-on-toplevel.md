@@ -1,4 +1,4 @@
-[libui](index.md) / [uiUserBugCannotSetParentOnToplevel](./ui-user-bug-cannot-set-parent-on-toplevel.md)
+[libui](README.md) / [uiUserBugCannotSetParentOnToplevel](ui-user-bug-cannot-set-parent-on-toplevel.md)
 
 # uiUserBugCannotSetParentOnToplevel
 

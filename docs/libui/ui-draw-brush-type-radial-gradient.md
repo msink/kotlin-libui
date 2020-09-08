@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDrawBrushTypeRadialGradient](./ui-draw-brush-type-radial-gradient.md)
+[libui](README.md) / [uiDrawBrushTypeRadialGradient](ui-draw-brush-type-radial-gradient.md)
 
 # uiDrawBrushTypeRadialGradient
 

@@ -1,4 +1,4 @@
-[libui](index.md) / [uiMenuItem](./ui-menu-item.md)
+[libui](README.md) / [uiMenuItem](ui-menu-item.md)
 
 # uiMenuItem
 

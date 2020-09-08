@@ -1,4 +1,4 @@
-[libui.ktx.draw](../index.md) / [Matrix](index.md) / [skew](./skew.md)
+[libui.ktx.draw](../README.md) / [Matrix](README.md) / [skew](skew.md)
 
 # skew
 

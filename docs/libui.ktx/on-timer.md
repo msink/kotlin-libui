@@ -1,4 +1,4 @@
-[libui.ktx](index.md) / [onTimer](./on-timer.md)
+[libui.ktx](README.md) / [onTimer](on-timer.md)
 
 # onTimer
 

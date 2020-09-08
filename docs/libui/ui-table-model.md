@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTableModel](./ui-table-model.md)
+[libui](README.md) / [uiTableModel](ui-table-model.md)
 
 # uiTableModel
 

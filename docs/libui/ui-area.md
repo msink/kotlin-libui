@@ -1,4 +1,4 @@
-[libui](index.md) / [uiArea](./ui-area.md)
+[libui](README.md) / [uiArea](ui-area.md)
 
 # uiArea
 

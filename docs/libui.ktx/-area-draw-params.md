@@ -1,5 +1,5 @@
-[libui.ktx](index.md) / [AreaDrawParams](./-area-draw-params.md)
+[libui.ktx](README.md) / [AreaDrawParams](-area-draw-params.md)
 
 # AreaDrawParams
 
-`typealias AreaDrawParams = `[`uiAreaDrawParams`](../libui/ui-area-draw-params/index.md)
+`typealias AreaDrawParams = `[`uiAreaDrawParams`](../libui/ui-area-draw-params/README.md)

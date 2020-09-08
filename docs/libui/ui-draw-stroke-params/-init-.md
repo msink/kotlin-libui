@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiDrawStrokeParams](index.md) / [&lt;init&gt;](./-init-.md)
+[libui](../README.md) / [uiDrawStrokeParams](README.md) / [&lt;init&gt;](-init-.md)
 
 # &lt;init&gt;
 

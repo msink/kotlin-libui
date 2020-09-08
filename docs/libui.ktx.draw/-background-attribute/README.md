@@ -1,0 +1,19 @@
+[libui.ktx.draw](../README.md) / [BackgroundAttribute](README.md)
+
+# BackgroundAttribute
+
+`class BackgroundAttribute : `[`Attribute`](../-attribute/README.md)
+
+Changes the background color of the text it is applied to.
+
+### Constructors
+
+| Name | Summary |
+|---|---|
+| [&lt;init&gt;](-init-.md) | `BackgroundAttribute(color: `[`Color`](../-color/README.md)`)`<br>Changes the background color of the text it is applied to. |
+
+### Inherited Properties
+
+| Name | Summary |
+|---|---|
+| [type](../-attribute/type.md) | `val type: `[`uiAttributeType`](../../libui/ui-attribute-type.md)<br>Returns the type of Attribute. |

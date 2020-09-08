@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAt](./ui-at.md)
+[libui](README.md) / [uiAt](ui-at.md)
 
 # uiAt
 

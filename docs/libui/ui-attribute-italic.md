@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAttributeItalic](./ui-attribute-italic.md)
+[libui](README.md) / [uiAttributeItalic](ui-attribute-italic.md)
 
 # uiAttributeItalic
 

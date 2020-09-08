@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTableModelColumnNeverEditable](./ui-table-model-column-never-editable.md)
+[libui](README.md) / [uiTableModelColumnNeverEditable](ui-table-model-column-never-editable.md)
 
 # uiTableModelColumnNeverEditable
 

@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAtVar](./ui-at-var.md)
+[libui](README.md) / [uiAtVar](ui-at-var.md)
 
 # uiAtVar
 

@@ -1,4 +1,4 @@
-[libui](index.md) / [uiWindowOnClosing](./ui-window-on-closing.md)
+[libui](README.md) / [uiWindowOnClosing](ui-window-on-closing.md)
 
 # uiWindowOnClosing
 

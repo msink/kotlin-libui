@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTableAppendProgressBarColumn](./ui-table-append-progress-bar-column.md)
+[libui](README.md) / [uiTableAppendProgressBarColumn](ui-table-append-progress-bar-column.md)
 
 # uiTableAppendProgressBarColumn
 

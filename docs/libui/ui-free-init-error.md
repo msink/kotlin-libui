@@ -1,4 +1,4 @@
-[libui](index.md) / [uiFreeInitError](./ui-free-init-error.md)
+[libui](README.md) / [uiFreeInitError](ui-free-init-error.md)
 
 # uiFreeInitError
 

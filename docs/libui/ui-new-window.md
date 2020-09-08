@@ -1,4 +1,4 @@
-[libui](index.md) / [uiNewWindow](./ui-new-window.md)
+[libui](README.md) / [uiNewWindow](ui-new-window.md)
 
 # uiNewWindow
 

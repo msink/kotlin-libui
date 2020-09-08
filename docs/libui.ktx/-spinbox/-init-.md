@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [Spinbox](index.md) / [&lt;init&gt;](./-init-.md)
+[libui.ktx](../README.md) / [Spinbox](README.md) / [&lt;init&gt;](-init-.md)
 
 # &lt;init&gt;
 

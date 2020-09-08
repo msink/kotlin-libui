@@ -1,5 +1,5 @@
-[libui](../index.md) / [uiTableModelHandler](index.md) / [NumColumns](./-num-columns.md)
+[libui](../README.md) / [uiTableModelHandler](README.md) / [NumColumns](-num-columns.md)
 
 # NumColumns
 
-`var NumColumns: CPointer<CFunction<(CPointer<`[`uiTableModelHandler`](index.md)`>?, CPointer<`[`uiTableModel`](../ui-table-model.md)`>?) -> Int>>?`
+`var NumColumns: CPointer<CFunction<(CPointer<`[`uiTableModelHandler`](README.md)`>?, CPointer<`[`uiTableModel`](../ui-table-model.md)`>?) -> Int>>?`

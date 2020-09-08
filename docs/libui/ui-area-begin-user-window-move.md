@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAreaBeginUserWindowMove](./ui-area-begin-user-window-move.md)
+[libui](README.md) / [uiAreaBeginUserWindowMove](ui-area-begin-user-window-move.md)
 
 # uiAreaBeginUserWindowMove
 

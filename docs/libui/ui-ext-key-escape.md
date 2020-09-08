@@ -1,4 +1,4 @@
-[libui](index.md) / [uiExtKeyEscape](./ui-ext-key-escape.md)
+[libui](README.md) / [uiExtKeyEscape](ui-ext-key-escape.md)
 
 # uiExtKeyEscape
 

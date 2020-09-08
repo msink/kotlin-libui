@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTabMargined](./ui-tab-margined.md)
+[libui](README.md) / [uiTabMargined](ui-tab-margined.md)
 
 # uiTabMargined
 

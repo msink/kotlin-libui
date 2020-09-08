@@ -1,4 +1,4 @@
-[libui](index.md) / [uiRadioButtons](./ui-radio-buttons.md)
+[libui](README.md) / [uiRadioButtons](ui-radio-buttons.md)
 
 # uiRadioButtons
 

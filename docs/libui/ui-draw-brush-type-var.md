@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDrawBrushTypeVar](./ui-draw-brush-type-var.md)
+[libui](README.md) / [uiDrawBrushTypeVar](ui-draw-brush-type-var.md)
 
 # uiDrawBrushTypeVar
 

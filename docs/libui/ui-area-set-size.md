@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAreaSetSize](./ui-area-set-size.md)
+[libui](README.md) / [uiAreaSetSize](ui-area-set-size.md)
 
 # uiAreaSetSize
 

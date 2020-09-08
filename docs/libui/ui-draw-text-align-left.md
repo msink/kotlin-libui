@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDrawTextAlignLeft](./ui-draw-text-align-left.md)
+[libui](README.md) / [uiDrawTextAlignLeft](ui-draw-text-align-left.md)
 
 # uiDrawTextAlignLeft
 

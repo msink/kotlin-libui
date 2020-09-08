@@ -1,4 +1,4 @@
-[libui](../index.md) / [ktAreaHandler](index.md) / [Companion](./-companion.md)
+[libui](../README.md) / [ktAreaHandler](README.md) / [Companion](-companion.md)
 
 # Companion
 

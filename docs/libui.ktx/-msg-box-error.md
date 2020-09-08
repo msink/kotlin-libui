@@ -1,4 +1,4 @@
-[libui.ktx](index.md) / [MsgBoxError](./-msg-box-error.md)
+[libui.ktx](README.md) / [MsgBoxError](-msg-box-error.md)
 
 # MsgBoxError
 

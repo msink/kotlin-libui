@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiDrawTextLayoutParams](index.md) / [String](./-string.md)
+[libui](../README.md) / [uiDrawTextLayoutParams](README.md) / [String](-string.md)
 
 # String
 

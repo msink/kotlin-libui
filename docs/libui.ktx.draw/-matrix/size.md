@@ -1,8 +1,8 @@
-[libui.ktx.draw](../index.md) / [Matrix](index.md) / [size](./size.md)
+[libui.ktx.draw](../README.md) / [Matrix](README.md) / [size](size.md)
 
 # size
 
-`val size: `[`Size`](../-size/index.md)
+`val size: `[`Size`](../-size/README.md)
 
 Returns the transformed size.
 

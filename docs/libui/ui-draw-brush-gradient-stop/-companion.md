@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiDrawBrushGradientStop](index.md) / [Companion](./-companion.md)
+[libui](../README.md) / [uiDrawBrushGradientStop](README.md) / [Companion](-companion.md)
 
 # Companion
 

@@ -1,4 +1,4 @@
-[libui](index.md) / [uiProgressBar](./ui-progress-bar.md)
+[libui](README.md) / [uiProgressBar](ui-progress-bar.md)
 
 # uiProgressBar
 

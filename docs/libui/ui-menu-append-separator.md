@@ -1,4 +1,4 @@
-[libui](index.md) / [uiMenuAppendSeparator](./ui-menu-append-separator.md)
+[libui](README.md) / [uiMenuAppendSeparator](ui-menu-append-separator.md)
 
 # uiMenuAppendSeparator
 

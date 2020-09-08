@@ -1,4 +1,4 @@
-[libui](index.md) / [uiNewWeightAttribute](./ui-new-weight-attribute.md)
+[libui](README.md) / [uiNewWeightAttribute](ui-new-weight-attribute.md)
 
 # uiNewWeightAttribute
 

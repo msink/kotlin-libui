@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDrawLineCapRound](./ui-draw-line-cap-round.md)
+[libui](README.md) / [uiDrawLineCapRound](ui-draw-line-cap-round.md)
 
 # uiDrawLineCapRound
 

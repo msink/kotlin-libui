@@ -1,4 +1,4 @@
-[libui.ktx.draw](../index.md) / [AttributedString](index.md) / [length](./length.md)
+[libui.ktx.draw](../README.md) / [AttributedString](README.md) / [length](length.md)
 
 # length
 

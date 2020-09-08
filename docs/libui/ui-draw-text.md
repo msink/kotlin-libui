@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDrawText](./ui-draw-text.md)
+[libui](README.md) / [uiDrawText](ui-draw-text.md)
 
 # uiDrawText
 

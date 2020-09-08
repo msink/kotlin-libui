@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [ScrollingArea](index.md) / [scrollTo](./scroll-to.md)
+[libui.ktx](../README.md) / [ScrollingArea](README.md) / [scrollTo](scroll-to.md)
 
 # scrollTo
 

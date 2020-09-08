@@ -1,4 +1,4 @@
-[libui.ktx.draw](../index.md) / [Point](index.md) / [y](./y.md)
+[libui.ktx.draw](../README.md) / [Point](README.md) / [y](y.md)
 
 # y
 

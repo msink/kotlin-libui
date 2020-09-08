@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiTableTextColumnOptionalParams](index.md) / [Companion](./-companion.md)
+[libui](../README.md) / [uiTableTextColumnOptionalParams](README.md) / [Companion](-companion.md)
 
 # Companion
 

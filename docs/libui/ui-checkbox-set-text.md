@@ -1,4 +1,4 @@
-[libui](index.md) / [uiCheckboxSetText](./ui-checkbox-set-text.md)
+[libui](README.md) / [uiCheckboxSetText](ui-checkbox-set-text.md)
 
 # uiCheckboxSetText
 

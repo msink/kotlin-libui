@@ -1,4 +1,4 @@
-[libui](index.md) / [uiWindowSetMargined](./ui-window-set-margined.md)
+[libui](README.md) / [uiWindowSetMargined](ui-window-set-margined.md)
 
 # uiWindowSetMargined
 

@@ -1,4 +1,4 @@
-[libui](../index.md) / [ktTableHandler](index.md) / [Companion](./-companion.md)
+[libui](../README.md) / [ktTableHandler](README.md) / [Companion](-companion.md)
 
 # Companion
 

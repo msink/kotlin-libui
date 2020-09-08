@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [Control](index.md) / [hide](./hide.md)
+[libui.ktx](../README.md) / [Control](README.md) / [hide](hide.md)
 
 # hide
 

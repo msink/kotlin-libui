@@ -1,4 +1,4 @@
-[libui](index.md) / [uiGridSetPadded](./ui-grid-set-padded.md)
+[libui](README.md) / [uiGridSetPadded](ui-grid-set-padded.md)
 
 # uiGridSetPadded
 

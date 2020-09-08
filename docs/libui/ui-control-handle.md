@@ -1,5 +1,5 @@
-[libui](index.md) / [uiControlHandle](./ui-control-handle.md)
+[libui](README.md) / [uiControlHandle](ui-control-handle.md)
 
 # uiControlHandle
 
-`fun uiControlHandle(arg0: CValuesRef<`[`uiControl`](ui-control/index.md)`>?): uintptr_t`
+`fun uiControlHandle(arg0: CValuesRef<`[`uiControl`](ui-control/README.md)`>?): uintptr_t`

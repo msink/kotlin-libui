@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDrawFreeTextLayout](./ui-draw-free-text-layout.md)
+[libui](README.md) / [uiDrawFreeTextLayout](ui-draw-free-text-layout.md)
 
 # uiDrawFreeTextLayout
 

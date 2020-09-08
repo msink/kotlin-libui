@@ -1,4 +1,4 @@
-[libui](index.md) / [uiFreeAttribute](./ui-free-attribute.md)
+[libui](README.md) / [uiFreeAttribute](ui-free-attribute.md)
 
 # uiFreeAttribute
 

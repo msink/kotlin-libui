@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDrawTextAlignCenter](./ui-draw-text-align-center.md)
+[libui](README.md) / [uiDrawTextAlignCenter](ui-draw-text-align-center.md)
 
 # uiDrawTextAlignCenter
 

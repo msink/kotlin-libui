@@ -1,4 +1,4 @@
-[libui](index.md) / [uiMultilineEntryReadOnly](./ui-multiline-entry-read-only.md)
+[libui](README.md) / [uiMultilineEntryReadOnly](ui-multiline-entry-read-only.md)
 
 # uiMultilineEntryReadOnly
 

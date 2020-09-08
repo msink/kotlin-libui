@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [PasswordField](index.md) / [&lt;init&gt;](./-init-.md)
+[libui.ktx](../README.md) / [PasswordField](README.md) / [&lt;init&gt;](-init-.md)
 
 # &lt;init&gt;
 

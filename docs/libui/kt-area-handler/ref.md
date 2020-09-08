@@ -1,4 +1,4 @@
-[libui](../index.md) / [ktAreaHandler](index.md) / [ref](./ref.md)
+[libui](../README.md) / [ktAreaHandler](README.md) / [ref](ref.md)
 
 # ref
 

@@ -1,4 +1,4 @@
-[libui.ktx.draw](../index.md) / [ItalicAttribute](index.md) / [value](./value.md)
+[libui.ktx.draw](../README.md) / [ItalicAttribute](README.md) / [value](value.md)
 
 # value
 

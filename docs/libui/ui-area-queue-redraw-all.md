@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAreaQueueRedrawAll](./ui-area-queue-redraw-all.md)
+[libui](README.md) / [uiAreaQueueRedrawAll](ui-area-queue-redraw-all.md)
 
 # uiAreaQueueRedrawAll
 

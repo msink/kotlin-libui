@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDrawLineJoinBevel](./ui-draw-line-join-bevel.md)
+[libui](README.md) / [uiDrawLineJoinBevel](ui-draw-line-join-bevel.md)
 
 # uiDrawLineJoinBevel
 

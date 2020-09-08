@@ -1,4 +1,4 @@
-[libui.ktx.draw](../index.md) / [FamilyAttribute](index.md) / [value](./value.md)
+[libui.ktx.draw](../README.md) / [FamilyAttribute](README.md) / [value](value.md)
 
 # value
 

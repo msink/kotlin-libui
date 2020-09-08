@@ -1,4 +1,4 @@
-[libui](../index.md) / [ktAreaHandler](index.md) / [&lt;init&gt;](./-init-.md)
+[libui](../README.md) / [ktAreaHandler](README.md) / [&lt;init&gt;](-init-.md)
 
 # &lt;init&gt;
 

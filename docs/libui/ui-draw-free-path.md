@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDrawFreePath](./ui-draw-free-path.md)
+[libui](README.md) / [uiDrawFreePath](ui-draw-free-path.md)
 
 # uiDrawFreePath
 

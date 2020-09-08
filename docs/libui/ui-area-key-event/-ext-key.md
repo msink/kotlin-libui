@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiAreaKeyEvent](index.md) / [ExtKey](./-ext-key.md)
+[libui](../README.md) / [uiAreaKeyEvent](README.md) / [ExtKey](-ext-key.md)
 
 # ExtKey
 

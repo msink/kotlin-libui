@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiAreaDrawParams](index.md) / [AreaWidth](./-area-width.md)
+[libui](../README.md) / [uiAreaDrawParams](README.md) / [AreaWidth](-area-width.md)
 
 # AreaWidth
 

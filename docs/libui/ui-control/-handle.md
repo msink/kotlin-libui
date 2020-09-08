@@ -1,5 +1,5 @@
-[libui](../index.md) / [uiControl](index.md) / [Handle](./-handle.md)
+[libui](../README.md) / [uiControl](README.md) / [Handle](-handle.md)
 
 # Handle
 
-`var Handle: CPointer<CFunction<(CPointer<`[`uiControl`](index.md)`>?) -> uintptr_t>>?`
+`var Handle: CPointer<CFunction<(CPointer<`[`uiControl`](README.md)`>?) -> uintptr_t>>?`

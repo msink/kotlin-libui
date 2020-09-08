@@ -1,8 +1,8 @@
-[libui.ktx](index.md) / [textarea](./textarea.md)
+[libui.ktx](README.md) / [textarea](textarea.md)
 
 # textarea
 
-`inline fun `[`Container`](-container/index.md)`.textarea(wrap: Boolean = true, init: `[`TextArea`](-text-area/index.md)`.() -> Unit = {}): `[`TextArea`](-text-area/index.md)
+`inline fun `[`Container`](-container/README.md)`.textarea(wrap: Boolean = true, init: `[`TextArea`](-text-area/README.md)`.() -> Unit = {}): `[`TextArea`](-text-area/README.md)
 
 DSL builder for a multiline plain text editing widget.
 

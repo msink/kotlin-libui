@@ -1,4 +1,4 @@
-[libui](index.md) / [uiComboboxSetSelected](./ui-combobox-set-selected.md)
+[libui](README.md) / [uiComboboxSetSelected](ui-combobox-set-selected.md)
 
 # uiComboboxSetSelected
 

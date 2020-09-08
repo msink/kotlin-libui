@@ -1,5 +1,5 @@
-[libui.ktx](../index.md) / [Table](index.md) / [data](./data.md)
+[libui.ktx](../README.md) / [Table](README.md) / [data](data.md)
 
 # data
 
-`val data: List<`[`T`](-table-column/index.md#T)`>`
+`val data: List<`[`T`](-table-column/README.md#T)`>`

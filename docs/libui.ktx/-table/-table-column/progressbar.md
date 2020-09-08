@@ -1,4 +1,4 @@
-[libui.ktx](../../index.md) / [Table](../index.md) / [TableColumn](index.md) / [progressbar](./progressbar.md)
+[libui.ktx](../../README.md) / [Table](../README.md) / [TableColumn](README.md) / [progressbar](progressbar.md)
 
 # progressbar
 

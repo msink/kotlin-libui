@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAttributeTypeBackground](./ui-attribute-type-background.md)
+[libui](README.md) / [uiAttributeTypeBackground](ui-attribute-type-background.md)
 
 # uiAttributeTypeBackground
 

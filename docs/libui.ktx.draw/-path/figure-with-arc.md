@@ -1,4 +1,4 @@
-[libui.ktx.draw](../index.md) / [Path](index.md) / [figureWithArc](./figure-with-arc.md)
+[libui.ktx.draw](../README.md) / [Path](README.md) / [figureWithArc](figure-with-arc.md)
 
 # figureWithArc
 

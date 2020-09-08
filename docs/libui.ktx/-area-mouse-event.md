@@ -1,5 +1,5 @@
-[libui.ktx](index.md) / [AreaMouseEvent](./-area-mouse-event.md)
+[libui.ktx](README.md) / [AreaMouseEvent](-area-mouse-event.md)
 
 # AreaMouseEvent
 
-`typealias AreaMouseEvent = `[`uiAreaMouseEvent`](../libui/ui-area-mouse-event/index.md)
+`typealias AreaMouseEvent = `[`uiAreaMouseEvent`](../libui/ui-area-mouse-event/README.md)

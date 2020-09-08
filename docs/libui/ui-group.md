@@ -1,4 +1,4 @@
-[libui](index.md) / [uiGroup](./ui-group.md)
+[libui](README.md) / [uiGroup](ui-group.md)
 
 # uiGroup
 

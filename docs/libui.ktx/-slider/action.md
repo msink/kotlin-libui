@@ -1,8 +1,8 @@
-[libui.ktx](../index.md) / [Slider](index.md) / [action](./action.md)
+[libui.ktx](../README.md) / [Slider](README.md) / [action](action.md)
 
 # action
 
-`fun action(block: `[`Slider`](index.md)`.() -> Unit): Unit`
+`fun action(block: `[`Slider`](README.md)`.() -> Unit): Unit`
 
 Function to be run when the user makes a change to the Slider.
 Only one function can be registered at a time.

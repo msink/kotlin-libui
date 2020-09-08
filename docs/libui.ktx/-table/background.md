@@ -1,5 +1,5 @@
-[libui.ktx](../index.md) / [Table](index.md) / [background](./background.md)
+[libui.ktx](../README.md) / [Table](README.md) / [background](background.md)
 
 # background
 
-`fun background(get: (row: Int) -> `[`Color`](../../libui.ktx.draw/-color/index.md)`?): Unit`
+`fun background(get: (row: Int) -> `[`Color`](../../libui.ktx.draw/-color/README.md)`?): Unit`

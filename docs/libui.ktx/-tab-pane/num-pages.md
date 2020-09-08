@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [TabPane](index.md) / [numPages](./num-pages.md)
+[libui.ktx](../README.md) / [TabPane](README.md) / [numPages](num-pages.md)
 
 # numPages
 

@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiAreaKeyEvent](index.md) / [Modifiers](./-modifiers.md)
+[libui](../README.md) / [uiAreaKeyEvent](README.md) / [Modifiers](-modifiers.md)
 
 # Modifiers
 

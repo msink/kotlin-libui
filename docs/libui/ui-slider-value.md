@@ -1,4 +1,4 @@
-[libui](index.md) / [uiSliderValue](./ui-slider-value.md)
+[libui](README.md) / [uiSliderValue](ui-slider-value.md)
 
 # uiSliderValue
 

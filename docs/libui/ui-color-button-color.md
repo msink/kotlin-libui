@@ -1,4 +1,4 @@
-[libui](index.md) / [uiColorButtonColor](./ui-color-button-color.md)
+[libui](README.md) / [uiColorButtonColor](ui-color-button-color.md)
 
 # uiColorButtonColor
 

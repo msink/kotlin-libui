@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiTableModelHandler](index.md) / [&lt;init&gt;](./-init-.md)
+[libui](../README.md) / [uiTableModelHandler](README.md) / [&lt;init&gt;](-init-.md)
 
 # &lt;init&gt;
 

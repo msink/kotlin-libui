@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTableModelColumnAlwaysEditable](./ui-table-model-column-always-editable.md)
+[libui](README.md) / [uiTableModelColumnAlwaysEditable](ui-table-model-column-always-editable.md)
 
 # uiTableModelColumnAlwaysEditable
 

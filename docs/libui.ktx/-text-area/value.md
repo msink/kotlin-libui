@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [TextArea](index.md) / [value](./value.md)
+[libui.ktx](../README.md) / [TextArea](README.md) / [value](value.md)
 
 # value
 

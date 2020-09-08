@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAttributeGetType](./ui-attribute-get-type.md)
+[libui](README.md) / [uiAttributeGetType](ui-attribute-get-type.md)
 
 # uiAttributeGetType
 

@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAttributeTypeStretch](./ui-attribute-type-stretch.md)
+[libui](README.md) / [uiAttributeTypeStretch](ui-attribute-type-stretch.md)
 
 # uiAttributeTypeStretch
 

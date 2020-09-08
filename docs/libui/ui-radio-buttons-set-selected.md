@@ -1,4 +1,4 @@
-[libui](index.md) / [uiRadioButtonsSetSelected](./ui-radio-buttons-set-selected.md)
+[libui](README.md) / [uiRadioButtonsSetSelected](ui-radio-buttons-set-selected.md)
 
 # uiRadioButtonsSetSelected
 

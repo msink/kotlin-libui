@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAttributeTypeSize](./ui-attribute-type-size.md)
+[libui](README.md) / [uiAttributeTypeSize](ui-attribute-type-size.md)
 
 # uiAttributeTypeSize
 

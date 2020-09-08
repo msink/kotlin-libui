@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTabDelete](./ui-tab-delete.md)
+[libui](README.md) / [uiTabDelete](ui-tab-delete.md)
 
 # uiTabDelete
 

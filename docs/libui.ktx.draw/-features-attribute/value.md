@@ -1,8 +1,8 @@
-[libui.ktx.draw](../index.md) / [FeaturesAttribute](index.md) / [value](./value.md)
+[libui.ktx.draw](../README.md) / [FeaturesAttribute](README.md) / [value](value.md)
 
 # value
 
-`val value: `[`OpenTypeFeatures`](../-open-type-features/index.md)
+`val value: `[`OpenTypeFeatures`](../-open-type-features/README.md)
 
 Returns the OpenType features stored.
 

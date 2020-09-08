@@ -1,4 +1,4 @@
-[libui](index.md) / [uiNewLabel](./ui-new-label.md)
+[libui](README.md) / [uiNewLabel](ui-new-label.md)
 
 # uiNewLabel
 

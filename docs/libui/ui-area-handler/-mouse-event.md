@@ -1,5 +1,5 @@
-[libui](../index.md) / [uiAreaHandler](index.md) / [MouseEvent](./-mouse-event.md)
+[libui](../README.md) / [uiAreaHandler](README.md) / [MouseEvent](-mouse-event.md)
 
 # MouseEvent
 
-`var MouseEvent: CPointer<CFunction<(CPointer<`[`uiAreaHandler`](index.md)`>?, CPointer<`[`uiArea`](../ui-area.md)`>?, CPointer<`[`uiAreaMouseEvent`](../ui-area-mouse-event/index.md)`>?) -> Unit>>?`
+`var MouseEvent: CPointer<CFunction<(CPointer<`[`uiAreaHandler`](README.md)`>?, CPointer<`[`uiArea`](../ui-area.md)`>?, CPointer<`[`uiAreaMouseEvent`](../ui-area-mouse-event/README.md)`>?) -> Unit>>?`

@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDrawPathNewFigureWithArc](./ui-draw-path-new-figure-with-arc.md)
+[libui](README.md) / [uiDrawPathNewFigureWithArc](ui-draw-path-new-figure-with-arc.md)
 
 # uiDrawPathNewFigureWithArc
 

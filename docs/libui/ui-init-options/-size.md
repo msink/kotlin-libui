@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiInitOptions](index.md) / [Size](./-size.md)
+[libui](../README.md) / [uiInitOptions](README.md) / [Size](-size.md)
 
 # Size
 

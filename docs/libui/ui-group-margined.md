@@ -1,4 +1,4 @@
-[libui](index.md) / [uiGroupMargined](./ui-group-margined.md)
+[libui](README.md) / [uiGroupMargined](ui-group-margined.md)
 
 # uiGroupMargined
 

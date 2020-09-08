@@ -1,4 +1,4 @@
-[libui](../index.md) / [uiDrawBrushGradientStop](index.md) / [R](./-r.md)
+[libui](../README.md) / [uiDrawBrushGradientStop](README.md) / [R](-r.md)
 
 # R
 

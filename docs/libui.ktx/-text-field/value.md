@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [TextField](index.md) / [value](./value.md)
+[libui.ktx](../README.md) / [TextField](README.md) / [value](value.md)
 
 # value
 

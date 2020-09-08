@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDrawBrushTypeSolid](./ui-draw-brush-type-solid.md)
+[libui](README.md) / [uiDrawBrushTypeSolid](ui-draw-brush-type-solid.md)
 
 # uiDrawBrushTypeSolid
 

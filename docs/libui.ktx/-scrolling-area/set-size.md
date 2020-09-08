@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [ScrollingArea](index.md) / [setSize](./set-size.md)
+[libui.ktx](../README.md) / [ScrollingArea](README.md) / [setSize](set-size.md)
 
 # setSize
 

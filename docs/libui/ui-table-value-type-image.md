@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTableValueTypeImage](./ui-table-value-type-image.md)
+[libui](README.md) / [uiTableValueTypeImage](ui-table-value-type-image.md)
 
 # uiTableValueTypeImage
 

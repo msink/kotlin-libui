@@ -1,4 +1,4 @@
-[libui.ktx.draw](../index.md) / [OpenTypeFeatures](index.md) / [remove](./remove.md)
+[libui.ktx.draw](../README.md) / [OpenTypeFeatures](README.md) / [remove](remove.md)
 
 # remove
 

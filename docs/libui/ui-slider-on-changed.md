@@ -1,4 +1,4 @@
-[libui](index.md) / [uiSliderOnChanged](./ui-slider-on-changed.md)
+[libui](README.md) / [uiSliderOnChanged](ui-slider-on-changed.md)
 
 # uiSliderOnChanged
 

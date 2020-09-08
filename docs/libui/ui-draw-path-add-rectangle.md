@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDrawPathAddRectangle](./ui-draw-path-add-rectangle.md)
+[libui](README.md) / [uiDrawPathAddRectangle](ui-draw-path-add-rectangle.md)
 
 # uiDrawPathAddRectangle
 

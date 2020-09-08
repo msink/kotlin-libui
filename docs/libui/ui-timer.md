@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTimer](./ui-timer.md)
+[libui](README.md) / [uiTimer](ui-timer.md)
 
 # uiTimer
 

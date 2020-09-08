@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [Table](index.md) / [rowDeleted](./row-deleted.md)
+[libui.ktx](../README.md) / [Table](README.md) / [rowDeleted](row-deleted.md)
 
 # rowDeleted
 

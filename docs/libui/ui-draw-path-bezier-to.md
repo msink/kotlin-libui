@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDrawPathBezierTo](./ui-draw-path-bezier-to.md)
+[libui](README.md) / [uiDrawPathBezierTo](ui-draw-path-bezier-to.md)
 
 # uiDrawPathBezierTo
 

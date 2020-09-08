@@ -1,4 +1,4 @@
-[libui.ktx](../index.md) / [TextArea](index.md) / [&lt;init&gt;](./-init-.md)
+[libui.ktx](../README.md) / [TextArea](README.md) / [&lt;init&gt;](-init-.md)
 
 # &lt;init&gt;
 

@@ -1,4 +1,4 @@
-[libui](index.md) / [uiAttributeFeatures](./ui-attribute-features.md)
+[libui](README.md) / [uiAttributeFeatures](ui-attribute-features.md)
 
 # uiAttributeFeatures
 

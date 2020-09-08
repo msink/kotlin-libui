@@ -1,4 +1,4 @@
-[libui](index.md) / [uiOnShouldQuit](./ui-on-should-quit.md)
+[libui](README.md) / [uiOnShouldQuit](ui-on-should-quit.md)
 
 # uiOnShouldQuit
 

@@ -1,5 +1,5 @@
-[libui](index.md) / [uiControlParent](./ui-control-parent.md)
+[libui](README.md) / [uiControlParent](ui-control-parent.md)
 
 # uiControlParent
 
-`fun uiControlParent(arg0: CValuesRef<`[`uiControl`](ui-control/index.md)`>?): CPointer<`[`uiControl`](ui-control/index.md)`>?`
+`fun uiControlParent(arg0: CValuesRef<`[`uiControl`](ui-control/README.md)`>?): CPointer<`[`uiControl`](ui-control/README.md)`>?`

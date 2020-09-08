@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTableValueInt](./ui-table-value-int.md)
+[libui](README.md) / [uiTableValueInt](ui-table-value-int.md)
 
 # uiTableValueInt
 

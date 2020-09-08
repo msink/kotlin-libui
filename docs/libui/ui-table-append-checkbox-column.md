@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTableAppendCheckboxColumn](./ui-table-append-checkbox-column.md)
+[libui](README.md) / [uiTableAppendCheckboxColumn](ui-table-append-checkbox-column.md)
 
 # uiTableAppendCheckboxColumn
 

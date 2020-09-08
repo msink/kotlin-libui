@@ -1,4 +1,4 @@
-[libui.ktx.draw](../index.md) / [ImageData](index.md) / [stride](./stride.md)
+[libui.ktx.draw](../README.md) / [ImageData](README.md) / [stride](stride.md)
 
 # stride
 

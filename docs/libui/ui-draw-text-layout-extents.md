@@ -1,4 +1,4 @@
-[libui](index.md) / [uiDrawTextLayoutExtents](./ui-draw-text-layout-extents.md)
+[libui](README.md) / [uiDrawTextLayoutExtents](ui-draw-text-layout-extents.md)
 
 # uiDrawTextLayoutExtents
 

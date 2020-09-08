@@ -1,4 +1,4 @@
-[libui](index.md) / [uiButtonSetText](./ui-button-set-text.md)
+[libui](README.md) / [uiButtonSetText](ui-button-set-text.md)
 
 # uiButtonSetText
 

@@ -1,4 +1,4 @@
-[libui](index.md) / [uiExtKeyPageDown](./ui-ext-key-page-down.md)
+[libui](README.md) / [uiExtKeyPageDown](ui-ext-key-page-down.md)
 
 # uiExtKeyPageDown
 

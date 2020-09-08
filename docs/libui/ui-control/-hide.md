@@ -1,5 +1,5 @@
-[libui](../index.md) / [uiControl](index.md) / [Hide](./-hide.md)
+[libui](../README.md) / [uiControl](README.md) / [Hide](-hide.md)
 
 # Hide
 
-`var Hide: CPointer<CFunction<(CPointer<`[`uiControl`](index.md)`>?) -> Unit>>?`
+`var Hide: CPointer<CFunction<(CPointer<`[`uiControl`](README.md)`>?) -> Unit>>?`

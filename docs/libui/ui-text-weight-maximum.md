@@ -1,4 +1,4 @@
-[libui](index.md) / [uiTextWeightMaximum](./ui-text-weight-maximum.md)
+[libui](README.md) / [uiTextWeightMaximum](ui-text-weight-maximum.md)
 
 # uiTextWeightMaximum
 
