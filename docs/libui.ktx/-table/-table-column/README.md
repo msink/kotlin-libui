@@ -8,7 +8,7 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `TableColumn()` |
+| [TableColumn](-table-column.md) | `TableColumn()` |
 
 ### Functions
 

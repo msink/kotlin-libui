@@ -10,7 +10,7 @@ Represents a set of OpenType feature tag-value pairs, for applying OpenType feat
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `OpenTypeFeatures(copy: CPointer<`[`uiOpenTypeFeatures`](../../libui/ui-open-type-features.md)`>? = null)`<br>Represents a set of OpenType feature tag-value pairs, for applying OpenType features to text. |
+| [OpenTypeFeatures](-open-type-features.md) | `OpenTypeFeatures(copy: CPointer<`[`uiOpenTypeFeatures`](../../libui/ui-open-type-features.md)`>? = null)`<br>Represents a set of OpenType feature tag-value pairs, for applying OpenType features to text. |
 
 ### Inherited Properties
 

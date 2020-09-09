@@ -14,7 +14,7 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `uiDrawBrushGradientStop(rawPtr: NativePtr)` |
+| [uiDrawBrushGradientStop](ui-draw-brush-gradient-stop.md) | `uiDrawBrushGradientStop(rawPtr: NativePtr)` |
 
 ### Properties
 

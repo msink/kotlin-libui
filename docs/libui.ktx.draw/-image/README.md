@@ -8,7 +8,7 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Image(width: Double, height: Double)` |
+| [Image](-image.md) | `Image(width: Double, height: Double)` |
 
 ### Inherited Properties
 

@@ -10,7 +10,7 @@ Wrapper class for [uiEntry](../../libui/ui-entry.md) - a simple single line text
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `TextField()` |
+| [TextField](-text-field.md) | `TextField()` |
 
 ### Properties
 

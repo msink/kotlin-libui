@@ -14,7 +14,7 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `uiAreaKeyEvent(rawPtr: NativePtr)` |
+| [uiAreaKeyEvent](ui-area-key-event.md) | `uiAreaKeyEvent(rawPtr: NativePtr)` |
 
 ### Properties
 

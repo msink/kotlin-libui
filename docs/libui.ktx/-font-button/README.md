@@ -10,7 +10,7 @@ Wrapper class for [uiFontButton](../../libui/ui-font-button.md) - a button that 
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `FontButton()`<br>Wrapper class for [uiFontButton](../../libui/ui-font-button.md) - a button that allows users to choose a font. |
+| [FontButton](-font-button.md) | `FontButton()`<br>Wrapper class for [uiFontButton](../../libui/ui-font-button.md) - a button that allows users to choose a font. |
 
 ### Properties
 

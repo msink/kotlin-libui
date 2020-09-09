@@ -14,7 +14,7 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `uiFontDescriptor(rawPtr: NativePtr)` |
+| [uiFontDescriptor](ui-font-descriptor.md) | `uiFontDescriptor(rawPtr: NativePtr)` |
 
 ### Properties
 

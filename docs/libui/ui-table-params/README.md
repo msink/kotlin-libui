@@ -14,7 +14,7 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `uiTableParams(rawPtr: NativePtr)` |
+| [uiTableParams](ui-table-params.md) | `uiTableParams(rawPtr: NativePtr)` |
 
 ### Properties
 

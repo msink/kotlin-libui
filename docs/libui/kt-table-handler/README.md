@@ -14,7 +14,7 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `ktTableHandler(rawPtr: NativePtr)` |
+| [ktTableHandler](kt-table-handler.md) | `ktTableHandler(rawPtr: NativePtr)` |
 
 ### Properties
 

@@ -11,7 +11,7 @@ a caption and visually group it's children.
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Group(title: String)`<br>Wrapper class for [uiGroup](../../libui/ui-group.md) - a container for a single widget that provide a caption and visually group it's children. |
+| [Group](-group.md) | `Group(title: String)`<br>Wrapper class for [uiGroup](../../libui/ui-group.md) - a container for a single widget that provide a caption and visually group it's children. |
 
 ### Properties
 

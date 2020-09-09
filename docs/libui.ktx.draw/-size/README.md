@@ -8,7 +8,7 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Size(width: Double, height: Double)` |
+| [Size](-size.md) | `Size(width: Double, height: Double)` |
 
 ### Properties
 

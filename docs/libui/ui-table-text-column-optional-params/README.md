@@ -14,7 +14,7 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `uiTableTextColumnOptionalParams(rawPtr: NativePtr)` |
+| [uiTableTextColumnOptionalParams](ui-table-text-column-optional-params.md) | `uiTableTextColumnOptionalParams(rawPtr: NativePtr)` |
 
 ### Properties
 

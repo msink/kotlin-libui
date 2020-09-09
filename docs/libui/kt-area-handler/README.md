@@ -14,7 +14,7 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `ktAreaHandler(rawPtr: NativePtr)` |
+| [ktAreaHandler](kt-area-handler.md) | `ktAreaHandler(rawPtr: NativePtr)` |
 
 ### Properties
 

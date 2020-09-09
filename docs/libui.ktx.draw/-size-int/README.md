@@ -8,7 +8,7 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `SizeInt(width: Int, height: Int)` |
+| [SizeInt](-size-int.md) | `SizeInt(width: Int, height: Int)` |
 
 ### Properties
 

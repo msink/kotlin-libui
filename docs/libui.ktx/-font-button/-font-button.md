@@ -1,0 +1,8 @@
+[libui.ktx](../README.md) / [FontButton](README.md) / [FontButton](-font-button.md)
+
+# FontButton
+
+`FontButton()`
+
+Wrapper class for [uiFontButton](../../libui/ui-font-button.md) - a button that allows users to choose a font.
+

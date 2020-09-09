@@ -14,7 +14,7 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `uiDrawMatrix(rawPtr: NativePtr)` |
+| [uiDrawMatrix](ui-draw-matrix.md) | `uiDrawMatrix(rawPtr: NativePtr)` |
 
 ### Properties
 

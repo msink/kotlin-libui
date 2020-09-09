@@ -14,7 +14,7 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `uiControl(rawPtr: NativePtr)` |
+| [uiControl](ui-control.md) | `uiControl(rawPtr: NativePtr)` |
 
 ### Properties
 

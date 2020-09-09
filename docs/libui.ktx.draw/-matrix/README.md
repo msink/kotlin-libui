@@ -10,7 +10,7 @@ Defines a transformation (e.g. rotation, translation)
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Matrix()`<br>Defines a transformation (e.g. rotation, translation) |
+| [Matrix](-matrix.md) | `Matrix()`<br>Defines a transformation (e.g. rotation, translation) |
 
 ### Properties
 

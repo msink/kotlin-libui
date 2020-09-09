@@ -8,7 +8,7 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Color(rgb: Int, alpha: Double = 1.0)`<br>`Color(r: Double, g: Double, b: Double, a: Double = 1.0)` |
+| [Color](-color.md) | `Color(rgb: Int, alpha: Double = 1.0)`<br>`Color(r: Double, g: Double, b: Double, a: Double = 1.0)` |
 
 ### Properties
 

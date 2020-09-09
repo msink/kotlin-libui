@@ -8,7 +8,7 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Point(x: Double, y: Double)` |
+| [Point](-point.md) | `Point(x: Double, y: Double)` |
 
 ### Properties
 

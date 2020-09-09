@@ -16,7 +16,7 @@ Wrapper class for [uiTableModel](../../libui/ui-table-model.md)
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Table(data: List<`[`T`](-table-column/README.md#T)`>, handler: CPointer<`[`ktTableHandler`](../../libui/kt-table-handler/README.md)`> = nativeHeap.alloc<ktTableHandler>().ptr)`<br>Wrapper class for [uiTableModel](../../libui/ui-table-model.md) |
+| [Table](-table.md) | `Table(data: List<`[`T`](-table-column/README.md#T)`>, handler: CPointer<`[`ktTableHandler`](../../libui/kt-table-handler/README.md)`> = nativeHeap.alloc<ktTableHandler>().ptr)`<br>Wrapper class for [uiTableModel](../../libui/ui-table-model.md) |
 
 ### Properties
 

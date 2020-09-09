@@ -14,7 +14,7 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `uiTableModelHandler(rawPtr: NativePtr)` |
+| [uiTableModelHandler](ui-table-model-handler.md) | `uiTableModelHandler(rawPtr: NativePtr)` |
 
 ### Properties
 

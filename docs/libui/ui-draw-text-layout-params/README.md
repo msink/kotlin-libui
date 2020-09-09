@@ -14,7 +14,7 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `uiDrawTextLayoutParams(rawPtr: NativePtr)` |
+| [uiDrawTextLayoutParams](ui-draw-text-layout-params.md) | `uiDrawTextLayoutParams(rawPtr: NativePtr)` |
 
 ### Properties
 

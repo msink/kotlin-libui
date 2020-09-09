@@ -11,7 +11,7 @@ size and position of each children.
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `GridPane()`<br>Wrapper class for [uiGrid](../../libui/ui-grid.md) - a powerful container that allow to specify size and position of each children. |
+| [GridPane](-grid-pane.md) | `GridPane()`<br>Wrapper class for [uiGrid](../../libui/ui-grid.md) - a powerful container that allow to specify size and position of each children. |
 
 ### Properties
 

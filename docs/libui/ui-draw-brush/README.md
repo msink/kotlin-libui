@@ -14,7 +14,7 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `uiDrawBrush(rawPtr: NativePtr)` |
+| [uiDrawBrush](ui-draw-brush.md) | `uiDrawBrush(rawPtr: NativePtr)` |
 
 ### Properties
 

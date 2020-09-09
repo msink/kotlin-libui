@@ -10,7 +10,7 @@ Base class for all GUI controls (widgets).
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Control(alloc: CPointer<`[`T`](README.md#T)`>?)`<br>Base class for all GUI controls (widgets). |
+| [Control](-control.md) | `Control(alloc: CPointer<`[`T`](README.md#T)`>?)`<br>Base class for all GUI controls (widgets). |
 
 ### Properties
 

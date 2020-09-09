@@ -10,7 +10,7 @@ Changes the size of the text it is applied to, in typographical points.
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `SizeAttribute(size: Double)`<br>Changes the size of the text it is applied to, in typographical points. |
+| [SizeAttribute](-size-attribute.md) | `SizeAttribute(size: Double)`<br>Changes the size of the text it is applied to, in typographical points. |
 
 ### Properties
 

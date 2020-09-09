@@ -10,7 +10,7 @@ Wrapper class for [uiSlider](../../libui/ui-slider.md) - an horizontal slide to 
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Slider(min: Int, max: Int)`<br>Wrapper class for [uiSlider](../../libui/ui-slider.md) - an horizontal slide to set numerical values. |
+| [Slider](-slider.md) | `Slider(min: Int, max: Int)`<br>Wrapper class for [uiSlider](../../libui/ui-slider.md) - an horizontal slide to set numerical values. |
 
 ### Properties
 

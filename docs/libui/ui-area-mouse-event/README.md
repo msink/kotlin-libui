@@ -14,7 +14,7 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `uiAreaMouseEvent(rawPtr: NativePtr)` |
+| [uiAreaMouseEvent](ui-area-mouse-event.md) | `uiAreaMouseEvent(rawPtr: NativePtr)` |
 
 ### Properties
 

@@ -14,7 +14,7 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `uiAreaDrawParams(rawPtr: NativePtr)` |
+| [uiAreaDrawParams](ui-area-draw-params.md) | `uiAreaDrawParams(rawPtr: NativePtr)` |
 
 ### Properties
 

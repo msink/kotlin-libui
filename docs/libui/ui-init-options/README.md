@@ -14,7 +14,7 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `uiInitOptions(rawPtr: NativePtr)` |
+| [uiInitOptions](ui-init-options.md) | `uiInitOptions(rawPtr: NativePtr)` |
 
 ### Properties
 

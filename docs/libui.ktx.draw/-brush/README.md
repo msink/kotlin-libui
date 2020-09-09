@@ -10,7 +10,7 @@ Defines the color(s) to draw a path with.
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `Brush()`<br>Defines the color(s) to draw a path with. |
+| [Brush](-brush.md) | `Brush()`<br>Defines the color(s) to draw a path with. |
 
 ### Inherited Properties
 

@@ -14,7 +14,7 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `uiAreaHandler(rawPtr: NativePtr)` |
+| [uiAreaHandler](ui-area-handler.md) | `uiAreaHandler(rawPtr: NativePtr)` |
 
 ### Properties
 

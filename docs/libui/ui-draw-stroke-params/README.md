@@ -14,7 +14,7 @@
 
 | Name | Summary |
 |---|---|
-| [&lt;init&gt;](-init-.md) | `uiDrawStrokeParams(rawPtr: NativePtr)` |
+| [uiDrawStrokeParams](ui-draw-stroke-params.md) | `uiDrawStrokeParams(rawPtr: NativePtr)` |
 
 ### Properties
 
