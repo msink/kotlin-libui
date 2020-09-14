@@ -19,9 +19,9 @@ object Libui {
     const val repo = "https://github.com/msink/libui"
 }
 
-object Dokka {
+/*object Dokka {
     const val version = "0.9.17"
-}
+}*/
 
 object Download {
     const val version = "4.1.1"
