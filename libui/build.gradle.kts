@@ -24,26 +24,42 @@ group = Publish.group
 version = "$VERSION_NAME$VERSION_SUFFIX"
 
 kotlin {
+
+    val commonMain by sourceSets.getting
+
+    val nativeMain by sourceSets.creating {
+        dependsOn(commonMain)
+    }
+
     val publishModeEnabled = rootProject.hasProperty("publishMode")
     println("publishModeEnabled: $publishModeEnabled")
 
     if (publishModeEnabled || os.isWindows) {
         mingwX64("windows64")
+        val windows64Main by sourceSets.getting {
+            dependsOn(nativeMain)
+        }
         if (!isRunningInIde) {
             mingwX86("windows")
+            val windowsMain by sourceSets.getting {
+                dependsOn(nativeMain)
+            }
         }
     }
     if (publishModeEnabled || os.isLinux) {
         linuxX64("linux")
+        val linuxMain by sourceSets.getting {
+            dependsOn(nativeMain)
+        }
     }
     if (publishModeEnabled || os.isMacOsX) {
         macosX64("macosx")
+        val macosxMain by sourceSets.getting {
+            dependsOn(nativeMain)
+        }
     }
 
     targets.withType<KotlinNativeTarget> {
-        sourceSets["${targetName}Main"].apply {
-            kotlin.srcDir("src/nativeMain/kotlin")
-        }
         compilations["main"].apply {
             cinterops.create("libui") {
                 includeDirs("$buildDir/libui/${konanTarget.name}")
@@ -88,19 +104,9 @@ tasks.register<DokkaTask>("dokkaMyGfm") {
     dependencies {
         plugins("com.github.msink.tools:dokka-mygfm")
     }
-    dokkaSourceSets {
-        configureEach {
-            suppress.set(true)
-        }
-
-        register("my-native") {
-            displayName.set("native")
-            platform.set(org.jetbrains.dokka.Platform.native)
-            outputDirectory.set(rootProject.rootDir.resolve("dokka"))
-            sourceRoots.setFrom(dokkaSourceSets.flatMap { it.sourceRoots }.distinct())
-            noStdlibLink.set(true)
-            suppress.set(false)
-        }
+    dokkaSourceSets.configureEach {
+        outputDirectory.set(rootProject.rootDir.resolve("dokka"))
+        noStdlibLink.set(true)
     }
 }
 
