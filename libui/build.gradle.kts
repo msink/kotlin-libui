@@ -88,9 +88,19 @@ tasks.register<DokkaTask>("dokkaMyGfm") {
     dependencies {
         plugins("com.github.msink.tools:dokka-mygfm")
     }
-    dokkaSourceSets.configureEach {
-        outputDirectory.set(rootProject.rootDir.resolve("dokka"))
-        noStdlibLink.set(true)
+    dokkaSourceSets {
+        configureEach {
+            suppress.set(true)
+        }
+
+        register("my-native") {
+            displayName.set("native")
+            platform.set(org.jetbrains.dokka.Platform.native)
+            outputDirectory.set(rootProject.rootDir.resolve("dokka"))
+            sourceRoots.setFrom(dokkaSourceSets.flatMap { it.sourceRoots }.distinct())
+            noStdlibLink.set(true)
+            suppress.set(false)
+        }
     }
 }
 
