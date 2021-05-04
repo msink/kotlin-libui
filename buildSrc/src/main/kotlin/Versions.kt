@@ -11,7 +11,7 @@ object Publish {
 }
 
 object Kotlin {
-    const val version = "1.4.10"
+    const val version = "1.5.0"
 }
 
 object Libui {
