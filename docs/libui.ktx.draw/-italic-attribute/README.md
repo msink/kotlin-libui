@@ -18,7 +18,7 @@ Changes the italic mode of the text it is applied to.
 |---|---|
 | [value](value.md) | `val value: `[`uiTextItalic`](../../libui/ui-text-italic.md)<br>uiAttributeItalic() returns the font italic mode stored. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|

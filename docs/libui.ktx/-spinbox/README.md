@@ -18,7 +18,7 @@ Wrapper class for [uiSpinbox](../../libui/ui-spinbox.md) - an entry widget for n
 |---|---|
 | [value](value.md) | `var value: Int`<br>The current numeric value of the spinbox. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
@@ -33,7 +33,7 @@ Wrapper class for [uiSpinbox](../../libui/ui-spinbox.md) - an entry widget for n
 |---|---|
 | [action](action.md) | `fun action(block: `[`Spinbox`](README.md)`.() -> Unit): Unit`<br>Function to be run when the user makes a change to the Spinbox. Only one function can be registered at a time. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|

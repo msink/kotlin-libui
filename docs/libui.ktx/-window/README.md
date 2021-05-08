@@ -23,7 +23,7 @@ Contains one child control that occupies the entirety of the window.
 | [margined](margined.md) | `var margined: Boolean`<br>Specify if the Window content should have a margin or not. |
 | [title](title.md) | `var title: String`<br>Set or return the text to show in window title bar. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
@@ -40,7 +40,7 @@ Contains one child control that occupies the entirety of the window.
 | [onClose](on-close.md) | `fun onClose(block: `[`Window`](README.md)`.() -> Boolean): Unit`<br>Function to be run when the user clicks the Window's close button. Only one function can be registered at a time. |
 | [onResize](on-resize.md) | `fun onResize(block: `[`Window`](README.md)`.() -> Unit): Unit`<br>Function to be run when window content size change. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|
@@ -54,14 +54,14 @@ Contains one child control that occupies the entirety of the window.
 | [isVisible](../-control/is-visible.md) | `fun isVisible(): Boolean`<br>Whether the Control is visible. |
 | [show](../-control/show.md) | `fun show(): Unit`<br>Shows the Control. |
 
-### Extension Properties
+### Extension properties
 
 | Name | Summary |
 |---|---|
 | [hbox](../hbox.md) | `val `[`Container`](../-container/README.md)`.hbox: `[`HBox`](../-h-box/README.md)<br>DSL builder for a container that stack its children horizontally. |
 | [vbox](../vbox.md) | `val `[`Container`](../-container/README.md)`.vbox: `[`VBox`](../-v-box/README.md)<br>DSL builder for a container that stack its children vertically. |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|

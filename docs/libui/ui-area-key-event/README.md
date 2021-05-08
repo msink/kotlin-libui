@@ -26,7 +26,7 @@
 | [Modifiers](-modifiers.md) | `var Modifiers: `[`uiModifiers`](../ui-modifiers.md) |
 | [Up](-up.md) | `var Up: Int` |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|

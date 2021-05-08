@@ -22,7 +22,7 @@
 |---|---|
 | [Size](-size.md) | `var Size: size_t` |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|

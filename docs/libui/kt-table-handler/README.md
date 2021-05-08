@@ -23,7 +23,7 @@
 | [ref](ref.md) | `var ref: COpaquePointer?` |
 | [ui](ui.md) | `val ui: `[`uiTableModelHandler`](../ui-table-model-handler/README.md) |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|

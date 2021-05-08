@@ -18,7 +18,7 @@ Changes the color of the text it is applied to.
 |---|---|
 | [value](value.md) | `val value: `[`Color`](../-color/README.md)<br>Returns the text color stored. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|

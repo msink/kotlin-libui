@@ -24,7 +24,7 @@ Wrapper class for [uiTab](../../libui/ui-tab.md) - a container that show each ch
 |---|---|
 | [numPages](num-pages.md) | `val numPages: Int`<br>Number of pages in the TabPane. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
@@ -43,7 +43,7 @@ Wrapper class for [uiTab](../../libui/ui-tab.md) - a container that show each ch
 | [insert](insert.md) | `fun insert(page: Int, name: String, widget: `[`Control`](../-control/README.md)`<*>): Unit`<br>Adds the given page to the TabPane such that it is the nth page of the TabPane (starting at 0). |
 | [setMargined](set-margined.md) | `fun setMargined(page: Int, margined: Boolean): Unit` |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|
@@ -57,7 +57,7 @@ Wrapper class for [uiTab](../../libui/ui-tab.md) - a container that show each ch
 | [isVisible](../-control/is-visible.md) | `fun isVisible(): Boolean`<br>Whether the Control is visible. |
 | [show](../-control/show.md) | `fun show(): Unit`<br>Shows the Control. |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|

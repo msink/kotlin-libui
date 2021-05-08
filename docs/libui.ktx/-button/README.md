@@ -18,7 +18,7 @@ Wrapper class for [uiButton](../../libui/ui-button.md) - a simple button.
 |---|---|
 | [text](text.md) | `var text: String`<br>The static text of the button. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
@@ -33,7 +33,7 @@ Wrapper class for [uiButton](../../libui/ui-button.md) - a simple button.
 |---|---|
 | [action](action.md) | `fun action(block: `[`Button`](README.md)`.() -> Unit): Unit`<br>Function to be run when the user clicks the Button. Only one function can be registered at a time. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|

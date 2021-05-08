@@ -22,7 +22,7 @@
 |---|---|
 | [ColorModelColumn](-color-model-column.md) | `var ColorModelColumn: Int` |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|

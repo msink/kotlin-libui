@@ -27,7 +27,7 @@
 | [M31](-m31.md) | `var M31: Double` |
 | [M32](-m32.md) | `var M32: Double` |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|

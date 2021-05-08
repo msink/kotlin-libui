@@ -12,14 +12,14 @@ Wrapper class for [uiEntry](../../libui/ui-entry.md) - a text entry widget to se
 |---|---|
 | [SearchField](-search-field.md) | `SearchField()`<br>Wrapper class for [uiEntry](../../libui/ui-entry.md) - a text entry widget to search text. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
 | [readonly](../-text-field/readonly.md) | `var readonly: Boolean`<br>Whether the text is read-only or not. Defaults to `false`. |
 | [value](../-text-field/value.md) | `var value: String`<br>The current text of the TextField. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|

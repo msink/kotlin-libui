@@ -12,14 +12,14 @@ Container for child controls.
 |---|---|
 | [add](add.md) | `abstract fun <T : `[`Control`](../-control/README.md)`<*>> add(widget: `[`T`](add.md#T)`): `[`T`](add.md#T) |
 
-### Extension Properties
+### Extension properties
 
 | Name | Summary |
 |---|---|
 | [hbox](../hbox.md) | `val `[`Container`](README.md)`.hbox: `[`HBox`](../-h-box/README.md)<br>DSL builder for a container that stack its children horizontally. |
 | [vbox](../vbox.md) | `val `[`Container`](README.md)`.vbox: `[`VBox`](../-v-box/README.md)<br>DSL builder for a container that stack its children vertically. |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|

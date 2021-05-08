@@ -12,7 +12,7 @@ Represent a path that could be drawed on a [DrawContext](../../libui.ktx/-draw-c
 |---|---|
 | [Path](-path.md) | `Path(mode: `[`uiDrawFillMode`](../../libui/ui-draw-fill-mode.md)`)`<br>Represent a path that could be drawed on a [DrawContext](../../libui.ktx/-draw-context.md) |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
@@ -30,7 +30,7 @@ Represent a path that could be drawed on a [DrawContext](../../libui.ktx/-draw-c
 | [lineTo](line-to.md) | `fun lineTo(x: Double, y: Double): Unit`<br>Connects the last point in the subpath to the `x`, `y` coordinates with a straight line. |
 | [rectangle](rectangle.md) | `fun rectangle(x: Double, y: Double, width: Double, height: Double): Unit`<br>Creates a path for a rectangle at position (`x`, `y`) with a size that is determined by `width` and `height`. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|

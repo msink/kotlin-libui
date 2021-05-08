@@ -26,7 +26,7 @@
 | [NumRows](-num-rows.md) | `var NumRows: CPointer<CFunction<(CPointer<`[`uiTableModelHandler`](README.md)`>?, CPointer<`[`uiTableModel`](../ui-table-model.md)`>?) -> Int>>?` |
 | [SetCellValue](-set-cell-value.md) | `var SetCellValue: CPointer<CFunction<(CPointer<`[`uiTableModelHandler`](README.md)`>?, CPointer<`[`uiTableModel`](../ui-table-model.md)`>?, Int, Int, CPointer<`[`uiTableValue`](../ui-table-value.md)`>?) -> Unit>>?` |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|

@@ -24,7 +24,7 @@ Wrapper class for [uiTableModel](../../libui/ui-table-model.md)
 |---|---|
 | [data](data.md) | `val data: List<`[`T`](-table-column/README.md#T)`>` |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
@@ -40,13 +40,13 @@ Wrapper class for [uiTableModel](../../libui/ui-table-model.md)
 | [rowDeleted](row-deleted.md) | `fun rowDeleted(oldIndex: Int): Unit` |
 | [rowInserted](row-inserted.md) | `fun rowInserted(newIndex: Int): Unit` |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|
 | [dispose](../-disposable/dispose.md) | `open fun dispose(): Unit`<br>Dispose and free all allocated native resources. |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|

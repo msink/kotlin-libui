@@ -18,7 +18,7 @@ Wrapper class for [uiSlider](../../libui/ui-slider.md) - an horizontal slide to 
 |---|---|
 | [value](value.md) | `var value: Int`<br>The current numeric value of the slider. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
@@ -33,7 +33,7 @@ Wrapper class for [uiSlider](../../libui/ui-slider.md) - an horizontal slide to 
 |---|---|
 | [action](action.md) | `fun action(block: `[`Slider`](README.md)`.() -> Unit): Unit`<br>Function to be run when the user makes a change to the Slider. Only one function can be registered at a time. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|

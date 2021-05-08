@@ -18,7 +18,7 @@ Wrapper class for [uiCombobox](../../libui/ui-combobox.md) - a drop down combo b
 |---|---|
 | [value](value.md) | `var value: Int`<br>Return or set the current selected option by index. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
@@ -34,7 +34,7 @@ Wrapper class for [uiCombobox](../../libui/ui-combobox.md) - a drop down combo b
 | [action](action.md) | `fun action(block: `[`Combobox`](README.md)`.() -> Unit): Unit`<br>Function to be run when the user makes a change to the Combobox. Only one function can be registered at a time. |
 | [item](item.md) | `fun item(text: String): Unit`<br>Adds the named entry to the end of the combobox. If it is the first entry, it is automatically selected. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|

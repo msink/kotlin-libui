@@ -28,7 +28,7 @@
 | [ClipY](-clip-y.md) | `var ClipY: Double` |
 | [Context](-context.md) | `var Context: CPointer<`[`uiDrawContext`](../ui-draw-context.md)`>?` |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|

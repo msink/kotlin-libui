@@ -18,7 +18,7 @@ Wrapper class for [uiColorButton](../../libui/ui-color-button.md) - a button tha
 |---|---|
 | [value](value.md) | `var value: `[`Color`](../../libui.ktx.draw/-color/README.md)<br>Return or set the currently selected color |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
@@ -33,7 +33,7 @@ Wrapper class for [uiColorButton](../../libui/ui-color-button.md) - a button tha
 |---|---|
 | [action](action.md) | `fun action(block: `[`ColorButton`](README.md)`.() -> Unit): Unit`<br>Function to be run when the user makes a change to the ColorButton. Only one function can be registered at a time. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|

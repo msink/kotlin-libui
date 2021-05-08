@@ -12,13 +12,13 @@ Wrapper class for [uiDateTimePicker](../../libui/ui-date-time-picker.md) - a wid
 |---|---|
 | [DatePicker](-date-picker.md) | `DatePicker()`<br>Wrapper class for [uiDateTimePicker](../../libui/ui-date-time-picker.md) - a widget to edit date. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
 | [value](../-date-time-picker/value.md) | `var value: Long`<br>The current value in Unix epoch |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|

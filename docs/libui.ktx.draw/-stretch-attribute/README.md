@@ -18,7 +18,7 @@ Changes the stretch of the text it is applied to.
 |---|---|
 | [value](value.md) | `val value: `[`uiTextStretch`](../../libui/ui-text-stretch.md)<br>Returns the font stretch stored in [Attribute](../-attribute/README.md). |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|

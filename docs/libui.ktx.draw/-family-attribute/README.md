@@ -18,7 +18,7 @@ Changes the font family of the text it is applied to.
 |---|---|
 | [value](value.md) | `val value: String?`<br>Returns the font family stored. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|

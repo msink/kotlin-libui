@@ -26,7 +26,7 @@
 | [MouseCrossed](-mouse-crossed.md) | `var MouseCrossed: CPointer<CFunction<(CPointer<`[`uiAreaHandler`](README.md)`>?, CPointer<`[`uiArea`](../ui-area.md)`>?, Int) -> Unit>>?` |
 | [MouseEvent](-mouse-event.md) | `var MouseEvent: CPointer<CFunction<(CPointer<`[`uiAreaHandler`](README.md)`>?, CPointer<`[`uiArea`](../ui-area.md)`>?, CPointer<`[`uiAreaMouseEvent`](../ui-area-mouse-event/README.md)`>?) -> Unit>>?` |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|

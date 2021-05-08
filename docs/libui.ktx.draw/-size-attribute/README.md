@@ -18,7 +18,7 @@ Changes the size of the text it is applied to, in typographical points.
 |---|---|
 | [value](value.md) | `val value: Double`<br>Returns the font size stored. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
