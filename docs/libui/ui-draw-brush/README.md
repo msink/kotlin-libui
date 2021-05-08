@@ -33,7 +33,7 @@
 | [Y0](-y0.md) | `var Y0: Double` |
 | [Y1](-y1.md) | `var Y1: Double` |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|

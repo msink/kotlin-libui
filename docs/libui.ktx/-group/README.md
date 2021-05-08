@@ -20,7 +20,7 @@ a caption and visually group it's children.
 | [margined](margined.md) | `var margined: Boolean`<br>Specify if the group content area should have a margin or not. |
 | [title](title.md) | `var title: String`<br>Specify the caption of the group. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
@@ -35,7 +35,7 @@ a caption and visually group it's children.
 |---|---|
 | [add](add.md) | `fun <T : `[`Control`](../-control/README.md)`<*>> add(widget: `[`T`](add.md#T)`): `[`T`](add.md#T)<br>Set the child widget of the Group. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|
@@ -49,14 +49,14 @@ a caption and visually group it's children.
 | [isVisible](../-control/is-visible.md) | `fun isVisible(): Boolean`<br>Whether the Control is visible. |
 | [show](../-control/show.md) | `fun show(): Unit`<br>Shows the Control. |
 
-### Extension Properties
+### Extension properties
 
 | Name | Summary |
 |---|---|
 | [hbox](../hbox.md) | `val `[`Container`](../-container/README.md)`.hbox: `[`HBox`](../-h-box/README.md)<br>DSL builder for a container that stack its children horizontally. |
 | [vbox](../vbox.md) | `val `[`Container`](../-container/README.md)`.vbox: `[`VBox`](../-v-box/README.md)<br>DSL builder for a container that stack its children vertically. |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|

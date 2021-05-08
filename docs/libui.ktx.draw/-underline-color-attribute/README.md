@@ -19,7 +19,7 @@ Changes the color of the underline on the text it is applied to.
 | [color](color.md) | `val color: `[`Color`](../-color/README.md)<br>Returns the underline color stored. |
 | [kind](kind.md) | `val kind: `[`uiUnderlineColor`](../../libui/ui-underline-color.md)<br>Returns the underline color kind stored. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|

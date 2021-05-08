@@ -18,7 +18,7 @@ Wrapper class for [uiFontButton](../../libui/ui-font-button.md) - a button that 
 |---|---|
 | [value](value.md) | `val value: `[`Font`](../../libui.ktx.draw/-font/README.md)<br>Returns the font currently selected in the FontButton. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
@@ -33,7 +33,7 @@ Wrapper class for [uiFontButton](../../libui/ui-font-button.md) - a button that 
 |---|---|
 | [action](action.md) | `fun action(block: `[`FontButton`](README.md)`.() -> Unit): Unit`<br>Function to be run when the font in the FontButton is changed. Only one function can be registered at a time. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|

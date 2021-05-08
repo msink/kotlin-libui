@@ -18,13 +18,13 @@ Representation of a [AttributedString](../-attributed-string/README.md) that can
 |---|---|
 | [size](size.md) | `val size: `[`Size`](../-size/README.md)<br>Returns the size of TextLayout. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
 | [disposed](../../libui.ktx/-disposable/disposed.md) | `val disposed: Boolean`<br>Returns `true` if object was disposed - in this case [dispose](../../libui.ktx/-disposable/dispose.md) will do nothing, all other operations are invalid and will `throw Error("Resource is disposed")`. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|

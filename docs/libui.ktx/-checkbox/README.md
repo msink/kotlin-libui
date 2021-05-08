@@ -19,7 +19,7 @@ Wrapper class for [uiCheckbox](../../libui/ui-checkbox.md) - a checkbox widget.
 | [label](label.md) | `var label: String`<br>The static text of the checkbox. |
 | [value](value.md) | `var value: Boolean`<br>Whether the checkbox is checked or unchecked. Defaults to `false`. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
@@ -34,7 +34,7 @@ Wrapper class for [uiCheckbox](../../libui/ui-checkbox.md) - a checkbox widget.
 |---|---|
 | [action](action.md) | `fun action(block: `[`Checkbox`](README.md)`.() -> Unit): Unit`<br>Function to be run when the user clicks the Checkbox. Only one function can be registered at a time. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|

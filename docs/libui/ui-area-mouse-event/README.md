@@ -30,7 +30,7 @@
 | [X](-x.md) | `var X: Double` |
 | [Y](-y.md) | `var Y: Double` |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|

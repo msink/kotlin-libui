@@ -19,7 +19,7 @@ Wrapper class for [uiMultilineEntry](../../libui/ui-multiline-entry.md) - a mult
 | [readonly](readonly.md) | `var readonly: Boolean`<br>Whether the text is read-only or not. Defaults to `false` |
 | [value](value.md) | `var value: String`<br>The current text in the area. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
@@ -35,7 +35,7 @@ Wrapper class for [uiMultilineEntry](../../libui/ui-multiline-entry.md) - a mult
 | [action](action.md) | `fun action(block: `[`TextArea`](README.md)`.() -> Unit): Unit`<br>Function to be run when the user makes a change to the TextArea. Only one function can be registered at a time. |
 | [append](append.md) | `fun append(text: String): Unit`<br>Adds the text to the end of the area. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|

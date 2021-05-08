@@ -28,7 +28,7 @@
 | [NumDashes](-num-dashes.md) | `var NumDashes: size_t` |
 | [Thickness](-thickness.md) | `var Thickness: Double` |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|

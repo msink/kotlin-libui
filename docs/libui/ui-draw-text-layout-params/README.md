@@ -25,7 +25,7 @@
 | [String](-string.md) | `var String: CPointer<`[`uiAttributedString`](../ui-attributed-string.md)`>?` |
 | [Width](-width.md) | `var Width: Double` |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|

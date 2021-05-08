@@ -27,7 +27,7 @@ size and position of each children.
 | [y](y.md) | `var y: Int`<br>The y-coordinate of the Control's location. |
 | [yspan](yspan.md) | `var yspan: Int`<br>The height of the Control. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
@@ -44,7 +44,7 @@ size and position of each children.
 | [insert](insert.md) | `fun insert(widget: `[`Control`](../-control/README.md)`<*>, existing: `[`Control`](../-control/README.md)`<*>, at: `[`uiAt`](../../libui/ui-at.md)`): Unit`<br>Insert the given Control after existing Control. |
 | [row](row.md) | `fun row(): Unit` |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|
@@ -58,14 +58,14 @@ size and position of each children.
 | [isVisible](../-control/is-visible.md) | `fun isVisible(): Boolean`<br>Whether the Control is visible. |
 | [show](../-control/show.md) | `fun show(): Unit`<br>Shows the Control. |
 
-### Extension Properties
+### Extension properties
 
 | Name | Summary |
 |---|---|
 | [hbox](../hbox.md) | `val `[`Container`](../-container/README.md)`.hbox: `[`HBox`](../-h-box/README.md)<br>DSL builder for a container that stack its children horizontally. |
 | [vbox](../vbox.md) | `val `[`Container`](../-container/README.md)`.vbox: `[`VBox`](../-v-box/README.md)<br>DSL builder for a container that stack its children vertically. |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|

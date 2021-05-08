@@ -19,7 +19,7 @@ otf is copied you may free it.
 |---|---|
 | [value](value.md) | `val value: `[`OpenTypeFeatures`](../-open-type-features/README.md)<br>Returns the OpenType features stored. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|

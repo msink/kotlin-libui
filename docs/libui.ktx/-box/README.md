@@ -19,7 +19,7 @@ Wrapper class for [uiBox](../../libui/ui-box.md) - a container that stack its ch
 | [padded](padded.md) | `var padded: Boolean`<br>If `true`, the container insert some space between children. |
 | [stretchy](stretchy.md) | `var stretchy: Boolean`<br>Next added child should expand to use all available size. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
@@ -35,7 +35,7 @@ Wrapper class for [uiBox](../../libui/ui-box.md) - a container that stack its ch
 | [add](add.md) | `open fun <T : `[`Control`](../-control/README.md)`<*>> add(widget: `[`T`](add.md#T)`): `[`T`](add.md#T)<br>Adds the given widget to the end of the Box. |
 | [delete](delete.md) | `fun delete(index: Int): Unit`<br>Deletes the nth control of the Box. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|
@@ -49,14 +49,14 @@ Wrapper class for [uiBox](../../libui/ui-box.md) - a container that stack its ch
 | [isVisible](../-control/is-visible.md) | `fun isVisible(): Boolean`<br>Whether the Control is visible. |
 | [show](../-control/show.md) | `fun show(): Unit`<br>Shows the Control. |
 
-### Extension Properties
+### Extension properties
 
 | Name | Summary |
 |---|---|
 | [hbox](../hbox.md) | `val `[`Container`](../-container/README.md)`.hbox: `[`HBox`](../-h-box/README.md)<br>DSL builder for a container that stack its children horizontally. |
 | [vbox](../vbox.md) | `val `[`Container`](../-container/README.md)`.vbox: `[`VBox`](../-v-box/README.md)<br>DSL builder for a container that stack its children vertically. |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|

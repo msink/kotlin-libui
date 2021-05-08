@@ -18,7 +18,7 @@ Wrapper class for [uiProgressBar](../../libui/ui-progress-bar.md) - a progress b
 |---|---|
 | [value](value.md) | `var value: Int`<br>The current position of the progress bar. Could be set to -1 to create an indeterminate progress bar. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
@@ -27,7 +27,7 @@ Wrapper class for [uiProgressBar](../../libui/ui-progress-bar.md) - a progress b
 | [toplevel](../-control/toplevel.md) | `val toplevel: Boolean`<br>Returns whether the control is a top level one or not. |
 | [visible](../-control/visible.md) | `var visible: Boolean`<br>Whether the Control should be visible or hidden. Defaults to `true`. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|

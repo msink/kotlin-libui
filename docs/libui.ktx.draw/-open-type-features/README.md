@@ -12,7 +12,7 @@ Represents a set of OpenType feature tag-value pairs, for applying OpenType feat
 |---|---|
 | [OpenTypeFeatures](-open-type-features.md) | `OpenTypeFeatures(copy: CPointer<`[`uiOpenTypeFeatures`](../../libui/ui-open-type-features.md)`>? = null)`<br>Represents a set of OpenType feature tag-value pairs, for applying OpenType features to text. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
@@ -27,7 +27,7 @@ Represents a set of OpenType feature tag-value pairs, for applying OpenType feat
 | [get](get.md) | `fun get(tag: String): UInt`<br>Determines whether the given feature tag is present in OpenTypeFeatures. |
 | [remove](remove.md) | `fun remove(tag: String): Unit`<br>Removes the given feature tag and value from OpenTypeFeatures. If the tag is not present in OpenTypeFeatures, it does nothing. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|

@@ -19,7 +19,7 @@ a drop down combo box that allow selection from list or free text entry.
 |---|---|
 | [value](value.md) | `var value: String`<br>Return or set the current selected text or the text value of the selected item in the list. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
@@ -35,7 +35,7 @@ a drop down combo box that allow selection from list or free text entry.
 | [action](action.md) | `fun action(block: `[`EditableCombobox`](README.md)`.() -> Unit): Unit`<br>Function to be run when the user makes a change to the EditableCombobox. Only one function can be registered at a time. |
 | [item](item.md) | `fun item(text: String): Unit`<br>Adds the named entry to the end of the editable combobox. If it is the first entry, it is automatically selected. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|

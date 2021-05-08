@@ -26,7 +26,7 @@
 | [Pos](-pos.md) | `var Pos: Double` |
 | [R](-r.md) | `var R: Double` |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|

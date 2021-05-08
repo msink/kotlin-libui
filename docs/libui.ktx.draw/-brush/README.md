@@ -12,7 +12,7 @@ Defines the color(s) to draw a path with.
 |---|---|
 | [Brush](-brush.md) | `Brush()`<br>Defines the color(s) to draw a path with. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
@@ -26,7 +26,7 @@ Defines the color(s) to draw a path with.
 | [radial](radial.md) | `fun radial(start: `[`Point`](../-point/README.md)`, center: `[`Point`](../-point/README.md)`, radius: Double, vararg stops: Pair<Double, `[`Color`](../-color/README.md)`>): `[`Brush`](README.md)<br>Helper to quickly create radial brush |
 | [solid](solid.md) | `fun solid(color: `[`Color`](../-color/README.md)`, opacity: Double = 1.0): `[`Brush`](README.md)<br>`fun solid(rgb: Int, alpha: Double = 1.0): `[`Brush`](README.md)<br>Helper to quickly set a brush color |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|

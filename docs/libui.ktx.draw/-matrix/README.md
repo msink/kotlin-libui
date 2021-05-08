@@ -20,7 +20,7 @@ Defines a transformation (e.g. rotation, translation)
 | [point](point.md) | `val point: `[`Point`](../-point/README.md)<br>Returns the transformed point. |
 | [size](size.md) | `val size: `[`Size`](../-size/README.md)<br>Returns the transformed size. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
@@ -37,7 +37,7 @@ Defines a transformation (e.g. rotation, translation)
 | [skew](skew.md) | `fun skew(x: Double, y: Double, xamount: Double, yamount: Double): Unit`<br>Skews path by `xamount` **radians** horizontally and by `yamount` **radians** vertically around (`x`, `y`) |
 | [translate](translate.md) | `fun translate(x: Double, y: Double): Unit`<br>Moves paths over by `x` to the right and `y` down. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|

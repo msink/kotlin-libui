@@ -18,7 +18,7 @@ Wrapper class for [uiTable](../../libui/ui-table.md)
 |---|---|
 | [table](table.md) | `val table: `[`Table`](../-table/README.md)`<*>` |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
@@ -27,7 +27,7 @@ Wrapper class for [uiTable](../../libui/ui-table.md)
 | [toplevel](../-control/toplevel.md) | `val toplevel: Boolean`<br>Returns whether the control is a top level one or not. |
 | [visible](../-control/visible.md) | `var visible: Boolean`<br>Whether the Control should be visible or hidden. Defaults to `true`. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|

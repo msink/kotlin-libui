@@ -18,7 +18,7 @@ Changes the type of underline on the text it is applied to.
 |---|---|
 | [value](value.md) | `val value: `[`uiUnderline`](../../libui/ui-underline.md)<br>Returns the underline type stored in [Attribute](../-attribute/README.md). |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|

@@ -19,7 +19,7 @@ Wrapper class for [uiArea](../../libui/ui-area.md) - a canvas with horziontal an
 | [scrollTo](scroll-to.md) | `fun scrollTo(x: Double, y: Double, width: Double, height: Double): Unit`<br>Scrolls the ScrollingArea to show the given rectangle. |
 | [setSize](set-size.md) | `fun setSize(width: Int, height: Int): Unit`<br>Sets the size of a ScrollingArea to the given size, in points. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|
@@ -30,7 +30,7 @@ Wrapper class for [uiArea](../../libui/ui-area.md) - a canvas with horziontal an
 | [mouseEvent](../-draw-area/mouse-event.md) | `fun mouseEvent(block: `[`DrawArea`](../-draw-area/README.md)`.(`[`AreaMouseEvent`](../-area-mouse-event.md)`) -> Unit): Unit`<br>Funcion to be run when the mouse was moved or clicked over the area with [AreaMouseEvent](../-area-mouse-event.md) as parameter. Only one function can be registered at a time. |
 | [redraw](../-draw-area/redraw.md) | `fun redraw(): Unit`<br>Queues the entire DrawArea for redraw. The DrawArea is not redrawn before this function returns; it is redrawn when next possible. |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|

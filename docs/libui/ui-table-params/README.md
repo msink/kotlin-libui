@@ -23,7 +23,7 @@
 | [Model](-model.md) | `var Model: CPointer<`[`uiTableModel`](../ui-table-model.md)`>?` |
 | [RowBackgroundColorModelColumn](-row-background-color-model-column.md) | `var RowBackgroundColorModelColumn: Int` |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|

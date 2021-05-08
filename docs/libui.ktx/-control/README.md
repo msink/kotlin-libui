@@ -21,7 +21,7 @@ Base class for all GUI controls (widgets).
 | [toplevel](toplevel.md) | `val toplevel: Boolean`<br>Returns whether the control is a top level one or not. |
 | [visible](visible.md) | `var visible: Boolean`<br>Whether the Control should be visible or hidden. Defaults to `true`. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|

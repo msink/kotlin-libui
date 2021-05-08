@@ -18,7 +18,7 @@ Wrapper class for [uiRadioButtons](../../libui/ui-radio-buttons.md) - a widget t
 |---|---|
 | [value](value.md) | `var value: Int`<br>Return or set the current selected option by index. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
@@ -34,7 +34,7 @@ Wrapper class for [uiRadioButtons](../../libui/ui-radio-buttons.md) - a widget t
 | [action](action.md) | `fun action(block: `[`RadioButtons`](README.md)`.() -> Unit): Unit`<br>Function to be run when the user makes a change to the RadioButtons. Only one function can be registered at a time. |
 | [item](item.md) | `fun item(text: String): Unit`<br>Adds the named button to the end of the radiobuttons. If it is the first button, it is automatically selected. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|

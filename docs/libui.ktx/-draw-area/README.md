@@ -12,7 +12,7 @@ Wrapper class for [uiArea](../../libui/ui-area.md) - a canvas you can draw on.
 |---|---|
 | [DrawArea](-draw-area.md) | `DrawArea(handler: CPointer<`[`ktAreaHandler`](../../libui/kt-area-handler/README.md)`> = nativeHeap.alloc<ktAreaHandler>().ptr, alloc: CPointer<`[`uiArea`](../../libui/ui-area.md)`>? = uiNewArea(handler.pointed.ui.ptr))`<br>Wrapper class for [uiArea](../../libui/ui-area.md) - a canvas you can draw on. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
@@ -32,7 +32,7 @@ Wrapper class for [uiArea](../../libui/ui-area.md) - a canvas you can draw on.
 | [mouseEvent](mouse-event.md) | `fun mouseEvent(block: `[`DrawArea`](README.md)`.(`[`AreaMouseEvent`](../-area-mouse-event.md)`) -> Unit): Unit`<br>Funcion to be run when the mouse was moved or clicked over the area with [AreaMouseEvent](../-area-mouse-event.md) as parameter. Only one function can be registered at a time. |
 | [redraw](redraw.md) | `fun redraw(): Unit`<br>Queues the entire DrawArea for redraw. The DrawArea is not redrawn before this function returns; it is redrawn when next possible. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|
@@ -46,7 +46,7 @@ Wrapper class for [uiArea](../../libui/ui-area.md) - a canvas you can draw on.
 | [isVisible](../-control/is-visible.md) | `fun isVisible(): Boolean`<br>Whether the Control is visible. |
 | [show](../-control/show.md) | `fun show(): Unit`<br>Shows the Control. |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|

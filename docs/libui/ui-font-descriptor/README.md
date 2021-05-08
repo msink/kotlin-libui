@@ -26,7 +26,7 @@
 | [Stretch](-stretch.md) | `var Stretch: `[`uiTextStretch`](../ui-text-stretch.md) |
 | [Weight](-weight.md) | `var Weight: `[`uiTextWeight`](../ui-text-weight.md) |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|

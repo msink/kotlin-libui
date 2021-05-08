@@ -18,7 +18,7 @@ Wrapper class for [uiLabel](../../libui/ui-label.md) - a static text label.
 |---|---|
 | [text](text.md) | `var text: String`<br>The static text of the label. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
@@ -27,7 +27,7 @@ Wrapper class for [uiLabel](../../libui/ui-label.md) - a static text label.
 | [toplevel](../-control/toplevel.md) | `val toplevel: Boolean`<br>Returns whether the control is a top level one or not. |
 | [visible](../-control/visible.md) | `var visible: Boolean`<br>Whether the Control should be visible or hidden. Defaults to `true`. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|

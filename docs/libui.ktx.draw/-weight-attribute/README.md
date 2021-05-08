@@ -18,7 +18,7 @@ Changes the weight of the text it is applied to.
 |---|---|
 | [value](value.md) | `val value: `[`uiTextWeight`](../../libui/ui-text-weight.md)<br>Returns the font weight stored. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|

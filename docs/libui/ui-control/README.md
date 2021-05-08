@@ -35,7 +35,7 @@
 | [TypeSignature](-type-signature.md) | `var TypeSignature: uint32_t` |
 | [Visible](-visible.md) | `var Visible: CPointer<CFunction<(CPointer<`[`uiControl`](README.md)`>?) -> Int>>?` |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|

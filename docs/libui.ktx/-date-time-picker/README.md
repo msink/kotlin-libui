@@ -18,7 +18,7 @@ Wrapper class for [uiDateTimePicker](../../libui/ui-date-time-picker.md) - a wid
 |---|---|
 | [value](value.md) | `var value: Long`<br>The current value in Unix epoch |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
@@ -36,7 +36,7 @@ Wrapper class for [uiDateTimePicker](../../libui/ui-date-time-picker.md) - a wid
 | [setValue](set-value.md) | `fun setValue(value: CPointer<`[`tm`](../../libui/tm.md)`>): Unit`<br>Set current value from posix `struct tm` |
 | [textValue](text-value.md) | `fun textValue(format: String = defaultFormat): String`<br>The current value as String. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|

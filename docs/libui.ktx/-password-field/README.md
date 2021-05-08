@@ -13,14 +13,14 @@ useful to edit passwords or other sensible data.
 |---|---|
 | [PasswordField](-password-field.md) | `PasswordField()`<br>Wrapper class for [uiEntry](../../libui/ui-entry.md) - a text entry widget that mask the input, useful to edit passwords or other sensible data. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
 | [readonly](../-text-field/readonly.md) | `var readonly: Boolean`<br>Whether the text is read-only or not. Defaults to `false`. |
 | [value](../-text-field/value.md) | `var value: String`<br>The current text of the TextField. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|
