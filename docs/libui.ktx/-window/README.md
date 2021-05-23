@@ -37,8 +37,8 @@ Contains one child control that occupies the entirety of the window.
 | Name | Summary |
 |---|---|
 | [add](add.md) | `fun <T : `[`Control`](../-control/README.md)`<*>> add(widget: `[`T`](add.md#T)`): `[`T`](add.md#T)<br>Specify the control to show in content area. Window can contain only one control, if you need more use layouts like Box or GridPane |
-| [onClose](on-close.md) | `fun onClose(block: `[`Window`](README.md)`.() -> Boolean)`<br>Function to be run when the user clicks the Window's close button. Only one function can be registered at a time. |
-| [onResize](on-resize.md) | `fun onResize(block: `[`Window`](README.md)`.() -> Unit)`<br>Function to be run when window content size change. |
+| [onClose](on-close.md) | `fun onClose(block: Window.() -> Boolean)`<br>Function to be run when the user clicks the Window's close button. Only one function can be registered at a time. |
+| [onResize](on-resize.md) | `fun onResize(block: Window.() -> Unit)`<br>Function to be run when window content size change. |
 
 ### Inherited functions
 

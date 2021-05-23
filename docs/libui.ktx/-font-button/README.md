@@ -31,7 +31,7 @@ Wrapper class for [uiFontButton](../../libui/ui-font-button.md) - a button that 
 
 | Name | Summary |
 |---|---|
-| [action](action.md) | `fun action(block: `[`FontButton`](README.md)`.() -> Unit)`<br>Function to be run when the font in the FontButton is changed. Only one function can be registered at a time. |
+| [action](action.md) | `fun action(block: FontButton.() -> Unit)`<br>Function to be run when the font in the FontButton is changed. Only one function can be registered at a time. |
 
 ### Inherited functions
 

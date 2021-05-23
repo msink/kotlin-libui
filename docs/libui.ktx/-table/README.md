@@ -50,4 +50,4 @@ Wrapper class for [uiTableModel](../../libui/ui-table-model.md)
 
 | Name | Summary |
 |---|---|
-| [image](../../libui.ktx.draw/image.md) | `fun `[`Table`](README.md)`<*>.image(width: Int, height: Int, block: `[`Image`](../../libui.ktx.draw/-image/README.md)`.() -> Unit = {}): `[`Image`](../../libui.ktx.draw/-image/README.md) |
+| [image](../../libui.ktx.draw/image.md) | `fun Table<*>.image(width: Int, height: Int, block: `[`Image`](../../libui.ktx.draw/-image/README.md)`.() -> Unit = {}): `[`Image`](../../libui.ktx.draw/-image/README.md) |

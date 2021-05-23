@@ -31,7 +31,7 @@ Wrapper class for [uiColorButton](../../libui/ui-color-button.md) - a button tha
 
 | Name | Summary |
 |---|---|
-| [action](action.md) | `fun action(block: `[`ColorButton`](README.md)`.() -> Unit)`<br>Function to be run when the user makes a change to the ColorButton. Only one function can be registered at a time. |
+| [action](action.md) | `fun action(block: ColorButton.() -> Unit)`<br>Function to be run when the user makes a change to the ColorButton. Only one function can be registered at a time. |
 
 ### Inherited functions
 

@@ -20,20 +20,20 @@
 
 | Name | Summary |
 |---|---|
-| [Destroy](-destroy.md) | `var Destroy: CPointer<CFunction<(CPointer<`[`uiControl`](README.md)`>?) -> Unit>>?` |
-| [Disable](-disable.md) | `var Disable: CPointer<CFunction<(CPointer<`[`uiControl`](README.md)`>?) -> Unit>>?` |
-| [Enable](-enable.md) | `var Enable: CPointer<CFunction<(CPointer<`[`uiControl`](README.md)`>?) -> Unit>>?` |
-| [Enabled](-enabled.md) | `var Enabled: CPointer<CFunction<(CPointer<`[`uiControl`](README.md)`>?) -> Int>>?` |
-| [Handle](-handle.md) | `var Handle: CPointer<CFunction<(CPointer<`[`uiControl`](README.md)`>?) -> uintptr_t>>?` |
-| [Hide](-hide.md) | `var Hide: CPointer<CFunction<(CPointer<`[`uiControl`](README.md)`>?) -> Unit>>?` |
+| [Destroy](-destroy.md) | `var Destroy: CPointer<CFunction<(CPointer<uiControl>?) -> Unit>>?` |
+| [Disable](-disable.md) | `var Disable: CPointer<CFunction<(CPointer<uiControl>?) -> Unit>>?` |
+| [Enable](-enable.md) | `var Enable: CPointer<CFunction<(CPointer<uiControl>?) -> Unit>>?` |
+| [Enabled](-enabled.md) | `var Enabled: CPointer<CFunction<(CPointer<uiControl>?) -> Int>>?` |
+| [Handle](-handle.md) | `var Handle: CPointer<CFunction<(CPointer<uiControl>?) -> uintptr_t>>?` |
+| [Hide](-hide.md) | `var Hide: CPointer<CFunction<(CPointer<uiControl>?) -> Unit>>?` |
 | [OSSignature](-o-s-signature.md) | `var OSSignature: uint32_t` |
-| [Parent](-parent.md) | `var Parent: CPointer<CFunction<(CPointer<`[`uiControl`](README.md)`>?) -> CPointer<`[`uiControl`](README.md)`>?>>?` |
-| [SetParent](-set-parent.md) | `var SetParent: CPointer<CFunction<(CPointer<`[`uiControl`](README.md)`>?, CPointer<`[`uiControl`](README.md)`>?) -> Unit>>?` |
-| [Show](-show.md) | `var Show: CPointer<CFunction<(CPointer<`[`uiControl`](README.md)`>?) -> Unit>>?` |
+| [Parent](-parent.md) | `var Parent: CPointer<CFunction<(CPointer<uiControl>?) -> CPointer<uiControl>?>>?` |
+| [SetParent](-set-parent.md) | `var SetParent: CPointer<CFunction<(CPointer<uiControl>?, CPointer<uiControl>?) -> Unit>>?` |
+| [Show](-show.md) | `var Show: CPointer<CFunction<(CPointer<uiControl>?) -> Unit>>?` |
 | [Signature](-signature.md) | `var Signature: uint32_t` |
-| [Toplevel](-toplevel.md) | `var Toplevel: CPointer<CFunction<(CPointer<`[`uiControl`](README.md)`>?) -> Int>>?` |
+| [Toplevel](-toplevel.md) | `var Toplevel: CPointer<CFunction<(CPointer<uiControl>?) -> Int>>?` |
 | [TypeSignature](-type-signature.md) | `var TypeSignature: uint32_t` |
-| [Visible](-visible.md) | `var Visible: CPointer<CFunction<(CPointer<`[`uiControl`](README.md)`>?) -> Int>>?` |
+| [Visible](-visible.md) | `var Visible: CPointer<CFunction<(CPointer<uiControl>?) -> Int>>?` |
 
 ### Extension functions
 

@@ -31,7 +31,7 @@ Wrapper class for [uiRadioButtons](../../libui/ui-radio-buttons.md) - a widget t
 
 | Name | Summary |
 |---|---|
-| [action](action.md) | `fun action(block: `[`RadioButtons`](README.md)`.() -> Unit)`<br>Function to be run when the user makes a change to the RadioButtons. Only one function can be registered at a time. |
+| [action](action.md) | `fun action(block: RadioButtons.() -> Unit)`<br>Function to be run when the user makes a change to the RadioButtons. Only one function can be registered at a time. |
 | [item](item.md) | `fun item(text: String)`<br>Adds the named button to the end of the radiobuttons. If it is the first button, it is automatically selected. |
 
 ### Inherited functions
