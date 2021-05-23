@@ -5,4 +5,3 @@
 `val size: `[`Size`](../-size/README.md)
 
 Returns the transformed size.
-

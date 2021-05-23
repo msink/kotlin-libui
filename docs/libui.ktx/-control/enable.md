@@ -5,4 +5,3 @@
 `fun enable()`
 
 Enables the Control.
-

@@ -5,4 +5,3 @@
 `fun invert(): Int`
 
 Inverts the matrix.
-

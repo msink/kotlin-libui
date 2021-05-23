@@ -5,4 +5,3 @@
 `ProgressBar()`
 
 Wrapper class for [uiProgressBar](../../libui/ui-progress-bar.md) - a progress bar widget.
-

@@ -5,4 +5,3 @@
 `val point: `[`Point`](../-point/README.md)
 
 Returns the transformed point.
-

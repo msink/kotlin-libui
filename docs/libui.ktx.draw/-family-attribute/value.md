@@ -5,4 +5,3 @@
 `val value: String?`
 
 Returns the font family stored.
-

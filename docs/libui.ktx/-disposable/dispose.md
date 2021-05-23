@@ -5,4 +5,3 @@
 `open fun dispose()`
 
 Dispose and free all allocated native resources.
-

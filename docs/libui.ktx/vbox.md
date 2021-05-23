@@ -6,4 +6,3 @@
 `inline val `[`Container`](-container/README.md)`.vbox: `[`VBox`](-v-box/README.md)
 
 DSL builder for a container that stack its children vertically.
-

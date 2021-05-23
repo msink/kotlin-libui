@@ -9,4 +9,3 @@ DSL builder for an horizontal line to visually separate widgets.
 `inline fun `[`HBox`](-h-box/README.md)`.separator(init: `[`VerticalSeparator`](-vertical-separator/README.md)`.() -> Unit = {}): `[`VerticalSeparator`](-vertical-separator/README.md)
 
 DSL builder for a vertical line to visually separate widgets.
-

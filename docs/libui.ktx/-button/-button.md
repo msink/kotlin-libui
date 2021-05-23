@@ -5,4 +5,3 @@
 `Button(text: String)`
 
 Wrapper class for [uiButton](../../libui/ui-button.md) - a simple button.
-

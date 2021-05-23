@@ -5,4 +5,3 @@
 `Control(alloc: CPointer<`[`T`](README.md#T)`>?)`
 
 Base class for all GUI controls (widgets).
-

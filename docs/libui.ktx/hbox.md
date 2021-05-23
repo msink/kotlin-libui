@@ -6,4 +6,3 @@
 `inline val `[`Container`](-container/README.md)`.hbox: `[`HBox`](-h-box/README.md)
 
 DSL builder for a container that stack its children horizontally.
-

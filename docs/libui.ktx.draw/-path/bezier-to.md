@@ -6,4 +6,3 @@
 
 Adds a cubic Bézier curve to the path. It requires three points. The first two points are control
 points and the third one is the end point. The starting point is the last point in the current path.
-

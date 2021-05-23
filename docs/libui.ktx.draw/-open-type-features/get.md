@@ -5,4 +5,3 @@
 `fun get(tag: String): UInt`
 
 Determines whether the given feature tag is present in OpenTypeFeatures.
-

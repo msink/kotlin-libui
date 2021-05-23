@@ -5,4 +5,3 @@
 `fun delete(index: Int)`
 
 deletes the nth control of the form.
-

@@ -5,4 +5,3 @@
 `var enabled: Boolean`
 
 Whether the Control should be enabled or disabled. Defaults to `true`.
-

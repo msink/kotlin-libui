@@ -5,4 +5,3 @@
 `var valign: `[`uiAlign`](../../libui/ui-align.md)
 
 The vertical alignment of Control.
-

@@ -6,4 +6,3 @@
 
 DSL builder for a text entry widget that mask the input,
 useful to edit passwords or other sensible data.
-

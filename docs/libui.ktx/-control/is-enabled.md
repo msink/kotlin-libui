@@ -5,4 +5,3 @@
 `fun isEnabled(): Boolean`
 
 Whether the Control is enabled.
-

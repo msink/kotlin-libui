@@ -5,4 +5,3 @@
 `val invertible: Boolean`
 
 Returns `true` if the matrix is invertible.
-
