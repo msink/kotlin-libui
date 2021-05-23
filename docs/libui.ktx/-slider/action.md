@@ -6,4 +6,3 @@
 
 Function to be run when the user makes a change to the Slider.
 Only one function can be registered at a time.
-

@@ -5,4 +5,3 @@
 `fun disable()`
 
 Disables the Control.
-

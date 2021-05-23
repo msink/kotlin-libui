@@ -6,4 +6,3 @@
 
 Funcion to be run to indicate that a drag should be ended. Only implemented on Windows.
 Only one function can be registered at a time.
-

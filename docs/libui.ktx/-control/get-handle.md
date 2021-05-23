@@ -5,4 +5,3 @@
 `fun getHandle(): ULong`
 
 Returns the OS-level handle associated with this Control.
-

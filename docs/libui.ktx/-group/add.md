@@ -7,4 +7,3 @@
 Overrides [Container.add](../-container/add.md)
 
 Set the child widget of the Group.
-

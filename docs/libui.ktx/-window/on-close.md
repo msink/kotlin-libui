@@ -9,4 +9,3 @@ Only one function can be registered at a time.
 
 **Returns**
 true if window is disposed
-

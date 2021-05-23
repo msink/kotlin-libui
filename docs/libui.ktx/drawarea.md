@@ -6,4 +6,3 @@
 
 DSL builder for a canvas you can draw on. It also receives keyboard and mouse events,
 is DPI aware, and has several other useful features.
-

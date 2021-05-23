@@ -5,4 +5,3 @@
 `fun MsgBox(text: String, details: String = "")`
 
 Displays a modal Message Box.
-

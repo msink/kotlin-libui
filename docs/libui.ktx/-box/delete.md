@@ -5,4 +5,3 @@
 `fun delete(index: Int)`
 
 Deletes the nth control of the Box.
-

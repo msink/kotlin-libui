@@ -7,4 +7,3 @@
 Overrides [Container.add](../-container/add.md)
 
 Adds the given widget to the end of the Box.
-

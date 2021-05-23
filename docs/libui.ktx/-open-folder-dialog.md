@@ -5,4 +5,3 @@
 `fun OpenFolderDialog(): String?`
 
 Displays a modal Open Folder Dialog.
-

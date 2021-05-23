@@ -6,4 +6,3 @@
 `fun solid(rgb: Int, alpha: Double = 1.0): `[`Brush`](README.md)
 
 Helper to quickly set a brush color
-

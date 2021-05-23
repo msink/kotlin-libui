@@ -6,4 +6,3 @@
 
 Funcion to be run when the mouse entered (`left == false`) or left the area.
 Only one function can be registered at a time.
-

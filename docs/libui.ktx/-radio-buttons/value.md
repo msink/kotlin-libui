@@ -5,4 +5,3 @@
 `var value: Int`
 
 Return or set the current selected option by index.
-

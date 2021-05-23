@@ -5,4 +5,3 @@
 `val value: `[`OpenTypeFeatures`](../-open-type-features/README.md)
 
 Returns the OpenType features stored.
-

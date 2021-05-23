@@ -6,4 +6,3 @@
 
 Removes the given feature tag and value from OpenTypeFeatures. If the tag is not present
 in OpenTypeFeatures, it does nothing.
-

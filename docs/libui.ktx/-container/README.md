@@ -61,3 +61,4 @@ Container for child controls.
 | [Group](../-group/README.md) | `class Group : `[`Control`](../-control/README.md)`<`[`uiGroup`](../../libui/ui-group.md)`>, `[`Container`](README.md)<br>Wrapper class for [uiGroup](../../libui/ui-group.md) - a container for a single widget that provide a caption and visually group it's children. |
 | [Page](../-tab-pane/-page/README.md) | `inner class Page : `[`Container`](README.md)<br>adapter for DSL builders |
 | [Window](../-window/README.md) | `class Window : `[`Control`](../-control/README.md)`<`[`uiWindow`](../../libui/ui-window.md)`>, `[`Container`](README.md)<br>Represents a top-level window. Contains one child control that occupies the entirety of the window. |
+

@@ -5,4 +5,3 @@
 `val kind: `[`uiUnderlineColor`](../../libui/ui-underline-color.md)
 
 Returns the underline color kind stored.
-

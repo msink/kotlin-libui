@@ -5,4 +5,3 @@
 `fun isEnabledToUser(): Boolean`
 
 Whether the Control and all parents are enabled.
-

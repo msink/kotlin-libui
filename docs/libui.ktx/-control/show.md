@@ -5,4 +5,3 @@
 `fun show()`
 
 Shows the Control.
-

@@ -5,4 +5,3 @@
 `var value: Int`
 
 The current numeric value of the slider.
-

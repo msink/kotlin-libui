@@ -5,4 +5,3 @@
 `val string: String`
 
 Returns the textual content of AttributedString.
-

@@ -7,4 +7,3 @@
 Starts a new figure and adds an arc to the path which is centered at (`xCenter`, `yCenter`) position
 with radius `radius` starting at `startAngle` and with sweep angle `sweep` going in the given direction
 by anticlockwise (defaulting to clockwise) as specified by `negative`.
-

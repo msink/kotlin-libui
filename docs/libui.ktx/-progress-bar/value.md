@@ -6,4 +6,3 @@
 
 The current position of the progress bar.
 Could be set to -1 to create an indeterminate progress bar.
-

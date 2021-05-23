@@ -6,4 +6,3 @@
 
 Returns `true` if object was disposed - in this case [dispose](dispose.md) will do nothing,
 all other operations are invalid and will `throw Error("Resource is disposed")`.
-

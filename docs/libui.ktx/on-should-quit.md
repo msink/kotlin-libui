@@ -10,4 +10,3 @@ Only one function may be registered at a time.
 
 **Returns**
 `true` when Quit will be called.
-

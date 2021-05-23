@@ -5,4 +5,3 @@
 `var text: String`
 
 The static text of the label.
-

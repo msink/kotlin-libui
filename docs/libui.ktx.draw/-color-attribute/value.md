@@ -5,4 +5,3 @@
 `val value: `[`Color`](../-color/README.md)
 
 Returns the text color stored.
-

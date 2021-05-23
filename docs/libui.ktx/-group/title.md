@@ -5,4 +5,3 @@
 `var title: String`
 
 Specify the caption of the group.
-
