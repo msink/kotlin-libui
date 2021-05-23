@@ -20,10 +20,10 @@
 
 | Name | Summary |
 |---|---|
-| [dispose](../../libui.ktx/-disposable/dispose.md) | `open fun dispose(): Unit`<br>Dispose and free all allocated native resources. |
+| [dispose](../../libui.ktx/-disposable/dispose.md) | `open fun dispose()`<br>Dispose and free all allocated native resources. |
 
 ### Extension functions
 
 | Name | Summary |
 |---|---|
-| [bitmap](../bitmap.md) | `fun `[`Image`](README.md)`.bitmap(data: `[`ImageData`](../-image-data/README.md)`): Unit` |
+| [bitmap](../bitmap.md) | `fun `[`Image`](README.md)`.bitmap(data: `[`ImageData`](../-image-data/README.md)`)` |

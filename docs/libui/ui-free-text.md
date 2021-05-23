@@ -2,4 +2,4 @@
 
 # uiFreeText
 
-`fun uiFreeText(text: CValuesRef<ByteVar>?): Unit`
+`fun uiFreeText(text: CValuesRef<ByteVar>?)`

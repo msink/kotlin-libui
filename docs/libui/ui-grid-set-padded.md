@@ -2,4 +2,4 @@
 
 # uiGridSetPadded
 
-`fun uiGridSetPadded(g: CValuesRef<`[`uiGrid`](ui-grid.md)`>?, padded: Int): Unit`
+`fun uiGridSetPadded(g: CValuesRef<`[`uiGrid`](ui-grid.md)`>?, padded: Int)`

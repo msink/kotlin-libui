@@ -2,7 +2,7 @@
 
 # MsgBox
 
-`fun MsgBox(text: String, details: String = ""): Unit`
+`fun MsgBox(text: String, details: String = "")`
 
 Displays a modal Message Box.
 

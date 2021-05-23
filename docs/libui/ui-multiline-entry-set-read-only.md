@@ -2,4 +2,4 @@
 
 # uiMultilineEntrySetReadOnly
 
-`fun uiMultilineEntrySetReadOnly(e: CValuesRef<`[`uiMultilineEntry`](ui-multiline-entry.md)`>?, readonly: Int): Unit`
+`fun uiMultilineEntrySetReadOnly(e: CValuesRef<`[`uiMultilineEntry`](ui-multiline-entry.md)`>?, readonly: Int)`

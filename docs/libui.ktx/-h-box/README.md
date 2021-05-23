@@ -24,7 +24,7 @@ Wrapper class for [uiBox](../../libui/ui-box.md) - a container that stack its ch
 | Name | Summary |
 |---|---|
 | [add](../-box/add.md) | `open fun <T : `[`Control`](../-control/README.md)`<*>> add(widget: `[`T`](../-box/add.md#T)`): `[`T`](../-box/add.md#T)<br>Adds the given widget to the end of the Box. |
-| [delete](../-box/delete.md) | `fun delete(index: Int): Unit`<br>Deletes the nth control of the Box. |
+| [delete](../-box/delete.md) | `fun delete(index: Int)`<br>Deletes the nth control of the Box. |
 
 ### Extension properties
 

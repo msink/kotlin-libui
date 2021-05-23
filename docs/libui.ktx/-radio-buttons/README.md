@@ -31,19 +31,19 @@ Wrapper class for [uiRadioButtons](../../libui/ui-radio-buttons.md) - a widget t
 
 | Name | Summary |
 |---|---|
-| [action](action.md) | `fun action(block: `[`RadioButtons`](README.md)`.() -> Unit): Unit`<br>Function to be run when the user makes a change to the RadioButtons. Only one function can be registered at a time. |
-| [item](item.md) | `fun item(text: String): Unit`<br>Adds the named button to the end of the radiobuttons. If it is the first button, it is automatically selected. |
+| [action](action.md) | `fun action(block: `[`RadioButtons`](README.md)`.() -> Unit)`<br>Function to be run when the user makes a change to the RadioButtons. Only one function can be registered at a time. |
+| [item](item.md) | `fun item(text: String)`<br>Adds the named button to the end of the radiobuttons. If it is the first button, it is automatically selected. |
 
 ### Inherited functions
 
 | Name | Summary |
 |---|---|
-| [disable](../-control/disable.md) | `fun disable(): Unit`<br>Disables the Control. |
-| [dispose](../-control/dispose.md) | `open fun dispose(): Unit`<br>Dispose and free all allocated resources. |
-| [enable](../-control/enable.md) | `fun enable(): Unit`<br>Enables the Control. |
+| [disable](../-control/disable.md) | `fun disable()`<br>Disables the Control. |
+| [dispose](../-control/dispose.md) | `open fun dispose()`<br>Dispose and free all allocated resources. |
+| [enable](../-control/enable.md) | `fun enable()`<br>Enables the Control. |
 | [getHandle](../-control/get-handle.md) | `fun getHandle(): ULong`<br>Returns the OS-level handle associated with this Control. |
-| [hide](../-control/hide.md) | `fun hide(): Unit`<br>Hides the Control. Hidden controls do not participate in layout (that is, Box, GridPane, etc. does not reserve space for hidden controls). |
+| [hide](../-control/hide.md) | `fun hide()`<br>Hides the Control. Hidden controls do not participate in layout (that is, Box, GridPane, etc. does not reserve space for hidden controls). |
 | [isEnabled](../-control/is-enabled.md) | `fun isEnabled(): Boolean`<br>Whether the Control is enabled. |
 | [isEnabledToUser](../-control/is-enabled-to-user.md) | `fun isEnabledToUser(): Boolean`<br>Whether the Control and all parents are enabled. |
 | [isVisible](../-control/is-visible.md) | `fun isVisible(): Boolean`<br>Whether the Control is visible. |
-| [show](../-control/show.md) | `fun show(): Unit`<br>Shows the Control. |
+| [show](../-control/show.md) | `fun show()`<br>Shows the Control. |

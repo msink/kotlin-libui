@@ -2,4 +2,4 @@
 
 # uiDrawMatrixSetIdentity
 
-`fun uiDrawMatrixSetIdentity(m: CValuesRef<`[`uiDrawMatrix`](ui-draw-matrix/README.md)`>?): Unit`
+`fun uiDrawMatrixSetIdentity(m: CValuesRef<`[`uiDrawMatrix`](ui-draw-matrix/README.md)`>?)`

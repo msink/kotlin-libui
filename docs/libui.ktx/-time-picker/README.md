@@ -22,7 +22,7 @@ Wrapper class for [uiDateTimePicker](../../libui/ui-date-time-picker.md) - a wid
 
 | Name | Summary |
 |---|---|
-| [action](../-date-time-picker/action.md) | `fun action(block: `[`DateTimePicker`](../-date-time-picker/README.md)`.() -> Unit): Unit`<br>Function to be run when the user makes a change to the Picker. Only one function can be registered at a time. |
-| [getValue](../-date-time-picker/get-value.md) | `fun getValue(value: CPointer<`[`tm`](../../libui/tm.md)`>): Unit`<br>The current value as posix `struct tm` |
-| [setValue](../-date-time-picker/set-value.md) | `fun setValue(value: CPointer<`[`tm`](../../libui/tm.md)`>): Unit`<br>Set current value from posix `struct tm` |
+| [action](../-date-time-picker/action.md) | `fun action(block: `[`DateTimePicker`](../-date-time-picker/README.md)`.() -> Unit)`<br>Function to be run when the user makes a change to the Picker. Only one function can be registered at a time. |
+| [getValue](../-date-time-picker/get-value.md) | `fun getValue(value: CPointer<`[`tm`](../../libui/tm.md)`>)`<br>The current value as posix `struct tm` |
+| [setValue](../-date-time-picker/set-value.md) | `fun setValue(value: CPointer<`[`tm`](../../libui/tm.md)`>)`<br>Set current value from posix `struct tm` |
 | [textValue](../-date-time-picker/text-value.md) | `fun textValue(format: String = defaultFormat): String`<br>The current value as String. |

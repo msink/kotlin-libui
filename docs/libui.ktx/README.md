@@ -64,12 +64,12 @@
 
 | Name | Summary |
 |---|---|
-| [MsgBox](-msg-box.md) | `fun MsgBox(text: String, details: String = ""): Unit`<br>Displays a modal Message Box. |
-| [MsgBoxError](-msg-box-error.md) | `fun MsgBoxError(text: String, details: String = ""): Unit`<br>Displays a modal Error Message Box. |
+| [MsgBox](-msg-box.md) | `fun MsgBox(text: String, details: String = "")`<br>Displays a modal Message Box. |
+| [MsgBoxError](-msg-box-error.md) | `fun MsgBoxError(text: String, details: String = "")`<br>Displays a modal Error Message Box. |
 | [OpenFileDialog](-open-file-dialog.md) | `fun OpenFileDialog(): String?`<br>Displays a modal Open File Dialog. |
 | [OpenFolderDialog](-open-folder-dialog.md) | `fun OpenFolderDialog(): String?`<br>Displays a modal Open Folder Dialog. |
 | [SaveFileDialog](-save-file-dialog.md) | `fun SaveFileDialog(): String?`<br>Displays a modal Save File Dialog. |
-| [appWindow](app-window.md) | `fun appWindow(title: String, width: Int, height: Int, margined: Boolean = true, init: `[`Window`](-window/README.md)`.() -> Unit = {}): Unit`<br>Initializes package ui, runs `init` to set up the program, and executes the GUI main loop. `init` should set up the program's initial state: open the main window, create controls, and set up events. |
+| [appWindow](app-window.md) | `fun appWindow(title: String, width: Int, height: Int, margined: Boolean = true, init: `[`Window`](-window/README.md)`.() -> Unit = {})`<br>Initializes package ui, runs `init` to set up the program, and executes the GUI main loop. `init` should set up the program's initial state: open the main window, create controls, and set up events. |
 | [button](button.md) | `fun `[`Container`](-container/README.md)`.button(text: String, init: `[`Button`](-button/README.md)`.() -> Unit = {}): `[`Button`](-button/README.md)<br>DSL builder for a simple button. |
 | [checkbox](checkbox.md) | `fun `[`Container`](-container/README.md)`.checkbox(label: String, init: `[`Checkbox`](-checkbox/README.md)`.() -> Unit = {}): `[`Checkbox`](-checkbox/README.md)<br>DSL builder for a checkbox widget. |
 | [colorbutton](colorbutton.md) | `fun `[`Container`](-container/README.md)`.colorbutton(init: `[`ColorButton`](-color-button/README.md)`.() -> Unit = {}): `[`ColorButton`](-color-button/README.md)<br>DSL builder for a button that opens a color palette popup. |
@@ -84,8 +84,8 @@
 | [group](group.md) | `fun `[`Container`](-container/README.md)`.group(title: String, margined: Boolean = true, init: `[`Group`](-group/README.md)`.() -> Unit = {}): `[`Group`](-group/README.md)<br>DSL builder for a container for a single widget that provide a caption and visually group it's children. |
 | [hbox](hbox.md) | `fun `[`Container`](-container/README.md)`.hbox(padded: Boolean = true, init: `[`HBox`](-h-box/README.md)`.() -> Unit = {}): `[`HBox`](-h-box/README.md)<br>DSL builder for a container that stack its children horizontally. |
 | [label](label.md) | `fun `[`Container`](-container/README.md)`.label(text: String, init: `[`Label`](-label/README.md)`.() -> Unit = {}): `[`Label`](-label/README.md)<br>DSL builder for a static text label. |
-| [onShouldQuit](on-should-quit.md) | `fun onShouldQuit(block: () -> Boolean): Unit`<br>Function to be executed when the OS wants the program to quit or when a Quit menu item has been clicked. Only one function may be registered at a time. |
-| [onTimer](on-timer.md) | `fun onTimer(milliseconds: Int, block: () -> Boolean): Unit`<br>Function to be executed on a timer on the main thread. |
+| [onShouldQuit](on-should-quit.md) | `fun onShouldQuit(block: () -> Boolean)`<br>Function to be executed when the OS wants the program to quit or when a Quit menu item has been clicked. Only one function may be registered at a time. |
+| [onTimer](on-timer.md) | `fun onTimer(milliseconds: Int, block: () -> Boolean)`<br>Function to be executed on a timer on the main thread. |
 | [page](page.md) | `fun `[`TabPane`](-tab-pane/README.md)`.page(label: String, margined: Boolean = true, init: `[`Page`](-tab-pane/-page/README.md)`.() -> Unit = {}): `[`Page`](-tab-pane/-page/README.md) |
 | [passwordfield](passwordfield.md) | `fun `[`Container`](-container/README.md)`.passwordfield(readonly: Boolean = false, init: `[`PasswordField`](-password-field/README.md)`.() -> Unit = {}): `[`PasswordField`](-password-field/README.md)<br>DSL builder for a text entry widget that mask the input, useful to edit passwords or other sensible data. |
 | [progressbar](progressbar.md) | `fun `[`Container`](-container/README.md)`.progressbar(init: `[`ProgressBar`](-progress-bar/README.md)`.() -> Unit = {}): `[`ProgressBar`](-progress-bar/README.md)<br>DSL builder for a progress bar widget. |

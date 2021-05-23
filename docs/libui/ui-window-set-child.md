@@ -2,4 +2,4 @@
 
 # uiWindowSetChild
 
-`fun uiWindowSetChild(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, child: CValuesRef<`[`uiControl`](ui-control/README.md)`>?): Unit`
+`fun uiWindowSetChild(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, child: CValuesRef<`[`uiControl`](ui-control/README.md)`>?)`

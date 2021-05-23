@@ -2,4 +2,4 @@
 
 # uiMainSteps
 
-`fun uiMainSteps(): Unit`
+`fun uiMainSteps()`

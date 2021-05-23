@@ -2,7 +2,7 @@
 
 # onShouldQuit
 
-`fun onShouldQuit(block: () -> Boolean): Unit`
+`fun onShouldQuit(block: () -> Boolean)`
 
 Function to be executed when the OS wants the program to quit
 or when a Quit menu item has been clicked.

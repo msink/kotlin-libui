@@ -2,4 +2,4 @@
 
 # uiSpinboxSetValue
 
-`fun uiSpinboxSetValue(s: CValuesRef<`[`uiSpinbox`](ui-spinbox.md)`>?, value: Int): Unit`
+`fun uiSpinboxSetValue(s: CValuesRef<`[`uiSpinbox`](ui-spinbox.md)`>?, value: Int)`

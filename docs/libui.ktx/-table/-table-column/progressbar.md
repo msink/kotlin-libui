@@ -2,4 +2,4 @@
 
 # progressbar
 
-`fun progressbar(get: (row: Int) -> Int): Unit`
+`fun progressbar(get: (row: Int) -> Int)`

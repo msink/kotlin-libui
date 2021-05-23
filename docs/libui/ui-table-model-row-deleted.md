@@ -2,4 +2,4 @@
 
 # uiTableModelRowDeleted
 
-`fun uiTableModelRowDeleted(m: CValuesRef<`[`uiTableModel`](ui-table-model.md)`>?, oldIndex: Int): Unit`
+`fun uiTableModelRowDeleted(m: CValuesRef<`[`uiTableModel`](ui-table-model.md)`>?, oldIndex: Int)`

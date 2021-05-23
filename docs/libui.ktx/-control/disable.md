@@ -2,7 +2,7 @@
 
 # disable
 
-`fun disable(): Unit`
+`fun disable()`
 
 Disables the Control.
 

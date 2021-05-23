@@ -22,4 +22,4 @@ Describes the stroke to draw with.
 
 | Name | Summary |
 |---|---|
-| [dispose](../../libui.ktx/-disposable/dispose.md) | `open fun dispose(): Unit`<br>Dispose and free all allocated native resources. |
+| [dispose](../../libui.ktx/-disposable/dispose.md) | `open fun dispose()`<br>Dispose and free all allocated native resources. |

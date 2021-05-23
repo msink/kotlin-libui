@@ -2,4 +2,4 @@
 
 # uiQuit
 
-`fun uiQuit(): Unit`
+`fun uiQuit()`

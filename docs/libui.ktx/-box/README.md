@@ -33,21 +33,21 @@ Wrapper class for [uiBox](../../libui/ui-box.md) - a container that stack its ch
 | Name | Summary |
 |---|---|
 | [add](add.md) | `open fun <T : `[`Control`](../-control/README.md)`<*>> add(widget: `[`T`](add.md#T)`): `[`T`](add.md#T)<br>Adds the given widget to the end of the Box. |
-| [delete](delete.md) | `fun delete(index: Int): Unit`<br>Deletes the nth control of the Box. |
+| [delete](delete.md) | `fun delete(index: Int)`<br>Deletes the nth control of the Box. |
 
 ### Inherited functions
 
 | Name | Summary |
 |---|---|
-| [disable](../-control/disable.md) | `fun disable(): Unit`<br>Disables the Control. |
-| [dispose](../-control/dispose.md) | `open fun dispose(): Unit`<br>Dispose and free all allocated resources. |
-| [enable](../-control/enable.md) | `fun enable(): Unit`<br>Enables the Control. |
+| [disable](../-control/disable.md) | `fun disable()`<br>Disables the Control. |
+| [dispose](../-control/dispose.md) | `open fun dispose()`<br>Dispose and free all allocated resources. |
+| [enable](../-control/enable.md) | `fun enable()`<br>Enables the Control. |
 | [getHandle](../-control/get-handle.md) | `fun getHandle(): ULong`<br>Returns the OS-level handle associated with this Control. |
-| [hide](../-control/hide.md) | `fun hide(): Unit`<br>Hides the Control. Hidden controls do not participate in layout (that is, Box, GridPane, etc. does not reserve space for hidden controls). |
+| [hide](../-control/hide.md) | `fun hide()`<br>Hides the Control. Hidden controls do not participate in layout (that is, Box, GridPane, etc. does not reserve space for hidden controls). |
 | [isEnabled](../-control/is-enabled.md) | `fun isEnabled(): Boolean`<br>Whether the Control is enabled. |
 | [isEnabledToUser](../-control/is-enabled-to-user.md) | `fun isEnabledToUser(): Boolean`<br>Whether the Control and all parents are enabled. |
 | [isVisible](../-control/is-visible.md) | `fun isVisible(): Boolean`<br>Whether the Control is visible. |
-| [show](../-control/show.md) | `fun show(): Unit`<br>Shows the Control. |
+| [show](../-control/show.md) | `fun show()`<br>Shows the Control. |
 
 ### Extension properties
 

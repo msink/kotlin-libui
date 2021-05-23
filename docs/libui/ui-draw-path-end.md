@@ -2,4 +2,4 @@
 
 # uiDrawPathEnd
 
-`fun uiDrawPathEnd(p: CValuesRef<`[`uiDrawPath`](ui-draw-path.md)`>?): Unit`
+`fun uiDrawPathEnd(p: CValuesRef<`[`uiDrawPath`](ui-draw-path.md)`>?)`

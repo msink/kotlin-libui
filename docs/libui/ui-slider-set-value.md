@@ -2,4 +2,4 @@
 
 # uiSliderSetValue
 
-`fun uiSliderSetValue(s: CValuesRef<`[`uiSlider`](ui-slider.md)`>?, value: Int): Unit`
+`fun uiSliderSetValue(s: CValuesRef<`[`uiSlider`](ui-slider.md)`>?, value: Int)`

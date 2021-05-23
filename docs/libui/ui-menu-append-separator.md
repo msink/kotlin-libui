@@ -2,4 +2,4 @@
 
 # uiMenuAppendSeparator
 
-`fun uiMenuAppendSeparator(m: CValuesRef<`[`uiMenu`](ui-menu.md)`>?): Unit`
+`fun uiMenuAppendSeparator(m: CValuesRef<`[`uiMenu`](ui-menu.md)`>?)`

@@ -28,4 +28,4 @@ Representation of a [AttributedString](../-attributed-string/README.md) that can
 
 | Name | Summary |
 |---|---|
-| [dispose](../../libui.ktx/-disposable/dispose.md) | `open fun dispose(): Unit`<br>Dispose and free all allocated native resources. |
+| [dispose](../../libui.ktx/-disposable/dispose.md) | `open fun dispose()`<br>Dispose and free all allocated native resources. |

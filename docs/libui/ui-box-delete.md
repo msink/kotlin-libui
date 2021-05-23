@@ -2,4 +2,4 @@
 
 # uiBoxDelete
 
-`fun uiBoxDelete(b: CValuesRef<`[`uiBox`](ui-box.md)`>?, index: Int): Unit`
+`fun uiBoxDelete(b: CValuesRef<`[`uiBox`](ui-box.md)`>?, index: Int)`

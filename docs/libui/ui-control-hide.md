@@ -2,4 +2,4 @@
 
 # uiControlHide
 
-`fun uiControlHide(arg0: CValuesRef<`[`uiControl`](ui-control/README.md)`>?): Unit`
+`fun uiControlHide(arg0: CValuesRef<`[`uiControl`](ui-control/README.md)`>?)`

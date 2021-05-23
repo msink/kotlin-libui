@@ -34,17 +34,17 @@ Wrapper class for [uiTableModel](../../libui/ui-table-model.md)
 
 | Name | Summary |
 |---|---|
-| [background](background.md) | `fun background(get: (row: Int) -> `[`Color`](../../libui.ktx.draw/-color/README.md)`?): Unit` |
-| [column](column.md) | `fun column(name: String, init: `[`TableColumn`](-table-column/README.md)`<`[`T`](-table-column/README.md#T)`>.() -> Unit): Unit` |
-| [rowChanged](row-changed.md) | `fun rowChanged(index: Int): Unit` |
-| [rowDeleted](row-deleted.md) | `fun rowDeleted(oldIndex: Int): Unit` |
-| [rowInserted](row-inserted.md) | `fun rowInserted(newIndex: Int): Unit` |
+| [background](background.md) | `fun background(get: (row: Int) -> `[`Color`](../../libui.ktx.draw/-color/README.md)`?)` |
+| [column](column.md) | `fun column(name: String, init: `[`TableColumn`](-table-column/README.md)`<`[`T`](-table-column/README.md#T)`>.() -> Unit)` |
+| [rowChanged](row-changed.md) | `fun rowChanged(index: Int)` |
+| [rowDeleted](row-deleted.md) | `fun rowDeleted(oldIndex: Int)` |
+| [rowInserted](row-inserted.md) | `fun rowInserted(newIndex: Int)` |
 
 ### Inherited functions
 
 | Name | Summary |
 |---|---|
-| [dispose](../-disposable/dispose.md) | `open fun dispose(): Unit`<br>Dispose and free all allocated native resources. |
+| [dispose](../-disposable/dispose.md) | `open fun dispose()`<br>Dispose and free all allocated native resources. |
 
 ### Extension functions
 

@@ -2,4 +2,4 @@
 
 # uiLabelSetText
 
-`fun uiLabelSetText(l: CValuesRef<`[`uiLabel`](ui-label.md)`>?, text: String?): Unit`
+`fun uiLabelSetText(l: CValuesRef<`[`uiLabel`](ui-label.md)`>?, text: String?)`

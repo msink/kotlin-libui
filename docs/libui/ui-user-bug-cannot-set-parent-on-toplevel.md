@@ -2,4 +2,4 @@
 
 # uiUserBugCannotSetParentOnToplevel
 
-`fun uiUserBugCannotSetParentOnToplevel(type: String?): Unit`
+`fun uiUserBugCannotSetParentOnToplevel(type: String?)`

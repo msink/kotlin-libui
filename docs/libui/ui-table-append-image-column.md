@@ -2,4 +2,4 @@
 
 # uiTableAppendImageColumn
 
-`fun uiTableAppendImageColumn(t: CValuesRef<`[`uiTable`](ui-table.md)`>?, name: String?, imageModelColumn: Int): Unit`
+`fun uiTableAppendImageColumn(t: CValuesRef<`[`uiTable`](ui-table.md)`>?, name: String?, imageModelColumn: Int)`

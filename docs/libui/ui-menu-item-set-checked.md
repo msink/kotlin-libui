@@ -2,4 +2,4 @@
 
 # uiMenuItemSetChecked
 
-`fun uiMenuItemSetChecked(m: CValuesRef<`[`uiMenuItem`](ui-menu-item.md)`>?, checked: Int): Unit`
+`fun uiMenuItemSetChecked(m: CValuesRef<`[`uiMenuItem`](ui-menu-item.md)`>?, checked: Int)`
