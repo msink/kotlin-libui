@@ -2,4 +2,4 @@
 
 # rowDeleted
 
-`fun rowDeleted(oldIndex: Int): Unit`
+`fun rowDeleted(oldIndex: Int)`

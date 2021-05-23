@@ -28,7 +28,7 @@ Base class for all objects that have a holder reference to the native C resource
 
 | Name | Summary |
 |---|---|
-| [dispose](dispose.md) | `open fun dispose(): Unit`<br>Dispose and free all allocated native resources. |
+| [dispose](dispose.md) | `open fun dispose()`<br>Dispose and free all allocated native resources. |
 
 ### Inheritors
 

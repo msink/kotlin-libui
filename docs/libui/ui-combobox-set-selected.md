@@ -2,4 +2,4 @@
 
 # uiComboboxSetSelected
 
-`fun uiComboboxSetSelected(c: CValuesRef<`[`uiCombobox`](ui-combobox.md)`>?, n: Int): Unit`
+`fun uiComboboxSetSelected(c: CValuesRef<`[`uiCombobox`](ui-combobox.md)`>?, n: Int)`

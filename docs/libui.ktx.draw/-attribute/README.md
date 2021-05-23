@@ -28,7 +28,7 @@ Stores information about an attribute in a [AttributedString](../-attributed-str
 
 | Name | Summary |
 |---|---|
-| [dispose](../../libui.ktx/-disposable/dispose.md) | `open fun dispose(): Unit`<br>Dispose and free all allocated native resources. |
+| [dispose](../../libui.ktx/-disposable/dispose.md) | `open fun dispose()`<br>Dispose and free all allocated native resources. |
 
 ### Inheritors
 

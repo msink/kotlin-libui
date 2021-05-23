@@ -2,4 +2,4 @@
 
 # uiDrawSave
 
-`fun uiDrawSave(c: CValuesRef<`[`uiDrawContext`](ui-draw-context.md)`>?): Unit`
+`fun uiDrawSave(c: CValuesRef<`[`uiDrawContext`](ui-draw-context.md)`>?)`

@@ -2,7 +2,7 @@
 
 # enable
 
-`fun enable(): Unit`
+`fun enable()`
 
 Enables the Control.
 

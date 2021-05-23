@@ -2,4 +2,4 @@
 
 # image
 
-`fun image(get: (row: Int) -> `[`Image`](../../../libui.ktx.draw/-image/README.md)`?): Unit`
+`fun image(get: (row: Int) -> `[`Image`](../../../libui.ktx.draw/-image/README.md)`?)`

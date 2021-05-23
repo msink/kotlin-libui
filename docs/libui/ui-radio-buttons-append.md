@@ -2,4 +2,4 @@
 
 # uiRadioButtonsAppend
 
-`fun uiRadioButtonsAppend(r: CValuesRef<`[`uiRadioButtons`](ui-radio-buttons.md)`>?, text: String?): Unit`
+`fun uiRadioButtonsAppend(r: CValuesRef<`[`uiRadioButtons`](ui-radio-buttons.md)`>?, text: String?)`

@@ -2,4 +2,4 @@
 
 # uiMenuItemEnable
 
-`fun uiMenuItemEnable(m: CValuesRef<`[`uiMenuItem`](ui-menu-item.md)`>?): Unit`
+`fun uiMenuItemEnable(m: CValuesRef<`[`uiMenuItem`](ui-menu-item.md)`>?)`

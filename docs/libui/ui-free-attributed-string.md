@@ -2,4 +2,4 @@
 
 # uiFreeAttributedString
 
-`fun uiFreeAttributedString(s: CValuesRef<`[`uiAttributedString`](ui-attributed-string.md)`>?): Unit`
+`fun uiFreeAttributedString(s: CValuesRef<`[`uiAttributedString`](ui-attributed-string.md)`>?)`

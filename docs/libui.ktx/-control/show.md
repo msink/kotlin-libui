@@ -2,7 +2,7 @@
 
 # show
 
-`fun show(): Unit`
+`fun show()`
 
 Shows the Control.
 

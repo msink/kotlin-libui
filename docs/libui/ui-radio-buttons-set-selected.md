@@ -2,4 +2,4 @@
 
 # uiRadioButtonsSetSelected
 
-`fun uiRadioButtonsSetSelected(r: CValuesRef<`[`uiRadioButtons`](ui-radio-buttons.md)`>?, n: Int): Unit`
+`fun uiRadioButtonsSetSelected(r: CValuesRef<`[`uiRadioButtons`](ui-radio-buttons.md)`>?, n: Int)`

@@ -2,7 +2,7 @@
 
 # dispose
 
-`open fun dispose(): Unit`
+`open fun dispose()`
 
 Overrides [Disposable.dispose](../-disposable/dispose.md)
 

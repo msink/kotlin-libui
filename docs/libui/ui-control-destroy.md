@@ -2,4 +2,4 @@
 
 # uiControlDestroy
 
-`fun uiControlDestroy(arg0: CValuesRef<`[`uiControl`](ui-control/README.md)`>?): Unit`
+`fun uiControlDestroy(arg0: CValuesRef<`[`uiControl`](ui-control/README.md)`>?)`

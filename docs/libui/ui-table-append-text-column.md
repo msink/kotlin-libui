@@ -2,4 +2,4 @@
 
 # uiTableAppendTextColumn
 
-`fun uiTableAppendTextColumn(t: CValuesRef<`[`uiTable`](ui-table.md)`>?, name: String?, textModelColumn: Int, textEditableModelColumn: Int, textParams: CValuesRef<`[`uiTableTextColumnOptionalParams`](ui-table-text-column-optional-params/README.md)`>?): Unit`
+`fun uiTableAppendTextColumn(t: CValuesRef<`[`uiTable`](ui-table.md)`>?, name: String?, textModelColumn: Int, textEditableModelColumn: Int, textParams: CValuesRef<`[`uiTableTextColumnOptionalParams`](ui-table-text-column-optional-params/README.md)`>?)`

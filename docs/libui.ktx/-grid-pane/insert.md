@@ -2,7 +2,7 @@
 
 # insert
 
-`fun insert(widget: `[`Control`](../-control/README.md)`<*>, existing: `[`Control`](../-control/README.md)`<*>, at: `[`uiAt`](../../libui/ui-at.md)`): Unit`
+`fun insert(widget: `[`Control`](../-control/README.md)`<*>, existing: `[`Control`](../-control/README.md)`<*>, at: `[`uiAt`](../../libui/ui-at.md)`)`
 
 Insert the given Control after existing Control.
 

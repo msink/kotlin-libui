@@ -2,4 +2,4 @@
 
 # uiTableModelRowChanged
 
-`fun uiTableModelRowChanged(m: CValuesRef<`[`uiTableModel`](ui-table-model.md)`>?, index: Int): Unit`
+`fun uiTableModelRowChanged(m: CValuesRef<`[`uiTableModel`](ui-table-model.md)`>?, index: Int)`

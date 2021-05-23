@@ -2,4 +2,4 @@
 
 # rowChanged
 
-`fun rowChanged(index: Int): Unit`
+`fun rowChanged(index: Int)`

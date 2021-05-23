@@ -2,4 +2,4 @@
 
 # uiFormDelete
 
-`fun uiFormDelete(f: CValuesRef<`[`uiForm`](ui-form.md)`>?, index: Int): Unit`
+`fun uiFormDelete(f: CValuesRef<`[`uiForm`](ui-form.md)`>?, index: Int)`

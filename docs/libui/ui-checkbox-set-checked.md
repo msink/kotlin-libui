@@ -2,4 +2,4 @@
 
 # uiCheckboxSetChecked
 
-`fun uiCheckboxSetChecked(c: CValuesRef<`[`uiCheckbox`](ui-checkbox.md)`>?, checked: Int): Unit`
+`fun uiCheckboxSetChecked(c: CValuesRef<`[`uiCheckbox`](ui-checkbox.md)`>?, checked: Int)`

@@ -2,4 +2,4 @@
 
 # uiDrawFreeTextLayout
 
-`fun uiDrawFreeTextLayout(tl: CValuesRef<`[`uiDrawTextLayout`](ui-draw-text-layout.md)`>?): Unit`
+`fun uiDrawFreeTextLayout(tl: CValuesRef<`[`uiDrawTextLayout`](ui-draw-text-layout.md)`>?)`

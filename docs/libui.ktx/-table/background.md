@@ -2,4 +2,4 @@
 
 # background
 
-`fun background(get: (row: Int) -> `[`Color`](../../libui.ktx.draw/-color/README.md)`?): Unit`
+`fun background(get: (row: Int) -> `[`Color`](../../libui.ktx.draw/-color/README.md)`?)`

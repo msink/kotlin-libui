@@ -2,4 +2,4 @@
 
 # uiWindowSetMargined
 
-`fun uiWindowSetMargined(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, margined: Int): Unit`
+`fun uiWindowSetMargined(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, margined: Int)`

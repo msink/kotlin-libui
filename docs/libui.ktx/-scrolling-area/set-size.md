@@ -2,7 +2,7 @@
 
 # setSize
 
-`fun setSize(width: Int, height: Int): Unit`
+`fun setSize(width: Int, height: Int)`
 
 Sets the size of a ScrollingArea to the given size, in points.
 

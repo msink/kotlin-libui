@@ -2,7 +2,7 @@
 
 # delete
 
-`fun delete(index: Int): Unit`
+`fun delete(index: Int)`
 
 deletes the nth control of the form.
 

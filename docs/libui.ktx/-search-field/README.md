@@ -23,4 +23,4 @@ Wrapper class for [uiEntry](../../libui/ui-entry.md) - a text entry widget to se
 
 | Name | Summary |
 |---|---|
-| [action](../-text-field/action.md) | `fun action(block: `[`TextField`](../-text-field/README.md)`.() -> Unit): Unit`<br>Function to be run when the user makes a change to the TextField. Only one function can be registered at a time. |
+| [action](../-text-field/action.md) | `fun action(block: `[`TextField`](../-text-field/README.md)`.() -> Unit)`<br>Function to be run when the user makes a change to the TextField. Only one function can be registered at a time. |

@@ -2,4 +2,4 @@
 
 # uiDrawMatrixTranslate
 
-`fun uiDrawMatrixTranslate(m: CValuesRef<`[`uiDrawMatrix`](ui-draw-matrix/README.md)`>?, x: Double, y: Double): Unit`
+`fun uiDrawMatrixTranslate(m: CValuesRef<`[`uiDrawMatrix`](ui-draw-matrix/README.md)`>?, x: Double, y: Double)`

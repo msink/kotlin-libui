@@ -2,4 +2,4 @@
 
 # uiControlShow
 
-`fun uiControlShow(arg0: CValuesRef<`[`uiControl`](ui-control/README.md)`>?): Unit`
+`fun uiControlShow(arg0: CValuesRef<`[`uiControl`](ui-control/README.md)`>?)`
