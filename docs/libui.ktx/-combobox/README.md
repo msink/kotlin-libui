@@ -31,7 +31,7 @@ Wrapper class for [uiCombobox](../../libui/ui-combobox.md) - a drop down combo b
 
 | Name | Summary |
 |---|---|
-| [action](action.md) | `fun action(block: `[`Combobox`](README.md)`.() -> Unit)`<br>Function to be run when the user makes a change to the Combobox. Only one function can be registered at a time. |
+| [action](action.md) | `fun action(block: Combobox.() -> Unit)`<br>Function to be run when the user makes a change to the Combobox. Only one function can be registered at a time. |
 | [item](item.md) | `fun item(text: String)`<br>Adds the named entry to the end of the combobox. If it is the first entry, it is automatically selected. |
 
 ### Inherited functions

@@ -25,11 +25,11 @@ Wrapper class for [uiArea](../../libui/ui-area.md) - a canvas you can draw on.
 
 | Name | Summary |
 |---|---|
-| [dragBroken](drag-broken.md) | `fun dragBroken(block: `[`DrawArea`](README.md)`.() -> Unit)`<br>Funcion to be run to indicate that a drag should be ended. Only implemented on Windows. Only one function can be registered at a time. |
+| [dragBroken](drag-broken.md) | `fun dragBroken(block: DrawArea.() -> Unit)`<br>Funcion to be run to indicate that a drag should be ended. Only implemented on Windows. Only one function can be registered at a time. |
 | [draw](draw.md) | `fun draw(block: `[`DrawContext`](../-draw-context.md)`.(`[`AreaDrawParams`](../-area-draw-params.md)`) -> Unit)`<br>Funcion to be run when the area was created or got resized with [AreaDrawParams](../-area-draw-params.md) as parameter. Only one function can be registered at a time. |
-| [keyEvent](key-event.md) | `fun keyEvent(block: `[`DrawArea`](README.md)`.(event: `[`uiAreaKeyEvent`](../../libui/ui-area-key-event/README.md)`) -> Boolean)`<br>Funcion to be run when a key was pressed. Return `true` to indicate that the key event was handled. (a menu item with that accelerator won't activate, no error sound on macOS). Event is an [uiAreaKeyEvent](../../libui/ui-area-key-event/README.md) Only one function can be registered at a time. |
-| [mouseCrossed](mouse-crossed.md) | `fun mouseCrossed(block: `[`DrawArea`](README.md)`.(left: Boolean) -> Unit)`<br>Funcion to be run when the mouse entered (`left == false`) or left the area. Only one function can be registered at a time. |
-| [mouseEvent](mouse-event.md) | `fun mouseEvent(block: `[`DrawArea`](README.md)`.(`[`AreaMouseEvent`](../-area-mouse-event.md)`) -> Unit)`<br>Funcion to be run when the mouse was moved or clicked over the area with [AreaMouseEvent](../-area-mouse-event.md) as parameter. Only one function can be registered at a time. |
+| [keyEvent](key-event.md) | `fun keyEvent(block: DrawArea.(event: `[`uiAreaKeyEvent`](../../libui/ui-area-key-event/README.md)`) -> Boolean)`<br>Funcion to be run when a key was pressed. Return `true` to indicate that the key event was handled. (a menu item with that accelerator won't activate, no error sound on macOS). Event is an [uiAreaKeyEvent](../../libui/ui-area-key-event/README.md) Only one function can be registered at a time. |
+| [mouseCrossed](mouse-crossed.md) | `fun mouseCrossed(block: DrawArea.(left: Boolean) -> Unit)`<br>Funcion to be run when the mouse entered (`left == false`) or left the area. Only one function can be registered at a time. |
+| [mouseEvent](mouse-event.md) | `fun mouseEvent(block: DrawArea.(`[`AreaMouseEvent`](../-area-mouse-event.md)`) -> Unit)`<br>Funcion to be run when the mouse was moved or clicked over the area with [AreaMouseEvent](../-area-mouse-event.md) as parameter. Only one function can be registered at a time. |
 | [redraw](redraw.md) | `fun redraw()`<br>Queues the entire DrawArea for redraw. The DrawArea is not redrawn before this function returns; it is redrawn when next possible. |
 
 ### Inherited functions
@@ -50,9 +50,9 @@ Wrapper class for [uiArea](../../libui/ui-area.md) - a canvas you can draw on.
 
 | Name | Summary |
 |---|---|
-| [brush](../../libui.ktx.draw/brush.md) | `fun `[`DrawArea`](README.md)`.brush(): `[`Brush`](../../libui.ktx.draw/-brush/README.md)<br>Creates a new [Brush](../../libui.ktx.draw/-brush/README.md) with lifecycle delegated to [DrawArea](README.md). |
-| [string](../../libui.ktx.draw/string.md) | `fun `[`DrawArea`](README.md)`.string(init: String): `[`AttributedString`](../../libui.ktx.draw/-attributed-string/README.md)<br>Creates a new [AttributedString](../../libui.ktx.draw/-attributed-string/README.md) from initial String. The string will be entirely unattributed. |
-| [stroke](../../libui.ktx.draw/stroke.md) | `fun `[`DrawArea`](README.md)`.stroke(block: `[`uiDrawStrokeParams`](../../libui/ui-draw-stroke-params/README.md)`.() -> Unit = {}): `[`Stroke`](../../libui.ktx.draw/-stroke/README.md)<br>Creates a new [Stroke](../../libui.ktx.draw/-stroke/README.md) with lifecycle delegated to [DrawArea](README.md). |
+| [brush](../../libui.ktx.draw/brush.md) | `fun DrawArea.brush(): `[`Brush`](../../libui.ktx.draw/-brush/README.md)<br>Creates a new [Brush](../../libui.ktx.draw/-brush/README.md) with lifecycle delegated to [DrawArea](README.md). |
+| [string](../../libui.ktx.draw/string.md) | `fun DrawArea.string(init: String): `[`AttributedString`](../../libui.ktx.draw/-attributed-string/README.md)<br>Creates a new [AttributedString](../../libui.ktx.draw/-attributed-string/README.md) from initial String. The string will be entirely unattributed. |
+| [stroke](../../libui.ktx.draw/stroke.md) | `fun DrawArea.stroke(block: `[`uiDrawStrokeParams`](../../libui/ui-draw-stroke-params/README.md)`.() -> Unit = {}): `[`Stroke`](../../libui.ktx.draw/-stroke/README.md)<br>Creates a new [Stroke](../../libui.ktx.draw/-stroke/README.md) with lifecycle delegated to [DrawArea](README.md). |
 
 ### Inheritors
 

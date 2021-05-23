@@ -31,7 +31,7 @@ Wrapper class for [uiButton](../../libui/ui-button.md) - a simple button.
 
 | Name | Summary |
 |---|---|
-| [action](action.md) | `fun action(block: `[`Button`](README.md)`.() -> Unit)`<br>Function to be run when the user clicks the Button. Only one function can be registered at a time. |
+| [action](action.md) | `fun action(block: Button.() -> Unit)`<br>Function to be run when the user clicks the Button. Only one function can be registered at a time. |
 
 ### Inherited functions
 

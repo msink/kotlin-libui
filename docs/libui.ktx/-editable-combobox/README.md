@@ -32,7 +32,7 @@ a drop down combo box that allow selection from list or free text entry.
 
 | Name | Summary |
 |---|---|
-| [action](action.md) | `fun action(block: `[`EditableCombobox`](README.md)`.() -> Unit)`<br>Function to be run when the user makes a change to the EditableCombobox. Only one function can be registered at a time. |
+| [action](action.md) | `fun action(block: EditableCombobox.() -> Unit)`<br>Function to be run when the user makes a change to the EditableCombobox. Only one function can be registered at a time. |
 | [item](item.md) | `fun item(text: String)`<br>Adds the named entry to the end of the editable combobox. If it is the first entry, it is automatically selected. |
 
 ### Inherited functions

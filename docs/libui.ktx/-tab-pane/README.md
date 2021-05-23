@@ -61,4 +61,4 @@ Wrapper class for [uiTab](../../libui/ui-tab.md) - a container that show each ch
 
 | Name | Summary |
 |---|---|
-| [page](../page.md) | `fun `[`TabPane`](README.md)`.page(label: String, margined: Boolean = true, init: `[`Page`](-page/README.md)`.() -> Unit = {}): `[`Page`](-page/README.md) |
+| [page](../page.md) | `fun TabPane.page(label: String, margined: Boolean = true, init: `[`Page`](-page/README.md)`.() -> Unit = {}): `[`Page`](-page/README.md) |

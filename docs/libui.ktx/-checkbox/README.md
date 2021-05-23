@@ -32,7 +32,7 @@ Wrapper class for [uiCheckbox](../../libui/ui-checkbox.md) - a checkbox widget.
 
 | Name | Summary |
 |---|---|
-| [action](action.md) | `fun action(block: `[`Checkbox`](README.md)`.() -> Unit)`<br>Function to be run when the user clicks the Checkbox. Only one function can be registered at a time. |
+| [action](action.md) | `fun action(block: Checkbox.() -> Unit)`<br>Function to be run when the user clicks the Checkbox. Only one function can be registered at a time. |
 
 ### Inherited functions
 

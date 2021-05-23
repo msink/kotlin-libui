@@ -32,7 +32,7 @@ Wrapper class for [uiMultilineEntry](../../libui/ui-multiline-entry.md) - a mult
 
 | Name | Summary |
 |---|---|
-| [action](action.md) | `fun action(block: `[`TextArea`](README.md)`.() -> Unit)`<br>Function to be run when the user makes a change to the TextArea. Only one function can be registered at a time. |
+| [action](action.md) | `fun action(block: TextArea.() -> Unit)`<br>Function to be run when the user makes a change to the TextArea. Only one function can be registered at a time. |
 | [append](append.md) | `fun append(text: String)`<br>Adds the text to the end of the area. |
 
 ### Inherited functions

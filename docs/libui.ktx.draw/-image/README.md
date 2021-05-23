@@ -26,4 +26,4 @@
 
 | Name | Summary |
 |---|---|
-| [bitmap](../bitmap.md) | `fun `[`Image`](README.md)`.bitmap(data: `[`ImageData`](../-image-data/README.md)`)` |
+| [bitmap](../bitmap.md) | `fun Image.bitmap(data: `[`ImageData`](../-image-data/README.md)`)` |

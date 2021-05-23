@@ -32,7 +32,7 @@ Wrapper class for [uiEntry](../../libui/ui-entry.md) - a simple single line text
 
 | Name | Summary |
 |---|---|
-| [action](action.md) | `fun action(block: `[`TextField`](README.md)`.() -> Unit)`<br>Function to be run when the user makes a change to the TextField. Only one function can be registered at a time. |
+| [action](action.md) | `fun action(block: TextField.() -> Unit)`<br>Function to be run when the user makes a change to the TextField. Only one function can be registered at a time. |
 
 ### Inherited functions
 
