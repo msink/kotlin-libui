@@ -32,8 +32,8 @@ Wrapper class for [uiDateTimePicker](../../libui/ui-date-time-picker.md) - a wid
 | Name | Summary |
 |---|---|
 | [action](action.md) | `fun action(block: DateTimePicker.() -> Unit)`<br>Function to be run when the user makes a change to the Picker. Only one function can be registered at a time. |
-| [getValue](get-value.md) | `fun getValue(value: CPointer<`[`tm`](../../libui/tm.md)`>)`<br>The current value as posix `struct tm` |
-| [setValue](set-value.md) | `fun setValue(value: CPointer<`[`tm`](../../libui/tm.md)`>)`<br>Set current value from posix `struct tm` |
+| [getValue](get-value.md) | `fun getValue(value: CPointer<tm>)`<br>The current value as posix `struct tm` |
+| [setValue](set-value.md) | `fun setValue(value: CPointer<tm>)`<br>Set current value from posix `struct tm` |
 | [textValue](text-value.md) | `fun textValue(format: String = defaultFormat): String`<br>The current value as String. |
 
 ### Inherited functions

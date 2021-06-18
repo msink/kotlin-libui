@@ -2,6 +2,6 @@
 
 # setValue
 
-`fun setValue(value: CPointer<`[`tm`](../../libui/tm.md)`>)`
+`fun setValue(value: CPointer<tm>)`
 
 Set current value from posix `struct tm`

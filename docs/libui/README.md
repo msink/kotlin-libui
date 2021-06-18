@@ -28,7 +28,6 @@
 
 | Name | Summary |
 |---|---|
-| [tm](tm.md) | `typealias tm = CPointed` |
 | [uiAlign](ui-align.md) | `typealias uiAlign = UInt` |
 | [uiAlignVar](ui-align-var.md) | `typealias uiAlignVar = UIntVarOf<`[`uiAlign`](ui-align.md)`>` |
 | [uiArea](ui-area.md) | `typealias uiArea = CPointed` |
@@ -299,8 +298,8 @@
 | [uiControlVerifySetParent](ui-control-verify-set-parent.md) | `fun uiControlVerifySetParent(arg0: CValuesRef<`[`uiControl`](ui-control/README.md)`>?, arg1: CValuesRef<`[`uiControl`](ui-control/README.md)`>?)` |
 | [uiControlVisible](ui-control-visible.md) | `fun uiControlVisible(arg0: CValuesRef<`[`uiControl`](ui-control/README.md)`>?): Int` |
 | [uiDateTimePickerOnChanged](ui-date-time-picker-on-changed.md) | `fun uiDateTimePickerOnChanged(d: CValuesRef<`[`uiDateTimePicker`](ui-date-time-picker.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiDateTimePicker`](ui-date-time-picker.md)`>?, COpaquePointer?) -> Unit>>?, data: CValuesRef<*>?)` |
-| [uiDateTimePickerSetTime](ui-date-time-picker-set-time.md) | `fun uiDateTimePickerSetTime(d: CValuesRef<`[`uiDateTimePicker`](ui-date-time-picker.md)`>?, time: CValuesRef<`[`tm`](tm.md)`>?)` |
-| [uiDateTimePickerTime](ui-date-time-picker-time.md) | `fun uiDateTimePickerTime(d: CValuesRef<`[`uiDateTimePicker`](ui-date-time-picker.md)`>?, time: CValuesRef<`[`tm`](tm.md)`>?)` |
+| [uiDateTimePickerSetTime](ui-date-time-picker-set-time.md) | `fun uiDateTimePickerSetTime(d: CValuesRef<`[`uiDateTimePicker`](ui-date-time-picker.md)`>?, time: CValuesRef<tm>?)` |
+| [uiDateTimePickerTime](ui-date-time-picker-time.md) | `fun uiDateTimePickerTime(d: CValuesRef<`[`uiDateTimePicker`](ui-date-time-picker.md)`>?, time: CValuesRef<tm>?)` |
 | [uiDrawClip](ui-draw-clip.md) | `fun uiDrawClip(c: CValuesRef<`[`uiDrawContext`](ui-draw-context.md)`>?, path: CValuesRef<`[`uiDrawPath`](ui-draw-path.md)`>?)` |
 | [uiDrawFill](ui-draw-fill.md) | `fun uiDrawFill(c: CValuesRef<`[`uiDrawContext`](ui-draw-context.md)`>?, path: CValuesRef<`[`uiDrawPath`](ui-draw-path.md)`>?, b: CValuesRef<`[`uiDrawBrush`](ui-draw-brush/README.md)`>?)` |
 | [uiDrawFreePath](ui-draw-free-path.md) | `fun uiDrawFreePath(p: CValuesRef<`[`uiDrawPath`](ui-draw-path.md)`>?)` |
