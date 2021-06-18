@@ -2,6 +2,6 @@
 
 # getValue
 
-`fun getValue(value: CPointer<`[`tm`](../../libui/tm.md)`>)`
+`fun getValue(value: CPointer<tm>)`
 
 The current value as posix `struct tm`
