@@ -35,7 +35,7 @@ Wrapper class for [uiTableModel](../../libui/ui-table-model.md)
 | Name | Summary |
 |---|---|
 | [background](background.md) | `fun background(get: (row: Int) -> `[`Color`](../../libui.ktx.draw/-color/README.md)`?)` |
-| [column](column.md) | `fun column(name: String, init: `[`TableColumn`](-table-column/README.md)`<`[`T`](-table-column/README.md#T)`>.() -> Unit)` |
+| [column](column.md) | `fun column(name: String, init: `[`Table.TableColumn`](-table-column/README.md)`<`[`T`](-table-column/README.md#T)`>.() -> Unit)` |
 | [rowChanged](row-changed.md) | `fun rowChanged(index: Int)` |
 | [rowDeleted](row-deleted.md) | `fun rowDeleted(oldIndex: Int)` |
 | [rowInserted](row-inserted.md) | `fun rowInserted(newIndex: Int)` |

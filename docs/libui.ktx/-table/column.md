@@ -2,4 +2,4 @@
 
 # column
 
-`fun column(name: String, init: `[`TableColumn`](-table-column/README.md)`<`[`T`](-table-column/README.md#T)`>.() -> Unit)`
+`fun column(name: String, init: `[`Table.TableColumn`](-table-column/README.md)`<`[`T`](-table-column/README.md#T)`>.() -> Unit)`

@@ -2,4 +2,4 @@
 
 # page
 
-`inline fun `[`TabPane`](-tab-pane/README.md)`.page(label: String, margined: Boolean = true, init: `[`Page`](-tab-pane/-page/README.md)`.() -> Unit = {}): `[`Page`](-tab-pane/-page/README.md)
+`inline fun `[`TabPane`](-tab-pane/README.md)`.page(label: String, margined: Boolean = true, init: `[`TabPane.Page`](-tab-pane/-page/README.md)`.() -> Unit = {}): `[`TabPane.Page`](-tab-pane/-page/README.md)
