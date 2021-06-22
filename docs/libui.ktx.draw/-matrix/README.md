@@ -31,7 +31,7 @@ Defines a transformation (e.g. rotation, translation)
 | Name | Summary |
 |---|---|
 | [invert](invert.md) | `fun invert(): Int`<br>Inverts the matrix. |
-| [multiply](multiply.md) | `fun multiply(other: Matrix`<br>Sets the matrix to the product of itself with `other` matrix. |
+| [multiply](multiply.md) | `fun multiply(other: Matrix)`<br>Sets the matrix to the product of itself with `other` matrix. |
 | [rotate](rotate.md) | `fun rotate(x: Double, y: Double, amount: Double)`<br>Rotates paths by `amount` **radians** around (`x`, `y`). |
 | [scale](scale.md) | `fun scale(xCenter: Double, yCenter: Double, x: Double, y: Double)`<br>Scales pathes by a factor of `x` and `y` with (`xCenter`, `yCenter`) as the scale center. |
 | [skew](skew.md) | `fun skew(x: Double, y: Double, xamount: Double, yamount: Double)`<br>Skews path by `xamount` **radians** horizontally and by `yamount` **radians** vertically around (`x`, `y`) |

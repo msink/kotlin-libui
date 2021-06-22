@@ -16,7 +16,7 @@ Wrapper class for [uiDateTimePicker](../../libui/ui-date-time-picker.md) - a wid
 
 | Name | Summary |
 |---|---|
-| [value](value.md) | `var value: Long`<br>The current value in Unix epoch |
+| [value](value.md) | `var value: time_t`<br>The current value in Unix epoch |
 
 ### Inherited properties
 

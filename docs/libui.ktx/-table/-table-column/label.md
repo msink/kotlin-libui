@@ -3,4 +3,5 @@
 # label
 
 `fun label(get: (row: Int) -> String)`
+
 `fun label(property: KProperty1<`[`T`](README.md#T)`, String>)`
