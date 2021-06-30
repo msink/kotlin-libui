@@ -2,4 +2,4 @@
 
 # add
 
-`abstract fun <T : `[`Control`](../-control/README.md)`<*>> add(widget: `[`T`](add.md#T)`): `[`T`](add.md#T)
+`abstract fun <T : `[`Control`](../-control/README.md)`<*>> add(widget: T): T`

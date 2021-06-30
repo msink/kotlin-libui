@@ -16,7 +16,7 @@ Base class for all objects that have a holder reference to the native C resource
 
 | Name | Summary |
 |---|---|
-| [Disposable](-disposable.md) | `Disposable<`[`T`](README.md#T)` : CPointed>(alloc: CPointer<T>?)` |
+| [Disposable](-disposable.md) | `Disposable<T : CPointed>(alloc: CPointer<T>?)` |
 
 ### Properties
 
@@ -37,7 +37,7 @@ Base class for all objects that have a holder reference to the native C resource
 | [Attribute](../../libui.ktx.draw/-attribute/README.md) | `abstract class Attribute : Disposable<`[`uiAttribute`](../../libui/ui-attribute.md)`>`<br>Stores information about an attribute in a [AttributedString](../../libui.ktx.draw/-attributed-string/README.md). |
 | [AttributedString](../../libui.ktx.draw/-attributed-string/README.md) | `class AttributedString : Disposable<`[`uiAttributedString`](../../libui/ui-attributed-string.md)`>`<br>Represents a string of UTF-8 text that can be embellished with formatting attributes. |
 | [Brush](../../libui.ktx.draw/-brush/README.md) | `class Brush : Disposable<`[`uiDrawBrush`](../../libui/ui-draw-brush/README.md)`>`<br>Defines the color(s) to draw a path with. |
-| [Control](../-control/README.md) | `abstract class Control<T : CPointed> : Disposable<`[`T`](../-control/README.md#T)`>`<br>Base class for all GUI controls (widgets). |
+| [Control](../-control/README.md) | `abstract class Control<T : CPointed> : Disposable<T>`<br>Base class for all GUI controls (widgets). |
 | [Font](../../libui.ktx.draw/-font/README.md) | `class Font : Disposable<`[`uiFontDescriptor`](../../libui/ui-font-descriptor/README.md)`>`<br>Provides a complete description of a font where one is needed. |
 | [Image](../../libui.ktx.draw/-image/README.md) | `class Image : Disposable<`[`uiImage`](../../libui/ui-image.md)`>` |
 | [Matrix](../../libui.ktx.draw/-matrix/README.md) | `class Matrix : Disposable<`[`uiDrawMatrix`](../../libui/ui-draw-matrix/README.md)`>`<br>Defines a transformation (e.g. rotation, translation) |

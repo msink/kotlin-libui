@@ -16,13 +16,13 @@ Wrapper class for [uiTableModel](../../libui/ui-table-model.md)
 
 | Name | Summary |
 |---|---|
-| [Table](-table.md) | `Table(data: List<`[`T`](-table-column/README.md#T)`>, handler: CPointer<`[`ktTableHandler`](../../libui/kt-table-handler/README.md)`> = nativeHeap.alloc<ktTableHandler>().ptr)` |
+| [Table](-table.md) | `Table(data: List<T>, handler: CPointer<`[`ktTableHandler`](../../libui/kt-table-handler/README.md)`> = nativeHeap.alloc<ktTableHandler>().ptr)` |
 
 ### Properties
 
 | Name | Summary |
 |---|---|
-| [data](data.md) | `val data: List<`[`T`](-table-column/README.md#T)`>` |
+| [data](data.md) | `val data: List<T>` |
 
 ### Inherited properties
 
@@ -35,7 +35,7 @@ Wrapper class for [uiTableModel](../../libui/ui-table-model.md)
 | Name | Summary |
 |---|---|
 | [background](background.md) | `fun background(get: (row: Int) -> `[`Color`](../../libui.ktx.draw/-color/README.md)`?)` |
-| [column](column.md) | `fun column(name: String, init: `[`Table.TableColumn`](-table-column/README.md)`<`[`T`](-table-column/README.md#T)`>.() -> Unit)` |
+| [column](column.md) | `fun column(name: String, init: `[`Table.TableColumn`](-table-column/README.md)`<T>.() -> Unit)` |
 | [rowChanged](row-changed.md) | `fun rowChanged(index: Int)` |
 | [rowDeleted](row-deleted.md) | `fun rowDeleted(oldIndex: Int)` |
 | [rowInserted](row-inserted.md) | `fun rowInserted(newIndex: Int)` |

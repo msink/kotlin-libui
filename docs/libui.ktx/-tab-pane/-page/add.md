@@ -2,6 +2,6 @@
 
 # add
 
-`fun <T : `[`Control`](../../-control/README.md)`<*>> add(widget: `[`T`](add.md#T)`): `[`T`](add.md#T)
+`fun <T : `[`Control`](../../-control/README.md)`<*>> add(widget: T): T`
 
 Overrides [Container.add](../../-container/add.md)

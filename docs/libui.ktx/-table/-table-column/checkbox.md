@@ -2,4 +2,4 @@
 
 # checkbox
 
-`fun checkbox(property: KMutableProperty1<`[`T`](README.md#T)`, Boolean>)`
+`fun checkbox(property: KMutableProperty1<T, Boolean>)`
