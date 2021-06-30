@@ -10,7 +10,7 @@ Wrapper class for [uiButton](../../libui/ui-button.md) - a simple button.
 
 | Name | Summary |
 |---|---|
-| [Button](-button.md) | `Button(text: String)`<br>Wrapper class for [uiButton](../../libui/ui-button.md) - a simple button. |
+| [Button](-button.md) | `Button(text: String)` |
 
 ### Properties
 

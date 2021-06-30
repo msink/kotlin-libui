@@ -10,7 +10,7 @@ Wrapper class for [uiSpinbox](../../libui/ui-spinbox.md) - an entry widget for n
 
 | Name | Summary |
 |---|---|
-| [Spinbox](-spinbox.md) | `Spinbox(min: Int, max: Int)`<br>Wrapper class for [uiSpinbox](../../libui/ui-spinbox.md) - an entry widget for numerical values. |
+| [Spinbox](-spinbox.md) | `Spinbox(min: Int, max: Int)` |
 
 ### Properties
 

@@ -10,7 +10,7 @@ Wrapper class for [uiDateTimePicker](../../libui/ui-date-time-picker.md) - a wid
 
 | Name | Summary |
 |---|---|
-| [TimePicker](-time-picker.md) | `TimePicker()`<br>Wrapper class for [uiDateTimePicker](../../libui/ui-date-time-picker.md) - a widget to edit time. |
+| [TimePicker](-time-picker.md) | `TimePicker()` |
 
 ### Inherited properties
 

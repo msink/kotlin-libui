@@ -10,7 +10,7 @@ Wrapper class for [uiBox](../../libui/ui-box.md) - a container that stack its ch
 
 | Name | Summary |
 |---|---|
-| [VBox](-v-box.md) | `VBox()`<br>Wrapper class for [uiBox](../../libui/ui-box.md) - a container that stack its children vertically. |
+| [VBox](-v-box.md) | `VBox()` |
 
 ### Inherited properties
 

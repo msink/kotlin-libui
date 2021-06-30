@@ -10,7 +10,7 @@ adapter for DSL builders
 
 | Name | Summary |
 |---|---|
-| [Page](-page.md) | `Page(label: String)`<br>adapter for DSL builders |
+| [Page](-page.md) | `Page(label: String)` |
 
 ### Properties
 

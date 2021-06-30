@@ -16,7 +16,7 @@ Base class for all objects that have a holder reference to the native C resource
 
 | Name | Summary |
 |---|---|
-| [Disposable](-disposable.md) | `Disposable<`[`T`](README.md#T)` : CPointed>(alloc: CPointer<T>?)`<br>Base class for all objects that have a holder reference to the native C resource(s). |
+| [Disposable](-disposable.md) | `Disposable<`[`T`](README.md#T)` : CPointed>(alloc: CPointer<T>?)` |
 
 ### Properties
 

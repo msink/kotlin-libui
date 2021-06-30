@@ -16,7 +16,7 @@ Wrapper class for [uiTab](../../libui/ui-tab.md) - a container that show each ch
 
 | Name | Summary |
 |---|---|
-| [TabPane](-tab-pane.md) | `TabPane()`<br>Wrapper class for [uiTab](../../libui/ui-tab.md) - a container that show each children in a separate tab. |
+| [TabPane](-tab-pane.md) | `TabPane()` |
 
 ### Properties
 

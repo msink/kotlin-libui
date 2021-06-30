@@ -10,7 +10,7 @@ Wrapper class for [uiTable](../../libui/ui-table.md)
 
 | Name | Summary |
 |---|---|
-| [TableView](-table-view.md) | `TableView(table: `[`Table`](../-table/README.md)`<*>)`<br>Wrapper class for [uiTable](../../libui/ui-table.md) |
+| [TableView](-table-view.md) | `TableView(table: `[`Table`](../-table/README.md)`<*>)` |
 
 ### Properties
 

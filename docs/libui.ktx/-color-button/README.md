@@ -10,7 +10,7 @@ Wrapper class for [uiColorButton](../../libui/ui-color-button.md) - a button tha
 
 | Name | Summary |
 |---|---|
-| [ColorButton](-color-button.md) | `ColorButton()`<br>Wrapper class for [uiColorButton](../../libui/ui-color-button.md) - a button that opens a color palette popup. |
+| [ColorButton](-color-button.md) | `ColorButton()` |
 
 ### Properties
 

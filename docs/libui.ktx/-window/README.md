@@ -11,7 +11,7 @@ Contains one child control that occupies the entirety of the window.
 
 | Name | Summary |
 |---|---|
-| [Window](-window.md) | `Window(title: String, width: Int, height: Int, hasMenubar: Boolean = false)`<br>Represents a top-level window. Contains one child control that occupies the entirety of the window. |
+| [Window](-window.md) | `Window(title: String, width: Int, height: Int, hasMenubar: Boolean = false)` |
 
 ### Properties
 
