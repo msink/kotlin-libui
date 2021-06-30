@@ -47,7 +47,13 @@ Wrapper class for [uiArea](../../libui/ui-area.md) - a canvas you can draw on.
 | [isVisible](../-control/is-visible.md) | `fun isVisible(): Boolean`<br>Whether the Control is visible. |
 | [show](../-control/show.md) | `fun show()`<br>Shows the Control. |
 
-### Extension functions
+### Inheritors
+
+| Name | Summary |
+|---|---|
+| [ScrollingArea](../-scrolling-area/README.md) | `class ScrollingArea : `[`DrawArea`](README.md)<br>Wrapper class for [uiArea](../../libui/ui-area.md) - a canvas with horziontal and vertical scrollbars. |
+
+### Extensions
 
 | Name | Summary |
 |---|---|
@@ -55,9 +61,3 @@ Wrapper class for [uiArea](../../libui/ui-area.md) - a canvas you can draw on.
 | [font](../../libui.ktx.draw/font.md) | `fun DrawArea.font(family: String? = null, size: Double = 0.0, weight: `[`uiTextWeight`](../../libui/ui-text-weight.md)` = uiTextWeightNormal, italic: `[`uiTextItalic`](../../libui/ui-text-italic.md)` = uiTextItalicNormal, stretch: `[`uiTextStretch`](../../libui/ui-text-stretch.md)` = uiTextStretchNormal): `[`Font`](../../libui.ktx.draw/-font/README.md)<br>Creates a new [Font](../../libui.ktx.draw/-font/README.md) with lifecycle delegated to [DrawArea](README.md). |
 | [string](../../libui.ktx.draw/string.md) | `fun DrawArea.string(init: String): `[`AttributedString`](../../libui.ktx.draw/-attributed-string/README.md)<br>Creates a new [AttributedString](../../libui.ktx.draw/-attributed-string/README.md) from initial String. The string will be entirely unattributed. |
 | [stroke](../../libui.ktx.draw/stroke.md) | `fun DrawArea.stroke(block: `[`uiDrawStrokeParams`](../../libui/ui-draw-stroke-params/README.md)`.() -> Unit = {}): `[`Stroke`](../../libui.ktx.draw/-stroke/README.md)<br>Creates a new [Stroke](../../libui.ktx.draw/-stroke/README.md) with lifecycle delegated to [DrawArea](README.md). |
-
-### Inheritors
-
-| Name | Summary |
-|---|---|
-| [ScrollingArea](../-scrolling-area/README.md) | `class ScrollingArea : `[`DrawArea`](README.md)<br>Wrapper class for [uiArea](../../libui/ui-area.md) - a canvas with horziontal and vertical scrollbars. |

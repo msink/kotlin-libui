@@ -6,17 +6,17 @@
 
 Wrapper class for [uiTableModel](../../libui/ui-table-model.md)
 
-### Types
-
-| Name | Summary |
-|---|---|
-| [TableColumn](-table-column/README.md) | `inner class TableColumn<T>` |
-
 ### Constructors
 
 | Name | Summary |
 |---|---|
 | [Table](-table.md) | `Table(data: List<T>, handler: CPointer<`[`ktTableHandler`](../../libui/kt-table-handler/README.md)`> = nativeHeap.alloc<ktTableHandler>().ptr)` |
+
+### Types
+
+| Name | Summary |
+|---|---|
+| [TableColumn](-table-column/README.md) | `inner class `[`TableColumn`](-table-column/README.md) |
 
 ### Properties
 
