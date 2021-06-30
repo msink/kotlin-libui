@@ -10,7 +10,7 @@ Container for child controls.
 
 | Name | Summary |
 |---|---|
-| [add](add.md) | `abstract fun <T : `[`Control`](../-control/README.md)`<*>> add(widget: `[`T`](add.md#T)`): `[`T`](add.md#T) |
+| [add](add.md) | `abstract fun <T : `[`Control`](../-control/README.md)`<*>> add(widget: T): T` |
 
 ### Extension properties
 
@@ -44,7 +44,7 @@ Container for child controls.
 | [searchfield](../searchfield.md) | `fun Container.searchfield(readonly: Boolean = false, init: `[`SearchField`](../-search-field/README.md)`.() -> Unit = {}): `[`SearchField`](../-search-field/README.md)<br>DSL builder for a text entry widget to search text. |
 | [slider](../slider.md) | `fun Container.slider(min: Int, max: Int, init: `[`Slider`](../-slider/README.md)`.() -> Unit = {}): `[`Slider`](../-slider/README.md)<br>DSL builder for an horizontal slide to set numerical values. |
 | [spinbox](../spinbox.md) | `fun Container.spinbox(min: Int, max: Int, init: `[`Spinbox`](../-spinbox/README.md)`.() -> Unit = {}): `[`Spinbox`](../-spinbox/README.md)<br>DSL builder for an entry widget for numerical values. |
-| [tableview](../tableview.md) | `fun <T> Container.tableview(data: List<`[`T`](../tableview.md#T)`>, init: `[`Table`](../-table/README.md)`<`[`T`](../tableview.md#T)`>.() -> Unit = {}): `[`TableView`](../-table-view/README.md)<br>DSL builder to visualize data in a tabular form. |
+| [tableview](../tableview.md) | `fun <T> Container.tableview(data: List<T>, init: `[`Table`](../-table/README.md)`<T>.() -> Unit = {}): `[`TableView`](../-table-view/README.md)<br>DSL builder to visualize data in a tabular form. |
 | [tabpane](../tabpane.md) | `fun Container.tabpane(init: `[`TabPane`](../-tab-pane/README.md)`.() -> Unit = {}): `[`TabPane`](../-tab-pane/README.md)<br>DSL builder for a container that show each children in a separate tab. |
 | [textarea](../textarea.md) | `fun Container.textarea(wrap: Boolean = true, init: `[`TextArea`](../-text-area/README.md)`.() -> Unit = {}): `[`TextArea`](../-text-area/README.md)<br>DSL builder for a multiline plain text editing widget. |
 | [textfield](../textfield.md) | `fun Container.textfield(readonly: Boolean = false, init: `[`TextField`](../-text-field/README.md)`.() -> Unit = {}): `[`TextField`](../-text-field/README.md)<br>DSL builder for a simple single line text entry widget. |
@@ -61,4 +61,3 @@ Container for child controls.
 | [Group](../-group/README.md) | `class Group : `[`Control`](../-control/README.md)`<`[`uiGroup`](../../libui/ui-group.md)`>, `[`Container`](README.md)<br>Wrapper class for [uiGroup](../../libui/ui-group.md) - a container for a single widget that provide a caption and visually group it's children. |
 | [Page](../-tab-pane/-page/README.md) | `inner class Page : `[`Container`](README.md)<br>adapter for DSL builders |
 | [Window](../-window/README.md) | `class Window : `[`Control`](../-control/README.md)`<`[`uiWindow`](../../libui/ui-window.md)`>, `[`Container`](README.md)<br>Represents a top-level window. Contains one child control that occupies the entirety of the window. |
-

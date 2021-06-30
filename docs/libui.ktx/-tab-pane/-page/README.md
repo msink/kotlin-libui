@@ -23,4 +23,4 @@ adapter for DSL builders
 
 | Name | Summary |
 |---|---|
-| [add](add.md) | `fun <T : `[`Control`](../../-control/README.md)`<*>> add(widget: `[`T`](add.md#T)`): `[`T`](add.md#T) |
+| [add](add.md) | `fun <T : `[`Control`](../../-control/README.md)`<*>> add(widget: T): T` |

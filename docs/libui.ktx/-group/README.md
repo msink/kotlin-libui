@@ -33,7 +33,7 @@ a caption and visually group it's children.
 
 | Name | Summary |
 |---|---|
-| [add](add.md) | `fun <T : `[`Control`](../-control/README.md)`<*>> add(widget: `[`T`](add.md#T)`): `[`T`](add.md#T)<br>Set the child widget of the Group. |
+| [add](add.md) | `fun <T : `[`Control`](../-control/README.md)`<*>> add(widget: T): T`<br>Set the child widget of the Group. |
 
 ### Inherited functions
 
@@ -81,7 +81,7 @@ a caption and visually group it's children.
 | [searchfield](../searchfield.md) | `fun `[`Container`](../-container/README.md)`.searchfield(readonly: Boolean = false, init: `[`SearchField`](../-search-field/README.md)`.() -> Unit = {}): `[`SearchField`](../-search-field/README.md)<br>DSL builder for a text entry widget to search text. |
 | [slider](../slider.md) | `fun `[`Container`](../-container/README.md)`.slider(min: Int, max: Int, init: `[`Slider`](../-slider/README.md)`.() -> Unit = {}): `[`Slider`](../-slider/README.md)<br>DSL builder for an horizontal slide to set numerical values. |
 | [spinbox](../spinbox.md) | `fun `[`Container`](../-container/README.md)`.spinbox(min: Int, max: Int, init: `[`Spinbox`](../-spinbox/README.md)`.() -> Unit = {}): `[`Spinbox`](../-spinbox/README.md)<br>DSL builder for an entry widget for numerical values. |
-| [tableview](../tableview.md) | `fun <T> `[`Container`](../-container/README.md)`.tableview(data: List<`[`T`](../tableview.md#T)`>, init: `[`Table`](../-table/README.md)`<`[`T`](../tableview.md#T)`>.() -> Unit = {}): `[`TableView`](../-table-view/README.md)<br>DSL builder to visualize data in a tabular form. |
+| [tableview](../tableview.md) | `fun <T> `[`Container`](../-container/README.md)`.tableview(data: List<T>, init: `[`Table`](../-table/README.md)`<T>.() -> Unit = {}): `[`TableView`](../-table-view/README.md)<br>DSL builder to visualize data in a tabular form. |
 | [tabpane](../tabpane.md) | `fun `[`Container`](../-container/README.md)`.tabpane(init: `[`TabPane`](../-tab-pane/README.md)`.() -> Unit = {}): `[`TabPane`](../-tab-pane/README.md)<br>DSL builder for a container that show each children in a separate tab. |
 | [textarea](../textarea.md) | `fun `[`Container`](../-container/README.md)`.textarea(wrap: Boolean = true, init: `[`TextArea`](../-text-area/README.md)`.() -> Unit = {}): `[`TextArea`](../-text-area/README.md)<br>DSL builder for a multiline plain text editing widget. |
 | [textfield](../textfield.md) | `fun `[`Container`](../-container/README.md)`.textfield(readonly: Boolean = false, init: `[`TextField`](../-text-field/README.md)`.() -> Unit = {}): `[`TextField`](../-text-field/README.md)<br>DSL builder for a simple single line text entry widget. |
