@@ -12,14 +12,18 @@ Container for child controls.
 |---|---|
 | [add](add.md) | `abstract fun <T : `[`Control`](../-control/README.md)`<*>> add(widget: T): T` |
 
-### Extension properties
+### Inheritors
 
 | Name | Summary |
 |---|---|
-| [hbox](../hbox.md) | `val Container.hbox: `[`HBox`](../-h-box/README.md)<br>DSL builder for a container that stack its children horizontally. |
-| [vbox](../vbox.md) | `val Container.vbox: `[`VBox`](../-v-box/README.md)<br>DSL builder for a container that stack its children vertically. |
+| [Box](../-box/README.md) | `abstract class Box : `[`Control`](../-control/README.md)`<`[`uiBox`](../../libui/ui-box.md)`>, `[`Container`](README.md)<br>Wrapper class for [uiBox](../../libui/ui-box.md) - a container that stack its children horizontally or vertically. |
+| [Form](../-form/README.md) | `class Form : `[`Control`](../-control/README.md)`<`[`uiForm`](../../libui/ui-form.md)`>, `[`Container`](README.md)<br>Wrapper class for [uiForm](../../libui/ui-form.md) - a container that organize children as labeled fields. |
+| [GridPane](../-grid-pane/README.md) | `class GridPane : `[`Control`](../-control/README.md)`<`[`uiGrid`](../../libui/ui-grid.md)`>, `[`Container`](README.md)<br>Wrapper class for [uiGrid](../../libui/ui-grid.md) - a powerful container that allow to specify size and position of each children. |
+| [Group](../-group/README.md) | `class Group : `[`Control`](../-control/README.md)`<`[`uiGroup`](../../libui/ui-group.md)`>, `[`Container`](README.md)<br>Wrapper class for [uiGroup](../../libui/ui-group.md) - a container for a single widget that provide a caption and visually group it's children. |
+| [Page](../-tab-pane/-page/README.md) | `inner class Page : `[`Container`](README.md)<br>adapter for DSL builders |
+| [Window](../-window/README.md) | `class Window : `[`Control`](../-control/README.md)`<`[`uiWindow`](../../libui/ui-window.md)`>, `[`Container`](README.md)<br>Represents a top-level window. Contains one child control that occupies the entirety of the window. |
 
-### Extension functions
+### Extensions
 
 | Name | Summary |
 |---|---|
@@ -35,7 +39,7 @@ Container for child controls.
 | [form](../form.md) | `fun Container.form(padded: Boolean = true, init: `[`Form`](../-form/README.md)`.() -> Unit = {}): `[`Form`](../-form/README.md)<br>DSL builder for a container that organize children as labeled fields. |
 | [gridpane](../gridpane.md) | `fun Container.gridpane(padded: Boolean = true, init: `[`GridPane`](../-grid-pane/README.md)`.() -> Unit = {}): `[`GridPane`](../-grid-pane/README.md)<br>DSL builder for a powerful container that allow to specify size and position of each children. |
 | [group](../group.md) | `fun Container.group(title: String, margined: Boolean = true, init: `[`Group`](../-group/README.md)`.() -> Unit = {}): `[`Group`](../-group/README.md)<br>DSL builder for a container for a single widget that provide a caption and visually group it's children. |
-| [hbox](../hbox.md) | `fun Container.hbox(padded: Boolean = true, init: `[`HBox`](../-h-box/README.md)`.() -> Unit = {}): `[`HBox`](../-h-box/README.md)<br>DSL builder for a container that stack its children horizontally. |
+| [hbox](../hbox.md) | `val Container.hbox: `[`HBox`](../-h-box/README.md)<br>`fun Container.hbox(padded: Boolean = true, init: `[`HBox`](../-h-box/README.md)`.() -> Unit = {}): `[`HBox`](../-h-box/README.md)<br>DSL builder for a container that stack its children horizontally. |
 | [label](../label.md) | `fun Container.label(text: String, init: `[`Label`](../-label/README.md)`.() -> Unit = {}): `[`Label`](../-label/README.md)<br>DSL builder for a static text label. |
 | [passwordfield](../passwordfield.md) | `fun Container.passwordfield(readonly: Boolean = false, init: `[`PasswordField`](../-password-field/README.md)`.() -> Unit = {}): `[`PasswordField`](../-password-field/README.md)<br>DSL builder for a text entry widget that mask the input, useful to edit passwords or other sensible data. |
 | [progressbar](../progressbar.md) | `fun Container.progressbar(init: `[`ProgressBar`](../-progress-bar/README.md)`.() -> Unit = {}): `[`ProgressBar`](../-progress-bar/README.md)<br>DSL builder for a progress bar widget. |
@@ -49,15 +53,4 @@ Container for child controls.
 | [textarea](../textarea.md) | `fun Container.textarea(wrap: Boolean = true, init: `[`TextArea`](../-text-area/README.md)`.() -> Unit = {}): `[`TextArea`](../-text-area/README.md)<br>DSL builder for a multiline plain text editing widget. |
 | [textfield](../textfield.md) | `fun Container.textfield(readonly: Boolean = false, init: `[`TextField`](../-text-field/README.md)`.() -> Unit = {}): `[`TextField`](../-text-field/README.md)<br>DSL builder for a simple single line text entry widget. |
 | [timepicker](../timepicker.md) | `fun Container.timepicker(init: `[`TimePicker`](../-time-picker/README.md)`.() -> Unit = {}): `[`TimePicker`](../-time-picker/README.md)<br>DSL builder for a widget to edit time. |
-| [vbox](../vbox.md) | `fun Container.vbox(padded: Boolean = true, init: `[`VBox`](../-v-box/README.md)`.() -> Unit = {}): `[`VBox`](../-v-box/README.md)<br>DSL builder for a container that stack its children vertically. |
-
-### Inheritors
-
-| Name | Summary |
-|---|---|
-| [Box](../-box/README.md) | `abstract class Box : `[`Control`](../-control/README.md)`<`[`uiBox`](../../libui/ui-box.md)`>, `[`Container`](README.md)<br>Wrapper class for [uiBox](../../libui/ui-box.md) - a container that stack its children horizontally or vertically. |
-| [Form](../-form/README.md) | `class Form : `[`Control`](../-control/README.md)`<`[`uiForm`](../../libui/ui-form.md)`>, `[`Container`](README.md)<br>Wrapper class for [uiForm](../../libui/ui-form.md) - a container that organize children as labeled fields. |
-| [GridPane](../-grid-pane/README.md) | `class GridPane : `[`Control`](../-control/README.md)`<`[`uiGrid`](../../libui/ui-grid.md)`>, `[`Container`](README.md)<br>Wrapper class for [uiGrid](../../libui/ui-grid.md) - a powerful container that allow to specify size and position of each children. |
-| [Group](../-group/README.md) | `class Group : `[`Control`](../-control/README.md)`<`[`uiGroup`](../../libui/ui-group.md)`>, `[`Container`](README.md)<br>Wrapper class for [uiGroup](../../libui/ui-group.md) - a container for a single widget that provide a caption and visually group it's children. |
-| [Page](../-tab-pane/-page/README.md) | `inner class Page : `[`Container`](README.md)<br>adapter for DSL builders |
-| [Window](../-window/README.md) | `class Window : `[`Control`](../-control/README.md)`<`[`uiWindow`](../../libui/ui-window.md)`>, `[`Container`](README.md)<br>Represents a top-level window. Contains one child control that occupies the entirety of the window. |
+| [vbox](../vbox.md) | `val Container.vbox: `[`VBox`](../-v-box/README.md)<br>`fun Container.vbox(padded: Boolean = true, init: `[`VBox`](../-v-box/README.md)`.() -> Unit = {}): `[`VBox`](../-v-box/README.md)<br>DSL builder for a container that stack its children vertically. |

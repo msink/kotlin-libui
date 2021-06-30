@@ -6,17 +6,17 @@
 
 Wrapper class for [uiTab](../../libui/ui-tab.md) - a container that show each children in a separate tab.
 
-### Types
-
-| Name | Summary |
-|---|---|
-| [Page](-page/README.md) | `inner class Page : `[`Container`](../-container/README.md)<br>adapter for DSL builders |
-
 ### Constructors
 
 | Name | Summary |
 |---|---|
 | [TabPane](-tab-pane.md) | `TabPane()` |
+
+### Types
+
+| Name | Summary |
+|---|---|
+| [Page](-page/README.md) | `inner class Page : `[`Container`](../-container/README.md)<br>adapter for DSL builders |
 
 ### Properties
 
