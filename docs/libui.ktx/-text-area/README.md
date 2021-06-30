@@ -10,7 +10,7 @@ Wrapper class for [uiMultilineEntry](../../libui/ui-multiline-entry.md) - a mult
 
 | Name | Summary |
 |---|---|
-| [TextArea](-text-area.md) | `TextArea(wrap: Boolean = true)`<br>Wrapper class for [uiMultilineEntry](../../libui/ui-multiline-entry.md) - a multiline plain text editing widget |
+| [TextArea](-text-area.md) | `TextArea(wrap: Boolean = true)` |
 
 ### Properties
 

@@ -10,7 +10,7 @@ Wrapper class for [uiForm](../../libui/ui-form.md) - a container that organize c
 
 | Name | Summary |
 |---|---|
-| [Form](-form.md) | `Form()`<br>Wrapper class for [uiForm](../../libui/ui-form.md) - a container that organize children as labeled fields. |
+| [Form](-form.md) | `Form()` |
 
 ### Properties
 

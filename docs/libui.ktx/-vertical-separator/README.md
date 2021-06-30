@@ -10,4 +10,4 @@ Wrapper class for [uiSeparator](../../libui/ui-separator.md) - a vertical line t
 
 | Name | Summary |
 |---|---|
-| [VerticalSeparator](-vertical-separator.md) | `VerticalSeparator()`<br>Wrapper class for [uiSeparator](../../libui/ui-separator.md) - a vertical line to visually separate widgets. |
+| [VerticalSeparator](-vertical-separator.md) | `VerticalSeparator()` |

@@ -10,4 +10,4 @@ Wrapper class for [uiSeparator](../../libui/ui-separator.md) - an horizontal lin
 
 | Name | Summary |
 |---|---|
-| [HorizontalSeparator](-horizontal-separator.md) | `HorizontalSeparator()`<br>Wrapper class for [uiSeparator](../../libui/ui-separator.md) - an horizontal line to visually separate widgets. |
+| [HorizontalSeparator](-horizontal-separator.md) | `HorizontalSeparator()` |

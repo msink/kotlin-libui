@@ -11,7 +11,7 @@ a drop down combo box that allow selection from list or free text entry.
 
 | Name | Summary |
 |---|---|
-| [EditableCombobox](-editable-combobox.md) | `EditableCombobox()`<br>Wrapper class for [uiEditableCombobox](../../libui/ui-editable-combobox.md) - a drop down combo box that allow selection from list or free text entry. |
+| [EditableCombobox](-editable-combobox.md) | `EditableCombobox()` |
 
 ### Properties
 

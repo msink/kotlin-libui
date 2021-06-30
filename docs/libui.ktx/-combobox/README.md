@@ -10,7 +10,7 @@ Wrapper class for [uiCombobox](../../libui/ui-combobox.md) - a drop down combo b
 
 | Name | Summary |
 |---|---|
-| [Combobox](-combobox.md) | `Combobox()`<br>Wrapper class for [uiCombobox](../../libui/ui-combobox.md) - a drop down combo box that allow list selection only. |
+| [Combobox](-combobox.md) | `Combobox()` |
 
 ### Properties
 

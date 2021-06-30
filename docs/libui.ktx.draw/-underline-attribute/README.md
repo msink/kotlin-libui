@@ -10,7 +10,7 @@ Changes the type of underline on the text it is applied to.
 
 | Name | Summary |
 |---|---|
-| [UnderlineAttribute](-underline-attribute.md) | `UnderlineAttribute(u: `[`uiUnderline`](../../libui/ui-underline.md)`)`<br>Changes the type of underline on the text it is applied to. |
+| [UnderlineAttribute](-underline-attribute.md) | `UnderlineAttribute(u: `[`uiUnderline`](../../libui/ui-underline.md)`)` |
 
 ### Properties
 

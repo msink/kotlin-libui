@@ -10,7 +10,7 @@ Provides a complete description of a font where one is needed.
 
 | Name | Summary |
 |---|---|
-| [Font](-font.md) | `Font()`<br>Provides a complete description of a font where one is needed. |
+| [Font](-font.md) | `Font()` |
 
 ### Inherited properties
 
