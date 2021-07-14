@@ -2,9 +2,9 @@
 @file:Suppress("SpellCheckingInspection")
 
 plugins {
-    kotlin("multiplatform") version Kotlin.version apply false
-    id("de.undercouch.download") version Download.version apply false
-    id("org.jetbrains.dokka") version Dokka.version
+    alias(libs.plugins.kotlin) apply false
+    alias(libs.plugins.download) apply false
+    alias(libs.plugins.dokka)
 }
 
 allprojects {

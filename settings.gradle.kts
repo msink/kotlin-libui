@@ -31,3 +31,7 @@ include(":samples:histogram")
 include(":samples:logo")
 include(":samples:table")
 include(":samples:timer")
+
+// Enable Gradle's version catalog support
+// https://docs.gradle.org/current/userguide/platforms.html
+enableFeaturePreview("VERSION_CATALOGS")
