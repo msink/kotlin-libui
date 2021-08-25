@@ -3,6 +3,9 @@
 
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
+val os = org.gradle.internal.os.OperatingSystem.current()!!
+val isRunningInIde: Boolean = System.getProperty("idea.active") == "true"
+
 val samplesResourcesDir = "$projectDir/resources"
 
 subprojects {
