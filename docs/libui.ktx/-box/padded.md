@@ -5,4 +5,3 @@
 `var padded: Boolean`
 
 If `true`, the container insert some space between children.
-

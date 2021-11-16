@@ -2,4 +2,4 @@
 
 # bitmap
 
-`fun `[`Image`](-image/README.md)`.bitmap(data: `[`ImageData`](-image-data/README.md)`): Unit`
+`fun `[`Image`](-image/README.md)`.bitmap(data: `[`ImageData`](-image-data/README.md)`)`

@@ -6,4 +6,3 @@
 
 DSL builder for a powerful container that allow to specify
 size and position of each children.
-

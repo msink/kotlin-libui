@@ -2,4 +2,4 @@
 
 # uiAreaScrollTo
 
-`fun uiAreaScrollTo(a: CValuesRef<`[`uiArea`](ui-area.md)`>?, x: Double, y: Double, width: Double, height: Double): Unit`
+`fun uiAreaScrollTo(a: CValuesRef<`[`uiArea`](ui-area.md)`>?, x: Double, y: Double, width: Double, height: Double)`

@@ -5,4 +5,3 @@
 `var label: String`
 
 Label for next added child
-

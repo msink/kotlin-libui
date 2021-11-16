@@ -2,4 +2,4 @@
 
 # uiTabAppend
 
-`fun uiTabAppend(t: CValuesRef<`[`uiTab`](ui-tab.md)`>?, name: String?, c: CValuesRef<`[`uiControl`](ui-control/README.md)`>?): Unit`
+`fun uiTabAppend(t: CValuesRef<`[`uiTab`](ui-tab.md)`>?, name: String?, c: CValuesRef<`[`uiControl`](ui-control/README.md)`>?)`

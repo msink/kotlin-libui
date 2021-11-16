@@ -2,4 +2,4 @@
 
 # uiFreeControl
 
-`fun uiFreeControl(arg0: CValuesRef<`[`uiControl`](ui-control/README.md)`>?): Unit`
+`fun uiFreeControl(arg0: CValuesRef<`[`uiControl`](ui-control/README.md)`>?)`

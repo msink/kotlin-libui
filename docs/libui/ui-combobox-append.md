@@ -2,4 +2,4 @@
 
 # uiComboboxAppend
 
-`fun uiComboboxAppend(c: CValuesRef<`[`uiCombobox`](ui-combobox.md)`>?, text: String?): Unit`
+`fun uiComboboxAppend(c: CValuesRef<`[`uiCombobox`](ui-combobox.md)`>?, text: String?)`

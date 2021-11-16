@@ -2,4 +2,4 @@
 
 # uiDrawMatrixRotate
 
-`fun uiDrawMatrixRotate(m: CValuesRef<`[`uiDrawMatrix`](ui-draw-matrix/README.md)`>?, x: Double, y: Double, amount: Double): Unit`
+`fun uiDrawMatrixRotate(m: CValuesRef<`[`uiDrawMatrix`](ui-draw-matrix/README.md)`>?, x: Double, y: Double, amount: Double)`

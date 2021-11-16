@@ -2,4 +2,4 @@
 
 # uiEntrySetReadOnly
 
-`fun uiEntrySetReadOnly(e: CValuesRef<`[`uiEntry`](ui-entry.md)`>?, readonly: Int): Unit`
+`fun uiEntrySetReadOnly(e: CValuesRef<`[`uiEntry`](ui-entry.md)`>?, readonly: Int)`

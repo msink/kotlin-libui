@@ -5,4 +5,3 @@
 `var hexpand: Boolean`
 
 The horizontal expand of Control.
-

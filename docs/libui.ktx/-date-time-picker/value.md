@@ -2,7 +2,6 @@
 
 # value
 
-`var value: Long`
+`var value: time_t`
 
 The current value in Unix epoch
-

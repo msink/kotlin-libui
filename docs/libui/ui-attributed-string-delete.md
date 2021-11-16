@@ -2,4 +2,4 @@
 
 # uiAttributedStringDelete
 
-`fun uiAttributedStringDelete(s: CValuesRef<`[`uiAttributedString`](ui-attributed-string.md)`>?, start: size_t, end: size_t): Unit`
+`fun uiAttributedStringDelete(s: CValuesRef<`[`uiAttributedString`](ui-attributed-string.md)`>?, start: size_t, end: size_t)`

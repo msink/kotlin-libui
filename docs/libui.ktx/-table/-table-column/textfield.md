@@ -2,4 +2,4 @@
 
 # textfield
 
-`fun textfield(property: KMutableProperty1<`[`T`](README.md#T)`, String>): Unit`
+`fun textfield(property: KMutableProperty1<T, String>)`

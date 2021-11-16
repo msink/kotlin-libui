@@ -5,4 +5,3 @@
 `var value: Boolean`
 
 Whether the checkbox is checked or unchecked. Defaults to `false`.
-

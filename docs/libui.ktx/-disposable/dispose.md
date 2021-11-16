@@ -2,7 +2,6 @@
 
 # dispose
 
-`open fun dispose(): Unit`
+`open fun dispose()`
 
 Dispose and free all allocated native resources.
-

@@ -2,4 +2,4 @@
 
 # uiMsgBoxError
 
-`fun uiMsgBoxError(parent: CValuesRef<`[`uiWindow`](ui-window.md)`>?, title: String?, description: String?): Unit`
+`fun uiMsgBoxError(parent: CValuesRef<`[`uiWindow`](ui-window.md)`>?, title: String?, description: String?)`

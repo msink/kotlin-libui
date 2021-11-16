@@ -10,7 +10,7 @@ Wrapper class for [uiBox](../../libui/ui-box.md) - a container that stack its ch
 
 | Name | Summary |
 |---|---|
-| [Box](-box.md) | `Box(alloc: CPointer<`[`uiBox`](../../libui/ui-box.md)`>?)`<br>Wrapper class for [uiBox](../../libui/ui-box.md) - a container that stack its children horizontally or vertically. |
+| [Box](-box.md) | `Box(alloc: CPointer<`[`uiBox`](../../libui/ui-box.md)`>?)` |
 
 ### Properties
 
@@ -19,10 +19,11 @@ Wrapper class for [uiBox](../../libui/ui-box.md) - a container that stack its ch
 | [padded](padded.md) | `var padded: Boolean`<br>If `true`, the container insert some space between children. |
 | [stretchy](stretchy.md) | `var stretchy: Boolean`<br>Next added child should expand to use all available size. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
+| [disposed](../-disposable/disposed.md) | `val disposed: Boolean`<br>Returns `true` if object was disposed - in this case [dispose](../-disposable/dispose.md) will do nothing, all other operations are invalid and will `throw Error("Resource is disposed")`. |
 | [enabled](../-control/enabled.md) | `var enabled: Boolean`<br>Whether the Control should be enabled or disabled. Defaults to `true`. |
 | [parent](../-control/parent.md) | `var parent: `[`Control`](../-control/README.md)`<*>?`<br>Returns parent of the control or `null` for detached. |
 | [toplevel](../-control/toplevel.md) | `val toplevel: Boolean`<br>Returns whether the control is a top level one or not. |
@@ -32,31 +33,31 @@ Wrapper class for [uiBox](../../libui/ui-box.md) - a container that stack its ch
 
 | Name | Summary |
 |---|---|
-| [add](add.md) | `open fun <T : `[`Control`](../-control/README.md)`<*>> add(widget: `[`T`](add.md#T)`): `[`T`](add.md#T)<br>Adds the given widget to the end of the Box. |
-| [delete](delete.md) | `fun delete(index: Int): Unit`<br>Deletes the nth control of the Box. |
+| [add](add.md) | `open fun <T : `[`Control`](../-control/README.md)`<*>> add(widget: T): T`<br>Adds the given widget to the end of the Box. |
+| [delete](delete.md) | `fun delete(index: Int)`<br>Deletes the nth control of the Box. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|
-| [disable](../-control/disable.md) | `fun disable(): Unit`<br>Disables the Control. |
-| [dispose](../-control/dispose.md) | `open fun dispose(): Unit`<br>Dispose and free all allocated resources. |
-| [enable](../-control/enable.md) | `fun enable(): Unit`<br>Enables the Control. |
+| [disable](../-control/disable.md) | `fun disable()`<br>Disables the Control. |
+| [dispose](../-control/dispose.md) | `open fun dispose()`<br>Dispose and free all allocated resources. |
+| [enable](../-control/enable.md) | `fun enable()`<br>Enables the Control. |
 | [getHandle](../-control/get-handle.md) | `fun getHandle(): ULong`<br>Returns the OS-level handle associated with this Control. |
-| [hide](../-control/hide.md) | `fun hide(): Unit`<br>Hides the Control. Hidden controls do not participate in layout (that is, Box, GridPane, etc. does not reserve space for hidden controls). |
+| [hide](../-control/hide.md) | `fun hide()`<br>Hides the Control. Hidden controls do not participate in layout (that is, Box, GridPane, etc. does not reserve space for hidden controls). |
 | [isEnabled](../-control/is-enabled.md) | `fun isEnabled(): Boolean`<br>Whether the Control is enabled. |
 | [isEnabledToUser](../-control/is-enabled-to-user.md) | `fun isEnabledToUser(): Boolean`<br>Whether the Control and all parents are enabled. |
 | [isVisible](../-control/is-visible.md) | `fun isVisible(): Boolean`<br>Whether the Control is visible. |
-| [show](../-control/show.md) | `fun show(): Unit`<br>Shows the Control. |
+| [show](../-control/show.md) | `fun show()`<br>Shows the Control. |
 
-### Extension Properties
+### Extension properties
 
 | Name | Summary |
 |---|---|
 | [hbox](../hbox.md) | `val `[`Container`](../-container/README.md)`.hbox: `[`HBox`](../-h-box/README.md)<br>DSL builder for a container that stack its children horizontally. |
 | [vbox](../vbox.md) | `val `[`Container`](../-container/README.md)`.vbox: `[`VBox`](../-v-box/README.md)<br>DSL builder for a container that stack its children vertically. |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|
@@ -81,7 +82,7 @@ Wrapper class for [uiBox](../../libui/ui-box.md) - a container that stack its ch
 | [searchfield](../searchfield.md) | `fun `[`Container`](../-container/README.md)`.searchfield(readonly: Boolean = false, init: `[`SearchField`](../-search-field/README.md)`.() -> Unit = {}): `[`SearchField`](../-search-field/README.md)<br>DSL builder for a text entry widget to search text. |
 | [slider](../slider.md) | `fun `[`Container`](../-container/README.md)`.slider(min: Int, max: Int, init: `[`Slider`](../-slider/README.md)`.() -> Unit = {}): `[`Slider`](../-slider/README.md)<br>DSL builder for an horizontal slide to set numerical values. |
 | [spinbox](../spinbox.md) | `fun `[`Container`](../-container/README.md)`.spinbox(min: Int, max: Int, init: `[`Spinbox`](../-spinbox/README.md)`.() -> Unit = {}): `[`Spinbox`](../-spinbox/README.md)<br>DSL builder for an entry widget for numerical values. |
-| [tableview](../tableview.md) | `fun <T> `[`Container`](../-container/README.md)`.tableview(data: List<`[`T`](../tableview.md#T)`>, init: `[`Table`](../-table/README.md)`<`[`T`](../tableview.md#T)`>.() -> Unit = {}): `[`TableView`](../-table-view/README.md)<br>DSL builder to visualize data in a tabular form. |
+| [tableview](../tableview.md) | `fun <T> `[`Container`](../-container/README.md)`.tableview(data: List<T>, init: `[`Table`](../-table/README.md)`<T>.() -> Unit = {}): `[`TableView`](../-table-view/README.md)<br>DSL builder to visualize data in a tabular form. |
 | [tabpane](../tabpane.md) | `fun `[`Container`](../-container/README.md)`.tabpane(init: `[`TabPane`](../-tab-pane/README.md)`.() -> Unit = {}): `[`TabPane`](../-tab-pane/README.md)<br>DSL builder for a container that show each children in a separate tab. |
 | [textarea](../textarea.md) | `fun `[`Container`](../-container/README.md)`.textarea(wrap: Boolean = true, init: `[`TextArea`](../-text-area/README.md)`.() -> Unit = {}): `[`TextArea`](../-text-area/README.md)<br>DSL builder for a multiline plain text editing widget. |
 | [textfield](../textfield.md) | `fun `[`Container`](../-container/README.md)`.textfield(readonly: Boolean = false, init: `[`TextField`](../-text-field/README.md)`.() -> Unit = {}): `[`TextField`](../-text-field/README.md)<br>DSL builder for a simple single line text entry widget. |

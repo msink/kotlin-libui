@@ -5,4 +5,3 @@
 `var value: String`
 
 The current text in the area.
-

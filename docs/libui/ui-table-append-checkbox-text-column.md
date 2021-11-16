@@ -2,4 +2,4 @@
 
 # uiTableAppendCheckboxTextColumn
 
-`fun uiTableAppendCheckboxTextColumn(t: CValuesRef<`[`uiTable`](ui-table.md)`>?, name: String?, checkboxModelColumn: Int, checkboxEditableModelColumn: Int, textModelColumn: Int, textEditableModelColumn: Int, textParams: CValuesRef<`[`uiTableTextColumnOptionalParams`](ui-table-text-column-optional-params/README.md)`>?): Unit`
+`fun uiTableAppendCheckboxTextColumn(t: CValuesRef<`[`uiTable`](ui-table.md)`>?, name: String?, checkboxModelColumn: Int, checkboxEditableModelColumn: Int, textModelColumn: Int, textEditableModelColumn: Int, textParams: CValuesRef<`[`uiTableTextColumnOptionalParams`](ui-table-text-column-optional-params/README.md)`>?)`

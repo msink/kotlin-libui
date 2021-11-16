@@ -5,4 +5,3 @@
 `val color: `[`Color`](../-color/README.md)
 
 Returns the underline color stored.
-

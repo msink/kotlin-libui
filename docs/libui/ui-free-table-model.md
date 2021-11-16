@@ -2,4 +2,4 @@
 
 # uiFreeTableModel
 
-`fun uiFreeTableModel(m: CValuesRef<`[`uiTableModel`](ui-table-model.md)`>?): Unit`
+`fun uiFreeTableModel(m: CValuesRef<`[`uiTableModel`](ui-table-model.md)`>?)`

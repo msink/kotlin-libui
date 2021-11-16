@@ -2,4 +2,4 @@
 
 # uiTabSetMargined
 
-`fun uiTabSetMargined(t: CValuesRef<`[`uiTab`](ui-tab.md)`>?, page: Int, margined: Int): Unit`
+`fun uiTabSetMargined(t: CValuesRef<`[`uiTab`](ui-tab.md)`>?, page: Int, margined: Int)`

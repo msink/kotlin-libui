@@ -2,4 +2,4 @@
 
 # uiDrawRestore
 
-`fun uiDrawRestore(c: CValuesRef<`[`uiDrawContext`](ui-draw-context.md)`>?): Unit`
+`fun uiDrawRestore(c: CValuesRef<`[`uiDrawContext`](ui-draw-context.md)`>?)`

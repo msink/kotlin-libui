@@ -5,4 +5,3 @@
 `Stroke()`
 
 Describes the stroke to draw with.
-

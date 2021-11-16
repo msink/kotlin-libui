@@ -2,7 +2,6 @@
 
 # multiply
 
-`fun multiply(other: `[`Matrix`](README.md)`): Unit`
+`fun multiply(other: `[`Matrix`](README.md)`)`
 
 Sets the matrix to the product of itself with `other` matrix.
-

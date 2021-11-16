@@ -10,20 +10,20 @@
 |---|---|
 | [Image](-image.md) | `Image(width: Double, height: Double)` |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
 | [disposed](../../libui.ktx/-disposable/disposed.md) | `val disposed: Boolean`<br>Returns `true` if object was disposed - in this case [dispose](../../libui.ktx/-disposable/dispose.md) will do nothing, all other operations are invalid and will `throw Error("Resource is disposed")`. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|
-| [dispose](../../libui.ktx/-disposable/dispose.md) | `open fun dispose(): Unit`<br>Dispose and free all allocated native resources. |
+| [dispose](../../libui.ktx/-disposable/dispose.md) | `open fun dispose()`<br>Dispose and free all allocated native resources. |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|
-| [bitmap](../bitmap.md) | `fun `[`Image`](README.md)`.bitmap(data: `[`ImageData`](../-image-data/README.md)`): Unit` |
+| [bitmap](../bitmap.md) | `fun Image.bitmap(data: `[`ImageData`](../-image-data/README.md)`)` |

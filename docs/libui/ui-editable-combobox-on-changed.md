@@ -2,4 +2,4 @@
 
 # uiEditableComboboxOnChanged
 
-`fun uiEditableComboboxOnChanged(c: CValuesRef<`[`uiEditableCombobox`](ui-editable-combobox.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiEditableCombobox`](ui-editable-combobox.md)`>?, COpaquePointer?) -> Unit>>?, data: CValuesRef<*>?): Unit`
+`fun uiEditableComboboxOnChanged(c: CValuesRef<`[`uiEditableCombobox`](ui-editable-combobox.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiEditableCombobox`](ui-editable-combobox.md)`>?, COpaquePointer?) -> Unit>>?, data: CValuesRef<*>?)`

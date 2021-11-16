@@ -2,8 +2,7 @@
 
 # item
 
-`fun item(text: String): Unit`
+`fun item(text: String)`
 
 Adds the named button to the end of the radiobuttons.
 If it is the first button, it is automatically selected.
-

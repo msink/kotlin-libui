@@ -2,4 +2,4 @@
 
 # uiDrawTextLayoutExtents
 
-`fun uiDrawTextLayoutExtents(tl: CValuesRef<`[`uiDrawTextLayout`](ui-draw-text-layout.md)`>?, width: CValuesRef<DoubleVar>?, height: CValuesRef<DoubleVar>?): Unit`
+`fun uiDrawTextLayoutExtents(tl: CValuesRef<`[`uiDrawTextLayout`](ui-draw-text-layout.md)`>?, width: CValuesRef<DoubleVar>?, height: CValuesRef<DoubleVar>?)`

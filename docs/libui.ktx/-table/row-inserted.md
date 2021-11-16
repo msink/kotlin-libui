@@ -2,4 +2,4 @@
 
 # rowInserted
 
-`fun rowInserted(newIndex: Int): Unit`
+`fun rowInserted(newIndex: Int)`

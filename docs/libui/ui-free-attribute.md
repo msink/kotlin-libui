@@ -2,4 +2,4 @@
 
 # uiFreeAttribute
 
-`fun uiFreeAttribute(a: CValuesRef<`[`uiAttribute`](ui-attribute.md)`>?): Unit`
+`fun uiFreeAttribute(a: CValuesRef<`[`uiAttribute`](ui-attribute.md)`>?)`

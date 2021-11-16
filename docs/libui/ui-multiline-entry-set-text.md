@@ -2,4 +2,4 @@
 
 # uiMultilineEntrySetText
 
-`fun uiMultilineEntrySetText(e: CValuesRef<`[`uiMultilineEntry`](ui-multiline-entry.md)`>?, text: String?): Unit`
+`fun uiMultilineEntrySetText(e: CValuesRef<`[`uiMultilineEntry`](ui-multiline-entry.md)`>?, text: String?)`

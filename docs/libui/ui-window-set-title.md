@@ -2,4 +2,4 @@
 
 # uiWindowSetTitle
 
-`fun uiWindowSetTitle(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, title: String?): Unit`
+`fun uiWindowSetTitle(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, title: String?)`

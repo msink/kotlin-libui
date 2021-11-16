@@ -5,4 +5,3 @@
 `fun textValue(format: String = defaultFormat): String`
 
 The current value as String.
-

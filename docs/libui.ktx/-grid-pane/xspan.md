@@ -5,4 +5,3 @@
 `var xspan: Int`
 
 The width of the Control.
-

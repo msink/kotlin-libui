@@ -2,4 +2,4 @@
 
 # uiUninit
 
-`fun uiUninit(): Unit`
+`fun uiUninit()`

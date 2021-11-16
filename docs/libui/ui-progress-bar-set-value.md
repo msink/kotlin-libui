@@ -2,4 +2,4 @@
 
 # uiProgressBarSetValue
 
-`fun uiProgressBarSetValue(p: CValuesRef<`[`uiProgressBar`](ui-progress-bar.md)`>?, n: Int): Unit`
+`fun uiProgressBarSetValue(p: CValuesRef<`[`uiProgressBar`](ui-progress-bar.md)`>?, n: Int)`

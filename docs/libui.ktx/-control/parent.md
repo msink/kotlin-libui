@@ -5,4 +5,3 @@
 `var parent: `[`Control`](README.md)`<*>?`
 
 Returns parent of the control or `null` for detached.
-

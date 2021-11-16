@@ -2,4 +2,4 @@
 
 # uiGroupSetTitle
 
-`fun uiGroupSetTitle(g: CValuesRef<`[`uiGroup`](ui-group.md)`>?, title: String?): Unit`
+`fun uiGroupSetTitle(g: CValuesRef<`[`uiGroup`](ui-group.md)`>?, title: String?)`

@@ -5,4 +5,3 @@
 `fun copy(): `[`OpenTypeFeatures`](README.md)
 
 Makes a copy of otf and returns it. Changing one will not affect the other.
-

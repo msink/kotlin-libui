@@ -5,4 +5,3 @@
 `var title: String`
 
 Set or return the text to show in window title bar.
-

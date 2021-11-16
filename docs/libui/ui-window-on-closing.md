@@ -2,4 +2,4 @@
 
 # uiWindowOnClosing
 
-`fun uiWindowOnClosing(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiWindow`](ui-window.md)`>?, COpaquePointer?) -> Int>>?, data: CValuesRef<*>?): Unit`
+`fun uiWindowOnClosing(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiWindow`](ui-window.md)`>?, COpaquePointer?) -> Int>>?, data: CValuesRef<*>?)`

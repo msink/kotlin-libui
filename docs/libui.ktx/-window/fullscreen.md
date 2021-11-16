@@ -5,4 +5,3 @@
 `var fullscreen: Boolean`
 
 Whether the window should show in fullscreen or not.
-

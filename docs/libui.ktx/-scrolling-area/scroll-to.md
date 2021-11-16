@@ -2,7 +2,6 @@
 
 # scrollTo
 
-`fun scrollTo(x: Double, y: Double, width: Double, height: Double): Unit`
+`fun scrollTo(x: Double, y: Double, width: Double, height: Double)`
 
 Scrolls the ScrollingArea to show the given rectangle.
-

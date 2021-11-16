@@ -2,7 +2,6 @@
 
 # transform
 
-`fun `[`DrawContext`](../libui.ktx/-draw-context.md)`.transform(block: `[`Matrix`](-matrix/README.md)`.() -> Unit): Unit`
+`fun `[`DrawContext`](../libui.ktx/-draw-context.md)`.transform(block: `[`Matrix`](-matrix/README.md)`.() -> Unit)`
 
 Apply a different transform matrix to the context.
-

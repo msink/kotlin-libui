@@ -2,7 +2,6 @@
 
 # onResize
 
-`fun onResize(block: `[`Window`](README.md)`.() -> Unit): Unit`
+`fun onResize(block: `[`Window`](README.md)`.() -> Unit)`
 
 Function to be run when window content size change.
-

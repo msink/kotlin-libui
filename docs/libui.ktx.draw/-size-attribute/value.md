@@ -5,4 +5,3 @@
 `val value: Double`
 
 Returns the font size stored.
-

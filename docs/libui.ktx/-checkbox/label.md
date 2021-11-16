@@ -5,4 +5,3 @@
 `var label: String`
 
 The static text of the checkbox.
-

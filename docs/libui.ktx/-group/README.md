@@ -11,7 +11,7 @@ a caption and visually group it's children.
 
 | Name | Summary |
 |---|---|
-| [Group](-group.md) | `Group(title: String)`<br>Wrapper class for [uiGroup](../../libui/ui-group.md) - a container for a single widget that provide a caption and visually group it's children. |
+| [Group](-group.md) | `Group(title: String)` |
 
 ### Properties
 
@@ -20,10 +20,11 @@ a caption and visually group it's children.
 | [margined](margined.md) | `var margined: Boolean`<br>Specify if the group content area should have a margin or not. |
 | [title](title.md) | `var title: String`<br>Specify the caption of the group. |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
+| [disposed](../-disposable/disposed.md) | `val disposed: Boolean`<br>Returns `true` if object was disposed - in this case [dispose](../-disposable/dispose.md) will do nothing, all other operations are invalid and will `throw Error("Resource is disposed")`. |
 | [enabled](../-control/enabled.md) | `var enabled: Boolean`<br>Whether the Control should be enabled or disabled. Defaults to `true`. |
 | [parent](../-control/parent.md) | `var parent: `[`Control`](../-control/README.md)`<*>?`<br>Returns parent of the control or `null` for detached. |
 | [toplevel](../-control/toplevel.md) | `val toplevel: Boolean`<br>Returns whether the control is a top level one or not. |
@@ -33,30 +34,30 @@ a caption and visually group it's children.
 
 | Name | Summary |
 |---|---|
-| [add](add.md) | `fun <T : `[`Control`](../-control/README.md)`<*>> add(widget: `[`T`](add.md#T)`): `[`T`](add.md#T)<br>Set the child widget of the Group. |
+| [add](add.md) | `fun <T : `[`Control`](../-control/README.md)`<*>> add(widget: T): T`<br>Set the child widget of the Group. |
 
-### Inherited Functions
+### Inherited functions
 
 | Name | Summary |
 |---|---|
-| [disable](../-control/disable.md) | `fun disable(): Unit`<br>Disables the Control. |
-| [dispose](../-control/dispose.md) | `open fun dispose(): Unit`<br>Dispose and free all allocated resources. |
-| [enable](../-control/enable.md) | `fun enable(): Unit`<br>Enables the Control. |
+| [disable](../-control/disable.md) | `fun disable()`<br>Disables the Control. |
+| [dispose](../-control/dispose.md) | `open fun dispose()`<br>Dispose and free all allocated resources. |
+| [enable](../-control/enable.md) | `fun enable()`<br>Enables the Control. |
 | [getHandle](../-control/get-handle.md) | `fun getHandle(): ULong`<br>Returns the OS-level handle associated with this Control. |
-| [hide](../-control/hide.md) | `fun hide(): Unit`<br>Hides the Control. Hidden controls do not participate in layout (that is, Box, GridPane, etc. does not reserve space for hidden controls). |
+| [hide](../-control/hide.md) | `fun hide()`<br>Hides the Control. Hidden controls do not participate in layout (that is, Box, GridPane, etc. does not reserve space for hidden controls). |
 | [isEnabled](../-control/is-enabled.md) | `fun isEnabled(): Boolean`<br>Whether the Control is enabled. |
 | [isEnabledToUser](../-control/is-enabled-to-user.md) | `fun isEnabledToUser(): Boolean`<br>Whether the Control and all parents are enabled. |
 | [isVisible](../-control/is-visible.md) | `fun isVisible(): Boolean`<br>Whether the Control is visible. |
-| [show](../-control/show.md) | `fun show(): Unit`<br>Shows the Control. |
+| [show](../-control/show.md) | `fun show()`<br>Shows the Control. |
 
-### Extension Properties
+### Extension properties
 
 | Name | Summary |
 |---|---|
 | [hbox](../hbox.md) | `val `[`Container`](../-container/README.md)`.hbox: `[`HBox`](../-h-box/README.md)<br>DSL builder for a container that stack its children horizontally. |
 | [vbox](../vbox.md) | `val `[`Container`](../-container/README.md)`.vbox: `[`VBox`](../-v-box/README.md)<br>DSL builder for a container that stack its children vertically. |
 
-### Extension Functions
+### Extension functions
 
 | Name | Summary |
 |---|---|
@@ -71,7 +72,7 @@ a caption and visually group it's children.
 | [fontbutton](../fontbutton.md) | `fun `[`Container`](../-container/README.md)`.fontbutton(init: `[`FontButton`](../-font-button/README.md)`.() -> Unit = {}): `[`FontButton`](../-font-button/README.md)<br>DSL builder for a button that allows users to choose a font when they click on it. |
 | [form](../form.md) | `fun `[`Container`](../-container/README.md)`.form(padded: Boolean = true, init: `[`Form`](../-form/README.md)`.() -> Unit = {}): `[`Form`](../-form/README.md)<br>DSL builder for a container that organize children as labeled fields. |
 | [gridpane](../gridpane.md) | `fun `[`Container`](../-container/README.md)`.gridpane(padded: Boolean = true, init: `[`GridPane`](../-grid-pane/README.md)`.() -> Unit = {}): `[`GridPane`](../-grid-pane/README.md)<br>DSL builder for a powerful container that allow to specify size and position of each children. |
-| [group](../group.md) | `fun `[`Container`](../-container/README.md)`.group(title: String, margined: Boolean = true, init: `[`Group`](README.md)`.() -> Unit = {}): `[`Group`](README.md)<br>DSL builder for a container for a single widget that provide a caption and visually group it's children. |
+| [group](../group.md) | `fun `[`Container`](../-container/README.md)`.group(title: String, margined: Boolean = true, init: Group.() -> Unit = {}): `[`Group`](README.md)<br>DSL builder for a container for a single widget that provide a caption and visually group it's children. |
 | [hbox](../hbox.md) | `fun `[`Container`](../-container/README.md)`.hbox(padded: Boolean = true, init: `[`HBox`](../-h-box/README.md)`.() -> Unit = {}): `[`HBox`](../-h-box/README.md)<br>DSL builder for a container that stack its children horizontally. |
 | [label](../label.md) | `fun `[`Container`](../-container/README.md)`.label(text: String, init: `[`Label`](../-label/README.md)`.() -> Unit = {}): `[`Label`](../-label/README.md)<br>DSL builder for a static text label. |
 | [passwordfield](../passwordfield.md) | `fun `[`Container`](../-container/README.md)`.passwordfield(readonly: Boolean = false, init: `[`PasswordField`](../-password-field/README.md)`.() -> Unit = {}): `[`PasswordField`](../-password-field/README.md)<br>DSL builder for a text entry widget that mask the input, useful to edit passwords or other sensible data. |
@@ -81,7 +82,7 @@ a caption and visually group it's children.
 | [searchfield](../searchfield.md) | `fun `[`Container`](../-container/README.md)`.searchfield(readonly: Boolean = false, init: `[`SearchField`](../-search-field/README.md)`.() -> Unit = {}): `[`SearchField`](../-search-field/README.md)<br>DSL builder for a text entry widget to search text. |
 | [slider](../slider.md) | `fun `[`Container`](../-container/README.md)`.slider(min: Int, max: Int, init: `[`Slider`](../-slider/README.md)`.() -> Unit = {}): `[`Slider`](../-slider/README.md)<br>DSL builder for an horizontal slide to set numerical values. |
 | [spinbox](../spinbox.md) | `fun `[`Container`](../-container/README.md)`.spinbox(min: Int, max: Int, init: `[`Spinbox`](../-spinbox/README.md)`.() -> Unit = {}): `[`Spinbox`](../-spinbox/README.md)<br>DSL builder for an entry widget for numerical values. |
-| [tableview](../tableview.md) | `fun <T> `[`Container`](../-container/README.md)`.tableview(data: List<`[`T`](../tableview.md#T)`>, init: `[`Table`](../-table/README.md)`<`[`T`](../tableview.md#T)`>.() -> Unit = {}): `[`TableView`](../-table-view/README.md)<br>DSL builder to visualize data in a tabular form. |
+| [tableview](../tableview.md) | `fun <T> `[`Container`](../-container/README.md)`.tableview(data: List<T>, init: `[`Table`](../-table/README.md)`<T>.() -> Unit = {}): `[`TableView`](../-table-view/README.md)<br>DSL builder to visualize data in a tabular form. |
 | [tabpane](../tabpane.md) | `fun `[`Container`](../-container/README.md)`.tabpane(init: `[`TabPane`](../-tab-pane/README.md)`.() -> Unit = {}): `[`TabPane`](../-tab-pane/README.md)<br>DSL builder for a container that show each children in a separate tab. |
 | [textarea](../textarea.md) | `fun `[`Container`](../-container/README.md)`.textarea(wrap: Boolean = true, init: `[`TextArea`](../-text-area/README.md)`.() -> Unit = {}): `[`TextArea`](../-text-area/README.md)<br>DSL builder for a multiline plain text editing widget. |
 | [textfield](../textfield.md) | `fun `[`Container`](../-container/README.md)`.textfield(readonly: Boolean = false, init: `[`TextField`](../-text-field/README.md)`.() -> Unit = {}): `[`TextField`](../-text-field/README.md)<br>DSL builder for a simple single line text entry widget. |

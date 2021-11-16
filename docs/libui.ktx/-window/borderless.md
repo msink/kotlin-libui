@@ -6,4 +6,3 @@
 
 Allow to specify that the window is a frameless one, without borders,
 title bar and OS window control widgets.
-
