@@ -2,7 +2,6 @@
 
 # delete
 
-`fun delete(start: Int, end: Int): Unit`
+`fun delete(start: Int, end: Int)`
 
 Deletes the characters and attributes in the byte range \[`start`, `end`).
-

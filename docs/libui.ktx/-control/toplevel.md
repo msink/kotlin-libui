@@ -5,4 +5,3 @@
 `val toplevel: Boolean`
 
 Returns whether the control is a top level one or not.
-

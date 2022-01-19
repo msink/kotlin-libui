@@ -5,4 +5,3 @@
 `var readonly: Boolean`
 
 Whether the text is read-only or not. Defaults to `false`.
-

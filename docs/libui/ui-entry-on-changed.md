@@ -2,4 +2,4 @@
 
 # uiEntryOnChanged
 
-`fun uiEntryOnChanged(e: CValuesRef<`[`uiEntry`](ui-entry.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiEntry`](ui-entry.md)`>?, COpaquePointer?) -> Unit>>?, data: CValuesRef<*>?): Unit`
+`fun uiEntryOnChanged(e: CValuesRef<`[`uiEntry`](ui-entry.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiEntry`](ui-entry.md)`>?, COpaquePointer?) -> Unit>>?, data: CValuesRef<*>?)`

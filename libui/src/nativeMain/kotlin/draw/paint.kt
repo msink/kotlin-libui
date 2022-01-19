@@ -90,7 +90,7 @@ class Brush : Disposable<uiDrawBrush>(
 ) {
     override fun clear() {
         ptr.pointed.Stops?.let { nativeHeap.free(it) }
-        memset(ptr, 0, uiDrawBrush.size.convert())
+        memset(ptr, 0, sizeOf<uiDrawBrush>().convert())
     }
 
     override fun free() {

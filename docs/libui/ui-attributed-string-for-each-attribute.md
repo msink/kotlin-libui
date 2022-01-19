@@ -2,4 +2,4 @@
 
 # uiAttributedStringForEachAttribute
 
-`fun uiAttributedStringForEachAttribute(s: CValuesRef<`[`uiAttributedString`](ui-attributed-string.md)`>?, f: `[`uiAttributedStringForEachAttributeFunc`](ui-attributed-string-for-each-attribute-func.md)`?, data: CValuesRef<*>?): Unit`
+`fun uiAttributedStringForEachAttribute(s: CValuesRef<`[`uiAttributedString`](ui-attributed-string.md)`>?, f: `[`uiAttributedStringForEachAttributeFunc`](ui-attributed-string-for-each-attribute-func.md)`?, data: CValuesRef<*>?)`

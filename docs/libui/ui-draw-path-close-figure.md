@@ -2,4 +2,4 @@
 
 # uiDrawPathCloseFigure
 
-`fun uiDrawPathCloseFigure(p: CValuesRef<`[`uiDrawPath`](ui-draw-path.md)`>?): Unit`
+`fun uiDrawPathCloseFigure(p: CValuesRef<`[`uiDrawPath`](ui-draw-path.md)`>?)`

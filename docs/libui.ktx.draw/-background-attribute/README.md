@@ -10,10 +10,17 @@ Changes the background color of the text it is applied to.
 
 | Name | Summary |
 |---|---|
-| [BackgroundAttribute](-background-attribute.md) | `BackgroundAttribute(color: `[`Color`](../-color/README.md)`)`<br>Changes the background color of the text it is applied to. |
+| [BackgroundAttribute](-background-attribute.md) | `BackgroundAttribute(color: `[`Color`](../-color/README.md)`)` |
 
-### Inherited Properties
+### Inherited properties
 
 | Name | Summary |
 |---|---|
+| [disposed](../../libui.ktx/-disposable/disposed.md) | `val disposed: Boolean`<br>Returns `true` if object was disposed - in this case [dispose](../../libui.ktx/-disposable/dispose.md) will do nothing, all other operations are invalid and will `throw Error("Resource is disposed")`. |
 | [type](../-attribute/type.md) | `val type: `[`uiAttributeType`](../../libui/ui-attribute-type.md)<br>Returns the type of Attribute. |
+
+### Inherited functions
+
+| Name | Summary |
+|---|---|
+| [dispose](../../libui.ktx/-disposable/dispose.md) | `open fun dispose()`<br>Dispose and free all allocated native resources. |

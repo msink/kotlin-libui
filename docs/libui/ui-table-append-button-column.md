@@ -2,4 +2,4 @@
 
 # uiTableAppendButtonColumn
 
-`fun uiTableAppendButtonColumn(t: CValuesRef<`[`uiTable`](ui-table.md)`>?, name: String?, buttonModelColumn: Int, buttonClickableModelColumn: Int): Unit`
+`fun uiTableAppendButtonColumn(t: CValuesRef<`[`uiTable`](ui-table.md)`>?, name: String?, buttonModelColumn: Int, buttonClickableModelColumn: Int)`

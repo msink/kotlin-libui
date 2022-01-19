@@ -2,4 +2,4 @@
 
 # uiFormSetPadded
 
-`fun uiFormSetPadded(f: CValuesRef<`[`uiForm`](ui-form.md)`>?, padded: Int): Unit`
+`fun uiFormSetPadded(f: CValuesRef<`[`uiForm`](ui-form.md)`>?, padded: Int)`

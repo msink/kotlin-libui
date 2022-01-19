@@ -2,4 +2,4 @@
 
 # uiDrawFreePath
 
-`fun uiDrawFreePath(p: CValuesRef<`[`uiDrawPath`](ui-draw-path.md)`>?): Unit`
+`fun uiDrawFreePath(p: CValuesRef<`[`uiDrawPath`](ui-draw-path.md)`>?)`

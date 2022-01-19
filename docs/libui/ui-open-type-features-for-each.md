@@ -2,4 +2,4 @@
 
 # uiOpenTypeFeaturesForEach
 
-`fun uiOpenTypeFeaturesForEach(otf: CValuesRef<`[`uiOpenTypeFeatures`](ui-open-type-features.md)`>?, f: `[`uiOpenTypeFeaturesForEachFunc`](ui-open-type-features-for-each-func.md)`?, data: CValuesRef<*>?): Unit`
+`fun uiOpenTypeFeaturesForEach(otf: CValuesRef<`[`uiOpenTypeFeatures`](ui-open-type-features.md)`>?, f: `[`uiOpenTypeFeaturesForEachFunc`](ui-open-type-features-for-each-func.md)`?, data: CValuesRef<*>?)`

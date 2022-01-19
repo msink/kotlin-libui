@@ -2,4 +2,4 @@
 
 # uiButtonSetText
 
-`fun uiButtonSetText(b: CValuesRef<`[`uiButton`](ui-button.md)`>?, text: String?): Unit`
+`fun uiButtonSetText(b: CValuesRef<`[`uiButton`](ui-button.md)`>?, text: String?)`

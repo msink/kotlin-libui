@@ -2,4 +2,4 @@
 
 # uiDrawMatrixMultiply
 
-`fun uiDrawMatrixMultiply(dest: CValuesRef<`[`uiDrawMatrix`](ui-draw-matrix/README.md)`>?, src: CValuesRef<`[`uiDrawMatrix`](ui-draw-matrix/README.md)`>?): Unit`
+`fun uiDrawMatrixMultiply(dest: CValuesRef<`[`uiDrawMatrix`](ui-draw-matrix/README.md)`>?, src: CValuesRef<`[`uiDrawMatrix`](ui-draw-matrix/README.md)`>?)`

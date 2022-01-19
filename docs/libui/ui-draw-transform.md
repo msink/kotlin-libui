@@ -2,4 +2,4 @@
 
 # uiDrawTransform
 
-`fun uiDrawTransform(c: CValuesRef<`[`uiDrawContext`](ui-draw-context.md)`>?, m: CValuesRef<`[`uiDrawMatrix`](ui-draw-matrix/README.md)`>?): Unit`
+`fun uiDrawTransform(c: CValuesRef<`[`uiDrawContext`](ui-draw-context.md)`>?, m: CValuesRef<`[`uiDrawMatrix`](ui-draw-matrix/README.md)`>?)`

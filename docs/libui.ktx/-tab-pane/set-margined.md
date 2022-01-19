@@ -2,4 +2,4 @@
 
 # setMargined
 
-`fun setMargined(page: Int, margined: Boolean): Unit`
+`fun setMargined(page: Int, margined: Boolean)`

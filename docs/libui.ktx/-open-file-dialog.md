@@ -5,4 +5,3 @@
 `fun OpenFileDialog(): String?`
 
 Displays a modal Open File Dialog.
-

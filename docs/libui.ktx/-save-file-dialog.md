@@ -5,4 +5,3 @@
 `fun SaveFileDialog(): String?`
 
 Displays a modal Save File Dialog.
-

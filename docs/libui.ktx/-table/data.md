@@ -2,4 +2,4 @@
 
 # data
 
-`val data: List<`[`T`](-table-column/README.md#T)`>`
+`val data: List<T>`

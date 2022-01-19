@@ -2,4 +2,4 @@
 
 # uiBoxSetPadded
 
-`fun uiBoxSetPadded(b: CValuesRef<`[`uiBox`](ui-box.md)`>?, padded: Int): Unit`
+`fun uiBoxSetPadded(b: CValuesRef<`[`uiBox`](ui-box.md)`>?, padded: Int)`

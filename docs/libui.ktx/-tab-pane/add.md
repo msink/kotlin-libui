@@ -2,7 +2,6 @@
 
 # add
 
-`fun add(label: String, widget: `[`Control`](../-control/README.md)`<*>): Unit`
+`fun add(label: String, widget: `[`Control`](../-control/README.md)`<*>)`
 
 Adds the given page to the end of the TabPane.
-

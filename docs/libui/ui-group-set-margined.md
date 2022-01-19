@@ -2,4 +2,4 @@
 
 # uiGroupSetMargined
 
-`fun uiGroupSetMargined(g: CValuesRef<`[`uiGroup`](ui-group.md)`>?, margined: Int): Unit`
+`fun uiGroupSetMargined(g: CValuesRef<`[`uiGroup`](ui-group.md)`>?, margined: Int)`

@@ -2,4 +2,4 @@
 
 # uiTabDelete
 
-`fun uiTabDelete(t: CValuesRef<`[`uiTab`](ui-tab.md)`>?, index: Int): Unit`
+`fun uiTabDelete(t: CValuesRef<`[`uiTab`](ui-tab.md)`>?, index: Int)`

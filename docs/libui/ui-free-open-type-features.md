@@ -2,4 +2,4 @@
 
 # uiFreeOpenTypeFeatures
 
-`fun uiFreeOpenTypeFeatures(otf: CValuesRef<`[`uiOpenTypeFeatures`](ui-open-type-features.md)`>?): Unit`
+`fun uiFreeOpenTypeFeatures(otf: CValuesRef<`[`uiOpenTypeFeatures`](ui-open-type-features.md)`>?)`

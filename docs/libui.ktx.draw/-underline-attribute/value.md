@@ -5,4 +5,3 @@
 `val value: `[`uiUnderline`](../../libui/ui-underline.md)
 
 Returns the underline type stored in [Attribute](../-attribute/README.md).
-

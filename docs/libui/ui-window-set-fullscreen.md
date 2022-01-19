@@ -2,4 +2,4 @@
 
 # uiWindowSetFullscreen
 
-`fun uiWindowSetFullscreen(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, fullscreen: Int): Unit`
+`fun uiWindowSetFullscreen(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, fullscreen: Int)`

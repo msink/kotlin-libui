@@ -2,7 +2,6 @@
 
 # delete
 
-`fun delete(index: Int): Unit`
+`fun delete(index: Int)`
 
 Deletes the nth control of the Box.
-

@@ -2,4 +2,4 @@
 
 # uiWindowSetContentSize
 
-`fun uiWindowSetContentSize(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, width: Int, height: Int): Unit`
+`fun uiWindowSetContentSize(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, width: Int, height: Int)`

@@ -2,4 +2,4 @@
 
 # uiAreaBeginUserWindowMove
 
-`fun uiAreaBeginUserWindowMove(a: CValuesRef<`[`uiArea`](ui-area.md)`>?): Unit`
+`fun uiAreaBeginUserWindowMove(a: CValuesRef<`[`uiArea`](ui-area.md)`>?)`

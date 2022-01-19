@@ -3,6 +3,9 @@
 
 import org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension
 
+val os = org.gradle.internal.os.OperatingSystem.current()!!
+val isRunningInIde: Boolean = System.getProperty("idea.active") == "true"
+
 val samplesResourcesDir = "$projectDir/resources"
 
 subprojects {
@@ -28,17 +31,17 @@ subprojects {
             val outFile = buildDir.resolve("processedResources/$taskName.res")
 
             val windresTask = tasks.create<Exec>(taskName) {
-                val konanUserDir = System.getenv("KONAN_DATA_DIR") ?: "${System.getProperty("user.home")}/.konan"
-                val konanLlvmDir = when (target.konanTarget.architecture.bitness) {
-                    32 -> "$konanUserDir/dependencies/msys2-mingw-w64-i686-clang-llvm-lld-compiler_rt-8.0.1/bin"
-                    64 -> "$konanUserDir/dependencies/msys2-mingw-w64-x86_64-clang-llvm-lld-compiler_rt-8.0.1/bin"
-                    else -> throw Error("Unsupported architecture")
+                val mingwRoot = File(System.getenv("MSYS2_ROOT") ?: "C:/msys64/")
+                val mingwBin = when (target.konanTarget.architecture.bitness) {
+                    32 -> mingwRoot.resolve("mingw32/bin")
+                    64 -> mingwRoot.resolve("mingw64/bin")
+                    else -> error("Unsupported architecture")
                 }
 
                 inputs.file(inFile)
                 outputs.file(outFile)
-                commandLine("$konanLlvmDir/windres", inFile, "-D_${buildType.name}", "-O", "coff", "-o", outFile)
-                environment("PATH", "$konanLlvmDir;${System.getenv("PATH")}")
+                commandLine("$mingwBin/windres", inFile, "-D_${buildType.name}", "-O", "coff", "-o", outFile)
+                environment("PATH", "$mingwBin;${System.getenv("PATH")}")
 
                 dependsOn(compilation.compileKotlinTask)
             }

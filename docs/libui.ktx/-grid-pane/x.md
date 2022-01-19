@@ -5,4 +5,3 @@
 `var x: Int`
 
 The x-coordinate of the Control's location.
-

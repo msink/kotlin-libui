@@ -2,4 +2,4 @@
 
 # uiWindowSetBorderless
 
-`fun uiWindowSetBorderless(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, borderless: Int): Unit`
+`fun uiWindowSetBorderless(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, borderless: Int)`

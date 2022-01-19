@@ -5,4 +5,3 @@
 `var value: `[`Color`](../../libui.ktx.draw/-color/README.md)
 
 Return or set the currently selected color
-

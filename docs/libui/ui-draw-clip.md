@@ -2,4 +2,4 @@
 
 # uiDrawClip
 
-`fun uiDrawClip(c: CValuesRef<`[`uiDrawContext`](ui-draw-context.md)`>?, path: CValuesRef<`[`uiDrawPath`](ui-draw-path.md)`>?): Unit`
+`fun uiDrawClip(c: CValuesRef<`[`uiDrawContext`](ui-draw-context.md)`>?, path: CValuesRef<`[`uiDrawPath`](ui-draw-path.md)`>?)`

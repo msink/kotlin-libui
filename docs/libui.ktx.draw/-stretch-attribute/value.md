@@ -5,4 +5,3 @@
 `val value: `[`uiTextStretch`](../../libui/ui-text-stretch.md)
 
 Returns the font stretch stored in [Attribute](../-attribute/README.md).
-

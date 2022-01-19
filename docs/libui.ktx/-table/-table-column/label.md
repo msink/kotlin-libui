@@ -2,5 +2,6 @@
 
 # label
 
-`fun label(get: (row: Int) -> String): Unit`
-`fun label(property: KProperty1<`[`T`](README.md#T)`, String>): Unit`
+`fun label(get: (row: Int) -> String)`
+
+`fun label(property: KProperty1<T, String>)`

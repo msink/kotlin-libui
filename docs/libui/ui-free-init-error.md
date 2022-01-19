@@ -2,4 +2,4 @@
 
 # uiFreeInitError
 
-`fun uiFreeInitError(err: CValuesRef<ByteVar>?): Unit`
+`fun uiFreeInitError(err: CValuesRef<ByteVar>?)`

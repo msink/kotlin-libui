@@ -5,4 +5,3 @@
 `var yspan: Int`
 
 The height of the Control.
-

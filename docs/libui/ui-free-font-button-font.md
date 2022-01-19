@@ -2,4 +2,4 @@
 
 # uiFreeFontButtonFont
 
-`fun uiFreeFontButtonFont(desc: CValuesRef<`[`uiFontDescriptor`](ui-font-descriptor/README.md)`>?): Unit`
+`fun uiFreeFontButtonFont(desc: CValuesRef<`[`uiFontDescriptor`](ui-font-descriptor/README.md)`>?)`

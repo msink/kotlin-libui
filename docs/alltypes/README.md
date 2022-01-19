@@ -72,7 +72,6 @@
 | [libui.ktx.Window](../libui.ktx/-window/README.md) | Represents a top-level window. Contains one child control that occupies the entirety of the window. |
 | [libui.ktAreaHandler](../libui/kt-area-handler/README.md) |  |
 | [libui.ktTableHandler](../libui/kt-table-handler/README.md) |  |
-| [libui.tm](../libui/tm.md) |  |
 | [libui.uiAlign](../libui/ui-align.md) |  |
 | [libui.uiAlignVar](../libui/ui-align-var.md) |  |
 | [libui.uiArea](../libui/ui-area.md) |  |

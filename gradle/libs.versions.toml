@@ -1,0 +1,9 @@
+[versions]
+kotlin = "1.6.0"
+download = "4.1.2"
+dokka = "0.9.17"
+
+[plugins]
+kotlin = { id = "org.jetbrains.kotlin.multiplatform", version.ref="kotlin" }
+download = { id = "de.undercouch.download", version.ref="download" }
+dokka = { id = "org.jetbrains.dokka", version.ref="dokka" }

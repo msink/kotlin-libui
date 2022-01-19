@@ -14,12 +14,30 @@ plugins {
     id("maven-publish")
 }
 
+object Libui {
+    const val version = "alpha4.1-openfolder"
+    const val repo = "https://github.com/msink/libui"
+}
+
+object Publish {
+    const val group = "com.github.msink"
+    const val user = "msink"
+    object pom {
+        const val url = "https://github.com/msink/kotlin-libui"
+        const val connection = "scm:git:https://github.com/msink/kotlin-libui.git"
+        const val devConnection = "scm:git:git@github.com:msink/kotlin-libui.git"
+    }
+}
+
 val VERSION_NAME: String by project
 val VERSION_SUFFIX: String by project
 val BINTRAY_REPO: String by project
 
 group = Publish.group
 version = "$VERSION_NAME$VERSION_SUFFIX"
+
+val os = org.gradle.internal.os.OperatingSystem.current()!!
+val isRunningInIde: Boolean = System.getProperty("idea.active") == "true"
 
 kotlin {
     val publishModeEnabled = rootProject.hasProperty("publishMode")

@@ -2,4 +2,4 @@
 
 # uiBoxAppend
 
-`fun uiBoxAppend(b: CValuesRef<`[`uiBox`](ui-box.md)`>?, child: CValuesRef<`[`uiControl`](ui-control/README.md)`>?, stretchy: Int): Unit`
+`fun uiBoxAppend(b: CValuesRef<`[`uiBox`](ui-box.md)`>?, child: CValuesRef<`[`uiControl`](ui-control/README.md)`>?, stretchy: Int)`

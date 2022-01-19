@@ -2,7 +2,7 @@
 
 # Disposable
 
-`Disposable(alloc: CPointer<`[`T`](README.md#T)`>?)`
+`Disposable<T : CPointed>(alloc: CPointer<T>?)`
 
 Base class for all objects that have a holder reference to the native C resource(s).
 

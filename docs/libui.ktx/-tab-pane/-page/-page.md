@@ -5,4 +5,3 @@
 `Page(label: String)`
 
 adapter for DSL builders
-

@@ -2,7 +2,6 @@
 
 # figure
 
-`fun figure(x: Double, y: Double): Unit`
+`fun figure(x: Double, y: Double)`
 
 Starts a new figure at the specified point. Call this method when you want to create a new path.
-

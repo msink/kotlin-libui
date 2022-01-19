@@ -6,4 +6,3 @@
 
 Represents a top-level window.
 Contains one child control that occupies the entirety of the window.
-

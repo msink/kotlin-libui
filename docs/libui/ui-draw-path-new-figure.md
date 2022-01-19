@@ -2,4 +2,4 @@
 
 # uiDrawPathNewFigure
 
-`fun uiDrawPathNewFigure(p: CValuesRef<`[`uiDrawPath`](ui-draw-path.md)`>?, x: Double, y: Double): Unit`
+`fun uiDrawPathNewFigure(p: CValuesRef<`[`uiDrawPath`](ui-draw-path.md)`>?, x: Double, y: Double)`

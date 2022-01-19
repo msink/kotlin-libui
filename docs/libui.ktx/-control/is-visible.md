@@ -5,4 +5,3 @@
 `fun isVisible(): Boolean`
 
 Whether the Control is visible.
-

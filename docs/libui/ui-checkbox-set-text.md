@@ -2,4 +2,4 @@
 
 # uiCheckboxSetText
 
-`fun uiCheckboxSetText(c: CValuesRef<`[`uiCheckbox`](ui-checkbox.md)`>?, text: String?): Unit`
+`fun uiCheckboxSetText(c: CValuesRef<`[`uiCheckbox`](ui-checkbox.md)`>?, text: String?)`

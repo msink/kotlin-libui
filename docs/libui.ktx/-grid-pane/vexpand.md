@@ -5,4 +5,3 @@
 `var vexpand: Boolean`
 
 The vertical expand of Control.
-

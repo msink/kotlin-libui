@@ -2,4 +2,4 @@
 
 # uiEntrySetText
 
-`fun uiEntrySetText(e: CValuesRef<`[`uiEntry`](ui-entry.md)`>?, text: String?): Unit`
+`fun uiEntrySetText(e: CValuesRef<`[`uiEntry`](ui-entry.md)`>?, text: String?)`

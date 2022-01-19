@@ -5,4 +5,3 @@
 `val numPages: Int`
 
 Number of pages in the TabPane.
-

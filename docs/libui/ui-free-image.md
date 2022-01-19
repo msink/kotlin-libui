@@ -2,4 +2,4 @@
 
 # uiFreeImage
 
-`fun uiFreeImage(i: CValuesRef<`[`uiImage`](ui-image.md)`>?): Unit`
+`fun uiFreeImage(i: CValuesRef<`[`uiImage`](ui-image.md)`>?)`

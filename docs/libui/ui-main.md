@@ -2,4 +2,4 @@
 
 # uiMain
 
-`fun uiMain(): Unit`
+`fun uiMain()`

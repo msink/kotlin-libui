@@ -2,4 +2,4 @@
 
 # uiTableModelRowInserted
 
-`fun uiTableModelRowInserted(m: CValuesRef<`[`uiTableModel`](ui-table-model.md)`>?, newIndex: Int): Unit`
+`fun uiTableModelRowInserted(m: CValuesRef<`[`uiTableModel`](ui-table-model.md)`>?, newIndex: Int)`

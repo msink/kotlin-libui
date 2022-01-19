@@ -2,4 +2,4 @@
 
 # uiGroupSetChild
 
-`fun uiGroupSetChild(g: CValuesRef<`[`uiGroup`](ui-group.md)`>?, c: CValuesRef<`[`uiControl`](ui-control/README.md)`>?): Unit`
+`fun uiGroupSetChild(g: CValuesRef<`[`uiGroup`](ui-group.md)`>?, c: CValuesRef<`[`uiControl`](ui-control/README.md)`>?)`

@@ -2,4 +2,4 @@
 
 # uiColorButtonSetColor
 
-`fun uiColorButtonSetColor(b: CValuesRef<`[`uiColorButton`](ui-color-button.md)`>?, r: Double, g: Double, bl: Double, a: Double): Unit`
+`fun uiColorButtonSetColor(b: CValuesRef<`[`uiColorButton`](ui-color-button.md)`>?, r: Double, g: Double, bl: Double, a: Double)`

@@ -2,4 +2,4 @@
 
 # uiAttributedStringInsertAtUnattributed
 
-`fun uiAttributedStringInsertAtUnattributed(s: CValuesRef<`[`uiAttributedString`](ui-attributed-string.md)`>?, str: String?, at: size_t): Unit`
+`fun uiAttributedStringInsertAtUnattributed(s: CValuesRef<`[`uiAttributedString`](ui-attributed-string.md)`>?, str: String?, at: size_t)`

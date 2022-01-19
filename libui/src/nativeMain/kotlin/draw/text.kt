@@ -220,18 +220,36 @@ class OpenTypeFeatures(copy: CPointer<uiOpenTypeFeatures>? = null) : Disposable<
 
     /** Adds the given feature tag and value to OpenTypeFeatures. If there is already a value
      *  associated with the specified tag in otf, the old value is removed. */
-    fun add(tag: String, value: UInt) =
-        uiOpenTypeFeaturesAdd(ptr, tag[0].toByte(), tag[1].toByte(), tag[2].toByte(), tag[3].toByte(), value)
+    fun add(tag: String, value: UInt) = uiOpenTypeFeaturesAdd(
+        ptr,
+        tag[0].code.toByte(),
+        tag[1].code.toByte(),
+        tag[2].code.toByte(),
+        tag[3].code.toByte(),
+        value
+    )
 
     /** Removes the given feature tag and value from OpenTypeFeatures. If the tag is not present
      *  in OpenTypeFeatures, it does nothing. */
-    fun remove(tag: String) =
-        uiOpenTypeFeaturesRemove(ptr, tag[0].toByte(), tag[1].toByte(), tag[2].toByte(), tag[3].toByte())
+    fun remove(tag: String) = uiOpenTypeFeaturesRemove(
+        ptr,
+        tag[0].code.toByte(),
+        tag[1].code.toByte(),
+        tag[2].code.toByte(),
+        tag[3].code.toByte()
+    )
 
     /** Determines whether the given feature tag is present in OpenTypeFeatures. */
     fun get(tag: String): UInt = memScoped {
         val value = alloc<UIntVar>()
-        uiOpenTypeFeaturesGet(ptr, tag[0].toByte(), tag[1].toByte(), tag[2].toByte(), tag[3].toByte(), value.ptr)
+        uiOpenTypeFeaturesGet(
+            ptr,
+            tag[0].code.toByte(),
+            tag[1].code.toByte(),
+            tag[2].code.toByte(),
+            tag[3].code.toByte(),
+            value.ptr
+        )
         value.value
     }
 }
