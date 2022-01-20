@@ -66,7 +66,7 @@ kotlin {
             }
             kotlinOptions.freeCompilerArgs = listOf(
                 "-include-binary", "$buildDir/libui/${konanTarget.name}/libui.a",
-                "-Xopt-in=kotlin.contracts.ExperimentalContracts"
+                "-opt-in=kotlin.contracts.ExperimentalContracts"
             )
         }
     }
