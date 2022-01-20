@@ -65,7 +65,8 @@ kotlin {
                 includeDirs("$buildDir/libui/${konanTarget.name}")
             }
             kotlinOptions.freeCompilerArgs = listOf(
-                "-include-binary", "$buildDir/libui/${konanTarget.name}/libui.a"
+                "-include-binary", "$buildDir/libui/${konanTarget.name}/libui.a",
+                "-opt-in=kotlin.contracts.ExperimentalContracts"
             )
         }
     }
