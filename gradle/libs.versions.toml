@@ -1,5 +1,5 @@
 [versions]
-kotlin = "1.7.0-dev-2612"
+kotlin = "1.7.0-Beta-8"
 download = "4.1.2"
 dokka = "0.9.17"
 
