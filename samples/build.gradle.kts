@@ -31,17 +31,17 @@ subprojects {
             val outFile = buildDir.resolve("processedResources/$taskName.res")
 
             val windresTask = tasks.create<Exec>(taskName) {
-                val mingwRoot = File(System.getenv("MSYS2_ROOT") ?: "C:/msys64/")
-                val mingwBin = when (target.konanTarget.architecture.bitness) {
-                    32 -> mingwRoot.resolve("mingw32/bin")
-                    64 -> mingwRoot.resolve("mingw64/bin")
+                val konanDataDir = System.getenv("KONAN_DATA_DIR") ?: "${System.getProperty("user.home")}/.konan"
+                val toolchainBinDir = when (target.konanTarget.architecture.bitness) {
+                    32 -> "$konanDataDir/dependencies/msys2-mingw-w64-i686-2/bin"
+                    64 -> "$konanDataDir/dependencies/msys2-mingw-w64-x86_64-2/bin"
                     else -> error("Unsupported architecture")
                 }
 
                 inputs.file(inFile)
                 outputs.file(outFile)
-                commandLine("$mingwBin/windres", inFile, "-D_${buildType.name}", "-O", "coff", "-o", outFile)
-                environment("PATH", "$mingwBin;${System.getenv("PATH")}")
+                commandLine("$toolchainBinDir/windres", inFile, "-D_${buildType.name}", "-O", "coff", "-o", outFile)
+                environment("PATH", "$toolchainBinDir;${System.getenv("PATH")}")
 
                 dependsOn(compilation.compileKotlinTask)
             }
