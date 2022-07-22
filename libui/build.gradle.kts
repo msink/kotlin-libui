@@ -70,16 +70,16 @@ kotlin {
         }
         compilations["main"].apply {
             cinterops.create("libui") {
-                includeDirs("$buildDir/libui/${konanTarget.name}")
+                includeDirs("${rootProject.projectDir}/libui-ng-1e5ad95")
             }
             kotlinOptions.freeCompilerArgs = listOf(
-                "-include-binary", "$buildDir/libui/${konanTarget.name}/libui.a"
+                "-include-binary", "${rootProject.projectDir}/libui-ng-1e5ad95/${konanTarget.name}/libui.a"
             )
         }
     }
 }
 
-tasks.withType<CInteropProcess> {
+/*tasks.withType<CInteropProcess> {
     val archiveFile = File("$buildDir/libui/${konanTarget.name}",
         "libui.${if (konanTarget.family == Family.MINGW) "zip" else "tgz"}")
 
@@ -106,7 +106,7 @@ tasks.withType<CInteropProcess> {
     }
 
     dependsOn(unpackArchive)
-}
+}*/
 
 publishing {
     publications.withType<MavenPublication> {
