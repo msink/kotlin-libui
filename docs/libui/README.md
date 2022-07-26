@@ -489,10 +489,12 @@
 | [uiUserBugCannotSetParentOnToplevel](ui-user-bug-cannot-set-parent-on-toplevel.md) | `fun uiUserBugCannotSetParentOnToplevel(type: String?)` |
 | [uiWindowBorderless](ui-window-borderless.md) | `fun uiWindowBorderless(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?): Int` |
 | [uiWindowContentSize](ui-window-content-size.md) | `fun uiWindowContentSize(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, width: CValuesRef<IntVar>?, height: CValuesRef<IntVar>?)` |
+| [uiWindowFocused](ui-window-focused.md) | `fun uiWindowFocused(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?): Int` |
 | [uiWindowFullscreen](ui-window-fullscreen.md) | `fun uiWindowFullscreen(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?): Int` |
 | [uiWindowMargined](ui-window-margined.md) | `fun uiWindowMargined(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?): Int` |
 | [uiWindowOnClosing](ui-window-on-closing.md) | `fun uiWindowOnClosing(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiWindow`](ui-window.md)`>?, COpaquePointer?) -> Int>>?, data: CValuesRef<*>?)` |
 | [uiWindowOnContentSizeChanged](ui-window-on-content-size-changed.md) | `fun uiWindowOnContentSizeChanged(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiWindow`](ui-window.md)`>?, COpaquePointer?) -> Unit>>?, data: CValuesRef<*>?)` |
+| [uiWindowOnFocusChanged](ui-window-on-focus-changed.md) | `fun uiWindowOnFocusChanged(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiWindow`](ui-window.md)`>?, COpaquePointer?) -> Unit>>?, data: CValuesRef<*>?)` |
 | [uiWindowSetBorderless](ui-window-set-borderless.md) | `fun uiWindowSetBorderless(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, borderless: Int)` |
 | [uiWindowResizeable](ui-window-resizeable.md) | `fun uiWindowResizeable(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?): Int` |
 | [uiWindowSetChild](ui-window-set-child.md) | `fun uiWindowSetChild(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, child: CValuesRef<`[`uiControl`](ui-control/README.md)`>?)` |

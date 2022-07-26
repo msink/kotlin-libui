@@ -64,6 +64,22 @@ class Window(
         }
         set(size) = uiWindowSetContentSize(ptr, size.width, size.height)
 
+    /** Whether or not the window is focused. */
+    val focused: Boolean
+        get() = uiWindowFocused(ptr) != 0
+
+    /** Function to be run when the window focus changes. */
+    fun onFocusChanged(block: Window.() -> Unit) {
+        onFocusChanged = block
+        uiWindowOnFocusChanged(ptr, staticCFunction { _, ref ->
+            with(ref.to<Window>()) {
+                onFocusChanged?.invoke(this)
+            }
+        }, ref.asCPointer())
+    }
+
+    internal var onFocusChanged: (Window.() -> Unit)? = null
+
     /** Function to be run when window content size change. */
     fun onResize(block: Window.() -> Unit) {
         onResize = block

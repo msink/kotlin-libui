@@ -1,8 +1,9 @@
 # ?.?.?
 > Published ???
 
-* Compatible with Kotlin 1.7.20
+* Compatible with Kotlin 1.7.?
 * Added `Window.resizeable`
+* Added `Window.focused` and `Window.onFocusChanged`
 
 
 # 0.1.8

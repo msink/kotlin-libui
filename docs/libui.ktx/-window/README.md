@@ -19,6 +19,7 @@ Contains one child control that occupies the entirety of the window.
 |---|---|
 | [borderless](borderless.md) | `var borderless: Boolean`<br>Allow to specify that the window is a frameless one, without borders, title bar and OS window control widgets. |
 | [contentSize](content-size.md) | `var contentSize: `[`SizeInt`](../../libui.ktx.draw/-size-int/README.md)<br>Size in pixel of the content area of the window. Window decoration size are excluded. This mean that if you set window size to 0,0 you still see title bar and OS window buttons. |
+| [focused](focused.md) | `val focused: Boolean`<br>Whether or not the window is focused. |
 | [fullscreen](fullscreen.md) | `var fullscreen: Boolean`<br>Whether the window should show in fullscreen or not. |
 | [margined](margined.md) | `var margined: Boolean`<br>Specify if the Window content should have a margin or not. |
 | [resizeable](resizeable.md) | `var resizeable: Boolean`<br>Whether or not the window is user resizeable. |
@@ -40,6 +41,7 @@ Contains one child control that occupies the entirety of the window.
 |---|---|
 | [add](add.md) | `fun <T : `[`Control`](../-control/README.md)`<*>> add(widget: T): T`<br>Specify the control to show in content area. Window can contain only one control, if you need more use layouts like Box or GridPane |
 | [onClose](on-close.md) | `fun onClose(block: Window.() -> Boolean)`<br>Function to be run when the user clicks the Window's close button. Only one function can be registered at a time. |
+| [onFocusChanged](on-focus-changed.md) | `fun onFocusChanged(block: Window.() -> Boolean)`<br>Function to be run when the window focus changes. |
 | [onResize](on-resize.md) | `fun onResize(block: Window.() -> Unit)`<br>Function to be run when window content size change. |
 
 ### Inherited functions
