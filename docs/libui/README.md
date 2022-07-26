@@ -494,9 +494,11 @@
 | [uiWindowOnClosing](ui-window-on-closing.md) | `fun uiWindowOnClosing(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiWindow`](ui-window.md)`>?, COpaquePointer?) -> Int>>?, data: CValuesRef<*>?)` |
 | [uiWindowOnContentSizeChanged](ui-window-on-content-size-changed.md) | `fun uiWindowOnContentSizeChanged(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiWindow`](ui-window.md)`>?, COpaquePointer?) -> Unit>>?, data: CValuesRef<*>?)` |
 | [uiWindowSetBorderless](ui-window-set-borderless.md) | `fun uiWindowSetBorderless(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, borderless: Int)` |
+| [uiWindowResizeable](ui-window-resizeable.md) | `fun uiWindowResizeable(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?): Int` |
 | [uiWindowSetChild](ui-window-set-child.md) | `fun uiWindowSetChild(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, child: CValuesRef<`[`uiControl`](ui-control/README.md)`>?)` |
 | [uiWindowSetContentSize](ui-window-set-content-size.md) | `fun uiWindowSetContentSize(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, width: Int, height: Int)` |
 | [uiWindowSetFullscreen](ui-window-set-fullscreen.md) | `fun uiWindowSetFullscreen(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, fullscreen: Int)` |
 | [uiWindowSetMargined](ui-window-set-margined.md) | `fun uiWindowSetMargined(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, margined: Int)` |
+| [uiWindowSetResizeable](ui-window-set-resizeable.md) | `fun uiWindowSetResizeable(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, resizeable: Int)` |
 | [uiWindowSetTitle](ui-window-set-title.md) | `fun uiWindowSetTitle(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?, title: String?)` |
 | [uiWindowTitle](ui-window-title.md) | `fun uiWindowTitle(w: CValuesRef<`[`uiWindow`](ui-window.md)`>?): CPointer<ByteVar>?` |

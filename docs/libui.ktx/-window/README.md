@@ -21,6 +21,7 @@ Contains one child control that occupies the entirety of the window.
 | [contentSize](content-size.md) | `var contentSize: `[`SizeInt`](../../libui.ktx.draw/-size-int/README.md)<br>Size in pixel of the content area of the window. Window decoration size are excluded. This mean that if you set window size to 0,0 you still see title bar and OS window buttons. |
 | [fullscreen](fullscreen.md) | `var fullscreen: Boolean`<br>Whether the window should show in fullscreen or not. |
 | [margined](margined.md) | `var margined: Boolean`<br>Specify if the Window content should have a margin or not. |
+| [resizeable](resizeable.md) | `var resizeable: Boolean`<br>Whether or not the window is user resizeable. |
 | [title](title.md) | `var title: String`<br>Set or return the text to show in window title bar. |
 
 ### Inherited properties

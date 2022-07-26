@@ -42,6 +42,11 @@ class Window(
         get() = uiWindowMargined(ptr) != 0
         set(margined) = uiWindowSetMargined(ptr, if (margined) 1 else 0)
 
+    /** Whether or not the window is user resizeable. */
+    var resizeable: Boolean
+        get() = uiWindowResizeable(ptr) != 0
+        set(resizeable) = uiWindowSetResizeable(ptr, if (resizeable) 1 else 0)
+
     /** Whether the window should show in fullscreen or not. */
     var fullscreen: Boolean
         get() = uiWindowFullscreen(ptr) != 0
