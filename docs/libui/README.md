@@ -281,6 +281,10 @@
 | [uiColorButtonOnChanged](ui-color-button-on-changed.md) | `fun uiColorButtonOnChanged(b: CValuesRef<`[`uiColorButton`](ui-color-button.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiColorButton`](ui-color-button.md)`>?, COpaquePointer?) -> Unit>>?, data: CValuesRef<*>?)` |
 | [uiColorButtonSetColor](ui-color-button-set-color.md) | `fun uiColorButtonSetColor(b: CValuesRef<`[`uiColorButton`](ui-color-button.md)`>?, r: Double, g: Double, bl: Double, a: Double)` |
 | [uiComboboxAppend](ui-combobox-append.md) | `fun uiComboboxAppend(c: CValuesRef<`[`uiCombobox`](ui-combobox.md)`>?, text: String?)` |
+| [uiComboboxClear](ui-combobox-clear.md) | `fun uiComboboxClear(c: CValuesRef<`[`uiCombobox`](ui-combobox.md)`>?)` |
+| [uiComboboxDelete](ui-combobox-delete.md) | `fun uiComboboxDelete(c: CValuesRef<`[`uiCombobox`](ui-combobox.md)`>?, index: Int)` |
+| [uiComboboxInsertAt](ui-combobox-insert-at.md) | `fun uiComboboxInsertAt(c: CValuesRef<`[`uiCombobox`](ui-combobox.md)`>?, index: Int, text: String?)` |
+| [uiComboboxNumItems](ui-combobox-num-items.md) | `fun uiComboboxNumItems(t: CValuesRef<`[`uiCombobox`](ui-combobox.md)`>?): Int` |
 | [uiComboboxOnSelected](ui-combobox-on-selected.md) | `fun uiComboboxOnSelected(c: CValuesRef<`[`uiCombobox`](ui-combobox.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiCombobox`](ui-combobox.md)`>?, COpaquePointer?) -> Unit>>?, data: CValuesRef<*>?)` |
 | [uiComboboxSelected](ui-combobox-selected.md) | `fun uiComboboxSelected(c: CValuesRef<`[`uiCombobox`](ui-combobox.md)`>?): Int` |
 | [uiComboboxSetSelected](ui-combobox-set-selected.md) | `fun uiComboboxSetSelected(c: CValuesRef<`[`uiCombobox`](ui-combobox.md)`>?, n: Int)` |

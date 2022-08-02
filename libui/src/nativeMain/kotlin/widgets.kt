@@ -236,7 +236,19 @@ class Combobox : Control<uiCombobox>(uiNewCombobox()) {
      *  If it is the first entry, it is automatically selected. */
     fun item(text: String) = uiComboboxAppend(ptr, text)
 
-    /** Return or set the current selected option by index. */
+    /** Inserts an item at index to the combobox. */
+    fun insert(index: Int, text: String) = uiComboboxInsertAt(ptr, index, text)
+
+    /** Deletes an item at index from the combobox. */
+    fun delete(index: Int) = uiComboboxDelete(ptr, index)
+
+    /** Deletes all items from the combobox. */
+    fun deleteAll() = uiComboboxClear(ptr)
+
+    /** Number of items contained within the combobox. */
+    val numItems: Int get() = uiComboboxNumItems(ptr)
+
+    /** Return or set the index of the item selected. */
     var value: Int
         get() = uiComboboxSelected(ptr)
         set(value) = uiComboboxSetSelected(ptr, value)

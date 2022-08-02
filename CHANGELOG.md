@@ -4,6 +4,7 @@
 * Compatible with Kotlin 1.7.?
 * Added `Window.resizeable`
 * Added `Window.focused` and `Window.onFocusChanged`
+* Added `Combobox.insert`, `.delete`, `.deleteAll` and `.numItems`
 
 
 # 0.1.8

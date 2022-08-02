@@ -4,4 +4,4 @@
 
 `var value: Int`
 
-Return or set the current selected option by index.
+Return or set the index of the item selected.
