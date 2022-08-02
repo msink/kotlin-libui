@@ -99,6 +99,11 @@ abstract class Box(alloc: CPointer<uiBox>?) : Control<uiBox>(alloc), Container {
     /** Next added child should expand to use all available size. */
     var stretchy = false
 
+    /** If `true`, the container insert some space between children. */
+    var padded: Boolean
+        get() = uiBoxPadded(ptr) != 0
+        set(padded) = uiBoxSetPadded(ptr, if (padded) 1 else 0)
+
     /** Adds the given widget to the end of the Box. */
     override fun <T : Control<*>> add(widget: T): T {
         uiBoxAppend(ptr, widget.ctl, if (stretchy) 1 else 0)
@@ -106,13 +111,11 @@ abstract class Box(alloc: CPointer<uiBox>?) : Control<uiBox>(alloc), Container {
         return widget
     }
 
-    /** If `true`, the container insert some space between children. */
-    var padded: Boolean
-        get() = uiBoxPadded(ptr) != 0
-        set(padded) = uiBoxSetPadded(ptr, if (padded) 1 else 0)
-
-    /** Deletes the nth control of the Box. */
+    /** Removes the widget at index from the box. */
     fun delete(index: Int) = uiBoxDelete(ptr, index)
+
+    /** Number of widgets contained within the box. */
+    val numChildren: Int get() = uiBoxNumChildren(ptr)
 }
 
 /** Wrapper class for [uiBox] - a container that stack its children horizontally. */
@@ -144,6 +147,11 @@ class Form : Control<uiForm>(uiNewForm()), Container {
     /** Next added child should expand to use all available size. */
     var stretchy = false
 
+    /** If true, the container insert some space between children. */
+    var padded: Boolean
+        get() = uiFormPadded(ptr) != 0
+        set(padded) = uiFormSetPadded(ptr, if (padded) 1 else 0)
+
     /** Adds the given widget to the end of the form. */
     override fun <T : Control<*>> add(widget: T): T {
         uiFormAppend(ptr, label, widget.ctl, if (stretchy) 1 else 0)
@@ -152,13 +160,11 @@ class Form : Control<uiForm>(uiNewForm()), Container {
         return widget
     }
 
-    /** If true, the container insert some space between children. */
-    var padded: Boolean
-        get() = uiFormPadded(ptr) != 0
-        set(padded) = uiFormSetPadded(ptr, if (padded) 1 else 0)
-
-    /** deletes the nth control of the form. */
+    /** Removes the widget at index from the form. */
     fun delete(index: Int) = uiFormDelete(ptr, index)
+
+    /** Number of widgets contained within the form. */
+    val numChildren: Int get() = uiFormNumChildren(ptr)
 }
 
 ///////////////////////////////////////////////////////////////////////////////

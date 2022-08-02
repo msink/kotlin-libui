@@ -4,4 +4,4 @@
 
 `fun delete(index: Int)`
 
-Deletes the nth control of the Box.
+Removes the widget at index from the box.

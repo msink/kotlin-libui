@@ -5,6 +5,7 @@
 * Added `Window.resizeable`
 * Added `Window.focused` and `Window.onFocusChanged`
 * Added `Combobox.insert`, `.delete`, `.deleteAll` and `.numItems`
+* Added `Box.numChildren` and `Form.numChildren`
 
 
 # 0.1.8

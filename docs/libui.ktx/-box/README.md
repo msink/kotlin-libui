@@ -16,6 +16,7 @@ Wrapper class for [uiBox](../../libui/ui-box.md) - a container that stack its ch
 
 | Name | Summary |
 |---|---|
+| [numChildren](num-children.md) | `val numChildren: Int`<br>Number of widgets contained within the box. |
 | [padded](padded.md) | `var padded: Boolean`<br>If `true`, the container insert some space between children. |
 | [stretchy](stretchy.md) | `var stretchy: Boolean`<br>Next added child should expand to use all available size. |
 
@@ -34,7 +35,7 @@ Wrapper class for [uiBox](../../libui/ui-box.md) - a container that stack its ch
 | Name | Summary |
 |---|---|
 | [add](add.md) | `open fun <T : `[`Control`](../-control/README.md)`<*>> add(widget: T): T`<br>Adds the given widget to the end of the Box. |
-| [delete](delete.md) | `fun delete(index: Int)`<br>Deletes the nth control of the Box. |
+| [delete](delete.md) | `fun delete(index: Int)`<br>Removes the widget at index from the box. |
 
 ### Inherited functions
 

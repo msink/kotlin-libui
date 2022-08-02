@@ -267,6 +267,7 @@
 | [uiAttributedStringString](ui-attributed-string-string.md) | `fun uiAttributedStringString(s: CValuesRef<`[`uiAttributedString`](ui-attributed-string.md)`>?): CPointer<ByteVar>?` |
 | [uiBoxAppend](ui-box-append.md) | `fun uiBoxAppend(b: CValuesRef<`[`uiBox`](ui-box.md)`>?, child: CValuesRef<`[`uiControl`](ui-control/README.md)`>?, stretchy: Int)` |
 | [uiBoxDelete](ui-box-delete.md) | `fun uiBoxDelete(b: CValuesRef<`[`uiBox`](ui-box.md)`>?, index: Int)` |
+| [uiBoxNumChildren](ui-box-num-children.md) | `fun uiBoxNumChildren(f: CValuesRef<`[`uiBox`](ui-box.md)`>?): Int` |
 | [uiBoxPadded](ui-box-padded.md) | `fun uiBoxPadded(b: CValuesRef<`[`uiBox`](ui-box.md)`>?): Int` |
 | [uiBoxSetPadded](ui-box-set-padded.md) | `fun uiBoxSetPadded(b: CValuesRef<`[`uiBox`](ui-box.md)`>?, padded: Int)` |
 | [uiButtonOnClicked](ui-button-on-clicked.md) | `fun uiButtonOnClicked(b: CValuesRef<`[`uiButton`](ui-button.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiButton`](ui-button.md)`>?, COpaquePointer?) -> Unit>>?, data: CValuesRef<*>?)` |
@@ -347,6 +348,7 @@
 | [uiFontButtonOnChanged](ui-font-button-on-changed.md) | `fun uiFontButtonOnChanged(b: CValuesRef<`[`uiFontButton`](ui-font-button.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiFontButton`](ui-font-button.md)`>?, COpaquePointer?) -> Unit>>?, data: CValuesRef<*>?)` |
 | [uiFormAppend](ui-form-append.md) | `fun uiFormAppend(f: CValuesRef<`[`uiForm`](ui-form.md)`>?, label: String?, c: CValuesRef<`[`uiControl`](ui-control/README.md)`>?, stretchy: Int)` |
 | [uiFormDelete](ui-form-delete.md) | `fun uiFormDelete(f: CValuesRef<`[`uiForm`](ui-form.md)`>?, index: Int)` |
+| [uiFormNumChildren](ui-form-num-children.md) | `fun uiFormNumChildren(f: CValuesRef<`[`uiForm`](ui-form.md)`>?): Int` |
 | [uiFormPadded](ui-form-padded.md) | `fun uiFormPadded(f: CValuesRef<`[`uiForm`](ui-form.md)`>?): Int` |
 | [uiFormSetPadded](ui-form-set-padded.md) | `fun uiFormSetPadded(f: CValuesRef<`[`uiForm`](ui-form.md)`>?, padded: Int)` |
 | [uiFreeAttribute](ui-free-attribute.md) | `fun uiFreeAttribute(a: CValuesRef<`[`uiAttribute`](ui-attribute.md)`>?)` |

@@ -17,6 +17,7 @@ Wrapper class for [uiForm](../../libui/ui-form.md) - a container that organize c
 | Name | Summary |
 |---|---|
 | [label](label.md) | `var label: String`<br>Label for next added child |
+| [numChildren](num-children.md) | `val numChildren: Int`<br>Number of widgets contained within the form. |
 | [padded](padded.md) | `var padded: Boolean`<br>If true, the container insert some space between children. |
 | [stretchy](stretchy.md) | `var stretchy: Boolean`<br>Next added child should expand to use all available size. |
 
@@ -35,7 +36,7 @@ Wrapper class for [uiForm](../../libui/ui-form.md) - a container that organize c
 | Name | Summary |
 |---|---|
 | [add](add.md) | `fun <T : `[`Control`](../-control/README.md)`<*>> add(widget: T): T`<br>Adds the given widget to the end of the form. |
-| [delete](delete.md) | `fun delete(index: Int)`<br>deletes the nth control of the form. |
+| [delete](delete.md) | `fun delete(index: Int)`<br>Removes the widget at index from the form. |
 
 ### Inherited functions
 
