@@ -16,6 +16,7 @@ Wrapper class for [uiSlider](../../libui/ui-slider.md) - an horizontal slide to 
 
 | Name | Summary |
 |---|---|
+| [hasToolTip](has-tool-tip.md) | `var hasToolTip: Boolean`<br>Whether or not the slider has a tool tip. |
 | [value](value.md) | `var value: Int`<br>The current numeric value of the slider. |
 
 ### Inherited properties
@@ -33,6 +34,8 @@ Wrapper class for [uiSlider](../../libui/ui-slider.md) - an horizontal slide to 
 | Name | Summary |
 |---|---|
 | [action](action.md) | `fun action(block: Slider.() -> Unit)`<br>Function to be run when the user makes a change to the Slider. Only one function can be registered at a time. |
+| [onReleased](on-released.md) | `fun onReleased(block: Slider.() -> Unit)`<br>Function to be run when the slider is released from dragging. Only one function can be registered at a time. |
+| [setRange](set-range.md) | `fun setRange(min: Int, max: Int)`<br>Sets the slider range. |
 
 ### Inherited functions
 

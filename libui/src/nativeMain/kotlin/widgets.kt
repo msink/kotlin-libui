@@ -359,10 +359,31 @@ inline fun Container.slider(
 /** Wrapper class for [uiSlider] - an horizontal slide to set numerical values. */
 class Slider(min: Int, max: Int) : Control<uiSlider>(uiNewSlider(min, max)) {
 
+    /** Whether or not the slider has a tool tip. */
+    var hasToolTip: Boolean
+        get() = uiSliderHasToolTip(ptr) != 0
+        set(hasToolTip) = uiSliderSetHasToolTip(ptr, if (hasToolTip) 1 else 0)
+
     /** The current numeric value of the slider. */
     var value: Int
         get() = uiSliderValue(ptr)
         set(value) = uiSliderSetValue(ptr, value)
+
+    /** Sets the slider range. */
+    fun setRange(min: Int, max: Int) = uiSliderSetRange(ptr, min, max)
+
+    /** Function to be run when the slider is released from dragging.
+     *  Only one function can be registered at a time. */
+    fun onReleased(block: Slider.() -> Unit) {
+        onReleased = block
+        uiSliderOnReleased(ptr, staticCFunction { _, ref ->
+            with(ref.to<Slider>()) {
+                onReleased?.invoke(this)
+            }
+        }, ref.asCPointer())
+    }
+
+    internal var onReleased: (Slider.() -> Unit)? = null
 
     /** Function to be run when the user makes a change to the Slider.
      *  Only one function can be registered at a time. */

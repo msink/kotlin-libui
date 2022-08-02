@@ -6,6 +6,7 @@
 * Added `Window.focused` and `Window.onFocusChanged`
 * Added `Combobox.insert`, `.delete`, `.deleteAll` and `.numItems`
 * Added `Box.numChildren` and `Form.numChildren`
+* Added `Slider.hasToolTip`, `.setRange` and `.onReleased`
 
 
 # 0.1.8

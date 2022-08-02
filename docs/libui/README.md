@@ -464,7 +464,11 @@
 | [uiRadioButtonsSetSelected](ui-radio-buttons-set-selected.md) | `fun uiRadioButtonsSetSelected(r: CValuesRef<`[`uiRadioButtons`](ui-radio-buttons.md)`>?, n: Int)` |
 | [uiSaveFile](ui-save-file.md) | `fun uiSaveFile(parent: CValuesRef<`[`uiWindow`](ui-window.md)`>?): CPointer<ByteVar>?` |
 | [uiSliderOnChanged](ui-slider-on-changed.md) | `fun uiSliderOnChanged(s: CValuesRef<`[`uiSlider`](ui-slider.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiSlider`](ui-slider.md)`>?, COpaquePointer?) -> Unit>>?, data: CValuesRef<*>?)` |
+| [uiSliderOnReleased](ui-slider-on-released.md) | `fun uiSliderOnReleased(s: CValuesRef<`[`uiSlider`](ui-slider.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiSlider`](ui-slider.md)`>?, COpaquePointer?) -> Unit>>?, data: CValuesRef<*>?)` |
+| [uiSliderSetHasToolTip](ui-slider-set-has-tool-tip.md) | `fun uiSliderSetHasToolTip(s: CValuesRef<`[`uiSlider`](ui-slider.md)`>?, value: Int)` |
+| [uiSliderSetRange](ui-slider-set-range.md) | `fun uiSliderSetRange(s: CValuesRef<`[`uiSlider`](ui-slider.md)`>?, min: Int, max: Int)` |
 | [uiSliderSetValue](ui-slider-set-value.md) | `fun uiSliderSetValue(s: CValuesRef<`[`uiSlider`](ui-slider.md)`>?, value: Int)` |
+| [uiSliderHasToolTip](ui-slider-has-tool-tip.md) | `fun uiSliderHasToolTip(s: CValuesRef<`[`uiSlider`](ui-slider.md)`>?): Int` |
 | [uiSliderValue](ui-slider-value.md) | `fun uiSliderValue(s: CValuesRef<`[`uiSlider`](ui-slider.md)`>?): Int` |
 | [uiSpinboxOnChanged](ui-spinbox-on-changed.md) | `fun uiSpinboxOnChanged(s: CValuesRef<`[`uiSpinbox`](ui-spinbox.md)`>?, f: CPointer<CFunction<(CPointer<`[`uiSpinbox`](ui-spinbox.md)`>?, COpaquePointer?) -> Unit>>?, data: CValuesRef<*>?)` |
 | [uiSpinboxSetValue](ui-spinbox-set-value.md) | `fun uiSpinboxSetValue(s: CValuesRef<`[`uiSpinbox`](ui-spinbox.md)`>?, value: Int)` |
