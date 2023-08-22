@@ -6,6 +6,8 @@ pluginManagement {
         mavenCentral()
         gradlePluginPortal()
         maven("https://maven.pkg.jetbrains.space/kotlin/p/kotlin/dev")
+        maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
+        google()
     }
 }
 
@@ -21,6 +23,7 @@ gradleEnterprise {
 }
 
 include(":libui")
+include(":libui-compose")
 
 include(":samples:controlgallery")
 include(":samples:datetime")
